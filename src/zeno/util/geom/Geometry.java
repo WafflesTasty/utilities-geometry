@@ -7,9 +7,8 @@ import zeno.util.algebra.vectors.Vector;
  *
  * @author Zeno
  * @since Aug 22, 2015
- * @see ITransformable
  */
-public abstract class Geometry implements ITransformable
+public abstract class Geometry
 {	
 	/**
 	 * The {@code OrderBy} class defines vertex order methods.
