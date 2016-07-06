@@ -4,7 +4,7 @@ import java.util.Iterator;
 
 import zeno.util.algebra.Integers;
 import zeno.util.algebra.vectors.fixed.Vector2;
-import zeno.util.geom.shapes.Geometry2D;
+import zeno.util.geom.shapes.IGeometry2D;
 import zeno.util.geom.tools.cardinal.Cardinal2D;
 
 /**
@@ -19,16 +19,16 @@ import zeno.util.geom.tools.cardinal.Cardinal2D;
 public class PerimeterIterator implements Iterator<Vector2>
 {
 	private Vector2 v;
-	private Geometry2D geom;
+	private IGeometry2D geom;
 	private int x1, x2, y1, y2;
 		
 	/**
 	 * Creates a new {@code PerimeterIterator}.
 	 * 
 	 * @param geom  a geometry to use
-	 * @see Geometry2D
+	 * @see IGeometry2D
 	 */
-	public PerimeterIterator(Geometry2D geom)
+	public PerimeterIterator(IGeometry2D geom)
 	{
 		this.geom = geom;
 		

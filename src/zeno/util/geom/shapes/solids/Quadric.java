@@ -2,7 +2,7 @@ package zeno.util.geom.shapes.solids;
 
 import zeno.util.algebra.vectors.fixed.Vector3;
 import zeno.util.geom.shapes.Geometry3D;
-import zeno.util.geom.Geometry;
+import zeno.util.geom.IGeometry;
 
 /**
  * The {@code Quadric} class defines a convex quadric surface.
@@ -20,9 +20,9 @@ public abstract class Quadric extends Geometry3D
 	 *
 	 * @author Zeno
 	 * @since Apr 9, 2016
-	 * @see Geometry
+	 * @see IGeometry
 	 */
-	public class OrderBy extends Geometry.OrderBy
+	public class OrderBy extends IGeometry.OrderBy
 	{
 		/**
 		 * Creates a new {@code OrderBy}.

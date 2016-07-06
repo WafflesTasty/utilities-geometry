@@ -2,7 +2,7 @@ package zeno.util.geom.shapes.solids;
 
 import zeno.util.algebra.vectors.fixed.Vector3;
 import zeno.util.geom.shapes.Geometry3D;
-import zeno.util.geom.Geometry;
+import zeno.util.geom.IGeometry;
 
 /**
  * The {@code Lateral3D} class defines a three-dimensional six-sided shape.
@@ -19,7 +19,7 @@ public class Lateral3D extends Geometry3D
 	 * @author Zeno
 	 * @since Apr 9, 2016
 	 */
-	public class OrderBy extends Geometry.OrderBy
+	public class OrderBy extends IGeometry.OrderBy
 	{
 		/**
 		 * Creates a new {@code OrderBy}.

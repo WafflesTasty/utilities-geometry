@@ -3,12 +3,12 @@ package zeno.util.geom;
 import zeno.util.algebra.vectors.Vector;
 
 /**
- * The {@code Geometry} interface is the base for any convex geometric shape.
+ * The {@code IGeometry} interface is the base for any convex geometric shape.
  *
  * @author Zeno
  * @since Aug 22, 2015
  */
-public interface Geometry
+public interface IGeometry
 {	
 	/**
 	 * The {@code OrderBy} class defines vertex order methods.
@@ -18,15 +18,15 @@ public interface Geometry
 	 */
 	public class OrderBy
 	{
-		private Geometry geom;
+		private IGeometry geom;
 		
 		/**
 		 * Creates a new {@code OrderBy}.
 		 * 
 		 * @param geom  a target geometry
-		 * @see Geometry
+		 * @see IGeometry
 		 */
-		public OrderBy(Geometry geom)
+		public OrderBy(IGeometry geom)
 		{
 			this.geom = geom;
 		}
@@ -37,7 +37,7 @@ public interface Geometry
 		 * @return  the source geometry
 		 * @see IGeometry
 		 */
-		protected Geometry Geometry()
+		protected IGeometry Geometry()
 		{
 			return geom;
 		}
@@ -178,14 +178,14 @@ public interface Geometry
 
 			
 	/**
-	 * Returns the vertex count of the {@code Geometry}.
+	 * Returns the vertex count of the {@code IGeometry}.
 	 * 
 	 * @return  the geometry's vertex count
 	 */
 	public abstract int VertexCount();
 
 	/**
-	 * Returns all the vertices of the {@code Geometry}.
+	 * Returns all the vertices of the {@code IGeometry}.
 	 * 
 	 * @return  the geometry's vertices
 	 * @see Vector
@@ -193,7 +193,7 @@ public interface Geometry
 	public abstract Vector[] Vertices();
 
 	/**
-	 * Returns the {Geometry}'s vertex order methods.
+	 * Returns the {IGeometry}'s vertex order methods.
 	 * 
 	 * @return  the geometry's order methods
 	 * @see OrderBy

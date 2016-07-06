@@ -2,7 +2,8 @@ package zeno.util.geom.shapes.lines;
 
 import zeno.util.algebra.Floats;
 import zeno.util.algebra.vectors.fixed.Vector3;
-import zeno.util.geom.Geometry;
+import zeno.util.geom.IGeometry;
+import zeno.util.geom.shapes.IGeometry3D;
 import zeno.util.geom.tools.bounds.IBound3D;
 
 /**
@@ -10,10 +11,9 @@ import zeno.util.geom.tools.bounds.IBound3D;
  * 
  * @author Zeno
  * @since Jul 5, 2016
- * @see Geometry
- * @see IBound3D
+ * @see IGeometry3D
  */
-public class Line3D implements Geometry, IBound3D
+public class Line3D implements IGeometry3D
 {	
 	/**
 	 * The {@code OrderBy} class defines vertex order methods.
@@ -21,7 +21,7 @@ public class Line3D implements Geometry, IBound3D
 	 * @author Zeno
 	 * @since Apr 9, 2016
 	 */
-	public class OrderBy extends Geometry.OrderBy
+	public class OrderBy extends IGeometry.OrderBy
 	{
 		/**
 		 * Creates a new {@code OrderBy}.
@@ -294,18 +294,36 @@ public class Line3D implements Geometry, IBound3D
 	/**
 	 * Indicates whether the {@code Line3D} intersects a cuboid.
 	 * 
-	 * @param x3  the cuboid's first x-coördinate
-	 * @param y3  the cuboid's first y-coördinate
-	 * @param z3  the cuboid's first z-coördinate
-	 * @param x4  the cuboid's second x-coördinate
-	 * @param y4  the cuboid's second y-coördinate
-	 * @param z4  the cuboid's second z-coördinate
+	 * @param x1  the cuboid's first x-coördinate
+	 * @param y1  the cuboid's first y-coördinate
+	 * @param z1  the cuboid's first z-coördinate
+	 * @param x2  the cuboid's second x-coördinate
+	 * @param y2  the cuboid's second y-coördinate
+	 * @param z2  the cuboid's second z-coördinate
 	 * @return  {@code true} if the line intersects the cuboid
 	 */
-	public boolean intersects(float x3, float y3, float z3, float x4, float y4, float z4)
+	@Override
+	public boolean intersects(float x1, float y1, float z1, float x2, float y2, float z2)
 	{
 		int i;
 		return true;
+	}
+	
+	/**
+	 * Indicates whether the {@code Line3D} contains a cuboid.
+	 * 
+	 * @param x1  the cuboid's first x-coördinate
+	 * @param y1  the cuboid's first y-coördinate
+	 * @param z1  the cuboid's first z-coördinate
+	 * @param x2  the cuboid's second x-coördinate
+	 * @param y2  the cuboid's second y-coördinate
+	 * @param z2  the cuboid's second z-coördinate
+	 * @return  {@code true} if the line contains the cuboid
+	 */
+	@Override
+	public boolean contains(float x1, float y1, float z1, float x2, float y2, float z2)
+	{
+		return false;
 	}
 	
 	/**
@@ -316,6 +334,7 @@ public class Line3D implements Geometry, IBound3D
 	 * @param z  the point's z-coördinate
 	 * @return  {@code true} if the line contains the point
 	 */
+	@Override
 	public boolean contains(float x, float y, float z)
 	{
 		float xVal = (x - x1) / (x2 - x1);
@@ -348,6 +367,7 @@ public class Line3D implements Geometry, IBound3D
 	 * @return  {@code true} if the line intersects the rectangle
 	 * @see IBound3D
 	 */
+	@Override
 	public boolean intersects(IBound3D rect)
 	{
 		return intersects(rect.XMin(), rect.YMin(), rect.ZMin(), rect.XMax(), rect.YMax(), rect.ZMax());
@@ -360,6 +380,7 @@ public class Line3D implements Geometry, IBound3D
 	 * @return  {@code true} if the line contains the point
 	 * @see Vector3
 	 */
+	@Override
 	public boolean contains(Vector3 p)
 	{
 		return contains(p.X(), p.Y(), p.Z());
@@ -456,4 +477,5 @@ public class Line3D implements Geometry, IBound3D
 	{
 		return Floats.max(z1, z2);
 	}
+
 }

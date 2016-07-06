@@ -4,7 +4,7 @@ import zeno.util.algebra.Floats;
 import zeno.util.algebra.analysis.Polynomial;
 import zeno.util.algebra.vectors.fixed.Vector2;
 import zeno.util.geom.shapes.Geometry2D;
-import zeno.util.geom.Geometry;
+import zeno.util.geom.IGeometry;
 
 /**
  * The {@code Conic} class defines a convex conic section.
@@ -22,9 +22,9 @@ public abstract class Conic extends Geometry2D
 	 *
 	 * @author Zeno
 	 * @since Apr 9, 2016
-	 * @see Geometry
+	 * @see IGeometry
 	 */
-	public class OrderBy extends Geometry.OrderBy
+	public class OrderBy extends IGeometry.OrderBy
 	{
 		/**
 		 * Creates a new {@code OrderBy}.

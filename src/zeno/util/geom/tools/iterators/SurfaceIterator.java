@@ -4,7 +4,7 @@ import java.util.Iterator;
 
 import zeno.util.algebra.Integers;
 import zeno.util.algebra.vectors.fixed.Vector2;
-import zeno.util.geom.shapes.Geometry2D;
+import zeno.util.geom.shapes.IGeometry2D;
 
 /**
  * The {@code SurfaceIterator} class defines an iterator
@@ -12,23 +12,22 @@ import zeno.util.geom.shapes.Geometry2D;
  *
  * @author Zeno
  * @since Sep 12, 2015
- * 
  * @see Iterator
  * @see Vector2
  */
 public class SurfaceIterator implements Iterator<Vector2>
 {
 	private Vector2 v;
-	private Geometry2D geom;
+	private IGeometry2D geom;
 	private int x1, x2, y1, y2;
 		
 	/**
 	 * Creates a new {@code SurfaceIterator}.
 	 * 
 	 * @param geom  a geometry to use
-	 * @see Geometry2D
+	 * @see IGeometry2D
 	 */
-	public SurfaceIterator(Geometry2D geom)
+	public SurfaceIterator(IGeometry2D geom)
 	{
 		this.geom = geom;
 		

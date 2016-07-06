@@ -2,7 +2,7 @@ package zeno.util.geom.shapes.surfaces;
 
 import zeno.util.algebra.vectors.fixed.Vector2;
 import zeno.util.geom.shapes.Geometry2D;
-import zeno.util.geom.Geometry;
+import zeno.util.geom.IGeometry;
 
 /**
  * The {@code Lateral2D} class defines a two-dimensional four-edged shape.
@@ -19,7 +19,7 @@ public class Lateral2D extends Geometry2D
 	 * @author Zeno
 	 * @since Apr 9, 2016
 	 */
-	public class OrderBy extends Geometry.OrderBy
+	public class OrderBy extends IGeometry.OrderBy
 	{
 		/**
 		 * Creates a new {@code OrderBy}.

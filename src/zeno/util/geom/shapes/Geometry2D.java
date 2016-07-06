@@ -2,18 +2,16 @@ package zeno.util.geom.shapes;
 
 import zeno.util.algebra.Floats;
 import zeno.util.algebra.vectors.fixed.Vector2;
-import zeno.util.geom.Geometry;
-import zeno.util.geom.tools.bounds.IBound2D;
 
 /**
- * The {@code Geometry2D} class is the base for any convex two-dimensional geometric shape.
+ * The {@code Geometry2D} class defines a two-dimensional convex shape
+ * using a center, width and height.
  *
  * @author Zeno
  * @since Aug 22, 2015
- * @see IBound2D
- * @see Geometry
+ * @see IGeometry2D
  */
-public abstract class Geometry2D implements Geometry, IBound2D
+public abstract class Geometry2D implements IGeometry2D
 {		
 	private Vector2 center, size;
 	
@@ -39,85 +37,7 @@ public abstract class Geometry2D implements Geometry, IBound2D
 		this(0, 0, 1, 1);
 	}
 	
-	
-	/**
-	 * Indicates if the {@code Geometry2D} intersects a rectangle.
-	 * 
-	 * @param x1  the rectangle's first x-coördinate
-	 * @param y1  the rectangle's first y-coördinate
-	 * @param x2  the rectangle's second x-coördinate
-	 * @param y2  the rectangle's second y-coördinate
-	 * @return  {@code true} if the rectangle intersects
-	 */
-	public abstract boolean intersects(float x1, float y1, float x2, float y2);
-	
-	/**
-	 * Indicates if the {@code Geometry2D} contains a rectangle.
-	 * 
-	 * @param x1  the rectangle's first x-coördinate
-	 * @param y1  the rectangle's first y-coördinate
-	 * @param x2  the rectangle's second x-coördinate
-	 * @param y2  the rectangle's second y-coördinate
-	 * @return  {@code true} if the rectangle contains
-	 */
-	public abstract boolean contains(float x1, float y1, float x2, float y2);
-	
-	/**
-	 * Indicates if the {@code Geometry2D} contains a point.
-	 * 
-	 * @param x  the point's x-coördinate
-	 * @param y  the point's y-coördinate
-	 * @return  {@code true} if the point is contained
-	 */
-	public abstract boolean contains(float x, float y);
-	
-	/**
-	 * Returns the vertices of the {@code Geometry2D}.
-	 * 
-	 * @return  the geometry's vertices
-	 * @see Vector2
-	 */
-	@Override
-	public abstract Vector2[] Vertices();
-	
-	
-	/**
-	 * Indicates if the {@code Geometry2D} intersects a rectangle.
-	 * 
-	 * @param rect  a rectangle to check
-	 * @return  {@code true} if the rectangle intersects
-	 * @see IBound2D
-	 */
-	public final boolean intersects(IBound2D rect)
-	{
-		return intersects(rect.XMin(), rect.YMin(), rect.XMax(), rect.YMax());
-	}
-	
-	/**
-	 * Indicates if the {@code Geometry2D} contains a rectangle.
-	 * 
-	 * @param rect  a rectangle to check
-	 * @return  {@code true} if the rectangle contains
-	 * @see IBound2D
-	 */
-	public final boolean contains(IBound2D rect)
-	{
-		return contains(rect.XMin(), rect.YMin(), rect.XMax(), rect.YMax());
-	}
-	
-	/**
-	 * Indicates if the {@code Geometry2D} contains a point.
-	 * 
-	 * @param v  a point to check
-	 * @return  {@code true} if the point is contained
-	 * @see Vector2
-	 */
-	public final boolean contains(Vector2 v)
-	{
-		return contains(v.X(), v.Y());
-	}
-
-	
+		
 	/**
 	 * Changes the center of the {@code Geometry2D}.
 	 * 

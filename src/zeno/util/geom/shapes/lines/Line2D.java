@@ -2,21 +2,20 @@ package zeno.util.geom.shapes.lines;
 
 import zeno.util.algebra.Floats;
 import zeno.util.algebra.vectors.fixed.Vector2;
-import zeno.util.geom.Geometry;
-import zeno.util.geom._oldcode.LineClipper2D;
-import zeno.util.geom.tools.bounds.IBound2D;
+import zeno.util.geom.IGeometry;
+import zeno.util.geom._oldcode.Line2DClipper;
+import zeno.util.geom.shapes.IGeometry2D;
 
 /**
  * The {@code Line2D} class defines a two-dimensional line segment.
  * 
  * @author Zeno
  * @since Jul 5, 2016
- * @see Geometry
- * @see IBound2D
+ * @see IGeometry2D
  */
-public class Line2D implements Geometry, IBound2D
+public class Line2D implements IGeometry2D
 {
-	private static final LineClipper2D clipper = new LineClipper2D();
+	private static final Line2DClipper clipper = new Line2DClipper();
 	
 	/**
 	 * The {@code OrderBy} class defines vertex order methods.
@@ -24,7 +23,7 @@ public class Line2D implements Geometry, IBound2D
 	 * @author Zeno
 	 * @since Apr 9, 2016
 	 */
-	public class OrderBy extends Geometry.OrderBy
+	public class OrderBy extends IGeometry.OrderBy
 	{
 		/**
 		 * Creates a new {@code OrderBy}.
@@ -262,6 +261,7 @@ public class Line2D implements Geometry, IBound2D
 	 * @param y2  the rectangle's second y-coördinate
 	 * @return  {@code true} if the line intersects the rectangle
 	 */
+	@Override
 	public boolean intersects(float x1, float y1, float x2, float y2)
 	{
 		clipper.setBounds(x1, y1, x2, y2);
@@ -274,12 +274,28 @@ public class Line2D implements Geometry, IBound2D
 	}
 	
 	/**
+	 * Indicates whether the {@code Line2D} contains a rectangle.
+	 * 
+	 * @param x1  the rectangle's first x-coördinate
+	 * @param y1  the rectangle's first y-coördinate
+	 * @param x2  the rectangle's second x-coördinate
+	 * @param y2  the rectangle's second y-coördinate
+	 * @return  {@code true} if the line contains the rectangle
+	 */
+	@Override
+	public boolean contains(float x1, float y1, float x2, float y2)
+	{
+		return false;
+	}
+	
+	/**
 	 * Indicates whether the {@code Line2D} contains a point.
 	 * 
 	 * @param x  the point's x-coördinate
 	 * @param y  the point's y-coördinate
 	 * @return  {@code true} if the line contains the point
 	 */
+	@Override
 	public boolean contains(float x, float y)
 	{
 		float xVal = (x - x1) / (x2 - x1);
@@ -290,7 +306,6 @@ public class Line2D implements Geometry, IBound2D
 			&& y1 <= y && y <= y2;
 	}
 
-	
 	/**
 	 * Indicates whether the {@code Line2D} crosses another line.
 	 * 
@@ -301,31 +316,7 @@ public class Line2D implements Geometry, IBound2D
 	{
 		return crosses(line.X1(), line.Y1(), line.X2(), line.Y2());
 	}
-	
-	/**
-	 * Indicates whether the {@code Line2D} intersects a rectangle.
-	 * 
-	 * @param rect  a rectangle to check
-	 * @return  {@code true} if the line intersects the rectangle
-	 * @see IBound2D
-	 */
-	public boolean intersects(IBound2D rect)
-	{
-		return intersects(rect.XMin(), rect.YMin(), rect.XMax(), rect.YMax());
-	}
-	
-	/**
-	 * Indicates whether the {@code Line2D} contains a point.
-	 * 
-	 * @param p  a point to check
-	 * @return  {@code true} if the line contains the point
-	 * @see Vector2
-	 */
-	public boolean contains(Vector2 p)
-	{
-		return contains(p.X(), p.Y());
-	}
-	
+		
 	
 	@Override
 	public OrderBy OrderBy()
@@ -401,4 +392,5 @@ public class Line2D implements Geometry, IBound2D
 	{
 		return Floats.max(y1, y2);
 	}
+
 }
