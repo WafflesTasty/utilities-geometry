@@ -5,7 +5,7 @@ import java.util.Iterator;
 import zeno.util.algebra.Floats;
 import zeno.util.algebra.Integers;
 import zeno.util.algebra.vectors.fixed.Vector2;
-import zeno.util.geom._oldcode.shapes.lines.Line2D;
+import zeno.util.geom.shapes.lines.Line2D;
 import zeno.util.tools.Messenger;
 
 /**

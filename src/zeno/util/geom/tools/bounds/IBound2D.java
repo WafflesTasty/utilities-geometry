@@ -1,6 +1,6 @@
 package zeno.util.geom.tools.bounds;
 
-import zeno.util.geom._oldcode.shapes.surfaces.lateral.Rectangle;
+import zeno.util.geom.shapes.surfaces.lateral.Rectangle;
 
 /**
  * The {@code IBound2D} interface defines an object bound in two dimensions.

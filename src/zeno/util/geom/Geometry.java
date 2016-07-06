@@ -3,12 +3,12 @@ package zeno.util.geom;
 import zeno.util.algebra.vectors.Vector;
 
 /**
- * The {@code Geometry} class is the base class for any convex geometric shape.
+ * The {@code Geometry} interface is the base for any convex geometric shape.
  *
  * @author Zeno
  * @since Aug 22, 2015
  */
-public abstract class Geometry
+public interface Geometry
 {	
 	/**
 	 * The {@code OrderBy} class defines vertex order methods.
@@ -18,6 +18,30 @@ public abstract class Geometry
 	 */
 	public class OrderBy
 	{
+		private Geometry geom;
+		
+		/**
+		 * Creates a new {@code OrderBy}.
+		 * 
+		 * @param geom  a target geometry
+		 * @see Geometry
+		 */
+		public OrderBy(Geometry geom)
+		{
+			this.geom = geom;
+		}
+		
+		/**
+		 * Returns the target {@code Geometry}.
+		 * 
+		 * @return  the source geometry
+		 * @see IGeometry
+		 */
+		protected Geometry Geometry()
+		{
+			return geom;
+		}
+		
 		/**
 		 * Returns a vertex order as points.
 		 * 
@@ -26,8 +50,10 @@ public abstract class Geometry
 		 */
 		public final int[] Points()
 		{
-			int[] order = new int[VertexCount()];
-			for(int i = 0; i < VertexCount(); i++)
+			int vcount = geom.VertexCount();
+			
+			int[] order = new int[vcount];
+			for(int i = 0; i < vcount; i++)
 			{
 				order[i] = i;
 			}
@@ -149,30 +175,8 @@ public abstract class Geometry
 			throw new UnsupportedOperationException("Geometry unfit to order by lines.");
 		}
 	}
-	
-	
-	private OrderBy orderBy;
-	
-	/**
-	 * Creates a new {@code Geometry}.
-	 */
-	public Geometry()
-	{
-		orderBy = new OrderBy();
-	}
-	
-	
-	/**
-	 * Returns the {Geometry}'s vertex order methods.
-	 * 
-	 * @return  the geometry's order methods
-	 * @see OrderBy
-	 */
-	public OrderBy OrderBy()
-	{
-		return orderBy;
-	}
-		
+
+			
 	/**
 	 * Returns the vertex count of the {@code Geometry}.
 	 * 
@@ -187,4 +191,15 @@ public abstract class Geometry
 	 * @see Vector
 	 */
 	public abstract Vector[] Vertices();
+
+	/**
+	 * Returns the {Geometry}'s vertex order methods.
+	 * 
+	 * @return  the geometry's order methods
+	 * @see OrderBy
+	 */
+	public default OrderBy OrderBy()
+	{
+		return new OrderBy(this);
+	}
 }

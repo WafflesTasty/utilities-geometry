@@ -4,7 +4,7 @@ import java.util.Iterator;
 
 import zeno.util.algebra.Integers;
 import zeno.util.algebra.vectors.fixed.Vector2;
-import zeno.util.geom._oldcode.shapes.Geometry2D;
+import zeno.util.geom.shapes.Geometry2D;
 
 /**
  * The {@code SurfaceIterator} class defines an iterator
