@@ -3,6 +3,7 @@ package zeno.util.geom.shapes.lines;
 import zeno.util.algebra.Floats;
 import zeno.util.algebra.vectors.fixed.Vector3;
 import zeno.util.geom.IGeometry;
+import zeno.util.geom.algorithms.Line3DClipper;
 import zeno.util.geom.shapes.IGeometry3D;
 import zeno.util.geom.tools.bounds.IBound3D;
 
@@ -15,6 +16,8 @@ import zeno.util.geom.tools.bounds.IBound3D;
  */
 public class Line3D implements IGeometry3D
 {	
+	private static final Line3DClipper clipper = new Line3DClipper();
+	
 	/**
 	 * The {@code OrderBy} class defines vertex order methods.
 	 *
@@ -305,7 +308,12 @@ public class Line3D implements IGeometry3D
 	@Override
 	public boolean intersects(float x1, float y1, float z1, float x2, float y2, float z2)
 	{
-		int i;
+		clipper.setBounds(x1, y1, z1, x2, y2, z2);
+		if(clipper.clip(this) == null)
+		{
+			return false;
+		}
+		
 		return true;
 	}
 	
