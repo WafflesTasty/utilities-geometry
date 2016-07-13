@@ -78,7 +78,7 @@ public class Rectangle extends Lateral2D
 		
 		return false;
 	}
-	
+			
 	/**
 	 * Changes the size of the {@code Rectangle}.
 	 * 
@@ -88,9 +88,9 @@ public class Rectangle extends Lateral2D
 	@Override
 	public void setSize(float w, float h)
 	{
-		super.setSize(Math.abs(w), Math.abs(h));
+		super.setSize(w, h);
 	}
-		
+	
 	/**
 	 * Changes the size of the {@code Rectangle}.
 	 * 
@@ -100,8 +100,9 @@ public class Rectangle extends Lateral2D
 	@Override
 	public void setSize(Vector2 size)
 	{
-		setSize(size.X(), size.Y());
+		super.setSize(size);
 	}
+	
 	
 	/**
 	 * Changes the height of the {@code Rectangle}.
@@ -111,7 +112,7 @@ public class Rectangle extends Lateral2D
 	@Override
 	public void setHeight(float h)
 	{
-		setSize(Width(), h);
+		super.setHeight(h);
 	}
 	
 	/**
@@ -122,8 +123,9 @@ public class Rectangle extends Lateral2D
 	@Override
 	public void setWidth(float w)
 	{
-		setSize(w, Height());
+		super.setWidth(w);
 	}
+	
 	
 	/**
 	 * Returns the size of the {@code Rectangle}.

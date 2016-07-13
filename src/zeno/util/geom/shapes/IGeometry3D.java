@@ -2,6 +2,7 @@ package zeno.util.geom.shapes;
 
 import zeno.util.algebra.vectors.fixed.Vector3;
 import zeno.util.geom.IGeometry;
+import zeno.util.geom.shapes.lines.Line3D;
 import zeno.util.geom.tools.bounds.IBound3D;
 
 /**
@@ -14,6 +15,19 @@ import zeno.util.geom.tools.bounds.IBound3D;
  */
 public interface IGeometry3D extends IGeometry, IBound3D
 {
+	/**
+	 * Indicates whether the {@code IGeometry3D} crosses a line.
+	 * 
+	 * @param x1  the line's first x-coördinate
+	 * @param y1  the line's first y-coördinate
+	 * @param z1  the line's first z-coördinate
+	 * @param x2  the line's second x-coördinate
+	 * @param y2  the line's second y-coördinate
+	 * @param z2  the line's second z-coördinate
+	 * @return  {@code true} if the lines intersect
+	 */
+	public abstract boolean crosses(float x1, float y1, float z1, float x2, float y2, float z2);
+	
 	/**
 	 * Indicates if the {@code Geometry3D} intersects a cuboid.
 	 * 
@@ -59,6 +73,18 @@ public interface IGeometry3D extends IGeometry, IBound3D
 	@Override
 	public abstract Vector3[] Vertices();
 
+	
+	/**
+	 * Indicates if the {@code IGeometry3D} crosses a line.
+	 * 
+	 * @param line  a line to check
+	 * @return  {@code true} if the lines intersect
+	 * @see Line3D
+	 */
+	public default boolean crosses(Line3D line)
+	{
+		return crosses(line.X1(), line.Y1(), line.Z1(), line.X2(), line.Y2(), line.Z2());
+	}
 		
 	/**
 	 * Indicates if the {@code Geometry3D} intersects a cuboid.
@@ -83,7 +109,7 @@ public interface IGeometry3D extends IGeometry, IBound3D
 	{
 		return contains(cube.XMin(), cube.YMin(), cube.ZMin(), cube.XMax(), cube.YMax(), cube.ZMax());
 	}
-	
+		
 	/**
 	 * Indicates if the {@code Geometry3D} contains a point.
 	 * 

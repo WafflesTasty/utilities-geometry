@@ -2,6 +2,7 @@ package zeno.util.geom.shapes;
 
 import zeno.util.algebra.vectors.fixed.Vector2;
 import zeno.util.geom.IGeometry;
+import zeno.util.geom.shapes.lines.Line2D;
 import zeno.util.geom.tools.bounds.IBound2D;
 
 /**
@@ -14,6 +15,17 @@ import zeno.util.geom.tools.bounds.IBound2D;
  */
 public interface IGeometry2D extends IGeometry, IBound2D
 {
+	/**
+	 * Indicates if the {@code IGeometry2D} crosses a line.
+	 * 
+	 * @param x1  the rectangle's first x-coördinate
+	 * @param y1  the rectangle's first y-coördinate
+	 * @param x2  the rectangle's second x-coördinate
+	 * @param y2  the rectangle's second y-coördinate
+	 * @return  {@code true} if the rectangle intersects
+	 */
+	public abstract boolean crosses(float x1, float y1, float x2, float y2);
+	
 	/**
 	 * Indicates if the {@code IGeometry2D} intersects a rectangle.
 	 * 
@@ -53,7 +65,19 @@ public interface IGeometry2D extends IGeometry, IBound2D
 	 */
 	@Override
 	public abstract Vector2[] Vertices();
+
 	
+	/**
+	 * Indicates if the {@code IGeometry2D} crosses a line.
+	 * 
+	 * @param line  a line to check
+	 * @return  {@code true} if the lines intersect
+	 * @see Line2D
+	 */
+	public default boolean crosses(Line2D line)
+	{
+		return crosses(line.X1(), line.Y1(), line.X2(), line.Y2());
+	}
 	
 	/**
 	 * Indicates if the {@code IGeometry2D} intersects a rectangle.

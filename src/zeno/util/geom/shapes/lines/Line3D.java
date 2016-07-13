@@ -5,7 +5,6 @@ import zeno.util.algebra.vectors.fixed.Vector3;
 import zeno.util.geom.IGeometry;
 import zeno.util.geom.algorithms.Line3DClipper;
 import zeno.util.geom.shapes.IGeometry3D;
-import zeno.util.geom.tools.bounds.IBound3D;
 
 /**
  * The {@code Line3D} class defines a three-dimensional line segment.
@@ -250,7 +249,7 @@ public class Line3D implements IGeometry3D
 
 	
 	/**
-	 * Indicates whether the {@code Line3D} crosses another line.
+	 * Indicates if the {@code Line3D} crosses another line.
 	 * 
 	 * @param x1  the line's first x-coördinate
 	 * @param y1  the line's first y-coördinate
@@ -260,6 +259,7 @@ public class Line3D implements IGeometry3D
 	 * @param z2  the line's second z-coördinate
 	 * @return  {@code true} if the lines intersect
 	 */
+	@Override
 	public boolean crosses(float x1, float y1, float z1, float x2, float y2, float z2)
 	{
 		float dpx = X2() - X1();
@@ -295,7 +295,7 @@ public class Line3D implements IGeometry3D
 	}
 		
 	/**
-	 * Indicates whether the {@code Line3D} intersects a cuboid.
+	 * Indicates if the {@code Line3D} intersects a cuboid.
 	 * 
 	 * @param x1  the cuboid's first x-coördinate
 	 * @param y1  the cuboid's first y-coördinate
@@ -318,7 +318,7 @@ public class Line3D implements IGeometry3D
 	}
 	
 	/**
-	 * Indicates whether the {@code Line3D} contains a cuboid.
+	 * Indicates if the {@code Line3D} contains a cuboid.
 	 * 
 	 * @param x1  the cuboid's first x-coördinate
 	 * @param y1  the cuboid's first y-coördinate
@@ -335,7 +335,7 @@ public class Line3D implements IGeometry3D
 	}
 	
 	/**
-	 * Indicates whether the {@code Line3D} contains a point.
+	 * Indicates if the {@code Line3D} contains a point.
 	 * 
 	 * @param x  the point's x-coördinate
 	 * @param y  the point's y-coördinate
@@ -354,44 +354,6 @@ public class Line3D implements IGeometry3D
 			&& x1 <= x && x <= x2
 			&& y1 <= y && y <= y2
 			&& z1 <= y && y <= z2;
-	}
-
-	
-	/**
-	 * Indicates whether the {@code Line3D} crosses another line.
-	 * 
-	 * @param line  a line to check
-	 * @return  {@code true} if the lines intersect
-	 */
-	public boolean crosses(Line3D line)
-	{
-		return crosses(line.X1(), line.Y1(), line.Z1(), line.X2(), line.Y2(), line.Z2());
-	}
-	
-	/**
-	 * Indicates whether the {@code Line3D} intersects a rectangle.
-	 * 
-	 * @param rect  a rectangle to check
-	 * @return  {@code true} if the line intersects the rectangle
-	 * @see IBound3D
-	 */
-	@Override
-	public boolean intersects(IBound3D rect)
-	{
-		return intersects(rect.XMin(), rect.YMin(), rect.ZMin(), rect.XMax(), rect.YMax(), rect.ZMax());
-	}
-	
-	/**
-	 * Indicates whether the {@code Line3D} contains a point.
-	 * 
-	 * @param p  a point to check
-	 * @return  {@code true} if the line contains the point
-	 * @see Vector3
-	 */
-	@Override
-	public boolean contains(Vector3 p)
-	{
-		return contains(p.X(), p.Y(), p.Z());
 	}
 	
 	
@@ -485,5 +447,4 @@ public class Line3D implements IGeometry3D
 	{
 		return Floats.max(z1, z2);
 	}
-
 }

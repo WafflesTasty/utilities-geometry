@@ -146,22 +146,6 @@ public class Circle extends Conic
 		
 		return false;
 	}
-
-	/**
-	 * Checks if the {@code Circle} contains a point.
-	 */
-	@Override
-	public boolean contains(float x, float y)
-	{
-		float r = Radius();
-		
-		// Normalized point.
-		float nx = 2 * (x - X());
-		float ny = 2 * (y - Y());
-		
-		// Distance from center.
-		return nx * nx + ny * ny < r * r;
-	}
 	
 	/**
 	 * Changes the radius of the {@code Circle}.

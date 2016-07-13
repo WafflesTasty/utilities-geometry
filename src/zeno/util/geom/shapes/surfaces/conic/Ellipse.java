@@ -139,21 +139,7 @@ public class Ellipse extends Conic
 		
 		return false;
 	}
-	
-	/**
-	 * Checks if the {@code Ellipse} contains a point.
-	 */
-	@Override
-	public boolean contains(float x, float y)
-	{
-		// Normalized point.
-		float nx = 2 * (x - X()) / Width();
-		float ny = 2 * (y - Y()) / Height();
-					
-		// Distance from center.
-		return nx * nx + ny * ny < 1;
-	}
-	
+		
 	/**
 	 * Changes the dimension of the {@code Ellipse}.
 	 * 
@@ -178,6 +164,7 @@ public class Ellipse extends Conic
 		setSize(size.X(), size.Y());
 	}
 	
+	
 	/**
 	 * Changes the height of the {@code Ellipse}.
 	 * 
@@ -199,6 +186,7 @@ public class Ellipse extends Conic
 	{
 		setSize(w, Height());
 	}
+	
 	
 	/**
 	 * Returns the size of the {@code Ellipse}.

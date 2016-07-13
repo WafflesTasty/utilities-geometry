@@ -221,7 +221,7 @@ public class Line2D implements IGeometry2D
 
 	
 	/**
-	 * Indicates whether the {@code Line2D} crosses another line.
+	 * Indicates if the {@code Line2D} crosses another line.
 	 * 
 	 * @param x1  the line's first x-coördinate
 	 * @param y1  the line's first y-coördinate
@@ -229,6 +229,7 @@ public class Line2D implements IGeometry2D
 	 * @param y2  the line's second y-coördinate
 	 * @return  {@code true} if the lines intersect
 	 */
+	@Override
 	public boolean crosses(float x1, float y1, float x2, float y2)
 	{
 		float rot1, rot2;
@@ -253,7 +254,7 @@ public class Line2D implements IGeometry2D
 	}
 		
 	/**
-	 * Indicates whether the {@code Line2D} intersects a rectangle.
+	 * Indicates if the {@code Line2D} intersects a rectangle.
 	 * 
 	 * @param x1  the rectangle's first x-coördinate
 	 * @param y1  the rectangle's first y-coördinate
@@ -274,7 +275,7 @@ public class Line2D implements IGeometry2D
 	}
 	
 	/**
-	 * Indicates whether the {@code Line2D} contains a rectangle.
+	 * Indicates if the {@code Line2D} contains a rectangle.
 	 * 
 	 * @param x1  the rectangle's first x-coördinate
 	 * @param y1  the rectangle's first y-coördinate
@@ -289,7 +290,7 @@ public class Line2D implements IGeometry2D
 	}
 	
 	/**
-	 * Indicates whether the {@code Line2D} contains a point.
+	 * Indicates if the {@code Line2D} contains a point.
 	 * 
 	 * @param x  the point's x-coördinate
 	 * @param y  the point's y-coördinate
@@ -305,18 +306,7 @@ public class Line2D implements IGeometry2D
 			&& x1 <= x && x <= x2
 			&& y1 <= y && y <= y2;
 	}
-
-	/**
-	 * Indicates whether the {@code Line2D} crosses a line.
-	 * 
-	 * @param line  a line to check
-	 * @return  {@code true} if the lines intersect
-	 */
-	public boolean crosses(Line2D line)
-	{
-		return crosses(line.X1(), line.Y1(), line.X2(), line.Y2());
-	}
-		
+	
 	
 	@Override
 	public OrderBy OrderBy()

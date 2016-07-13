@@ -31,7 +31,7 @@ public class Line3DClipper extends Messenger
 	
 	
 	/**
-	 * Changes the extension state of the {@code Line3DClipper}.
+	 * Changes the extension of the {@code Line3DClipper}.
 	 * 
 	 * @param isExtending  a new extension state
 	 */

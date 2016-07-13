@@ -13,7 +13,7 @@ import zeno.util.geom.IGeometry;
  * @since Apr 29, 2016
  * @see Geometry2D
  */
-public abstract class Conic extends Geometry2D
+public class Conic extends Geometry2D
 {
 	private static final int DEF_COUNT = 64;
 	
@@ -188,6 +188,27 @@ public abstract class Conic extends Geometry2D
 	
 	
 	/**
+	 * Indicates if the {@code Conic} crosses a line.
+	 * 
+	 * @param x1  the line's first x-coördinate
+	 * @param y1  the line's first y-coördinate
+	 * @param x2  the line's second x-coördinate
+	 * @param y2  the line's second y-coördinate
+	 * @return  {@code true} if the lines intersect
+	 */
+	@Override
+	public boolean crosses(float x1, float y1, float x2, float y2)
+	{
+		float slp = (y2 - y1) / (x2 - x1);
+		float icp = y1 - x1 * slp;
+		
+		float dx = (X() + slp * (Y() - icp)) / (1 + slp * slp);
+		float dy = slp * dx + icp;
+		
+		return contains(dx, dy);
+	}
+	
+	/**
 	 * Indicates if the {@code Conic} intersects a rectangle.
 	 * 
 	 * @param x1  the rectangle's first x-coördinate
@@ -228,6 +249,21 @@ public abstract class Conic extends Geometry2D
 		return contains(x1, y1)
 			&& contains(x2, y2);
 	}
+	
+	/**
+	 * Indicates if the {@code Conic} contains a point.
+	 */
+	@Override
+	public boolean contains(float x, float y)
+	{
+		// Normalized point.
+		float nx = 2 * (x - X()) / Width();
+		float ny = 2 * (y - Y()) / Height();
+					
+		// Distance from center.
+		return nx * nx + ny * ny < 1;
+	}
+	
 	
 	/**
 	 * Calculates the tangents to the {@code Conic}.
@@ -366,4 +402,5 @@ public abstract class Conic extends Geometry2D
 	{
 		return vCount + 1;
 	}
+
 }

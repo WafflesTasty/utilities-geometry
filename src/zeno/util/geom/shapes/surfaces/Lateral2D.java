@@ -3,6 +3,7 @@ package zeno.util.geom.shapes.surfaces;
 import zeno.util.algebra.vectors.fixed.Vector2;
 import zeno.util.geom.shapes.Geometry2D;
 import zeno.util.geom.IGeometry;
+import zeno.util.geom.algorithms.Line2DClipper;
 
 /**
  * The {@code Lateral2D} class defines a two-dimensional four-edged shape.
@@ -13,6 +14,8 @@ import zeno.util.geom.IGeometry;
  */
 public class Lateral2D extends Geometry2D
 {
+	private static final Line2DClipper clipper = new Line2DClipper();
+	
 	/**
 	 * The {@code OrderBy} class defines vertex order methods.
 	 *
@@ -40,10 +43,7 @@ public class Lateral2D extends Geometry2D
 			return new int[]
 			{
 				2,
-				0, 1,
-				1, 3,
-				3, 2,
-				2, 0,
+				0, 1, 3, 2, 0,
 				1
 			};
 		}
@@ -136,6 +136,27 @@ public class Lateral2D extends Geometry2D
 	
 	
 	/**
+	 * Indicates if the {@code Lateral2D} crosses a line.
+	 * 
+	 * @param x1  the line's first x-coördinate
+	 * @param y1  the line's first y-coördinate
+	 * @param x2  the line's second x-coördinate
+	 * @param y2  the line's second y-coördinate
+	 * @return  {@code true} if the lines intersect
+	 */
+	@Override
+	public boolean crosses(float x1, float y1, float x2, float y2)
+	{
+		clipper.setBounds(this);
+		if(clipper.clip(x1, y1, x2, y2) == null)
+		{
+			return false;
+		}
+		
+		return true;
+	}
+	
+	/**
 	 * Indicates if the {@code Lateral2D} intersects a rectangle.
 	 * 
 	 * @param x1  the rectangle's first x-coördinate
@@ -223,4 +244,5 @@ public class Lateral2D extends Geometry2D
 	{
 		return 4;
 	}
+
 }

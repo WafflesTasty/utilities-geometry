@@ -103,6 +103,7 @@ public abstract class Geometry2D implements IGeometry2D
 		setSize(size.X(), size.Y());
 	}
 
+	
 	/**
 	 * Changes the height of the {@code Geometry2D}.
 	 * 
