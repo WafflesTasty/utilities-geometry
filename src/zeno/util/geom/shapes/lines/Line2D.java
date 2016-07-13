@@ -307,7 +307,7 @@ public class Line2D implements IGeometry2D
 	}
 
 	/**
-	 * Indicates whether the {@code Line2D} crosses another line.
+	 * Indicates whether the {@code Line2D} crosses a line.
 	 * 
 	 * @param line  a line to check
 	 * @return  {@code true} if the lines intersect
@@ -392,5 +392,4 @@ public class Line2D implements IGeometry2D
 	{
 		return Floats.max(y1, y2);
 	}
-
 }
