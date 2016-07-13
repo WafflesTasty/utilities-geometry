@@ -107,6 +107,7 @@ public class Cuboid extends Lateral3D
 		setSize(size.X(), size.Y(), size.Z());
 	}
 	
+	
 	/**
 	 * Changes the height of the {@code Cuboid}.
 	 * 
@@ -139,6 +140,7 @@ public class Cuboid extends Lateral3D
 	{
 		setSize(w, Height(), Depth());
 	}
+	
 	
 	/**
 	 * Returns the size of the {@code Cuboid}.

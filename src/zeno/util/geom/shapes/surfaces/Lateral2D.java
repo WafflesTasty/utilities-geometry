@@ -142,7 +142,7 @@ public class Lateral2D extends Geometry2D
 	 * @param y1  the line's first y-coördinate
 	 * @param x2  the line's second x-coördinate
 	 * @param y2  the line's second y-coördinate
-	 * @return  {@code true} if the lines intersect
+	 * @return  {@code true} if the line intersects
 	 */
 	@Override
 	public boolean crosses(float x1, float y1, float x2, float y2)

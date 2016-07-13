@@ -194,18 +194,20 @@ public class Conic extends Geometry2D
 	 * @param y1  the line's first y-coördinate
 	 * @param x2  the line's second x-coördinate
 	 * @param y2  the line's second y-coördinate
-	 * @return  {@code true} if the lines intersect
+	 * @return  {@code true} if the line intersects
 	 */
 	@Override
 	public boolean crosses(float x1, float y1, float x2, float y2)
 	{
-		float slp = (y2 - y1) / (x2 - x1);
-		float icp = y1 - x1 * slp;
+		Vector2 v1 = new Vector2(x2 - x1, y2 - y1);
+		Vector2 v2 = new Vector2(X() - x1, Y() - y1);
 		
-		float dx = (X() + slp * (Y() - icp)) / (1 + slp * slp);
-		float dy = slp * dx + icp;
+		float par = v1.dot(v2) / v1.getLengthSquared();
 		
-		return contains(dx, dy);
+		float x = x1 + par * (x2 - x1);
+		float y = y1 + par * (y2 - y1);
+		
+		return contains(x, y);
 	}
 	
 	/**
@@ -252,6 +254,10 @@ public class Conic extends Geometry2D
 	
 	/**
 	 * Indicates if the {@code Conic} contains a point.
+	 * 
+	 * @param x  the point's x-coördinate
+	 * @param y  the point's y-coördinate
+	 * @return  {@code true} if the point is contained
 	 */
 	@Override
 	public boolean contains(float x, float y)

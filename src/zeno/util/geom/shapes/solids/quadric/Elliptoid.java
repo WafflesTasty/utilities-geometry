@@ -145,22 +145,7 @@ public class Elliptoid extends Quadric
 		
 		return false;
 	}
-	
-	/**
-	 * Checks if the {@code Elliptoid} contains a point.
-	 */
-	@Override
-	public boolean contains(float x, float y, float z)
-	{
-		// Normalized point.
-		float nx = 2 * (x - X()) / Width();
-		float ny = 2 * (y - Y()) / Height();
-		float nz = 2 * (z - Z()) / Depth();
-					
-		// Distance from center.
-		return nx * nx + ny * ny + nz * nz < 1;
-	}
-	
+		
 	/**
 	 * Changes the dimension of the {@code Elliptoid}.
 	 * 
@@ -185,6 +170,7 @@ public class Elliptoid extends Quadric
 	{
 		setSize(size.X(), size.Y(), size.Z());
 	}
+	
 	
 	/**
 	 * Changes the height of the {@code Elliptoid}.
@@ -218,6 +204,7 @@ public class Elliptoid extends Quadric
 	{
 		setSize(Width(), Height(), d);
 	}
+	
 	
 	/**
 	 * Returns the size of the {@code Elliptoid}.

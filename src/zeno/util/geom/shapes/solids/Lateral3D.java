@@ -3,6 +3,7 @@ package zeno.util.geom.shapes.solids;
 import zeno.util.algebra.vectors.fixed.Vector3;
 import zeno.util.geom.shapes.Geometry3D;
 import zeno.util.geom.IGeometry;
+import zeno.util.geom.algorithms.Line3DClipper;
 
 /**
  * The {@code Lateral3D} class defines a three-dimensional six-sided shape.
@@ -13,6 +14,8 @@ import zeno.util.geom.IGeometry;
  */
 public class Lateral3D extends Geometry3D
 {
+	private static final Line3DClipper clipper = new Line3DClipper();
+	
 	/**
 	 * The {@code OrderBy} class defines vertex order methods.
 	 *
@@ -97,6 +100,29 @@ public class Lateral3D extends Geometry3D
 		this(0, 0, 0, 1, 1, 1);
 	}
 	
+	
+	/**
+	 * Indicates if the {@code Lateral3D} crosses a line.
+	 * 
+	 * @param x1  the line's first x-coördinate
+	 * @param y1  the line's first y-coördinate
+	 * @param z1  the line's first z-coördinate
+	 * @param x2  the line's second x-coördinate
+	 * @param y2  the line's second y-coördinate
+	 * @param z2  the line's second z-coördinate
+	 * @return  {@code true} if the line intersects
+	 */
+	@Override
+	public boolean crosses(float x1, float y1, float z1, float x2, float y2, float z2)
+	{
+		clipper.setBounds(this);
+		if(clipper.clip(x1, y1, z1, x2, y2, z2) == null)
+		{
+			return false;
+		}
+		
+		return true;
+	}
 	
 	/**
 	 * Indicates if the {@code Lateral3D} intersects a cuboid.

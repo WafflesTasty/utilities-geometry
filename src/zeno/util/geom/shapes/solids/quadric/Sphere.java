@@ -106,7 +106,12 @@ public class Sphere extends Quadric
 	}
 
 	/**
-	 * Checks if the {@code Sphere} contains a point.
+	 * Indicates if the {@code Sphere} contains a point.
+	 * 
+	 * @param x  the point's x-coördinate
+	 * @param y  the point's y-coördinate
+	 * @param z  the point's z-coördinate
+	 * @return  {@code true} if the point is contained
 	 */
 	@Override
 	public boolean contains(float x, float y, float z)
@@ -114,9 +119,9 @@ public class Sphere extends Quadric
 		float r = Radius();
 		
 		// Normalized point.
-		float nx = 2 * (x - X());
-		float ny = 2 * (y - Y());
-		float nz = 2 * (z - Z());
+		float nx = x - X();
+		float ny = y - Y();
+		float nz = z - Z();
 		
 		// Distance from center.
 		return nx * nx + ny * ny + nz * nz < r * r;

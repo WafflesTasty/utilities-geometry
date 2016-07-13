@@ -11,7 +11,7 @@ import zeno.util.geom.IGeometry;
  * @since Apr 29, 2016
  * @see Geometry3D
  */
-public abstract class Quadric extends Geometry3D
+public class Quadric extends Geometry3D
 {
 	private static final int DEF_COUNT = 64;
 	
@@ -81,6 +81,32 @@ public abstract class Quadric extends Geometry3D
 	
 	
 	/**
+	 * Indicates if the {@code Quadric} crosses a line.
+	 * 
+	 * @param x1  the line's first x-coördinate
+	 * @param y1  the line's first y-coördinate
+	 * @param z1  the line's first z-coördinate
+	 * @param x2  the line's second x-coördinate
+	 * @param y2  the line's second y-coördinate
+	 * @param z2  the line's second z-coördinate
+	 * @return  {@code true} if the line intersects
+	 */
+	@Override
+	public boolean crosses(float x1, float y1, float z1, float x2, float y2, float z2)
+	{
+		Vector3 v1 = new Vector3(x2 - x1, y2 - y1, z2 - z1);
+		Vector3 v2 = new Vector3(X() - x1, Y() - y1, Z() - z1);
+		
+		float par = v1.dot(v2) / v1.getLengthSquared();
+		
+		float x = x1 + par * (x2 - x1);
+		float y = y1 + par * (y2 - y1);
+		float z = z1 + par * (z2 - z1);
+		
+		return contains(x, y, z);
+	}
+	
+	/**
 	 * Indicates if the {@code Quadric} intersects a cuboid.
 	 * 
 	 * @param x1  the cuboid's first x-coördinate
@@ -127,6 +153,26 @@ public abstract class Quadric extends Geometry3D
 	{
 		return contains(x1, y1, z1)
 			&& contains(x2, y2, z2);
+	}
+	
+	/**
+	 * Indicates if the {@code Quadric} contains a point.
+	 * 
+	 * @param x  the point's x-coördinate
+	 * @param y  the point's y-coördinate
+	 * @param z  the point's z-coördinate
+	 * @return  {@code true} if the point is contained
+	 */
+	@Override
+	public boolean contains(float x, float y, float z)
+	{
+		// Normalized point.
+		float nx = 2 * (x - X()) / Width();
+		float ny = 2 * (y - Y()) / Height();
+		float nz = 2 * (z - Z()) / Depth();
+					
+		// Distance from center.
+		return nx * nx + ny * ny + nz * nz < 1;
 	}
 	
 	/**

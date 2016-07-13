@@ -2,6 +2,7 @@ package zeno.util.geom.algorithms;
 
 import zeno.util.algebra.vectors.fixed.Vector3;
 import zeno.util.geom.shapes.lines.Line3D;
+import zeno.util.geom.shapes.solids.Lateral3D;
 import zeno.util.geom.shapes.solids.lateral.Cuboid;
 import zeno.util.tools.Messenger;
 
@@ -17,7 +18,7 @@ import zeno.util.tools.Messenger;
  */
 public class Line3DClipper extends Messenger
 {
-	private Cuboid bounds;
+	private Lateral3D bounds;
 	private float dx, dy, dz;
 	private boolean isExtending;
 		
@@ -67,9 +68,9 @@ public class Line3DClipper extends Messenger
 	 * Changes the clip boundary of the {@code Line3DClipper}.
 	 * 
 	 * @param bounds  a clip boundary
-	 * @see Cuboid
+	 * @see Lateral3D
 	 */
-	public void setBounds(Cuboid bounds)
+	public void setBounds(Lateral3D bounds)
 	{
 		this.bounds = bounds;
 	}
