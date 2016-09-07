@@ -6,8 +6,9 @@ import zeno.util.geom.shapes.solids.Lateral3D;
 /**
  * The {@code Cube} class defines a two-dimensional cube shape.
  *
- * @author Zeno
  * @since Apr 29, 2016
+ * @author Zeno
+ * 
  * @see Lateral3D
  */
 public class Cube extends Lateral3D

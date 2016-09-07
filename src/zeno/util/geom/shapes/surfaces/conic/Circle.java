@@ -6,8 +6,9 @@ import zeno.util.geom.shapes.surfaces.Conic;
 /**
  * The {@code Circle} class defines a two-dimensional circular shape.
  *
- * @author Zeno
  * @since Aug 22, 2015
+ * @author Zeno
+ * 
  * @see Conic
  */
 public class Circle extends Conic

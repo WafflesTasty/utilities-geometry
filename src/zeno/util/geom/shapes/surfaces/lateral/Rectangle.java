@@ -6,8 +6,9 @@ import zeno.util.geom.shapes.surfaces.Lateral2D;
 /**
  * The {@code Rectangle} class defines a two-dimensional rectangular shape.
  *
- * @author Zeno
  * @since Apr 29, 2016
+ * @author Zeno
+ * 
  * @see Lateral2D
  */
 public class Rectangle extends Lateral2D

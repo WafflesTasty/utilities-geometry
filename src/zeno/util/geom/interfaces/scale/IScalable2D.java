@@ -8,8 +8,9 @@ import zeno.util.geom.interfaces.ITransformation2D;
  * The {@code IScalable2D} interface defines an object
  * capable of being scaled in 2D space.
  *
- * @author Zeno
  * @since Apr 22, 2016
+ * @author Zeno
+ * 
  * @see ITransformable
  */
 public interface IScalable2D extends ITransformable

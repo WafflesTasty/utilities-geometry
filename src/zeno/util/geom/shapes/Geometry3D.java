@@ -7,8 +7,9 @@ import zeno.util.algebra.vectors.fixed.Vector3;
  * The {@code Geometry3D} class defines a three-dimensional convex shape
  * using a center, width and height.
  *
- * @author Zeno
  * @since Aug 22, 2015
+ * @author Zeno
+ * 
  * @see IGeometry3D
  */
 public abstract class Geometry3D implements IGeometry3D

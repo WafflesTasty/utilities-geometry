@@ -9,8 +9,9 @@ import zeno.util.geom.IGeometry;
 /**
  * The {@code Conic} class defines a convex conic section.
  *
- * @author Zeno
  * @since Apr 29, 2016
+ * @author Zeno
+ * 
  * @see Geometry2D
  */
 public class Conic extends Geometry2D
@@ -20,8 +21,9 @@ public class Conic extends Geometry2D
 	/**
 	 * The {@code OrderBy} class defines vertex order methods.
 	 *
-	 * @author Zeno
 	 * @since Apr 9, 2016
+	 * @author Zeno
+	 * 
 	 * @see IGeometry
 	 */
 	public class OrderBy extends IGeometry.OrderBy

@@ -7,8 +7,9 @@ import zeno.util.geom.tools.bounds.IBound3D;
  * The {@code Cardinal3D} class defines all cardinal directions in three dimensions.
  * <br> All 27 directions are available through static access.
  *
- * @author Zeno
  * @since Apr 30, 2016
+ * @author Zeno
+ * 
  * @see Vector3
  */
 public final class Cardinal3D extends Vector3

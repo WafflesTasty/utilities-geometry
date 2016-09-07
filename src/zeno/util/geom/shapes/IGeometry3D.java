@@ -8,8 +8,9 @@ import zeno.util.geom.tools.bounds.IBound3D;
 /**
  * The {@code Geometry3D} class is the base for any convex three-dimensional geometric shape.
  *
- * @author Zeno
  * @since Aug 22, 2015
+ * @author Zeno
+ * 
  * @see IGeometry
  * @see IBound3D
  */

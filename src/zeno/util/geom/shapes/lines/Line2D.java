@@ -9,8 +9,9 @@ import zeno.util.geom.shapes.IGeometry2D;
 /**
  * The {@code Line2D} class defines a two-dimensional line segment.
  * 
- * @author Zeno
  * @since Jul 5, 2016
+ * @author Zeno
+ * 
  * @see IGeometry2D
  */
 public class Line2D implements IGeometry2D
@@ -20,8 +21,10 @@ public class Line2D implements IGeometry2D
 	/**
 	 * The {@code OrderBy} class defines vertex order methods.
 	 *
-	 * @author Zeno
 	 * @since Apr 9, 2016
+	 * @author Zeno
+	 * 
+	 * @see IGeometry
 	 */
 	public class OrderBy extends IGeometry.OrderBy
 	{

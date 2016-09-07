@@ -10,8 +10,9 @@ import zeno.util.tools.Messenger;
  * The {@code Line2DClipper} class defines an algorithm
  * that clips lines to a rectangular boundary.
  * 
- * @author Zeno
  * @since Feb 16, 2015
+ * @author Zeno
+ * 
  * @see <a href="http://en.wikipedia.org/wiki/Line_clipping">Wikipedia - Line clipping</a>
  * @see <a href="http://www.sersc.org/journals/IJCG/vol3_no2/3.pdf">B. Ray - Clipping Algorithm</a>
  * @see Messenger

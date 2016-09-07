@@ -7,8 +7,9 @@ import zeno.util.geom.ITransformation;
  * The {@code IProjectable3D} interface defines an object
  * capable of projection from 3D to 2D space.
  *
- * @author Zeno
  * @since Apr 27, 2016
+ * @author Zeno
+ * 
  * @see ITransformation
  * @see IProjectable
  */

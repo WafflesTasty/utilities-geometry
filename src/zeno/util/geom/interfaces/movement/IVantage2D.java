@@ -7,8 +7,9 @@ import zeno.util.geom.interfaces.rotation.IRotatable2D;
  * The {@code IVantage2D} interface defines an object
  * capable of being moved and rotated in 2D space.
  *
- * @author Zeno
  * @since Apr 22, 2016
+ * @author Zeno
+ * 
  * @see IRotatable2D
  * @see IMovable2D
  */

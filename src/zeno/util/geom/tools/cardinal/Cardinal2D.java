@@ -7,8 +7,9 @@ import zeno.util.geom.tools.bounds.IBound2D;
  * The {@code Cardinal2D} class defines all cardinal directions in two dimensions.
  * <br> All nine directions are available through static access.
  *
- * @author Zeno
  * @since Apr 30, 2016
+ * @author Zeno
+ * 
  * @see Vector2
  */
 public final class Cardinal2D extends Vector2

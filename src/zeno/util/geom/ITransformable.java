@@ -4,8 +4,8 @@ package zeno.util.geom;
  * The {@code ITransformable} interface defines an object capable
  * of being transformed through an {@link ITransformation}.
  *
- * @author Zeno
  * @since Apr 22, 2016
+ * @author Zeno
  */
 public interface ITransformable
 {

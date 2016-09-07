@@ -8,8 +8,9 @@ import zeno.util.geom.interfaces.ITransformation2D;
  * The {@code IMovable2D} interface defines an object
  * capable of being moved in 2D space.
  *
- * @author Zeno
  * @since Apr 22, 2016
+ * @author Zeno
+ * 
  * @see ITransformable
  */
 public interface IMovable2D extends ITransformable

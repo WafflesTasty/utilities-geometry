@@ -10,8 +10,9 @@ import zeno.util.geom.interfaces.ITransformation3D;
  * The {@code Transform3D} class defines the parameters
  * for a transformation in 3D space.
  *
- * @author Zeno
  * @since Apr 21, 2016
+ * @author Zeno
+ * 
  * @see ITransformation3D
  */
 public final class Transform3D implements ITransformation3D

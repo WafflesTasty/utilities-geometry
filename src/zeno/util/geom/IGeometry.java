@@ -5,8 +5,8 @@ import zeno.util.algebra.vectors.Vector;
 /**
  * The {@code IGeometry} interface is the base for any convex geometric shape.
  *
- * @author Zeno
  * @since Aug 22, 2015
+ * @author Zeno
  */
 public interface IGeometry
 {	

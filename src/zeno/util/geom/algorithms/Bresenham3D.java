@@ -12,8 +12,9 @@ import zeno.util.tools.Messenger;
  * The {@code Bresenham3D} class is based on Bresenham's line algorithm.
  * <br> It generates a list of integer points along a {@code Line3D}.
  * 
- * @author Zeno
  * @since Oct 27, 2014
+ * @author Zeno
+ * 
  * @see <a href="http://en.wikipedia.org/wiki/Bresenham's_line_algorithm">Bresenham&rsquo;s Algorithm</a>
  * @see Messenger
  * @see Iterator

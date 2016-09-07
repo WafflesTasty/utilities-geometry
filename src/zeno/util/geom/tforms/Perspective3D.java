@@ -8,8 +8,9 @@ import zeno.util.geom.interfaces.IProjectable3D;
  * The {@code Project3D} class defines a perspective
  * projection matrix from 3D to 2D space.
  *
- * @author Zeno
  * @since Mar 24, 2016
+ * @author Zeno
+ * 
  * @see IProjectable3D
  */
 public class Perspective3D implements IProjectable3D

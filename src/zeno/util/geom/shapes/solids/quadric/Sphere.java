@@ -6,8 +6,9 @@ import zeno.util.geom.shapes.solids.Quadric;
 /**
  * The {@code Sphere} class defines a three-dimensional sphere.
  *
- * @author Zeno
  * @since Aug 22, 2015
+ * @author Zeno
+ * 
  * @see Quadric
  */
 public class Sphere extends Quadric

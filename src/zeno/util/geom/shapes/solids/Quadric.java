@@ -7,8 +7,9 @@ import zeno.util.geom.IGeometry;
 /**
  * The {@code Quadric} class defines a convex quadric surface.
  *
- * @author Zeno
  * @since Apr 29, 2016
+ * @author Zeno
+ * 
  * @see Geometry3D
  */
 public class Quadric extends Geometry3D
@@ -18,8 +19,9 @@ public class Quadric extends Geometry3D
 	/**
 	 * The {@code OrderBy} class defines vertex order methods.
 	 *
-	 * @author Zeno
 	 * @since Apr 9, 2016
+	 * @author Zeno
+	 * 
 	 * @see IGeometry
 	 */
 	public class OrderBy extends IGeometry.OrderBy

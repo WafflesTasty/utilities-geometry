@@ -7,8 +7,9 @@ import zeno.util.geom.interfaces.rotation.IRotatable3D;
  * The {@code IVantage3D} interface	defines an object
  * capable of being moved and rotated in 3D space.
  *
- * @author Zeno
  * @since Apr 21, 2016
+ * @author Zeno
+ * 
  * @see IRotatable3D
  * @see IMovable3D
  */

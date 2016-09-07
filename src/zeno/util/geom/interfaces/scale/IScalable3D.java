@@ -8,8 +8,9 @@ import zeno.util.geom.interfaces.ITransformation3D;
  * The {@code IScalable3D} interface defines an object
  * capable of scaling in 3D space.
  *
- * @author Zeno
  * @since Apr 21, 2016
+ * @author Zeno
+ * 
  * @see ITransformable
  */
 public interface IScalable3D extends ITransformable

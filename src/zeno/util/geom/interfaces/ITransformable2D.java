@@ -8,8 +8,9 @@ import zeno.util.geom.tools.bounds.IBound2D;
  * The {@code ITransformable2D} interface defines an object
  * capable of being transformed in 2D space.
  *
- * @author Zeno
  * @since Apr 22, 2016
+ * @author Zeno
+ * 
  * @see IScalable2D
  * @see IVantage2D
  * @see IBound2D

@@ -10,8 +10,9 @@ import zeno.util.geom.shapes.IGeometry2D;
  * The {@code SurfaceIterator} class defines an iterator
  * over the surface of a {@code Geometry2D}.
  *
- * @author Zeno
  * @since Sep 12, 2015
+ * @author Zeno
+ * 
  * @see Iterator
  * @see Vector2
  */

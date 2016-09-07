@@ -8,8 +8,9 @@ import zeno.util.geom.tools.bounds.IBound2D;
 /**
  * The {@code Geometry2D} class is the base for any convex two-dimensional geometric shape.
  * 
- * @author Zeno
  * @since Jul 6, 2016
+ * @author Zeno
+ * 
  * @see IGeometry
  * @see IBound2D
  */

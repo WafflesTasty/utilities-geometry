@@ -5,8 +5,8 @@ import zeno.util.geom.shapes.surfaces.lateral.Rectangle;
 /**
  * The {@code IBound2D} interface defines an object bound in two dimensions.
  *
- * @author Zeno
  * @since Aug 25, 2015
+ * @author Zeno
  */
 public interface IBound2D
 {

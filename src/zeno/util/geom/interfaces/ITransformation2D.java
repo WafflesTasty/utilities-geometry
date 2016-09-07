@@ -6,8 +6,9 @@ import zeno.util.geom.ITransformation;
  * The {@code ITransformation2D} interface defines an object
  * capable of transforming an {@code ITransformable2D} object.
  *
- * @author Zeno
  * @since Apr 27, 2016
+ * @author Zeno
+ * 
  * @see ITransformable2D
  * @see ITransformation
  */

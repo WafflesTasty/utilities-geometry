@@ -8,8 +8,9 @@ import zeno.util.geom.interfaces.ITransformation3D;
  * The {@code IRotatable3D} interface defines an object
  * capable of rotating in 3D space.
  *
- * @author Zeno
  * @since Apr 21, 2016
+ * @author Zeno
+ * 
  * @see ITransformable
  */
 public interface IRotatable3D extends ITransformable

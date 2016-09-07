@@ -6,8 +6,9 @@ import zeno.util.geom.shapes.solids.Lateral3D;
 /**
  * The {@code Cuboid} class defines a three-dimensional rectangular shape.
  *
- * @author Zeno
  * @since Apr 29, 2016
+ * @author Zeno
+ * 
  * @see Lateral3D
  */
 public class Cuboid extends Lateral3D

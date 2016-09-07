@@ -9,8 +9,9 @@ import zeno.util.geom.shapes.IGeometry3D;
 /**
  * The {@code Line3D} class defines a three-dimensional line segment.
  * 
- * @author Zeno
  * @since Jul 5, 2016
+ * @author Zeno
+ * 
  * @see IGeometry3D
  */
 public class Line3D implements IGeometry3D
@@ -20,8 +21,10 @@ public class Line3D implements IGeometry3D
 	/**
 	 * The {@code OrderBy} class defines vertex order methods.
 	 *
-	 * @author Zeno
 	 * @since Apr 9, 2016
+	 * @author Zeno
+	 * 
+	 * @see IGeometry
 	 */
 	public class OrderBy extends IGeometry.OrderBy
 	{

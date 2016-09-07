@@ -8,8 +8,9 @@ import zeno.util.geom.interfaces.ITransformation2D;
  * The {@code IRotatable2D} interface defines an object
  * capable of being rotated in 2D space.
  *
- * @author Zeno
  * @since Apr 22, 2016
+ * @author Zeno
+ * 
  * @see ITransformable
  */
 public interface IRotatable2D extends ITransformable

@@ -8,8 +8,9 @@ import zeno.util.geom.tools.bounds.IBound3D;
  * The {@code ITransformable3D} interface defines an object
  * capable of being transformed in 3D space.
  *
- * @author Zeno
  * @since Apr 22, 2016
+ * @author Zeno
+ * 
  * @see IScalable3D
  * @see IVantage3D
  * @see IBound3D

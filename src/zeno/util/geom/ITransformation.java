@@ -6,8 +6,8 @@ import zeno.util.algebra.matrices.fixed.Matrix4x4;
  * The {@code ITransformation} interface defines an object
  * capable of transforming a {@code ITransformable} object.
  *
- * @author Zeno
  * @since Apr 22, 2016
+ * @author Zeno
  */
 public interface ITransformation
 {		

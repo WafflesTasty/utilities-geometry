@@ -8,8 +8,9 @@ import zeno.util.geom.interfaces.ITransformation3D;
  * The {@code IMovable3D} interface defines an object
  * capable of moving in 3D space.
  *
- * @author Zeno
  * @since Apr 21, 2016
+ * @author Zeno
+ * 
  * @see ITransformable
  */
 public interface IMovable3D extends ITransformable

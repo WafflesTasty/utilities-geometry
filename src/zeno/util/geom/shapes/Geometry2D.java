@@ -7,8 +7,9 @@ import zeno.util.algebra.vectors.fixed.Vector2;
  * The {@code Geometry2D} class defines a two-dimensional convex shape
  * using a center, width and height.
  *
- * @author Zeno
  * @since Aug 22, 2015
+ * @author Zeno
+ * 
  * @see IGeometry2D
  */
 public abstract class Geometry2D implements IGeometry2D

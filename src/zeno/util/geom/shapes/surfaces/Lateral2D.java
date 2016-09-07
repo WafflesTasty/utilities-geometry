@@ -8,8 +8,9 @@ import zeno.util.geom.algorithms.Line2DClipper;
 /**
  * The {@code Lateral2D} class defines a two-dimensional four-edged shape.
  *
- * @author Zeno
  * @since Aug 22, 2015
+ * @author Zeno
+ * 
  * @see Geometry2D
  */
 public class Lateral2D extends Geometry2D
@@ -19,8 +20,10 @@ public class Lateral2D extends Geometry2D
 	/**
 	 * The {@code OrderBy} class defines vertex order methods.
 	 *
-	 * @author Zeno
 	 * @since Apr 9, 2016
+	 * @author Zeno
+	 * 
+	 * @see IGeometry
 	 */
 	public class OrderBy extends IGeometry.OrderBy
 	{

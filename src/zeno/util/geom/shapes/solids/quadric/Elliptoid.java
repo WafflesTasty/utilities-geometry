@@ -6,8 +6,9 @@ import zeno.util.geom.shapes.solids.Quadric;
 /**
  * The {@code Elliptoid} class defines a three-dimensional elliptical shape.
  *
- * @author Zeno
  * @since Aug 22, 2015
+ * @author Zeno
+ * 
  * @see Quadric
  */
 public class Elliptoid extends Quadric

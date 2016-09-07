@@ -6,8 +6,9 @@ import zeno.util.geom.shapes.surfaces.Conic;
 /**
  * The {@code Ellipse} class defines a two-dimensional elliptical shape.
  *
- * @author Zeno
  * @since Aug 22, 2015
+ * @author Zeno
+ * 
  * @see Conic
  */
 public class Ellipse extends Conic

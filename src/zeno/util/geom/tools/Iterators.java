@@ -10,8 +10,8 @@ import zeno.util.geom.tools.iterators.SurfaceIterator;
 /**
  * The {@code Iterators} class defines geometry iterators.
  *
- * @author Zeno
  * @since Sep 12, 2015
+ * @author Zeno
  */
 public final class Iterators
 {

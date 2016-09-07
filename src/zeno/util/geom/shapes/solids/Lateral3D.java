@@ -8,8 +8,9 @@ import zeno.util.geom.algorithms.Line3DClipper;
 /**
  * The {@code Lateral3D} class defines a three-dimensional six-sided shape.
  *
- * @author Zeno
  * @since Aug 22, 2015
+ * @author Zeno
+ * 
  * @see Geometry3D
  */
 public class Lateral3D extends Geometry3D
@@ -19,8 +20,10 @@ public class Lateral3D extends Geometry3D
 	/**
 	 * The {@code OrderBy} class defines vertex order methods.
 	 *
-	 * @author Zeno
 	 * @since Apr 9, 2016
+	 * @author Zeno
+	 * 
+	 * @see IGeometry
 	 */
 	public class OrderBy extends IGeometry.OrderBy
 	{
@@ -54,10 +57,10 @@ public class Lateral3D extends Geometry3D
 			{
 				2, 0, 6, 0, 4, 6,
 				6, 4, 7, 4, 5, 7,
-				4, 0, 5, 0, 1, 5,
 				5, 1, 7, 1, 3, 7,
-				1, 0, 3, 0, 2, 3,
-				3, 2, 7, 2, 6, 7
+				3, 2, 7, 2, 6, 7,
+				4, 0, 5, 0, 1, 5,
+				1, 0, 3, 0, 2, 3
 			};
 		}
 		

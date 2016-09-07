@@ -10,8 +10,9 @@ import zeno.util.geom.interfaces.ITransformation2D;
  * The {@code Transform2D} class defines the parameters
  * for a geometric transformation in 2D space.
  *
- * @author Zeno
  * @since Apr 21, 2016
+ * @author Zeno
+ * 
  * @see ITransformation2D
  */
 public final class Transform2D implements ITransformation2D
