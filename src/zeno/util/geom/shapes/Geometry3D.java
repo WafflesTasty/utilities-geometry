@@ -255,12 +255,12 @@ public abstract class Geometry3D implements IGeometry3D
 	{
 		int code = 1;
 		
-		code = code * 17 + Float.hashCode(center.X());
-		code = code * 37 + Float.hashCode(center.Y());
-		code = code * 13 + Float.hashCode(center.Z());
-		code = code * 43 + Float.hashCode(size.X());
-		code = code * 23 + Float.hashCode(size.Y());
-		code = code * 31 + Float.hashCode(size.Z());
+		code = code * 17 + Floats.hashCode(center.X());
+		code = code * 37 + Floats.hashCode(center.Y());
+		code = code * 13 + Floats.hashCode(center.Z());
+		code = code * 43 + Floats.hashCode(size.X());
+		code = code * 23 + Floats.hashCode(size.Y());
+		code = code * 31 + Floats.hashCode(size.Z());
 		
 		return code;
 	}

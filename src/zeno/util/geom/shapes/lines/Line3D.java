@@ -404,12 +404,12 @@ public class Line3D implements IGeometry3D
 	{
 		int code = 1;
 		
-		code = code * 17 + Float.hashCode(x1);
-		code = code * 37 + Float.hashCode(y1);
-		code = code * 13 + Float.hashCode(z1);
-		code = code * 43 + Float.hashCode(x2);
-		code = code * 23 + Float.hashCode(y2);
-		code = code * 31 + Float.hashCode(z2);
+		code = code * 17 + Floats.hashCode(x1);
+		code = code * 37 + Floats.hashCode(y1);
+		code = code * 13 + Floats.hashCode(z1);
+		code = code * 43 + Floats.hashCode(x2);
+		code = code * 23 + Floats.hashCode(y2);
+		code = code * 31 + Floats.hashCode(z2);
 		
 		return code;
 	}

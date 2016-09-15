@@ -210,10 +210,10 @@ public abstract class Geometry2D implements IGeometry2D
 	{
 		int code = 1;
 		
-		code = code * 17 + Float.hashCode(center.X());
-		code = code * 37 + Float.hashCode(center.Y());
-		code = code * 43 + Float.hashCode(size.X());
-		code = code * 23 + Float.hashCode(size.Y());
+		code = code * 17 + Floats.hashCode(center.X());
+		code = code * 37 + Floats.hashCode(center.Y());
+		code = code * 43 + Floats.hashCode(size.X());
+		code = code * 23 + Floats.hashCode(size.Y());
 		
 		return code;
 	}

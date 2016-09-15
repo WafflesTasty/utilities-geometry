@@ -353,10 +353,10 @@ public class Line2D implements IGeometry2D
 	{
 		int code = 1;
 		
-		code = code * 17 + Float.hashCode(x1);
-		code = code * 37 + Float.hashCode(y1);
-		code = code * 43 + Float.hashCode(x2);
-		code = code * 23 + Float.hashCode(y2);
+		code = code * 17 + Floats.hashCode(x1);
+		code = code * 37 + Floats.hashCode(y1);
+		code = code * 43 + Floats.hashCode(x2);
+		code = code * 23 + Floats.hashCode(y2);
 		
 		return code;
 	}
