@@ -1,7 +1,7 @@
 package zeno.util.geom.shapes;
 
-import zeno.util.algebra.Floats;
 import zeno.util.algebra.vectors.fixed.Vector3;
+import zeno.util.tools.primitives.Floats;
 
 /**
  * The {@code Geometry3D} class defines a three-dimensional convex shape

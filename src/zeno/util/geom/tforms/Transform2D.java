@@ -1,10 +1,10 @@
 package zeno.util.geom.tforms;
 
-import zeno.util.algebra.Floats;
 import zeno.util.algebra.matrices.fixed.Matrix4x4;
 import zeno.util.algebra.matrices.ortho.Ortho2x2;
 import zeno.util.algebra.vectors.fixed.Vector2;
 import zeno.util.geom.interfaces.ITransformation2D;
+import zeno.util.tools.primitives.Floats;
 
 /**
  * The {@code Transform2D} class defines the parameters

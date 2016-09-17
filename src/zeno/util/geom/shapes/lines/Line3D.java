@@ -1,10 +1,10 @@
 package zeno.util.geom.shapes.lines;
 
-import zeno.util.algebra.Floats;
 import zeno.util.algebra.vectors.fixed.Vector3;
 import zeno.util.geom.IGeometry;
 import zeno.util.geom.algorithms.Line3DClipper;
 import zeno.util.geom.shapes.IGeometry3D;
+import zeno.util.tools.primitives.Floats;
 
 /**
  * The {@code Line3D} class defines a three-dimensional line segment.

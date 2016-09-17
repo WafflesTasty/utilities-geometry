@@ -2,11 +2,11 @@ package zeno.util.geom.algorithms;
 
 import java.util.Iterator;
 
-import zeno.util.algebra.Floats;
-import zeno.util.algebra.Integers;
 import zeno.util.algebra.vectors.fixed.Vector3;
 import zeno.util.geom.shapes.lines.Line3D;
 import zeno.util.tools.Messenger;
+import zeno.util.tools.primitives.Floats;
+import zeno.util.tools.primitives.Integers;
 
 /**
  * The {@code Bresenham3D} class is based on Bresenham's line algorithm.

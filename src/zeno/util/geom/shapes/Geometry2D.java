@@ -1,7 +1,7 @@
 package zeno.util.geom.shapes;
 
-import zeno.util.algebra.Floats;
 import zeno.util.algebra.vectors.fixed.Vector2;
+import zeno.util.tools.primitives.Floats;
 
 /**
  * The {@code Geometry2D} class defines a two-dimensional convex shape

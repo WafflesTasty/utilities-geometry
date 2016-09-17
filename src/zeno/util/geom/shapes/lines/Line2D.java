@@ -1,10 +1,10 @@
 package zeno.util.geom.shapes.lines;
 
-import zeno.util.algebra.Floats;
 import zeno.util.algebra.vectors.fixed.Vector2;
 import zeno.util.geom.IGeometry;
 import zeno.util.geom.algorithms.Line2DClipper;
 import zeno.util.geom.shapes.IGeometry2D;
+import zeno.util.tools.primitives.Floats;
 
 /**
  * The {@code Line2D} class defines a two-dimensional line segment.

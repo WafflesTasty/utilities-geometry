@@ -1,8 +1,8 @@
 package zeno.util.geom.tforms;
 
-import zeno.util.algebra.Floats;
 import zeno.util.algebra.matrices.fixed.Matrix4x4;
 import zeno.util.geom.interfaces.IProjectable3D;
+import zeno.util.tools.primitives.Floats;
 
 /**
  * The {@code Project3D} class defines a perspective
