@@ -1,8 +1,8 @@
 package zeno.util.geom.tforms;
 
-import zeno.util.algebra.matrices.fixed.Matrix4x4;
-import zeno.util.algebra.matrices.ortho.Ortho3x3;
-import zeno.util.algebra.vectors.fixed.Vector3;
+import zeno.util.algebra.tensors.matrices.fixed.Matrix4x4;
+import zeno.util.algebra.tensors.matrices.ortho.Ortho3x3;
+import zeno.util.algebra.tensors.vectors.fixed.Vector3;
 import zeno.util.geom.interfaces.ITransformation3D;
 import zeno.util.tools.primitives.Floats;
 
@@ -60,23 +60,23 @@ public final class Transform3D implements ITransformation3D
 		float uz = uwd.Z();
 
 		
-		Matrix4x4 m = Matrix4x4.createIdentity();
+		Matrix4x4 m = Matrix4x4.identity();
 		
-		m.set(0, 0, rx);
-		m.set(1, 0, ux);
-		m.set(2, 0, fx);
+		m.set(rx, 0, 0);
+		m.set(ux, 1, 0);
+		m.set(fx, 2, 0);
 		
-		m.set(0, 1, ry);
-		m.set(1, 1, uy);
-		m.set(2, 1, fy);
+		m.set(ry, 0, 1);
+		m.set(uy, 1, 1);
+		m.set(fy, 2, 1);
 		
-		m.set(0, 2, rz);
-		m.set(1, 2, uz);
-		m.set(2, 2, fz);
+		m.set(rz, 0, 2);
+		m.set(uz, 1, 2);
+		m.set(fz, 2, 2);
 		
-		m.set(3, 0, tx);
-		m.set(3, 1, ty);
-		m.set(3, 2, tz);
+		m.set(tx, 3, 0);
+		m.set(ty, 3, 1);
+		m.set(tz, 3, 2);
 		
 		return m;
 	}
@@ -106,20 +106,20 @@ public final class Transform3D implements ITransformation3D
 		float uz = uwd.Z();
 
 		
-		Matrix4x4 m = Matrix4x4.createIdentity();
+		Matrix4x4 m = Matrix4x4.identity();
 		
-		m.set(0, 0, rx);
-		m.set(1, 0, ux);
-		m.set(2, 0, fx);
+		m.set(rx, 0, 0);
+		m.set(ux, 1, 0);
+		m.set(fx, 2, 0);
 		
-		m.set(0, 1, ry);
-		m.set(1, 1, uy);
-		m.set(2, 1, fy);
+		m.set(ry, 0, 1);
+		m.set(uy, 1, 1);
+		m.set(fy, 2, 1);
 		
-		m.set(0, 2, rz);
-		m.set(1, 2, uz);
-		m.set(2, 2, fz);
-		
+		m.set(rz, 0, 2);
+		m.set(uz, 1, 2);
+		m.set(fz, 2, 2);
+				
 		return m;
 	}
 	
@@ -152,19 +152,19 @@ public final class Transform3D implements ITransformation3D
 		float uz = uwd.Z();
 
 		
-		Matrix4x4 m = Matrix4x4.createIdentity();
+		Matrix4x4 m = Matrix4x4.identity();
 		
-		m.set(0, 0, rx * sx);
-		m.set(1, 0, ux * sy);
-		m.set(2, 0, fx * sz);
+		m.set(rx * sx, 0, 0);
+		m.set(ux * sy, 1, 0);
+		m.set(fx * sz, 2, 0);
 		
-		m.set(0, 1, ry * sx);
-		m.set(1, 1, uy * sy);
-		m.set(2, 1, fy * sz);
+		m.set(ry * sx, 0, 1);
+		m.set(uy * sy, 1, 1);
+		m.set(fy * sz, 2, 1);
 		
-		m.set(0, 2, rz * sx);
-		m.set(1, 2, uz * sy);
-		m.set(2, 2, fz * sz);
+		m.set(rz * sx, 0, 2);
+		m.set(uz * sy, 1, 2);
+		m.set(fz * sz, 2, 2);
 		
 		return m;
 	}
@@ -199,23 +199,23 @@ public final class Transform3D implements ITransformation3D
 		float uz = uwd.Z();
 
 		
-		Matrix4x4 m = Matrix4x4.createIdentity();
+		Matrix4x4 m = Matrix4x4.identity();
 		
-		m.set(0, 0, rx);
-		m.set(1, 0, ry);
-		m.set(2, 0, rz);
+		m.set(rx, 0, 0);
+		m.set(ry, 1, 0);
+		m.set(rz, 2, 0);
 		
-		m.set(0, 1, ux);
-		m.set(1, 1, uy);
-		m.set(2, 1, uz);
+		m.set(ux, 0, 1);
+		m.set(uy, 1, 1);
+		m.set(uz, 2, 1);
 		
-		m.set(0, 2, fx);
-		m.set(1, 2, fy);
-		m.set(2, 2, fz);
+		m.set(fx, 0, 2);
+		m.set(fy, 1, 2);
+		m.set(fz, 2, 2);
 		
-		m.set(3, 0, tx);
-		m.set(3, 1, ty);
-		m.set(3, 2, tz);
+		m.set(tx, 3, 0);
+		m.set(ty, 3, 1);
+		m.set(tz, 3, 2);
 		
 		return m;
 	}
@@ -245,19 +245,19 @@ public final class Transform3D implements ITransformation3D
 		float uz = uwd.Z();
 
 		
-		Matrix4x4 m = Matrix4x4.createIdentity();
+		Matrix4x4 m = Matrix4x4.identity();
 		
-		m.set(0, 0, rx);
-		m.set(1, 0, ry);
-		m.set(2, 0, rz);
+		m.set(rx, 0, 0);
+		m.set(ry, 1, 0);
+		m.set(rz, 2, 0);
 		
-		m.set(0, 1, ux);
-		m.set(1, 1, uy);
-		m.set(2, 1, uz);
+		m.set(ux, 0, 1);
+		m.set(uy, 1, 1);
+		m.set(uz, 2, 1);
 		
-		m.set(0, 2, fx);
-		m.set(1, 2, fy);
-		m.set(2, 2, fz);
+		m.set(fx, 0, 2);
+		m.set(fy, 1, 2);
+		m.set(fz, 2, 2);
 		
 		return m;
 	}
@@ -291,19 +291,19 @@ public final class Transform3D implements ITransformation3D
 		float uz = uwd.Z();
 
 		
-		Matrix4x4 m = Matrix4x4.createIdentity();
+		Matrix4x4 m = Matrix4x4.identity();
 		
-		m.set(0, 0, rx / sx);
-		m.set(1, 0, ry / sx);
-		m.set(2, 0, rz / sx);
+		m.set(rx / sx, 0, 0);
+		m.set(ry / sx, 1, 0);
+		m.set(rz / sx, 2, 0);
 		
-		m.set(0, 1, ux / sy);
-		m.set(1, 1, uy / sy);
-		m.set(2, 1, uz / sy);
+		m.set(ux / sy, 0, 1);
+		m.set(uy / sy, 1, 1);
+		m.set(uz / sy, 2, 1);
 		
-		m.set(0, 2, fx / sz);
-		m.set(1, 2, fy / sz);
-		m.set(2, 2, fz / sz);
+		m.set(fx / sz, 0, 2);
+		m.set(fy / sz, 1, 2);
+		m.set(fz / sz, 2, 2);
 		
 		return m;
 	}
@@ -417,23 +417,23 @@ public final class Transform3D implements ITransformation3D
 		float uz = uwd.Z();
 
 		
-		Matrix4x4 m = Matrix4x4.createIdentity();
+		Matrix4x4 m = Matrix4x4.identity();
 		
-		m.set(0, 0, rx / sx);
-		m.set(1, 0, ry / sx);
-		m.set(2, 0, rz / sx);
+		m.set(rx / sx, 0, 0);
+		m.set(ry / sx, 1, 0);
+		m.set(rz / sx, 2, 0);
 		
-		m.set(0, 1, ux / sy);
-		m.set(1, 1, uy / sy);
-		m.set(2, 1, uz / sy);
+		m.set(ux / sy, 0, 1);
+		m.set(uy / sy, 1, 1);
+		m.set(uz / sy, 2, 1);
 		
-		m.set(0, 2, fx / sz);
-		m.set(1, 2, fy / sz);
-		m.set(2, 2, fz / sz);
+		m.set(fx / sz, 0, 2);
+		m.set(fy / sz, 1, 2);
+		m.set(fz / sz, 2, 2);
 		
-		m.set(3, 0, tx / sx);
-		m.set(3, 1, ty / sy);
-		m.set(3, 2, tz / sz);
+		m.set(tx / sx, 3, 0);
+		m.set(ty / sy, 3, 1);
+		m.set(tz / sz, 3, 2);
 		
 		return m;
 	}
@@ -466,23 +466,23 @@ public final class Transform3D implements ITransformation3D
 		float uz = uwd.Z();
 
 		
-		Matrix4x4 m = Matrix4x4.createIdentity();
+		Matrix4x4 m = Matrix4x4.identity();
 		
-		m.set(0, 0, rx * sx);
-		m.set(1, 0, ux * sy);
-		m.set(2, 0, fx * sz);
+		m.set(rx * sx, 0, 0);
+		m.set(ux * sy, 1, 0);
+		m.set(fx * sz, 2, 0);
 		
-		m.set(0, 1, ry * sx);
-		m.set(1, 1, uy * sy);
-		m.set(2, 1, fy * sz);
+		m.set(ry * sx, 0, 1);
+		m.set(uy * sy, 1, 1);
+		m.set(fy * sz, 2, 1);
 		
-		m.set(0, 2, rz * sx);
-		m.set(1, 2, uz * sy);
-		m.set(2, 2, fz * sz);
+		m.set(rz * sx, 0, 2);
+		m.set(uz * sy, 1, 2);
+		m.set(fz * sz, 2, 2);
 		
-		m.set(3, 0, tx);
-		m.set(3, 1, ty);
-		m.set(3, 2, tz);
+		m.set(tx, 3, 0);
+		m.set(ty, 3, 1);
+		m.set(tz, 3, 2);
 		
 		return m;
 	}

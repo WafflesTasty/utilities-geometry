@@ -1,6 +1,6 @@
 package zeno.util.geom.algorithms;
 
-import zeno.util.algebra.vectors.fixed.Vector2;
+import zeno.util.algebra.tensors.vectors.fixed.Vector2;
 import zeno.util.geom.shapes.lines.Line2D;
 import zeno.util.geom.shapes.surfaces.Lateral2D;
 import zeno.util.geom.shapes.surfaces.lateral.Rectangle;

@@ -1,6 +1,6 @@
 package zeno.util.geom.tools.cardinal;
 
-import zeno.util.algebra.vectors.fixed.Vector2;
+import zeno.util.algebra.tensors.vectors.fixed.Vector2;
 import zeno.util.geom.tools.bounds.IBound2D;
 
 /**
@@ -136,7 +136,7 @@ public final class Cardinal2D extends Vector2
 	 * 
 	 * @return  an array of cardinal directions
 	 */
-	public static Cardinal2D[] values()
+	public static Cardinal2D[] getAll()
 	{
 		return new Cardinal2D[]{CENTER, EAST, NORTHEAST, NORTH, NORTHWEST, WEST, SOUTHWEST, SOUTH, SOUTHEAST};
 	}

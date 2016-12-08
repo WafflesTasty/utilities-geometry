@@ -1,6 +1,6 @@
 package zeno.util.geom;
 
-import zeno.util.algebra.vectors.Vector;
+import zeno.util.algebra.tensors.vectors.Vector;
 
 /**
  * The {@code IGeometry} interface is the base for any convex geometric shape.

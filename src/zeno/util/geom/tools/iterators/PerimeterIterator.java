@@ -2,7 +2,7 @@ package zeno.util.geom.tools.iterators;
 
 import java.util.Iterator;
 
-import zeno.util.algebra.vectors.fixed.Vector2;
+import zeno.util.algebra.tensors.vectors.fixed.Vector2;
 import zeno.util.geom.shapes.IGeometry2D;
 import zeno.util.geom.tools.cardinal.Cardinal2D;
 import zeno.util.tools.primitives.Integers;
@@ -77,14 +77,14 @@ public class PerimeterIterator implements Iterator<Vector2>
 		}
 		
 		Vector2 vNew = new Vector2();
-		for(Cardinal2D car : Cardinal2D.values())
+		for(Cardinal2D car : Cardinal2D.getAll())
 		{
 			if(car == Cardinal2D.CENTER)
 			{
 				continue;
 			}
 			
-			vNew = v.add(car);
+			vNew = v.plus(car);
 			if(!geom.contains(vNew))
 			{
 				return v;

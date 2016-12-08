@@ -2,7 +2,7 @@ package zeno.util.geom.tools.iterators;
 
 import java.util.Iterator;
 
-import zeno.util.algebra.vectors.fixed.Vector2;
+import zeno.util.algebra.tensors.vectors.fixed.Vector2;
 import zeno.util.geom.shapes.IGeometry2D;
 import zeno.util.tools.primitives.Integers;
 

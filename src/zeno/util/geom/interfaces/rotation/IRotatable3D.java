@@ -1,6 +1,6 @@
 package zeno.util.geom.interfaces.rotation;
 
-import zeno.util.algebra.vectors.fixed.Vector3;
+import zeno.util.algebra.tensors.vectors.fixed.Vector3;
 import zeno.util.geom.ITransformable;
 import zeno.util.geom.interfaces.ITransformation3D;
 

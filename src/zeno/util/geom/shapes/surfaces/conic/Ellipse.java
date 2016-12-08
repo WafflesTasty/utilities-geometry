@@ -1,6 +1,6 @@
 package zeno.util.geom.shapes.surfaces.conic;
 
-import zeno.util.algebra.vectors.fixed.Vector2;
+import zeno.util.algebra.tensors.vectors.fixed.Vector2;
 import zeno.util.geom.shapes.surfaces.Conic;
 
 /**

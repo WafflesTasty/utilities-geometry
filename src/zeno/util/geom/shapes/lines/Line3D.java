@@ -1,6 +1,6 @@
 package zeno.util.geom.shapes.lines;
 
-import zeno.util.algebra.vectors.fixed.Vector3;
+import zeno.util.algebra.tensors.vectors.fixed.Vector3;
 import zeno.util.geom.IGeometry;
 import zeno.util.geom.algorithms.Line3DClipper;
 import zeno.util.geom.shapes.IGeometry3D;

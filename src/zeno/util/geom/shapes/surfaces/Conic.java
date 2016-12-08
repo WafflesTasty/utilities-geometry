@@ -1,7 +1,7 @@
 package zeno.util.geom.shapes.surfaces;
 
 import zeno.util.algebra.analysis.Polynomial;
-import zeno.util.algebra.vectors.fixed.Vector2;
+import zeno.util.algebra.tensors.vectors.fixed.Vector2;
 import zeno.util.geom.shapes.Geometry2D;
 import zeno.util.tools.primitives.Floats;
 import zeno.util.geom.IGeometry;
@@ -204,7 +204,7 @@ public class Conic extends Geometry2D
 		Vector2 v1 = new Vector2(x2 - x1, y2 - y1);
 		Vector2 v2 = new Vector2(X() - x1, Y() - y1);
 		
-		float par = v1.dot(v2) / v1.getLengthSquared();
+		float par = v1.dot(v2) / v1.normsqr();
 		
 		float x = x1 + par * (x2 - x1);
 		float y = y1 + par * (y2 - y1);

@@ -1,6 +1,6 @@
 package zeno.util.geom.tools.cardinal;
 
-import zeno.util.algebra.vectors.fixed.Vector3;
+import zeno.util.algebra.tensors.vectors.fixed.Vector3;
 import zeno.util.geom.tools.bounds.IBound3D;
 
 /**
@@ -304,7 +304,7 @@ public final class Cardinal3D extends Vector3
 	 * 
 	 * @return  an array of cardinal directions
 	 */
-	public static Cardinal3D[] values()
+	public static Cardinal3D[] getAll()
 	{
 		return new Cardinal3D[]
 		{

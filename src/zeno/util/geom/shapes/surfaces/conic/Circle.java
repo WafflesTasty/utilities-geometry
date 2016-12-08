@@ -1,6 +1,6 @@
 package zeno.util.geom.shapes.surfaces.conic;
 
-import zeno.util.algebra.vectors.fixed.Vector2;
+import zeno.util.algebra.tensors.vectors.fixed.Vector2;
 import zeno.util.geom.shapes.surfaces.Conic;
 
 /**
@@ -43,16 +43,16 @@ public class Circle extends Conic
 		float y32 = y3 - y2;
 		float y13 = y1 - y3;
 		
-		float as = a.getLengthSquared();
-		float bs = b.getLengthSquared();
-		float cs = c.getLengthSquared();
+		float as = a.normsqr();
+		float bs = b.normsqr();
+		float cs = c.normsqr();
 		
 		float d = (x1 * y32 + x2 * y13 + x3 * y21) * 2;
 		float x = (as * y32 + bs * y13 + cs * y21) / d;
 		float y = (as * x23 + bs * x31 + cs * x12) / d;
 		
 		Vector2 center = new Vector2(x, y);
-		float rad = center.distanceTo(a);
+		float rad = center.distance(a);
 		return new Circle(center, rad);
 	}
 	

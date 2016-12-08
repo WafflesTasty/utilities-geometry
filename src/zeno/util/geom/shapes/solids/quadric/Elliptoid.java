@@ -1,6 +1,6 @@
 package zeno.util.geom.shapes.solids.quadric;
 
-import zeno.util.algebra.vectors.fixed.Vector3;
+import zeno.util.algebra.tensors.vectors.fixed.Vector3;
 import zeno.util.geom.shapes.solids.Quadric;
 
 /**

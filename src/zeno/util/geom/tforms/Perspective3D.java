@@ -1,6 +1,6 @@
 package zeno.util.geom.tforms;
 
-import zeno.util.algebra.matrices.fixed.Matrix4x4;
+import zeno.util.algebra.tensors.matrices.fixed.Matrix4x4;
 import zeno.util.geom.interfaces.IProjectable3D;
 import zeno.util.tools.primitives.Floats;
 
@@ -94,16 +94,16 @@ public class Perspective3D implements IProjectable3D
 		float z = zPlane;
 		
 		
-		Matrix4x4 m = Matrix4x4.createIdentity();
+		Matrix4x4 m = Matrix4x4.identity();
 		
-		m.set(0, 0, w / (2 * z));
-		m.set(1, 1, h / (2 * z));
+		m.set(w / (2 * z), 0, 0);
+		m.set(h / (2 * z), 1, 1);
 		
-		m.set(2, 2, 0);
-		m.set(3, 2, 1);
+		m.set(0, 2, 2);
+		m.set(1, 3, 2);
 		
-		m.set(2, 3, - d / (2 * z * (d + z)));
-		m.set(3, 3, (d + 2 * z) / (2 * z * (d + z)));
+		m.set(- d / (2 * z * (d + z)), 2, 3);
+		m.set((d + 2 * z) / (2 * z * (d + z)), 3, 3);
 		
 		return m;
 	}
@@ -117,16 +117,16 @@ public class Perspective3D implements IProjectable3D
 		float z = zPlane;
 		
 		
-		Matrix4x4 m = Matrix4x4.createIdentity();
+		Matrix4x4 m = Matrix4x4.identity();
 
-		m.set(0, 0,  2 * z / w);
-		m.set(1, 1,  2 * z / h);
+		m.set(2 * z / w, 0, 0);
+		m.set(2 * z / h, 1, 1);
 		
-		m.set(2, 2, 1 + 2 * z / d);
-		m.set(3, 2, -2 * z * (z + d) / d);
+		m.set(1 + 2 * z / d, 2, 2);
+		m.set(-2 * z * (z + d) / d, 3, 2);
 		
-		m.set(2, 3, 1);
-		m.set(3, 3, 0);
+		m.set(1, 2, 3);
+		m.set(0, 3, 3);
 
 		return m;
 	}

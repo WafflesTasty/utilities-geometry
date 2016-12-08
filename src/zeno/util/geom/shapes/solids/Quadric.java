@@ -1,7 +1,7 @@
 package zeno.util.geom.shapes.solids;
 
-import zeno.util.algebra.vectors.fixed.Vector3;
 import zeno.util.geom.shapes.Geometry3D;
+import zeno.util.algebra.tensors.vectors.fixed.Vector3;
 import zeno.util.geom.IGeometry;
 
 /**
@@ -99,7 +99,7 @@ public class Quadric extends Geometry3D
 		Vector3 v1 = new Vector3(x2 - x1, y2 - y1, z2 - z1);
 		Vector3 v2 = new Vector3(X() - x1, Y() - y1, Z() - z1);
 		
-		float par = v1.dot(v2) / v1.getLengthSquared();
+		float par = v1.dot(v2) / v1.normsqr();
 		
 		float x = x1 + par * (x2 - x1);
 		float y = y1 + par * (y2 - y1);

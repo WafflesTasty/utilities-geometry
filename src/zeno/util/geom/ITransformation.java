@@ -1,6 +1,6 @@
 package zeno.util.geom;
 
-import zeno.util.algebra.matrices.fixed.Matrix4x4;
+import zeno.util.algebra.tensors.matrices.fixed.Matrix4x4;
 
 /**
  * The {@code ITransformation} interface defines an object

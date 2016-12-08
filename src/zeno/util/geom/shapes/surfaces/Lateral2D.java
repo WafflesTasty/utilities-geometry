@@ -1,7 +1,7 @@
 package zeno.util.geom.shapes.surfaces;
 
-import zeno.util.algebra.vectors.fixed.Vector2;
 import zeno.util.geom.shapes.Geometry2D;
+import zeno.util.algebra.tensors.vectors.fixed.Vector2;
 import zeno.util.geom.IGeometry;
 import zeno.util.geom.algorithms.Line2DClipper;
 
