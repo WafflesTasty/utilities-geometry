@@ -1,205 +1,130 @@
 package zeno.util.geom;
 
 import zeno.util.algebra.tensors.vectors.Vector;
+import zeno.util.geom.shapes.Line;
+import zeno.util.geom.shapes.NCube;
+import zeno.util.geom.shapes.NCuboid;
+import zeno.util.geom.shapes.NEllipsoid;
+import zeno.util.geom.shapes.NSphere;
 
 /**
- * The {@code IGeometry} interface is the base for any convex geometric shape.
+ * The {@code IGeometry} interface is the base for convex geometric shapes.
  *
  * @since Aug 22, 2015
  * @author Zeno
  */
-public interface IGeometry
-{	
+public interface IGeometry extends IBounds
+{		
 	/**
-	 * The {@code OrderBy} class defines vertex order methods.
-	 *
-	 * @author Zeno
-	 * @since Apr 9, 2016
-	 */
-	public class OrderBy
-	{
-		private IGeometry geom;
-		
-		/**
-		 * Creates a new {@code OrderBy}.
-		 * 
-		 * @param geom  a target geometry
-		 * @see IGeometry
-		 */
-		public OrderBy(IGeometry geom)
-		{
-			this.geom = geom;
-		}
-		
-		/**
-		 * Returns the target {@code Geometry}.
-		 * 
-		 * @return  the source geometry
-		 * @see IGeometry
-		 */
-		protected IGeometry Geometry()
-		{
-			return geom;
-		}
-		
-		/**
-		 * Returns a vertex order as points.
-		 * 
-		 * @return  a points order
-		 * @see Integer
-		 */
-		public final int[] Points()
-		{
-			int vcount = geom.VertexCount();
-			
-			int[] order = new int[vcount];
-			for(int i = 0; i < vcount; i++)
-			{
-				order[i] = i;
-			}
-			
-			return order;
-		}
-		
-		
-		/**
-		 * Returns a vertex order as an adjacency triangle strip.
-		 * 
-		 * @return  an adjacency triangle strip order
-		 * @see Integer
-		 */
-		public int[] TriangleStripAdjacency()
-		{
-			throw new UnsupportedOperationException("Geometry unfit to order by triangle strip (adjacency).");
-		}
-		
-		/**
-		 * Returns a vertex order as adjacency triangles.
-		 * 
-		 * @return  an adjacency triangles order
-		 * @see Integer
-		 */
-		public int[] TrianglesAdjacency()
-		{
-			throw new UnsupportedOperationException("Geometry unfit to order by triangles (adjacency).");
-		}
-		
-		
-		/**
-		 * Returns a vertex order as an adjacency line strip.
-		 * 
-		 * @return  an adjacency line strip order
-		 * @see Integer
-		 */
-		public int[] LineStripAdjacency()
-		{
-			throw new UnsupportedOperationException("Geometry unfit to order by line strip (adjacency).");
-		}
-		
-		/**
-		 * Returns a vertex order as adjacency lines.
-		 * 
-		 * @return  an adjacency lines order
-		 * @see Integer
-		 */
-		public int[] LinesAdjacency()
-		{
-			throw new UnsupportedOperationException("Geometry unfit to order by lines (adjacency).");
-		}
-		
-		
-		/**
-		 * Returns a vertex order as a triangle strip.
-		 * 
-		 * @return  a triangle strip order
-		 * @see Integer
-		 */
-		public int[] TriangleStrip()
-		{
-			throw new UnsupportedOperationException("Geometry unfit to order by triangle strip.");
-		}
-		
-		/**
-		 * Returns a vertex order as a triangle fan.
-		 * 
-		 * @return  a triangle fan order
-		 * @see Integer
-		 */
-		public int[] TriangleFan()
-		{
-			throw new UnsupportedOperationException("Geometry unfit to order by triangle fan.");
-		}
-		
-		/**
-		 * Returns a vertex order as triangles.
-		 * 
-		 * @return  a triangles order
-		 * @see Integer
-		 */
-		public int[] Triangles()
-		{
-			throw new UnsupportedOperationException("Geometry unfit to order by triangles.");
-		}
-		
-		
-		/**
-		 * Returns a vertex order as a line strip.
-		 * 
-		 * @return  a line strip order
-		 * @see Integer
-		 */
-		public int[] LineStrip()
-		{
-			throw new UnsupportedOperationException("Geometry unfit to order by line strip.");
-		}
-		
-		/**
-		 * Returns a vertex order as a line loop.
-		 * 
-		 * @return  a line loop order
-		 * @see Integer
-		 */
-		public int[] LineLoop()
-		{
-			throw new UnsupportedOperationException("Geometry unfit to order by line loop.");
-		}
-		
-		/**
-		 * Returns a vertex order as lines.
-		 * 
-		 * @return  a lines order
-		 * @see Integer
-		 */
-		public int[] Lines()
-		{
-			throw new UnsupportedOperationException("Geometry unfit to order by lines.");
-		}
-	}
-
-			
-	/**
-	 * Returns the vertex count of the {@code IGeometry}.
+	 * Indicates if the {@code IGeometry} contains a point.
 	 * 
-	 * @return  the geometry's vertex count
-	 */
-	public abstract int VertexCount();
-
-	/**
-	 * Returns all the vertices of the {@code IGeometry}.
-	 * 
-	 * @return  the geometry's vertices
+	 * @param v  a point to check
+	 * @return {@code true} if the point is contained
 	 * @see Vector
 	 */
-	public abstract Vector[] Vertices();
+	public abstract boolean contains(Vector v);
+	
+	/**
+	 * Indicates if the {@code IGeometry} contains an ellipsoid.
+	 * 
+	 * @param e  an ellipsoid to check
+	 * @return {@code true} if the ellipsoid is contained
+	 * @see NEllipsoid
+	 */
+	public abstract boolean contains(NEllipsoid e);
+	
+	/**
+	 * Indicates if the {@code IGeometry} contains a cuboid.
+	 * 
+	 * @param c  a cuboid to check
+	 * @return {@code true} if the cuboid is contained
+	 * @see NCuboid
+	 */
+	public abstract boolean contains(NCuboid c);
+	
+	/**
+	 * Indicates if the {@code IGeometry} contains a line.
+	 * 
+	 * @param l  a line to check
+	 * @return {@code true} if the line is contained
+	 * @see Line
+	 */
+	public abstract boolean contains(Line l);
+	
+	
+	/**
+	 * Indicates if the {@code IGeometry} intersects an ellipsoid.
+	 * 
+	 * @param e  an ellipsoid to check
+	 * @return {@code true} if the ellipsoid is contained
+	 * @see NEllipsoid
+	 */
+	public abstract boolean intersects(NEllipsoid e);
+	
+	/**
+	 * Indicates if the {@code IGeometry} intersects a cuboid.
+	 * 
+	 * @param c  a cuboid to check
+	 * @return {@code true} if the cuboid is contained
+	 * @see NCuboid
+	 */
+	public abstract boolean intersects(NCuboid c);
 
 	/**
-	 * Returns the {IGeometry}'s vertex order methods.
+	 * Indicates if the {@code IGeometry} intersects a line.
 	 * 
-	 * @return  the geometry's order methods
-	 * @see OrderBy
+	 * @param l  a line to check
+	 * @return {@code true} if the line is contained
+	 * @see Line
 	 */
-	public default OrderBy OrderBy()
+	public abstract boolean intersects(Line l);
+
+	
+	/**
+	 * Indicates if the {@code IGeometry} contains a cube.
+	 * 
+	 * @param c  a cube to check
+	 * @return {@code true} if the cube is contained
+	 * @see NCube
+	 */
+	public default boolean contains(NCube c)
 	{
-		return new OrderBy(this);
+		return contains((NCuboid) c);
+	}
+	
+	/**
+	 * Indicates if the {@code IGeometry} contains a sphere.
+	 * 
+	 * @param s  a sphere to check
+	 * @return {@code true} if the sphere is contained
+	 * @see NSphere
+	 */
+	public default boolean contains(NSphere s)
+	{
+		return contains((NEllipsoid) s);
+	}
+		
+	/**
+	 * Indicates if the {@code IGeometry} intersects a sphere.
+	 * 
+	 * @param s  a sphere to check
+	 * @return {@code true} if the sphere is contained
+	 * @see NSphere
+	 */
+	public default boolean intersects(NSphere s)
+	{
+		return contains((NEllipsoid) s);
+	}
+	
+	/**
+	 * Indicates if the {@code IGeometry} intersects a cube.
+	 * 
+	 * @param c  a cube to check
+	 * @return {@code true} if the cube is contained
+	 * @see NCube
+	 */
+	public default boolean intersects(NCube c)
+	{
+		return contains((NCuboid) c);
 	}
 }

@@ -5,7 +5,7 @@ import java.util.List;
 
 import zeno.util.algebra.tensors.Tensor;
 import zeno.util.algebra.tensors.vectors.Vector;
-import zeno.util.geom._newstuff.Hypercube;
+import zeno.util.geom.shapes.NCuboid;
 import zeno.util.tools.Messenger;
 
 /**
@@ -22,8 +22,19 @@ import zeno.util.tools.Messenger;
  */
 public class LineClipper extends Messenger
 {
-	private Hypercube bounds;
+	private NCuboid bounds;
 	private List<Vector> result;
+
+	/**
+	 * Changes the boundary of the {@code LineClipper}.
+	 * 
+	 * @param bounds  a new boundary
+	 * @see NCuboid
+	 */
+	public void setBounds(NCuboid bounds)
+	{
+		this.bounds = bounds;
+	}
 	
 	/**
 	 * Clips a list of points to the clipper's boundary.
@@ -83,28 +94,21 @@ public class LineClipper extends Messenger
 
 		return result;
 	}
-
-	/**
-	 * Changes the boundary of the {@code LineClipper}.
-	 * 
-	 * @param cube  a new boundary
-	 * @see Hypercube
-	 */
-	public void setBounds(Hypercube cube)
-	{
-		bounds = cube;
-	}
 	
 	
 	private boolean crosses(Vector p, Vector q, float val, int i)
 	{
+		Vector min = bounds.Minimum();
+		Vector max = bounds.Maximum();
+		
+		
 		float val1, val2;
-		for(int j = 0; j < bounds.dimension(); j++)
+		for(int j = 0; j < bounds.Dimension(); j++)
 		{
 			if(i == j) continue;
 			
-			val1 = (bounds.min(j) - p.get(j)) * (q.get(i) - p.get(i)) - (val - p.get(i)) * (q.get(j) - p.get(j));
-			val2 = (bounds.max(j) - p.get(j)) * (q.get(i) - p.get(i)) - (val - p.get(i)) * (q.get(j) - p.get(j));
+			val1 = (min.get(j) - p.get(j)) * (q.get(i) - p.get(i)) - (val - p.get(i)) * (q.get(j) - p.get(j));
+			val2 = (max.get(j) - p.get(j)) * (q.get(i) - p.get(i)) - (val - p.get(i)) * (q.get(j) - p.get(j));
 			
 			if(val1 * val2 > 0) return false;
 		}
@@ -114,8 +118,8 @@ public class LineClipper extends Messenger
 	
 	private Vector project(Vector p, Vector q, float val, int i)
 	{
-		Tensor v = Vector.create(bounds.dimension());
-		for(int j = 0; j < bounds.dimension(); j++)
+		Tensor v = Vector.create(bounds.Dimension());
+		for(int j = 0; j < bounds.Dimension(); j++)
 		{
 			double coord = val;
 			if(i != j)
@@ -134,35 +138,39 @@ public class LineClipper extends Messenger
 	
 	private Vector clip(Vector p, Vector q)
 	{
-		float min, max;
-		for(int i = 0; i < bounds.dimension(); i++)
+		Vector min = bounds.Minimum();
+		Vector max = bounds.Maximum();
+		
+		
+		float imin, imax;
+		for(int i = 0; i < bounds.Dimension(); i++)
 		{			
-			min = bounds.min(i);
-			max = bounds.max(i);
+			imin = min.get(i);
+			imax = max.get(i);
 
-			if(p.get(i) < min)
+			if(p.get(i) < imin)
 			{
-				if(q.get(i) <= min)
+				if(q.get(i) <= imin)
 				{
 					return null;
 				}
 				
-				if(crosses(p, q, min, i))
+				if(crosses(p, q, imin, i))
 				{
-					return project(p, q, min, i);
+					return project(p, q, imin, i);
 				}
 			}
 			
-			if(p.get(i) > max)
+			if(p.get(i) > imax)
 			{
-				if(q.get(i) >= max)
+				if(q.get(i) >= imax)
 				{
 					return null;
 				}
 				
-				if(crosses(p, q, max, i))
+				if(crosses(p, q, imax, i))
 				{
-					return project(p, q, max, i);
+					return project(p, q, imax, i);
 				}
 			}
 		}
