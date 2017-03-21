@@ -1,7 +1,6 @@
-package zeno.util.geom._refactor.shapes.solids;
+package zeno.util.geom._move;
 
 import zeno.util.algebra.tensors.vectors.fixed.Vector3;
-import zeno.util.geom._move.IGeometry;
 import zeno.util.geom._refactor.shapes.Geometry3D;
 import zeno.util.geom.algorithms.Line3DClipper;
 

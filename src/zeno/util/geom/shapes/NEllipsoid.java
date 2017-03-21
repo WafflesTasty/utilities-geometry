@@ -79,8 +79,8 @@ public class NEllipsoid implements IGeometry
 	@Override
 	public boolean contains(Line l)
 	{
-		return contains(l.P())
-			&& contains(l.Q());
+		return contains(l.P1())
+			&& contains(l.P2());
 	}
 
 	@Override
@@ -141,15 +141,15 @@ public class NEllipsoid implements IGeometry
 	
 	private Line transform(Line l)
 	{
-		Vector p = l.P().minus(center);
-		Vector q = l.Q().minus(center);
+		Vector p1 = l.P1().minus(center);
+		Vector p2 = l.P2().minus(center);
 		
 		for(int i = 0; i < Dimension(); i++)
 		{
-			p.set(p.get(i) / size.get(i), i);
-			q.set(q.get(i) / size.get(i), i);
+			p1.set(p1.get(i) / size.get(i), i);
+			p2.set(p2.get(i) / size.get(i), i);
 		}
 		
-		return new Line(p, q);
+		return new Line(p1, p2);
 	}
 }

@@ -39,8 +39,9 @@ public class NSphere extends NEllipsoid
 	@Override
 	public boolean intersects(Line l)
 	{
-		Vector qt = l.Q().minus(l.P());
-		Vector qp = Center().minus(l.P());
+		Vector qt = l.P2().minus(l.P1());
+		Vector qp = Center().minus(l.P1());
+		
 		
 		float lam = qp.dot(qt);
 		if(lam != 0) lam /= qt.dot(qt);
@@ -48,7 +49,7 @@ public class NSphere extends NEllipsoid
 		
 		
 		float rad = Radius();
-		Vector v = l.P().plus(qt.times(lam));
+		Vector v = l.P1().plus(qt.times(lam));
 		return v.normsqr() <= rad * rad;
 	}
 	

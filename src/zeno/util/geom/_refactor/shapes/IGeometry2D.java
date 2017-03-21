@@ -2,7 +2,7 @@ package zeno.util.geom._refactor.shapes;
 
 import zeno.util.algebra.tensors.vectors.fixed.Vector2;
 import zeno.util.geom._move.IGeometry;
-import zeno.util.geom._refactor.shapes.lines.Line2D;
+import zeno.util.geom._move.Line2D;
 import zeno.util.geom._refactor.tools.bounds.IBound2D;
 
 /**

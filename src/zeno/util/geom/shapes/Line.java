@@ -107,6 +107,7 @@ public class Line implements IGeometry
 	}
 
 	
+	
 	@Override
 	public boolean contains(Line l)
 	{
