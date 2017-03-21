@@ -1,8 +1,8 @@
 package zeno.util.geom.shapes.lines;
 
 import zeno.util.algebra.tensors.vectors.fixed.Vector3;
+import zeno.util.geom.interfaces.IGeometry3D;
 import zeno.util.geom.shapes.solids.Cuboid;
-import zeno.util.geom.tools.IBounds3D;
 import zeno.util.tools.primitives.Floats;
 
 /**
@@ -11,10 +11,10 @@ import zeno.util.tools.primitives.Floats;
  * @since Jul 5, 2016
  * @author Zeno
  * 
- * @see IBounds3D
+ * @see IGeometry3D
  * @see Line
  */
-public class Line3D extends Line implements IBounds3D
+public class Line3D extends Line implements IGeometry3D
 {
 	/**
 	 * Creates a new {@code Line3D}.
@@ -165,7 +165,7 @@ public class Line3D extends Line implements IBounds3D
 	@Override
 	public Cuboid Bounds()
 	{
-		return IBounds3D.super.Bounds();
+		return IGeometry3D.super.Bounds();
 	}
 	
 	@Override

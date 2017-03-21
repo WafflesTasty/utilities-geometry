@@ -1,8 +1,8 @@
 package zeno.util.geom.shapes.lines;
 
 import zeno.util.algebra.tensors.vectors.fixed.Vector2;
+import zeno.util.geom.interfaces.IGeometry2D;
 import zeno.util.geom.shapes.surfaces.Rectangle;
-import zeno.util.geom.tools.IBounds2D;
 import zeno.util.tools.primitives.Floats;
 
 /**
@@ -11,10 +11,10 @@ import zeno.util.tools.primitives.Floats;
  * @since Jul 5, 2016
  * @author Zeno
  * 
- * @see IBounds2D
+ * @see IGeometry2D
  * @see Line
  */
-public class Line2D extends Line implements IBounds2D
+public class Line2D extends Line implements IGeometry2D
 {
 	/**
 	 * Creates a new {@code Line2D}.
@@ -141,7 +141,7 @@ public class Line2D extends Line implements IBounds2D
 	@Override
 	public Rectangle Bounds()
 	{
-		return IBounds2D.super.Bounds();
+		return IGeometry2D.super.Bounds();
 	}
 	
 	@Override

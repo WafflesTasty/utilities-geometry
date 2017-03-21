@@ -2,7 +2,6 @@ package zeno.util.geom.interfaces;
 
 import zeno.util.algebra.tensors.vectors.fixed.Vector3;
 import zeno.util.geom.IShape;
-import zeno.util.geom.tools.IBounds3D;
 
 /**
  * The {@code IShape3D} interface defines a three-dimensional convex shape.
@@ -10,10 +9,10 @@ import zeno.util.geom.tools.IBounds3D;
  * @since Aug 22, 2015
  * @author Zeno
  * 
- * @see IBounds3D
+ * @see IGeometry3D
  * @see IShape
  */
-public interface IShape3D extends IShape, IBounds3D
+public interface IShape3D extends IShape, IGeometry3D
 {
 	/**
 	 * Returns the center x of the {@code IShape3D}.

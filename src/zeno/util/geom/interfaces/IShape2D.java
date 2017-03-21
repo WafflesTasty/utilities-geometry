@@ -2,7 +2,6 @@ package zeno.util.geom.interfaces;
 
 import zeno.util.algebra.tensors.vectors.fixed.Vector2;
 import zeno.util.geom.IShape;
-import zeno.util.geom.tools.IBounds2D;
 
 /**
  * The {@code IShape2D} interface defines a two-dimensional convex shape.
@@ -10,10 +9,10 @@ import zeno.util.geom.tools.IBounds2D;
  * @since Aug 22, 2015
  * @author Zeno
  * 
- * @see IBounds2D
+ * @see IGeometry2D
  * @see IShape
  */
-public interface IShape2D extends IShape, IBounds2D
+public interface IShape2D extends IShape, IGeometry2D
 {
 	/**
 	 * Returns the center x of the {@code IShape2D}.
