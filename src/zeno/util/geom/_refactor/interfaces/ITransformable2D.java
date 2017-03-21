@@ -2,7 +2,7 @@ package zeno.util.geom._refactor.interfaces;
 
 import zeno.util.geom._refactor.interfaces.movement.IVantage2D;
 import zeno.util.geom._refactor.interfaces.scale.IScalable2D;
-import zeno.util.geom._refactor.tools.bounds.IBound2D;
+import zeno.util.geom.tools.IBounds2D;
 
 /**
  * The {@code ITransformable2D} interface defines an object
@@ -13,10 +13,17 @@ import zeno.util.geom._refactor.tools.bounds.IBound2D;
  * 
  * @see IScalable2D
  * @see IVantage2D
- * @see IBound2D
+ * @see IBounds2D
  */
-public interface ITransformable2D extends IBound2D, IScalable2D, IVantage2D
+public interface ITransformable2D extends IBounds2D, IScalable2D, IVantage2D
 {
+	@Override
+	public default int Dimension()
+	{
+		return 2;
+	}
+	
+	
 	@Override
 	public default float XMin()
 	{

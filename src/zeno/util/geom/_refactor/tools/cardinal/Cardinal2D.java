@@ -1,7 +1,7 @@
 package zeno.util.geom._refactor.tools.cardinal;
 
 import zeno.util.algebra.tensors.vectors.fixed.Vector2;
-import zeno.util.geom._refactor.tools.bounds.IBound2D;
+import zeno.util.geom.tools.IBounds2D;
 
 /**
  * The {@code Cardinal2D} class defines all cardinal directions in two dimensions.
@@ -58,10 +58,10 @@ public final class Cardinal2D extends Vector2
 	 * @param rect  a rectangle to check
 	 * @param point  a point to check
 	 * @return  a relative cardinal
-	 * @see IBound2D
+	 * @see IBounds2D
 	 * @see Vector2
 	 */
-	public static Cardinal2D relativeTo(IBound2D rect, Vector2 point)
+	public static Cardinal2D relativeTo(IBounds2D rect, Vector2 point)
 	{	
 		float xmin = rect.XMin();
 		float xmax = rect.XMax();

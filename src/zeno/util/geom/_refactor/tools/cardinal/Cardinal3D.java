@@ -1,7 +1,7 @@
 package zeno.util.geom._refactor.tools.cardinal;
 
 import zeno.util.algebra.tensors.vectors.fixed.Vector3;
-import zeno.util.geom._refactor.tools.bounds.IBound3D;
+import zeno.util.geom.tools.IBounds3D;
 
 /**
  * The {@code Cardinal3D} class defines all cardinal directions in three dimensions.
@@ -134,10 +134,10 @@ public final class Cardinal3D extends Vector3
 	 * @param cube  a cuboid to check
 	 * @param point  a point to check
 	 * @return  a relative cardinal
-	 * @see IBound3D
+	 * @see IBounds3D
 	 * @see Vector3
 	 */
-	public static Cardinal3D relativeTo(IBound3D cube, Vector3 point)
+	public static Cardinal3D relativeTo(IBounds3D cube, Vector3 point)
 	{	
 		float xmin = cube.XMin();
 		float xmax = cube.XMax();

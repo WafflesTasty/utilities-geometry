@@ -2,7 +2,7 @@ package zeno.util.geom._refactor.interfaces;
 
 import zeno.util.geom._refactor.interfaces.movement.IVantage3D;
 import zeno.util.geom._refactor.interfaces.scale.IScalable3D;
-import zeno.util.geom._refactor.tools.bounds.IBound3D;
+import zeno.util.geom.tools.IBounds3D;
 
 /**
  * The {@code ITransformable3D} interface defines an object
@@ -13,10 +13,17 @@ import zeno.util.geom._refactor.tools.bounds.IBound3D;
  * 
  * @see IScalable3D
  * @see IVantage3D
- * @see IBound3D
+ * @see IBounds3D
  */
-public interface ITransformable3D extends IBound3D, IScalable3D, IVantage3D
+public interface ITransformable3D extends IBounds3D, IScalable3D, IVantage3D
 {
+	@Override
+	public default int Dimension()
+	{
+		return 3;
+	}
+	
+	
 	@Override
 	public default float XMin()
 	{

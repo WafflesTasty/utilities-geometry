@@ -3,8 +3,8 @@ package zeno.util.geom._refactor.tools.iterators;
 import java.util.Iterator;
 
 import zeno.util.algebra.tensors.vectors.fixed.Vector2;
-import zeno.util.geom._refactor.shapes.IGeometry2D;
 import zeno.util.geom._refactor.tools.cardinal.Cardinal2D;
+import zeno.util.geom.interfaces.IGeometry2D;
 import zeno.util.tools.primitives.Integers;
 
 /**
