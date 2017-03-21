@@ -1,7 +1,6 @@
 package zeno.util.geom.shapes;
 
 import zeno.util.algebra.tensors.vectors.Vector;
-import zeno.util.geom.IGeometry;
 import zeno.util.geom.algorithms.LineClipper;
 import zeno.util.tools.primitives.Floats;
 
@@ -11,14 +10,12 @@ import zeno.util.tools.primitives.Floats;
  * @since Apr 29, 2016
  * @author Zeno
  * 
- * @see IGeometry
+ * @see NGeometry
  */
-public class NCuboid implements IGeometry
+public class NCuboid extends NGeometry
 {
 	private static final LineClipper clipper = new LineClipper();
 	
-	
-	private Vector center, size;
 	
 	/**
 	 * Creates a new {@code NCuboid}.
@@ -29,8 +26,7 @@ public class NCuboid implements IGeometry
 	 */
 	public NCuboid(Vector center, Vector size)
 	{
-		setCenter(center);
-		setSize(size);
+		super(center, size);
 	}
 	
 	/**
@@ -41,7 +37,7 @@ public class NCuboid implements IGeometry
 	 */
 	public NCuboid(Vector size)
 	{
-		this(Vector.create(size.size()), size);
+		super(size);
 	}
 	
 	/**
@@ -51,54 +47,8 @@ public class NCuboid implements IGeometry
 	 */
 	public NCuboid(int dim)
 	{
-		this(Vector.create(dim));
+		super(dim);
 	}
-	
-		
-	/**
-	 * Returns the minimum of the {@code NCuboid}.
-	 * 
-	 * @return  the cuboid's minimum
-	 * @see Vector
-	 */
-	public Vector Minimum()
-	{
-		return center.minus(size.times(0.5f));
-	}
-	
-	/**
-	 * Returns the maximum of the {@code NCuboid}.
-	 * 
-	 * @return  the cuboid's maximum
-	 * @see Vector
-	 */
-	public Vector Maximum()
-	{
-		return center.plus(size.times(0.5f));
-	}
-
-	/**
-	 * Returns the center of the {@code NCuboid}.
-	 * 
-	 * @return  the cuboid's center
-	 * @see Vector
-	 */
-	public Vector Center()
-	{
-		return center;
-	}
-	
-	/**
-	 * Returns the size of the {@code NCuboid}.
-	 * 
-	 * @return  the cuboid's size
-	 * @see Vector
-	 */
-	public Vector Size()
-	{
-		return size;
-	}
-	
 	
 		
 	@Override
@@ -114,8 +64,8 @@ public class NCuboid implements IGeometry
 		for(int i = 0; i < Dimension(); i++)
 		{
 			float vi = v.get(i);
-			float si = size.get(i);
-			float ci = center.get(i);
+			float si = Size().get(i);
+			float ci = Center().get(i);
 			
 			if(si < 2 * Floats.abs(vi - ci))
 			{
@@ -131,9 +81,10 @@ public class NCuboid implements IGeometry
 	{
 		for(int i = 0; i < Dimension(); i++)
 		{
-			float si = size.get(i);
-			float pi = center.get(i);
+			float si =   Size().get(i);
 			float ti = c.Size().get(i);
+			
+			float pi =   Center().get(i);
 			float qi = c.Center().get(i);
 			
 			if(si - ti < 2 * Floats.abs(pi - qi))
@@ -167,9 +118,10 @@ public class NCuboid implements IGeometry
 	{
 		for(int i = 0; i < Dimension(); i++)
 		{
-			float si = size.get(i);
-			float pi = center.get(i);
+			float si =   Size().get(i);
 			float ti = c.Size().get(i);
+			
+			float pi =   Center().get(i);
 			float qi = c.Center().get(i);
 			
 			if(si + ti < 2 * Floats.abs(pi - qi))
@@ -193,53 +145,20 @@ public class NCuboid implements IGeometry
 		return true;
 	}
 
-	
-	@Override
-	public NCuboid Bounds()
-	{
-		return this;
-	}
-	
-	@Override
-	public int Dimension()
-	{
-		return center.size();
-	}
-
-	
-	
-	@Override
-	public int hashCode()
-	{
-		int code = 1;
-		
-		code = code * 59 + center.hashCode();
-		code = code * 67 + size.hashCode();
-		
-		return code;
-	}
-	
 	@Override
 	public boolean equals(Object o)
 	{
 		if(o instanceof NCuboid)
 		{
-			NCuboid oCuboid = (NCuboid) o;
-			return center.equals(oCuboid.center)
-				&& size.equals(oCuboid.size);
+			return super.equals(o);
 		}
 		
 		return false;
 	}
-
 	
-	protected void setSize(Vector size)
+	@Override
+	public NCuboid Bounds()
 	{
-		this.size = size.absolute();
-	}
-	
-	protected void setCenter(Vector center)
-	{
-		this.center = center;
+		return this;
 	}
 }

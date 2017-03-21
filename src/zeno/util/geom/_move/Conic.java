@@ -1,9 +1,8 @@
-package zeno.util.geom._refactor.shapes.surfaces;
+package zeno.util.geom._move;
 
 import zeno.util.algebra.tensors.vectors.fixed.Vector2;
 import zeno.util.calc.variables.functions.Polynomial;
 import zeno.util.tools.primitives.Floats;
-import zeno.util.geom._move.IGeometry;
 import zeno.util.geom._refactor.shapes.Geometry2D;
 
 /**

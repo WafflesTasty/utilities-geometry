@@ -1,50 +1,68 @@
 package zeno.util.geom.shapes;
 
 import zeno.util.algebra.tensors.vectors.Vector;
-import zeno.util.geom.IGeometry;
 
-public class NEllipsoid implements IGeometry
-{
-	private Vector center, size;
-	
+/**
+ * The {@code NEllipsoid} class defines an n-dimensional ellipsoid shape.
+ *
+ * @since Apr 29, 2016
+ * @author Zeno
+ * 
+ * @see NGeometry
+ */
+public class NEllipsoid extends NGeometry
+{	
+	/**
+	 * Creates a new {@code NEllipsoid}.
+	 * 
+	 * @param center  the ellipsoid's center
+	 * @param size  the ellipsoid's size
+	 * @see Vector
+	 */
 	public NEllipsoid(Vector center, Vector size)
 	{
-		this.center = center;
-		this.size = size;
+		super(center, size);
 	}
 	
-	public Vector Center()
+	/**
+	 * Creates a new {@code NEllipsoid}.
+	 * 
+	 * @param size  the ellipsoid's size
+	 * @see Vector
+	 */
+	public NEllipsoid(Vector size)
 	{
-		return center;
+		super(size);
 	}
 	
-	public Vector Size()
+	/**
+	 * Creates a new {@code NEllipsoid}.
+	 * 
+	 * @param dim  the ellipsoid's dimension
+	 */
+	public NEllipsoid(int dim)
 	{
-		return size;
+		super(dim);
 	}
-
+	
+	
 	@Override
-	public int Dimension()
+	public boolean contains(Line l)
 	{
-		return center.size();
+		return contains(l.P1())
+			&& contains(l.P2());
 	}
-
-	@Override
-	public NCuboid Bounds()
-	{
-		return new NCuboid(center, size);
-	}
-
+	
 	@Override
 	public boolean contains(Vector v)
 	{
 		float val, sum = 0;
 		for(int i = 0; i < Dimension(); i++)
 		{
-			val = v.get(i) - center.get(i);
+			val = v.get(i) - Center().get(i);
 			if(val == 0) continue;
-			val /= size.get(i);
 			
+			val /= Size().get(i);
 			sum += val * val;
 			if(4 * sum > 1)
 			{
@@ -55,6 +73,12 @@ public class NEllipsoid implements IGeometry
 		return true;
 	}
 
+	@Override
+	public boolean contains(NCuboid c)
+	{
+		return contains(c.Minimum())
+			&& contains(c.Maximum());
+	}
 	
 	@Override
 	public boolean contains(NSphere s)
@@ -70,34 +94,6 @@ public class NEllipsoid implements IGeometry
 	}
 
 	@Override
-	public boolean contains(NCuboid c)
-	{
-		return contains(c.Minimum())
-			&& contains(c.Maximum());
-	}
-
-	@Override
-	public boolean contains(Line l)
-	{
-		return contains(l.P1())
-			&& contains(l.P2());
-	}
-
-	@Override
-	public boolean intersects(Line l)
-	{
-		NSphere unit = new NSphere(Dimension());
-		return unit.intersects(transform(l));
-	}
-
-	@Override
-	public boolean intersects(NCuboid c)
-	{
-		NSphere unit = new NSphere(Dimension());
-		return unit.intersects(transform(c));
-	}
-
-	@Override
 	public boolean intersects(NEllipsoid e)
 	{
 		NSphere unit = new NSphere(Dimension());
@@ -109,17 +105,48 @@ public class NEllipsoid implements IGeometry
 	{
 		return s.intersects(this);
 	}
+
+	@Override
+	public boolean intersects(NCuboid c)
+	{
+		NSphere unit = new NSphere(Dimension());
+		return unit.intersects(transform(c));
+	}
+
+	@Override
+	public boolean intersects(Line l)
+	{
+		NSphere unit = new NSphere(Dimension());
+		return unit.intersects(transform(l));
+	}
+
+	@Override
+	public boolean equals(Object o)
+	{
+		if(o instanceof NEllipsoid)
+		{
+			return super.equals(o);
+		}
+		
+		return false;
+	}
+	
+	@Override
+	public NCuboid Bounds()
+	{
+		return new NCuboid(Center(), Size());
+	}
 	
 	
 	private NEllipsoid transform(NEllipsoid e)
 	{
 		Vector uSize = e.Size();
-		Vector uCent = e.Center().minus(center);
+		Vector uCent = e.Center().minus(Center());
 		
 		for(int i = 0; i < Dimension(); i++)
 		{
-			uCent.set(uCent.get(i) / size.get(i), i);
-			uSize.set(uSize.get(i) / size.get(i), i);
+			uCent.set(uCent.get(i) / Size().get(i), i);
+			uSize.set(uSize.get(i) / Size().get(i), i);
 		}
 		
 		return new NEllipsoid(uCent, uSize);
@@ -128,12 +155,12 @@ public class NEllipsoid implements IGeometry
 	private NCuboid transform(NCuboid e)
 	{
 		Vector uSize = e.Size();
-		Vector uCent = e.Center().minus(center);
+		Vector uCent = e.Center().minus(Center());
 		
 		for(int i = 0; i < Dimension(); i++)
 		{
-			uCent.set(uCent.get(i) / size.get(i), i);
-			uSize.set(uSize.get(i) / size.get(i), i);
+			uCent.set(uCent.get(i) / Size().get(i), i);
+			uSize.set(uSize.get(i) / Size().get(i), i);
 		}
 		
 		return new NCuboid(uCent, uSize);
@@ -141,13 +168,13 @@ public class NEllipsoid implements IGeometry
 	
 	private Line transform(Line l)
 	{
-		Vector p1 = l.P1().minus(center);
-		Vector p2 = l.P2().minus(center);
+		Vector p1 = l.P1().minus(Center());
+		Vector p2 = l.P2().minus(Center());
 		
 		for(int i = 0; i < Dimension(); i++)
 		{
-			p1.set(p1.get(i) / size.get(i), i);
-			p2.set(p2.get(i) / size.get(i), i);
+			p1.set(p1.get(i) / Size().get(i), i);
+			p2.set(p2.get(i) / Size().get(i), i);
 		}
 		
 		return new Line(p1, p2);

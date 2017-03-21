@@ -1,8 +1,7 @@
-package zeno.util.geom._refactor.shapes.surfaces;
+package zeno.util.geom._move;
 
 import zeno.util.algebra.tensors.vectors.Vector;
 import zeno.util.algebra.tensors.vectors.fixed.Vector2;
-import zeno.util.geom._move.IGeometry;
 import zeno.util.geom._newstuff.Hypercube;
 import zeno.util.geom._refactor.shapes.Geometry2D;
 import zeno.util.geom.algorithms.LineClipper;

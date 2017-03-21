@@ -52,7 +52,7 @@ public class Rectangle extends NCuboid
 	/**
 	 * Creates a new {@code Rectangle}.
 	 * 
-	 * @param size  a size
+	 * @param size  the rectangle's size
 	 * @see Vector2
 	 */
 	public Rectangle(Vector2 size)

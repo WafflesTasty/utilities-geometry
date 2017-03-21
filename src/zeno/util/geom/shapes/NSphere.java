@@ -2,17 +2,90 @@ package zeno.util.geom.shapes;
 
 import zeno.util.algebra.tensors.vectors.Vector;
 
+/**
+ * The {@code NSphere} class defines an n-dimensional sphere shape.
+ *
+ * @since Apr 29, 2016
+ * @author Zeno
+ * 
+ * @see NEllipsoid
+ */
 public class NSphere extends NEllipsoid
 {
-	public NSphere(Vector center, float diameter)
+	/**
+	 * Creates a new {@code NSphere}.
+	 * 
+	 * @param center  the sphere's center
+	 * @param radius  the sphere's length
+	 * @see Vector
+	 */
+	public NSphere(Vector center, float radius)
 	{
-		super(center, Vector.create(diameter, center.size()));
+		super(center, Vector.create(2 * radius, center.size()));
 	}
-
+	
+	/**
+	 * Creates a new {@code NSphere}.
+	 * 
+	 * @param dim  the sphere's dimension
+	 * @param radius  the sphere's length
+	 */
+	public NSphere(int dim, float radius)
+	{
+		super(Vector.create(2 * radius, dim));
+	}
+	
+	/**
+	 * Creates a new {@code NSphere}.
+	 * 
+	 * @param dim  the sphere's dimension
+	 */
 	public NSphere(int dim)
 	{
-		this(Vector.create(dim), 1f);
+		this(dim, 1f);
 	}
+	
+	
+	/**
+	 * Changes the diameter of the {@code NSphere}.
+	 * 
+	 * @param diameter  a new sphere diameter
+	 */
+	public void setDiameter(float diameter)
+	{
+		setSize(Vector.create(diameter, Dimension()));
+	}
+	
+	/**
+	 * Changes the radius of the {@code NSphere}.
+	 * 
+	 * @param radius  a new sphere radius
+	 */
+	public void setRadius(float radius)
+	{
+		setDiameter(2 * radius);
+	}
+	
+	/**
+	 * Returns the diameter of the {@code NSphere}.
+	 * 
+	 * @return  the sphere's diameter
+	 */
+	public float Diameter()
+	{
+		return Size().get(0);
+	}
+	
+	/**
+	 * Returns the radius of the {@code NSphere}.
+	 * 
+	 * @return  the sphere's radius
+	 */
+	public float Radius()
+	{
+		return Diameter() / 2;
+	}
+	
 	
 	@Override
 	public boolean contains(Vector v)
@@ -23,17 +96,37 @@ public class NSphere extends NEllipsoid
 	}
 	
 	@Override
-	public boolean contains(NEllipsoid e)
-	{
-		throw new UnsupportedOperationException("Sphere-ellipsoid containment not implemented yet.");
-	}
-	
-	@Override
 	public boolean contains(NSphere s)
 	{
 		float rad = Radius() - s.Radius();
 		Vector pq = Center().minus(s.Center());
 		return pq.normsqr() <= rad * rad;
+	}
+	
+	@Override
+	public boolean contains(NEllipsoid e)
+	{
+		throw new UnsupportedOperationException("Sphere-ellipsoid containment not implemented yet.");
+	}
+			
+	@Override
+	public boolean intersects(NEllipsoid c)
+	{
+		throw new UnsupportedOperationException("Sphere-ellipsoid intersection not implemented yet.");
+	}
+	
+	@Override
+	public boolean intersects(NSphere s)
+	{
+		float rad = Radius() + s.Radius();
+		Vector pq = Center().minus(s.Center());
+		return pq.normsqr() <= rad * rad;
+	}
+	
+	@Override
+	public boolean intersects(NCuboid c)
+	{
+		throw new UnsupportedOperationException("Sphere-cuboid intersection not implemented yet.");
 	}
 	
 	@Override
@@ -51,30 +144,5 @@ public class NSphere extends NEllipsoid
 		float rad = Radius();
 		Vector v = l.P1().plus(qt.times(lam));
 		return v.normsqr() <= rad * rad;
-	}
-	
-	@Override
-	public boolean intersects(NCuboid c)
-	{
-		throw new UnsupportedOperationException("Sphere-cuboid intersection not implemented yet.");
-	}
-	
-	@Override
-	public boolean intersects(NEllipsoid c)
-	{
-		throw new UnsupportedOperationException("Sphere-ellipsoid intersection not implemented yet.");
-	}
-	
-	@Override
-	public boolean intersects(NSphere s)
-	{
-		float rad = Radius() + s.Radius();
-		Vector pq = Center().minus(s.Center());
-		return pq.normsqr() <= rad * rad;
-	}
-
-	public float Radius()
-	{
-		return Size().get(0);
 	}
 }
