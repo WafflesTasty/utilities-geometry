@@ -13,12 +13,12 @@ import zeno.util.geom.shapes.surfaces.Rectangle;
  */
 public interface IBounds2D extends IBounds
 {	
-	/**
-	 * Returns the object's bounding {@code Rectangle}.
-	 * 
-	 * @return  the object's rectangle bounds
-	 * @see Rectangle
-	 */
+	@Override
+	public default int Dimension()
+	{
+		return 2;
+	}
+
 	@Override
 	public default Rectangle Bounds()
 	{
@@ -30,7 +30,7 @@ public interface IBounds2D extends IBounds
 			YMax() - YMin()
 		);
 	}
-	
+		
 	
 	/**
 	 * Returns the minimum x-coördinate of the object.

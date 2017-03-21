@@ -13,12 +13,12 @@ import zeno.util.geom.shapes.solids.Cuboid;
  */
 public interface IBounds3D extends IBounds
 {	
-	/**
-	 * Returns the object's bounding {@code Cuboid}.
-	 * 
-	 * @return  the object's cuboid bounds
-	 * @see Cuboid
-	 */
+	@Override
+	public default int Dimension()
+	{
+		return 3;
+	}
+	
 	@Override
 	public default Cuboid Bounds()
 	{

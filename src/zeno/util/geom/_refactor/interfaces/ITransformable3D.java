@@ -18,13 +18,6 @@ import zeno.util.geom.tools.IBounds3D;
 public interface ITransformable3D extends IBounds3D, IScalable3D, IVantage3D
 {
 	@Override
-	public default int Dimension()
-	{
-		return 3;
-	}
-	
-	
-	@Override
 	public default float XMin()
 	{
 		return Transform().XMin();

@@ -18,13 +18,6 @@ import zeno.util.geom.tools.IBounds2D;
 public interface ITransformable2D extends IBounds2D, IScalable2D, IVantage2D
 {
 	@Override
-	public default int Dimension()
-	{
-		return 2;
-	}
-	
-	
-	@Override
 	public default float XMin()
 	{
 		return Transform().XMin();
