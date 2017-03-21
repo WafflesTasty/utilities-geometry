@@ -1,7 +1,6 @@
 package zeno.util.geom.shapes.lines;
 
 import zeno.util.algebra.tensors.vectors.fixed.Vector2;
-import zeno.util.geom.shapes.Line;
 import zeno.util.geom.shapes.surfaces.Rectangle;
 import zeno.util.geom.tools.IBounds2D;
 import zeno.util.tools.primitives.Floats;

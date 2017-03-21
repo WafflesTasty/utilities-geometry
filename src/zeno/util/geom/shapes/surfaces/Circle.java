@@ -1,6 +1,7 @@
 package zeno.util.geom.shapes.surfaces;
 
 import zeno.util.algebra.tensors.vectors.fixed.Vector2;
+import zeno.util.geom.interfaces.IShape2D;
 import zeno.util.geom.shapes.NSphere;
 
 /**
@@ -9,9 +10,10 @@ import zeno.util.geom.shapes.NSphere;
  * @since Mar 21, 2017
  * @author Zeno
  * 
+ * @see IShape2D
  * @see NSphere
  */
-public class Circle extends NSphere
+public class Circle extends NSphere implements IShape2D
 {
 	/**
 	 * Creates a circle through three {@code Vector2} points.
@@ -97,5 +99,24 @@ public class Circle extends NSphere
 	public Circle()
 	{
 		this(1);
+	}
+
+	
+	@Override
+	public Rectangle Bounds()
+	{
+		return IShape2D.super.Bounds();
+	}
+	
+	@Override
+	public Vector2 Center()
+	{
+		return (Vector2) super.Center();
+	}
+	
+	@Override
+	public Vector2 Size()
+	{
+		return (Vector2) super.Size();
 	}
 }

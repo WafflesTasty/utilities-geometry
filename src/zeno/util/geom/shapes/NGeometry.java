@@ -2,6 +2,7 @@ package zeno.util.geom.shapes;
 
 import zeno.util.algebra.tensors.vectors.Vector;
 import zeno.util.geom.IGeometry;
+import zeno.util.geom.IShape;
 
 /**
  * The {@code NGeometry} class is the base class for closed n-dimensional shapes.
@@ -10,8 +11,9 @@ import zeno.util.geom.IGeometry;
  * @author Zeno
  * 
  * @see IGeometry
+ * @see IShape
  */
-public abstract class NGeometry implements IGeometry
+public abstract class NGeometry implements IGeometry, IShape
 {
 	private Vector center, size;
 	
@@ -49,52 +51,8 @@ public abstract class NGeometry implements IGeometry
 		this(Vector.create(dim));
 	}
 	
-		
-	/**
-	 * Returns the minimum of the {@code NGeometry}.
-	 * 
-	 * @return  the geometry's minimum
-	 * @see Vector
-	 */
-	public Vector Minimum()
-	{
-		return center.minus(size.times(0.5f));
-	}
-	
-	/**
-	 * Returns the maximum of the {@code NGeometry}.
-	 * 
-	 * @return  the geometry's maximum
-	 * @see Vector
-	 */
-	public Vector Maximum()
-	{
-		return center.plus(size.times(0.5f));
-	}
 
-	/**
-	 * Returns the center of the {@code NGeometry}.
-	 * 
-	 * @return  the geometry's center
-	 * @see Vector
-	 */
-	public Vector Center()
-	{
-		return center;
-	}
 	
-	/**
-	 * Returns the size of the {@code NGeometry}.
-	 * 
-	 * @return  the geometry's size
-	 * @see Vector
-	 */
-	public Vector Size()
-	{
-		return size;
-	}
-	
-
 	@Override
 	public int hashCode()
 	{
@@ -119,19 +77,32 @@ public abstract class NGeometry implements IGeometry
 		return false;
 	}
 
-	protected void setCenter(Vector center)
+	private void setCenter(Vector center)
 	{
 		this.center = center;
 	}
 	
-	protected void setSize(Vector size)
+	private void setSize(Vector size)
 	{
 		this.size = size.absolute();
 	}
 
+	
 	@Override
 	public int Dimension()
 	{
 		return center.size();
+	}
+
+	@Override
+	public Vector Center()
+	{
+		return center;
+	}
+
+	@Override
+	public Vector Size()
+	{
+		return size;
 	}
 }

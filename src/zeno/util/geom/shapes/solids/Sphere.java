@@ -1,6 +1,7 @@
 package zeno.util.geom.shapes.solids;
 
 import zeno.util.algebra.tensors.vectors.fixed.Vector3;
+import zeno.util.geom.interfaces.IShape3D;
 import zeno.util.geom.shapes.NSphere;
 
 /**
@@ -9,9 +10,10 @@ import zeno.util.geom.shapes.NSphere;
  * @since Mar 21, 2017
  * @author Zeno
  * 
+ * @see IShape3D
  * @see NSphere
  */
-public class Sphere extends NSphere
+public class Sphere extends NSphere implements IShape3D
 {
 	/**
 	 * Creates a new {@code Sphere}.
@@ -54,5 +56,24 @@ public class Sphere extends NSphere
 	public Sphere()
 	{
 		this(1);
+	}
+	
+	
+	@Override
+	public Cuboid Bounds()
+	{
+		return IShape3D.super.Bounds();
+	}
+	
+	@Override
+	public Vector3 Center()
+	{
+		return (Vector3) super.Center();
+	}
+	
+	@Override
+	public Vector3 Size()
+	{
+		return (Vector3) super.Size();
 	}
 }

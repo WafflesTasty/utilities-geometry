@@ -1,6 +1,7 @@
 package zeno.util.geom.shapes;
 
 import zeno.util.algebra.tensors.vectors.Vector;
+import zeno.util.geom.shapes.lines.Line;
 
 /**
  * The {@code NSphere} class defines an n-dimensional sphere shape.
@@ -11,7 +12,7 @@ import zeno.util.algebra.tensors.vectors.Vector;
  * @see NEllipsoid
  */
 public class NSphere extends NEllipsoid
-{
+{	
 	/**
 	 * Creates a new {@code NSphere}.
 	 * 
@@ -45,27 +46,7 @@ public class NSphere extends NEllipsoid
 		this(dim, 1f);
 	}
 	
-	
-	/**
-	 * Changes the diameter of the {@code NSphere}.
-	 * 
-	 * @param diameter  a new sphere diameter
-	 */
-	public void setDiameter(float diameter)
-	{
-		setSize(Vector.create(diameter, Dimension()));
-	}
-	
-	/**
-	 * Changes the radius of the {@code NSphere}.
-	 * 
-	 * @param radius  a new sphere radius
-	 */
-	public void setRadius(float radius)
-	{
-		setDiameter(2 * radius);
-	}
-	
+		
 	/**
 	 * Returns the diameter of the {@code NSphere}.
 	 * 

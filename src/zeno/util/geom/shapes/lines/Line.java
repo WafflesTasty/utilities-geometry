@@ -1,8 +1,10 @@
-package zeno.util.geom.shapes;
+package zeno.util.geom.shapes.lines;
 
 import zeno.util.algebra.tensors.matrices.Matrix;
 import zeno.util.algebra.tensors.vectors.Vector;
 import zeno.util.geom.IGeometry;
+import zeno.util.geom.shapes.NCuboid;
+import zeno.util.geom.shapes.NEllipsoid;
 import zeno.util.tools.primitives.Floats;
 
 /**
@@ -217,22 +219,7 @@ public class Line implements IGeometry
 			&&   contains(x);
 	}
 	
-	
-	@Override
-	public NCuboid Bounds()
-	{
-		Vector center = p1.plus(p2).times(0.5f);
-		Vector size = p2.minus(p1).absolute();
-		return new NCuboid(center, size);
-	}
-	
-	@Override
-	public int Dimension()
-	{
-		return p1.size();
-	}
-
-	
+		
 	
 	@Override
 	public int hashCode()
@@ -269,5 +256,20 @@ public class Line implements IGeometry
 	protected void setP2(Vector p2)
 	{
 		this.p2 = p2;
+	}
+
+	
+	@Override
+	public NCuboid Bounds()
+	{
+		Vector center = p1.plus(p2).times(0.5f);
+		Vector size = p2.minus(p1).absolute();
+		return new NCuboid(center, size);
+	}
+	
+	@Override
+	public int Dimension()
+	{
+		return p1.size();
 	}
 }

@@ -1,6 +1,7 @@
 package zeno.util.geom.shapes.surfaces;
 
 import zeno.util.algebra.tensors.vectors.fixed.Vector2;
+import zeno.util.geom.interfaces.IShape2D;
 import zeno.util.geom.shapes.NCube;
 
 /**
@@ -9,9 +10,10 @@ import zeno.util.geom.shapes.NCube;
  * @since Mar 21, 2017
  * @author Zeno
  * 
+ * @see IShape2D
  * @see NCube
  */
-public class Square extends NCube
+public class Square extends NCube implements IShape2D
 {
 	/**
 	 * Creates a new {@code Square}.
@@ -53,5 +55,24 @@ public class Square extends NCube
 	public Square()
 	{
 		this(1);
+	}
+
+	
+	@Override
+	public Rectangle Bounds()
+	{
+		return IShape2D.super.Bounds();
+	}
+	
+	@Override
+	public Vector2 Center()
+	{
+		return (Vector2) super.Center();
+	}
+	
+	@Override
+	public Vector2 Size()
+	{
+		return (Vector2) super.Size();
 	}
 }

@@ -1,6 +1,7 @@
 package zeno.util.geom.shapes.solids;
 
 import zeno.util.algebra.tensors.vectors.fixed.Vector3;
+import zeno.util.geom.interfaces.IShape3D;
 import zeno.util.geom.shapes.NCuboid;
 
 /**
@@ -9,9 +10,10 @@ import zeno.util.geom.shapes.NCuboid;
  * @since Apr 29, 2016
  * @author Zeno
  * 
+ * @see IShape3D
  * @see NCuboid
  */
-public class Cuboid extends NCuboid
+public class Cuboid extends NCuboid implements IShape3D
 {
 	/**
 	 * Creates a new {@code Cuboid}.
@@ -72,100 +74,21 @@ public class Cuboid extends NCuboid
 	}
 	
 	
-	/**
-	 * Changes the size of the {@code Cuboid}.
-	 * 
-	 * @param w  a new cuboid width
-	 * @param h  a new cuboid height
-	 * @param d  a new cuboid depth
-	 */
-	public void setSize(float w, float h, float d)
+	@Override
+	public Cuboid Bounds()
 	{
-		setSize(new Vector3(w, h, d));
-	}
-		
-	/**
-	 * Changes the size of the {@code Cuboid}.
-	 * 
-	 * @param size  a new cuboid size
-	 * @see Vector3
-	 */
-	public void setSize(Vector3 size)
-	{
-		super.setSize(size);
+		return this;
 	}
 	
-	
-	/**
-	 * Changes the height of the {@code Cuboid}.
-	 * 
-	 * @param h  a new cuboid height
-	 */
-	public void setHeight(float h)
+	@Override
+	public Vector3 Center()
 	{
-		setSize(Width(), h, Depth());
+		return (Vector3) super.Center();
 	}
 	
-	/**
-	 * Changes the depth of the {@code Cuboid}.
-	 * 
-	 * @param d  a new cuboid depth
-	 */
-	public void setDepth(float d)
-	{
-		setSize(Width(), Height(), d);
-	}
-	
-	/**
-	 * Changes the width of the {@code Cuboid}.
-	 * 
-	 * @param w  a new cuboid width
-	 */
-	public void setWidth(float w)
-	{
-		setSize(w, Height(), Depth());
-	}
-	
-	
-	/**
-	 * Returns the size of the {@code Cuboid}.
-	 * 
-	 * @return  the cuboid's size
-	 * @see Vector3
-	 */
 	@Override
 	public Vector3 Size()
 	{
 		return (Vector3) super.Size();
-	}
-	
-	/**
-	 * Returns the height of the {@code Cuboid}.
-	 * 
-	 * @return  the cuboid's height
-	 */
-	public float Height()
-	{
-		return Size().get(1);
-	}
-	
-	/**
-	 * Returns the depth of the {@code Cuboid}.
-	 * 
-	 * @return  the cuboid's depth
-	 */
-	public float Depth()
-	{
-		return Size().get(2);
-	}
-	
-	/**
-	 * Returns the width of the {@code Cuboid}.
-	 * 
-	 * @return  the cuboid's width
-	 */
-	public float Width()
-	{
-		return Size().get(0);
 	}
 }

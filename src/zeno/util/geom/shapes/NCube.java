@@ -11,7 +11,7 @@ import zeno.util.algebra.tensors.vectors.Vector;
  * @see NCuboid
  */
 public class NCube extends NCuboid
-{
+{	
 	/**
 	 * Creates a new {@code NCube}.
 	 * 
@@ -44,17 +44,7 @@ public class NCube extends NCuboid
 	{
 		this(dim, 1f);
 	}
-	
-	
-	/**
-	 * Changes the length of the {@code NCube}.
-	 * 
-	 * @param length  a new cube length
-	 */
-	public void setLength(float length)
-	{
-		setSize(Vector.create(length, Dimension()));
-	}
+
 	
 	/**
 	 * Returns the length of the {@code NCube}.

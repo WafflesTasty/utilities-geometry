@@ -1,6 +1,7 @@
 package zeno.util.geom.shapes.surfaces;
 
 import zeno.util.algebra.tensors.vectors.fixed.Vector2;
+import zeno.util.geom.interfaces.IShape2D;
 import zeno.util.geom.shapes.NEllipsoid;
 
 /**
@@ -10,8 +11,9 @@ import zeno.util.geom.shapes.NEllipsoid;
  * @author Zeno
  * 
  * @see NEllipsoid
+ * @see IShape2D
  */
-public class Ellipse extends NEllipsoid
+public class Ellipse extends NEllipsoid implements IShape2D
 {
 	/**
 	 * Creates a new {@code Ellipse}.
@@ -69,79 +71,21 @@ public class Ellipse extends NEllipsoid
 	}
 	
 	
-	/**
-	 * Changes the size of the {@code Ellipse}.
-	 * 
-	 * @param w  a new ellipsoid width
-	 * @param h  a new ellipsoid height
-	 */
-	public void setSize(float w, float h)
+	@Override
+	public Rectangle Bounds()
 	{
-		setSize(new Vector2(w, h));
-	}
-		
-	/**
-	 * Changes the size of the {@code Ellipse}.
-	 * 
-	 * @param size  a new ellipsoid size
-	 * @see Vector2
-	 */
-	public void setSize(Vector2 size)
-	{
-		super.setSize(size);
+		return IShape2D.super.Bounds();
 	}
 	
-	
-	/**
-	 * Changes the height of the {@code Ellipse}.
-	 * 
-	 * @param h  a new ellipsoid height
-	 */
-	public void setHeight(float h)
+	@Override
+	public Vector2 Center()
 	{
-		setSize(Width(), h);
+		return (Vector2) super.Center();
 	}
 	
-	/**
-	 * Changes the width of the {@code Ellipse}.
-	 * 
-	 * @param w  a new ellipsoid width
-	 */
-	public void setWidth(float w)
-	{
-		setSize(w, Height());
-	}
-	
-	
-	/**
-	 * Returns the size of the {@code Ellipse}.
-	 * 
-	 * @return  the ellipsoid's size
-	 * @see Vector2
-	 */
 	@Override
 	public Vector2 Size()
 	{
 		return (Vector2) super.Size();
-	}
-	
-	/**
-	 * Returns the height of the {@code Ellipse}.
-	 * 
-	 * @return  the ellipsoid's height
-	 */
-	public float Height()
-	{
-		return Size().get(1);
-	}
-	
-	/**
-	 * Returns the width of the {@code Ellipse}.
-	 * 
-	 * @return  the ellipsoid's width
-	 */
-	public float Width()
-	{
-		return Size().get(0);
 	}
 }

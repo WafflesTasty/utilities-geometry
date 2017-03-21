@@ -2,6 +2,7 @@ package zeno.util.geom.shapes;
 
 import zeno.util.algebra.tensors.vectors.Vector;
 import zeno.util.geom.algorithms.LineClipper;
+import zeno.util.geom.shapes.lines.Line;
 import zeno.util.tools.primitives.Floats;
 
 /**

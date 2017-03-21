@@ -1,6 +1,7 @@
 package zeno.util.geom.shapes;
 
 import zeno.util.algebra.tensors.vectors.Vector;
+import zeno.util.geom.shapes.lines.Line;
 
 /**
  * The {@code NEllipsoid} class defines an n-dimensional ellipsoid shape.
