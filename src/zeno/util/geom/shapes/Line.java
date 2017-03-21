@@ -5,10 +5,18 @@ import zeno.util.algebra.tensors.vectors.Vector;
 import zeno.util.geom.IGeometry;
 import zeno.util.tools.primitives.Floats;
 
+/**
+ * The {@code Line} class defines an n-dimensional line segment.
+ * 
+ * @since Jul 5, 2016
+ * @author Zeno
+ * 
+ * @see IGeometry
+ */
 public class Line implements IGeometry
 {
 	/**
-	 * Find a maximum vector component.
+	 * Find the index of the maximum vector component.
 	 * 
 	 * @param v  a vector to iterate
 	 * @param i  a component to disregard
@@ -34,32 +42,70 @@ public class Line implements IGeometry
 	}
 	
 	
-	private Vector p, q;
-	
-	public Line(Vector p, Vector q)
+	private Vector p1, p2;
+		
+	/**
+	 * Creates a new {@code Line}.
+	 * 
+	 * @param p1  the line's first point
+	 * @param p2  the line's second point
+	 * @see Vector
+	 */
+	public Line(Vector p1, Vector p2)
 	{
-		this.p = p;
-		this.q = q;
+		this.p1 = p1;
+		this.p2 = p2;
 	}
 	
-	public Vector P()
+	/**
+	 * Creates a new {@code Line}.
+	 * The parameter takes in a list containing
+	 * the components of both points in sequence.
+	 * 
+	 * @param vals  a list of values
+	 */
+	public Line(float... vals)
 	{
-		return p;
+		Vector[] split = Vector.split(2, vals);
+		
+		p1 = split[0];
+		p2 = split[1];
 	}
 	
-	public Vector Q()
+	/**
+	 * Creates a new {@code Line}.
+	 * The created line fits in the unit cube.
+	 * 
+	 * @param dim  the line's dimension
+	 */
+	public Line(int dim)
 	{
-		return q;
+		this(Vector.create(-0.5f, dim), Vector.create(0.5f, dim));
+	}
+	
+		
+	/**
+	 * Returns the first point of the {@code Line}.
+	 * 
+	 * @return  the line's first point
+	 * @see Vector
+	 */
+	public Vector P1()
+	{
+		return p1;
+	}
+	
+	/**
+	 * Returns the second point of the {@code Line}.
+	 * 
+	 * @return  the line's second point
+	 * @see Vector
+	 */
+	public Vector P2()
+	{
+		return p2;
 	}
 
-	
-	@Override
-	public NCuboid Bounds()
-	{
-		Vector center = p.plus(q).times(0.5f);
-		Vector size = q.minus(p).absolute();
-		return new NCuboid(center, size);
-	}
 	
 	@Override
 	public boolean contains(Line l)
@@ -71,8 +117,8 @@ public class Line implements IGeometry
 	public boolean contains(Vector v)
 	{
 		// Check if lambda is between 0 and 1.
-		float xmin = Floats.min(p.get(0), q.get(0));
-		float xmax = Floats.max(p.get(0), q.get(0));
+		float xmin = Floats.min(p1.get(0), p2.get(0));
+		float xmax = Floats.max(p1.get(0), p2.get(0));
 		
 		if(v.get(0) < xmin || xmax < v.get(0))
 		{
@@ -83,8 +129,8 @@ public class Line implements IGeometry
 		// Check if lambda value is unique.
 		for(int i = 0; i < Dimension() - 1; i++)
 		{
-			float val1 = (v.get(i+0) - p.get(i+0)) * (q.get(i+1) - p.get(i+1));
-			float val2 = (v.get(i+1) - p.get(i+1)) * (q.get(i+0) - p.get(i+0));
+			float val1 = (v.get(i+0) - p1.get(i+0)) * (p2.get(i+1) - p1.get(i+1));
+			float val2 = (v.get(i+1) - p1.get(i+1)) * (p2.get(i+0) - p1.get(i+0));
 			
 			if(Floats.isEqual(val1, val2, 6))
 			{
@@ -102,11 +148,39 @@ public class Line implements IGeometry
 	}
 		
 	@Override
+	public boolean contains(NEllipsoid e)
+	{
+		return false;
+	}
+	
+	@Override
+	public boolean intersects(NEllipsoid e)
+	{
+		if(e != null)
+		{
+			return e.intersects(this);
+		}
+		
+		return false;
+	}
+	
+	@Override
+	public boolean intersects(NCuboid c)
+	{
+		if(c != null)
+		{
+			return c.intersects(this);
+		}
+		
+		return false;
+	}
+	
+	@Override
 	public boolean intersects(Line l)
 	{
-		Vector pq =   P().minus(  Q());
-		Vector pr = l.P().minus(  P());
-		Vector rs = l.P().minus(l.Q());
+		Vector pq =   p1.minus(  p2);
+		Vector pr = l.p1.minus(  p1);
+		Vector rs = l.p1.minus(l.p2);
 		
 		// Maximize components.
 		int i = maximize(pq, -1);
@@ -134,7 +208,7 @@ public class Line implements IGeometry
 		float l2 = v.get(1);
 		
 		// Create intersection.
-		Vector x = P().plus(l.P())
+		Vector x = p1.plus(l.p1)
 				  .plus(pq.times(l1))
 				  .plus(rs.times(l2));
 		
@@ -142,40 +216,57 @@ public class Line implements IGeometry
 			&&   contains(x);
 	}
 	
+	
+	@Override
+	public NCuboid Bounds()
+	{
+		Vector center = p1.plus(p2).times(0.5f);
+		Vector size = p2.minus(p1).absolute();
+		return new NCuboid(center, size);
+	}
+	
 	@Override
 	public int Dimension()
 	{
-		return p.size();
+		return p1.size();
 	}
 
 	
+	
 	@Override
-	public boolean contains(NEllipsoid e)
+	public int hashCode()
 	{
-		return false;
+		int code = 1;
+		
+		code = code * 17 + p1.hashCode();
+		code = code * 43 + p2.hashCode();
+		
+		return code;
 	}
 	
-
 	@Override
-	public boolean intersects(NCuboid c)
+	public boolean equals(Object o)
 	{
-		if(c != null)
+		if(o instanceof Line)
 		{
-			return c.intersects(this);
+			Line oLine = (Line) o;
+			return (p1.equals(oLine.p1)
+				 && p2.equals(oLine.p2))
+				 ||(p1.equals(oLine.p2)
+				 && p2.equals(oLine.p1));
 		}
 		
 		return false;
 	}
-
 	
-	@Override
-	public boolean intersects(NEllipsoid e)
+	
+	protected void setP1(Vector p1)
 	{
-		if(e != null)
-		{
-			return e.intersects(this);
-		}
-		
-		return false;
+		this.p1 = p1;
+	}
+	
+	protected void setP2(Vector p2)
+	{
+		this.p2 = p2;
 	}
 }

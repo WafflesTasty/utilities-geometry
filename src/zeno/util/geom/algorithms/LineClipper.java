@@ -5,6 +5,7 @@ import java.util.List;
 
 import zeno.util.algebra.tensors.Tensor;
 import zeno.util.algebra.tensors.vectors.Vector;
+import zeno.util.geom.shapes.Line;
 import zeno.util.geom.shapes.NCuboid;
 import zeno.util.tools.Messenger;
 
@@ -93,6 +94,29 @@ public class LineClipper extends Messenger
 		}
 
 		return result;
+	}
+	
+	/**
+	 * Clips a list of lines to the clipper's boundary.
+	 * The result is a list of points that follow the
+	 * trajectory as the original list bounded by
+	 * the defined hypercube boundary. 
+	 * 
+	 * @param lines  a list of lines
+	 * @return  a clipped point list
+	 * @see Line
+	 * @see List
+	 */
+	public List<Vector> clip(Line... lines)
+	{
+		Vector[] points = new Vector[2 * lines.length];
+		for(int i = 0; i < lines.length; i++)
+		{
+			points[2 * i + 0] = lines[i].P1();
+			points[2 * i + 1] = lines[i].P2();
+		}
+		
+		return clip(points);
 	}
 	
 	
