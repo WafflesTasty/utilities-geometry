@@ -7,8 +7,10 @@ import zeno.util.algebra.tensors.vectors.Vector;
  * 
  * @since Mar 21, 2017
  * @author Zeno
+ * 
+ * @see IGeometry
  */
-public interface IShape
+public interface IShape extends IGeometry
 {
 	/**
 	 * Returns the minimum of the {@code IShape}.

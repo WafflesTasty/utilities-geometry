@@ -1,7 +1,6 @@
 package zeno.util.geom.shapes;
 
 import zeno.util.algebra.tensors.vectors.Vector;
-import zeno.util.geom.IGeometry;
 import zeno.util.geom.IShape;
 
 /**
@@ -10,10 +9,9 @@ import zeno.util.geom.IShape;
  * @since Apr 29, 2016
  * @author Zeno
  * 
- * @see IGeometry
  * @see IShape
  */
-public abstract class NGeometry implements IGeometry, IShape
+public abstract class NGeometry implements IShape
 {
 	private Vector center, size;
 	
