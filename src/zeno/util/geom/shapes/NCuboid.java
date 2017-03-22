@@ -78,6 +78,12 @@ public class NCuboid extends NGeometry
 	}
 	
 	@Override
+	public boolean contains(NEllipsoid e)
+	{
+		return contains(e.Bounds());
+	}
+	
+	@Override
 	public boolean contains(NCuboid c)
 	{
 		for(int i = 0; i < Dimension(); i++)
@@ -97,11 +103,6 @@ public class NCuboid extends NGeometry
 		return true;
 	}
 
-	@Override
-	public boolean contains(NEllipsoid e)
-	{
-		return contains(e.Bounds());
-	}
 	
 	@Override
 	public boolean intersects(NEllipsoid e)
@@ -146,6 +147,7 @@ public class NCuboid extends NGeometry
 		return true;
 	}
 
+	
 	@Override
 	public boolean equals(Object o)
 	{

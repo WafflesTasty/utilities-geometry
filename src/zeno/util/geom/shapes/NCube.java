@@ -1,6 +1,7 @@
 package zeno.util.geom.shapes;
 
 import zeno.util.algebra.tensors.vectors.Vector;
+import zeno.util.geom.interfaces.shapes.ICube;
 
 /**
  * The {@code NCube} class defines an n-dimensional cube shape.
@@ -9,8 +10,9 @@ import zeno.util.algebra.tensors.vectors.Vector;
  * @author Zeno
  * 
  * @see NCuboid
+ * @see ICube
  */
-public class NCube extends NCuboid
+public class NCube extends NCuboid implements ICube
 {	
 	/**
 	 * Creates a new {@code NCube}.
@@ -43,16 +45,5 @@ public class NCube extends NCuboid
 	public NCube(int dim)
 	{
 		this(dim, 1f);
-	}
-
-	
-	/**
-	 * Returns the length of the {@code NCube}.
-	 * 
-	 * @return  the cube's length
-	 */
-	public float Length()
-	{
-		return Size().get(0);
 	}
 }

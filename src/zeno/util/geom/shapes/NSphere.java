@@ -1,6 +1,7 @@
 package zeno.util.geom.shapes;
 
 import zeno.util.algebra.tensors.vectors.Vector;
+import zeno.util.geom.interfaces.shapes.ISphere;
 import zeno.util.geom.shapes.lines.Line;
 
 /**
@@ -10,8 +11,9 @@ import zeno.util.geom.shapes.lines.Line;
  * @author Zeno
  * 
  * @see NEllipsoid
+ * @see ISphere
  */
-public class NSphere extends NEllipsoid
+public class NSphere extends NEllipsoid implements ISphere
 {	
 	/**
 	 * Creates a new {@code NSphere}.
@@ -47,33 +49,18 @@ public class NSphere extends NEllipsoid
 	}
 	
 		
-	/**
-	 * Returns the diameter of the {@code NSphere}.
-	 * 
-	 * @return  the sphere's diameter
-	 */
-	public float Diameter()
-	{
-		return Size().get(0);
-	}
-	
-	/**
-	 * Returns the radius of the {@code NSphere}.
-	 * 
-	 * @return  the sphere's radius
-	 */
-	public float Radius()
-	{
-		return Diameter() / 2;
-	}
-	
-	
 	@Override
 	public boolean contains(Vector v)
 	{
 		float rad = Radius();
 		Vector px = v.minus(Center());
 		return px.normsqr() <= rad * rad;
+	}
+
+	@Override
+	public boolean contains(NEllipsoid e)
+	{
+		throw new UnsupportedOperationException("Sphere-ellipsoid containment not implemented yet.");
 	}
 	
 	@Override
@@ -84,18 +71,7 @@ public class NSphere extends NEllipsoid
 		return pq.normsqr() <= rad * rad;
 	}
 	
-	@Override
-	public boolean contains(NEllipsoid e)
-	{
-		throw new UnsupportedOperationException("Sphere-ellipsoid containment not implemented yet.");
-	}
-			
-	@Override
-	public boolean intersects(NEllipsoid c)
-	{
-		throw new UnsupportedOperationException("Sphere-ellipsoid intersection not implemented yet.");
-	}
-	
+
 	@Override
 	public boolean intersects(NSphere s)
 	{
@@ -103,7 +79,13 @@ public class NSphere extends NEllipsoid
 		Vector pq = Center().minus(s.Center());
 		return pq.normsqr() <= rad * rad;
 	}
-	
+			
+	@Override
+	public boolean intersects(NEllipsoid c)
+	{
+		throw new UnsupportedOperationException("Sphere-ellipsoid intersection not implemented yet.");
+	}
+		
 	@Override
 	public boolean intersects(NCuboid c)
 	{

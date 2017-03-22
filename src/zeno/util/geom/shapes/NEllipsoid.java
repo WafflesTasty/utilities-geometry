@@ -1,6 +1,7 @@
 package zeno.util.geom.shapes;
 
 import zeno.util.algebra.tensors.vectors.Vector;
+import zeno.util.geom.interfaces.shapes.IEllipsoid;
 import zeno.util.geom.shapes.lines.Line;
 
 /**
@@ -9,9 +10,10 @@ import zeno.util.geom.shapes.lines.Line;
  * @since Apr 29, 2016
  * @author Zeno
  * 
+ * @see IEllipsoid
  * @see NGeometry
  */
-public class NEllipsoid extends NGeometry
+public class NEllipsoid extends NGeometry implements IEllipsoid
 {	
 	/**
 	 * Creates a new {@code NEllipsoid}.
@@ -82,16 +84,23 @@ public class NEllipsoid extends NGeometry
 	}
 	
 	@Override
+	public boolean contains(NEllipsoid e)
+	{
+		NSphere unit = new NSphere(Dimension());
+		return unit.intersects(transform(e));
+	}
+	
+	@Override
 	public boolean contains(NSphere s)
 	{
 		throw new UnsupportedOperationException("Ellipsoid-sphere containment not implemented yet.");
 	}
 	
+
 	@Override
-	public boolean contains(NEllipsoid e)
+	public boolean intersects(NSphere s)
 	{
-		NSphere unit = new NSphere(Dimension());
-		return unit.intersects(transform(e));
+		return s.intersects(this);
 	}
 
 	@Override
@@ -99,12 +108,6 @@ public class NEllipsoid extends NGeometry
 	{
 		NSphere unit = new NSphere(Dimension());
 		return unit.intersects(transform(e));
-	}
-
-	@Override
-	public boolean intersects(NSphere s)
-	{
-		return s.intersects(this);
 	}
 
 	@Override
@@ -121,6 +124,7 @@ public class NEllipsoid extends NGeometry
 		return unit.intersects(transform(l));
 	}
 
+	
 	@Override
 	public boolean equals(Object o)
 	{
@@ -132,13 +136,7 @@ public class NEllipsoid extends NGeometry
 		return false;
 	}
 	
-	@Override
-	public NCuboid Bounds()
-	{
-		return new NCuboid(Center(), Size());
-	}
-	
-	
+		
 	private NEllipsoid transform(NEllipsoid e)
 	{
 		Vector uSize = e.Size();
