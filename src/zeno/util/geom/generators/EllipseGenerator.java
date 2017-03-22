@@ -187,7 +187,7 @@ public class EllipseGenerator extends VertexGenerator
 	/**
 	 * Generates vertices for a {@code Circle}.
 	 * 
-	 * @param c  an circle to generate
+	 * @param c  a circle to generate
 	 * @return  a list of vertices
 	 * @see Vector2
 	 * @see Circle

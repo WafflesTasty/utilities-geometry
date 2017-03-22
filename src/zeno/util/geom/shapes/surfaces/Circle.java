@@ -1,8 +1,10 @@
 package zeno.util.geom.shapes.surfaces;
 
 import zeno.util.algebra.tensors.vectors.fixed.Vector2;
+import zeno.util.calc.variables.functions.Polynomial;
 import zeno.util.geom.interfaces.IShape2D;
 import zeno.util.geom.shapes.NSphere;
+import zeno.util.tools.primitives.Floats;
 
 /**
  * The {@code Circle} class defines a two-dimensional circular shape.
@@ -101,6 +103,94 @@ public class Circle extends NSphere implements IShape2D
 		this(1);
 	}
 
+	
+	/**
+	 * Calculates the tangents to the {@code Ellipse}.
+	 * 
+	 * @param v  a tangent source vector
+	 * @return  an array of two tangents
+	 * @see Vector2
+	 */
+	public Vector2[] tangentsTo(Vector2 v)
+	{
+		float p = v.X() - X();
+		float q = v.Y() - Y();
+		float s = Height() / 2;
+		float r = Width() / 2;
+		
+		
+		float rr = Floats.pow(r, 2);
+		float ss = Floats.pow(s, 2);
+		
+		float ps = Floats.pow(p * s, 2);
+		float qr = Floats.pow(q * r, 2);
+		float rs = Floats.pow(r * s, 2);
+				
+		
+		float a = ps + qr;
+		float b = -2 * p * rs;
+		float c = rr * (rs - qr);
+		
+		
+		Polynomial poly = new Polynomial(c, b, a);
+		float[] roots = poly.RealRoots();
+		if(roots.length == 0)
+		{
+			return new Vector2[0];
+		}
+		
+		
+		float[] tangentx = new float[2];
+		float[] tangenty = new float[2];
+
+		tangentx[0] = roots.length == 1 ? roots[0] : Math.min(roots[0], roots[1]);
+		tangentx[1] = roots.length == 1 ? roots[0] : Math.max(roots[0], roots[1]);
+		
+		tangenty[0] = Floats.sqrt(ss * (1 - tangentx[0] * tangentx[0] / rr));
+		tangenty[1] = Floats.sqrt(ss * (1 - tangentx[1] * tangentx[1] / rr));
+		
+		tangentx[0] += X();
+		tangentx[1] += X();
+		
+		
+		boolean isSigned = false;
+		if(-r < p && 0 < q)
+		{
+			isSigned = true;
+			if(r <= p || 0 >= q)
+			{
+				tangenty[1] *= -1;
+			}
+		}
+		
+		if(!isSigned)
+		{
+			if(r > p && 0 > q)
+			{
+				isSigned = true;
+				tangenty[1] *= -1;
+				if(-r <= p || 0 <= q)
+				{
+					tangenty[0] *= -1;
+				}
+			}
+		}
+		
+		if(!isSigned)
+		{
+			tangenty[0] *= -1;
+		}
+
+		tangenty[0] += Y();
+		tangenty[1] += Y();
+				
+		return new Vector2[]
+		{
+			new Vector2(tangentx[0], tangenty[0]),
+			new Vector2(tangentx[1], tangenty[1]),
+		};
+	}
+	
 	
 	@Override
 	public Rectangle Bounds()
