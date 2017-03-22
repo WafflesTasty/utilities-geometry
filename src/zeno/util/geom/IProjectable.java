@@ -1,4 +1,4 @@
-package zeno.util.geom._refactor;
+package zeno.util.geom;
 
 /**
  * The {@code IProjectable} interface defines an object capable

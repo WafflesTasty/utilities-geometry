@@ -1,7 +1,7 @@
 package zeno.util.geom._refactor.interfaces.rotation;
 
 import zeno.util.algebra.tensors.vectors.fixed.Vector2;
-import zeno.util.geom._refactor.ITransformable;
+import zeno.util.geom.ITransformable;
 import zeno.util.geom._refactor.interfaces.ITransformation2D;
 
 /**

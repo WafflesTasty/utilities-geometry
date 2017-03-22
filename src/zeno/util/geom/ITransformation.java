@@ -1,4 +1,4 @@
-package zeno.util.geom._refactor;
+package zeno.util.geom;
 
 import zeno.util.algebra.tensors.matrices.fixed.Matrix4x4;
 

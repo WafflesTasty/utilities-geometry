@@ -1,6 +1,6 @@
 package zeno.util.geom._refactor.interfaces;
 
-import zeno.util.geom._refactor.ITransformation;
+import zeno.util.geom.ITransformation;
 
 /**
  * The {@code ITransformation3D} interface defines an object

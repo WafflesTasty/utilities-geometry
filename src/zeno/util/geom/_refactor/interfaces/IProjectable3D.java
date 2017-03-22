@@ -1,7 +1,7 @@
 package zeno.util.geom._refactor.interfaces;
 
-import zeno.util.geom._refactor.IProjectable;
-import zeno.util.geom._refactor.ITransformation;
+import zeno.util.geom.IProjectable;
+import zeno.util.geom.ITransformation;
 
 /**
  * The {@code IProjectable3D} interface defines an object

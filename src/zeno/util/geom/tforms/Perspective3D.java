@@ -1,12 +1,11 @@
-package zeno.util.geom._refactor.tforms;
+package zeno.util.geom.tforms;
 
 import zeno.util.algebra.tensors.matrices.fixed.Matrix4x4;
 import zeno.util.geom._refactor.interfaces.IProjectable3D;
 import zeno.util.tools.primitives.Floats;
 
 /**
- * The {@code Project3D} class defines a perspective
- * projection matrix from 3D to 2D space.
+ * The {@code Project3D} class defines a perspective projection matrix from 3D to 2D space.
  *
  * @since Mar 24, 2016
  * @author Zeno
