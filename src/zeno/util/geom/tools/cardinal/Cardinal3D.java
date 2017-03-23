@@ -1,4 +1,4 @@
-package zeno.util.geom._refactor.tools.cardinal;
+package zeno.util.geom.tools.cardinal;
 
 import zeno.util.algebra.tensors.vectors.fixed.Vector3;
 import zeno.util.geom.tools.IBounds3D;

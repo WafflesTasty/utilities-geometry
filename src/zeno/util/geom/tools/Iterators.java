@@ -1,11 +1,11 @@
-package zeno.util.geom._refactor.tools;
+package zeno.util.geom.tools;
 
 import java.awt.Point;
 
 import zeno.util.algebra.tensors.vectors.fixed.Vector2;
-import zeno.util.geom._refactor.tools.iterators.PerimeterIterator;
-import zeno.util.geom._refactor.tools.iterators.SurfaceIterator;
 import zeno.util.geom.geometry.types.IGeometry2D;
+import zeno.util.geom.tools.iterators.PerimeterIterator;
+import zeno.util.geom.tools.iterators.SurfaceIterator;
 
 /**
  * The {@code Iterators} class defines geometry iterators.

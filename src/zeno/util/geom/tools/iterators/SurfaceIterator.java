@@ -1,4 +1,4 @@
-package zeno.util.geom._refactor.tools.iterators;
+package zeno.util.geom.tools.iterators;
 
 import java.util.Iterator;
 
