@@ -1,8 +1,8 @@
-package zeno.util.geom._refactor.interfaces.movement;
+package zeno.util.geom.tforms.types.movement;
 
 import zeno.util.algebra.tensors.vectors.fixed.Vector2;
 import zeno.util.geom.ITransformable;
-import zeno.util.geom._refactor.interfaces.ITransformation2D;
+import zeno.util.geom.tforms.types.ITransformation2D;
 
 /**
  * The {@code IMovable2D} interface defines an object

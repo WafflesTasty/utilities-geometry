@@ -3,7 +3,7 @@ package zeno.util.geom.tforms;
 import zeno.util.algebra.tensors.matrices.fixed.Matrix4x4;
 import zeno.util.algebra.tensors.matrices.ortho.Ortho3x3;
 import zeno.util.algebra.tensors.vectors.fixed.Vector3;
-import zeno.util.geom._refactor.interfaces.ITransformation3D;
+import zeno.util.geom.tforms.types.ITransformation3D;
 import zeno.util.tools.primitives.Floats;
 
 /**

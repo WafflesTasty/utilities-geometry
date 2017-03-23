@@ -1,7 +1,7 @@
-package zeno.util.geom._refactor.interfaces.movement;
+package zeno.util.geom.tforms.types.movement;
 
 import zeno.util.algebra.tensors.vectors.fixed.Vector3;
-import zeno.util.geom._refactor.interfaces.rotation.IRotatable3D;
+import zeno.util.geom.tforms.types.rotation.IRotatable3D;
 
 /**
  * The {@code IVantage3D} interface	defines an object

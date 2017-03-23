@@ -1,8 +1,8 @@
-package zeno.util.geom._refactor.interfaces.rotation;
+package zeno.util.geom.tforms.types.rotation;
 
 import zeno.util.algebra.tensors.vectors.fixed.Vector2;
 import zeno.util.geom.ITransformable;
-import zeno.util.geom._refactor.interfaces.ITransformation2D;
+import zeno.util.geom.tforms.types.ITransformation2D;
 
 /**
  * The {@code IRotatable2D} interface defines an object

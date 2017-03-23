@@ -1,7 +1,7 @@
 package zeno.util.geom.tforms;
 
 import zeno.util.algebra.tensors.matrices.fixed.Matrix4x4;
-import zeno.util.geom._refactor.interfaces.IProjectable3D;
+import zeno.util.geom.tforms.types.IProjectable3D;
 import zeno.util.tools.primitives.Floats;
 
 /**

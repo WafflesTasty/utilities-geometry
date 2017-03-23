@@ -1,4 +1,4 @@
-package zeno.util.geom._refactor.interfaces;
+package zeno.util.geom.tforms.types;
 
 import zeno.util.geom.IProjectable;
 import zeno.util.geom.ITransformation;

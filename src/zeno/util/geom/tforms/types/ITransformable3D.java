@@ -1,7 +1,7 @@
-package zeno.util.geom._refactor.interfaces;
+package zeno.util.geom.tforms.types;
 
-import zeno.util.geom._refactor.interfaces.movement.IVantage3D;
-import zeno.util.geom._refactor.interfaces.scale.IScalable3D;
+import zeno.util.geom.tforms.types.movement.IVantage3D;
+import zeno.util.geom.tforms.types.scale.IScalable3D;
 import zeno.util.geom.tools.IBounds3D;
 
 /**
