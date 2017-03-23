@@ -1,9 +1,9 @@
-package zeno.util.geom.shapes.surfaces;
+package zeno.util.geom.geometry.shapes.surfaces;
 
 import zeno.util.algebra.tensors.vectors.fixed.Vector2;
 import zeno.util.calc.variables.functions.Polynomial;
-import zeno.util.geom.interfaces.IShape2D;
-import zeno.util.geom.shapes.NSphere;
+import zeno.util.geom.geometry.shapes.NSphere;
+import zeno.util.geom.geometry.types.IShape2D;
 import zeno.util.tools.primitives.Floats;
 
 /**

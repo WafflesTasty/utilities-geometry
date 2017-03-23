@@ -1,7 +1,7 @@
-package zeno.util.geom.shapes;
+package zeno.util.geom.geometry.shapes;
 
 import zeno.util.algebra.tensors.vectors.Vector;
-import zeno.util.geom.IShape;
+import zeno.util.geom.geometry.IShape;
 
 /**
  * The {@code NGeometry} class is the base class for closed n-dimensional shapes.

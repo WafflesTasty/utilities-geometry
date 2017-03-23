@@ -2,10 +2,10 @@ package zeno.util.geom.algorithms.vertices;
 
 import zeno.util.algebra.tensors.vectors.fixed.Vector2;
 import zeno.util.geom.algorithms.VertexArray;
-import zeno.util.geom.interfaces.IShape2D;
-import zeno.util.geom.shapes.solids.Ellipsoid;
-import zeno.util.geom.shapes.surfaces.Circle;
-import zeno.util.geom.shapes.surfaces.Ellipse;
+import zeno.util.geom.geometry.shapes.solids.Ellipsoid;
+import zeno.util.geom.geometry.shapes.surfaces.Circle;
+import zeno.util.geom.geometry.shapes.surfaces.Ellipse;
+import zeno.util.geom.geometry.types.IShape2D;
 import zeno.util.tools.primitives.Floats;
 
 /**

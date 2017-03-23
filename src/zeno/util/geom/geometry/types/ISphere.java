@@ -1,4 +1,4 @@
-package zeno.util.geom.interfaces.shapes;
+package zeno.util.geom.geometry.types;
 
 /**
  * The {@code ISphere} interface defines behavior for n-dimensional spheres.

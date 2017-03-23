@@ -1,7 +1,7 @@
-package zeno.util.geom.interfaces;
+package zeno.util.geom.geometry.types;
 
 import zeno.util.algebra.tensors.vectors.fixed.Vector2;
-import zeno.util.geom.IShape;
+import zeno.util.geom.geometry.IShape;
 
 /**
  * The {@code IShape2D} interface defines a two-dimensional convex shape.

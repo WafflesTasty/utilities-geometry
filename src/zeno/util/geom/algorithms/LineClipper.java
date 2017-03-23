@@ -5,8 +5,8 @@ import java.util.List;
 
 import zeno.util.algebra.tensors.Tensor;
 import zeno.util.algebra.tensors.vectors.Vector;
-import zeno.util.geom.shapes.NCuboid;
-import zeno.util.geom.shapes.lines.Line;
+import zeno.util.geom.geometry.shapes.NCuboid;
+import zeno.util.geom.geometry.shapes.lines.Line;
 import zeno.util.tools.Messenger;
 
 /**

@@ -1,7 +1,7 @@
 package zeno.util.geom.tools;
 
 import zeno.util.geom.IBounds;
-import zeno.util.geom.shapes.solids.Cuboid;
+import zeno.util.geom.geometry.shapes.solids.Cuboid;
 
 /**
  * The {@code IBounds3D} interface defines an object bound in three dimensions.

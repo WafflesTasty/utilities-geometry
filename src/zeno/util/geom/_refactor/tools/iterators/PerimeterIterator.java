@@ -4,7 +4,7 @@ import java.util.Iterator;
 
 import zeno.util.algebra.tensors.vectors.fixed.Vector2;
 import zeno.util.geom._refactor.tools.cardinal.Cardinal2D;
-import zeno.util.geom.interfaces.IGeometry2D;
+import zeno.util.geom.geometry.types.IGeometry2D;
 import zeno.util.tools.primitives.Integers;
 
 /**

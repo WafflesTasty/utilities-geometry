@@ -3,8 +3,8 @@ package zeno.util.geom.algorithms.vertices;
 import zeno.util.algebra.tensors.vectors.fixed.Vector2;
 import zeno.util.algebra.tensors.vectors.fixed.Vector3;
 import zeno.util.geom.algorithms.VertexArray;
-import zeno.util.geom.shapes.lines.Line2D;
-import zeno.util.geom.shapes.lines.Line3D;
+import zeno.util.geom.geometry.shapes.lines.Line2D;
+import zeno.util.geom.geometry.shapes.lines.Line3D;
 
 /**
  * The {@code LineArray} class defines a vertex generator for lines.

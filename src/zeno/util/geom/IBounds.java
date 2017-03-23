@@ -1,6 +1,6 @@
 package zeno.util.geom;
 
-import zeno.util.geom.shapes.NCuboid;
+import zeno.util.geom.geometry.shapes.NCuboid;
 
 /**
  * The {@code IBounds} interface defines an object bound in n dimensions.

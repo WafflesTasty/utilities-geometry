@@ -2,9 +2,9 @@ package zeno.util.geom.algorithms.vertices;
 
 import zeno.util.algebra.tensors.vectors.fixed.Vector3;
 import zeno.util.geom.algorithms.VertexArray;
-import zeno.util.geom.interfaces.IShape3D;
-import zeno.util.geom.shapes.solids.Cube;
-import zeno.util.geom.shapes.solids.Cuboid;
+import zeno.util.geom.geometry.shapes.solids.Cube;
+import zeno.util.geom.geometry.shapes.solids.Cuboid;
+import zeno.util.geom.geometry.types.IShape3D;
 
 /**
  * The {@code CuboidArray} class defines a vertex generator for cuboids.

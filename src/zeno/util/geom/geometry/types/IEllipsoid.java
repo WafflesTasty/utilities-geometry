@@ -1,7 +1,7 @@
-package zeno.util.geom.interfaces.shapes;
+package zeno.util.geom.geometry.types;
 
-import zeno.util.geom.IShape;
-import zeno.util.geom.shapes.NCuboid;
+import zeno.util.geom.geometry.IShape;
+import zeno.util.geom.geometry.shapes.NCuboid;
 
 /**
  * The {@code IEllipsoid} interface defines behavior for n-dimensional elliptic shapes.

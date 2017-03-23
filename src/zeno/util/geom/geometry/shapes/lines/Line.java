@@ -1,10 +1,10 @@
-package zeno.util.geom.shapes.lines;
+package zeno.util.geom.geometry.shapes.lines;
 
 import zeno.util.algebra.tensors.matrices.Matrix;
 import zeno.util.algebra.tensors.vectors.Vector;
-import zeno.util.geom.IGeometry;
-import zeno.util.geom.shapes.NCuboid;
-import zeno.util.geom.shapes.NEllipsoid;
+import zeno.util.geom.geometry.IGeometry;
+import zeno.util.geom.geometry.shapes.NCuboid;
+import zeno.util.geom.geometry.shapes.NEllipsoid;
 import zeno.util.tools.primitives.Floats;
 
 /**

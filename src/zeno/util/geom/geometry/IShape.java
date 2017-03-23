@@ -1,4 +1,4 @@
-package zeno.util.geom;
+package zeno.util.geom.geometry;
 
 import zeno.util.algebra.tensors.vectors.Vector;
 

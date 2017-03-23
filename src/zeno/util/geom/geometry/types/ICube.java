@@ -1,6 +1,6 @@
-package zeno.util.geom.interfaces.shapes;
+package zeno.util.geom.geometry.types;
 
-import zeno.util.geom.IShape;
+import zeno.util.geom.geometry.IShape;
 
 /**
  * The {@code ICube} interface defines behavior for n-dimensional cubes.

@@ -1,8 +1,8 @@
-package zeno.util.geom.shapes.solids;
+package zeno.util.geom.geometry.shapes.solids;
 
 import zeno.util.algebra.tensors.vectors.fixed.Vector3;
-import zeno.util.geom.interfaces.IShape3D;
-import zeno.util.geom.shapes.NSphere;
+import zeno.util.geom.geometry.shapes.NSphere;
+import zeno.util.geom.geometry.types.IShape3D;
 
 /**
  * The {@code Sphere} class defines a three-dimensional sphere shape.

@@ -1,7 +1,7 @@
-package zeno.util.geom.shapes;
+package zeno.util.geom.geometry.shapes;
 
 import zeno.util.algebra.tensors.vectors.Vector;
-import zeno.util.geom.interfaces.shapes.ICube;
+import zeno.util.geom.geometry.types.ICube;
 
 /**
  * The {@code NCube} class defines an n-dimensional cube shape.

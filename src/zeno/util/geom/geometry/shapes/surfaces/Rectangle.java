@@ -1,8 +1,8 @@
-package zeno.util.geom.shapes.surfaces;
+package zeno.util.geom.geometry.shapes.surfaces;
 
 import zeno.util.algebra.tensors.vectors.fixed.Vector2;
-import zeno.util.geom.interfaces.IShape2D;
-import zeno.util.geom.shapes.NCuboid;
+import zeno.util.geom.geometry.shapes.NCuboid;
+import zeno.util.geom.geometry.types.IShape2D;
 
 /**
  * The {@code Rectangle} class defines a two-dimensional rectangular shape.

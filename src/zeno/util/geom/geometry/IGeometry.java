@@ -1,11 +1,12 @@
-package zeno.util.geom;
+package zeno.util.geom.geometry;
 
 import zeno.util.algebra.tensors.vectors.Vector;
-import zeno.util.geom.shapes.NCube;
-import zeno.util.geom.shapes.NCuboid;
-import zeno.util.geom.shapes.NEllipsoid;
-import zeno.util.geom.shapes.NSphere;
-import zeno.util.geom.shapes.lines.Line;
+import zeno.util.geom.IBounds;
+import zeno.util.geom.geometry.shapes.NCube;
+import zeno.util.geom.geometry.shapes.NCuboid;
+import zeno.util.geom.geometry.shapes.NEllipsoid;
+import zeno.util.geom.geometry.shapes.NSphere;
+import zeno.util.geom.geometry.shapes.lines.Line;
 
 /**
  * The {@code IGeometry} interface is the base for convex geometric shapes.

@@ -1,8 +1,8 @@
-package zeno.util.geom.interfaces;
+package zeno.util.geom.geometry.types;
 
 import zeno.util.algebra.tensors.vectors.fixed.Vector2;
-import zeno.util.geom.IGeometry;
-import zeno.util.geom.shapes.surfaces.Rectangle;
+import zeno.util.geom.geometry.IGeometry;
+import zeno.util.geom.geometry.shapes.surfaces.Rectangle;
 import zeno.util.geom.tools.IBounds2D;
 
 /**

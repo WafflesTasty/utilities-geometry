@@ -2,9 +2,9 @@ package zeno.util.geom.algorithms.vertices;
 
 import zeno.util.algebra.tensors.vectors.fixed.Vector2;
 import zeno.util.geom.algorithms.VertexArray;
-import zeno.util.geom.interfaces.IShape2D;
-import zeno.util.geom.shapes.surfaces.Rectangle;
-import zeno.util.geom.shapes.surfaces.Square;
+import zeno.util.geom.geometry.shapes.surfaces.Rectangle;
+import zeno.util.geom.geometry.shapes.surfaces.Square;
+import zeno.util.geom.geometry.types.IShape2D;
 
 /**
  * The {@code RectangleArray} class defines a vertex generator for rectangles.

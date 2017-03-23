@@ -1,8 +1,8 @@
-package zeno.util.geom.shapes.lines;
+package zeno.util.geom.geometry.shapes.lines;
 
 import zeno.util.algebra.tensors.vectors.fixed.Vector3;
-import zeno.util.geom.interfaces.IGeometry3D;
-import zeno.util.geom.shapes.solids.Cuboid;
+import zeno.util.geom.geometry.shapes.solids.Cuboid;
+import zeno.util.geom.geometry.types.IGeometry3D;
 import zeno.util.tools.primitives.Floats;
 
 /**
