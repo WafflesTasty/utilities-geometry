@@ -1,12 +1,12 @@
-package zeno.util.geom.generators;
+package zeno.util.geom.algorithms;
 
 /**
- * The {@code VertexGenerator} class defines a generator for ordered lists of vertices.
+ * The {@code VertexArray} class defines a generator for ordered lists of vertices.
  * 
  * @since Aug 22, 2015
  * @author Zeno
  */
-public abstract class VertexGenerator
+public abstract class VertexArray
 {	
 	/**
 	 * The {@code OrderBy} class defines vertex order methods.
@@ -16,26 +16,26 @@ public abstract class VertexGenerator
 	 */
 	public class OrderBy
 	{
-		private VertexGenerator gen;
+		private VertexArray gen;
 		
 		/**
 		 * Creates a new {@code OrderBy}.
 		 * 
 		 * @param gen  a target generator
-		 * @see VertexGenerator
+		 * @see VertexArray
 		 */
-		public OrderBy(VertexGenerator gen)
+		public OrderBy(VertexArray gen)
 		{
 			this.gen = gen;
 		}
 		
 		/**
-		 * Returns the target {@code VertexGenerator}.
+		 * Returns the target {@code VertexArray}.
 		 * 
 		 * @return  the target generator
-		 * @see VertexGenerator
+		 * @see VertexArray
 		 */
-		protected VertexGenerator Generator()
+		protected VertexArray Generator()
 		{
 			return gen;
 		}
@@ -176,14 +176,14 @@ public abstract class VertexGenerator
 	
 	
 	/**
-	 * Returns the vertex count of the {@code VertexGenerator}.
+	 * Returns the vertex count of the {@code VertexArray}.
 	 * 
 	 * @return  the generator's vertex count
 	 */
 	public abstract int Count();
 	
 	/**
-	 * Returns the order methods of the {VertexGenerator}.
+	 * Returns the order methods of the {VertexArray}.
 	 * 
 	 * @return  the generator's order methods
 	 * @see OrderBy

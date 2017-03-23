@@ -1,19 +1,20 @@
-package zeno.util.geom.generators;
+package zeno.util.geom.algorithms.vertices;
 
 import zeno.util.algebra.tensors.vectors.fixed.Vector2;
 import zeno.util.algebra.tensors.vectors.fixed.Vector3;
+import zeno.util.geom.algorithms.VertexArray;
 import zeno.util.geom.shapes.lines.Line2D;
 import zeno.util.geom.shapes.lines.Line3D;
 
 /**
- * The {@code LineGenerator} class defines a vertex generator for lines.
+ * The {@code LineArray} class defines a vertex generator for lines.
  * 
  * @since Mar 22, 2017
  * @author Zeno
  * 
- * @see VertexGenerator
+ * @see VertexArray
  */
-public class LineGenerator extends VertexGenerator
+public class LineArray extends VertexArray
 {
 	/**
 	 * The {@code OrderBy} class defines vertex order methods.
@@ -21,9 +22,9 @@ public class LineGenerator extends VertexGenerator
 	 * @since Apr 9, 2016
 	 * @author Zeno
 	 * 
-	 * @see VertexGenerator
+	 * @see VertexArray
 	 */
-	public class OrderBy extends VertexGenerator.OrderBy
+	public class OrderBy extends VertexArray.OrderBy
 	{
 		/**
 		 * Creates a new {@code OrderBy}.
@@ -31,7 +32,7 @@ public class LineGenerator extends VertexGenerator
 		 * @param gen  a target generator
 		 * @see Line2D
 		 */
-		public OrderBy(VertexGenerator gen)
+		public OrderBy(VertexArray gen)
 		{
 			super(gen);
 		}

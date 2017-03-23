@@ -1,6 +1,7 @@
-package zeno.util.geom.generators;
+package zeno.util.geom.algorithms.vertices;
 
 import zeno.util.algebra.tensors.vectors.fixed.Vector2;
+import zeno.util.geom.algorithms.VertexArray;
 import zeno.util.geom.interfaces.IShape2D;
 import zeno.util.geom.shapes.solids.Ellipsoid;
 import zeno.util.geom.shapes.surfaces.Circle;
@@ -8,14 +9,14 @@ import zeno.util.geom.shapes.surfaces.Ellipse;
 import zeno.util.tools.primitives.Floats;
 
 /**
- * The {@code EllipseGenerator} class defines a vertex generator for ellipses.
+ * The {@code EllipseArray} class defines a vertex generator for ellipses.
  * 
  * @since Mar 22, 2017
  * @author Zeno
  * 
- * @see VertexGenerator
+ * @see VertexArray
  */
-public class EllipseGenerator extends VertexGenerator
+public class EllipseArray extends VertexArray
 {
 	private static final int DEF_COUNT = 64;
 	
@@ -25,18 +26,18 @@ public class EllipseGenerator extends VertexGenerator
 	 * @since Apr 9, 2016
 	 * @author Zeno
 	 * 
-	 * @see VertexGenerator
+	 * @see VertexArray
 	 * @see Ellipsoid
 	 */
-	public class OrderBy extends VertexGenerator.OrderBy
+	public class OrderBy extends VertexArray.OrderBy
 	{
 		/**
 		 * Creates a new {@code OrderBy}.
 		 * 
 		 * @param gen  a target generator
-		 * @see EllipseGenerator
+		 * @see EllipseArray
 		 */
-		public OrderBy(EllipseGenerator gen)
+		public OrderBy(EllipseArray gen)
 		{
 			super(gen);
 		}
@@ -154,19 +155,19 @@ public class EllipseGenerator extends VertexGenerator
 	private int vCount;
 	
 	/**
-	 * Creates a new {@code EllipseGenerator}.
+	 * Creates a new {@code EllipseArray}.
 	 */
-	public EllipseGenerator()
+	public EllipseArray()
 	{
 		this(DEF_COUNT);
 	}
 	
 	/**
-	 * Creates a new {@code EllipseGenerator}.
+	 * Creates a new {@code EllipseArray}.
 	 * 
 	 * @param count  the vertex count
 	 */
-	public EllipseGenerator(int count)
+	public EllipseArray(int count)
 	{
 		vCount = count;
 	}

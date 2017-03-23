@@ -1,19 +1,20 @@
-package zeno.util.geom.generators;
+package zeno.util.geom.algorithms.vertices;
 
-import zeno.util.algebra.tensors.vectors.fixed.Vector3;
-import zeno.util.geom.interfaces.IShape3D;
-import zeno.util.geom.shapes.solids.Cube;
-import zeno.util.geom.shapes.solids.Cuboid;
+import zeno.util.algebra.tensors.vectors.fixed.Vector2;
+import zeno.util.geom.algorithms.VertexArray;
+import zeno.util.geom.interfaces.IShape2D;
+import zeno.util.geom.shapes.surfaces.Rectangle;
+import zeno.util.geom.shapes.surfaces.Square;
 
 /**
- * The {@code CuboidGenerator} class defines a vertex generator for cuboids.
+ * The {@code RectangleArray} class defines a vertex generator for rectangles.
  * 
  * @since Mar 22, 2017
  * @author Zeno
  * 
- * @see VertexGenerator
+ * @see VertexArray
  */
-public class CuboidGenerator extends VertexGenerator
+public class RectangleArray extends VertexArray
 {
 	/**
 	 * The {@code OrderBy} class defines vertex order methods.
@@ -21,17 +22,17 @@ public class CuboidGenerator extends VertexGenerator
 	 * @since Apr 9, 2016
 	 * @author Zeno
 	 * 
-	 * @see VertexGenerator
+	 * @see VertexArray
 	 */
-	public class OrderBy extends VertexGenerator.OrderBy
+	public class OrderBy extends VertexArray.OrderBy
 	{
 		/**
 		 * Creates a new {@code OrderBy}.
 		 * 
 		 * @param gen  a target generator
-		 * @see CuboidGenerator
+		 * @see RectangleArray
 		 */
-		public OrderBy(CuboidGenerator gen)
+		public OrderBy(RectangleArray gen)
 		{
 			super(gen);
 		}
@@ -79,51 +80,45 @@ public class CuboidGenerator extends VertexGenerator
 	
 		
 	/**
-	 * Generates vertices for a {@code Cuboid}.
+	 * Generates vertices for a {@code Rectangle}.
 	 * 
-	 * @param c  a cuboid to generate
+	 * @param r  a rectangle to generate
 	 * @return  a list of vertices
-	 * @see Vector3
-	 * @see Cuboid
+	 * @see Rectangle
+	 * @see Vector2
 	 */
-	public Vector3[] generate(Cuboid c)
+	public Vector2[] generate(Rectangle r)
 	{
-		return generate((IShape3D) c);
+		return generate((IShape2D) r);
 	}
 	
 	/**
-	 * Generates vertices for a {@code Cube}.
+	 * Generates vertices for a {@code Square}.
 	 * 
-	 * @param c  a cube to generate
+	 * @param s  a square to generate
 	 * @return  a list of vertices
-	 * @see Vector3
-	 * @see Cube
+	 * @see Vector2
+	 * @see Square
 	 */
-	public Vector3[] generate(Cube c)
+	public Vector2[] generate(Square s)
 	{
-		return generate((IShape3D) c);
+		return generate((IShape2D) s);
 	}
 		
 	
-	Vector3[] generate(IShape3D s)
+	Vector2[] generate(IShape2D s)
 	{
 		float xmin = s.XMin();
 		float xmax = s.XMax();
 		float ymin = s.YMin();
 		float ymax = s.YMax();
-		float zmin = s.ZMin();
-		float zmax = s.ZMax();
 		
-		return new Vector3[]
+		return new Vector2[]
 		{
-			new Vector3(xmin, ymin, zmin),
-			new Vector3(xmin, ymin, zmax),
-			new Vector3(xmin, ymax, zmin),
-			new Vector3(xmin, ymax, zmax),
-			new Vector3(xmax, ymin, zmin),
-			new Vector3(xmax, ymin, zmax),
-			new Vector3(xmax, ymax, zmin),
-			new Vector3(xmax, ymax, zmax)
+			new Vector2(xmin, ymin),
+			new Vector2(xmin, ymax),
+			new Vector2(xmax, ymin),
+			new Vector2(xmax, ymax)
 		};
 	}
 	
@@ -136,6 +131,6 @@ public class CuboidGenerator extends VertexGenerator
 	@Override
 	public int Count()
 	{
-		return 8;
+		return 4;
 	}
 }
