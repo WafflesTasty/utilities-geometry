@@ -39,13 +39,35 @@ public class RectangleArray extends VertexArray
 	
 
 		@Override
+		public int[] LineStripAdjacency()
+		{
+			return new int[]
+			{
+				2,
+				0, 1, 3, 2, 0,
+				1
+			};
+		}
+		
+		@Override
+		public int[] LinesAdjacency()
+		{
+			return new int[]
+			{
+				2, 0, 1, 3,
+				0, 1, 3, 2,
+				1, 3, 2, 0,
+				3, 2, 0, 1
+			};
+		}
+		
+		
+		@Override
 		public int[] TriangleStrip()
 		{
 			return new int[]
 			{
-				2, 0, 6, 4, 7, 5,
-				4, 0, 5, 1, 7, 3,
-				1, 0, 3, 2, 7, 6
+				0, 1, 2, 3
 			};
 		}
 		
@@ -54,26 +76,39 @@ public class RectangleArray extends VertexArray
 		{
 			return new int[]
 			{
-				2, 0, 6, 0, 4, 6,
-				6, 4, 7, 4, 5, 7,
-				5, 1, 7, 1, 3, 7,
-				3, 2, 7, 2, 6, 7,
-				4, 0, 5, 0, 1, 5,
-				1, 0, 3, 0, 2, 3
+				0, 1, 3,
+				0, 2, 3
 			};
 		}
 		
+		
+		@Override
+		public int[] LineStrip()
+		{
+			return new int[]
+			{
+				0, 1, 3, 2, 0
+			};
+		}
+		
+		@Override
+		public int[] LineLoop()
+		{
+			return new int[]
+			{
+				0, 1, 3, 2
+			};
+		}
+			
 		@Override
 		public int[] Lines()
 		{
 			return new int[]
 			{
-				2, 0, 0, 4, 4, 6, 6, 2,
-				6, 4, 4, 5, 5, 7, 7, 6,
-				4, 0, 0, 1, 1, 5, 5, 4,
-				5, 1, 1, 3, 3, 7, 7, 5,
-				1, 0, 0, 2, 2, 3, 3, 1,
-				3, 2, 2, 6, 6, 7, 7, 3
+				0, 1,
+				1, 3,
+				3, 2,
+				2, 0
 			};
 		}
 	}
