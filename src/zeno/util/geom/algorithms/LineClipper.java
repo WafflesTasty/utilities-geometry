@@ -5,8 +5,8 @@ import java.util.List;
 
 import zeno.util.algebra.tensors.Tensor;
 import zeno.util.algebra.tensors.vectors.Vector;
-import zeno.util.geom.geometry.shapes.NCuboid;
-import zeno.util.geom.geometry.shapes.lines.Line;
+import zeno.util.geom.shapes.Cuboid;
+import zeno.util.geom.shapes.lines.Line;
 import zeno.util.tools.Messenger;
 
 /**
@@ -23,16 +23,16 @@ import zeno.util.tools.Messenger;
  */
 public class LineClipper extends Messenger
 {
-	private NCuboid bounds;
+	private Cuboid bounds;
 	private List<Vector> result;
 
 	/**
 	 * Changes the boundary of the {@code LineClipper}.
 	 * 
 	 * @param bounds  a new boundary
-	 * @see NCuboid
+	 * @see Cuboid
 	 */
-	public void setBounds(NCuboid bounds)
+	public void setBounds(Cuboid bounds)
 	{
 		this.bounds = bounds;
 	}

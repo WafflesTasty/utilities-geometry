@@ -1,0 +1,355 @@
+package zeno.util.geom.tools;
+
+import zeno.util.algebra.tensors.matrices.Matrix;
+import zeno.util.algebra.tensors.vectors.Vector;
+import zeno.util.geom.algorithms.LineClipper;
+import zeno.util.geom.shapes.Cuboid;
+import zeno.util.geom.shapes.Ellipsoid;
+import zeno.util.geom.shapes.Sphere;
+import zeno.util.geom.shapes.lines.Line;
+import zeno.util.tools.primitives.Floats;
+import zeno.util.tools.primitives.Integers;
+
+/**
+ * The {@code Intersection} class defines intersection methods between base geometric shapes.
+ * 
+ * @since Mar 24, 2017
+ * @author Zeno
+ */
+public final class Intersection
+{		
+	/**
+	 * Checks the intersection between a cuboid and a cuboid.
+	 * 
+	 * @param c  a cuboid to check
+	 * @param d  a cuboid to check
+	 * @return  {@code true} if the shapes intersect
+	 */
+	public static boolean between(Cuboid c, Cuboid d)
+	{
+		int dim = Integers.min(c.Dimension(), d.Dimension());
+		
+		for(int i = 0; i < dim; i++)
+		{
+			float si = c.Size().get(i);
+			float ti = d.Size().get(i);
+			
+			float pi = c.Center().get(i);
+			float qi = d.Center().get(i);
+			
+			if(si + ti < 2 * Floats.abs(pi - qi))
+			{
+				return false;
+			}
+		}
+
+		return true;
+	}
+	
+	/**
+	 * Checks the intersection between a cuboid and an ellipsoid.
+	 * 
+	 * @param c  a cuboid to check
+	 * @param e  an ellipsoid to check
+	 * @return  {@code true} if the shapes intersect
+	 */
+	public static boolean between(Cuboid c, Ellipsoid e)
+	{
+		int dim = Integers.min(e.Dimension(), c.Dimension());
+		
+		Vector center = c.Center().minus(e.Center());
+		Vector size   = c.Size();
+		
+		for(int i = 0; i < dim; i++)
+		{
+			center.set(center.get(i) / e.Size().get(i), i);
+			size.set(    size.get(i) / e.Size().get(i), i);
+		}
+		
+		return between(Cuboid.create(center, size), Sphere.unit(dim));
+	}
+	
+	/**
+	 * Checks the intersection between a cuboid and a sphere.
+	 * 
+	 * @param c  a cuboid to check
+	 * @param s  a sphere to check
+	 * @return  {@code true} if the shapes intersect
+	 */
+	public static boolean between(Cuboid c, Sphere s)
+	{
+		throw new UnsupportedOperationException("Sphere-ellipsoid intersection not implemented yet.");
+	}
+	
+	/**
+	 * Checks the intersection between a cuboid and a line.
+	 * 
+	 * @param c  a cuboid to check
+	 * @param l  a line to check
+	 * @return  {@code true} if the shapes intersect
+	 */
+	public static boolean between(Cuboid c, Line l)
+	{
+		clipper.setBounds(c);
+		if(clipper.clip(l).isEmpty())
+		{
+			return false;
+		}
+		
+		return true;
+	}
+	
+		
+	/**
+	 * Checks the intersection between an ellipsoid and a cuboid.
+	 * 
+	 * @param e  an ellipsoid to check
+	 * @param c  a cuboid to check
+	 * @return  {@code true} if the shapes intersect
+	 */
+	public static boolean between(Ellipsoid e, Cuboid c)
+	{
+		return between(c, e);
+	}
+	
+	/**
+	 * Checks the intersection between an ellipsoid and an ellipsoid.
+	 * 
+	 * @param e  an ellipsoid to check
+	 * @param f  an ellipsoid to check
+	 * @return  {@code true} if the shapes intersect
+	 */
+	public static boolean between(Ellipsoid e, Ellipsoid f)
+	{
+		int dim = Integers.min(e.Dimension(), f.Dimension());
+		
+		Vector center = f.Center().minus(e.Center());
+		Vector size   = f.Size();
+		
+		for(int i = 0; i < dim; i++)
+		{
+			center.set(center.get(i) / e.Size().get(i), i);
+			size.set(    size.get(i) / e.Size().get(i), i);
+		}
+		
+		return between(Sphere.unit(dim), Ellipsoid.create(center, size));
+	}
+	
+	/**
+	 * Checks the intersection between an ellipsoid and a sphere.
+	 * 
+	 * @param e  an ellipsoid to check
+	 * @param s  a sphere to check
+	 * @return  {@code true} if the shapes intersect
+	 */
+	public static boolean between(Ellipsoid e, Sphere s)
+	{
+		throw new UnsupportedOperationException("Sphere-ellipsoid intersection not implemented yet.");
+	}
+	
+	/**
+	 * Checks the intersection between an ellipsoid and a line.
+	 * 
+	 * @param e  an ellipsoid to check
+	 * @param l  a line to check
+	 * @return  {@code true} if the shapes intersect
+	 */
+	public static boolean between(Ellipsoid e, Line l)
+	{
+		int dim = Integers.min(e.Dimension(), l.Dimension());
+		
+		Vector p1 = l.P1().minus(e.Center());
+		Vector p2 = l.P2().minus(e.Center());
+		
+		for(int i = 0; i < dim; i++)
+		{
+			p1.set(p1.get(i) / e.Size().get(i), i);
+			p2.set(p2.get(i) / e.Size().get(i), i);
+		}
+		
+		return between(Sphere.unit(dim), Line.create(p1, p2));
+	}
+	
+	
+	/**
+	 * Checks the intersection between a sphere and a cuboid.
+	 * 
+	 * @param s  a sphere to check
+	 * @param c  a cuboid to check
+	 * @return  {@code true} if the shapes intersect
+	 */
+	public static boolean between(Sphere s, Cuboid c)
+	{
+		return between(c, s);
+	}
+		
+	/**
+	 * Checks the intersection between a sphere and an ellipsoid.
+	 * 
+	 * @param s  a sphere to check
+	 * @param e  an ellipsoid to check
+	 * @return  {@code true} if the shapes intersect
+	 */
+	public static boolean between(Sphere s, Ellipsoid e)
+	{
+		return between(e, s);
+	}
+	
+	/**
+	 * Checks the intersection between a sphere and a sphere.
+	 * 
+	 * @param s  a sphere to check
+	 * @param t  a sphere to check
+	 * @return  {@code true} if the shapes intersect
+	 */
+	public static boolean between(Sphere s, Sphere t)
+	{
+		float rad = s.Radius() + t.Radius();
+		Vector pq = s.Center().minus(t.Center());
+		return pq.normsqr() <= rad * rad;
+	}
+
+	/**
+	 * Checks the intersection between a sphere and a line.
+	 * 
+	 * @param s  a sphere to check
+	 * @param l  a line to check
+	 * @return  {@code true} if the shapes intersect
+	 */
+	public static boolean between(Sphere s, Line l)
+	{
+		Vector qt = l.P2().minus(l.P1());
+		Vector qp = s.Center().minus(l.P1());
+		
+		
+		float lam = qp.dot(qt);
+		if(lam != 0) lam /= qt.dot(qt);
+		if(lam < 0 || 1 < lam) return false;
+		
+		
+		float rad = s.Radius();
+		Vector v = l.P1().plus(qt.times(lam));
+		return v.normsqr() <= rad * rad;
+	}
+	
+	
+	/**
+	 * Checks the intersection between a line and a cuboid.
+	 * 
+	 * @param l  a line to check
+	 * @param c  a cuboid to check
+	 * @return  {@code true} if the shapes intersect
+	 */
+	public static boolean between(Line l, Cuboid c)
+	{
+		return between(c, l);
+	}
+	
+	/**
+	 * Checks the intersection between a line and an ellipsoid.
+	 * 
+	 * @param l  a line to check
+	 * @param e  an ellipsoid to check
+	 * @return  {@code true} if the shapes intersect
+	 */
+	public static boolean between(Line l, Ellipsoid e)
+	{
+		return between(e, l);
+	}
+
+	/**
+	 * Checks the intersection between a line and a sphere.
+	 * 
+	 * @param l  a line to check
+	 * @param s  a sphere to check
+	 * @return  {@code true} if the shapes intersect
+	 */
+	public static boolean between(Line l, Sphere s)
+	{
+		return between(s, l);
+	}
+	
+	/**
+	 * Checks the intersection between a line and a line.
+	 * 
+	 * @param l  a line to check
+	 * @param m  a line to check
+	 * @return  {@code true} if the shapes intersect
+	 */
+	public static boolean between(Line l, Line m)
+	{
+		Vector pq = l.P1().minus(l.P2());
+		Vector pr = m.P1().minus(l.P1());
+		Vector rs = m.P1().minus(m.P2());
+		
+		// Maximize components.
+		int i = maximize(pq, -1);
+		int j = maximize(rs,  i);
+		
+		
+		// Solve linear system.
+		Matrix mat = (Matrix) Matrix.create(3, 2);
+		
+		mat.set( pq.get(i), 0, 0);
+		mat.set( pq.get(j), 0, 1);
+		mat.set(-rs.get(i), 1, 0);
+		mat.set(-rs.get(j), 1, 1);
+		mat.set( pr.get(i), 2, 0);
+		mat.set( pr.get(j), 2, 1);
+		
+		Vector v = mat.solve();
+		if(v == null)
+		{
+			return false;
+		}
+		
+		
+		float l1 = v.get(0);
+		float l2 = v.get(1);
+		
+		// Create intersection.
+		Vector x = l.P1()
+				.plus(m.P1())
+				.plus(pq.times(l1))
+				.plus(rs.times(l2));
+		
+		return Containment.in(l, x)
+			&& Containment.in(m, x);
+	}
+	
+	
+	
+	private static final LineClipper clipper = new LineClipper();
+	
+	/**
+	 * Find the index of the maximum vector component.
+	 * 
+	 * @param v  a vector to iterate
+	 * @param i  a component to disregard
+	 * @return  the maximum component index
+	 */
+	private static int maximize(Vector v, int i)
+	{
+		int j = 0;
+		float max  = 0;
+		for(int k = 0; k < v.size(); k++)
+		{
+			if(i == k) continue;
+			
+			float val = Floats.abs(v.get(k));
+			if(max < val)
+			{
+				max = val;
+				j = k;
+			}
+		}
+		
+		return j;
+	}
+	
+	
+	private Intersection()
+	{
+		// NOT APPLICABLE
+	}
+}
