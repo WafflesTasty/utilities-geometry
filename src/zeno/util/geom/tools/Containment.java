@@ -1,9 +1,9 @@
 package zeno.util.geom.tools;
 
 import zeno.util.algebra.tensors.vectors.Vector;
-import zeno.util.geom.shapes.Cuboid;
-import zeno.util.geom.shapes.Ellipsoid;
-import zeno.util.geom.shapes.Sphere;
+import zeno.util.geom.shapes.ICuboid;
+import zeno.util.geom.shapes.IEllipsoid;
+import zeno.util.geom.shapes.ISphere;
 import zeno.util.geom.shapes.lines.Line;
 import zeno.util.tools.primitives.Floats;
 import zeno.util.tools.primitives.Integers;
@@ -23,7 +23,7 @@ public final class Containment
 	 * @param d  a cuboid to check
 	 * @return  {@code true} if the shape is contained
 	 */
-	public static boolean in(Cuboid c, Cuboid d)
+	public static boolean in(ICuboid c, ICuboid d)
 	{
 		int dim = Integers.min(c.Dimension(), d.Dimension());
 		
@@ -51,7 +51,7 @@ public final class Containment
 	 * @param e  an ellipsoid to check
 	 * @return  {@code true} if the shape is contained
 	 */
-	public static boolean in(Cuboid c, Ellipsoid e)
+	public static boolean in(ICuboid c, IEllipsoid e)
 	{
 		return in(c, e.Bounds());
 	}
@@ -63,7 +63,7 @@ public final class Containment
 	 * @param v  a point to check
 	 * @return  {@code true} if the shape is contained
 	 */
-	public static boolean in(Cuboid c, Vector v)
+	public static boolean in(ICuboid c, Vector v)
 	{
 		for(int i = 0; i < c.Dimension(); i++)
 		{
@@ -87,48 +87,12 @@ public final class Containment
 	 * @param l  a line to check
 	 * @return  {@code true} if the shape is contained
 	 */
-	public static boolean in(Cuboid c, Line l)
+	public static boolean in(ICuboid c, Line l)
 	{
 		return in(c, l.P1())
 			&& in(c, l.P2());
 	}
 	
-		
-	/**
-	 * Checks the containment of a cuboid in an ellipsoid.
-	 * 
-	 * @param e  an ellipsoid to check
-	 * @param c  a cuboid to check
-	 * @return  {@code true} if the shape is contained
-	 */
-	public static boolean in(Ellipsoid e, Cuboid c)
-	{
-		return in(e, c.Minimum())
-			&& in(e, c.Maximum());
-	}
-	
-	/**
-	 * Checks the containment of an ellipsoid in an ellipsoid.
-	 * 
-	 * @param e  an ellipsoid to check
-	 * @param f  an ellipsoid to check
-	 * @return  {@code true} if the shape is contained
-	 */
-	public static boolean in(Ellipsoid e, Ellipsoid f)
-	{
-		int dim = Integers.min(e.Dimension(), f.Dimension());
-		
-		Vector center = f.Center().minus(e.Center());
-		Vector size   = f.Size();
-		
-		for(int i = 0; i < dim; i++)
-		{
-			center.set(center.get(i) / e.Size().get(i), i);
-			size.set(    size.get(i) / e.Size().get(i), i);
-		}
-		
-		return in(Sphere.unit(dim), Ellipsoid.create(center, size));
-	}
 	
 	/**
 	 * Checks the containment of a point in an ellipsoid.
@@ -137,7 +101,7 @@ public final class Containment
 	 * @param v  a point to check
 	 * @return  {@code true} if the shape is contained
 	 */
-	public static boolean in(Ellipsoid e, Vector v)
+	public static boolean in(IEllipsoid e, Vector v)
 	{
 		float val, sum = 0;
 		for(int i = 0; i < e.Dimension(); i++)
@@ -157,7 +121,43 @@ public final class Containment
 		
 		return true;
 	}
+		
+	/**
+	 * Checks the containment of a cuboid in an ellipsoid.
+	 * 
+	 * @param e  an ellipsoid to check
+	 * @param c  a cuboid to check
+	 * @return  {@code true} if the shape is contained
+	 */
+	public static boolean in(IEllipsoid e, ICuboid c)
+	{
+		return in(e, c.Minimum())
+			&& in(e, c.Maximum());
+	}
 	
+	/**
+	 * Checks the containment of an ellipsoid in an ellipsoid.
+	 * 
+	 * @param e  an ellipsoid to check
+	 * @param f  an ellipsoid to check
+	 * @return  {@code true} if the shape is contained
+	 */
+	public static boolean in(IEllipsoid e, IEllipsoid f)
+	{
+		int dim = Integers.min(e.Dimension(), f.Dimension());
+		
+		Vector center = f.Center().minus(e.Center());
+		Vector size   = f.Size();
+		
+		for(int i = 0; i < dim; i++)
+		{
+			center.set(center.get(i) / e.Size().get(i), i);
+			size.set(    size.get(i) / e.Size().get(i), i);
+		}
+		
+		return in(ISphere.unit(dim), IEllipsoid.create(center, size));
+	}
+		
 	/**
 	 * Checks the containment of a sphere in an ellipsoid.
 	 * 
@@ -165,9 +165,9 @@ public final class Containment
 	 * @param s  a sphere to check
 	 * @return  {@code true} if the shape is contained
 	 */
-	public static boolean in(Ellipsoid e, Sphere s)
+	public static boolean in(IEllipsoid e, ISphere s)
 	{
-		throw new UnsupportedOperationException("Ellipsoid-sphere containment not implemented yet.");
+		throw new UnsupportedOperationException("IEllipsoid-sphere containment not implemented yet.");
 	}
 	
 	/**
@@ -177,24 +177,12 @@ public final class Containment
 	 * @param l  a line to check
 	 * @return  {@code true} if the shape is contained
 	 */
-	public static boolean in(Ellipsoid e, Line l)
+	public static boolean in(IEllipsoid e, Line l)
 	{
 		return in(e, l.P1())
 			&& in(e, l.P2());
 	}
 	
-	
-	/**
-	 * Checks the containment of an ellipsoid in a sphere.
-	 * 
-	 * @param s  a sphere to check
-	 * @param e  an ellipsoid to check
-	 * @return  {@code true} if the shape is contained
-	 */
-	public static boolean in(Sphere s, Ellipsoid e)
-	{
-		throw new UnsupportedOperationException("Sphere-ellipsoid containment not implemented yet.");
-	}
 	
 	/**
 	 * Checks the containment of a point in a sphere.
@@ -203,7 +191,7 @@ public final class Containment
 	 * @param v  a point to check
 	 * @return  {@code true} if the shape is contained
 	 */
-	public static boolean in(Sphere s, Vector v)
+	public static boolean in(ISphere s, Vector v)
 	{
 		float rad = s.Radius();
 		Vector px = v.minus(s.Center());
@@ -211,44 +199,32 @@ public final class Containment
 	}
 	
 	/**
+	 * Checks the containment of an ellipsoid in a sphere.
+	 * 
+	 * @param s  a sphere to check
+	 * @param e  an ellipsoid to check
+	 * @return  {@code true} if the shape is contained
+	 */
+	public static boolean in(ISphere s, IEllipsoid e)
+	{
+		throw new UnsupportedOperationException("ISphere-ellipsoid containment not implemented yet.");
+	}
+		
+	/**
 	 * Checks the containment of a sphere in a sphere.
 	 * 
 	 * @param s  a sphere to check
 	 * @param t  a sphere to check
 	 * @return  {@code true} if the shape is contained
 	 */
-	public static boolean in(Sphere s, Sphere t)
+	public static boolean in(ISphere s, ISphere t)
 	{
 		float rad = s.Radius() - t.Radius();
 		Vector pq = s.Center().minus(t.Center());
 		return pq.normsqr() <= rad * rad;
 	}
-	
-	
-	/**
-	 * Checks the containment of a cuboid in a line.
-	 * 
-	 * @param l  a line to check
-	 * @param c  a cuboid to check
-	 * @return  {@code true} if the shape is contained
-	 */
-	public static boolean in(Line l, Cuboid c)
-	{
-		return false;
-	}
-	
-	/**
-	 * Checks the containment of an ellipsoid in a line.
-	 * 
-	 * @param l  a line to check
-	 * @param e  an ellipsoid to check
-	 * @return  {@code true} if the shape is contained
-	 */
-	public static boolean in(Line l, Ellipsoid e)
-	{
-		return false;
-	}
 
+	
 	/**
 	 * Checks the containment of a point in a line.
 	 * 
@@ -288,17 +264,29 @@ public final class Containment
 	}
 	
 	/**
-	 * Checks the containment of a sphere in a line.
+	 * Checks the containment of a cuboid in a line.
 	 * 
 	 * @param l  a line to check
-	 * @param s  a sphere to check
+	 * @param c  a cuboid to check
 	 * @return  {@code true} if the shape is contained
 	 */
-	public static boolean in(Line l, Sphere s)
+	public static boolean in(Line l, ICuboid c)
 	{
 		return false;
 	}
 	
+	/**
+	 * Checks the containment of an ellipsoid in a line.
+	 * 
+	 * @param l  a line to check
+	 * @param e  an ellipsoid to check
+	 * @return  {@code true} if the shape is contained
+	 */
+	public static boolean in(Line l, IEllipsoid e)
+	{
+		return false;
+	}
+		
 	/**
 	 * Checks the containment of a line in a line.
 	 * 

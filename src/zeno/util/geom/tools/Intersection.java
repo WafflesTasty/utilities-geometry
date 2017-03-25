@@ -3,9 +3,9 @@ package zeno.util.geom.tools;
 import zeno.util.algebra.tensors.matrices.Matrix;
 import zeno.util.algebra.tensors.vectors.Vector;
 import zeno.util.geom.algorithms.LineClipper;
-import zeno.util.geom.shapes.Cuboid;
-import zeno.util.geom.shapes.Ellipsoid;
-import zeno.util.geom.shapes.Sphere;
+import zeno.util.geom.shapes.ICuboid;
+import zeno.util.geom.shapes.IEllipsoid;
+import zeno.util.geom.shapes.ISphere;
 import zeno.util.geom.shapes.lines.Line;
 import zeno.util.tools.primitives.Floats;
 import zeno.util.tools.primitives.Integers;
@@ -25,7 +25,7 @@ public final class Intersection
 	 * @param d  a cuboid to check
 	 * @return  {@code true} if the shapes intersect
 	 */
-	public static boolean between(Cuboid c, Cuboid d)
+	public static boolean between(ICuboid c, ICuboid d)
 	{
 		int dim = Integers.min(c.Dimension(), d.Dimension());
 		
@@ -53,7 +53,7 @@ public final class Intersection
 	 * @param e  an ellipsoid to check
 	 * @return  {@code true} if the shapes intersect
 	 */
-	public static boolean between(Cuboid c, Ellipsoid e)
+	public static boolean between(ICuboid c, IEllipsoid e)
 	{
 		int dim = Integers.min(e.Dimension(), c.Dimension());
 		
@@ -66,7 +66,7 @@ public final class Intersection
 			size.set(    size.get(i) / e.Size().get(i), i);
 		}
 		
-		return between(Cuboid.create(center, size), Sphere.unit(dim));
+		return between(ICuboid.create(center, size), ISphere.unit(dim));
 	}
 	
 	/**
@@ -76,9 +76,9 @@ public final class Intersection
 	 * @param s  a sphere to check
 	 * @return  {@code true} if the shapes intersect
 	 */
-	public static boolean between(Cuboid c, Sphere s)
+	public static boolean between(ICuboid c, ISphere s)
 	{
-		throw new UnsupportedOperationException("Sphere-ellipsoid intersection not implemented yet.");
+		throw new UnsupportedOperationException("ISphere-ellipsoid intersection not implemented yet.");
 	}
 	
 	/**
@@ -88,7 +88,7 @@ public final class Intersection
 	 * @param l  a line to check
 	 * @return  {@code true} if the shapes intersect
 	 */
-	public static boolean between(Cuboid c, Line l)
+	public static boolean between(ICuboid c, Line l)
 	{
 		clipper.setBounds(c);
 		if(clipper.clip(l).isEmpty())
@@ -107,7 +107,7 @@ public final class Intersection
 	 * @param c  a cuboid to check
 	 * @return  {@code true} if the shapes intersect
 	 */
-	public static boolean between(Ellipsoid e, Cuboid c)
+	public static boolean between(IEllipsoid e, ICuboid c)
 	{
 		return between(c, e);
 	}
@@ -119,7 +119,7 @@ public final class Intersection
 	 * @param f  an ellipsoid to check
 	 * @return  {@code true} if the shapes intersect
 	 */
-	public static boolean between(Ellipsoid e, Ellipsoid f)
+	public static boolean between(IEllipsoid e, IEllipsoid f)
 	{
 		int dim = Integers.min(e.Dimension(), f.Dimension());
 		
@@ -132,7 +132,7 @@ public final class Intersection
 			size.set(    size.get(i) / e.Size().get(i), i);
 		}
 		
-		return between(Sphere.unit(dim), Ellipsoid.create(center, size));
+		return between(ISphere.unit(dim), IEllipsoid.create(center, size));
 	}
 	
 	/**
@@ -142,9 +142,9 @@ public final class Intersection
 	 * @param s  a sphere to check
 	 * @return  {@code true} if the shapes intersect
 	 */
-	public static boolean between(Ellipsoid e, Sphere s)
+	public static boolean between(IEllipsoid e, ISphere s)
 	{
-		throw new UnsupportedOperationException("Sphere-ellipsoid intersection not implemented yet.");
+		throw new UnsupportedOperationException("ISphere-ellipsoid intersection not implemented yet.");
 	}
 	
 	/**
@@ -154,7 +154,7 @@ public final class Intersection
 	 * @param l  a line to check
 	 * @return  {@code true} if the shapes intersect
 	 */
-	public static boolean between(Ellipsoid e, Line l)
+	public static boolean between(IEllipsoid e, Line l)
 	{
 		int dim = Integers.min(e.Dimension(), l.Dimension());
 		
@@ -167,7 +167,7 @@ public final class Intersection
 			p2.set(p2.get(i) / e.Size().get(i), i);
 		}
 		
-		return between(Sphere.unit(dim), Line.create(p1, p2));
+		return between(ISphere.unit(dim), Line.create(p1, p2));
 	}
 	
 	
@@ -178,7 +178,7 @@ public final class Intersection
 	 * @param c  a cuboid to check
 	 * @return  {@code true} if the shapes intersect
 	 */
-	public static boolean between(Sphere s, Cuboid c)
+	public static boolean between(ISphere s, ICuboid c)
 	{
 		return between(c, s);
 	}
@@ -190,7 +190,7 @@ public final class Intersection
 	 * @param e  an ellipsoid to check
 	 * @return  {@code true} if the shapes intersect
 	 */
-	public static boolean between(Sphere s, Ellipsoid e)
+	public static boolean between(ISphere s, IEllipsoid e)
 	{
 		return between(e, s);
 	}
@@ -202,7 +202,7 @@ public final class Intersection
 	 * @param t  a sphere to check
 	 * @return  {@code true} if the shapes intersect
 	 */
-	public static boolean between(Sphere s, Sphere t)
+	public static boolean between(ISphere s, ISphere t)
 	{
 		float rad = s.Radius() + t.Radius();
 		Vector pq = s.Center().minus(t.Center());
@@ -216,7 +216,7 @@ public final class Intersection
 	 * @param l  a line to check
 	 * @return  {@code true} if the shapes intersect
 	 */
-	public static boolean between(Sphere s, Line l)
+	public static boolean between(ISphere s, Line l)
 	{
 		Vector qt = l.P2().minus(l.P1());
 		Vector qp = s.Center().minus(l.P1());
@@ -240,7 +240,7 @@ public final class Intersection
 	 * @param c  a cuboid to check
 	 * @return  {@code true} if the shapes intersect
 	 */
-	public static boolean between(Line l, Cuboid c)
+	public static boolean between(Line l, ICuboid c)
 	{
 		return between(c, l);
 	}
@@ -252,7 +252,7 @@ public final class Intersection
 	 * @param e  an ellipsoid to check
 	 * @return  {@code true} if the shapes intersect
 	 */
-	public static boolean between(Line l, Ellipsoid e)
+	public static boolean between(Line l, IEllipsoid e)
 	{
 		return between(e, l);
 	}
@@ -264,7 +264,7 @@ public final class Intersection
 	 * @param s  a sphere to check
 	 * @return  {@code true} if the shapes intersect
 	 */
-	public static boolean between(Line l, Sphere s)
+	public static boolean between(Line l, ISphere s)
 	{
 		return between(s, l);
 	}

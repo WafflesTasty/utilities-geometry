@@ -1,59 +1,43 @@
-package zeno.util.geom.shapes.lines;
+package zeno.util.geom.shapes;
 
 import zeno.util.algebra.tensors.vectors.Vector;
 import zeno.util.algebra.tensors.vectors.fixed.Vector2;
 import zeno.util.algebra.tensors.vectors.fixed.Vector3;
 import zeno.util.geom.IGeometry;
-import zeno.util.geom.shapes.ICuboid;
-import zeno.util.geom.shapes.IEllipsoid;
-import zeno.util.geom.shapes.ISphere;
+import zeno.util.geom.shapes.lines.Line;
+import zeno.util.geom.shapes.other.NCuboid;
+import zeno.util.geom.shapes.solids.Cuboid;
+import zeno.util.geom.shapes.surfaces.Rectangle;
 import zeno.util.geom.tools.Containment;
 import zeno.util.geom.tools.Intersection;
 
 /**
- * The {@code Line} interface defines the base for line geometry.
+ * The {ICuboid} interface defines the base for cuboid geometry.
  * 
- * @since Mar 25, 2017
+ * @since Mar 24, 2017
  * @author Zeno
  * 
  * @see IGeometry
  */
-public interface Line extends IGeometry
+public interface ICuboid extends IGeometry
 {
 	/**
-	 * Creates a new {@code Line}.
+	 * Creates a new {@code ICuboid}.
 	 * 
-	 * @param p1  the line's first point
-	 * @param p2  the line's second point
-	 * @return  a new line
+	 * @param center  the cuboid's center
+	 * @param size  the cuboid's size
+	 * @return  a new cuboid
 	 */
-	public static Line create(Vector p1, Vector p2)
+	public static ICuboid create(Vector center, Vector size)
 	{
-		if(p1.size() == 2)
-			return new Line2D((Vector2) p1, (Vector2) p2);
-		if(p1.size() == 3)
-			return new Line3D((Vector3) p1, (Vector3) p2);
+		if(center.size() == 2)
+			return new Rectangle((Vector2) center, (Vector2) size);
+		if(center.size() == 3)
+			return new Cuboid((Vector3) center, (Vector3) size);
 		
-		return new NLine(p1, p2);
+		return new NCuboid(center, size);
 	}
 	
-	
-	/**
-	 * Returns the first point of the {@code Line}.
-	 * 
-	 * @return  the line's first point
-	 * @see Vector
-	 */
-	public abstract Vector P1();
-	
-	/**
-	 * Returns the second point of the {@code Line}.
-	 * 
-	 * @return  the line's second point
-	 * @see Vector
-	 */
-	public abstract Vector P2();
-
 	
 	@Override
 	public default boolean contains(Vector v)
@@ -102,18 +86,5 @@ public interface Line extends IGeometry
 	public default boolean intersects(Line l)
 	{
 		return Intersection.between(this, l);
-	}
-
-		
-	@Override
-	public default Vector Center()
-	{
-		return P1().plus(P2()).times(0.5f);
-	}
-	
-	@Override
-	public default Vector Size()
-	{
-		return P2().minus(P1());
 	}
 }
