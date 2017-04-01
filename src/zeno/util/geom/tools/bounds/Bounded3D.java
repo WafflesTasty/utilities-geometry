@@ -136,14 +136,17 @@ public interface Bounded3D extends Bounded
 
 
 	@Override
-	public default Cuboid Bounds()
+	public abstract Cuboid Bounds();
+	
+	@Override
+	public default Vector3 Center()
 	{
-		return new Cuboid(Center(), Size());
+		return Bounds().Center();
 	}
 	
 	@Override
-	public abstract Vector3 Center();
-	
-	@Override
-	public abstract Vector3 Size();
+	public default Vector3 Size()
+	{
+		return Bounds().Size();
+	}
 }

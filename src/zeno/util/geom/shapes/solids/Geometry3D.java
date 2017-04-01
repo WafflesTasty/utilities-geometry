@@ -45,7 +45,13 @@ public abstract class Geometry3D extends NGeometry implements IGeometry3D
 	{
 		this(new Vector3(1, 1, 1));
 	}
+
 	
+	@Override
+	public Cuboid Bounds()
+	{
+		return new Cuboid(Center(), Size());
+	}
 
 	@Override
 	public Vector3 Center()

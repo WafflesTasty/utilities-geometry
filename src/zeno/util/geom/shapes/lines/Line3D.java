@@ -2,6 +2,7 @@ package zeno.util.geom.shapes.lines;
 
 import zeno.util.algebra.tensors.vectors.fixed.Vector3;
 import zeno.util.geom.IGeometry3D;
+import zeno.util.geom.shapes.solids.Cuboid;
 import zeno.util.tools.primitives.Floats;
 
 /**
@@ -15,6 +16,8 @@ import zeno.util.tools.primitives.Floats;
  */
 public class Line3D extends NLine implements IGeometry3D
 {
+	private Cuboid bounds;
+	
 	/**
 	 * Creates a new {@code Line3D}.
 	 * 
@@ -112,17 +115,35 @@ public class Line3D extends NLine implements IGeometry3D
 	}
 
 	
+	@Override
+	public Cuboid Bounds()
+	{
+		if(bounds == null)
+		{
+			float x = (X1() + X2()) / 2;
+			float y = (Y1() + Y2()) / 2;
+			float z = (Z1() + Z2()) / 2;
+			
+			float w = Floats.abs(X1() - X2());
+			float h = Floats.abs(Y1() - Y2());
+			float d = Floats.abs(Z1() - Z2());
+			
+			bounds = new Cuboid(x, y, z, w, h, d);
+		}
+		
+		return bounds;
+	}
 	
 	@Override
 	public Vector3 Center()
 	{
-		return new Vector3((X1() + X2()) / 2, (Y1() + Y2()) / 2, (Z1() + Z2()) / 2);
+		return (Vector3) super.Center();
 	}
 	
 	@Override
 	public Vector3 Size()
 	{
-		return new Vector3(Floats.abs(X1() - X2()), Floats.abs(Y1() - Y2()), Floats.abs(Z1() - Z2()));
+		return (Vector3) super.Size();
 	}
 	
 	@Override

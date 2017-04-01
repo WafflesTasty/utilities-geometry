@@ -2,6 +2,7 @@ package zeno.util.geom.shapes.lines;
 
 import zeno.util.algebra.tensors.vectors.fixed.Vector2;
 import zeno.util.geom.IGeometry2D;
+import zeno.util.geom.shapes.surfaces.Rectangle;
 import zeno.util.tools.primitives.Floats;
 
 /**
@@ -15,6 +16,8 @@ import zeno.util.tools.primitives.Floats;
  */
 public class Line2D extends NLine implements IGeometry2D
 {
+	private Rectangle bounds;
+	
 	/**
 	 * Creates a new {@code Line2D}.
 	 * 
@@ -91,17 +94,34 @@ public class Line2D extends NLine implements IGeometry2D
 
 	
 	@Override
+	public Rectangle Bounds()
+	{
+		if(bounds == null)
+		{
+			float x = (X1() + X2()) / 2;
+			float y = (Y1() + Y2()) / 2;
+			
+			float w = Floats.abs(X1() - X2());
+			float h = Floats.abs(Y1() - Y2());
+			
+			bounds = new Rectangle(x, y, w, h);
+		}
+		
+		return bounds;
+	}
+	
+	@Override
 	public Vector2 Center()
 	{
-		return new Vector2((X1() + X2()) / 2, (Y1() + Y2()) / 2);
+		return (Vector2) super.Center();
 	}
 	
 	@Override
 	public Vector2 Size()
 	{
-		return new Vector2(Floats.abs(X1() - X2()), Floats.abs(Y1() - Y2()));
+		return (Vector2) super.Size();
 	}
-		
+	
 	@Override
 	public Vector2 P1()
 	{

@@ -2,6 +2,7 @@ package zeno.util.geom.shapes.other;
 
 import zeno.util.algebra.tensors.vectors.Vector;
 import zeno.util.geom.IGeometry;
+import zeno.util.geom.shapes.ICuboid;
 
 /**
  * The {@code NGeometry} class is the base class for closed n-dimensional shapes.
@@ -85,6 +86,12 @@ public abstract class NGeometry implements IGeometry
 		this.size = size.absolute();
 	}
 
+	
+	@Override
+	public ICuboid Bounds()
+	{
+		return new NCuboid(Center(), Size());
+	}
 	
 	@Override
 	public Vector Center()

@@ -46,6 +46,12 @@ public abstract class Geometry2D extends NGeometry implements IGeometry2D
 		this(new Vector2(1, 1));
 	}
 	
+	
+	@Override
+	public Rectangle Bounds()
+	{
+		return new Rectangle(Center(), Size());
+	}
 
 	@Override
 	public Vector2 Center()

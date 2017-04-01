@@ -3,6 +3,7 @@ package zeno.util.geom.tforms;
 import zeno.util.algebra.tensors.matrices.fixed.Matrix4x4;
 import zeno.util.algebra.tensors.matrices.ortho.Ortho2x2;
 import zeno.util.algebra.tensors.vectors.fixed.Vector2;
+import zeno.util.geom.shapes.surfaces.Rectangle;
 import zeno.util.geom.tforms.types.ITransformation2D;
 import zeno.util.tools.primitives.Floats;
 
@@ -461,6 +462,11 @@ public final class Transform2D implements ITransformation2D
 	}
 
 
+	@Override
+	public Rectangle Bounds()
+	{
+		return new Rectangle(origin, scale);
+	}
 	
 	@Override
 	public Vector2 Center()
@@ -468,8 +474,6 @@ public final class Transform2D implements ITransformation2D
 		return origin;
 	}
 	
-
-
 	@Override
 	public Vector2 Size()
 	{

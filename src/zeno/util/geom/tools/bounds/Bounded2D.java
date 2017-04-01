@@ -96,14 +96,17 @@ public interface Bounded2D extends Bounded
 
 	
 	@Override
-	public default Rectangle Bounds()
+	public abstract Rectangle Bounds();
+	
+	@Override
+	public default Vector2 Center()
 	{
-		return new Rectangle(Center(), Size());
+		return Bounds().Center();
 	}
 	
 	@Override
-	public abstract Vector2 Center();
-	
-	@Override
-	public abstract Vector2 Size();
+	public default Vector2 Size()
+	{
+		return Bounds().Size();
+	}
 }

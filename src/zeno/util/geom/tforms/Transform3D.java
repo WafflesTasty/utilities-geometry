@@ -3,6 +3,7 @@ package zeno.util.geom.tforms;
 import zeno.util.algebra.tensors.matrices.fixed.Matrix4x4;
 import zeno.util.algebra.tensors.matrices.ortho.Ortho3x3;
 import zeno.util.algebra.tensors.vectors.fixed.Vector3;
+import zeno.util.geom.shapes.solids.Cuboid;
 import zeno.util.geom.tforms.types.ITransformation3D;
 import zeno.util.tools.primitives.Floats;
 
@@ -667,6 +668,11 @@ public final class Transform3D implements ITransformation3D
 	}
 
 
+	@Override
+	public Cuboid Bounds()
+	{
+		return new Cuboid(origin, scale);
+	}
 	
 	@Override
 	public Vector3 Center()
@@ -674,8 +680,6 @@ public final class Transform3D implements ITransformation3D
 		return origin;
 	}
 	
-
-
 	@Override
 	public Vector3 Size()
 	{
