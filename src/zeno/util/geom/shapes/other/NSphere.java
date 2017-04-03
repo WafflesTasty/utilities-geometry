@@ -44,6 +44,6 @@ public class NSphere extends NEllipsoid implements ISphere
 	 */
 	public NSphere(int dim)
 	{
-		this(dim, 1f);
+		this(dim, 2f);
 	}
 }

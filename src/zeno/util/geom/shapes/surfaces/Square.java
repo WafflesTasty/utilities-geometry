@@ -45,7 +45,7 @@ public class Square extends Rectangle implements ICube
 	 */
 	public Square(float l)
 	{
-		super(2, l);
+		super(l, l);
 	}
 	
 	/**

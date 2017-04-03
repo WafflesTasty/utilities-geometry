@@ -89,7 +89,7 @@ public class Circle extends Ellipse implements ISphere
 	 */
 	public Circle(float r)
 	{
-		super(2, r);
+		super(r, r);
 	}
 	
 	/**

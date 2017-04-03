@@ -47,7 +47,7 @@ public abstract class NGeometry implements IGeometry
 	 */
 	public NGeometry(int dim)
 	{
-		this(Vector.create(dim));
+		this(Vector.create(1f, dim));
 	}
 	
 
