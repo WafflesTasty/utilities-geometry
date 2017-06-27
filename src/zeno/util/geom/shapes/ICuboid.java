@@ -38,6 +38,17 @@ public interface ICuboid extends IGeometry
 		return new NCuboid(center, size);
 	}
 	
+	/**
+	 * Creates a new {@code ICuboid}.
+	 * 
+	 * @param dim  the cuboid's dimension
+	 * @return  a new cuboid
+	 */
+	public static ICuboid create(int dim)
+	{
+		return create(Vector.create(dim), Vector.create(dim));
+	}
+	
 	
 	@Override
 	public default boolean contains(Vector v)
