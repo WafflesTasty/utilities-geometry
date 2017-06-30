@@ -2,6 +2,7 @@ package zeno.util.geom.algorithms;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 import zeno.util.algebra.tensors.Tensor;
 import zeno.util.algebra.tensors.vectors.Vector;
@@ -21,20 +22,23 @@ import zeno.util.tools.Messenger;
  * @see <a href="http://www.sersc.org/journals/IJCG/vol3_no2/3.pdf">B. Ray - Clipping Algorithm</a>
  * @see Messenger
  */
-public class LineClipper extends Messenger
+public class LineClipper implements Messenger
 {
 	private ICuboid bounds;
 	private List<Vector> result;
+	private Consumer<String> output;
 
+	
 	/**
-	 * Changes the boundary of the {@code LineClipper}.
+	 * Changes the output of the {@code LineClipper}.
 	 * 
-	 * @param bounds  a new boundary
-	 * @see ICuboid
+	 * @param output  a new output
+	 * @see Consumer
+	 * @see String
 	 */
-	public void setBounds(ICuboid bounds)
+	public void setOutput(Consumer<String> output)
 	{
-		this.bounds = bounds;
+		this.output = output;
 	}
 	
 	/**
@@ -117,6 +121,24 @@ public class LineClipper extends Messenger
 		}
 		
 		return clip(points);
+	}
+	
+	/**
+	 * Changes the boundary of the {@code LineClipper}.
+	 * 
+	 * @param bounds  a new boundary
+	 * @see ICuboid
+	 */
+	public void setBounds(ICuboid bounds)
+	{
+		this.bounds = bounds;
+	}
+	
+	
+	@Override
+	public Consumer<String> Output()
+	{
+		return output;
 	}
 	
 	

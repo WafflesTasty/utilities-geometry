@@ -1,6 +1,7 @@
 package zeno.util.geom.algorithms;
 
 import java.util.Iterator;
+import java.util.function.Consumer;
 
 import zeno.util.algebra.tensors.vectors.Vector;
 import zeno.util.tools.Messenger;
@@ -18,7 +19,7 @@ import zeno.util.tools.primitives.Floats;
  * @see Iterator
  * @see Vector
  */
-public class Bresenham extends Messenger implements Iterator<Vector>
+public class Bresenham implements Messenger, Iterator<Vector>
 {
 	private Vector cur, nxt;
 	private Vector dif, err;
@@ -26,6 +27,7 @@ public class Bresenham extends Messenger implements Iterator<Vector>
 	
 	
 	private boolean isFinite;
+	private Consumer<String> output;
 	
 	/**
 	 * Creates a new {@code Bresenham}.
@@ -49,6 +51,18 @@ public class Bresenham extends Messenger implements Iterator<Vector>
 		this(true);
 	}
 	
+	
+	/**
+	 * Changes the output of the {@code Bresenham}.
+	 * 
+	 * @param output  a new output
+	 * @see Consumer
+	 * @see String
+	 */
+	public void setOutput(Consumer<String> output)
+	{
+		this.output = output;
+	}
 			
 	/**
 	 * Generates a new set of points.
@@ -100,6 +114,12 @@ public class Bresenham extends Messenger implements Iterator<Vector>
 		generate(vec[0], vec[1]);
 	}
 	
+	
+	@Override
+	public Consumer<String> Output()
+	{
+		return output;
+	}
 
 	@Override
 	public boolean hasNext()
