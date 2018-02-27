@@ -1,11 +1,9 @@
 package zeno.util.geom;
 
-import zeno.util.algebra.tensors.vectors.Vector;
 import zeno.util.geom.shapes.ICube;
 import zeno.util.geom.shapes.ICuboid;
 import zeno.util.geom.shapes.IEllipsoid;
 import zeno.util.geom.shapes.ISphere;
-import zeno.util.geom.shapes.lines.Line;
 import zeno.util.geom.tools.bounds.Bounded;
 
 /**
@@ -14,28 +12,11 @@ import zeno.util.geom.tools.bounds.Bounded;
  * @since Aug 22, 2015
  * @author Zeno
  * 
+ * @see ICollideable
  * @see Bounded
  */
-public interface IGeometry extends Bounded
-{
-	/**
-	 * Indicates if the {@code IGeometry} contains a point.
-	 * 
-	 * @param v  a point to check
-	 * @return {@code true} if the point is contained
-	 * @see Vector
-	 */
-	public abstract boolean contains(Vector v);
-	
-	/**
-	 * Indicates if the {@code IGeometry} contains an ellipsoid.
-	 * 
-	 * @param e  an ellipsoid to check
-	 * @return {@code true} if the ellipsoid is contained
-	 * @see IEllipsoid
-	 */
-	public abstract boolean contains(IEllipsoid e);
-	
+public interface IGeometry extends Bounded, ICollideable
+{	
 	/**
 	 * Indicates if the {@code IGeometry} contains a cuboid.
 	 * 
@@ -46,15 +27,14 @@ public interface IGeometry extends Bounded
 	public abstract boolean contains(ICuboid c);
 	
 	/**
-	 * Indicates if the {@code IGeometry} contains a line.
+	 * Indicates if the {@code IGeometry} contains an ellipsoid.
 	 * 
-	 * @param l  a line to check
-	 * @return {@code true} if the line is contained
-	 * @see Line
+	 * @param e  an ellipsoid to check
+	 * @return {@code true} if the ellipsoid is contained
+	 * @see IEllipsoid
 	 */
-	public abstract boolean contains(Line l);
-	
-	
+	public abstract boolean contains(IEllipsoid e);
+
 	/**
 	 * Indicates if the {@code IGeometry} intersects an ellipsoid.
 	 * 
@@ -72,15 +52,6 @@ public interface IGeometry extends Bounded
 	 * @see ICuboid
 	 */
 	public abstract boolean intersects(ICuboid c);
-
-	/**
-	 * Indicates if the {@code IGeometry} intersects a line.
-	 * 
-	 * @param l  a line to check
-	 * @return {@code true} if the line is contained
-	 * @see Line
-	 */
-	public abstract boolean intersects(Line l);
 
 	
 	/**

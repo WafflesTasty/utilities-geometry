@@ -1,8 +1,7 @@
-package zeno.util.geom.shapes.surfaces;
+package zeno.util.geom;
 
 import zeno.util.algebra.tensors.vectors.fixed.Vector2;
-import zeno.util.geom.IGeometry2D;
-import zeno.util.geom.shapes.other.NGeometry;
+import zeno.util.geom.shapes.surfaces.Rectangle;
 
 /**
  * The {@code Geometry2D} class is the base class for closed two-dimensional shapes.
@@ -11,9 +10,9 @@ import zeno.util.geom.shapes.other.NGeometry;
  * @author Zeno
  * 
  * @see IGeometry2D
- * @see NGeometry
+ * @see GeometryND
  */
-public abstract class Geometry2D extends NGeometry implements IGeometry2D
+public abstract class Geometry2D extends GeometryND implements IGeometry2D
 {
 	/**
 	 * Creates a new {@code Geometry2D}.

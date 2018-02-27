@@ -1,51 +1,51 @@
-package zeno.util.geom.shapes.other;
+package zeno.util.geom;
 
 import zeno.util.algebra.tensors.vectors.Vector;
-import zeno.util.geom.IGeometry;
 import zeno.util.geom.shapes.ICuboid;
+import zeno.util.geom.shapes.other.NCuboid;
 
 /**
- * The {@code NGeometry} class is the base class for closed n-dimensional shapes.
+ * The {@code GeometryND} class is the base class for closed n-dimensional shapes.
  *
  * @since Apr 29, 2016
  * @author Zeno
  * 
  * @see IGeometry
  */
-public abstract class NGeometry implements IGeometry
+public abstract class GeometryND implements IGeometry
 {
 	private Vector center, size;
 	
 	/**
-	 * Creates a new {@code NGeometry}.
+	 * Creates a new {@code GeometryND}.
 	 * 
 	 * @param center  the geometry's center
 	 * @param size  the geometry's size
 	 * @see Vector
 	 */
-	public NGeometry(Vector center, Vector size)
+	public GeometryND(Vector center, Vector size)
 	{
 		setCenter(center);
 		setSize(size);
 	}
 	
 	/**
-	 * Creates a new {@code NGeometry}.
+	 * Creates a new {@code GeometryND}.
 	 * 
 	 * @param size  the geometry's size
 	 * @see Vector
 	 */
-	public NGeometry(Vector size)
+	public GeometryND(Vector size)
 	{
 		this(Vector.create(size.size()), size);
 	}
 	
 	/**
-	 * Creates a new {@code NGeometry}.
+	 * Creates a new {@code GeometryND}.
 	 * 
 	 * @param dim  the geometry's dimension
 	 */
-	public NGeometry(int dim)
+	public GeometryND(int dim)
 	{
 		this(Vector.create(1f, dim));
 	}
@@ -66,9 +66,9 @@ public abstract class NGeometry implements IGeometry
 	@Override
 	public boolean equals(Object o)
 	{
-		if(o instanceof NGeometry)
+		if(o instanceof GeometryND)
 		{
-			NGeometry oGeometry = (NGeometry) o;
+			GeometryND oGeometry = (GeometryND) o;
 			return center.equals(oGeometry.center)
 				&& size.equals(oGeometry.size);
 		}

@@ -1,8 +1,7 @@
-package zeno.util.geom.shapes.solids;
+package zeno.util.geom;
 
 import zeno.util.algebra.tensors.vectors.fixed.Vector3;
-import zeno.util.geom.IGeometry3D;
-import zeno.util.geom.shapes.other.NGeometry;
+import zeno.util.geom.shapes.solids.Cuboid;
 
 /**
  * The {@code Geometry2D} class is the base class for closed three-dimensional shapes.
@@ -11,9 +10,9 @@ import zeno.util.geom.shapes.other.NGeometry;
  * @author Zeno
  * 
  * @see IGeometry3D
- * @see NGeometry
+ * @see GeometryND
  */
-public abstract class Geometry3D extends NGeometry implements IGeometry3D
+public abstract class Geometry3D extends GeometryND implements IGeometry3D
 {
 	/**
 	 * Creates a new {@code Geometry3D}.

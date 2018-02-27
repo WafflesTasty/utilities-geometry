@@ -253,8 +253,8 @@ public final class Containment
 		{
 			float val1 = (v.get(i+0) - p1.get(i+0)) * (p2.get(i+1) - p1.get(i+1));
 			float val2 = (v.get(i+1) - p1.get(i+1)) * (p2.get(i+0) - p1.get(i+0));
-			
-			if(Floats.isEqual(val1, val2, 6))
+
+			if(!Floats.isEqual(val1, val2, 6))
 			{
 				return false;
 			}
