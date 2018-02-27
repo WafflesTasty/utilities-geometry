@@ -1,4 +1,4 @@
-package zeno.util.geom.shapes;
+package zeno.util.geom.utilities.shapes;
 
 import zeno.util.algebra.tensors.vectors.Vector;
 import zeno.util.algebra.tensors.vectors.fixed.Vector2;
@@ -6,8 +6,8 @@ import zeno.util.algebra.tensors.vectors.fixed.Vector3;
 import zeno.util.geom.dimension.any.shapes.NSphere;
 import zeno.util.geom.dimension.three.shapes.Sphere;
 import zeno.util.geom.dimension.two.shapes.Circle;
-import zeno.util.geom.tools.Containment;
-import zeno.util.geom.tools.Intersection;
+import zeno.util.geom.utilities.Containment;
+import zeno.util.geom.utilities.Intersection;
 
 /**
  * The {@code ISphere} interface defines the base for sphere geometry.

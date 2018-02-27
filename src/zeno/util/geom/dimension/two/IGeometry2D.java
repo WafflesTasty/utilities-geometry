@@ -2,7 +2,7 @@ package zeno.util.geom.dimension.two;
 
 import zeno.util.geom.IGeometry;
 import zeno.util.geom.dimension.two.shapes.Rectangle;
-import zeno.util.geom.tools.bounds.Bounded2D;
+import zeno.util.geom.utilities.bounds.Bounded2D;
 
 /**
  * The {@code IGeometry2D} interface is the base for two-dimensional geometric shapes.

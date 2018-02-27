@@ -1,10 +1,10 @@
 package zeno.util.geom;
 
-import zeno.util.geom.shapes.ICube;
-import zeno.util.geom.shapes.ICuboid;
-import zeno.util.geom.shapes.IEllipsoid;
-import zeno.util.geom.shapes.ISphere;
-import zeno.util.geom.tools.bounds.Bounded;
+import zeno.util.geom.utilities.bounds.Bounded;
+import zeno.util.geom.utilities.shapes.ICube;
+import zeno.util.geom.utilities.shapes.ICuboid;
+import zeno.util.geom.utilities.shapes.IEllipsoid;
+import zeno.util.geom.utilities.shapes.ISphere;
 
 /**
  * The {@code IGeometry} interface is the base for geometric shapes.

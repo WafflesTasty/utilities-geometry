@@ -2,7 +2,7 @@ package zeno.util.geom.dimension.three.shapes;
 
 import zeno.util.algebra.tensors.vectors.fixed.Vector3;
 import zeno.util.geom.dimension.three.Geometry3D;
-import zeno.util.geom.shapes.IEllipsoid;
+import zeno.util.geom.utilities.shapes.IEllipsoid;
 
 /**
  * The {@code Ellipsoid} class defines a three-dimensional ellipsoid shape.

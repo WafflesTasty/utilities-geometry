@@ -1,4 +1,4 @@
-package zeno.util.geom.shapes;
+package zeno.util.geom.utilities.shapes;
 
 import zeno.util.algebra.tensors.vectors.Vector;
 import zeno.util.algebra.tensors.vectors.fixed.Vector2;

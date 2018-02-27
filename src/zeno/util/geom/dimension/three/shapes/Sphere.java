@@ -1,7 +1,7 @@
 package zeno.util.geom.dimension.three.shapes;
 
 import zeno.util.algebra.tensors.vectors.fixed.Vector3;
-import zeno.util.geom.shapes.ISphere;
+import zeno.util.geom.utilities.shapes.ISphere;
 
 /**
  * The {@code Sphere} class defines a three-dimensional sphere shape.

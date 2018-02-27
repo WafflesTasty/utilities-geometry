@@ -1,7 +1,7 @@
 package zeno.util.geom.dimension.three.shapes;
 
 import zeno.util.algebra.tensors.vectors.fixed.Vector3;
-import zeno.util.geom.shapes.ICube;
+import zeno.util.geom.utilities.shapes.ICube;
 
 /**
  * The {@code Cube} class defines a three-dimensional cube shape.

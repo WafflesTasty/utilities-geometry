@@ -1,4 +1,4 @@
-package zeno.util.geom.shapes;
+package zeno.util.geom.utilities.shapes;
 
 import zeno.util.algebra.tensors.vectors.Vector;
 import zeno.util.algebra.tensors.vectors.fixed.Vector2;
@@ -7,8 +7,8 @@ import zeno.util.geom.IGeometry;
 import zeno.util.geom.dimension.any.lines.NLine;
 import zeno.util.geom.dimension.three.lines.Line3D;
 import zeno.util.geom.dimension.two.lines.Line2D;
-import zeno.util.geom.tools.Containment;
-import zeno.util.geom.tools.Intersection;
+import zeno.util.geom.utilities.Containment;
+import zeno.util.geom.utilities.Intersection;
 
 /**
  * The {@code Line} interface defines the base for line geometry.

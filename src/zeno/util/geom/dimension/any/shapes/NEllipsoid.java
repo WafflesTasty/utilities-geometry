@@ -2,7 +2,7 @@ package zeno.util.geom.dimension.any.shapes;
 
 import zeno.util.algebra.tensors.vectors.Vector;
 import zeno.util.geom.dimension.any.GeometryND;
-import zeno.util.geom.shapes.IEllipsoid;
+import zeno.util.geom.utilities.shapes.IEllipsoid;
 
 /**
  * The {@code NEllipsoid} class defines an n-dimensional ellipsoid shape.

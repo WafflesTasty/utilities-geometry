@@ -1,8 +1,8 @@
-package zeno.util.geom.tools.bounds;
+package zeno.util.geom.utilities.bounds;
 
 import zeno.util.algebra.tensors.vectors.Vector;
 import zeno.util.geom.dimension.any.shapes.NCuboid;
-import zeno.util.geom.shapes.ICuboid;
+import zeno.util.geom.utilities.shapes.ICuboid;
 
 /**
  * The {@code Bounded} interface defines an object bound in n dimensions.

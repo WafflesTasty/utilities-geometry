@@ -1,7 +1,7 @@
-package zeno.util.geom.tools.cardinal;
+package zeno.util.geom.utilities.cardinal;
 
 import zeno.util.algebra.tensors.vectors.fixed.Vector2;
-import zeno.util.geom.tools.bounds.Bounded2D;
+import zeno.util.geom.utilities.bounds.Bounded2D;
 
 /**
  * The {@code Cardinal2D} class defines all cardinal directions in two dimensions.

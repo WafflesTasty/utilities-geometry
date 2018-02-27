@@ -1,7 +1,7 @@
 package zeno.util.geom;
 
 import zeno.util.algebra.tensors.vectors.Vector;
-import zeno.util.geom.shapes.Line;
+import zeno.util.geom.utilities.shapes.Line;
 
 /**
  * The {@code ICollideable} interface defines an object that can be collided with.

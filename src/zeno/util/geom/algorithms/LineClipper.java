@@ -5,8 +5,8 @@ import java.util.List;
 
 import zeno.util.algebra.tensors.Tensor;
 import zeno.util.algebra.tensors.vectors.Vector;
-import zeno.util.geom.shapes.ICuboid;
-import zeno.util.geom.shapes.Line;
+import zeno.util.geom.utilities.shapes.ICuboid;
+import zeno.util.geom.utilities.shapes.Line;
 
 /**
  * The {@code LineClipper} class defines an algorithm

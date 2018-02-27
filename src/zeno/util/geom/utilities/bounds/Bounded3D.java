@@ -1,17 +1,17 @@
-package zeno.util.geom.tools.bounds;
+package zeno.util.geom.utilities.bounds;
 
-import zeno.util.algebra.tensors.vectors.fixed.Vector2;
-import zeno.util.geom.dimension.two.shapes.Rectangle;
+import zeno.util.algebra.tensors.vectors.fixed.Vector3;
+import zeno.util.geom.dimension.three.shapes.Cuboid;
 
 /**
- * The {@code Bounded2D} interface defines an object bound in two dimensions.
+ * The {@code Bounded3D} interface defines an object bound in three dimensions.
  *
  * @since Aug 25, 2015
  * @author Zeno
  * 
  * @see Bounded
  */
-public interface Bounded2D extends Bounded
+public interface Bounded3D extends Bounded
 {		
 	/**
 	 * Returns the center x of the {@code Bounded2D}.
@@ -32,6 +32,16 @@ public interface Bounded2D extends Bounded
 	{
 		return Center().Y();
 	}
+	
+	/**
+	 * Returns the center z of the {@code Bounded3D}.
+	 * 
+	 * @return  the object's center z
+	 */
+	public default float Z()
+	{
+		return Center().Z();
+	}
 		
 	/**
 	 * Returns the width of the {@code Bounded2D}.
@@ -51,6 +61,16 @@ public interface Bounded2D extends Bounded
 	public default float Height()
 	{
 		return Size().Y();
+	}
+	
+	/**
+	 * Returns the depth of the {@code Bounded3D}.
+	 * 
+	 * @return  the object's depth
+	 */
+	public default float Depth()
+	{
+		return Size().Z();
 	}
 	
 	
@@ -93,19 +113,39 @@ public interface Bounded2D extends Bounded
 	{
 		return Y() + Height() / 2;
 	}
+	
+	/**
+	 * Returns the minimum z-coördinate of the {@code Bounded2D}.
+	 * 
+	 * @return  the object's minimum z
+	 */
+	public default float ZMin()
+	{
+		return Z() - Depth() / 2;
+	}
+	
+	/**
+	 * Returns the maximum z-coördinate of the {@code Bounded2D}.
+	 * 
+	 * @return  the object's maximum z
+	 */
+	public default float ZMax()
+	{
+		return Z() + Depth() / 2;
+	}
 
+
+	@Override
+	public abstract Cuboid Bounds();
 	
 	@Override
-	public abstract Rectangle Bounds();
-	
-	@Override
-	public default Vector2 Center()
+	public default Vector3 Center()
 	{
 		return Bounds().Center();
 	}
 	
 	@Override
-	public default Vector2 Size()
+	public default Vector3 Size()
 	{
 		return Bounds().Size();
 	}

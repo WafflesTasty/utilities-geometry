@@ -1,7 +1,7 @@
 package zeno.util.geom.dimension.any.shapes;
 
 import zeno.util.algebra.tensors.vectors.Vector;
-import zeno.util.geom.shapes.ISphere;
+import zeno.util.geom.utilities.shapes.ISphere;
 
 /**
  * The {@code NSphere} class defines an n-dimensional sphere shape.

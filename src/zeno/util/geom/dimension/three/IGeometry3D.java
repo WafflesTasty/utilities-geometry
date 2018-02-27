@@ -3,7 +3,7 @@ package zeno.util.geom.dimension.three;
 import zeno.util.algebra.tensors.vectors.fixed.Vector3;
 import zeno.util.geom.IGeometry;
 import zeno.util.geom.dimension.three.shapes.Cuboid;
-import zeno.util.geom.tools.bounds.Bounded3D;
+import zeno.util.geom.utilities.bounds.Bounded3D;
 
 /**
  * The {@code IGeometry3D} interface is the base for three-dimensional convex geometric shapes.

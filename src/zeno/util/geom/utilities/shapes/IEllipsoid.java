@@ -1,51 +1,40 @@
-package zeno.util.geom.shapes;
+package zeno.util.geom.utilities.shapes;
 
 import zeno.util.algebra.tensors.vectors.Vector;
 import zeno.util.algebra.tensors.vectors.fixed.Vector2;
 import zeno.util.algebra.tensors.vectors.fixed.Vector3;
 import zeno.util.geom.IGeometry;
-import zeno.util.geom.dimension.any.shapes.NCuboid;
-import zeno.util.geom.dimension.three.shapes.Cuboid;
-import zeno.util.geom.dimension.two.shapes.Rectangle;
-import zeno.util.geom.tools.Containment;
-import zeno.util.geom.tools.Intersection;
+import zeno.util.geom.dimension.any.shapes.NEllipsoid;
+import zeno.util.geom.dimension.three.shapes.Ellipsoid;
+import zeno.util.geom.dimension.two.shapes.Ellipse;
+import zeno.util.geom.utilities.Containment;
+import zeno.util.geom.utilities.Intersection;
 
 /**
- * The {ICuboid} interface defines the base for cuboid geometry.
+ * The {IEllipsoid} interface defines the base for ellipsoid geometry.
  * 
  * @since Mar 24, 2017
  * @author Zeno
  * 
  * @see IGeometry
  */
-public interface ICuboid extends IGeometry
+public interface IEllipsoid extends IGeometry
 {
 	/**
-	 * Creates a new {@code ICuboid}.
+	 * Creates a new {@code IEllipsoid}.
 	 * 
-	 * @param center  the cuboid's center
-	 * @param size  the cuboid's size
-	 * @return  a new cuboid
+	 * @param center  the ellipsoid's center
+	 * @param size  the ellipsoid's size
+	 * @return  a new ellipsoid
 	 */
-	public static ICuboid create(Vector center, Vector size)
+	public static IEllipsoid create(Vector center, Vector size)
 	{
 		if(center.size() == 2)
-			return new Rectangle((Vector2) center, (Vector2) size);
+			return new Ellipse((Vector2) center, (Vector2) size);
 		if(center.size() == 3)
-			return new Cuboid((Vector3) center, (Vector3) size);
+			return new Ellipsoid((Vector3) center, (Vector3) size);
 		
-		return new NCuboid(center, size);
-	}
-	
-	/**
-	 * Creates a new {@code ICuboid}.
-	 * 
-	 * @param dim  the cuboid's dimension
-	 * @return  a new cuboid
-	 */
-	public static ICuboid create(int dim)
-	{
-		return create(Vector.create(dim), Vector.create(dim));
+		return new NEllipsoid(center, size);
 	}
 	
 	
@@ -55,6 +44,12 @@ public interface ICuboid extends IGeometry
 		return Containment.in(this, v);
 	}
 		
+	@Override
+	public default boolean contains(ISphere s)
+	{
+		return Containment.in(this, s);
+	}
+	
 	@Override
 	public default boolean contains(IEllipsoid e)
 	{
@@ -73,13 +68,13 @@ public interface ICuboid extends IGeometry
 		return Containment.in(this, l);
 	}
 
-
+	
 	@Override
 	public default boolean intersects(ISphere s)
 	{
 		return Intersection.between(this, s);
 	}
-	
+
 	@Override
 	public default boolean intersects(IEllipsoid e)
 	{

@@ -1,4 +1,4 @@
-package zeno.util.geom.tools.iterators;
+package zeno.util.geom.utilities.iterators;
 
 import java.util.Iterator;
 

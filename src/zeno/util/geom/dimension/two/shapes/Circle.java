@@ -1,7 +1,7 @@
 package zeno.util.geom.dimension.two.shapes;
 
 import zeno.util.algebra.tensors.vectors.fixed.Vector2;
-import zeno.util.geom.shapes.ISphere;
+import zeno.util.geom.utilities.shapes.ISphere;
 
 /**
  * The {@code Circle} class defines a two-dimensional circular shape.
