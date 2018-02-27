@@ -2,13 +2,11 @@ package zeno.util.geom.algorithms;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Consumer;
 
 import zeno.util.algebra.tensors.Tensor;
 import zeno.util.algebra.tensors.vectors.Vector;
 import zeno.util.geom.shapes.ICuboid;
 import zeno.util.geom.shapes.lines.Line;
-import zeno.util.tools.Messenger;
 
 /**
  * The {@code LineClipper} class defines an algorithm
@@ -20,85 +18,12 @@ import zeno.util.tools.Messenger;
  * 
  * @see <a href="http://en.wikipedia.org/wiki/Line_clipping">Wikipedia - Line clipping</a>
  * @see <a href="http://www.sersc.org/journals/IJCG/vol3_no2/3.pdf">B. Ray - Clipping Algorithm</a>
- * @see Messenger
  */
-public class LineClipper implements Messenger
+public class LineClipper
 {
 	private ICuboid bounds;
 	private List<Vector> result;
-	private Consumer<String> output;
 
-	
-	/**
-	 * Changes the output of the {@code LineClipper}.
-	 * 
-	 * @param output  a new output
-	 * @see Consumer
-	 * @see String
-	 */
-	public void setOutput(Consumer<String> output)
-	{
-		this.output = output;
-	}
-	
-	/**
-	 * Clips a list of points to the clipper's boundary.
-	 * The result is a list of points that follow the
-	 * trajectory as the original list bounded by
-	 * the defined hypercube boundary. 
-	 * 
-	 * @param points  a list of points
-	 * @return  a clipped point list
-	 * @see Vector
-	 * @see List
-	 */
-	public List<Vector> clip(Vector... points)
-	{
-		Vector q = null;
-		result = new ArrayList<>();
-		for(int i = 0; i < points.length; i++)
-		{
-			Vector p = points[i];
-			
-			// If the point is inside the boundary...
-			if(bounds.contains(p))
-			{
-				// Don't clip it.
-				addResult(p);
-				continue;
-			}
-			
-			// Unless this is the first point...
-			if(i != 0)
-			{
-				// Fetch the previous point.
-				q = points[i - 1];
-				
-				// Project p along previous line.
-				q = clip(p, q);
-				if(q != null)
-				{
-					addResult(q);
-				}
-			}
-			
-			// Unless this is the last point...
-			if(i != points.length - 1)
-			{
-				// Fetch the next point.
-				q = points[i + 1];
-				
-				// Project p along next line.
-				q = clip(p, q);
-				if(q != null)
-				{
-					addResult(q);
-				}
-			}
-		}
-
-		return result;
-	}
 	
 	/**
 	 * Clips a list of lines to the clipper's boundary.
@@ -124,6 +49,67 @@ public class LineClipper implements Messenger
 	}
 	
 	/**
+	 * Clips a list of points to the clipper's boundary.
+	 * The result is a list of points that follow the
+	 * trajectory as the original list bounded by
+	 * the defined hypercube boundary. 
+	 * 
+	 * @param points  a list of points
+	 * @return  a clipped point list
+	 * @see Vector
+	 * @see List
+	 */
+	public List<Vector> clip(Vector... points)
+	{
+		Vector q = null;
+		result = new ArrayList<>();
+		
+		// For every point in the provided list...
+		for(int i = 0; i < points.length; i++)
+		{
+			Vector p = points[i];
+			
+			// If the point is inside the boundary...
+			if(bounds.contains(p))
+			{
+				// Don't clip it.
+				addResult(p);
+				continue;
+			}
+			
+			// If this isn't the first point...
+			if(i > 0)
+			{
+				// Fetch the previous point.
+				q = points[i - 1];
+				
+				// Project p along previous line.
+				q = clip(p, q);
+				if(q != null)
+				{
+					addResult(q);
+				}
+			}
+			
+			// If this isn't the last point...
+			if(i < points.length - 1)
+			{
+				// Fetch the next point.
+				q = points[i + 1];
+				
+				// Project p along next line.
+				q = clip(p, q);
+				if(q != null)
+				{
+					addResult(q);
+				}
+			}
+		}
+
+		return result;
+	}
+		
+	/**
 	 * Changes the boundary of the {@code LineClipper}.
 	 * 
 	 * @param bounds  a new boundary
@@ -133,15 +119,19 @@ public class LineClipper implements Messenger
 	{
 		this.bounds = bounds;
 	}
-	
-	
-	@Override
-	public Consumer<String> Output()
+
+	/**
+	 * Returns the boundary of the {@code LineClipper}.
+	 * 
+	 * @return  the clipper's boundary
+	 * @see ICuboid
+	 */
+	public ICuboid getBounds()
 	{
-		return output;
+		return bounds;
 	}
 	
-	
+
 	private boolean crosses(Vector p, Vector q, float val, int i)
 	{
 		Vector min = bounds.Minimum();
@@ -184,38 +174,50 @@ public class LineClipper implements Messenger
 	
 	private Vector clip(Vector p, Vector q)
 	{
+		// Fetch the clipping boundary.
 		Vector min = bounds.Minimum();
 		Vector max = bounds.Maximum();
 		
 		
 		float imin, imax;
+		// For every dimension of the boundary...
 		for(int i = 0; i < bounds.Dimension(); i++)
 		{			
 			imin = min.get(i);
 			imax = max.get(i);
 
+			// If the source point is below the boundary minimum...
 			if(p.get(i) < imin)
 			{
+				// If the target point is below the boundary maximum...
 				if(q.get(i) <= imin)
 				{
+					// The clipping result will be empty.
 					return null;
 				}
 				
+				// If the projection line crosses the boundary minimum...
 				if(crosses(p, q, imin, i))
 				{
+					// Return the projected point.
 					return project(p, q, imin, i);
 				}
 			}
 			
+			// If the source point is above the boundary minimum...
 			if(p.get(i) > imax)
 			{
+				// If the target point is above the boundary maximum...
 				if(q.get(i) >= imax)
 				{
+					// The clipping result will be empty.
 					return null;
 				}
 				
+				// If the projection line crosses the boundary maximum...
 				if(crosses(p, q, imax, i))
 				{
+					// Return the projected point.
 					return project(p, q, imax, i);
 				}
 			}
