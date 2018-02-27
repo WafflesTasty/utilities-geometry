@@ -1,4 +1,4 @@
-package zeno.util.geom.shapes.other;
+package zeno.util.geom.dimension.any.shapes;
 
 import zeno.util.algebra.tensors.vectors.Vector;
 import zeno.util.geom.shapes.ICube;

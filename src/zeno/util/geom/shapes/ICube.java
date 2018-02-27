@@ -3,9 +3,9 @@ package zeno.util.geom.shapes;
 import zeno.util.algebra.tensors.vectors.Vector;
 import zeno.util.algebra.tensors.vectors.fixed.Vector2;
 import zeno.util.algebra.tensors.vectors.fixed.Vector3;
-import zeno.util.geom.shapes.other.NCube;
-import zeno.util.geom.shapes.solids.Cube;
-import zeno.util.geom.shapes.surfaces.Square;
+import zeno.util.geom.dimension.any.shapes.NCube;
+import zeno.util.geom.dimension.three.shapes.Cube;
+import zeno.util.geom.dimension.two.shapes.Square;
 
 /**
  * The {@code ICube} interface defines the base for cube geometry.

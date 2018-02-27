@@ -1,6 +1,7 @@
-package zeno.util.geom;
+package zeno.util.geom.dimension.two;
 
 import zeno.util.algebra.tensors.vectors.fixed.Vector2;
+import zeno.util.geom.ICollideable;
 
 /**
  * The {@code ICollideable2D} interface defines an object that can be collided with.

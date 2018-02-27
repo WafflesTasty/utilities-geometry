@@ -1,7 +1,7 @@
-package zeno.util.geom.shapes.other;
+package zeno.util.geom.dimension.any.shapes;
 
 import zeno.util.algebra.tensors.vectors.Vector;
-import zeno.util.geom.GeometryND;
+import zeno.util.geom.dimension.any.GeometryND;
 import zeno.util.geom.shapes.ICuboid;
 
 /**

@@ -1,7 +1,8 @@
-package zeno.util.geom;
+package zeno.util.geom.dimension.two;
 
 import zeno.util.algebra.tensors.vectors.fixed.Vector2;
-import zeno.util.geom.shapes.surfaces.Rectangle;
+import zeno.util.geom.dimension.any.GeometryND;
+import zeno.util.geom.dimension.two.shapes.Rectangle;
 
 /**
  * The {@code Geometry2D} class is the base class for closed two-dimensional shapes.

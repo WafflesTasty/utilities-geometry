@@ -1,6 +1,7 @@
-package zeno.util.geom.shapes.lines;
+package zeno.util.geom.dimension.any.lines;
 
 import zeno.util.algebra.tensors.vectors.Vector;
+import zeno.util.geom.shapes.Line;
 
 /**
  * The {@code Line} class defines an n-dimensional line segment.

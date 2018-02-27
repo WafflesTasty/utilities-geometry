@@ -1,7 +1,8 @@
-package zeno.util.geom;
+package zeno.util.geom.dimension.three;
 
 import zeno.util.algebra.tensors.vectors.fixed.Vector3;
-import zeno.util.geom.shapes.solids.Cuboid;
+import zeno.util.geom.dimension.any.GeometryND;
+import zeno.util.geom.dimension.three.shapes.Cuboid;
 
 /**
  * The {@code Geometry2D} class is the base class for closed three-dimensional shapes.

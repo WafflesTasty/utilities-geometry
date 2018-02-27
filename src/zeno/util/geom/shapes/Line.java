@@ -1,12 +1,12 @@
-package zeno.util.geom.shapes.lines;
+package zeno.util.geom.shapes;
 
 import zeno.util.algebra.tensors.vectors.Vector;
 import zeno.util.algebra.tensors.vectors.fixed.Vector2;
 import zeno.util.algebra.tensors.vectors.fixed.Vector3;
 import zeno.util.geom.IGeometry;
-import zeno.util.geom.shapes.ICuboid;
-import zeno.util.geom.shapes.IEllipsoid;
-import zeno.util.geom.shapes.ISphere;
+import zeno.util.geom.dimension.any.lines.NLine;
+import zeno.util.geom.dimension.three.lines.Line3D;
+import zeno.util.geom.dimension.two.lines.Line2D;
 import zeno.util.geom.tools.Containment;
 import zeno.util.geom.tools.Intersection;
 

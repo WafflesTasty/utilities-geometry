@@ -1,7 +1,7 @@
-package zeno.util.geom.shapes.surfaces;
+package zeno.util.geom.dimension.two.shapes;
 
 import zeno.util.algebra.tensors.vectors.fixed.Vector2;
-import zeno.util.geom.Geometry2D;
+import zeno.util.geom.dimension.two.Geometry2D;
 import zeno.util.geom.shapes.ICuboid;
 
 /**

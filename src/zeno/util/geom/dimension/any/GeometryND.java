@@ -1,8 +1,9 @@
-package zeno.util.geom;
+package zeno.util.geom.dimension.any;
 
 import zeno.util.algebra.tensors.vectors.Vector;
+import zeno.util.geom.IGeometry;
+import zeno.util.geom.dimension.any.shapes.NCuboid;
 import zeno.util.geom.shapes.ICuboid;
-import zeno.util.geom.shapes.other.NCuboid;
 
 /**
  * The {@code GeometryND} class is the base class for closed n-dimensional shapes.

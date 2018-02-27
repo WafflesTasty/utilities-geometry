@@ -1,7 +1,7 @@
 package zeno.util.geom.tools.bounds;
 
 import zeno.util.algebra.tensors.vectors.fixed.Vector3;
-import zeno.util.geom.shapes.solids.Cuboid;
+import zeno.util.geom.dimension.three.shapes.Cuboid;
 
 /**
  * The {@code Bounded3D} interface defines an object bound in three dimensions.

@@ -3,10 +3,9 @@ package zeno.util.geom.shapes;
 import zeno.util.algebra.tensors.vectors.Vector;
 import zeno.util.algebra.tensors.vectors.fixed.Vector2;
 import zeno.util.algebra.tensors.vectors.fixed.Vector3;
-import zeno.util.geom.shapes.lines.Line;
-import zeno.util.geom.shapes.other.NSphere;
-import zeno.util.geom.shapes.solids.Sphere;
-import zeno.util.geom.shapes.surfaces.Circle;
+import zeno.util.geom.dimension.any.shapes.NSphere;
+import zeno.util.geom.dimension.three.shapes.Sphere;
+import zeno.util.geom.dimension.two.shapes.Circle;
 import zeno.util.geom.tools.Containment;
 import zeno.util.geom.tools.Intersection;
 

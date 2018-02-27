@@ -4,7 +4,7 @@ import zeno.util.algebra.tensors.vectors.Vector;
 import zeno.util.geom.shapes.ICuboid;
 import zeno.util.geom.shapes.IEllipsoid;
 import zeno.util.geom.shapes.ISphere;
-import zeno.util.geom.shapes.lines.Line;
+import zeno.util.geom.shapes.Line;
 import zeno.util.tools.primitives.Floats;
 import zeno.util.tools.primitives.Integers;
 

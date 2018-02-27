@@ -1,8 +1,9 @@
-package zeno.util.geom.shapes.lines;
+package zeno.util.geom.dimension.two.lines;
 
 import zeno.util.algebra.tensors.vectors.fixed.Vector2;
-import zeno.util.geom.IGeometry2D;
-import zeno.util.geom.shapes.surfaces.Rectangle;
+import zeno.util.geom.dimension.any.lines.NLine;
+import zeno.util.geom.dimension.two.IGeometry2D;
+import zeno.util.geom.dimension.two.shapes.Rectangle;
 import zeno.util.tools.primitives.Floats;
 
 /**

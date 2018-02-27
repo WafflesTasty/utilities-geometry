@@ -4,10 +4,9 @@ import zeno.util.algebra.tensors.vectors.Vector;
 import zeno.util.algebra.tensors.vectors.fixed.Vector2;
 import zeno.util.algebra.tensors.vectors.fixed.Vector3;
 import zeno.util.geom.IGeometry;
-import zeno.util.geom.shapes.lines.Line;
-import zeno.util.geom.shapes.other.NEllipsoid;
-import zeno.util.geom.shapes.solids.Ellipsoid;
-import zeno.util.geom.shapes.surfaces.Ellipse;
+import zeno.util.geom.dimension.any.shapes.NEllipsoid;
+import zeno.util.geom.dimension.three.shapes.Ellipsoid;
+import zeno.util.geom.dimension.two.shapes.Ellipse;
 import zeno.util.geom.tools.Containment;
 import zeno.util.geom.tools.Intersection;
 

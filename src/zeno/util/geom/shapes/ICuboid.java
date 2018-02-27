@@ -4,10 +4,9 @@ import zeno.util.algebra.tensors.vectors.Vector;
 import zeno.util.algebra.tensors.vectors.fixed.Vector2;
 import zeno.util.algebra.tensors.vectors.fixed.Vector3;
 import zeno.util.geom.IGeometry;
-import zeno.util.geom.shapes.lines.Line;
-import zeno.util.geom.shapes.other.NCuboid;
-import zeno.util.geom.shapes.solids.Cuboid;
-import zeno.util.geom.shapes.surfaces.Rectangle;
+import zeno.util.geom.dimension.any.shapes.NCuboid;
+import zeno.util.geom.dimension.three.shapes.Cuboid;
+import zeno.util.geom.dimension.two.shapes.Rectangle;
 import zeno.util.geom.tools.Containment;
 import zeno.util.geom.tools.Intersection;
 

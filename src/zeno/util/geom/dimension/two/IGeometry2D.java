@@ -1,6 +1,7 @@
-package zeno.util.geom;
+package zeno.util.geom.dimension.two;
 
-import zeno.util.geom.shapes.surfaces.Rectangle;
+import zeno.util.geom.IGeometry;
+import zeno.util.geom.dimension.two.shapes.Rectangle;
 import zeno.util.geom.tools.bounds.Bounded2D;
 
 /**

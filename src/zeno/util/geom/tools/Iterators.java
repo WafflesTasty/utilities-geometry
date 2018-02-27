@@ -3,7 +3,7 @@ package zeno.util.geom.tools;
 import java.awt.Point;
 
 import zeno.util.algebra.tensors.vectors.fixed.Vector2;
-import zeno.util.geom.IGeometry2D;
+import zeno.util.geom.dimension.two.IGeometry2D;
 import zeno.util.geom.tools.iterators.PerimeterIterator;
 import zeno.util.geom.tools.iterators.SurfaceIterator;
 

@@ -1,6 +1,7 @@
-package zeno.util.geom;
+package zeno.util.geom.dimension.three;
 
 import zeno.util.algebra.tensors.vectors.fixed.Vector3;
+import zeno.util.geom.ICollideable;
 
 /**
  * The {@code ICollideable3D} interface defines an object that can be collided with.

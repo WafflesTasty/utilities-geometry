@@ -1,7 +1,8 @@
-package zeno.util.geom;
+package zeno.util.geom.dimension.three;
 
 import zeno.util.algebra.tensors.vectors.fixed.Vector3;
-import zeno.util.geom.shapes.solids.Cuboid;
+import zeno.util.geom.IGeometry;
+import zeno.util.geom.dimension.three.shapes.Cuboid;
 import zeno.util.geom.tools.bounds.Bounded3D;
 
 /**

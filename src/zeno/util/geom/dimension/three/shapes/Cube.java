@@ -1,4 +1,4 @@
-package zeno.util.geom.shapes.solids;
+package zeno.util.geom.dimension.three.shapes;
 
 import zeno.util.algebra.tensors.vectors.fixed.Vector3;
 import zeno.util.geom.shapes.ICube;
