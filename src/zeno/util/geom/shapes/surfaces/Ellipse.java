@@ -2,6 +2,7 @@ package zeno.util.geom.shapes.surfaces;
 
 import zeno.util.algebra.tensors.vectors.fixed.Vector2;
 import zeno.util.calc.variables.functions.Polynomial;
+import zeno.util.geom.Geometry2D;
 import zeno.util.geom.shapes.IEllipsoid;
 import zeno.util.tools.primitives.Floats;
 

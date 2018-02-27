@@ -1,6 +1,7 @@
 package zeno.util.geom.shapes.solids;
 
 import zeno.util.algebra.tensors.vectors.fixed.Vector3;
+import zeno.util.geom.Geometry3D;
 import zeno.util.geom.shapes.IEllipsoid;
 
 /**

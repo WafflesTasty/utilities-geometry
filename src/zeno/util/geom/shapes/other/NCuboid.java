@@ -1,6 +1,7 @@
 package zeno.util.geom.shapes.other;
 
 import zeno.util.algebra.tensors.vectors.Vector;
+import zeno.util.geom.GeometryND;
 import zeno.util.geom.shapes.ICuboid;
 
 /**
@@ -9,10 +10,10 @@ import zeno.util.geom.shapes.ICuboid;
  * @since Apr 29, 2016
  * @author Zeno
  * 
- * @see NGeometry
+ * @see GeometryND
  * @see ICuboid
  */
-public class NCuboid extends NGeometry implements ICuboid
+public class NCuboid extends GeometryND implements ICuboid
 {
 	/**
 	 * Creates a new {@code NCuboid}.

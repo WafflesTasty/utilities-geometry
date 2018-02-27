@@ -1,6 +1,7 @@
 package zeno.util.geom.shapes.other;
 
 import zeno.util.algebra.tensors.vectors.Vector;
+import zeno.util.geom.GeometryND;
 import zeno.util.geom.shapes.IEllipsoid;
 
 /**
@@ -10,9 +11,9 @@ import zeno.util.geom.shapes.IEllipsoid;
  * @author Zeno
  * 
  * @see IEllipsoid
- * @see NGeometry
+ * @see GeometryND
  */
-public class NEllipsoid extends NGeometry implements IEllipsoid
+public class NEllipsoid extends GeometryND implements IEllipsoid
 {	
 	/**
 	 * Creates a new {@code NEllipsoid}.
