@@ -1,8 +1,8 @@
-package zeno.util.geom.tforms.types.movement;
+package zeno.util.geom._attempt1._deprecated.tforms.types.movement;
 
-import zeno.util.algebra.tensors.vectors.fixed.Vector3;
-import zeno.util.geom._deprecated.ITransformable;
-import zeno.util.geom.tforms.types.ITransformation3D;
+import zeno.util.algebra.linear.vector.fixed.Vector3;
+import zeno.util.geom.ITransformable;
+import zeno.util.geom._attempt1._deprecated.tforms.types.ITransformation3D;
 
 /**
  * The {@code IMovable3D} interface defines an object
@@ -18,6 +18,11 @@ public interface IMovable3D extends ITransformable
 	@Override
 	public abstract ITransformation3D Transform();
 
+	public default Vector3 Origin()
+	{
+		return Transform().Origin();
+	}
+	
 	
 	/**
 	 * Moves the {@code IMovable3D} for a specified distance.
@@ -28,7 +33,7 @@ public interface IMovable3D extends ITransformable
 	 */
 	public default void moveFor(float x, float y, float z)
 	{
-		moveTo(x + getX(), y + getY(), z + getZ());
+		moveTo(x + Origin().X(), y + Origin().Y(), z + Origin().Z());
 	}
 	
 	/**
@@ -51,7 +56,7 @@ public interface IMovable3D extends ITransformable
 	 */
 	public default void moveFor(Vector3 vec)
 	{
-		moveTo(vec.X() + getX(), vec.Y() + getY(), vec.Z() + getZ());
+		moveTo(vec.X() + Origin().X(), vec.Y() + Origin().Y(), vec.Z() + Origin().Z());
 	}
 	
 	
@@ -76,36 +81,5 @@ public interface IMovable3D extends ITransformable
 	public default void moveTo(Vector3 vec)
 	{
 		Transform().moveTo(vec);
-	}
-
-	
-	/**
-	 * Returns the x-coördinate of the {@code IMovable3D}.
-	 * 
-	 * @return  the movable's x-coördinate
-	 */
-	public default float getX()
-	{
-		return Transform().getX();
-	}
-	
-	/**
-	 * Returns the y-coördinate of the {@code IMovable3D}.
-	 * 
-	 * @return  the movable's y-coördinate
-	 */
-	public default float getY()
-	{
-		return Transform().getY();
-	}
-	
-	/**
-	 * Returns the z-coördinate of the {@code IMovable3D}.
-	 * 
-	 * @return  the movable's z-coördinate
-	 */
-	public default float getZ()
-	{
-		return Transform().getZ();
 	}
 }

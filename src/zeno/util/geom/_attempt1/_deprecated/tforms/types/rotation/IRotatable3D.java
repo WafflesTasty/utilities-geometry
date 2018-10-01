@@ -1,8 +1,10 @@
-package zeno.util.geom.tforms.types.rotation;
+package zeno.util.geom._attempt1._deprecated.tforms.types.rotation;
 
-import zeno.util.algebra.tensors.vectors.fixed.Vector3;
-import zeno.util.geom._deprecated.ITransformable;
-import zeno.util.geom.tforms.types.ITransformation3D;
+import zeno.util.algebra.linear.vector.fixed.Vector3;
+import zeno.util.geom.ITransformable;
+import zeno.util.geom._attempt1._deprecated.Ortho3x3;
+import zeno.util.geom._attempt1._deprecated.tforms.types.ITransformation3D;
+import zeno.util.tools.Floats;
 
 /**
  * The {@code IRotatable3D} interface defines an object
@@ -17,6 +19,11 @@ public interface IRotatable3D extends ITransformable
 {
 	@Override
 	public abstract ITransformation3D Transform();
+	
+	public default Ortho3x3 Basis()
+	{
+		return Transform().Basis();
+	}
 	
 		
 	/**
@@ -43,6 +50,22 @@ public interface IRotatable3D extends ITransformable
 		if(rad != 0)
 		{
 			Transform().rotateFor(v, rad);
+		}
+	}
+	
+	/**
+	 * Rotates the {@code IRotatable3D} around an arbitrary vector.
+	 * <br> The vector's length serves as the rotation angle.
+	 * 
+	 * @param v  a vector to rotate around
+	 * @see Vector3
+	 */
+	public default void rotateFor(Vector3 v)
+	{
+		float norm = v.norm();	
+		if(!Floats.isZero(norm, 3))
+		{
+			rotateFor(v, norm);	
 		}
 	}
 	
@@ -84,39 +107,5 @@ public interface IRotatable3D extends ITransformable
 		{
 			Transform().yawFor(rad);
 		}
-	}
-
-	
-	/**
-	 * Returns the up vector of the {@code IRotatable3D}.
-	 * 
-	 * @return  the transformable's up vector
-	 * @see Vector3
-	 */
-	public default Vector3 getForward()
-	{
-		return Transform().getForward();
-	}
-	
-	/**
-	 * Returns the right vector of the {@code IRotatable3D}.
-	 * 
-	 * @return  the transformable's right vector
-	 * @see Vector3
-	 */
-	public default Vector3 getRight()
-	{
-		return Transform().getRight();
-	}
-	
-	/**
-	 * Returns the up vector of the {@code IRotatable3D}.
-	 * 
-	 * @return  the transformable's up vector
-	 * @see Vector3
-	 */
-	public default Vector3 getUp()
-	{
-		return Transform().getUp();
 	}
 }

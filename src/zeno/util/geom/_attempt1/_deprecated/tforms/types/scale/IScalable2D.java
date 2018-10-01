@@ -1,8 +1,8 @@
-package zeno.util.geom.tforms.types.scale;
+package zeno.util.geom._attempt1._deprecated.tforms.types.scale;
 
-import zeno.util.algebra.tensors.vectors.fixed.Vector2;
-import zeno.util.geom._deprecated.ITransformable;
-import zeno.util.geom.tforms.types.ITransformation2D;
+import zeno.util.algebra.linear.vector.fixed.Vector2;
+import zeno.util.geom.ITransformable;
+import zeno.util.geom._attempt1._deprecated.tforms.types.ITransformation2D;
 
 /**
  * The {@code IScalable2D} interface defines an object
@@ -18,6 +18,11 @@ public interface IScalable2D extends ITransformable
 	@Override
 	public abstract ITransformation2D Transform();
 	
+	public default Vector2 Scale()
+	{
+		return Transform().Scale();
+	}
+	
 	
 	/**
 	 * Scales the {@code IScalable2D} with a specified factor.
@@ -29,7 +34,7 @@ public interface IScalable2D extends ITransformable
 	{
 		if(w != 1 || h != 1)
 		{
-			scaleTo(w * getWidth(), h * getHeight());
+			scaleTo(w * Scale().X(), h * Scale().Y());
 		}
 	}
 			
@@ -67,27 +72,6 @@ public interface IScalable2D extends ITransformable
 	 */
 	public default void scaleTo(Vector2 vec)
 	{
-		Transform().scaleTo(vec);
-	}
-	
-	
-	/**
-	 * Returns the height of the {@code IScalable2D}.
-	 * 
-	 * @return  the scalable's height
-	 */
-	public default float getHeight()
-	{
-		return Transform().getHeight();
-	}
-	
-	/**
-	 * Returns the width of the {@code IScalable2D}.
-	 * 
-	 * @return  the scalable's width
-	 */
-	public default float getWidth()
-	{
-		return Transform().getWidth();
+		Transform().setScale(vec);
 	}
 }

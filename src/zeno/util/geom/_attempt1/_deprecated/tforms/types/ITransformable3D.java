@@ -1,8 +1,8 @@
-package zeno.util.geom.tforms.types;
+package zeno.util.geom._attempt1._deprecated.tforms.types;
 
-import zeno.util.geom.tforms.types.movement.IVantage3D;
-import zeno.util.geom.tforms.types.scale.IScalable3D;
-import zeno.util.geom.tools.bounds.Bounded3D;
+import zeno.util.geom._attempt1._deprecated.tforms.types.movement.IVantage3D;
+import zeno.util.geom._attempt1._deprecated.tforms.types.scale.IScalable3D;
+import zeno.util.geom._attempt1.utilities.bounds.Bounded3D;
 
 /**
  * The {@code ITransformable3D} interface defines an object

@@ -1,15 +1,17 @@
-package zeno.util.geom.tforms.types.movement;
+package zeno.util.geom.transformables.movement;
 
-import zeno.util.algebra.tensors.vectors.fixed.Vector2;
-import zeno.util.geom._deprecated.ITransformable;
-import zeno.util.geom.tforms.types.ITransformation2D;
+import zeno.util.algebra.linear.vector.fixed.Vector2;
+import zeno.util.geom.ITransformable;
+import zeno.util.geom.transformations.ITransformation2D;
 
 /**
  * The {@code IMovable2D} interface defines an object
  * capable of being moved in 2D space.
- *
- * @since Apr 22, 2016
+ * 
  * @author Zeno
+ * @since Apr 22, 2016
+ * @version 1.0
+ * 
  * 
  * @see ITransformable
  */
@@ -17,13 +19,15 @@ public interface IMovable2D extends ITransformable
 {
 	@Override
 	public abstract ITransformation2D Transform();
-	
+
 	
 	/**
 	 * Moves the {@code IMovable2D} for a specified distance.
 	 * 
 	 * @param v  a vector direction to move
 	 * @param dist  a distance to move
+	 * 
+	 * 
 	 * @see Vector2
 	 */
 	public default void moveFor(Vector2 v, float dist)
@@ -42,21 +46,24 @@ public interface IMovable2D extends ITransformable
 	 */
 	public default void moveFor(float x, float y)
 	{
-		moveTo(x + getX(), y + getY());
+		if(x != 0f && y != 0f)
+		{
+			Vector2 o = Transform().Origin();
+			moveTo(x + o.X(), y + o.Y());
+		}
 	}
 	
 	/**
 	 * Moves the {@code IMovable2D} for a specified distance.
 	 * 
 	 * @param vec  a distance to move for
+	 * 
+	 * 
 	 * @see Vector2
 	 */
 	public default void moveFor(Vector2 vec)
 	{
-		if(vec.X() != 0 || vec.Y() != 0)
-		{
-			moveTo(vec.X() + getX(), vec.Y() + getY());
-		}
+		moveFor(vec.X(), vec.Y());
 	}
 
 
@@ -75,31 +82,12 @@ public interface IMovable2D extends ITransformable
 	 * Moves the {@code IMovable2D} to a new origin vector.
 	 * 
 	 * @param vec  a new origin vector
+	 * 
+	 * 
 	 * @see Vector2
 	 */
 	public default void moveTo(Vector2 vec)
 	{
-		Transform().moveTo(vec);
-	}
-	
-	
-	/**
-	 * Returns the x-coördinate of the {@code IMovable2D}.
-	 * 
-	 * @return  the movable's x-coördinate
-	 */
-	public default float getX()
-	{
-		return Transform().getX();
-	}
-	
-	/**
-	 * Returns the y-coördinate of the {@code IMovable2D}.
-	 * 
-	 * @return  the movable's y-coördinate
-	 */
-	public default float getY()
-	{
-		return Transform().getY();
+		Transform().setOrigin(vec);
 	}
 }

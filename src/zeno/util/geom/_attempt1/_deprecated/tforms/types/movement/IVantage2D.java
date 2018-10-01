@@ -1,7 +1,8 @@
-package zeno.util.geom.tforms.types.movement;
+package zeno.util.geom._attempt1._deprecated.tforms.types.movement;
 
-import zeno.util.algebra.tensors.vectors.fixed.Vector2;
-import zeno.util.geom.tforms.types.rotation.IRotatable2D;
+import zeno.util.algebra.linear.vector.fixed.Vector2;
+import zeno.util.geom._attempt1._deprecated.tforms.types.ITransformation2D;
+import zeno.util.geom._attempt1._deprecated.tforms.types.rotation.IRotatable2D;
 
 /**
  * The {@code IVantage2D} interface defines an object
@@ -15,6 +16,9 @@ import zeno.util.geom.tforms.types.rotation.IRotatable2D;
  */
 public interface IVantage2D extends IMovable2D, IRotatable2D
 {
+	@Override
+	public abstract ITransformation2D Transform();
+	
 	/**
 	 * Strafes the {@code IVantage2D} for a specified distance.
 	 * 
@@ -24,7 +28,7 @@ public interface IVantage2D extends IMovable2D, IRotatable2D
 	{
 		if (dist != 0)
 		{
-			Vector2 rwd = getRight();
+			Vector2 rwd = Basis().right();
 			moveFor(rwd.times(dist));
 		}
 	}
@@ -38,7 +42,7 @@ public interface IVantage2D extends IMovable2D, IRotatable2D
 	{
 		if (dist != 0)
 		{
-			Vector2 uwd = getUp();
+			Vector2 uwd = Basis().up();
 			moveFor(uwd.times(dist));
 		}
 	}

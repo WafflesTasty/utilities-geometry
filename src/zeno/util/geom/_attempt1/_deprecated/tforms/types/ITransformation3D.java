@@ -1,6 +1,6 @@
-package zeno.util.geom.tforms.types;
+package zeno.util.geom._attempt1._deprecated.tforms.types;
 
-import zeno.util.geom._deprecated.ITransformation;
+import zeno.util.geom.ITransformation;
 
 /**
  * The {@code ITransformation3D} interface defines an object

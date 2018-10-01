@@ -1,15 +1,17 @@
-package zeno.util.geom.tforms.types.scale;
+package zeno.util.geom.transformables.scale;
 
-import zeno.util.algebra.tensors.vectors.fixed.Vector3;
-import zeno.util.geom._deprecated.ITransformable;
-import zeno.util.geom.tforms.types.ITransformation3D;
+import zeno.util.algebra.linear.vector.fixed.Vector3;
+import zeno.util.geom.ITransformable;
+import zeno.util.geom.transformations.ITransformation3D;
 
 /**
  * The {@code IScalable3D} interface defines an object
  * capable of scaling in 3D space.
  *
- * @since Apr 21, 2016
  * @author Zeno
+ * @since Apr 21, 2016
+ * @version 1.0
+ * 
  * 
  * @see ITransformable
  */
@@ -17,8 +19,8 @@ public interface IScalable3D extends ITransformable
 {
 	@Override
 	public abstract ITransformation3D Transform();
+
 	
-		
 	/**
 	 * Scales the {@code IScalable3D} with a specified factor.
 	 * 
@@ -28,13 +30,19 @@ public interface IScalable3D extends ITransformable
 	 */
 	public default void scaleFor(float w, float h, float d)
 	{
-		scaleTo(w * getWidth(), h * getHeight(), d * getDepth());
+		if(w != 1f || h != 1f || d != 1f)
+		{
+			Vector3 s = Transform().Scale();
+			scaleTo(w * s.X(), h * s.Y(), d * s.Z());
+		}
 	}
 			
 	/**
 	 * Scales the {@code IScalable3D} with a set factor.
 	 * 
 	 * @param vec  a factor to scale with
+	 * 
+	 * 
 	 * @see Vector3
 	 */
 	public default void scaleFor(Vector3 vec)
@@ -59,41 +67,12 @@ public interface IScalable3D extends ITransformable
 	 * Scales the {@code IScalable3D} to a new scale vector.
 	 * 
 	 * @param vec  a new scale vector
+	 * 
+	 * 
 	 * @see Vector3
 	 */
 	public default void scaleTo(Vector3 vec)
 	{
-		Transform().scaleTo(vec);
-	}
-
-		
-	/**
-	 * Returns the height of the {@code IScalable3D}.
-	 * 
-	 * @return  the scalable's height
-	 */
-	public default float getHeight()
-	{
-		return Transform().getHeight();
-	}
-	
-	/**
-	 * Returns the width of the {@code IScalable3D}.
-	 * 
-	 * @return  the scalable's width
-	 */
-	public default float getWidth()
-	{
-		return Transform().getWidth();
-	}
-	
-	/**
-	 * Returns the depth of the {@code IScalable3D}.
-	 * 
-	 * @return  the scalable's depth
-	 */
-	public default float getDepth()
-	{
-		return Transform().getDepth();
+		Transform().setScale(vec);
 	}
 }
