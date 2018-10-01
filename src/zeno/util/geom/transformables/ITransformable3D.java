@@ -1,8 +1,8 @@
 package zeno.util.geom.transformables;
 
-import zeno.util.geom._attempt1.utilities.bounds.Bounded3D;
 import zeno.util.geom.transformables.movement.IVantage3D;
 import zeno.util.geom.transformables.scale.IScalable3D;
+import zeno.util.geom.utilities.bounds.Bounded3D;
 
 /**
  * The {@code ITransformable3D} interface defines an object

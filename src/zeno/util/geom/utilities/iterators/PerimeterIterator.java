@@ -2,10 +2,10 @@ package zeno.util.geom.utilities.iterators;
 
 import java.util.Iterator;
 
-import zeno.util.algebra.tensors.vectors.fixed.Vector2;
-import zeno.util.geom.dimension.two.IGeometry2D;
+import zeno.util.algebra.linear.vector.fixed.Vector2;
+import zeno.util.geom.collideables.geometry.planar.IGeometry2D;
 import zeno.util.geom.utilities.cardinal.Cardinal2D;
-import zeno.util.tools.primitives.Integers;
+import zeno.util.tools.Integers;
 
 /**
  * The {@code PerimeterIterator} class defines an iterator

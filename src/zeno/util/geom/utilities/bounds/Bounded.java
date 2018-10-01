@@ -1,8 +1,8 @@
 package zeno.util.geom.utilities.bounds;
 
-import zeno.util.algebra.tensors.vectors.Vector;
-import zeno.util.geom.dimension.any.shapes.NCuboid;
-import zeno.util.geom.utilities.shapes.ICuboid;
+import zeno.util.algebra.linear.vector.Vector;
+import zeno.util.geom.collideables.geometry.ICuboid;
+import zeno.util.geom.collideables.geometry.higher.shapes.NCuboid;
 
 /**
  * The {@code Bounded} interface defines an object bound in n dimensions.
@@ -69,6 +69,6 @@ public interface Bounded
 	 */
 	public default int Dimension()
 	{
-		return Center().size();
+		return Center().Size();
 	}
 }

@@ -1,8 +1,8 @@
 package zeno.util.geom.transformables;
 
-import zeno.util.geom._attempt1.utilities.bounds.Bounded2D;
 import zeno.util.geom.transformables.movement.IVantage2D;
 import zeno.util.geom.transformables.scale.IScalable2D;
+import zeno.util.geom.utilities.bounds.Bounded2D;
 
 /**
  * The {@code ITransformable2D} interface defines an object

@@ -3,10 +3,10 @@ package zeno.util.geom.algorithms;
 import java.util.ArrayList;
 import java.util.List;
 
-import zeno.util.algebra.tensors.Tensor;
-import zeno.util.algebra.tensors.vectors.Vector;
-import zeno.util.geom.utilities.shapes.ICuboid;
-import zeno.util.geom.utilities.shapes.Line;
+import zeno.util.algebra.linear.vector.Vector;
+import zeno.util.algebra.linear.vector.Vectors;
+import zeno.util.geom.collideables.geometry.ICuboid;
+import zeno.util.geom.collideables.geometry.Line;
 
 /**
  * The {@code LineClipper} class defines an algorithm
@@ -154,7 +154,7 @@ public class LineClipper
 	
 	private Vector project(Vector p, Vector q, float val, int i)
 	{
-		Tensor v = Vector.create(bounds.Dimension());
+		Vector v = Vectors.create(bounds.Dimension());
 		for(int j = 0; j < bounds.Dimension(); j++)
 		{
 			double coord = val;
@@ -169,7 +169,7 @@ public class LineClipper
 			v.set((float) coord, j);
 		}
 		
-		return (Vector) v;
+		return v;
 	}
 	
 	private Vector clip(Vector p, Vector q)
@@ -199,7 +199,7 @@ public class LineClipper
 				// If the projection line crosses the boundary minimum...
 				if(crosses(p, q, imin, i))
 				{
-					// Return the projected point.
+					// Repetition the projected point.
 					return project(p, q, imin, i);
 				}
 			}
@@ -217,7 +217,7 @@ public class LineClipper
 				// If the projection line crosses the boundary maximum...
 				if(crosses(p, q, imax, i))
 				{
-					// Return the projected point.
+					// Repetition the projected point.
 					return project(p, q, imax, i);
 				}
 			}

@@ -1,14 +1,17 @@
 package zeno.util.geom.utilities;
 
-import zeno.util.algebra.tensors.matrices.Matrix;
-import zeno.util.algebra.tensors.vectors.Vector;
+import zeno.util.algebra.algorithms.solvers.SLVCrout;
+import zeno.util.algebra.linear.matrix.Matrices;
+import zeno.util.algebra.linear.matrix.Matrix;
+import zeno.util.algebra.linear.vector.Vector;
+import zeno.util.algebra.linear.vector.Vectors;
 import zeno.util.geom.algorithms.LineClipper;
-import zeno.util.geom.utilities.shapes.ICuboid;
-import zeno.util.geom.utilities.shapes.IEllipsoid;
-import zeno.util.geom.utilities.shapes.ISphere;
-import zeno.util.geom.utilities.shapes.Line;
-import zeno.util.tools.primitives.Floats;
-import zeno.util.tools.primitives.Integers;
+import zeno.util.geom.collideables.geometry.ICuboid;
+import zeno.util.geom.collideables.geometry.IEllipsoid;
+import zeno.util.geom.collideables.geometry.ISphere;
+import zeno.util.geom.collideables.geometry.Line;
+import zeno.util.tools.Floats;
+import zeno.util.tools.Integers;
 
 /**
  * The {@code Intersection} class defines intersection methods between base geometric shapes.
@@ -206,7 +209,7 @@ public final class Intersection
 	{
 		float rad = s.Radius() + t.Radius();
 		Vector pq = s.Center().minus(t.Center());
-		return pq.normsqr() <= rad * rad;
+		return pq.normSqr() <= rad * rad;
 	}
 
 	/**
@@ -229,7 +232,7 @@ public final class Intersection
 		
 		float rad = s.Radius();
 		Vector v = l.P1().plus(qt.times(lam));
-		return v.normsqr() <= rad * rad;
+		return v.normSqr() <= rad * rad;
 	}
 	
 	
@@ -288,16 +291,18 @@ public final class Intersection
 		
 		
 		// Solve linear system.
-		Matrix mat = (Matrix) Matrix.create(3, 2);
+		Matrix mat = Matrices.create(2, 2);
+		Vector vec = Vectors.create(2);
 		
 		mat.set( pq.get(i), 0, 0);
-		mat.set( pq.get(j), 0, 1);
-		mat.set(-rs.get(i), 1, 0);
+		mat.set( pq.get(j), 1, 0);
+		mat.set(-rs.get(i), 0, 1);
 		mat.set(-rs.get(j), 1, 1);
-		mat.set( pr.get(i), 2, 0);
-		mat.set( pr.get(j), 2, 1);
+		vec.set( pr.get(i), 0);
+		vec.set( pr.get(j), 1);
 		
-		Vector v = mat.solve();
+		SLVCrout slv = new SLVCrout(mat);
+		Vector v = slv.solve(vec);
 		if(v == null)
 		{
 			return false;
@@ -332,7 +337,7 @@ public final class Intersection
 	{
 		int j = 0;
 		float max  = 0;
-		for(int k = 0; k < v.size(); k++)
+		for(int k = 0; k < v.Size(); k++)
 		{
 			if(i == k) continue;
 			

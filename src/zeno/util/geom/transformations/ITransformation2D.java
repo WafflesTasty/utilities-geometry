@@ -22,7 +22,17 @@ public interface ITransformation2D extends ITransformation
 	public abstract void setOrigin(Vector2 origin);
 	
 	public abstract void setScale(Vector2 scale);
-		
+	
+	public default void setOrigin(float x, float y)
+	{
+		setOrigin(new Vector2(x, y));
+	}
+	
+	public default void setScale(float w, float h)
+	{
+		setScale(new Vector2(w, h));
+	}
+	
 	
 	public abstract Matrix2x2 Basis();
 	

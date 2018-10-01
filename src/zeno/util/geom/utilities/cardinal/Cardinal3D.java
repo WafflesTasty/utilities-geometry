@@ -1,6 +1,6 @@
 package zeno.util.geom.utilities.cardinal;
 
-import zeno.util.algebra.tensors.vectors.fixed.Vector3;
+import zeno.util.algebra.linear.vector.fixed.Vector3;
 import zeno.util.geom.utilities.bounds.Bounded3D;
 
 /**

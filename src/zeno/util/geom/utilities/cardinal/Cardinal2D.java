@@ -1,6 +1,6 @@
 package zeno.util.geom.utilities.cardinal;
 
-import zeno.util.algebra.tensors.vectors.fixed.Vector2;
+import zeno.util.algebra.linear.vector.fixed.Vector2;
 import zeno.util.geom.utilities.bounds.Bounded2D;
 
 /**
@@ -23,15 +23,15 @@ public final class Cardinal2D extends Vector2
 	 */
 	public static Cardinal2D EAST 		= new Cardinal2D( 1, 0);
 	/**
-	 * The southeast {@code Cardinal2D} points along the first bisector.
+	 * The northeast {@code Cardinal2D} points along the first bisector.
 	 */
 	public static Cardinal2D NORTHEAST 	= new Cardinal2D( 1, 1);
 	/**
-	 * The south {@code Cardinal2D} points along the positive y-axis.
+	 * The north {@code Cardinal2D} points along the positive y-axis.
 	 */
 	public static Cardinal2D NORTH 		= new Cardinal2D( 0, 1);
 	/**
-	 * The southwest {@code Cardinal2D} points along the second bisector.
+	 * The northwest {@code Cardinal2D} points along the second bisector.
 	 */
 	public static Cardinal2D NORTHWEST 	= new Cardinal2D(-1, 1);
 	/**
@@ -39,15 +39,15 @@ public final class Cardinal2D extends Vector2
 	 */
 	public static Cardinal2D WEST 		= new Cardinal2D(-1, 0);
 	/**
-	 * The northwest {@code Cardinal2D} points along the third bisector.
+	 * The southwest {@code Cardinal2D} points along the third bisector.
 	 */
 	public static Cardinal2D SOUTHWEST 	= new Cardinal2D(-1,-1);
 	/**
-	 * The north {@code Cardinal2D} points along the negative y-axis.
+	 * The south {@code Cardinal2D} points along the negative y-axis.
 	 */
 	public static Cardinal2D SOUTH 		= new Cardinal2D( 0,-1);
 	/**
-	 * The northeast {@code Cardinal2D} points along the fourth bisector.
+	 * The southeast {@code Cardinal2D} points along the fourth bisector.
 	 */
 	public static Cardinal2D SOUTHEAST 	= new Cardinal2D( 1,-1);
 		

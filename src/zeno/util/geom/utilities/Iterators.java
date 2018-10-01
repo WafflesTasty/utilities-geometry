@@ -2,8 +2,8 @@ package zeno.util.geom.utilities;
 
 import java.awt.Point;
 
-import zeno.util.algebra.tensors.vectors.fixed.Vector2;
-import zeno.util.geom.dimension.two.IGeometry2D;
+import zeno.util.algebra.linear.vector.fixed.Vector2;
+import zeno.util.geom.collideables.geometry.planar.IGeometry2D;
 import zeno.util.geom.utilities.iterators.PerimeterIterator;
 import zeno.util.geom.utilities.iterators.SurfaceIterator;
 

@@ -1,12 +1,12 @@
 package zeno.util.geom.utilities;
 
-import zeno.util.algebra.tensors.vectors.Vector;
-import zeno.util.geom.utilities.shapes.ICuboid;
-import zeno.util.geom.utilities.shapes.IEllipsoid;
-import zeno.util.geom.utilities.shapes.ISphere;
-import zeno.util.geom.utilities.shapes.Line;
-import zeno.util.tools.primitives.Floats;
-import zeno.util.tools.primitives.Integers;
+import zeno.util.algebra.linear.vector.Vector;
+import zeno.util.geom.collideables.geometry.ICuboid;
+import zeno.util.geom.collideables.geometry.IEllipsoid;
+import zeno.util.geom.collideables.geometry.ISphere;
+import zeno.util.geom.collideables.geometry.Line;
+import zeno.util.tools.Floats;
+import zeno.util.tools.Integers;
 
 /**
  * The {@code Containment} class defines containment methods between base geometric shapes.
@@ -195,7 +195,7 @@ public final class Containment
 	{
 		float rad = s.Radius();
 		Vector px = v.minus(s.Center());
-		return px.normsqr() <= rad * rad;
+		return px.normSqr() <= rad * rad;
 	}
 	
 	/**
@@ -221,7 +221,7 @@ public final class Containment
 	{
 		float rad = s.Radius() - t.Radius();
 		Vector pq = s.Center().minus(t.Center());
-		return pq.normsqr() <= rad * rad;
+		return pq.normSqr() <= rad * rad;
 	}
 
 	

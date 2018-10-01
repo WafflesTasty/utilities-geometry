@@ -3,9 +3,10 @@ package zeno.util.geom.algorithms;
 import java.util.Iterator;
 import java.util.function.Consumer;
 
-import zeno.util.algebra.tensors.vectors.Vector;
-import zeno.util.tools.Messenger;
-import zeno.util.tools.primitives.Floats;
+import zeno.util.algebra.linear.vector.Vector;
+import zeno.util.algebra.linear.vector.Vectors;
+import zeno.util.tools.Floats;
+import zeno.util.tools.patterns.properties.Messenger;
 
 /**
  * The {@code Bresenham} class is a generalization of Bresenham's line algorithm.
@@ -75,13 +76,13 @@ public class Bresenham implements Messenger, Iterator<Vector>
 	{		
 		dif = q.minus(p);
 		
-		err = new Vector(dif.size());
-		src = new Vector(dif.size());
-		dst = new Vector(dif.size());
+		err = new Vector(dif.Size());
+		src = new Vector(dif.Size());
+		dst = new Vector(dif.Size());
 		
 		
-		float dMax = Floats.max(dif.values()) / 2;
-		for(int i = 0; i < dif.size(); i++)
+		float dMax = Floats.max(dif.Values()) / 2;
+		for(int i = 0; i < dif.Size(); i++)
 		{
 			float iSrc = Floats.floor(p.get(i));
 			float iDst = Floats.ceil(q.get(i));
@@ -110,7 +111,7 @@ public class Bresenham implements Messenger, Iterator<Vector>
 	 */
 	public void generate(float... values)
 	{
-		Vector[] vec = Vector.split(2, values);
+		Vector[] vec = Vectors.split(2, values);
 		generate(vec[0], vec[1]);
 	}
 	
@@ -131,12 +132,12 @@ public class Bresenham implements Messenger, Iterator<Vector>
 	public Vector next()
 	{		
 		float dMax, iErr, iNxt;	
-		dMax = Floats.max(dif.values());
+		dMax = Floats.max(dif.Values());
 		
 		sendMessage("Finding next point...");
 		sendMessage("Maximum diff is " + dMax + ".");
 		
-		for(int i = 0; i < dif.size(); i++)
+		for(int i = 0; i < dif.Size(); i++)
 		{
 			iErr  = err.get(i);
 			iErr -= Floats.abs(dif.get(i));
@@ -147,7 +148,7 @@ public class Bresenham implements Messenger, Iterator<Vector>
 			{
 				iNxt  = nxt.get(i);
 				iNxt += Floats.sign(dif.get(i));
-				iErr += Floats.max(Floats.abs(dif.values()));
+				iErr += Floats.max(Floats.abs(dif.Values()));
 				
 				sendMessage("Coördinate incremented.");
 				
