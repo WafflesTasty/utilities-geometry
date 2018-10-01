@@ -2,7 +2,7 @@ package zeno.util.geom.transformables.movement;
 
 import zeno.util.algebra.linear.vector.fixed.Vector3;
 import zeno.util.geom.ITransformable;
-import zeno.util.geom.transformations.ITransformation3D;
+import zeno.util.geom.transforms.ITransformation3D;
 
 /**
  * The {@code IMovable3D} interface defines an object

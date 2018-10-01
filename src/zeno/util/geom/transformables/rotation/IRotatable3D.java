@@ -3,7 +3,7 @@ package zeno.util.geom.transformables.rotation;
 import zeno.util.algebra.linear.matrix.fixed.Matrix3x3;
 import zeno.util.algebra.linear.vector.fixed.Vector3;
 import zeno.util.geom.ITransformable;
-import zeno.util.geom.transformations.ITransformation3D;
+import zeno.util.geom.transforms.ITransformation3D;
 import zeno.util.tools.Floats;
 
 /**

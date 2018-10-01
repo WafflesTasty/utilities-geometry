@@ -1,7 +1,7 @@
-package zeno.util.geom.tforms.types;
+package zeno.util.geom._deprecated.tforms.types;
 
+import zeno.util.geom.ITransformation;
 import zeno.util.geom._deprecated.IProjectable;
-import zeno.util.geom._deprecated.ITransformation;
 
 /**
  * The {@code IProjectable3D} interface defines an object

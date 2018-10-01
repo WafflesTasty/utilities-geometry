@@ -1,8 +1,8 @@
-package zeno.util.geom.tforms;
+package zeno.util.geom._deprecated.tforms;
 
-import zeno.util.algebra.tensors.matrices.fixed.Matrix4x4;
-import zeno.util.geom.tforms.types.IProjectable3D;
-import zeno.util.tools.primitives.Floats;
+import zeno.util.algebra.linear.matrix.fixed.Matrix4x4;
+import zeno.util.geom._deprecated.tforms.types.IProjectable3D;
+import zeno.util.tools.Floats;
 
 /**
  * The {@code Project3D} class defines a perspective projection matrix from 3D to 2D space.
@@ -85,7 +85,7 @@ public class Perspective3D implements IProjectable3D
 	
 	
 	@Override
-	public Matrix4x4 getInverse()
+	public Matrix4x4 Inverse()
 	{
 		float w = rBase * rMult * sHeight;
 		float h = sHeight;
@@ -99,16 +99,16 @@ public class Perspective3D implements IProjectable3D
 		m.set(h / (2 * z), 1, 1);
 		
 		m.set(0, 2, 2);
-		m.set(1, 3, 2);
+		m.set(1, 2, 3);
 		
-		m.set(- d / (2 * z * (d + z)), 2, 3);
+		m.set(- d / (2 * z * (d + z)), 3, 2);
 		m.set((d + 2 * z) / (2 * z * (d + z)), 3, 3);
 		
 		return m;
 	}
 	
 	@Override
-	public Matrix4x4 getMatrix()
+	public Matrix4x4 Matrix()
 	{
 		float w = rBase * rMult * sHeight;
 		float h = sHeight;
@@ -122,9 +122,9 @@ public class Perspective3D implements IProjectable3D
 		m.set(2 * z / h, 1, 1);
 		
 		m.set(1 + 2 * z / d, 2, 2);
-		m.set(-2 * z * (z + d) / d, 3, 2);
+		m.set(-2 * z * (z + d) / d, 2, 3);
 		
-		m.set(1, 2, 3);
+		m.set(1, 3, 2);
 		m.set(0, 3, 3);
 
 		return m;

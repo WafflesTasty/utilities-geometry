@@ -1,4 +1,4 @@
-package zeno.util.geom.transformations;
+package zeno.util.geom.transforms;
 
 import zeno.util.algebra.linear.matrix.fixed.Matrix2x2;
 import zeno.util.algebra.linear.vector.fixed.Vector2;

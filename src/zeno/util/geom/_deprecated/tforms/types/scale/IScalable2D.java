@@ -1,17 +1,15 @@
-package zeno.util.geom.transformables.scale;
+package zeno.util.geom._deprecated.tforms.types.scale;
 
 import zeno.util.algebra.linear.vector.fixed.Vector2;
 import zeno.util.geom.ITransformable;
-import zeno.util.geom.transforms.ITransformation2D;
+import zeno.util.geom._deprecated.tforms.types.ITransformation2D;
 
 /**
  * The {@code IScalable2D} interface defines an object
  * capable of being scaled in 2D space.
  *
- * @author Zeno
  * @since Apr 22, 2016
- * @version 1.0
- * 
+ * @author Zeno
  * 
  * @see ITransformable
  */
@@ -19,7 +17,12 @@ public interface IScalable2D extends ITransformable
 {	
 	@Override
 	public abstract ITransformation2D Transform();
-
+	
+	public default Vector2 Scale()
+	{
+		return Transform().Scale();
+	}
+	
 	
 	/**
 	 * Scales the {@code IScalable2D} with a specified factor.
@@ -29,10 +32,9 @@ public interface IScalable2D extends ITransformable
 	 */
 	public default void scaleFor(float w, float h)
 	{
-		if(w != 1f || h != 1f)
+		if(w != 1 || h != 1)
 		{
-			Vector2 s = Transform().Scale();
-			scaleTo(w * s.X(), h * s.Y());
+			scaleTo(w * Scale().X(), h * Scale().Y());
 		}
 	}
 			
@@ -40,13 +42,14 @@ public interface IScalable2D extends ITransformable
 	 * Scales the {@code IScalable2D} with a set factor.
 	 * 
 	 * @param vec  a factor to scale with
-	 * 
-	 * 
 	 * @see Vector2
 	 */
 	public default void scaleFor(Vector2 vec)
 	{
-		scaleFor(vec.X(), vec.Y());
+		if(vec.X() != 1 || vec.Y() != 1)
+		{
+			scaleFor(vec.X(), vec.Y());
+		}
 	}
 
 	
@@ -65,8 +68,6 @@ public interface IScalable2D extends ITransformable
 	 * Scales the {@code IScalable2D} to a new scale vector.
 	 * 
 	 * @param vec  a new scale vector
-	 * 
-	 * 
 	 * @see Vector2
 	 */
 	public default void scaleTo(Vector2 vec)

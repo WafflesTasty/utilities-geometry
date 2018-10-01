@@ -1,16 +1,15 @@
-package zeno.util.geom.transformables.movement;
+package zeno.util.geom._deprecated.tforms.types.movement;
 
 import zeno.util.algebra.linear.vector.fixed.Vector2;
 import zeno.util.geom.ITransformable;
-import zeno.util.geom.transforms.ITransformation2D;
+import zeno.util.geom._deprecated.tforms.types.ITransformation2D;
 
 /**
  * The {@code IMovable2D} interface defines an object
  * capable of being moved in 2D space.
- * 
- * @author Zeno
+ *
  * @since Apr 22, 2016
- * @version 1.0
+ * @author Zeno
  * 
  * 
  * @see ITransformable
@@ -19,15 +18,18 @@ public interface IMovable2D extends ITransformable
 {
 	@Override
 	public abstract ITransformation2D Transform();
-
+	
+	public default Vector2 Origin()
+	{
+		return Transform().Origin();
+	}
+	
 	
 	/**
 	 * Moves the {@code IMovable2D} for a specified distance.
 	 * 
 	 * @param v  a vector direction to move
 	 * @param dist  a distance to move
-	 * 
-	 * 
 	 * @see Vector2
 	 */
 	public default void moveFor(Vector2 v, float dist)
@@ -46,24 +48,21 @@ public interface IMovable2D extends ITransformable
 	 */
 	public default void moveFor(float x, float y)
 	{
-		if(x != 0f && y != 0f)
-		{
-			Vector2 o = Transform().Origin();
-			moveTo(x + o.X(), y + o.Y());
-		}
+		moveTo(x + Origin().X(), y + Origin().Y());
 	}
 	
 	/**
 	 * Moves the {@code IMovable2D} for a specified distance.
 	 * 
 	 * @param vec  a distance to move for
-	 * 
-	 * 
 	 * @see Vector2
 	 */
 	public default void moveFor(Vector2 vec)
 	{
-		moveFor(vec.X(), vec.Y());
+		if(vec.X() != 0 || vec.Y() != 0)
+		{
+			moveTo(vec.X() + Origin().X(), vec.Y() + Origin().Y());
+		}
 	}
 
 
@@ -82,8 +81,6 @@ public interface IMovable2D extends ITransformable
 	 * Moves the {@code IMovable2D} to a new origin vector.
 	 * 
 	 * @param vec  a new origin vector
-	 * 
-	 * 
 	 * @see Vector2
 	 */
 	public default void moveTo(Vector2 vec)

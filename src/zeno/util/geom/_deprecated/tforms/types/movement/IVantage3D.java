@@ -1,17 +1,15 @@
-package zeno.util.geom.transformables.movement;
+package zeno.util.geom._deprecated.tforms.types.movement;
 
 import zeno.util.algebra.linear.vector.fixed.Vector3;
-import zeno.util.geom.transformables.rotation.IRotatable3D;
-import zeno.util.geom.transforms.ITransformation3D;
+import zeno.util.geom._deprecated.tforms.types.ITransformation3D;
+import zeno.util.geom._deprecated.tforms.types.rotation.IRotatable3D;
 
 /**
  * The {@code IVantage3D} interface	defines an object
  * capable of being moved and rotated in 3D space.
- * 
- * @author Zeno
+ *
  * @since Apr 21, 2016
- * @version 1.0
- * 
+ * @author Zeno
  * 
  * @see IRotatable3D
  * @see IMovable3D
@@ -20,7 +18,6 @@ public interface IVantage3D extends IMovable3D, IRotatable3D
 {	
 	@Override
 	public abstract ITransformation3D Transform();
-	
 	
 	/**
 	 * Strafes the {@code IVantage3D} for a distance.
@@ -31,7 +28,7 @@ public interface IVantage3D extends IMovable3D, IRotatable3D
 	{
 		if(dist != 0)
 		{
-			Vector3 rwd = Transform().Right();
+			Vector3 rwd = Basis().right();
 			moveFor(rwd.times(dist));
 		}
 	}
@@ -45,7 +42,7 @@ public interface IVantage3D extends IMovable3D, IRotatable3D
 	{
 		if(dist != 0)
 		{
-			Vector3 fwd = Transform().Forward();
+			Vector3 fwd = Basis().forward();
 			moveFor(fwd.times(dist));
 		}
 	}
@@ -59,7 +56,7 @@ public interface IVantage3D extends IMovable3D, IRotatable3D
 	{
 		if(dist != 0)
 		{
-			Vector3 fwd = Transform().Up();
+			Vector3 fwd = Basis().up();
 			moveFor(fwd.times(dist));
 		}
 	}

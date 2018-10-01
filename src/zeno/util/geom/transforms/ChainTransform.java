@@ -1,4 +1,4 @@
-package zeno.util.geom.transformations;
+package zeno.util.geom.transforms;
 
 import zeno.util.algebra.linear.matrix.fixed.Matrix4x4;
 import zeno.util.algebra.linear.matrix.types.orthogonal.Identity;

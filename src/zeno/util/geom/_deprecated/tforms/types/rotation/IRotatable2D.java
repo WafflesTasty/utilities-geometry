@@ -1,17 +1,15 @@
-package zeno.util.geom.transformables.rotation;
+package zeno.util.geom._deprecated.tforms.types.rotation;
 
-import zeno.util.algebra.linear.matrix.fixed.Matrix2x2;
 import zeno.util.geom.ITransformable;
-import zeno.util.geom.transforms.ITransformation2D;
+import zeno.util.geom._deprecated.Ortho2x2;
+import zeno.util.geom._deprecated.tforms.types.ITransformation2D;
 
 /**
  * The {@code IRotatable2D} interface defines an object
  * capable of being rotated in 2D space.
  *
- * @author Zeno
  * @since Apr 22, 2016
- * @version 1.0
- * 
+ * @author Zeno
  * 
  * @see ITransformable
  */
@@ -19,7 +17,12 @@ public interface IRotatable2D extends ITransformable
 {
 	@Override
 	public abstract ITransformation2D Transform();
-
+	
+	public default Ortho2x2 Basis()
+	{
+		return Transform().Basis();
+	}
+	
 	
 	/**
 	 * Rotates the {@code IRotatable2D} for a specified angle.
@@ -30,9 +33,7 @@ public interface IRotatable2D extends ITransformable
 	{
 		if(rad != 0)
 		{
-			Matrix2x2 b = Transform().Basis();
-			b = Matrix2x2.rotate2D(rad).times(b);
-			Transform().setBasis(b);
+			Transform().Basis().rotateFor(rad);
 		}
 	}
 	
@@ -43,6 +44,6 @@ public interface IRotatable2D extends ITransformable
 	 */
 	public default void rotateTo(float rad)
 	{
-		Transform().setBasis(Matrix2x2.rotate2D(rad));
+		Transform().Basis().rotateTo(rad);
 	}
 }

@@ -1,5 +1,7 @@
 package zeno.util.geom._deprecated;
 
+import zeno.util.geom.ITransformation;
+
 /**
  * The {@code IProjectable} interface defines an object capable
  * of being projected through an {@link ITransformation}.

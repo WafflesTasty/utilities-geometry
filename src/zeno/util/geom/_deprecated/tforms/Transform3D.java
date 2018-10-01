@@ -1,11 +1,11 @@
-package zeno.util.geom.tforms;
+package zeno.util.geom._deprecated.tforms;
 
-import zeno.util.algebra.tensors.matrices.fixed.Matrix4x4;
-import zeno.util.algebra.tensors.matrices.ortho.Ortho3x3;
-import zeno.util.algebra.tensors.vectors.fixed.Vector3;
-import zeno.util.geom.shapes.solids.Cuboid;
-import zeno.util.geom.tforms.types.ITransformation3D;
-import zeno.util.tools.primitives.Floats;
+import zeno.util.algebra.linear.matrix.fixed.Matrix4x4;
+import zeno.util.algebra.linear.vector.fixed.Vector3;
+import zeno.util.geom._deprecated.Ortho3x3;
+import zeno.util.geom._deprecated.tforms.types.ITransformation3D;
+import zeno.util.geom.collideables.geometry.spatial.shapes.Cuboid;
+import zeno.util.tools.Floats;
 
 /**
  * The {@code Transform3D} class defines the parameters
@@ -27,8 +27,26 @@ public final class Transform3D implements ITransformation3D
 	public Transform3D()
 	{
 		basis = new Ortho3x3();
+		scale = new Vector3(1, 1, 1);
 		origin = new Vector3();
-		scale = new Vector3(1);
+	}
+	
+	@Override
+	public Ortho3x3 Basis()
+	{
+		return basis;
+	}
+	
+	@Override
+	public Vector3 Origin()
+	{
+		return origin;
+	}
+	
+	@Override
+	public Vector3 Scale()
+	{
+		return scale;
 	}
 		
 	
@@ -64,20 +82,20 @@ public final class Transform3D implements ITransformation3D
 		Matrix4x4 m = Matrix4x4.identity();
 		
 		m.set(rx, 0, 0);
-		m.set(ux, 1, 0);
-		m.set(fx, 2, 0);
+		m.set(ux, 0, 1);
+		m.set(fx, 0, 2);
 		
-		m.set(ry, 0, 1);
+		m.set(ry, 1, 0);
 		m.set(uy, 1, 1);
-		m.set(fy, 2, 1);
+		m.set(fy, 1, 2);
 		
-		m.set(rz, 0, 2);
-		m.set(uz, 1, 2);
+		m.set(rz, 2, 0);
+		m.set(uz, 2, 1);
 		m.set(fz, 2, 2);
 		
-		m.set(tx, 3, 0);
-		m.set(ty, 3, 1);
-		m.set(tz, 3, 2);
+		m.set(tx, 0, 3);
+		m.set(ty, 1, 3);
+		m.set(tz, 2, 3);
 		
 		return m;
 	}
@@ -110,15 +128,15 @@ public final class Transform3D implements ITransformation3D
 		Matrix4x4 m = Matrix4x4.identity();
 		
 		m.set(rx, 0, 0);
-		m.set(ux, 1, 0);
-		m.set(fx, 2, 0);
+		m.set(ux, 0, 1);
+		m.set(fx, 0, 2);
 		
-		m.set(ry, 0, 1);
+		m.set(ry, 1, 0);
 		m.set(uy, 1, 1);
-		m.set(fy, 2, 1);
+		m.set(fy, 1, 2);
 		
-		m.set(rz, 0, 2);
-		m.set(uz, 1, 2);
+		m.set(rz, 2, 0);
+		m.set(uz, 2, 1);
 		m.set(fz, 2, 2);
 				
 		return m;
@@ -156,15 +174,15 @@ public final class Transform3D implements ITransformation3D
 		Matrix4x4 m = Matrix4x4.identity();
 		
 		m.set(rx * sx, 0, 0);
-		m.set(ux * sy, 1, 0);
-		m.set(fx * sz, 2, 0);
+		m.set(ux * sy, 0, 1);
+		m.set(fx * sz, 0, 2);
 		
-		m.set(ry * sx, 0, 1);
+		m.set(ry * sx, 1, 0);
 		m.set(uy * sy, 1, 1);
-		m.set(fy * sz, 2, 1);
+		m.set(fy * sz, 1, 2);
 		
-		m.set(rz * sx, 0, 2);
-		m.set(uz * sy, 1, 2);
+		m.set(rz * sx, 2, 0);
+		m.set(uz * sy, 2, 1);
 		m.set(fz * sz, 2, 2);
 		
 		return m;
@@ -203,20 +221,20 @@ public final class Transform3D implements ITransformation3D
 		Matrix4x4 m = Matrix4x4.identity();
 		
 		m.set(rx, 0, 0);
-		m.set(ry, 1, 0);
-		m.set(rz, 2, 0);
+		m.set(ry, 0, 1);
+		m.set(rz, 0, 2);
 		
-		m.set(ux, 0, 1);
+		m.set(ux, 1, 0);
 		m.set(uy, 1, 1);
-		m.set(uz, 2, 1);
+		m.set(uz, 1, 2);
 		
-		m.set(fx, 0, 2);
-		m.set(fy, 1, 2);
+		m.set(fx, 2, 0);
+		m.set(fy, 2, 1);
 		m.set(fz, 2, 2);
 		
-		m.set(tx, 3, 0);
-		m.set(ty, 3, 1);
-		m.set(tz, 3, 2);
+		m.set(tx, 0, 3);
+		m.set(ty, 1, 3);
+		m.set(tz, 2, 3);
 		
 		return m;
 	}
@@ -249,15 +267,15 @@ public final class Transform3D implements ITransformation3D
 		Matrix4x4 m = Matrix4x4.identity();
 		
 		m.set(rx, 0, 0);
-		m.set(ry, 1, 0);
-		m.set(rz, 2, 0);
+		m.set(ry, 0, 1);
+		m.set(rz, 0, 2);
 		
-		m.set(ux, 0, 1);
+		m.set(ux, 1, 0);
 		m.set(uy, 1, 1);
-		m.set(uz, 2, 1);
+		m.set(uz, 1, 2);
 		
-		m.set(fx, 0, 2);
-		m.set(fy, 1, 2);
+		m.set(fx, 2, 0);
+		m.set(fy, 2, 1);
 		m.set(fz, 2, 2);
 		
 		return m;
@@ -295,15 +313,15 @@ public final class Transform3D implements ITransformation3D
 		Matrix4x4 m = Matrix4x4.identity();
 		
 		m.set(rx / sx, 0, 0);
-		m.set(ry / sx, 1, 0);
-		m.set(rz / sx, 2, 0);
+		m.set(ry / sx, 0, 1);
+		m.set(rz / sx, 0, 2);
 		
-		m.set(ux / sy, 0, 1);
+		m.set(ux / sy, 1, 0);
 		m.set(uy / sy, 1, 1);
-		m.set(uz / sy, 2, 1);
+		m.set(uz / sy, 1, 2);
 		
-		m.set(fx / sz, 0, 2);
-		m.set(fy / sz, 1, 2);
+		m.set(fx / sz, 2, 0);
+		m.set(fy / sz, 2, 1);
 		m.set(fz / sz, 2, 2);
 		
 		return m;
@@ -391,7 +409,7 @@ public final class Transform3D implements ITransformation3D
 	
 			
 	@Override
-	public Matrix4x4 getInverse()
+	public Matrix4x4 Inverse()
 	{
 		Vector3 fwd = basis.forward();
 		Vector3 rwd = basis.right();
@@ -421,31 +439,31 @@ public final class Transform3D implements ITransformation3D
 		Matrix4x4 m = Matrix4x4.identity();
 		
 		m.set(rx / sx, 0, 0);
-		m.set(ry / sx, 1, 0);
-		m.set(rz / sx, 2, 0);
+		m.set(ry / sx, 0, 1);
+		m.set(rz / sx, 0, 2);
 		
-		m.set(ux / sy, 0, 1);
+		m.set(ux / sy, 1, 0);
 		m.set(uy / sy, 1, 1);
-		m.set(uz / sy, 2, 1);
+		m.set(uz / sy, 1, 2);
 		
-		m.set(fx / sz, 0, 2);
-		m.set(fy / sz, 1, 2);
+		m.set(fx / sz, 2, 0);
+		m.set(fy / sz, 2, 1);
 		m.set(fz / sz, 2, 2);
 		
-		m.set(tx / sx, 3, 0);
-		m.set(ty / sy, 3, 1);
-		m.set(tz / sz, 3, 2);
+		m.set(tx / sx, 0, 3);
+		m.set(ty / sy, 1, 3);
+		m.set(tz / sz, 2, 3);
 		
 		return m;
 	}
 
 	@Override
-	public Matrix4x4 getMatrix()
+	public Matrix4x4 Matrix()
 	{
 		Vector3 fwd = basis.forward();
 		Vector3 rwd = basis.right();
 		Vector3 uwd = basis.up();
-		
+
 		float tx = origin.X();
 		float ty = origin.Y();
 		float tz = origin.Z();
@@ -470,43 +488,25 @@ public final class Transform3D implements ITransformation3D
 		Matrix4x4 m = Matrix4x4.identity();
 		
 		m.set(rx * sx, 0, 0);
-		m.set(ux * sy, 1, 0);
-		m.set(fx * sz, 2, 0);
+		m.set(ux * sy, 0, 1);
+		m.set(fx * sz, 0, 2);
 		
-		m.set(ry * sx, 0, 1);
+		m.set(ry * sx, 1, 0);
 		m.set(uy * sy, 1, 1);
-		m.set(fy * sz, 2, 1);
+		m.set(fy * sz, 1, 2);
 		
-		m.set(rz * sx, 0, 2);
-		m.set(uz * sy, 1, 2);
+		m.set(rz * sx, 2, 0);
+		m.set(uz * sy, 2, 1);
 		m.set(fz * sz, 2, 2);
 		
-		m.set(tx, 3, 0);
-		m.set(ty, 3, 1);
-		m.set(tz, 3, 2);
+		m.set(tx, 0, 3);
+		m.set(ty, 1, 3);
+		m.set(tz, 2, 3);
 		
 		return m;
 	}
-	
-	@Override
-	public Vector3 getForward()
-	{
-		return basis.forward();
-	}
-	
-	@Override
-	public Vector3 getRight()
-	{
-		return basis.right();
-	}
-	
-	@Override
-	public Vector3 getUp()
-	{
-		return basis.up();
-	}
 
-	
+
 	@Override
 	public boolean equals(Object o)
 	{
@@ -532,45 +532,8 @@ public final class Transform3D implements ITransformation3D
 		result = prime * result + scale.hashCode();
 		return result;
 	}
-	
-	
-	@Override
-	public float getHeight()
-	{
-		return scale.Y();
-	}
-	
-	@Override
-	public float getWidth()
-	{
-		return scale.X();
-	}
 
-	@Override
-	public float getDepth()
-	{
-		return scale.Z();
-	}
 
-	@Override
-	public float getX()
-	{
-		return origin.X();
-	}
-
-	@Override
-	public float getY()
-	{
-		return origin.Y();
-	}
-
-	@Override
-	public float getZ()
-	{
-		return origin.Z();
-	}
-	
-	
 	@Override
 	public float XMin()
 	{

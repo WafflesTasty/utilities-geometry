@@ -1,208 +1,55 @@
-package zeno.util.geom.tforms;
+package zeno.util.geom._deprecated.tforms;
 
-import zeno.util.algebra.tensors.matrices.fixed.Matrix4x4;
-import zeno.util.algebra.tensors.matrices.ortho.Ortho2x2;
-import zeno.util.algebra.tensors.vectors.fixed.Vector2;
-import zeno.util.geom.shapes.surfaces.Rectangle;
-import zeno.util.geom.tforms.types.ITransformation2D;
-import zeno.util.tools.primitives.Floats;
+import zeno.util.algebra.linear.matrix.fixed.Matrix4x4;
+import zeno.util.algebra.linear.vector.fixed.Vector2;
+import zeno.util.geom._deprecated.Ortho2x2;
+import zeno.util.geom._deprecated.tforms.types.ITransformation2D;
+import zeno.util.tools.patterns.properties.Copyable;
 
-/**
- * The {@code Transform2D} class defines the parameters
- * for a geometric transformation in 2D space.
- *
- * @since Apr 21, 2016
- * @author Zeno
- * 
- * @see ITransformation2D
- */
-public final class Transform2D implements ITransformation2D
+public final class Transform2D implements ITransformation2D, Copyable<Transform2D>
 {
 	private Ortho2x2 basis;
 	private Vector2 origin, scale;
+	private float zDepth;
 	
-	/**
-	 * Creates a new {@code Transform2D}.
-	 */
 	public Transform2D()
 	{
 		basis = new Ortho2x2();
+		scale = new Vector2(1, 1);
 		origin = new Vector2();
-		scale = new Vector2(1);
 	}
 
-
-	/**
-	 * Returns the viewpoint matrix of the {@code Transform2D}.
-	 * 
-	 * @return  a viewpoint matrix
-	 * @see Matrix4x4
-	 */
-	public Matrix4x4 getViewpointMatrix()
+	
+	public Matrix4x4 PositionMatrix()
 	{
-		Vector2 rwd = basis.right();
-		Vector2 uwd = basis.up();
-		
-		float tx = origin.X();
-		float ty = origin.Y();
-		
-		float rx = rwd.X();
-		float ry = rwd.Y();
-		
-		float ux = uwd.X();
-		float uy = uwd.Y();
-
-		
-		Matrix4x4 m = Matrix4x4.identity();
-		
-		m.set(rx, 0, 0);
-		m.set(ux, 1, 0);
-		
-		m.set(ry, 0, 1);
-		m.set(uy, 1, 1);
-		
-		m.set(tx, 3, 0);
-		m.set(ty, 3, 1);
-		
-		return m;
+		return Matrix4x4.translate3D(origin.X(), origin.Y(), 0);
 	}
 	
-	/**
-	 * Returns the rotation matrix of the {@code Transform2D}.
-	 * 
-	 * @return  a rotation matrix
-	 * @see Matrix4x4
-	 */
-	public Matrix4x4 getRotationMatrix()
+	public Matrix4x4 RotationMatrix()
 	{
-		Vector2 rwd = basis.right();
-		Vector2 uwd = basis.up();
-		
-		float rx = rwd.X();
-		float ry = rwd.Y();
-		
-		float ux = uwd.X();
-		float uy = uwd.Y();
-
-		
-		Matrix4x4 m = Matrix4x4.identity();
-		
-		m.set(rx, 0, 0);
-		m.set(ux, 1, 0);
-		
-		m.set(ry, 0, 1);
-		m.set(uy, 1, 1);
-		
-		return m;
+		return basis.rotate3D();
 	}
 	
-	/**
-	 * Returns the local matrix of the {@code Transform2D}.
-	 * 
-	 * @return  a local matrix
-	 * @see Matrix4x4
-	 */
-	public Matrix4x4 getLocalMatrix()
+	public Matrix4x4 ScaleMatrix()
 	{
-		Vector2 rwd = basis.right();
-		Vector2 uwd = basis.up();
+		return Matrix4x4.scale3D(scale.X(), scale.Y(), 0);
+	}
 
-		float sx = scale.X();
-		float sy = scale.Y();
-		
-		float rx = rwd.X();
-		float ry = rwd.Y();
-		
-		float ux = uwd.X();
-		float uy = uwd.Y();
-
-		
-		Matrix4x4 m = Matrix4x4.identity();
-		
-		m.set(rx * sx, 0, 0);
-		m.set(ux * sx, 1, 0);
-		
-		m.set(ry * sy, 0, 1);
-		m.set(uy * sy, 1, 1);
-		
-		return m;
+	public void setZDepth(float depth)
+	{
+		zDepth = depth;
 	}
 	
 	
-	/**
-	 * Returns the viewpoint inverse of the {@code Transform2D}.
-	 * 
-	 * @return  a viewpoint inverse
-	 * @see Matrix4x4
-	 */
-	public Matrix4x4 getViewpointInverse()
+	@Override
+	public Matrix4x4 Inverse()
 	{
 		Vector2 rwd = basis.right();
 		Vector2 uwd = basis.up();
 				
 		float tx = -origin.dot(rwd);
 		float ty = -origin.dot(uwd);
-		
-		float rx = rwd.X();
-		float ry = rwd.Y();
-		
-		float ux = uwd.X();
-		float uy = uwd.Y();
-
-		
-		Matrix4x4 m = Matrix4x4.identity();
-		
-		m.set(rx, 0, 0);
-		m.set(ry, 1, 0);
-		
-		m.set(ux, 0, 1);
-		m.set(uy, 1, 1);
-		
-		m.set(tx, 3, 0);
-		m.set(ty, 3, 1);
-		
-		return m;
-	}
-	
-	/**
-	 * Returns the rotation inverse of the {@code Transform2D}.
-	 * 
-	 * @return  a rotation inverse
-	 * @see Matrix4x4
-	 */
-	public Matrix4x4 getRotationInverse()
-	{
-		Vector2 rwd = basis.right();
-		Vector2 uwd = basis.up();
-				
-		float rx = rwd.X();
-		float ry = rwd.Y();
-		
-		float ux = uwd.X();
-		float uy = uwd.Y();
-
-		
-		Matrix4x4 m = Matrix4x4.identity();
-		
-		m.set(rx, 0, 0);
-		m.set(ry, 1, 0);
-		
-		m.set(ux, 0, 1);
-		m.set(uy, 1, 1);
-		
-		return m;
-	}
-	
-	/**
-	 * Returns the local inverse of the {@code Transform2D}.
-	 * 
-	 * @return  a local inverse
-	 * @see Matrix4x4
-	 */
-	public Matrix4x4 getLocalInverse()
-	{
-		Vector2 rwd = basis.right();
-		Vector2 uwd = basis.up();
+		float tz = zDepth;
 		
 		float sx = scale.X();
 		float sy = scale.Y();
@@ -217,142 +64,89 @@ public final class Transform2D implements ITransformation2D
 		Matrix4x4 m = Matrix4x4.identity();
 		
 		m.set(rx / sx, 0, 0);
-		m.set(ry / sy, 1, 0);
+		m.set(ry / sy, 0, 1);
 		
-		m.set(ux / sx, 0, 1);
+		m.set(ux / sx, 1, 0);
 		m.set(uy / sy, 1, 1);
+		
+		m.set(tx / sx, 0, 3);
+		m.set(ty / sy, 1, 3);
+		m.set(tz / 1f, 2, 3);
 		
 		return m;
 	}
+
+	@Override
+	public Matrix4x4 Matrix()
+	{
+		float sx = scale.X();
+		float sy = scale.Y();
 		
+		Vector2 rwd = basis.right();
+		Vector2 uwd = basis.up();
+		
+		float tx = origin.X();
+		float ty = origin.Y();
+		float tz = zDepth;
+		
+		float rx = rwd.X();
+		float ry = rwd.Y();
+		
+		float ux = uwd.X();
+		float uy = uwd.Y();
+
+		
+		Matrix4x4 m = Matrix4x4.identity();
+		
+		m.set(rx * sx, 0, 0);
+		m.set(ux * sy, 0, 1);
+		
+		m.set(ry * sx, 1, 0);
+		m.set(uy * sy, 1, 1);
+		
+		m.set(tx, 0, 3);
+		m.set(ty, 1, 3);
+		m.set(tz, 2, 3);
+		
+		return m;
+	}
 	
-	/**
-	 * Returns the origin of the {@code Transform2D}.
-	 * 
-	 * @return  the transform's origin
-	 * @see Vector2
-	 */
-	public Vector2 getOrigin()
+	
+	@Override
+	public Ortho2x2 Basis()
+	{
+		return basis;
+	}
+	
+	@Override
+	public Vector2 Origin()
 	{
 		return origin;
 	}
-	
-	/**
-	 * Returns the scale of the {@code Transform2D}.
-	 * 
-	 * @return  the transform's scale
-	 * @see Vector2
-	 */
-	public Vector2 getScale()
+
+	@Override
+	public Vector2 Scale()
 	{
 		return scale;
 	}
-	
-	
-	@Override
-	public void scaleTo(Vector2 vec)
+
+	public void setBasis(Ortho2x2 basis)
 	{
-		scale = vec;
+		this.basis = basis;
 	}
 	
 	@Override
-	public void rotateFor(float rad)
-	{
-		basis.rotateFor(rad);
-	}
-		
-	@Override
-	public void rotateTo(float rad)
-	{
-		basis.rotateTo(rad);
-	}
-	
-	@Override
-	public void moveTo(Vector2 vec)
+	public void setOrigin(Vector2 vec)
 	{
 		origin = vec;
 	}
 	
-
 	@Override
-	public Matrix4x4 getInverse()
+	public void setScale(Vector2 vec)
 	{
-		Vector2 rwd = basis.right();
-		Vector2 uwd = basis.up();
-				
-		float tx = -origin.dot(rwd);
-		float ty = -origin.dot(uwd);
-		
-		float sx = scale.X();
-		float sy = scale.Y();
-		
-		float rx = rwd.X();
-		float ry = rwd.Y();
-		
-		float ux = uwd.X();
-		float uy = uwd.Y();
-
-		
-		Matrix4x4 m = Matrix4x4.identity();
-		
-		m.set(rx / sx, 0, 0);
-		m.set(ry / sy, 1, 0);
-		
-		m.set(ux / sx, 0, 1);
-		m.set(uy / sy, 1, 1);
-		
-		m.set(tx / sx, 3, 0);
-		m.set(ty / sy, 3, 1);
-		
-		return m;
+		scale = vec;
 	}
 
-	@Override
-	public Matrix4x4 getMatrix()
-	{
-		Vector2 rwd = basis.right();
-		Vector2 uwd = basis.up();
-		
-		float tx = origin.X();
-		float ty = origin.Y();
-		
-		float sx = scale.X();
-		float sy = scale.Y();
-		
-		float rx = rwd.X();
-		float ry = rwd.Y();
-		
-		float ux = uwd.X();
-		float uy = uwd.Y();
-
-		
-		Matrix4x4 m = Matrix4x4.identity();
-		
-		m.set(rx * sx, 0, 0);
-		m.set(ux * sx, 1, 0);
-		
-		m.set(ry * sy, 0, 1);
-		m.set(uy * sy, 1, 1);
-		
-		m.set(tx, 3, 0);
-		m.set(ty, 3, 1);
-		
-		return m;
-	}
-	
-	@Override
-	public Vector2 getRight()
-	{
-		return basis.right();
-	}
-	
-	@Override
-	public Vector2 getUp()
-	{
-		return basis.up();
-	}
-	
-	
 	@Override
 	public boolean equals(Object o)
 	{
@@ -378,105 +172,52 @@ public final class Transform2D implements ITransformation2D
 		result = prime * result + scale.hashCode();
 		return result;
 	}
-	
-		
-	@Override
-	public float getHeight()
-	{
-		return scale.Y();
-	}
-	
-	@Override
-	public float getWidth()
-	{
-		return scale.X();
-	}
-	
-	@Override
-	public float getX()
-	{
-		return origin.X();
-	}
-	
-	@Override
-	public float getY()
-	{
-		return origin.Y();
-	}
+
 
 	
 	@Override
-	public float XMin()
+	public Transform2D instance()
 	{
-		float ox = origin.X();
-		float rx = basis.right().X();
-		float ux = basis.up().X();
-		float sx = scale.X();
-		
-		rx = rx * sx / 2;
-		ux = ux * sx / 2;
-		
-		return ox + Floats.min(-rx, -ux, rx, ux);
+		return new Transform2D();
 	}
 	
 	@Override
-	public float XMax()
+	public Transform2D copy()
 	{
-		float ox = origin.X();
-		float rx = basis.right().X();
-		float ux = basis.up().X();
-		float sx = scale.X();
+		Transform2D copy = Copyable.super.copy();
 		
-		rx = rx * sx / 2;
-		ux = ux * sx / 2;
+		copy.setBasis(basis.copy());
+		copy.setOrigin(origin.copy());
+		copy.setScale(scale.copy());
 		
-		return ox + Floats.max(-rx, -ux, rx, ux);
-	}
-	
-	@Override
-	public float YMin()
-	{
-		float oy = origin.Y();
-		float ry = basis.right().Y();
-		float uy = basis.up().Y();
-		float sy = scale.Y();
-		
-		ry = ry * sy / 2;
-		uy = uy * sy / 2;
-		
-		return oy + Floats.min(-ry, -uy, ry, uy);
-	}
-	
-	@Override
-	public float YMax()
-	{
-		float oy = origin.Y();
-		float ry = basis.right().Y();
-		float uy = basis.up().Y();
-		float sy = scale.Y();
-		
-		ry = ry * sy / 2;
-		uy = uy * sy / 2;
-		
-		return oy + Floats.max(-ry, -uy, ry, uy);
+		return copy;
 	}
 
 
-	@Override
-	public Rectangle Bounds()
+	public float ZDepth()
 	{
-		return new Rectangle(origin, scale);
+		return zDepth;
+	}
+
+
+	
+	public void rotateFor(float rad)
+	{
+		basis.rotateFor(rad);
+	}
+
+	public void rotateTo(float rad)
+	{
+		basis.rotateTo(rad);
+	}
+
+	public Vector2 Right()
+	{
+		return basis.right();
 	}
 	
-	@Override
-	public Vector2 Center()
+	public Vector2 Up()
 	{
-		return origin;
-	}
-	
-	@Override
-	public Vector2 Size()
-	{
-		return scale;
+		return basis.up();
 	}
 }
