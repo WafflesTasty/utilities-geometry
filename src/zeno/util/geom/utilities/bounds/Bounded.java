@@ -1,8 +1,8 @@
 package zeno.util.geom.utilities.bounds;
 
 import zeno.util.algebra.linear.vector.Vector;
-import zeno.util.geom.collideables.geometry.ICuboid;
-import zeno.util.geom.collideables.geometry.higher.shapes.NCuboid;
+import zeno.util.geom._deprecated.collideables.geometry.ICuboid;
+import zeno.util.geom._deprecated.collideables.geometry.higher.shapes.NCuboid;
 
 /**
  * The {@code Bounded} interface defines an object bound in n dimensions.

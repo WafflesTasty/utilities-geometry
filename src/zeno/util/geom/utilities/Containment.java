@@ -1,10 +1,10 @@
 package zeno.util.geom.utilities;
 
 import zeno.util.algebra.linear.vector.Vector;
-import zeno.util.geom.collideables.geometry.ICuboid;
-import zeno.util.geom.collideables.geometry.IEllipsoid;
-import zeno.util.geom.collideables.geometry.ISphere;
-import zeno.util.geom.collideables.geometry.Line;
+import zeno.util.geom._deprecated.collideables.geometry.ICuboid;
+import zeno.util.geom._deprecated.collideables.geometry.IEllipsoid;
+import zeno.util.geom._deprecated.collideables.geometry.ISphere;
+import zeno.util.geom._deprecated.collideables.geometry.Line;
 import zeno.util.tools.Floats;
 import zeno.util.tools.Integers;
 

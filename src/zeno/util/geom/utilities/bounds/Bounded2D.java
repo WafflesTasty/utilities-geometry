@@ -1,7 +1,7 @@
 package zeno.util.geom.utilities.bounds;
 
 import zeno.util.algebra.linear.vector.fixed.Vector2;
-import zeno.util.geom.collideables.geometry.planar.shapes.Rectangle;
+import zeno.util.geom._deprecated.collideables.geometry.planar.shapes.Rectangle;
 
 /**
  * The {@code Bounded2D} interface defines an object bound in two dimensions.

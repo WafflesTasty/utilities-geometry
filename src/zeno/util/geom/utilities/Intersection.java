@@ -5,11 +5,11 @@ import zeno.util.algebra.linear.matrix.Matrices;
 import zeno.util.algebra.linear.matrix.Matrix;
 import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.algebra.linear.vector.Vectors;
-import zeno.util.geom.algorithms.LineClipper;
-import zeno.util.geom.collideables.geometry.ICuboid;
-import zeno.util.geom.collideables.geometry.IEllipsoid;
-import zeno.util.geom.collideables.geometry.ISphere;
-import zeno.util.geom.collideables.geometry.Line;
+import zeno.util.geom._deprecated.algorithms.LineClipper;
+import zeno.util.geom._deprecated.collideables.geometry.ICuboid;
+import zeno.util.geom._deprecated.collideables.geometry.IEllipsoid;
+import zeno.util.geom._deprecated.collideables.geometry.ISphere;
+import zeno.util.geom._deprecated.collideables.geometry.Line;
 import zeno.util.tools.Floats;
 import zeno.util.tools.Integers;
 
