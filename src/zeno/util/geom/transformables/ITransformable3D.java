@@ -2,9 +2,9 @@ package zeno.util.geom.transformables;
 
 import zeno.util.algebra.linear.matrix.fixed.Matrix3x3;
 import zeno.util.algebra.linear.vector.fixed.Vector3;
-import zeno.util.geom._deprecated.utilities.bounds.Bounded3D;
 import zeno.util.geom.transformables.affine.IScalable3D;
 import zeno.util.geom.transformables.affine.IVantage3D;
+import zeno.util.geom.utilities.bounds.Bounded3D;
 import zeno.util.tools.Floats;
 
 /**
