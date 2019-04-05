@@ -72,7 +72,7 @@ public class Dilation implements Copyable<Dilation>, ITransformation
 	 * @see Vector
 	 */
 	public Dilation(Vector v, int dim)
-	{
+	{		
 		size = DefaultSize(dim);
 		for(int i = 0; i < Integers.min(v.Size(), dim); i++)
 		{
@@ -158,5 +158,4 @@ public class Dilation implements Copyable<Dilation>, ITransformation
 	{
 		return size.Size();
 	}
-
 }

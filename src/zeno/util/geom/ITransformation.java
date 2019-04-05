@@ -1,10 +1,9 @@
 package zeno.util.geom;
 
 import zeno.util.algebra.Linear;
-import zeno.util.algebra.linear.matrix.Matrices;
 import zeno.util.algebra.linear.matrix.Matrix;
-import zeno.util.algebra.linear.vector.Vector;
-import zeno.util.geom.collidables.Affine;
+import zeno.util.geom._deprecated.collideables.affine.ASpace;
+import zeno.util.geom._deprecated.collideables.affine.ASpaces;
 
 /**
  * The {@code ITransformation} interface defines a transformation in geometric space.
@@ -15,10 +14,10 @@ import zeno.util.geom.collidables.Affine;
  * @version 1.0
  * 
  * 
- * @see Affine
+ * @see ASpace
  * @see Linear
  */
-public interface ITransformation extends Linear.Map<Affine, Affine>
+public interface ITransformation extends Linear.Map<ASpace, ASpace>
 {	
 	/**
 	 * Returns the inverse of a {@code ITransformation}.
@@ -66,11 +65,11 @@ public interface ITransformation extends Linear.Map<Affine, Affine>
 	 * 
 	 * 
 	 * @see ITransformation
-	 * @see Affine
+	 * @see ASpace
 	 * @see Linear
 	 */
 	@FunctionalInterface
-	public static interface Composite extends Linear.Composite<Affine, Affine>, ITransformation
+	public static interface Composite extends Linear.Composite<ASpace, ASpace>, ITransformation
 	{
 		@Override
 		public abstract ITransformation[] Functions();
@@ -102,13 +101,13 @@ public interface ITransformation extends Linear.Map<Affine, Affine>
 		
 		
 		@Override
-		public default Affine unmap(Affine val)
+		public default ASpace unmap(ASpace val)
 		{
 			return ITransformation.super.unmap(val);
 		}
 
 		@Override
-		public default Affine map(Affine val)
+		public default ASpace map(ASpace val)
 		{
 			return ITransformation.super.map(val);
 		}
@@ -142,7 +141,7 @@ public interface ITransformation extends Linear.Map<Affine, Affine>
 	
 	
 	/**
-	 * Returns the domain dimension of the {@ode ITransformation}.
+	 * Returns the domain dimension of the {@code ITransformation}.
 	 * 
 	 * @return  a domain dimension
 	 */
@@ -180,29 +179,19 @@ public interface ITransformation extends Linear.Map<Affine, Affine>
 
 	
 	@Override
-	public default Affine unmap(Affine val)
+	public default ASpace unmap(ASpace val)
 	{
-		Matrix m = Inverse(DimOut()).times(val.basis(DimOut()));
-		
-		int rows = m.Rows();
-		int cols = m.Columns();
-		
-		Vector s = m.Row(rows - 1);
-		m = Matrices.resize(m, rows - 1, cols);
-		return new Affine(m, s);
+		Matrix mat = val.matrix(DimOut());
+		mat = Inverse(DimOut()).times(mat);
+		return ASpaces.create(mat, true);
 	}
 	
 	@Override
-	public default Affine map(Affine val)
+	public default ASpace map(ASpace val)
 	{
-		Matrix m = Matrix(DimIn()).times(val.basis(DimIn()));
-		
-		int rows = m.Rows();
-		int cols = m.Columns();
-		
-		Vector s = m.Row(rows - 1);
-		m = Matrices.resize(m, rows - 1, cols);
-		return new Affine(m, s);
+		Matrix mat = val.matrix(DimIn());
+		mat = Matrix(DimIn()).times(mat);
+		return ASpaces.create(mat, true);
 	}
 
 	
