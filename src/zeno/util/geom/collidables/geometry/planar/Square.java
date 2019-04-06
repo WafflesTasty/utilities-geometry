@@ -1,7 +1,7 @@
 package zeno.util.geom.collidables.geometry.planar;
 
 import zeno.util.algebra.linear.vector.fixed.Vector2;
-import zeno.util.geom.collidables.geometry.ICube;
+import zeno.util.geom.collidables.geometry.generic.ICube;
 
 /**
  * The {@code Square} class defines a two-dimensional square shape.

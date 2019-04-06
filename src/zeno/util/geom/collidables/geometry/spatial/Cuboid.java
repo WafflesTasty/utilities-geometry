@@ -1,8 +1,8 @@
 package zeno.util.geom.collidables.geometry.spatial;
 
 import zeno.util.algebra.linear.vector.fixed.Vector3;
-import zeno.util.geom.collidables.geometry.ICuboid;
-import zeno.util.geom.collidables.geometry.generic.Geometry3D;
+import zeno.util.geom.collidables.geometry.Geometry3D;
+import zeno.util.geom.collidables.geometry.generic.ICuboid;
 
 /**
  * The {@code Cuboid} class defines a three-dimensional rectangular shape.

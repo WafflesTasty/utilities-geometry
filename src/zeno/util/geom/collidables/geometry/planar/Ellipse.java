@@ -2,8 +2,8 @@ package zeno.util.geom.collidables.geometry.planar;
 
 import zeno.util.algebra.linear.vector.fixed.Vector2;
 import zeno.util.calc.variables.functions.Polynomial;
-import zeno.util.geom.collidables.geometry.IEllipsoid;
-import zeno.util.geom.collidables.geometry.generic.Geometry2D;
+import zeno.util.geom.collidables.geometry.Geometry2D;
+import zeno.util.geom.collidables.geometry.generic.IEllipsoid;
 import zeno.util.tools.Floats;
 
 /**

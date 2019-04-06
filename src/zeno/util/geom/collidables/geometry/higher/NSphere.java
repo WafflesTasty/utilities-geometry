@@ -2,7 +2,7 @@ package zeno.util.geom.collidables.geometry.higher;
 
 import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.algebra.linear.vector.Vectors;
-import zeno.util.geom.collidables.geometry.ISphere;
+import zeno.util.geom.collidables.geometry.generic.ISphere;
 
 /**
  * The {@code NSphere} class defines an n-dimensional sphere shape.

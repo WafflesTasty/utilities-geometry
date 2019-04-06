@@ -1,60 +1,62 @@
-package zeno.util.geom.collidables.geometry;
+package zeno.util.geom.collidables.geometry.generic;
 
 import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.algebra.linear.vector.fixed.Vector2;
 import zeno.util.algebra.linear.vector.fixed.Vector3;
 import zeno.util.geom._deprecated.collideables.affine.Point;
 import zeno.util.geom._deprecated.collideables.lines.ILine;
-import zeno.util.geom.collidables.IGeometry;
-import zeno.util.geom.collidables.geometry.higher.NCuboid;
-import zeno.util.geom.collidables.geometry.planar.Rectangle;
-import zeno.util.geom.collidables.geometry.spatial.Cuboid;
+import zeno.util.geom.collidables.geometry.higher.NSphere;
+import zeno.util.geom.collidables.geometry.planar.Circle;
+import zeno.util.geom.collidables.geometry.spatial.Sphere;
 import zeno.util.geom.utilities.Containment;
 import zeno.util.geom.utilities.Intersection;
 
 /**
- * The {ICuboid} interface defines the base for cuboid geometry.
+ * The {@code ISphere} interface defines the base for sphere geometry.
  * 
  * @author Zeno
  * @since Mar 24, 2017
  * @version 1.0
  * 
  * 
- * @see IGeometry
+ * @see IEllipsoid
  */
-public interface ICuboid extends IGeometry
+public interface ISphere extends IEllipsoid
 {
 	/**
-	 * Creates a unit {@code ICuboid}.
+	 * Creates a unit {@code ISphere}.
 	 * 
-	 * @param dim  a cuboid dimension
-	 * @return  a unit cuboid
+	 * @param dim  a sphere dimension
+	 * @return  a unit sphere
 	 */
-	public static ICuboid unit(int dim)
+	public static ISphere unit(int dim)
 	{
-		return ICube.unit(dim);
+		if(dim <= 1) return null;
+		if(dim == 2) return new Circle();
+		if(dim == 3) return new Sphere();
+		return new NSphere(dim);
 	}
 	
 	/**
-	 * Creates a new {@code ICuboid}.
+	 * Creates a new {@code ISphere}.
 	 * 
-	 * @param center  a cuboid center
-	 * @param size    a cuboid size
-	 * @return  a new cuboid
+	 * @param center  a sphere center
+	 * @param radius  a sphere radius
+	 * @return  a new sphere
 	 * 
 	 * 
 	 * @see Vector
 	 */
-	public static ICuboid create(Vector center, Vector size)
+	public static ISphere create(Vector center, float radius)
 	{
 		if(center.Size() == 2)
-			return new Rectangle((Vector2) center, (Vector2) size);
+			return new Circle((Vector2) center, radius);
 		if(center.Size() == 3)
-			return new Cuboid((Vector3) center, (Vector3) size);
+			return new Sphere((Vector3) center, radius);
 		
-		return new NCuboid(center, size);
+		return new NSphere(center, radius);
 	}
-		
+	
 	
 	@Override
 	public default boolean contains(Point p)
@@ -69,12 +71,12 @@ public interface ICuboid extends IGeometry
 	}
 	
 	@Override
-	public default boolean contains(ICuboid c)
+	public default boolean contains(ISphere s)
 	{
-		return Containment.in(this, c);
+		return Containment.in(this, s);
 	}
 	
-
+	
 	@Override
 	public default boolean intersects(ISphere s)
 	{
@@ -101,7 +103,13 @@ public interface ICuboid extends IGeometry
 
 	
 	@Override
-	public default ICuboid Box()
+	public default float Diameter()
+	{
+		return Size().get(0);
+	}
+
+	@Override
+	public default ISphere Ball()
 	{
 		return this;
 	}

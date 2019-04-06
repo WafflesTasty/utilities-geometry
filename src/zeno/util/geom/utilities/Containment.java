@@ -3,9 +3,9 @@ package zeno.util.geom.utilities;
 import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.geom._deprecated.collideables.affine.Point;
 import zeno.util.geom._deprecated.collideables.lines.ILine;
-import zeno.util.geom.collidables.geometry.ICuboid;
-import zeno.util.geom.collidables.geometry.IEllipsoid;
-import zeno.util.geom.collidables.geometry.ISphere;
+import zeno.util.geom.collidables.geometry.generic.ICuboid;
+import zeno.util.geom.collidables.geometry.generic.IEllipsoid;
+import zeno.util.geom.collidables.geometry.generic.ISphere;
 import zeno.util.tools.Floats;
 import zeno.util.tools.Integers;
 

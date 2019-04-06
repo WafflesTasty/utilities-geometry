@@ -1,60 +1,45 @@
-package zeno.util.geom.collidables.geometry;
+package zeno.util.geom.collidables.geometry.generic;
 
 import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.algebra.linear.vector.fixed.Vector2;
 import zeno.util.algebra.linear.vector.fixed.Vector3;
 import zeno.util.geom._deprecated.collideables.affine.Point;
 import zeno.util.geom._deprecated.collideables.lines.ILine;
-import zeno.util.geom.collidables.geometry.higher.NSphere;
-import zeno.util.geom.collidables.geometry.planar.Circle;
-import zeno.util.geom.collidables.geometry.spatial.Sphere;
+import zeno.util.geom.collidables.IGeometry;
+import zeno.util.geom.collidables.geometry.higher.NEllipsoid;
+import zeno.util.geom.collidables.geometry.planar.Ellipse;
+import zeno.util.geom.collidables.geometry.spatial.Ellipsoid;
 import zeno.util.geom.utilities.Containment;
 import zeno.util.geom.utilities.Intersection;
+import zeno.util.tools.Floats;
 
 /**
- * The {@code ISphere} interface defines the base for sphere geometry.
+ * The {IEllipsoid} interface defines the base for ellipsoid geometry.
  * 
  * @author Zeno
  * @since Mar 24, 2017
  * @version 1.0
  * 
  * 
- * @see IEllipsoid
+ * @see IGeometry
  */
-public interface ISphere extends IEllipsoid
+public interface IEllipsoid extends IGeometry
 {
 	/**
-	 * Creates a unit {@code ISphere}.
+	 * Creates a new {@code IEllipsoid}.
 	 * 
-	 * @param dim  a sphere dimension
-	 * @return  a unit sphere
+	 * @param center  an ellipsoid center
+	 * @param size    an ellipsoid size
+	 * @return  a new ellipsoid
 	 */
-	public static ISphere unit(int dim)
-	{
-		if(dim <= 1) return null;
-		if(dim == 2) return new Circle();
-		if(dim == 3) return new Sphere();
-		return new NSphere(dim);
-	}
-	
-	/**
-	 * Creates a new {@code ISphere}.
-	 * 
-	 * @param center  a sphere center
-	 * @param radius  a sphere radius
-	 * @return  a new sphere
-	 * 
-	 * 
-	 * @see Vector
-	 */
-	public static ISphere create(Vector center, float radius)
+	public static IEllipsoid create(Vector center, Vector size)
 	{
 		if(center.Size() == 2)
-			return new Circle((Vector2) center, radius);
+			return new Ellipse((Vector2) center, (Vector2) size);
 		if(center.Size() == 3)
-			return new Sphere((Vector3) center, radius);
+			return new Ellipsoid((Vector3) center, (Vector3) size);
 		
-		return new NSphere(center, radius);
+		return new NEllipsoid(center, size);
 	}
 	
 	
@@ -65,24 +50,30 @@ public interface ISphere extends IEllipsoid
 	}
 		
 	@Override
+	public default boolean contains(ISphere s)
+	{
+		return Containment.in(this, s);
+	}
+	
+	@Override
 	public default boolean contains(IEllipsoid e)
 	{
 		return Containment.in(this, e);
 	}
 	
 	@Override
-	public default boolean contains(ISphere s)
+	public default boolean contains(ICuboid c)
 	{
-		return Containment.in(this, s);
+		return Containment.in(this, c);
 	}
 	
-	
+
 	@Override
 	public default boolean intersects(ISphere s)
 	{
 		return Intersection.between(this, s);
 	}
-	
+
 	@Override
 	public default boolean intersects(IEllipsoid e)
 	{
@@ -105,12 +96,6 @@ public interface ISphere extends IEllipsoid
 	@Override
 	public default float Diameter()
 	{
-		return Size().get(0);
-	}
-
-	@Override
-	public default ISphere Ball()
-	{
-		return this;
+		return Floats.max(Size().Values());
 	}
 }

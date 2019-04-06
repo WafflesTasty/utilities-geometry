@@ -1,4 +1,4 @@
-package zeno.util.geom.collidables.geometry;
+package zeno.util.geom.collidables.geometry.generic;
 
 import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.algebra.linear.vector.fixed.Vector2;
@@ -6,15 +6,14 @@ import zeno.util.algebra.linear.vector.fixed.Vector3;
 import zeno.util.geom._deprecated.collideables.affine.Point;
 import zeno.util.geom._deprecated.collideables.lines.ILine;
 import zeno.util.geom.collidables.IGeometry;
-import zeno.util.geom.collidables.geometry.higher.NEllipsoid;
-import zeno.util.geom.collidables.geometry.planar.Ellipse;
-import zeno.util.geom.collidables.geometry.spatial.Ellipsoid;
+import zeno.util.geom.collidables.geometry.higher.NCuboid;
+import zeno.util.geom.collidables.geometry.planar.Rectangle;
+import zeno.util.geom.collidables.geometry.spatial.Cuboid;
 import zeno.util.geom.utilities.Containment;
 import zeno.util.geom.utilities.Intersection;
-import zeno.util.tools.Floats;
 
 /**
- * The {IEllipsoid} interface defines the base for ellipsoid geometry.
+ * The {ICuboid} interface defines the base for cuboid geometry.
  * 
  * @author Zeno
  * @since Mar 24, 2017
@@ -23,25 +22,39 @@ import zeno.util.tools.Floats;
  * 
  * @see IGeometry
  */
-public interface IEllipsoid extends IGeometry
+public interface ICuboid extends IGeometry
 {
 	/**
-	 * Creates a new {@code IEllipsoid}.
+	 * Creates a unit {@code ICuboid}.
 	 * 
-	 * @param center  an ellipsoid center
-	 * @param size    an ellipsoid size
-	 * @return  a new ellipsoid
+	 * @param dim  a cuboid dimension
+	 * @return  a unit cuboid
 	 */
-	public static IEllipsoid create(Vector center, Vector size)
+	public static ICuboid unit(int dim)
 	{
-		if(center.Size() == 2)
-			return new Ellipse((Vector2) center, (Vector2) size);
-		if(center.Size() == 3)
-			return new Ellipsoid((Vector3) center, (Vector3) size);
-		
-		return new NEllipsoid(center, size);
+		return ICube.unit(dim);
 	}
 	
+	/**
+	 * Creates a new {@code ICuboid}.
+	 * 
+	 * @param center  a cuboid center
+	 * @param size    a cuboid size
+	 * @return  a new cuboid
+	 * 
+	 * 
+	 * @see Vector
+	 */
+	public static ICuboid create(Vector center, Vector size)
+	{
+		if(center.Size() == 2)
+			return new Rectangle((Vector2) center, (Vector2) size);
+		if(center.Size() == 3)
+			return new Cuboid((Vector3) center, (Vector3) size);
+		
+		return new NCuboid(center, size);
+	}
+		
 	
 	@Override
 	public default boolean contains(Point p)
@@ -49,12 +62,6 @@ public interface IEllipsoid extends IGeometry
 		return Containment.in(this, p);
 	}
 		
-	@Override
-	public default boolean contains(ISphere s)
-	{
-		return Containment.in(this, s);
-	}
-	
 	@Override
 	public default boolean contains(IEllipsoid e)
 	{
@@ -73,7 +80,7 @@ public interface IEllipsoid extends IGeometry
 	{
 		return Intersection.between(this, s);
 	}
-
+	
 	@Override
 	public default boolean intersects(IEllipsoid e)
 	{
@@ -94,8 +101,8 @@ public interface IEllipsoid extends IGeometry
 
 	
 	@Override
-	public default float Diameter()
+	public default ICuboid Box()
 	{
-		return Floats.max(Size().Values());
+		return this;
 	}
 }

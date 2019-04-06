@@ -1,8 +1,8 @@
 package zeno.util.geom.collidables.geometry.planar;
 
 import zeno.util.algebra.linear.vector.fixed.Vector2;
-import zeno.util.geom.collidables.geometry.ICuboid;
-import zeno.util.geom.collidables.geometry.generic.Geometry2D;
+import zeno.util.geom.collidables.geometry.Geometry2D;
+import zeno.util.geom.collidables.geometry.generic.ICuboid;
 
 /**
  * The {@code Rectangle} class defines a two-dimensional rectangular shape.

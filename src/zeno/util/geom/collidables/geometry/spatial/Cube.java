@@ -1,7 +1,7 @@
 package zeno.util.geom.collidables.geometry.spatial;
 
 import zeno.util.algebra.linear.vector.fixed.Vector3;
-import zeno.util.geom.collidables.geometry.ICube;
+import zeno.util.geom.collidables.geometry.generic.ICube;
 
 /**
  * The {@code Cube} class defines a three-dimensional cube shape.

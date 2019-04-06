@@ -1,8 +1,8 @@
 package zeno.util.geom.utilities.bounds;
 
 import zeno.util.algebra.linear.vector.Vector;
-import zeno.util.geom.collidables.geometry.ICuboid;
-import zeno.util.geom.collidables.geometry.ISphere;
+import zeno.util.geom.collidables.geometry.generic.ICuboid;
+import zeno.util.geom.collidables.geometry.generic.ISphere;
 
 /**
  * The {@code Bounds} interface defines object bounds in n dimensions.

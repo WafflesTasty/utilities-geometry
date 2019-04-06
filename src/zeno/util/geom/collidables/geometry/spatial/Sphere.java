@@ -1,7 +1,7 @@
 package zeno.util.geom.collidables.geometry.spatial;
 
 import zeno.util.algebra.linear.vector.fixed.Vector3;
-import zeno.util.geom.collidables.geometry.ISphere;
+import zeno.util.geom.collidables.geometry.generic.ISphere;
 
 /**
  * The {@code Sphere} class defines a three-dimensional sphere shape.

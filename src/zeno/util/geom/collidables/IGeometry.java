@@ -6,10 +6,10 @@ import zeno.util.geom.ICollidable;
 import zeno.util.geom._deprecated.collideables.affine.ASpace;
 import zeno.util.geom._deprecated.collideables.lines.ILine;
 import zeno.util.geom._deprecated.collideables.lines.NLine;
-import zeno.util.geom.collidables.geometry.ICube;
-import zeno.util.geom.collidables.geometry.ICuboid;
-import zeno.util.geom.collidables.geometry.IEllipsoid;
-import zeno.util.geom.collidables.geometry.ISphere;
+import zeno.util.geom.collidables.geometry.generic.ICube;
+import zeno.util.geom.collidables.geometry.generic.ICuboid;
+import zeno.util.geom.collidables.geometry.generic.IEllipsoid;
+import zeno.util.geom.collidables.geometry.generic.ISphere;
 import zeno.util.geom.utilities.bounds.IBounded;
 import zeno.util.geom.utilities.bounds.Bounds;
 

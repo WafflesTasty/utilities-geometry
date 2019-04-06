@@ -2,7 +2,7 @@ package zeno.util.geom.collidables.geometry.higher;
 
 import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.algebra.linear.vector.Vectors;
-import zeno.util.geom.collidables.geometry.ICube;
+import zeno.util.geom.collidables.geometry.generic.ICube;
 
 /**
  * The {@code NCube} class defines an n-dimensional cube shape.
