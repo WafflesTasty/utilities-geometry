@@ -2,6 +2,7 @@ package zeno.util.geom.collidables.geometry.higher;
 
 import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.geom.collidables.geometry.IEllipsoid;
+import zeno.util.geom.collidables.geometry.generic.GeometryND;
 
 /**
  * The {@code NEllipsoid} class defines an n-dimensional ellipsoid shape.

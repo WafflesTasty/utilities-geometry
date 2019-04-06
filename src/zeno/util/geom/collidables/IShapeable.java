@@ -1,9 +1,9 @@
-package zeno.util.geom.transformables;
+package zeno.util.geom.collidables;
 
 import zeno.util.geom.ICollidable;
 import zeno.util.geom._deprecated.collideables.affine.ASpace;
 import zeno.util.geom._deprecated.collideables.affine.Point;
-import zeno.util.geom.collidables.IGeometry;
+import zeno.util.geom.transformables.ITransformable;
 
 /**
  * The {@code IShapeable} interface defines an object that has a geometric shape.

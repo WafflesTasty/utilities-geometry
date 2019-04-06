@@ -1,7 +1,7 @@
-package zeno.util.geom.collidables.geometry.planar;
+package zeno.util.geom.collidables.geometry.generic;
 
 import zeno.util.algebra.linear.vector.fixed.Vector2;
-import zeno.util.geom.collidables.geometry.higher.GeometryND;
+import zeno.util.geom.collidables.IGeometry2D;
 
 /**
  * The {@code Geometry2D} class is the base class for closed two-dimensional shapes.

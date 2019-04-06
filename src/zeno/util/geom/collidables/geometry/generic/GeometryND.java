@@ -1,4 +1,4 @@
-package zeno.util.geom.collidables.geometry.higher;
+package zeno.util.geom.collidables.geometry.generic;
 
 import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.algebra.linear.vector.Vectors;

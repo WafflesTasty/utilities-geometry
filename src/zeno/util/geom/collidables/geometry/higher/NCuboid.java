@@ -2,6 +2,7 @@ package zeno.util.geom.collidables.geometry.higher;
 
 import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.geom.collidables.geometry.ICuboid;
+import zeno.util.geom.collidables.geometry.generic.GeometryND;
 
 /**
  * The {@code NCuboid} class defines an n-dimensional rectangular shape.

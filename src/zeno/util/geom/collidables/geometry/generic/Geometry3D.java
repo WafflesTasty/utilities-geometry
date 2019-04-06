@@ -1,7 +1,7 @@
-package zeno.util.geom.collidables.geometry.spatial;
+package zeno.util.geom.collidables.geometry.generic;
 
 import zeno.util.algebra.linear.vector.fixed.Vector3;
-import zeno.util.geom.collidables.geometry.higher.GeometryND;
+import zeno.util.geom.collidables.IGeometry3D;
 
 /**
  * The {@code Geometry3D} class is the base class for closed three-dimensional shapes.

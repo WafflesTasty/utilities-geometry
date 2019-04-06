@@ -1,7 +1,7 @@
-package zeno.util.geom.collidables.geometry.planar;
+package zeno.util.geom.collidables;
 
-import zeno.util.geom.collidables.ICollideable2D;
-import zeno.util.geom.collidables.IGeometry;
+import zeno.util.geom.ICollideable2D;
+import zeno.util.geom.collidables.geometry.planar.Rectangle;
 import zeno.util.geom.utilities.bounds.Bounds2D;
 import zeno.util.geom.utilities.bounds.IBounded2D;
 

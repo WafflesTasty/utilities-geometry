@@ -1,7 +1,7 @@
-package zeno.util.geom.collidables.geometry.spatial;
+package zeno.util.geom.collidables;
 
-import zeno.util.geom.collidables.ICollideable3D;
-import zeno.util.geom.collidables.IGeometry;
+import zeno.util.geom.ICollideable3D;
+import zeno.util.geom.collidables.geometry.spatial.Cuboid;
 import zeno.util.geom.utilities.bounds.Bounds3D;
 import zeno.util.geom.utilities.bounds.IBounded3D;
 
