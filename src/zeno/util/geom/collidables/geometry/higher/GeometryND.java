@@ -106,5 +106,4 @@ public abstract class GeometryND implements IGeometry
 	{
 		return size;
 	}
-
 }
