@@ -1,26 +1,28 @@
-package zeno.util.geom.collideables.geometry;
+package zeno.util.geom.collidables.geometry;
 
 import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.algebra.linear.vector.fixed.Vector2;
 import zeno.util.algebra.linear.vector.fixed.Vector3;
-import zeno.util.geom.collideables.geometry.higher.shapes.NCube;
-import zeno.util.geom.collideables.geometry.planar.shapes.Square;
-import zeno.util.geom.collideables.geometry.spatial.shapes.Cube;
+import zeno.util.geom._deprecated.collideables.geometry.higher.shapes.NCube;
+import zeno.util.geom._deprecated.collideables.geometry.planar.shapes.Square;
+import zeno.util.geom._deprecated.collideables.geometry.spatial.shapes.Cube;
 
 /**
  * The {@code ICube} interface defines the base for cube geometry.
  * 
- * @since Mar 24, 2017
  * @author Zeno
+ * @since Mar 24, 2017
+ * @version 1.0
+ * 
  * 
  * @see ICuboid
  */
 public interface ICube extends ICuboid
 {
 	/**
-	 * Creates a new unit {@code ICube}.
+	 * Creates a unit {@code ICube}.
 	 * 
-	 * @param dim  the cube's dimension
+	 * @param dim  a cube dimension
 	 * @return  a unit cube
 	 */
 	public static ICube unit(int dim)
@@ -34,9 +36,12 @@ public interface ICube extends ICuboid
 	/**
 	 * Creates a new {@code ICube}.
 	 * 
-	 * @param center  the cube's center
-	 * @param length  the cube's length
+	 * @param center  a cube center
+	 * @param length  a cube length
 	 * @return  a new cube
+	 * 
+	 * 
+	 * @see Vector
 	 */
 	public static ICube create(Vector center, float length)
 	{

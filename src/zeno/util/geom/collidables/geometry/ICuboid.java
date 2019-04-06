@@ -1,32 +1,49 @@
-package zeno.util.geom.collideables.geometry;
+package zeno.util.geom.collidables.geometry;
 
 import zeno.util.algebra.linear.vector.Vector;
-import zeno.util.algebra.linear.vector.Vectors;
 import zeno.util.algebra.linear.vector.fixed.Vector2;
 import zeno.util.algebra.linear.vector.fixed.Vector3;
-import zeno.util.geom.collideables.IGeometry;
-import zeno.util.geom.collideables.geometry.higher.shapes.NCuboid;
-import zeno.util.geom.collideables.geometry.planar.shapes.Rectangle;
-import zeno.util.geom.collideables.geometry.spatial.shapes.Cuboid;
+import zeno.util.geom._deprecated.collideables.affine.Point;
+import zeno.util.geom._deprecated.collideables.geometry.higher.shapes.NCuboid;
+import zeno.util.geom._deprecated.collideables.geometry.planar.shapes.Rectangle;
+import zeno.util.geom._deprecated.collideables.geometry.spatial.shapes.Cuboid;
+import zeno.util.geom._deprecated.collideables.lines.ILine;
+import zeno.util.geom.collidables.IGeometry;
 import zeno.util.geom.utilities.Containment;
 import zeno.util.geom.utilities.Intersection;
 
 /**
  * The {ICuboid} interface defines the base for cuboid geometry.
  * 
- * @since Mar 24, 2017
  * @author Zeno
+ * @since Mar 24, 2017
+ * @version 1.0
+ * 
  * 
  * @see IGeometry
  */
 public interface ICuboid extends IGeometry
 {
 	/**
+	 * Creates a unit {@code ICuboid}.
+	 * 
+	 * @param dim  a cuboid dimension
+	 * @return  a unit cuboid
+	 */
+	public static ICuboid unit(int dim)
+	{
+		return ICube.unit(dim);
+	}
+	
+	/**
 	 * Creates a new {@code ICuboid}.
 	 * 
-	 * @param center  the cuboid's center
-	 * @param size  the cuboid's size
+	 * @param center  a cuboid center
+	 * @param size    a cuboid size
 	 * @return  a new cuboid
+	 * 
+	 * 
+	 * @see Vector
 	 */
 	public static ICuboid create(Vector center, Vector size)
 	{
@@ -37,23 +54,12 @@ public interface ICuboid extends IGeometry
 		
 		return new NCuboid(center, size);
 	}
-	
-	/**
-	 * Creates a new {@code ICuboid}.
-	 * 
-	 * @param dim  the cuboid's dimension
-	 * @return  a new cuboid
-	 */
-	public static ICuboid create(int dim)
-	{
-		return create(Vectors.create(dim), Vectors.create(dim));
-	}
-	
+		
 	
 	@Override
-	public default boolean contains(Vector v)
+	public default boolean contains(Point p)
 	{
-		return Containment.in(this, v);
+		return Containment.in(this, p);
 	}
 		
 	@Override
@@ -68,12 +74,6 @@ public interface ICuboid extends IGeometry
 		return Containment.in(this, c);
 	}
 	
-	@Override
-	public default boolean contains(Line l)
-	{
-		return Containment.in(this, l);
-	}
-
 
 	@Override
 	public default boolean intersects(ISphere s)
@@ -94,8 +94,15 @@ public interface ICuboid extends IGeometry
 	}
 	
 	@Override
-	public default boolean intersects(Line l)
+	public default boolean intersects(ILine l)
 	{
 		return Intersection.between(this, l);
+	}
+
+	
+	@Override
+	public default ICuboid Box()
+	{
+		return this;
 	}
 }

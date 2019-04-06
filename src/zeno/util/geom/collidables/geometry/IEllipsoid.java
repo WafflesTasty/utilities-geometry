@@ -1,20 +1,25 @@
-package zeno.util.geom.collideables.geometry;
+package zeno.util.geom.collidables.geometry;
 
 import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.algebra.linear.vector.fixed.Vector2;
 import zeno.util.algebra.linear.vector.fixed.Vector3;
-import zeno.util.geom.collideables.IGeometry;
-import zeno.util.geom.collideables.geometry.higher.shapes.NEllipsoid;
-import zeno.util.geom.collideables.geometry.planar.shapes.Ellipse;
-import zeno.util.geom.collideables.geometry.spatial.shapes.Ellipsoid;
+import zeno.util.geom._deprecated.collideables.affine.Point;
+import zeno.util.geom._deprecated.collideables.geometry.higher.shapes.NEllipsoid;
+import zeno.util.geom._deprecated.collideables.geometry.planar.shapes.Ellipse;
+import zeno.util.geom._deprecated.collideables.geometry.spatial.shapes.Ellipsoid;
+import zeno.util.geom._deprecated.collideables.lines.ILine;
+import zeno.util.geom.collidables.IGeometry;
 import zeno.util.geom.utilities.Containment;
 import zeno.util.geom.utilities.Intersection;
+import zeno.util.tools.Floats;
 
 /**
  * The {IEllipsoid} interface defines the base for ellipsoid geometry.
  * 
- * @since Mar 24, 2017
  * @author Zeno
+ * @since Mar 24, 2017
+ * @version 1.0
+ * 
  * 
  * @see IGeometry
  */
@@ -23,8 +28,8 @@ public interface IEllipsoid extends IGeometry
 	/**
 	 * Creates a new {@code IEllipsoid}.
 	 * 
-	 * @param center  the ellipsoid's center
-	 * @param size  the ellipsoid's size
+	 * @param center  an ellipsoid center
+	 * @param size    an ellipsoid size
 	 * @return  a new ellipsoid
 	 */
 	public static IEllipsoid create(Vector center, Vector size)
@@ -39,9 +44,9 @@ public interface IEllipsoid extends IGeometry
 	
 	
 	@Override
-	public default boolean contains(Vector v)
+	public default boolean contains(Point p)
 	{
-		return Containment.in(this, v);
+		return Containment.in(this, p);
 	}
 		
 	@Override
@@ -62,13 +67,7 @@ public interface IEllipsoid extends IGeometry
 		return Containment.in(this, c);
 	}
 	
-	@Override
-	public default boolean contains(Line l)
-	{
-		return Containment.in(this, l);
-	}
 
-	
 	@Override
 	public default boolean intersects(ISphere s)
 	{
@@ -88,8 +87,15 @@ public interface IEllipsoid extends IGeometry
 	}
 	
 	@Override
-	public default boolean intersects(Line l)
+	public default boolean intersects(ILine l)
 	{
 		return Intersection.between(this, l);
+	}
+
+	
+	@Override
+	public default float Diameter()
+	{
+		return Floats.max(Size().Values());
 	}
 }

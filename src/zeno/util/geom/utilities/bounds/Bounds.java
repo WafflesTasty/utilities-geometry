@@ -1,10 +1,8 @@
 package zeno.util.geom.utilities.bounds;
 
 import zeno.util.algebra.linear.vector.Vector;
-import zeno.util.geom._deprecated.collideables.geometry.ICuboid;
-import zeno.util.geom._deprecated.collideables.geometry.ISphere;
-import zeno.util.geom._deprecated.collideables.geometry.higher.shapes.NCuboid;
-import zeno.util.geom._deprecated.collideables.geometry.higher.shapes.NSphere;
+import zeno.util.geom.collidables.geometry.ICuboid;
+import zeno.util.geom.collidables.geometry.ISphere;
 
 /**
  * The {@code Bounds} interface defines object bounds in n dimensions.
@@ -63,13 +61,23 @@ public interface Bounds
 	}
 	
 	/**
+	 * Returns the diameter of the {@code Bounds} objects.
+	 * 
+	 * @return  the bounds diameter
+	 */
+	public default float Diameter()
+	{
+		return Size().norm();
+	}
+	
+	/**
 	 * Returns the radius of the {@code Bounds} object.
 	 * 
 	 * @return  the bounds radius
 	 */
 	public default float Radius()
 	{
-		return 0.5f * Size().norm();
+		return 0.5f * Diameter();
 	}
 			
 		
@@ -93,7 +101,7 @@ public interface Bounds
 	 */
 	public default ISphere Sphere()
 	{
-		return new NSphere(Center(), Radius());
+		return ISphere.create(Center(), Radius());
 	}
 	
 	/**
@@ -106,6 +114,6 @@ public interface Bounds
 	 */
 	public default ICuboid Box()
 	{
-		return new NCuboid(Center(), Size());
+		return ICuboid.create(Center(), Size());
 	}
 }

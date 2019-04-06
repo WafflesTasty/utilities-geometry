@@ -2,10 +2,10 @@ package zeno.util.geom.utilities;
 
 import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.geom._deprecated.collideables.affine.Point;
-import zeno.util.geom._deprecated.collideables.geometry.ICuboid;
-import zeno.util.geom._deprecated.collideables.geometry.IEllipsoid;
-import zeno.util.geom._deprecated.collideables.geometry.ISphere;
-import zeno.util.geom._deprecated.collideables.geometry.Line;
+import zeno.util.geom._deprecated.collideables.lines.ILine;
+import zeno.util.geom.collidables.geometry.ICuboid;
+import zeno.util.geom.collidables.geometry.IEllipsoid;
+import zeno.util.geom.collidables.geometry.ISphere;
 import zeno.util.tools.Floats;
 import zeno.util.tools.Integers;
 
@@ -30,7 +30,7 @@ public final class Containment
 		return in(e, new Point(v));
 	}
 	
-	public static boolean in(Line l, Vector v)
+	public static boolean in(ILine l, Vector v)
 	{
 		return in(l, new Point(v));
 	}
@@ -108,7 +108,7 @@ public final class Containment
 	 * @param l  a line to check
 	 * @return  {@code true} if the shape is contained
 	 */
-	public static boolean in(ICuboid c, Line l)
+	public static boolean in(ICuboid c, ILine l)
 	{
 		return in(c, l.P1())
 			&& in(c, l.P2());
@@ -198,7 +198,7 @@ public final class Containment
 	 * @param l  a line to check
 	 * @return  {@code true} if the shape is contained
 	 */
-	public static boolean in(IEllipsoid e, Line l)
+	public static boolean in(IEllipsoid e, ILine l)
 	{
 		return in(e, l.P1())
 			&& in(e, l.P2());
@@ -253,7 +253,7 @@ public final class Containment
 	 * @param p  a point to check
 	 * @return  {@code true} if the shape is contained
 	 */
-	public static boolean in(Line l, Point p)
+	public static boolean in(ILine l, Point p)
 	{
 		Vector p1 = l.P1();
 		Vector p2 = l.P2();
@@ -291,7 +291,7 @@ public final class Containment
 	 * @param c  a cuboid to check
 	 * @return  {@code true} if the shape is contained
 	 */
-	public static boolean in(Line l, ICuboid c)
+	public static boolean in(ILine l, ICuboid c)
 	{
 		return false;
 	}
@@ -303,7 +303,7 @@ public final class Containment
 	 * @param e  an ellipsoid to check
 	 * @return  {@code true} if the shape is contained
 	 */
-	public static boolean in(Line l, IEllipsoid e)
+	public static boolean in(ILine l, IEllipsoid e)
 	{
 		return false;
 	}
@@ -315,9 +315,9 @@ public final class Containment
 	 * @param m  a line to check
 	 * @return  {@code true} if the shape is contained
 	 */
-	public static boolean in(Line l, Line m)
+	public static boolean in(ILine l, ILine m)
 	{
-		throw new UnsupportedOperationException("Line-line containment not implemented yet.");
+		throw new UnsupportedOperationException("ILine-line containment not implemented yet.");
 	}
 	
 	

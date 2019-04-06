@@ -1,28 +1,32 @@
-package zeno.util.geom.collideables.geometry;
+package zeno.util.geom.collidables.geometry;
 
 import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.algebra.linear.vector.fixed.Vector2;
 import zeno.util.algebra.linear.vector.fixed.Vector3;
-import zeno.util.geom.collideables.geometry.higher.shapes.NSphere;
-import zeno.util.geom.collideables.geometry.planar.shapes.Circle;
-import zeno.util.geom.collideables.geometry.spatial.shapes.Sphere;
+import zeno.util.geom._deprecated.collideables.affine.Point;
+import zeno.util.geom._deprecated.collideables.geometry.higher.shapes.NSphere;
+import zeno.util.geom._deprecated.collideables.geometry.planar.shapes.Circle;
+import zeno.util.geom._deprecated.collideables.geometry.spatial.shapes.Sphere;
+import zeno.util.geom._deprecated.collideables.lines.ILine;
 import zeno.util.geom.utilities.Containment;
 import zeno.util.geom.utilities.Intersection;
 
 /**
  * The {@code ISphere} interface defines the base for sphere geometry.
  * 
- * @since Mar 24, 2017
  * @author Zeno
+ * @since Mar 24, 2017
+ * @version 1.0
+ * 
  * 
  * @see IEllipsoid
  */
 public interface ISphere extends IEllipsoid
 {
 	/**
-	 * Creates a new unit {@code ISphere}.
+	 * Creates a unit {@code ISphere}.
 	 * 
-	 * @param dim  the sphere's dimension
+	 * @param dim  a sphere dimension
 	 * @return  a unit sphere
 	 */
 	public static ISphere unit(int dim)
@@ -36,9 +40,12 @@ public interface ISphere extends IEllipsoid
 	/**
 	 * Creates a new {@code ISphere}.
 	 * 
-	 * @param center  the sphere's center
-	 * @param radius  the sphere's radius
+	 * @param center  a sphere center
+	 * @param radius  a sphere radius
 	 * @return  a new sphere
+	 * 
+	 * 
+	 * @see Vector
 	 */
 	public static ISphere create(Vector center, float radius)
 	{
@@ -50,32 +57,11 @@ public interface ISphere extends IEllipsoid
 		return new NSphere(center, radius);
 	}
 	
-
-	/**
-	 * Returns the diameter of the {@code ISphere}.
-	 * 
-	 * @return  the sphere's diameter
-	 */
-	public default float Diameter()
-	{
-		return Size().get(0);
-	}
-	
-	/**
-	 * Returns the radius of the {@code ISphere}.
-	 * 
-	 * @return  the sphere's radius
-	 */
-	public default float Radius()
-	{
-		return Diameter() / 2;
-	}
-
 	
 	@Override
-	public default boolean contains(Vector v)
+	public default boolean contains(Point p)
 	{
-		return Containment.in(this, v);
+		return Containment.in(this, p);
 	}
 		
 	@Override
@@ -110,8 +96,21 @@ public interface ISphere extends IEllipsoid
 	}
 	
 	@Override
-	public default boolean intersects(Line l)
+	public default boolean intersects(ILine l)
 	{
 		return Intersection.between(this, l);
+	}
+
+	
+	@Override
+	public default float Diameter()
+	{
+		return Size().get(0);
+	}
+
+	@Override
+	public default ISphere Sphere()
+	{
+		return this;
 	}
 }

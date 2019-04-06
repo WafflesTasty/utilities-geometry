@@ -6,10 +6,10 @@ import zeno.util.algebra.linear.matrix.Matrix;
 import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.algebra.linear.vector.Vectors;
 import zeno.util.geom._deprecated.algorithms.LineClipper;
-import zeno.util.geom._deprecated.collideables.geometry.ICuboid;
-import zeno.util.geom._deprecated.collideables.geometry.IEllipsoid;
-import zeno.util.geom._deprecated.collideables.geometry.ISphere;
-import zeno.util.geom._deprecated.collideables.geometry.Line;
+import zeno.util.geom._deprecated.collideables.lines.ILine;
+import zeno.util.geom.collidables.geometry.ICuboid;
+import zeno.util.geom.collidables.geometry.IEllipsoid;
+import zeno.util.geom.collidables.geometry.ISphere;
 import zeno.util.tools.Floats;
 import zeno.util.tools.Integers;
 
@@ -91,7 +91,7 @@ public final class Intersection
 	 * @param l  a line to check
 	 * @return  {@code true} if the shapes intersect
 	 */
-	public static boolean between(ICuboid c, Line l)
+	public static boolean between(ICuboid c, ILine l)
 	{
 		clipper.setBounds(c);
 		if(clipper.clip(l).isEmpty())
@@ -157,7 +157,7 @@ public final class Intersection
 	 * @param l  a line to check
 	 * @return  {@code true} if the shapes intersect
 	 */
-	public static boolean between(IEllipsoid e, Line l)
+	public static boolean between(IEllipsoid e, ILine l)
 	{
 		int dim = Integers.min(e.Dimension(), l.Dimension());
 		
@@ -170,7 +170,7 @@ public final class Intersection
 			p2.set(p2.get(i) / e.Size().get(i), i);
 		}
 		
-		return between(ISphere.unit(dim), Line.create(p1, p2));
+		return between(ISphere.unit(dim), ILine.create(p1, p2));
 	}
 	
 	
@@ -219,7 +219,7 @@ public final class Intersection
 	 * @param l  a line to check
 	 * @return  {@code true} if the shapes intersect
 	 */
-	public static boolean between(ISphere s, Line l)
+	public static boolean between(ISphere s, ILine l)
 	{
 		Vector qt = l.P2().minus(l.P1());
 		Vector qp = s.Center().minus(l.P1());
@@ -243,7 +243,7 @@ public final class Intersection
 	 * @param c  a cuboid to check
 	 * @return  {@code true} if the shapes intersect
 	 */
-	public static boolean between(Line l, ICuboid c)
+	public static boolean between(ILine l, ICuboid c)
 	{
 		return between(c, l);
 	}
@@ -255,7 +255,7 @@ public final class Intersection
 	 * @param e  an ellipsoid to check
 	 * @return  {@code true} if the shapes intersect
 	 */
-	public static boolean between(Line l, IEllipsoid e)
+	public static boolean between(ILine l, IEllipsoid e)
 	{
 		return between(e, l);
 	}
@@ -267,7 +267,7 @@ public final class Intersection
 	 * @param s  a sphere to check
 	 * @return  {@code true} if the shapes intersect
 	 */
-	public static boolean between(Line l, ISphere s)
+	public static boolean between(ILine l, ISphere s)
 	{
 		return between(s, l);
 	}
@@ -279,7 +279,7 @@ public final class Intersection
 	 * @param m  a line to check
 	 * @return  {@code true} if the shapes intersect
 	 */
-	public static boolean between(Line l, Line m)
+	public static boolean between(ILine l, ILine m)
 	{
 		Vector pq = l.P1().minus(l.P2());
 		Vector pr = m.P1().minus(l.P1());
