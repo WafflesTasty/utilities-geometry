@@ -6,7 +6,7 @@ import zeno.util.geom.transformables.affine.IMovable;
 import zeno.util.geom.transformables.affine.IRotatable;
 import zeno.util.geom.transformables.affine.IScalable;
 import zeno.util.geom.transforms.AffineMap;
-import zeno.util.geom.utilities.bounds.Bounded;
+import zeno.util.geom.utilities.bounds.IBounded;
 
 /**
  * The {@code ITransformable} interface defines an object
@@ -20,9 +20,9 @@ import zeno.util.geom.utilities.bounds.Bounded;
  * @see IRotatable
  * @see IScalable
  * @see IMovable
- * @see Bounded
+ * @see IBounded
  */
-public interface ITransformable extends IMovable, IRotatable, IScalable, Bounded
+public interface ITransformable extends IMovable, IRotatable, IScalable, IBounded
 {
 	/**
 	 * Returns the transform of the {@code ITransformable}.

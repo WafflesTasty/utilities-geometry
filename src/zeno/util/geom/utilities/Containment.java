@@ -1,6 +1,7 @@
 package zeno.util.geom.utilities;
 
 import zeno.util.algebra.linear.vector.Vector;
+import zeno.util.geom._deprecated.collideables.affine.Point;
 import zeno.util.geom._deprecated.collideables.geometry.ICuboid;
 import zeno.util.geom._deprecated.collideables.geometry.IEllipsoid;
 import zeno.util.geom._deprecated.collideables.geometry.ISphere;
@@ -16,6 +17,26 @@ import zeno.util.tools.Integers;
  */
 public final class Containment
 {	
+	// All vector use in this package should be changed to Point as much as possible.
+	// Possibly make Point extend Vector functionality and make ASpace Space extend Matrix functionality?
+	
+	public static boolean in(ICuboid c, Vector v)
+	{
+		return in(c, new Point(v));
+	}
+	
+	public static boolean in(IEllipsoid e, Vector v)
+	{
+		return in(e, new Point(v));
+	}
+	
+	public static boolean in(Line l, Vector v)
+	{
+		return in(l, new Point(v));
+	}
+	
+		
+	
 	/**
 	 * Checks the containment of a cuboid in a cuboid.
 	 * 
@@ -53,21 +74,21 @@ public final class Containment
 	 */
 	public static boolean in(ICuboid c, IEllipsoid e)
 	{
-		return in(c, e.Bounds());
+		return in(c, e.Bounds().Box());
 	}
 
 	/**
 	 * Checks the containment of a point in a cuboid.
 	 * 
 	 * @param c  a cuboid to check
-	 * @param v  a point to check
+	 * @param p  a point to check
 	 * @return  {@code true} if the shape is contained
 	 */
-	public static boolean in(ICuboid c, Vector v)
+	public static boolean in(ICuboid c, Point p)
 	{
 		for(int i = 0; i < c.Dimension(); i++)
 		{
-			float vi = v.get(i);
+			float vi = p.get(i);
 			float si = c.Size().get(i);
 			float ci = c.Center().get(i);
 			
@@ -98,15 +119,15 @@ public final class Containment
 	 * Checks the containment of a point in an ellipsoid.
 	 * 
 	 * @param e  an ellipsoid to check
-	 * @param v  a point to check
+	 * @param p  a point to check
 	 * @return  {@code true} if the shape is contained
 	 */
-	public static boolean in(IEllipsoid e, Vector v)
+	public static boolean in(IEllipsoid e, Point p)
 	{
 		float val, sum = 0;
 		for(int i = 0; i < e.Dimension(); i++)
 		{
-			val = v.get(i) - e.Center().get(i);
+			val = p.get(i) - e.Center().get(i);
 			
 			if(val != 0)
 			{
@@ -188,13 +209,13 @@ public final class Containment
 	 * Checks the containment of a point in a sphere.
 	 * 
 	 * @param s  a sphere to check
-	 * @param v  a point to check
+	 * @param p  a point to check
 	 * @return  {@code true} if the shape is contained
 	 */
-	public static boolean in(ISphere s, Vector v)
+	public static boolean in(ISphere s, Point p)
 	{
 		float rad = s.Radius();
-		Vector px = v.minus(s.Center());
+		Vector px = p.minus(s.Center());
 		return px.normSqr() <= rad * rad;
 	}
 	
@@ -229,10 +250,10 @@ public final class Containment
 	 * Checks the containment of a point in a line.
 	 * 
 	 * @param l  a line to check
-	 * @param v  a point to check
+	 * @param p  a point to check
 	 * @return  {@code true} if the shape is contained
 	 */
-	public static boolean in(Line l, Vector v)
+	public static boolean in(Line l, Point p)
 	{
 		Vector p1 = l.P1();
 		Vector p2 = l.P2();
@@ -242,7 +263,7 @@ public final class Containment
 		float xmin = Floats.min(p1.get(0), p2.get(0));
 		float xmax = Floats.max(p1.get(0), p2.get(0));
 		
-		if(v.get(0) < xmin || xmax < v.get(0))
+		if(p.get(0) < xmin || xmax < p.get(0))
 		{
 			return false;
 		}
@@ -251,8 +272,8 @@ public final class Containment
 		// Check if lambda value is unique.
 		for(int i = 0; i < l.Dimension() - 1; i++)
 		{
-			float val1 = (v.get(i+0) - p1.get(i+0)) * (p2.get(i+1) - p1.get(i+1));
-			float val2 = (v.get(i+1) - p1.get(i+1)) * (p2.get(i+0) - p1.get(i+0));
+			float val1 = (p.get(i+0) - p1.get(i+0)) * (p2.get(i+1) - p1.get(i+1));
+			float val2 = (p.get(i+1) - p1.get(i+1)) * (p2.get(i+0) - p1.get(i+0));
 
 			if(!Floats.isEqual(val1, val2, 6))
 			{

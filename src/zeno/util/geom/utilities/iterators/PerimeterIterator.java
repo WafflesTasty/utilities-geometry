@@ -33,11 +33,11 @@ public class PerimeterIterator implements Iterator<Vector2>
 	{
 		this.geom = geom;
 		
-		x1 = Integers.floor(geom.XMin());
-		y1 = Integers.floor(geom.YMin());
+		x1 = Integers.floor(geom.Bounds().XMin());
+		y1 = Integers.floor(geom.Bounds().YMin());
 		
-		x2 = Integers.ceil(geom.XMax()) + 1;
-		y2 = Integers.ceil(geom.YMax()) + 1;
+		x2 = Integers.ceil(geom.Bounds().XMax()) + 1;
+		y2 = Integers.ceil(geom.Bounds().YMax()) + 1;
 		
 		v = new Vector2(x1 - 1, y1);
 		v = createNext();
