@@ -3,7 +3,7 @@ package zeno.util.geom.utilities.iterators;
 import java.util.Iterator;
 
 import zeno.util.algebra.linear.vector.fixed.Vector2;
-import zeno.util.geom._deprecated.collideables.geometry.planar.IGeometry2D;
+import zeno.util.geom.collidables.geometry.planar.IGeometry2D;
 import zeno.util.geom.utilities.cardinal.Cardinal2D;
 import zeno.util.tools.Integers;
 

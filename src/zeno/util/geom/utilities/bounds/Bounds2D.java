@@ -1,8 +1,8 @@
 package zeno.util.geom.utilities.bounds;
 
 import zeno.util.algebra.linear.vector.fixed.Vector2;
-import zeno.util.geom._deprecated.collideables.geometry.planar.shapes.Circle;
-import zeno.util.geom._deprecated.collideables.geometry.planar.shapes.Rectangle;
+import zeno.util.geom.collidables.geometry.planar.Circle;
+import zeno.util.geom.collidables.geometry.planar.Rectangle;
 
 /**
  * The {@code Bounds2D} interface defines object bounds in two dimensions.
@@ -87,7 +87,7 @@ public interface Bounds2D extends Bounds
 	
 		
 	@Override
-	public default Circle Sphere()
+	public default Circle Ball()
 	{
 		return new Circle(Center(), Radius());
 	}

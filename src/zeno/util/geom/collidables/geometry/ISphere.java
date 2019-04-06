@@ -4,10 +4,10 @@ import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.algebra.linear.vector.fixed.Vector2;
 import zeno.util.algebra.linear.vector.fixed.Vector3;
 import zeno.util.geom._deprecated.collideables.affine.Point;
-import zeno.util.geom._deprecated.collideables.geometry.higher.shapes.NSphere;
-import zeno.util.geom._deprecated.collideables.geometry.planar.shapes.Circle;
-import zeno.util.geom._deprecated.collideables.geometry.spatial.shapes.Sphere;
 import zeno.util.geom._deprecated.collideables.lines.ILine;
+import zeno.util.geom.collidables.geometry.higher.NSphere;
+import zeno.util.geom.collidables.geometry.planar.Circle;
+import zeno.util.geom.collidables.geometry.spatial.Sphere;
 import zeno.util.geom.utilities.Containment;
 import zeno.util.geom.utilities.Intersection;
 
@@ -109,7 +109,7 @@ public interface ISphere extends IEllipsoid
 	}
 
 	@Override
-	public default ISphere Sphere()
+	public default ISphere Ball()
 	{
 		return this;
 	}

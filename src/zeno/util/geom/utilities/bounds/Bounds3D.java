@@ -1,8 +1,8 @@
 package zeno.util.geom.utilities.bounds;
 
 import zeno.util.algebra.linear.vector.fixed.Vector3;
-import zeno.util.geom._deprecated.collideables.geometry.spatial.shapes.Cuboid;
-import zeno.util.geom._deprecated.collideables.geometry.spatial.shapes.Sphere;
+import zeno.util.geom.collidables.geometry.spatial.Cuboid;
+import zeno.util.geom.collidables.geometry.spatial.Sphere;
 
 /**
  * The {@code Bounds3D} interface defines object bounds in three dimensions.
@@ -127,7 +127,7 @@ public interface Bounds3D extends Bounds
 	}
 		
 	@Override
-	public default Sphere Sphere()
+	public default Sphere Ball()
 	{
 		return new Sphere(Center(), Radius());
 	}

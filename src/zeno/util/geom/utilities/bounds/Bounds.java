@@ -92,14 +92,14 @@ public interface Bounds
 	}
 	
 	/**
-	 * Returns the sphere of the {@code Bounds} object.
+	 * Returns the ball of the {@code Bounds} object.
 	 * 
-	 * @return  the bounding sphere
+	 * @return  the bounding ball
 	 * 
 	 * 
 	 * @see ISphere
 	 */
-	public default ISphere Sphere()
+	public default ISphere Ball()
 	{
 		return ISphere.create(Center(), Radius());
 	}

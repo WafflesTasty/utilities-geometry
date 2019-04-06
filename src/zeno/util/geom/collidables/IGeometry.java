@@ -4,8 +4,8 @@ import zeno.util.algebra.linear.matrix.Matrix;
 import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.geom.ICollidable;
 import zeno.util.geom._deprecated.collideables.affine.ASpace;
-import zeno.util.geom._deprecated.collideables.geometry.higher.lines.NLine;
 import zeno.util.geom._deprecated.collideables.lines.ILine;
+import zeno.util.geom._deprecated.collideables.lines.NLine;
 import zeno.util.geom.collidables.geometry.ICube;
 import zeno.util.geom.collidables.geometry.ICuboid;
 import zeno.util.geom.collidables.geometry.IEllipsoid;
@@ -25,7 +25,7 @@ import zeno.util.geom.utilities.bounds.Bounds;
  * @see IBounded
  * @see Bounds
  */
-public interface IGeometry extends IBounded, ICollidable, Bounds
+public interface IGeometry extends ICollidable, IBounded, Bounds
 {		
 	public abstract boolean intersects(ILine l);
 	
@@ -143,5 +143,12 @@ public interface IGeometry extends IBounded, ICollidable, Bounds
 	public default boolean intersects(ICube c)
 	{
 		return contains((ICuboid) c);
+	}
+
+	
+	@Override
+	public default Bounds Bounds()
+	{
+		return this;
 	}
 }

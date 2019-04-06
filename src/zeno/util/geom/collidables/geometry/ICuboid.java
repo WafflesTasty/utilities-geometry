@@ -4,11 +4,11 @@ import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.algebra.linear.vector.fixed.Vector2;
 import zeno.util.algebra.linear.vector.fixed.Vector3;
 import zeno.util.geom._deprecated.collideables.affine.Point;
-import zeno.util.geom._deprecated.collideables.geometry.higher.shapes.NCuboid;
-import zeno.util.geom._deprecated.collideables.geometry.planar.shapes.Rectangle;
-import zeno.util.geom._deprecated.collideables.geometry.spatial.shapes.Cuboid;
 import zeno.util.geom._deprecated.collideables.lines.ILine;
 import zeno.util.geom.collidables.IGeometry;
+import zeno.util.geom.collidables.geometry.higher.NCuboid;
+import zeno.util.geom.collidables.geometry.planar.Rectangle;
+import zeno.util.geom.collidables.geometry.spatial.Cuboid;
 import zeno.util.geom.utilities.Containment;
 import zeno.util.geom.utilities.Intersection;
 

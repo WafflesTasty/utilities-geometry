@@ -3,9 +3,9 @@ package zeno.util.geom.collidables.geometry;
 import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.algebra.linear.vector.fixed.Vector2;
 import zeno.util.algebra.linear.vector.fixed.Vector3;
-import zeno.util.geom._deprecated.collideables.geometry.higher.shapes.NCube;
-import zeno.util.geom._deprecated.collideables.geometry.planar.shapes.Square;
-import zeno.util.geom._deprecated.collideables.geometry.spatial.shapes.Cube;
+import zeno.util.geom.collidables.geometry.higher.NCube;
+import zeno.util.geom.collidables.geometry.planar.Square;
+import zeno.util.geom.collidables.geometry.spatial.Cube;
 
 /**
  * The {@code ICube} interface defines the base for cube geometry.
