@@ -3,7 +3,6 @@ package zeno.util.geom.collidables.geometry.generic;
 import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.algebra.linear.vector.fixed.Vector2;
 import zeno.util.algebra.linear.vector.fixed.Vector3;
-import zeno.util.geom._deprecated.collideables.lines.ILine;
 import zeno.util.geom.collidables.geometry.higher.NSphere;
 import zeno.util.geom.collidables.geometry.planar.Circle;
 import zeno.util.geom.collidables.geometry.spatial.Sphere;
@@ -74,20 +73,8 @@ public interface ISphere extends IEllipsoid
 	{
 		return Containment.in(this, s);
 	}
-	
-	
-	@Override
-	public default boolean intersects(ISphere s)
-	{
-		return Intersection.between(this, s);
-	}
-	
-	@Override
-	public default boolean intersects(IEllipsoid e)
-	{
-		return Intersection.between(this, e);
-	}
-	
+
+
 	@Override
 	public default boolean intersects(ICuboid c)
 	{
@@ -95,11 +82,23 @@ public interface ISphere extends IEllipsoid
 	}
 	
 	@Override
-	public default boolean intersects(ILine l)
+	public default boolean intersects(IEllipsoid e)
+	{
+		return Intersection.between(this, e);
+	}
+
+	@Override
+	public default boolean intersects(ISegment l)
 	{
 		return Intersection.between(this, l);
 	}
 
+	@Override
+	public default boolean intersects(ISphere s)
+	{
+		return Intersection.between(this, s);
+	}
+	
 	
 	@Override
 	public default float Diameter()

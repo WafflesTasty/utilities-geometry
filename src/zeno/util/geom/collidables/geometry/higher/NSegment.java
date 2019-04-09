@@ -1,41 +1,46 @@
-package zeno.util.geom._deprecated.collideables.lines;
+package zeno.util.geom.collidables.geometry.higher;
 
 import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.algebra.linear.vector.Vectors;
+import zeno.util.geom.collidables.geometry.generic.ISegment;
 
 /**
- * The {@code ILine} class defines an n-dimensional line segment.
+ * The {@code NSegment} class defines an n-dimensional line segment.
  * 
- * @since Jul 5, 2016
  * @author Zeno
+ * @since Jul 5, 2016
+ * @version 1.0
  * 
- * @see ILine
+ * 
+ * @see ISegment
  */
-public class NLine implements ILine
+public class NSegment implements ISegment
 {	
 	private Vector p1, p2;
 		
 	/**
-	 * Creates a new {@code ILine}.
+	 * Creates a new {@code NSegment}.
 	 * 
 	 * @param p1  the line's first point
 	 * @param p2  the line's second point
+	 * 
+	 * 
 	 * @see Vector
 	 */
-	public NLine(Vector p1, Vector p2)
+	public NSegment(Vector p1, Vector p2)
 	{
 		this.p1 = p1;
 		this.p2 = p2;
 	}
 	
 	/**
-	 * Creates a new {@code ILine}.
+	 * Creates a new {@code NSegment}.
 	 * The parameter takes in a list containing
 	 * the components of both points in sequence.
 	 * 
 	 * @param vals  a list of values
 	 */
-	public NLine(float... vals)
+	public NSegment(float... vals)
 	{
 		Vector[] split = Vectors.split(2, vals);
 		
@@ -44,12 +49,12 @@ public class NLine implements ILine
 	}
 	
 	/**
-	 * Creates a new {@code ILine}.
+	 * Creates a new {@code NSegment}.
 	 * The created line fits in the unit cube.
 	 * 
 	 * @param dim  the line's dimension
 	 */
-	public NLine(int dim)
+	public NSegment(int dim)
 	{
 		this(Vectors.create(-0.5f, dim), Vectors.create(0.5f, dim));
 	}
@@ -70,9 +75,9 @@ public class NLine implements ILine
 	@Override
 	public boolean equals(Object o)
 	{
-		if(o instanceof NLine)
+		if(o instanceof NSegment)
 		{
-			NLine oLine = (NLine) o;
+			NSegment oLine = (NSegment) o;
 			return (p1.equals(oLine.p1)
 				 && p2.equals(oLine.p2))
 				 ||(p1.equals(oLine.p2)

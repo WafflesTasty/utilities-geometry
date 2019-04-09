@@ -6,7 +6,7 @@ import zeno.util.algebra.linear.vector.fixed.Vector3;
 import zeno.util.geom.ICollidable;
 
 /**
- * The {@code ILine} interface defines the base for line spaces.
+ * The {@code ISegment} interface defines the base for line spaces.
  * 
  * @author Zeno
  * @since Mar 25, 2017
@@ -18,7 +18,7 @@ import zeno.util.geom.ICollidable;
 public interface ILine extends ICollidable
 {
 	/**
-	 * Creates a new {@code ILine}.
+	 * Creates a new {@code ISegment}.
 	 * 
 	 * @param p1  the line's first point
 	 * @param p2  the line's second point
@@ -39,7 +39,7 @@ public interface ILine extends ICollidable
 	
 	
 	/**
-	 * Returns the first point of the {@code ILine}.
+	 * Returns the first point of the {@code ISegment}.
 	 * 
 	 * @return  the line's first point
 	 * 
@@ -49,7 +49,7 @@ public interface ILine extends ICollidable
 	public abstract Vector P1();
 	
 	/**
-	 * Returns the second point of the {@code ILine}.
+	 * Returns the second point of the {@code ISegment}.
 	 * 
 	 * @return  the line's second point
 	 * 

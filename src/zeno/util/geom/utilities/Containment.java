@@ -1,9 +1,9 @@
 package zeno.util.geom.utilities;
 
 import zeno.util.algebra.linear.vector.Vector;
-import zeno.util.geom._deprecated.collideables.lines.ILine;
 import zeno.util.geom.collidables.geometry.generic.ICuboid;
 import zeno.util.geom.collidables.geometry.generic.IEllipsoid;
+import zeno.util.geom.collidables.geometry.generic.ISegment;
 import zeno.util.geom.collidables.geometry.generic.ISphere;
 import zeno.util.tools.Floats;
 import zeno.util.tools.Integers;
@@ -87,7 +87,7 @@ public final class Containment
 	 * @param l  a line to check
 	 * @return  {@code true} if the shape is contained
 	 */
-	public static boolean in(ICuboid c, ILine l)
+	public static boolean in(ICuboid c, ISegment l)
 	{
 		return in(c, l.P1())
 			&& in(c, l.P2());
@@ -177,7 +177,7 @@ public final class Containment
 	 * @param l  a line to check
 	 * @return  {@code true} if the shape is contained
 	 */
-	public static boolean in(IEllipsoid e, ILine l)
+	public static boolean in(IEllipsoid e, ISegment l)
 	{
 		return in(e, l.P1())
 			&& in(e, l.P2());
@@ -232,7 +232,7 @@ public final class Containment
 	 * @param v  a point to check
 	 * @return  {@code true} if the shape is contained
 	 */
-	public static boolean in(ILine l, Vector v)
+	public static boolean in(ISegment l, Vector v)
 	{
 		Vector p1 = l.P1();
 		Vector p2 = l.P2();
@@ -270,7 +270,7 @@ public final class Containment
 	 * @param c  a cuboid to check
 	 * @return  {@code true} if the shape is contained
 	 */
-	public static boolean in(ILine l, ICuboid c)
+	public static boolean in(ISegment l, ICuboid c)
 	{
 		return false;
 	}
@@ -282,7 +282,7 @@ public final class Containment
 	 * @param e  an ellipsoid to check
 	 * @return  {@code true} if the shape is contained
 	 */
-	public static boolean in(ILine l, IEllipsoid e)
+	public static boolean in(ISegment l, IEllipsoid e)
 	{
 		return false;
 	}
@@ -294,9 +294,9 @@ public final class Containment
 	 * @param m  a line to check
 	 * @return  {@code true} if the shape is contained
 	 */
-	public static boolean in(ILine l, ILine m)
+	public static boolean in(ISegment l, ISegment m)
 	{
-		throw new UnsupportedOperationException("ILine-line containment not implemented yet.");
+		throw new UnsupportedOperationException("ISegment-line containment not implemented yet.");
 	}
 	
 		

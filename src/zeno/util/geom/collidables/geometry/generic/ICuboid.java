@@ -3,7 +3,6 @@ package zeno.util.geom.collidables.geometry.generic;
 import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.algebra.linear.vector.fixed.Vector2;
 import zeno.util.algebra.linear.vector.fixed.Vector3;
-import zeno.util.geom._deprecated.collideables.lines.ILine;
 import zeno.util.geom.collidables.IGeometry;
 import zeno.util.geom.collidables.geometry.higher.NCuboid;
 import zeno.util.geom.collidables.geometry.planar.Rectangle;
@@ -75,9 +74,9 @@ public interface ICuboid extends IGeometry
 	
 
 	@Override
-	public default boolean intersects(ISphere s)
+	public default boolean intersects(ICuboid c)
 	{
-		return Intersection.between(this, s);
+		return Intersection.between(this, c);
 	}
 	
 	@Override
@@ -85,17 +84,17 @@ public interface ICuboid extends IGeometry
 	{
 		return Intersection.between(this, e);
 	}
-	
+		
 	@Override
-	public default boolean intersects(ICuboid c)
+	public default boolean intersects(ISegment l)
 	{
-		return Intersection.between(this, c);
+		return Intersection.between(this, l);
 	}
 	
 	@Override
-	public default boolean intersects(ILine l)
+	public default boolean intersects(ISphere s)
 	{
-		return Intersection.between(this, l);
+		return Intersection.between(this, s);
 	}
 
 	

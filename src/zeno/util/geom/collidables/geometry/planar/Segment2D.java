@@ -1,20 +1,20 @@
-package zeno.util.geom.collidables.affine.lines;
+package zeno.util.geom.collidables.geometry.planar;
 
 import zeno.util.algebra.linear.vector.fixed.Vector2;
-import zeno.util.geom.ICollideable2D;
+import zeno.util.geom.collidables.IGeometry2D;
+import zeno.util.geom.collidables.geometry.higher.NSegment;
+import zeno.util.tools.Floats;
 
 /**
- * The {@code Segment2D} class defines a two-dimensional line space.
+ * The {@code Segment2D} class defines a two-dimensional line segment.
  * 
- * @author Zeno
  * @since Jul 5, 2016
- * @version 1.0
+ * @author Zeno
  * 
- * 
- * @see ICollideable2D
- * @see LineND
+ * @see IGeometry2D
+ * @see NSegment
  */
-public class Line2D extends LineND implements ICollideable2D
+public class Segment2D extends NSegment implements IGeometry2D
 {		
 	/**
 	 * Creates a new {@code Segment2D}.
@@ -24,9 +24,9 @@ public class Line2D extends LineND implements ICollideable2D
 	 * @param x2  the line's second x-coördinate
 	 * @param y2  the line's second y-coördinate
 	 */
-	public Line2D(float x1, float y1, float x2, float y2)
+	public Segment2D(float x1, float y1, float x2, float y2)
 	{
-		this(new Vector2(x1, y1), new Vector2(x2, y2));
+		super(x1, y1, x2, y2);
 	}
 	
 	/**
@@ -38,7 +38,7 @@ public class Line2D extends LineND implements ICollideable2D
 	 * 
 	 * @see Vector2
 	 */
-	public Line2D(Vector2 p1, Vector2 p2)
+	public Segment2D(Vector2 p1, Vector2 p2)
 	{
 		super(p1, p2);
 	}
@@ -46,7 +46,7 @@ public class Line2D extends LineND implements ICollideable2D
 	/**
 	 * Creates a new {@code Segment2D}.
 	 */
-	public Line2D()
+	public Segment2D()
 	{
 		this(-.5f, -.5f, .5f, .5f);
 	}
@@ -94,6 +94,30 @@ public class Line2D extends LineND implements ICollideable2D
 
 	
 	@Override
+	public Vector2 Minimum()
+	{
+		return IGeometry2D.super.Minimum();
+	}
+	
+	@Override
+	public Vector2 Maximum()
+	{
+		return IGeometry2D.super.Maximum();
+	}
+	
+	@Override
+	public Vector2 Center()
+	{
+		return (Vector2) super.Center();
+	}
+	
+	@Override
+	public Vector2 Size()
+	{
+		return (Vector2) super.Size();
+	}
+	
+	@Override
 	public Vector2 P1()
 	{
 		return (Vector2) super.P1();
@@ -103,5 +127,30 @@ public class Line2D extends LineND implements ICollideable2D
 	public Vector2 P2()
 	{
 		return (Vector2) super.P2();
+	}
+
+	
+	@Override
+	public float XMin()
+	{
+		return Floats.min(X1(), X2());
+	}
+	
+	@Override
+	public float XMax()
+	{
+		return Floats.max(X1(), X2());
+	}
+	
+	@Override
+	public float YMin()
+	{
+		return Floats.min(Y1(), Y2());
+	}
+	
+	@Override
+	public float YMax()
+	{
+		return Floats.max(Y1(), Y2());
 	}
 }

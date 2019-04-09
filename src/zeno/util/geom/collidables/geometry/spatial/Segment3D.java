@@ -1,20 +1,22 @@
-package zeno.util.geom.collidables.affine.lines;
+package zeno.util.geom.collidables.geometry.spatial;
 
 import zeno.util.algebra.linear.vector.fixed.Vector3;
-import zeno.util.geom.ICollideable3D;
+import zeno.util.geom.collidables.IGeometry3D;
+import zeno.util.geom.collidables.geometry.higher.NSegment;
+import zeno.util.tools.Floats;
 
 /**
- * The {@code Segment3D} class defines a three-dimensional line space.
+ * The {@code Segment3D} class defines a three-dimensional line segment.
  * 
  * @author Zeno
  * @since Jul 5, 2016
  * @version 1.0
  * 
  * 
- * @see ICollideable3D
- * @see LineND
+ * @see IGeometry3D
+ * @see NSegment
  */
-public class Line3D extends LineND implements ICollideable3D
+public class Segment3D extends NSegment implements IGeometry3D
 {
 	/**
 	 * Creates a new {@code Segment3D}.
@@ -26,9 +28,9 @@ public class Line3D extends LineND implements ICollideable3D
 	 * @param y2  the line's second y-coördinate
 	 * @param z2  the line's second z-coördinate
 	 */
-	public Line3D(float x1, float y1, float z1, float x2, float y2, float z2)
+	public Segment3D(float x1, float y1, float z1, float x2, float y2, float z2)
 	{
-		this(new Vector3(x1, y1, z1), new Vector3(x2, y2, z2));
+		super(x1, y1, z1, x2, y2, z2);
 	}
 	
 	/**
@@ -40,7 +42,7 @@ public class Line3D extends LineND implements ICollideable3D
 	 * 
 	 * @see Vector3
 	 */
-	public Line3D(Vector3 p1, Vector3 p2)
+	public Segment3D(Vector3 p1, Vector3 p2)
 	{
 		super(p1, p2);
 	}
@@ -48,7 +50,7 @@ public class Line3D extends LineND implements ICollideable3D
 	/**
 	 * Creates a new {@code Segment3D}.
 	 */
-	public Line3D()
+	public Segment3D()
 	{
 		this(-.5f, -.5f, -.5f, .5f, .5f, .5f);
 	}
@@ -116,6 +118,30 @@ public class Line3D extends LineND implements ICollideable3D
 
 	
 	@Override
+	public Vector3 Minimum()
+	{
+		return IGeometry3D.super.Minimum();
+	}
+	
+	@Override
+	public Vector3 Maximum()
+	{
+		return IGeometry3D.super.Maximum();
+	}
+		
+	@Override
+	public Vector3 Center()
+	{
+		return (Vector3) super.Center();
+	}
+	
+	@Override
+	public Vector3 Size()
+	{
+		return (Vector3) super.Size();
+	}
+	
+	@Override
 	public Vector3 P1()
 	{
 		return (Vector3) super.P1();
@@ -125,5 +151,42 @@ public class Line3D extends LineND implements ICollideable3D
 	public Vector3 P2()
 	{
 		return (Vector3) super.P2();
+	}
+
+	
+	@Override
+	public float XMin()
+	{
+		return Floats.min(X1(), X2());
+	}
+	
+	@Override
+	public float XMax()
+	{
+		return Floats.max(X1(), X2());
+	}
+	
+	@Override
+	public float YMin()
+	{
+		return Floats.min(Y1(), Y2());
+	}
+	
+	@Override
+	public float YMax()
+	{
+		return Floats.max(Y1(), Y2());
+	}
+	
+	@Override
+	public float ZMin()
+	{
+		return Floats.min(Z1(), Z2());
+	}
+	
+	@Override
+	public float ZMax()
+	{
+		return Floats.max(Z1(), Z2());
 	}
 }
