@@ -3,7 +3,6 @@ package zeno.util.geom.collidables.geometry.generic;
 import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.algebra.linear.vector.fixed.Vector2;
 import zeno.util.algebra.linear.vector.fixed.Vector3;
-import zeno.util.geom._deprecated.collideables.affine.Point;
 import zeno.util.geom._deprecated.collideables.lines.ILine;
 import zeno.util.geom.collidables.geometry.higher.NSphere;
 import zeno.util.geom.collidables.geometry.planar.Circle;
@@ -59,7 +58,7 @@ public interface ISphere extends IEllipsoid
 	
 	
 	@Override
-	public default boolean contains(Point p)
+	public default boolean contains(Vector p)
 	{
 		return Containment.in(this, p);
 	}

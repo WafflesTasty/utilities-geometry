@@ -2,8 +2,8 @@ package zeno.util.geom;
 
 import zeno.util.algebra.Linear;
 import zeno.util.algebra.linear.matrix.Matrix;
-import zeno.util.geom._deprecated.collideables.affine.ASpace;
-import zeno.util.geom._deprecated.collideables.affine.ASpaces;
+import zeno.util.geom.collidables.affine.ASpace;
+import zeno.util.geom.collidables.affine.ASpaces;
 
 /**
  * The {@code ITransformation} interface defines a transformation in geometric space.
@@ -181,17 +181,17 @@ public interface ITransformation extends Linear.Map<ASpace, ASpace>
 	@Override
 	public default ASpace unmap(ASpace val)
 	{
-		Matrix mat = val.matrix(DimOut());
-		mat = Inverse(DimOut()).times(mat);
-		return ASpaces.create(mat, true);
+		ASpace s = ASpaces.occupy(val, DimOut());
+		Matrix m = Inverse(DimOut()).times(s.AMatrix());
+		return ASpaces.create(m);
 	}
 	
 	@Override
 	public default ASpace map(ASpace val)
 	{
-		Matrix mat = val.matrix(DimIn());
-		mat = Matrix(DimIn()).times(mat);
-		return ASpaces.create(mat, true);
+		ASpace s = ASpaces.occupy(val, DimIn());
+		Matrix m = Matrix(DimIn()).times(s.AMatrix());
+		return ASpaces.create(m);
 	}
 
 	

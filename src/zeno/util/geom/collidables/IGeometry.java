@@ -3,9 +3,10 @@ package zeno.util.geom.collidables;
 import zeno.util.algebra.linear.matrix.Matrix;
 import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.geom.ICollidable;
-import zeno.util.geom._deprecated.collideables.affine.ASpace;
 import zeno.util.geom._deprecated.collideables.lines.ILine;
 import zeno.util.geom._deprecated.collideables.lines.NLine;
+import zeno.util.geom.collidables.affine.ASpace;
+import zeno.util.geom.collidables.affine.ASpaces;
 import zeno.util.geom.collidables.geometry.generic.ICube;
 import zeno.util.geom.collidables.geometry.generic.ICuboid;
 import zeno.util.geom.collidables.geometry.generic.IEllipsoid;
@@ -32,7 +33,8 @@ public interface IGeometry extends ICollidable, IBounded, Bounds
 	public default boolean intersects(ASpace a)
 	{
 		int dim = Dimension();
-		Matrix m = a.vectorize(dim);
+		ASpace s = ASpaces.occupy(a, dim);
+		Matrix m = s.VMatrix();
 		if(m.Columns() == 1)
 		{
 			return contains((Vector) m);

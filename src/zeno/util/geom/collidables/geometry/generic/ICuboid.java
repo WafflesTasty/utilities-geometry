@@ -3,7 +3,6 @@ package zeno.util.geom.collidables.geometry.generic;
 import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.algebra.linear.vector.fixed.Vector2;
 import zeno.util.algebra.linear.vector.fixed.Vector3;
-import zeno.util.geom._deprecated.collideables.affine.Point;
 import zeno.util.geom._deprecated.collideables.lines.ILine;
 import zeno.util.geom.collidables.IGeometry;
 import zeno.util.geom.collidables.geometry.higher.NCuboid;
@@ -57,7 +56,7 @@ public interface ICuboid extends IGeometry
 		
 	
 	@Override
-	public default boolean contains(Point p)
+	public default boolean contains(Vector p)
 	{
 		return Containment.in(this, p);
 	}

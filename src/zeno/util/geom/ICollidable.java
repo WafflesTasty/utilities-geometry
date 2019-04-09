@@ -1,8 +1,8 @@
 package zeno.util.geom;
 
 import zeno.util.algebra.linear.vector.Vector;
-import zeno.util.geom._deprecated.collideables.affine.ASpace;
-import zeno.util.geom._deprecated.collideables.affine.Point;
+import zeno.util.geom.collidables.affine.ASpace;
+import zeno.util.geom.collidables.affine.Point;
 
 /**
  * The {@code ICollidable} interface defines an object that can be collided with.
@@ -23,7 +23,7 @@ public interface ICollidable
 	 * 
 	 * @see Point
 	 */
-	public abstract boolean contains(Point p);
+	public abstract boolean contains(Vector p);
 	
 	/**
 	 * Indicates if the {@code ICollidable} intersects a space.
@@ -39,14 +39,14 @@ public interface ICollidable
 	/**
 	 * Indicates if the {@code ICollidable} contains a point.
 	 * 
-	 * @param v  a point to check
+	 * @param p  a point to check
 	 * @return  {@code true} if the point is contained
 	 * 
 	 * 
 	 * @see Vector
 	 */
-	public default boolean contains(Vector v)
+	public default boolean contains(Point p)
 	{
-		return contains(new Point(v));
+		return contains(p.VMatrix());
 	}
 }

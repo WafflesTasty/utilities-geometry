@@ -1,8 +1,8 @@
 package zeno.util.geom.collidables;
 
 import zeno.util.geom.ICollidable;
-import zeno.util.geom._deprecated.collideables.affine.ASpace;
-import zeno.util.geom._deprecated.collideables.affine.Point;
+import zeno.util.geom.collidables.affine.ASpace;
+import zeno.util.geom.collidables.affine.Point;
 import zeno.util.geom.transformables.ITransformable;
 
 /**
