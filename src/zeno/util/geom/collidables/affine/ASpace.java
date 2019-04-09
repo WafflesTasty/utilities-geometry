@@ -6,6 +6,7 @@ import zeno.util.algebra.linear.matrix.types.banded.Diagonal;
 import zeno.util.algebra.linear.vector.VSpace;
 import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.algebra.linear.vector.Vectors;
+import zeno.util.geom.ICollidable;
 import zeno.util.geom.collidables.affine.spaces.TrivialASpace;
 import zeno.util.tools.patterns.properties.Copyable;
 import zeno.util.tools.patterns.properties.Inaccurate;
@@ -23,7 +24,7 @@ import zeno.util.tools.patterns.properties.Inaccurate;
  * @see Inaccurate
  * @see Copyable
  */
-public class ASpace implements Copyable<ASpace>, Inaccurate<ASpace>
+public class ASpace implements Copyable<ASpace>, Inaccurate<ASpace>, ICollidable
 {
 	/**
 	 * Defines the trivial affine space for static access.
@@ -321,32 +322,7 @@ public class ASpace implements Copyable<ASpace>, Inaccurate<ASpace>
 		return Direction().Dimension();
 	}
 	
-	
-	/**
-	 * Checks if the {@code ASpace} contains a point.
-	 * 
-	 * @param v  a point to check
-	 * @return  {@code true} if the point is contained
-	 * 
-	 * 
-	 * @see Vector
-	 */
-	public boolean contains(Vector v)
-	{
-		return Direction().contains(v.minus(Origin()));
-	}
-	
-	/**
-	 * Checks if the {@code ASpace} intersects a space.
-	 * 
-	 * @param s  a space to intersect with
-	 * @return  {@code true} if the spaces intersect
-	 */
-	public boolean intersects(ASpace s)
-	{
-		return intersect(s).Dimension() >= 0; 
-	}
-	
+		
 	/**
 	 * Checks if the {@code ASpace} contains a space.
 	 * 
@@ -359,12 +335,23 @@ public class ASpace implements Copyable<ASpace>, Inaccurate<ASpace>
 			&& intersects(s);
 	}
 	
-	
 	@Override
 	public boolean equals(ASpace s, int ulps)
 	{
 		return Direction().equals(s.Direction(), ulps)
 			&& intersects(s);
+	}
+
+	@Override
+	public boolean intersects(ASpace s)
+	{
+		return intersect(s).Dimension() >= 0; 
+	}
+
+	@Override
+	public boolean contains(Vector v)
+	{
+		return Direction().contains(v.minus(Origin()));
 	}
 	
 	
