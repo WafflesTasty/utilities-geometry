@@ -17,13 +17,13 @@ public interface ICollidable
 	/**
 	 * Indicates if the {@code ICollidable} contains a point.
 	 * 
-	 * @param p  a point to check
+	 * @param v  a vector point to check
 	 * @return  {@code true} if the point is contained
 	 * 
 	 * 
-	 * @see Point
+	 * @see Vector
 	 */
-	public abstract boolean contains(Vector p);
+	public abstract boolean contains(Vector v);
 	
 	/**
 	 * Indicates if the {@code ICollidable} intersects a space.
@@ -39,11 +39,11 @@ public interface ICollidable
 	/**
 	 * Indicates if the {@code ICollidable} contains a point.
 	 * 
-	 * @param p  a point to check
+	 * @param p  an affine point to check
 	 * @return  {@code true} if the point is contained
 	 * 
 	 * 
-	 * @see Vector
+	 * @see Point
 	 */
 	public default boolean contains(Point p)
 	{
