@@ -1,9 +1,11 @@
 package zeno.util.geom.collidables;
 
+import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.geom.ICollidable;
 import zeno.util.geom.collidables.affine.ASpace;
 import zeno.util.geom.collidables.affine.Point;
 import zeno.util.geom.transformables.ITransformable;
+import zeno.util.geom.utilities.bounds.IBounded;
 
 /**
  * The {@code IShapeable} interface defines an object that has a geometric shape.
@@ -16,8 +18,9 @@ import zeno.util.geom.transformables.ITransformable;
  * 
  * @see ITransformable
  * @see ICollidable
+ * @see IBounded
  */
-public interface IShapeable extends ICollidable, ITransformable
+public interface IShapeable extends IBounded, ICollidable, ITransformable
 {
 	/**
 	 * Returns the shape of the {@code IShapeable}.
@@ -40,5 +43,11 @@ public interface IShapeable extends ICollidable, ITransformable
 	public default boolean intersects(ASpace a)
 	{
 		return Shape().intersects(Transform().unmap(a));
+	}
+	
+	@Override
+	public default boolean contains(Vector p)
+	{
+		return contains(new Point(p));
 	}
 }
