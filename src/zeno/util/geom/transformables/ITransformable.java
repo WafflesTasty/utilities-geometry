@@ -2,10 +2,10 @@ package zeno.util.geom.transformables;
 
 import zeno.util.algebra.linear.matrix.Matrix;
 import zeno.util.algebra.linear.vector.Vector;
+import zeno.util.geom._deprecated.transforms.AffineMap;
 import zeno.util.geom.transformables.affine.IMovable;
 import zeno.util.geom.transformables.affine.IRotatable;
 import zeno.util.geom.transformables.affine.IScalable;
-import zeno.util.geom.transforms.AffineMap;
 import zeno.util.geom.utilities.bounds.IBounded;
 
 /**

@@ -15,7 +15,31 @@ import zeno.util.tools.Integers;
  * @author Zeno
  */
 public final class Containment
-{		
+{
+	/**
+	 * Checks the containment of a point in a cuboid.
+	 * 
+	 * @param c  a cuboid to check
+	 * @param v  a point to check
+	 * @return  {@code true} if the shape is contained
+	 */
+	public static boolean in(ICuboid c, Vector v)
+	{
+		for(int i = 0; i < c.Dimension(); i++)
+		{
+			float vi = v.get(i);
+			float si = c.Size().get(i);
+			float ci = c.Center().get(i);
+			
+			if(si < 2 * Floats.abs(vi - ci))
+			{
+				return false;
+			}
+		}
+
+		return true;
+	}
+	
 	/**
 	 * Checks the containment of a cuboid in a cuboid.
 	 * 
@@ -55,33 +79,9 @@ public final class Containment
 	{
 		return in(c, e.Bounds().Box());
 	}
-
-	/**
-	 * Checks the containment of a point in a cuboid.
-	 * 
-	 * @param c  a cuboid to check
-	 * @param v  a point to check
-	 * @return  {@code true} if the shape is contained
-	 */
-	public static boolean in(ICuboid c, Vector v)
-	{
-		for(int i = 0; i < c.Dimension(); i++)
-		{
-			float vi = v.get(i);
-			float si = c.Size().get(i);
-			float ci = c.Center().get(i);
-			
-			if(si < 2 * Floats.abs(vi - ci))
-			{
-				return false;
-			}
-		}
-
-		return true;
-	}
 	
 	/**
-	 * Checks the containment of a line in a cuboid.
+	 * Checks the containment of a segment in a cuboid.
 	 * 
 	 * @param c  a cuboid to check
 	 * @param l  a line to check
@@ -157,21 +157,9 @@ public final class Containment
 		
 		return in(ISphere.unit(dim), IEllipsoid.create(center, size));
 	}
-		
-	/**
-	 * Checks the containment of a sphere in an ellipsoid.
-	 * 
-	 * @param e  an ellipsoid to check
-	 * @param s  a sphere to check
-	 * @return  {@code true} if the shape is contained
-	 */
-	public static boolean in(IEllipsoid e, ISphere s)
-	{
-		throw new UnsupportedOperationException("IEllipsoid-sphere containment not implemented yet.");
-	}
 	
 	/**
-	 * Checks the containment of a line in an ellipsoid.
+	 * Checks the containment of a segment in an ellipsoid.
 	 * 
 	 * @param e  an ellipsoid to check
 	 * @param l  a line to check
@@ -183,6 +171,18 @@ public final class Containment
 			&& in(e, l.P2());
 	}
 	
+	/**
+	 * Checks the containment of a sphere in an ellipsoid.
+	 * 
+	 * @param e  an ellipsoid to check
+	 * @param s  a sphere to check
+	 * @return  {@code true} if the shape is contained
+	 */
+	public static boolean in(IEllipsoid e, ISphere s)
+	{
+		throw new UnsupportedOperationException("IEllipsoid-sphere containment not implemented yet.");
+	}
+		
 	
 	/**
 	 * Checks the containment of a point in a sphere.
@@ -226,7 +226,7 @@ public final class Containment
 
 	
 	/**
-	 * Checks the containment of a point in a line.
+	 * Checks the containment of a point in a segment.
 	 * 
 	 * @param l  a line to check
 	 * @param v  a point to check
@@ -264,7 +264,7 @@ public final class Containment
 	}
 	
 	/**
-	 * Checks the containment of a cuboid in a line.
+	 * Checks the containment of a cuboid in a segment.
 	 * 
 	 * @param l  a line to check
 	 * @param c  a cuboid to check
@@ -276,7 +276,7 @@ public final class Containment
 	}
 	
 	/**
-	 * Checks the containment of an ellipsoid in a line.
+	 * Checks the containment of an ellipsoid in a segment.
 	 * 
 	 * @param l  a line to check
 	 * @param e  an ellipsoid to check
@@ -288,7 +288,7 @@ public final class Containment
 	}
 		
 	/**
-	 * Checks the containment of a line in a line.
+	 * Checks the containment of a segment in a segment.
 	 * 
 	 * @param l  a line to check
 	 * @param m  a line to check
@@ -296,7 +296,7 @@ public final class Containment
 	 */
 	public static boolean in(ISegment l, ISegment m)
 	{
-		throw new UnsupportedOperationException("ISegment-line containment not implemented yet.");
+		throw new UnsupportedOperationException("line-line containment not implemented yet.");
 	}
 	
 		
