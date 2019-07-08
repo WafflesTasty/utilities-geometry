@@ -33,15 +33,15 @@ public class Rectangle extends Geometry2D implements ICuboid
 	/**
 	 * Creates a new {@code Rectangle}.
 	 * 
-	 * @param center  a rectangle center
-	 * @param size    a rectangle size
+	 * @param c  a rectangle center
+	 * @param s  a rectangle size
 	 * 
 	 * 
 	 * @see Vector2
 	 */
-	public Rectangle(Vector2 center, Vector2 size)
+	public Rectangle(Vector2 c, Vector2 s)
 	{
-		super(center, size);
+		super(c, s);
 	}
 	
 	/**
@@ -58,14 +58,14 @@ public class Rectangle extends Geometry2D implements ICuboid
 	/**
 	 * Creates a new {@code Rectangle}.
 	 * 
-	 * @param size  a rectangle size
+	 * @param s  a rectangle size
 	 * 
 	 * 
 	 * @see Vector2
 	 */
-	public Rectangle(Vector2 size)
+	public Rectangle(Vector2 s)
 	{
-		super(size);
+		super(s);
 	}
 	
 	/**

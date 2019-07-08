@@ -107,7 +107,7 @@ public class Segment3D extends NSegment implements IGeometry3D
 	}
 	
 	/**
-	 * Returns the second y-coördinate of the {@code Segment3D}.
+	 * Returns the second z-coördinate of the {@code Segment3D}.
 	 * 
 	 * @return  the line's second z-coördinate
 	 */

@@ -35,15 +35,15 @@ public class Ellipse extends Geometry2D implements IEllipsoid
 	/**
 	 * Creates a new {@code Ellipse}.
 	 * 
-	 * @param center  an ellipse center
-	 * @param size    an ellipse size
+	 * @param c  an ellipse center
+	 * @param s  an ellipse size
 	 * 
 	 * 
 	 * @see Vector2
 	 */
-	public Ellipse(Vector2 center, Vector2 size)
+	public Ellipse(Vector2 c, Vector2 s)
 	{
-		super(center, size);
+		super(c, s);
 	}
 	
 	/**
@@ -60,14 +60,14 @@ public class Ellipse extends Geometry2D implements IEllipsoid
 	/**
 	 * Creates a new {@code Ellipse}.
 	 * 
-	 * @param size  an ellipse size
+	 * @param s  an ellipse size
 	 * 
 	 * 
 	 * @see Vector2
 	 */
-	public Ellipse(Vector2 size)
+	public Ellipse(Vector2 s)
 	{
-		super(size);
+		super(s);
 	}
 	
 	/**

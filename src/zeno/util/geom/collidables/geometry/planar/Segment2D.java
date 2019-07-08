@@ -8,8 +8,10 @@ import zeno.util.tools.Floats;
 /**
  * The {@code Segment2D} class defines a two-dimensional line segment.
  * 
- * @since Jul 5, 2016
  * @author Zeno
+ * @since Jul 5, 2016
+ * @version 1.0
+ * 
  * 
  * @see IGeometry2D
  * @see NSegment

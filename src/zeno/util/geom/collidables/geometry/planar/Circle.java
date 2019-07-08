@@ -79,15 +79,15 @@ public class Circle extends Ellipse implements ISphere
 	/**
 	 * Creates a new {@code Circle}.
 	 * 
-	 * @param center  a circle center
-	 * @param r       a circle radius
+	 * @param c  a circle center
+	 * @param r  a circle radius
 	 * 
 	 * 
 	 * @see Vector2
 	 */
-	public Circle(Vector2 center, float r)
+	public Circle(Vector2 c, float r)
 	{
-		super(center, new Vector2(r, r));
+		super(c, new Vector2(r, r));
 	}
 	
 	/**

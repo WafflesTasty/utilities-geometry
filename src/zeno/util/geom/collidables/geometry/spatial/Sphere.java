@@ -32,13 +32,15 @@ public class Sphere extends Ellipsoid implements ISphere
 	/**
 	 * Creates a new {@code Sphere}.
 	 * 
-	 * @param center  the sphere's center
+	 * @param c  the sphere's center
 	 * @param r  the sphere's radius
+	 * 
+	 * 
 	 * @see Vector3
 	 */
-	public Sphere(Vector3 center, float r)
+	public Sphere(Vector3 c, float r)
 	{
-		super(center, new Vector3(2 * r, 2 * r, 2 * r));
+		super(c, new Vector3(2 * r, 2 * r, 2 * r));
 	}
 	
 	/**

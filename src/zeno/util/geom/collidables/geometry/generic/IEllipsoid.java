@@ -29,6 +29,9 @@ public interface IEllipsoid extends IGeometry
 	 * @param center  an ellipsoid center
 	 * @param size    an ellipsoid size
 	 * @return  a new ellipsoid
+	 * 
+	 * 
+	 * @see Vector
 	 */
 	public static IEllipsoid create(Vector center, Vector size)
 	{

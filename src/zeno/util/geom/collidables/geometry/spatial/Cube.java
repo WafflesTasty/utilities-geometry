@@ -32,15 +32,15 @@ public class Cube extends Cuboid implements ICube
 	/**
 	 * Creates a new {@code Cube}.
 	 * 
-	 * @param center  a cube center
+	 * @param c  a cube center
 	 * @param l  a cube length
 	 * 
 	 * 
 	 * @see Vector3
 	 */
-	public Cube(Vector3 center, float l)
+	public Cube(Vector3 c, float l)
 	{
-		super(center, new Vector3(l, l, l));
+		super(c, new Vector3(l, l, l));
 	}
 	
 	/**

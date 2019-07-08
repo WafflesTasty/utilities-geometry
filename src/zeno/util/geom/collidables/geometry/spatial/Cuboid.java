@@ -31,21 +31,7 @@ public class Cuboid extends Geometry3D implements ICuboid
 	{
 		this(new Vector3(x, y, z), new Vector3(w, h, d));
 	}
-	
-	/**
-	 * Creates a new {@code Cuboid}.
-	 * 
-	 * @param center  a cuboid center
-	 * @param size    a cuboid size
-	 * 
-	 * 
-	 * @see Vector3
-	 */
-	public Cuboid(Vector3 center, Vector3 size)
-	{
-		super(center, size);
-	}
-	
+		
 	/**
 	 * Creates a new {@code Cuboid}.
 	 * 
@@ -61,14 +47,28 @@ public class Cuboid extends Geometry3D implements ICuboid
 	/**
 	 * Creates a new {@code Cuboid}.
 	 * 
-	 * @param size  a cuboid size
+	 * @param c  a cuboid center
+	 * @param s    a cuboid size
 	 * 
 	 * 
 	 * @see Vector3
 	 */
-	public Cuboid(Vector3 size)
+	public Cuboid(Vector3 c, Vector3 s)
 	{
-		super(size);
+		super(c, s);
+	}
+	
+	/**
+	 * Creates a new {@code Cuboid}.
+	 * 
+	 * @param s  a cuboid size
+	 * 
+	 * 
+	 * @see Vector3
+	 */
+	public Cuboid(Vector3 s)
+	{
+		super(s);
 	}
 	
 	/**

@@ -31,21 +31,7 @@ public class Ellipsoid extends Geometry3D implements IEllipsoid
 	{
 		this(new Vector3(x, y, z), new Vector3(w, h, d));
 	}
-	
-	/**
-	 * Creates a new {@code Ellipsoid}.
-	 * 
-	 * @param center  an ellipsoid center
-	 * @param size    an ellipsoid size
-	 * 
-	 * 
-	 * @see Vector3
-	 */
-	public Ellipsoid(Vector3 center, Vector3 size)
-	{
-		super(center, size);
-	}
-	
+		
 	/**
 	 * Creates a new {@code Ellipsoid}.
 	 * 
@@ -61,14 +47,28 @@ public class Ellipsoid extends Geometry3D implements IEllipsoid
 	/**
 	 * Creates a new {@code Ellipsoid}.
 	 * 
-	 * @param size  an ellipsoid size
+	 * @param c  an ellipsoid center
+	 * @param s  an ellipsoid size
 	 * 
 	 * 
 	 * @see Vector3
 	 */
-	public Ellipsoid(Vector3 size)
+	public Ellipsoid(Vector3 c, Vector3 s)
 	{
-		super(size);
+		super(c, s);
+	}
+	
+	/**
+	 * Creates a new {@code Ellipsoid}.
+	 * 
+	 * @param s  an ellipsoid size
+	 * 
+	 * 
+	 * @see Vector3
+	 */
+	public Ellipsoid(Vector3 s)
+	{
+		super(s);
 	}
 	
 	/**
