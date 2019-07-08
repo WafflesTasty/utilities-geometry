@@ -32,7 +32,20 @@ public interface Bounds
 	 * @see Vector
 	 */
 	public abstract Vector Maximum();
+
 	
+	/**
+	 * Returns the center of the {@code Bounds} object.
+	 * 
+	 * @return  the bounds center
+	 * 
+	 * 
+	 * @see Vector
+	 */
+	public default Vector Center()
+	{
+		return Minimum().plus(Maximum()).times(0.5f);
+	}
 	
 	/**
 	 * Returns the size of the {@code Bounds} object.
@@ -47,17 +60,15 @@ public interface Bounds
 		return Maximum().minus(Minimum());
 	}
 	
+
 	/**
-	 * Returns the center of the {@code Bounds} object.
+	 * Returns the dimension of the {@code Bounds} object.
 	 * 
-	 * @return  the bounds center
-	 * 
-	 * 
-	 * @see Vector
+	 * @return  the bounds dimension
 	 */
-	public default Vector Center()
+	public default int Dimension()
 	{
-		return Minimum().plus(Maximum()).times(0.5f);
+		return Center().Size();
 	}
 	
 	/**
@@ -80,17 +91,7 @@ public interface Bounds
 		return 0.5f * Diameter();
 	}
 			
-		
-	/**
-	 * Returns the dim of the {@code Bounds} object.
-	 * 
-	 * @return  the bounds dimension
-	 */
-	public default int Dimension()
-	{
-		return Center().Size();
-	}
-	
+			
 	/**
 	 * Returns the ball of the {@code Bounds} object.
 	 * 
