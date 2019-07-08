@@ -4,8 +4,8 @@ import zeno.util.algebra.linear.vector.fixed.Vector3;
 import zeno.util.tools.Floats;
 
 /**
- * The {@code IScalable2D} interface defines an object
- * capable of being scaled in a 2D affine space.
+ * The {@code IScalable3D} interface defines an object
+ * capable of being scaled in a 3D affine space.
  *
  * @author Zeno
  * @since Apr 22, 2016
@@ -17,7 +17,7 @@ import zeno.util.tools.Floats;
 public interface IScalable3D extends IScalable
 {	
 	/**
-	 * Scales the {@code IScalable2D} with a specified factor.
+	 * Scales the {@code IScalable3D} with a specified factor.
 	 * 
 	 * @param w  a  width factor
 	 * @param h  a height factor
@@ -32,7 +32,7 @@ public interface IScalable3D extends IScalable
 	}
 
 	/**
-	 * Scales the {@code IScalable2D} to a new scale vector.
+	 * Scales the {@code IScalable3D} to a new scale vector.
 	 * 
 	 * @param w  a new  width
 	 * @param h  a new height

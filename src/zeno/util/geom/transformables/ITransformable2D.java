@@ -6,7 +6,7 @@ import zeno.util.geom.transformables.affine.IScalable2D;
 import zeno.util.geom.transformables.affine.IVantage2D;
 
 /**
- * The {@code ITransformable} interface defines an object
+ * The {@code ITransformable2D} interface defines an object
  * capable of being transformed in two-dimensional affine space.
  *
  * @author Zeno

@@ -16,7 +16,7 @@ import zeno.util.algebra.linear.vector.fixed.Vector2;
 public interface IProjectable2D extends IProjectable
 {	
 	/**
-	 * Moves the oculus of the {@code IProjectable} for a specified distance.
+	 * Moves the oculus of the {@code IProjectable2D} for a specified distance.
 	 * 
 	 * @param x  an x-direction to move in 
 	 * @param y  an y-direction to move in
@@ -27,7 +27,7 @@ public interface IProjectable2D extends IProjectable
 	}
 	
 	/**
-	 * Projects the {@code IProjectable} to a new oculus.
+	 * Projects the {@code IProjectable2D} to a new oculus.
 	 * 
 	 * @param x  an oculus x-coördinate 
 	 * @param y  an oculus y-coördinate

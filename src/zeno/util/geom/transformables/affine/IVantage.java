@@ -17,10 +17,10 @@ import zeno.util.tools.Floats;
 public interface IVantage extends IMovable, IRotatable
 {
 	/**
-	 * Strafes the {@code IVantage2D} for a specified distance.
+	 * Moves the {@code IVantage} for a specified distance.
 	 * 
 	 * @param i  a basis vector index
-	 * @param d  a distance to strafe
+	 * @param d  a distance to move
 	 */
 	public default void moveFor(int i, float d)
 	{

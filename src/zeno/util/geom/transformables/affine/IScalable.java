@@ -18,6 +18,8 @@ public interface IScalable
 	 * Returns the size of the {@code IScalable}.
 	 * 
 	 * @return  a size vector
+	 * 
+	 * 
 	 * @see Vector
 	 */
 	public abstract Vector Size();
@@ -26,6 +28,8 @@ public interface IScalable
 	 * Scales the {@code IScalable} to a new size vector.
 	 * 
 	 * @param v  a new scale vector
+	 * 
+	 * 
 	 * @see Vector
 	 */
 	public abstract void scaleTo(Vector v);
@@ -35,6 +39,8 @@ public interface IScalable
 	 * 
 	 * @param v  a direction to move in
 	 * @param d  a distance to move for
+	 * 
+	 * 
 	 * @see Vector
 	 */
 	public default void scaleFor(Vector v, float d)
@@ -49,6 +55,8 @@ public interface IScalable
 	 * Scales the {@code IScalable} for a specified factor.
 	 * 
 	 * @param v  a scale factor to use
+	 * 
+	 * 
 	 * @see Vector
 	 */
 	public default void scaleFor(Vector v)
