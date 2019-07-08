@@ -5,7 +5,7 @@ import zeno.util.algebra.linear.matrix.Matrix;
 import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.algebra.linear.vector.Vectors;
 import zeno.util.geom.ITransformation;
-import zeno.util.tools.patterns.properties.Copyable;
+import zeno.util.geom.transforms.types.Translator;
 
 /**
  * The {@code Translation} class defines an affine translation.
@@ -18,29 +18,14 @@ import zeno.util.tools.patterns.properties.Copyable;
  * 
  * 
  * @see ITransformation
- * @see Copyable
  */
-public class Translation implements Copyable<Translation>, ITransformation
+public class Translation implements ITransformation
 {
 	private static Vector DefaultOrigin(int dim)
 	{
 		return Vectors.create(dim);
 	}
 	
-	/**
-	 * Returns a {@code Translation} to an origin vector.
-	 * 
-	 * @param v  an origin vector
-	 * @return  a translation
-	 * 
-	 * 
-	 * @see Vector
-	 */
-	public static Translation of(Vector v)
-	{
-		return new Translation(v);
-	}
-		
 	
 	private Vector origin;
 	
@@ -57,30 +42,16 @@ public class Translation implements Copyable<Translation>, ITransformation
 	/**
 	 * Creates a new {@code Translation}.
 	 * 
-	 * @param v  an origin vector
-	 * @param dim  a space dimension
+	 * @param o  an origin vector
 	 * 
 	 * 
 	 * @see Vector
 	 */
-	public Translation(Vector v, int dim)
+	public Translation(Vector o)
 	{
-		this(Vectors.resize(v, dim));
+		origin = o;
 	}
-
-	/**
-	 * Creates a new {@ode Translation}.
-	 * 
-	 * @param v  an origin vector
-	 * 
-	 * 
-	 * @see Vector
-	 */
-	public Translation(Vector v)
-	{
-		origin = v;
-	}
-		
+	
 	/**
 	 * Returns the origin vector.
 	 * 
@@ -93,12 +64,13 @@ public class Translation implements Copyable<Translation>, ITransformation
 	{
 		return origin;
 	}
-		
+	
 	
 	@Override
 	public Matrix Inverse(int dim)
 	{
 		Matrix m = Matrices.identity(dim + 1);
+		m.setOperator(Translator.Type());
 		for(int d = 0; d < dim; d++)
 		{
 			if(d < origin.Size())
@@ -109,11 +81,12 @@ public class Translation implements Copyable<Translation>, ITransformation
 		
 		return m;
 	}
-	
+
 	@Override
 	public Matrix Matrix(int dim)
 	{
 		Matrix m = Matrices.identity(dim + 1);
+		m.setOperator(Translator.Type());
 		for(int d = 0; d < dim; d++)
 		{
 			if(d < origin.Size())
@@ -123,25 +96,5 @@ public class Translation implements Copyable<Translation>, ITransformation
 		}
 		
 		return m;
-	}
-	
-	
-	@Override
-	public Translation instance()
-	{
-		return new Translation(origin);
-	}
-	
-	
-	@Override
-	public int DimOut()
-	{
-		return origin.Size();
-	}
-	
-	@Override
-	public int DimIn()
-	{
-		return origin.Size();
 	}
 }

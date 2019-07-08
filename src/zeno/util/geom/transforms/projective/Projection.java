@@ -7,7 +7,6 @@ import zeno.util.algebra.linear.vector.Vectors;
 import zeno.util.geom.ITransformation;
 import zeno.util.tools.Floats;
 import zeno.util.tools.Integers;
-import zeno.util.tools.patterns.properties.Copyable;
 
 /**
  * The {@code Projection} class defines a projective transformation.
@@ -20,9 +19,8 @@ import zeno.util.tools.patterns.properties.Copyable;
  * 
  * 
  * @see ITransformation
- * @see Copyable
  */
-public class Projection implements Copyable<Projection>, ITransformation
+public class Projection implements ITransformation
 {
 	private static Vector DefaultOculus(int iDim, int oDim)
 	{
@@ -34,39 +32,10 @@ public class Projection implements Copyable<Projection>, ITransformation
 		
 		return v;
 	}
-	
-	/**
-	 * Returns a {@code Projection} to an oculus vector.
-	 * 
-	 * @param v  an oculus vector
-	 * @param iDim  a   projected space dimension
-	 * @param oDim  a surrounding space dimension
-	 * @return  a projection
-	 * 
-	 * 
-	 * @see Vector
-	 */
-	public static Projection of(Vector v, int iDim, int oDim)
-	{
-		return new Projection(v, iDim, oDim);
-	}
-	
+
 	
 	private Vector oculus;
-	private int iDim, oDim;
-	
-	/**
-	 * Creates a new {@code Projection}.
-	 * 
-	 * @param iDim  a   projected space dimension
-	 * @param oDim  a surrounding space dimension
-	 */
-	public Projection(int iDim, int oDim)
-	{
-		oculus = DefaultOculus(iDim, oDim);
-		this.iDim = iDim; this.oDim = oDim;
-	}
-	
+		
 	/**
 	 * Creates a new {@code Projection}.
 	 * 
@@ -85,6 +54,17 @@ public class Projection implements Copyable<Projection>, ITransformation
 		{
 			oculus.set(o.get(i), i);
 		}
+	}
+	
+	/**
+	 * Creates a new {@code Projection}.
+	 * 
+	 * @param iDim  a   projected space dimension
+	 * @param oDim  a surrounding space dimension
+	 */
+	public Projection(int iDim, int oDim)
+	{
+		oculus = DefaultOculus(iDim, oDim);
 	}
 	
 	/**
@@ -177,25 +157,5 @@ public class Projection implements Copyable<Projection>, ITransformation
 		}
 		
 		return m;
-	}
-
-	
-	@Override
-	public Projection instance()
-	{
-		return new Projection(oculus, iDim, oDim);
-	}
-	
-	
-	@Override
-	public int DimOut()
-	{
-		return oDim;
-	}
-	
-	@Override
-	public int DimIn()
-	{
-		return iDim;
 	}
 }

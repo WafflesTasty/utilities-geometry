@@ -5,8 +5,7 @@ import zeno.util.algebra.algorithms.lsquares.LSQSVD;
 import zeno.util.algebra.linear.matrix.Matrices;
 import zeno.util.algebra.linear.matrix.types.orthogonal.Orthogonal;
 import zeno.util.geom.ITransformation;
-import zeno.util.tools.Integers;
-import zeno.util.tools.patterns.properties.Copyable;
+import zeno.util.tools.helper.Array;
 
 /**
  * The {@code Rotation} class defines an affine rotation.
@@ -19,31 +18,17 @@ import zeno.util.tools.patterns.properties.Copyable;
  * 
  * 
  * @see ITransformation
- * @see Copyable
  */
-public class Rotation implements Copyable<Rotation>, ITransformation
+public class Rotation implements ITransformation
 {
 	private static Matrix DefaultRotation(int dim)
 	{
 		return Matrices.identity(dim);
 	}
 	
-	/**
-	 * Returns a {@code Rotation} to a basis matrix.
-	 * 
-	 * @param b  a basis matrix
-	 * @return  a rotation
-	 * 
-	 * 
-	 * @see Matrix
-	 */
-	public static Rotation of(Matrix b)
-	{
-		return new Rotation(b);
-	}
 	
-	
-	private Matrix basis;
+	private Matrix mat;
+	private Matrix[] bases;
 	
 	/**
 	 * Creates a new {@code Rotation}.
@@ -52,28 +37,7 @@ public class Rotation implements Copyable<Rotation>, ITransformation
 	 */
 	public Rotation(int dim)
 	{
-		basis = DefaultRotation(dim);
-	}
-	
-	/**
-	 * Creates a new {@code Rotation}.
-	 * 
-	 * @param b  a basis matrix
-	 * @param dim  a space dimension
-	 * 
-	 * 
-	 * @see Matrix
-	 */
-	public Rotation(Matrix b, int dim)
-	{
-		basis = DefaultRotation(dim);
-		for(int r = 0; r < Integers.min(b.Rows(), dim); r++)
-		{
-			for(int c = 0; c < Integers.min(b.Columns(), dim); c++)
-			{
-				basis.set(b.get(r, c), r, c);
-			}
-		}
+		this(DefaultRotation(dim));
 	}
 	
 	/**
@@ -86,7 +50,8 @@ public class Rotation implements Copyable<Rotation>, ITransformation
 	 */
 	public Rotation(Matrix b)
 	{
-		basis = b;
+		bases = new Matrix[0];
+		mat = b;
 	}
 		
 	/**
@@ -99,45 +64,41 @@ public class Rotation implements Copyable<Rotation>, ITransformation
 	 */
 	public Matrix Basis()
 	{
-		return basis;
+		return mat;
 	}
 
 	
 	@Override
 	public Matrix Inverse(int dim)
 	{
-		Matrix m = Matrices.resize(basis, dim + 1, dim + 1);
-		m = new LSQSVD(m).NearestOrthogonal().transpose();
-		m.setOperator(Orthogonal.Type());
-		return m;
+		Matrix basis = Array.get.from(bases, dim);
+		// If a basis has not been created yet...
+		if(basis == null)
+		{
+			// Create rotation from nearest orthogonal matrix.
+			basis = Matrices.resize(mat, dim + 1, dim + 1);
+			basis = new LSQSVD(basis).NearestOrthogonal();
+			bases = Array.set.at(bases, basis, dim);
+			basis.setOperator(Orthogonal.Type());
+		}
+		
+		return basis.transpose();
 	}
 	
 	@Override
 	public Matrix Matrix(int dim)
 	{
-		Matrix m = Matrices.resize(basis, dim + 1, dim + 1);
-		m = new LSQSVD(m).NearestOrthogonal();
-		m.setOperator(Orthogonal.Type());
-		return m;
-	}
-	
-	
-	@Override
-	public Rotation instance()
-	{
-		return new Rotation(basis);
-	}
-	
+		Matrix basis = Array.get.from(bases, dim);
+		// If a basis has not been created yet...
+		if(basis == null)
+		{
+			// Create rotation from nearest orthogonal matrix.
+			basis = Matrices.resize(mat, dim + 1, dim + 1);
+			basis = new LSQSVD(basis).NearestOrthogonal();
+			bases = Array.set.at(bases, basis, dim);
+			basis.setOperator(Orthogonal.Type());
+		}
 		
-	@Override
-	public int DimOut()
-	{
-		return basis.Rows();
-	}
-	
-	@Override
-	public int DimIn()
-	{
-		return basis.Columns();
+		return basis;
 	}
 }
