@@ -3,6 +3,9 @@ package zeno.util.geom.collidables.affine;
 import zeno.util.algebra.linear.matrix.Matrices;
 import zeno.util.algebra.linear.matrix.Matrix;
 import zeno.util.algebra.linear.vector.Vector;
+import zeno.util.geom.collidables.affine.lines.Line2D;
+import zeno.util.geom.collidables.affine.lines.Line3D;
+import zeno.util.geom.collidables.affine.lines.LineND;
 import zeno.util.geom.collidables.affine.spaces.FullASpace;
 import zeno.util.geom.collidables.affine.spaces.TrivialASpace;
 
@@ -12,6 +15,9 @@ import zeno.util.geom.collidables.affine.spaces.TrivialASpace;
  * @author Zeno
  * @since Jul 15, 2018
  * @version 1.0
+ * 
+ * 
+ * @see ASpace
  */
 public final class ASpaces
 {
@@ -20,6 +26,9 @@ public final class ASpaces
 	 * 
 	 * @param dim  an affine coördinate dimension
 	 * @return  a full affine space
+	 * 
+	 * 
+	 * @see ASpace
 	 */
 	public static ASpace full(int dim)
 	{
@@ -31,6 +40,9 @@ public final class ASpaces
 	 * 
 	 * @param dim  an affine coördinate dimension 
 	 * @return  a trivial affine space
+	 * 
+	 * 
+	 * @see ASpace
 	 */
 	public static ASpace trivial(int dim)
 	{
@@ -49,10 +61,26 @@ public final class ASpaces
 	 */
 	public static ASpace create(Matrix m)
 	{
-		if(m.Columns() == 0)
+		int rows = m.Rows();
+		int cols = m.Columns();
+		
+		if(cols == 0)
 			return trivial(m.Rows());
-		if(m.Columns() == 1)
+		if(cols == 1)
 			return new Point((Vector) m);
+		if(cols == 2)
+		{
+			Point p1 = new Point(m.Column(0));
+			Point p2 = new Point(m.Column(1));
+			
+			if(rows == 3)
+				return new Line2D(p1, p2);
+			if(rows == 4)
+				return new Line3D(p1, p2);
+			
+			return new LineND(p1, p2);
+		}
+		
 		return new ASpace(m);
 	}
 	
@@ -107,7 +135,7 @@ public final class ASpaces
 			}
 		}
 				
-		return new ASpace(m);
+		return create(m);
 	}
 	
 	/**
@@ -138,7 +166,7 @@ public final class ASpaces
 			}
 		}
 			
-		return new ASpace(m);
+		return create(m);
 	}	
 	
 	
@@ -146,5 +174,4 @@ public final class ASpaces
 	{
 		// NOT APPLICABLE
 	}
-
 }

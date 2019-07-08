@@ -2,6 +2,8 @@ package zeno.util.geom.collidables.affine.lines;
 
 import zeno.util.algebra.linear.vector.fixed.Vector2;
 import zeno.util.geom.ICollideable2D;
+import zeno.util.geom.collidables.affine.ASpaces;
+import zeno.util.geom.collidables.affine.Point;
 
 /**
  * The {@code Line2D} class defines a two-dimensional line space.
@@ -43,6 +45,20 @@ public class Line2D extends LineND implements ICollideable2D
 		super(p1, p2);
 	}
 
+	/**
+	 * Creates a new {@code Line2D}.
+	 * 
+	 * @param p1  the line's first point
+	 * @param p2  the line's second point
+	 * 
+	 * 
+	 * @see Point
+	 */
+	public Line2D(Point p1, Point p2)
+	{
+		super((Point) ASpaces.occupy(p1, 2), (Point) ASpaces.occupy(p2, 2));
+	}
+	
 	/**
 	 * Creates a new {@code Line2D}.
 	 */

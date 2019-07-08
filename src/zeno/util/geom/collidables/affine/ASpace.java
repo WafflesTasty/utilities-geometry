@@ -308,7 +308,10 @@ public class ASpace implements Inaccurate<ASpace>, ICollidable
 		Matrix m = sum.RowComplement();
 		m = Matrices.resize(m, Dimension(), m.Columns());
 		VSpace dir = new VSpace(sum.Span().times(m));
-		return new ASpace(x, dir);
+		ASpace space = new ASpace(x, dir);
+		m = space.AMatrix();
+		
+		return ASpaces.create(m);
 	}
 	
 	/**
@@ -319,7 +322,7 @@ public class ASpace implements Inaccurate<ASpace>, ICollidable
 	 */
 	public ASpace add(ASpace s)
 	{
-		return new ASpace(Matrices.concat(AMatrix(), s.AMatrix()));
+		return ASpaces.create(Matrices.concat(AMatrix(), s.AMatrix()));
 	}
 
 	
