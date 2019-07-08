@@ -13,8 +13,10 @@ import zeno.util.geom.utilities.bounds.IBounded3D;
  * @version 1.0
  * 
  * 
+ * @see IGeometry 
+ * @see ICollideable3D
  * @see IBounded3D
- * @see IGeometry
+ * @see Bounds3D
  */
 public interface IGeometry3D extends IGeometry, ICollideable3D, IBounded3D, Bounds3D
 {

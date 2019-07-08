@@ -15,7 +15,8 @@ import zeno.util.geom.utilities.bounds.IBounded;
 import zeno.util.geom.utilities.bounds.Bounds;
 
 /**
- * The {@code IGeometry} interface is the base for geometric shapes.
+ * The {@code IGeometry} interface is the base for finite geometric shapes.
+ * <br> It allows for basic collision detection and bounding volumes.
  * 
  * @author Zeno
  * @since Aug 22, 2015
@@ -27,9 +28,7 @@ import zeno.util.geom.utilities.bounds.Bounds;
  * @see Bounds
  */
 public interface IGeometry extends ICollidable, IBounded, Bounds
-{		
-	public abstract boolean intersects(ISegment l);
-	
+{			
 	public default boolean intersects(ASpace a)
 	{
 		if(a.Dimension() < 0)
@@ -83,6 +82,17 @@ public interface IGeometry extends ICollidable, IBounded, Bounds
 	 * @see IEllipsoid
 	 */
 	public abstract boolean intersects(IEllipsoid e);
+
+	/**
+	 * Indicates if the {@code IGeometry} intersects a segment.
+	 * 
+	 * @param l  a segment to check
+	 * @return {@code true} if the segment is intersected
+	 * 
+	 * 
+	 * @see ISegment
+	 */
+	public abstract boolean intersects(ISegment l);
 	
 	/**
 	 * Indicates if the {@code IGeometry} intersects a cuboid.

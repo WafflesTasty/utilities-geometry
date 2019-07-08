@@ -8,10 +8,12 @@ import zeno.util.geom.utilities.bounds.IBounded2D;
 /**
  * The {@code IGeometry2D} interface is the base for two-dimensional geometric shapes.
  *
- * @since Aug 22, 2015
  * @author Zeno
+ * @since Aug 22, 2015
+ * @version 1.0
  * 
- * @see IGeometry
+ * 
+ * @see IGeometry 
  * @see ICollideable2D
  * @see IBounded2D
  * @see Bounds2D

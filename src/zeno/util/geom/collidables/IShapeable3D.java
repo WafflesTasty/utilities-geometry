@@ -4,7 +4,7 @@ import zeno.util.geom.ICollideable3D;
 import zeno.util.geom.transformables.ITransformable3D;
 
 /**
- * The {@code IShapeable2D} interface defines an object that has a 3D geometric shape.
+ * The {@code IShapeable3D} interface defines an object that has a 3D geometric shape.
  * It can be collided with through affine spaces and can be transformed.
  *
  * @author Zeno
