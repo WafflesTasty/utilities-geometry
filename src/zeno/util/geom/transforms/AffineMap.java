@@ -194,8 +194,4 @@ public class AffineMap extends DirtyValue implements Copyable<AffineMap>, ITrans
 		
 		return copy;
 	}
-
-
-
-
 }
