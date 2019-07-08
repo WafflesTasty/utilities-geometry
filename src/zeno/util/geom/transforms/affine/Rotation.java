@@ -5,7 +5,6 @@ import zeno.util.algebra.algorithms.lsquares.LSQSVD;
 import zeno.util.algebra.linear.matrix.Matrices;
 import zeno.util.algebra.linear.matrix.types.orthogonal.Orthogonal;
 import zeno.util.geom.ITransformation;
-import zeno.util.tools.helper.Array;
 
 /**
  * The {@code Rotation} class defines an affine rotation.
@@ -27,8 +26,7 @@ public class Rotation implements ITransformation
 	}
 	
 	
-	private Matrix mat;
-	private Matrix[] bases;
+	private Matrix mat, basis;
 	
 	/**
 	 * Creates a new {@code Rotation}.
@@ -50,7 +48,7 @@ public class Rotation implements ITransformation
 	 */
 	public Rotation(Matrix b)
 	{
-		bases = new Matrix[0];
+		basis = Matrices.identity(0);
 		mat = b;
 	}
 		
@@ -71,34 +69,28 @@ public class Rotation implements ITransformation
 	@Override
 	public Matrix Inverse(int dim)
 	{
-		Matrix basis = Array.get.from(bases, dim);
-		// If a basis has not been created yet...
-		if(basis == null)
+		if(basis.Rows() != dim + 1)
 		{
 			// Create rotation from nearest orthogonal matrix.
 			basis = Matrices.resize(mat, dim + 1, dim + 1);
 			basis = new LSQSVD(basis).NearestOrthogonal();
-			bases = Array.set.at(bases, basis, dim);
 			basis.setOperator(Orthogonal.Type());
 		}
-		
+
 		return basis.transpose();
 	}
 	
 	@Override
 	public Matrix Matrix(int dim)
 	{
-		Matrix basis = Array.get.from(bases, dim);
-		// If a basis has not been created yet...
-		if(basis == null)
+		if(basis.Rows() != dim + 1)
 		{
 			// Create rotation from nearest orthogonal matrix.
 			basis = Matrices.resize(mat, dim + 1, dim + 1);
 			basis = new LSQSVD(basis).NearestOrthogonal();
-			bases = Array.set.at(bases, basis, dim);
 			basis.setOperator(Orthogonal.Type());
 		}
-		
+
 		return basis;
 	}
 }
