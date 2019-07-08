@@ -24,27 +24,27 @@ import zeno.util.tools.patterns.properties.Copyable;
  * @see DirtyValue
  * @see Copyable
  */
-public class AffineMap extends DirtyValue implements Copyable<AffineMap>, ITransformation.Composite
+public class AffineMap extends DirtyValue implements Copyable<AffineMap>, ITransformation
 {
 	private Dilation dilation;
 	private Translation translation;
 	private Rotation rotation;
 	
 	private Matrix mat, inv;
-	private int dim;
+	private int dimension;
 	
 	/**
 	 * Creates a new {@code AffineMap}.
 	 * 
-	 * @param dim  a target dimension
+	 * @param dim  a space dimension
 	 */
 	public AffineMap(int dim)
-	{
-		this.dim = dim;
-		
-		translation = new Translation(dim);
+	{		
 		dilation = new Dilation(dim);
+		translation = new Translation(dim);
 		rotation = new Rotation(dim);
+		
+		dimension = dim;
 	}
 	
 	
@@ -58,12 +58,12 @@ public class AffineMap extends DirtyValue implements Copyable<AffineMap>, ITrans
 	 */
 	public void setOrigin(Vector o)
 	{
-		translation = new Translation(o, dim);
+		translation = new Translation(o);
 		setChanged();
 	}
 	
 	/**
-	 * Changes the rotation of the {@code AffineMap}.
+	 * Changes the basis of the {@code AffineMap}.
 	 * 
 	 * @param r  a rotation matrix
 	 * 
@@ -72,7 +72,7 @@ public class AffineMap extends DirtyValue implements Copyable<AffineMap>, ITrans
 	 */
 	public void setBasis(Matrix r)
 	{
-		rotation = new Rotation(r, dim);
+		rotation = new Rotation(r);
 		setChanged();
 	}
 	
@@ -86,7 +86,7 @@ public class AffineMap extends DirtyValue implements Copyable<AffineMap>, ITrans
 	 */
 	public void setSize(Vector v)
 	{
-		dilation = new Dilation(v, dim);
+		dilation = new Dilation(v);
 		setChanged();
 	}
 	
@@ -132,44 +132,55 @@ public class AffineMap extends DirtyValue implements Copyable<AffineMap>, ITrans
 
 	
 	@Override
-	public ITransformation[] Functions()
-	{
-		return new ITransformation[]
-		{
-			dilation,
-			rotation,
-			translation
-		};
-	}
-
-
-	@Override
 	protected void update()
 	{
-		inv = Inverse(DimOut());
-		mat = Matrix(DimIn());
+		inv = translation.Inverse(dimension);
+		inv = rotation.Inverse(dimension).times(inv);
+		inv = dilation.Inverse(dimension).times(inv);
+
+		mat = dilation.Matrix(dimension);
+		mat = rotation.Matrix(dimension).times(mat);
+		mat = translation.Matrix(dimension).times(mat);
+	}
+
+	void setDimension(int dim)
+	{
+		if(dimension != dim)
+		{
+			dimension = dim;
+			setChanged();
+		}
 	}
 	
+	
 	@Override
-	public Matrix Inverse()
+	public Matrix Inverse(int dim)
 	{
-		checkCache();
+		setDimension(dim);
+		if(isDirty())
+		{
+			update();
+		}
+
 		return inv;
 	}
 	
 	@Override
-	public Matrix Matrix()
+	public Matrix Matrix(int dim)
 	{
-		checkCache();
+		setDimension(dim);
+		if(isDirty())
+		{
+			update();
+		}
+
 		return mat;
 	}
-
-
 	
 	@Override
 	public AffineMap instance()
 	{
-		return new AffineMap(dim);
+		return new AffineMap(dimension);
 	}
 	
 	@Override
@@ -184,15 +195,7 @@ public class AffineMap extends DirtyValue implements Copyable<AffineMap>, ITrans
 		return copy;
 	}
 
-	@Override
-	public int DimOut()
-	{
-		return dim;
-	}
-	
-	@Override
-	public int DimIn()
-	{
-		return dim;
-	}
+
+
+
 }

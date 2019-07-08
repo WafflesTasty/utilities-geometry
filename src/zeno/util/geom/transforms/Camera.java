@@ -1,7 +1,9 @@
 package zeno.util.geom.transforms;
 
+import zeno.util.algebra.linear.matrix.Matrices;
 import zeno.util.algebra.linear.matrix.Matrix;
 import zeno.util.algebra.linear.vector.Vector;
+import zeno.util.algebra.linear.vector.Vectors;
 import zeno.util.geom.ITransformation;
 import zeno.util.geom.transforms.affine.Dilation;
 import zeno.util.geom.transforms.affine.Rotation;
@@ -26,7 +28,7 @@ import zeno.util.tools.patterns.properties.Copyable;
  * @see DirtyValue
  * @see Copyable
  */
-public class Camera extends DirtyValue implements Copyable<Camera>, ITransformation.Composite
+public class Camera extends DirtyValue implements Copyable<Camera>, ITransformation
 {
 	private int iDim, oDim;
 	private Rotation rotation;
@@ -64,7 +66,8 @@ public class Camera extends DirtyValue implements Copyable<Camera>, ITransformat
 	 */
 	public void setOrigin(Vector o)
 	{
-		translation = new Translation(o, iDim);
+		Vector v = Vectors.resize(o, iDim);
+		translation = new Translation(v);
 		setChanged();
 	}
 	
@@ -78,7 +81,8 @@ public class Camera extends DirtyValue implements Copyable<Camera>, ITransformat
 	 */
 	public void setBasis(Matrix r)
 	{
-		rotation = new Rotation(r, iDim);
+		Matrix m = Matrices.resize(r, iDim, iDim);
+		rotation = new Rotation(m);
 		setChanged();
 	}
 	
@@ -108,7 +112,8 @@ public class Camera extends DirtyValue implements Copyable<Camera>, ITransformat
 	{
 		// Divided by two because it scales in both
 		// the positive and negative direction of axes.
-		dilation = new Dilation(s.times(0.5f), iDim);
+		Vector v = Vectors.resize(s.times(0.5f), iDim);
+		dilation = new Dilation(v);
 		setChanged();
 	}
 	
@@ -169,20 +174,58 @@ public class Camera extends DirtyValue implements Copyable<Camera>, ITransformat
 	@Override
 	protected void update()
 	{
-		inv = Inverse(DimOut());
-		mat = Matrix(DimIn());
+		inv = dilation.Matrix(oDim);
+		inv = projection.Matrix(oDim).times(inv);
+		inv = rotation.Matrix(oDim).times(inv);
+		inv = translation.Matrix(oDim).times(inv);
+		
+		mat = translation.Inverse(iDim);
+		mat = rotation.Inverse(iDim).times(mat);
+		mat = projection.Inverse(iDim).times(mat);
+		mat = dilation.Inverse(iDim).times(mat);
+	}
+	
+	void setIDimension(int dim)
+	{
+		if(iDim != dim)
+		{
+			iDim = dim;
+			setChanged();
+		}
+	}
+	
+	void setODimension(int dim)
+	{
+		if(oDim != dim)
+		{
+			oDim = dim;
+			setChanged();
+		}
 	}
 
+	
 	@Override
-	public ITransformation[] Functions()
+	public Matrix Inverse(int dim)
 	{
-		return new ITransformation[]
+		setODimension(dim);
+		if(isDirty())
 		{
-			ITransformation.inverse(translation),
-			ITransformation.inverse(rotation),
-			ITransformation.inverse(projection),
-			ITransformation.inverse(dilation)
-		};
+			update();
+		}
+
+		return inv;
+	}
+	
+	@Override
+	public Matrix Matrix(int dim)
+	{
+		setIDimension(dim);
+		if(isDirty())
+		{
+			update();
+		}
+
+		return mat;
 	}
 	
 	@Override
@@ -203,34 +246,8 @@ public class Camera extends DirtyValue implements Copyable<Camera>, ITransformat
 		
 		return copy;
 	}
-	
-	
-	@Override
-	public Matrix Inverse()
-	{
-		checkCache();
-		return inv;
-	}
-	
-	@Override
-	public Matrix Matrix()
-	{
-		checkCache();
-		return mat;
-	}
-		
-	
-	@Override
-	public int DimOut()
-	{
-		return oDim;
-	}
-	
-	@Override
-	public int DimIn()
-	{
-		return iDim;
-	}
+
+
 
 
 }
