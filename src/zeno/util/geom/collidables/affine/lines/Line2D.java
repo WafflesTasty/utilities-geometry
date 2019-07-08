@@ -4,7 +4,7 @@ import zeno.util.algebra.linear.vector.fixed.Vector2;
 import zeno.util.geom.ICollideable2D;
 
 /**
- * The {@code Segment2D} class defines a two-dimensional line space.
+ * The {@code Line2D} class defines a two-dimensional line space.
  * 
  * @author Zeno
  * @since Jul 5, 2016
@@ -17,7 +17,7 @@ import zeno.util.geom.ICollideable2D;
 public class Line2D extends LineND implements ICollideable2D
 {		
 	/**
-	 * Creates a new {@code Segment2D}.
+	 * Creates a new {@code Line2D}.
 	 * 
 	 * @param x1  the line's first x-coördinate
 	 * @param y1  the line's first y-coördinate
@@ -30,7 +30,7 @@ public class Line2D extends LineND implements ICollideable2D
 	}
 	
 	/**
-	 * Creates a new {@code Segment2D}.
+	 * Creates a new {@code Line2D}.
 	 * 
 	 * @param p1  the line's first point
 	 * @param p2  the line's second point
@@ -44,7 +44,7 @@ public class Line2D extends LineND implements ICollideable2D
 	}
 
 	/**
-	 * Creates a new {@code Segment2D}.
+	 * Creates a new {@code Line2D}.
 	 */
 	public Line2D()
 	{
@@ -53,7 +53,7 @@ public class Line2D extends LineND implements ICollideable2D
 	
 	
 	/**
-	 * Returns the first x-coördinate of the {@code Segment2D}.
+	 * Returns the first x-coördinate of the {@code Line2D}.
 	 * 
 	 * @return  the line's first x-coördinate
 	 */
@@ -63,7 +63,7 @@ public class Line2D extends LineND implements ICollideable2D
 	}
 	
 	/**
-	 * Returns the first y-coördinate of the {@code Segment2D}.
+	 * Returns the first y-coördinate of the {@code Line2D}.
 	 * 
 	 * @return  the line's first y-coördinate
 	 */
@@ -73,7 +73,7 @@ public class Line2D extends LineND implements ICollideable2D
 	}
 	
 	/**
-	 * Returns the second x-coördinate of the {@code Segment2D}.
+	 * Returns the second x-coördinate of the {@code Line2D}.
 	 * 
 	 * @return  the line's second x-coördinate
 	 */
@@ -83,7 +83,7 @@ public class Line2D extends LineND implements ICollideable2D
 	}
 	
 	/**
-	 * Returns the second y-coördinate of the {@code Segment2D}.
+	 * Returns the second y-coördinate of the {@code Line2D}.
 	 * 
 	 * @return  the line's second y-coördinate
 	 */

@@ -4,7 +4,7 @@ import zeno.util.algebra.linear.vector.fixed.Vector3;
 import zeno.util.geom.ICollideable3D;
 
 /**
- * The {@code Segment3D} class defines a three-dimensional line space.
+ * The {@code Line3D} class defines a three-dimensional line space.
  * 
  * @author Zeno
  * @since Jul 5, 2016
@@ -17,7 +17,7 @@ import zeno.util.geom.ICollideable3D;
 public class Line3D extends LineND implements ICollideable3D
 {
 	/**
-	 * Creates a new {@code Segment3D}.
+	 * Creates a new {@code Line3D}.
 	 * 
 	 * @param x1  the line's first x-coördinate
 	 * @param y1  the line's first y-coördinate
@@ -32,7 +32,7 @@ public class Line3D extends LineND implements ICollideable3D
 	}
 	
 	/**
-	 * Creates a new {@code Segment3D}.
+	 * Creates a new {@code Line3D}.
 	 * 
 	 * @param p1  the line's first point
 	 * @param p2  the line's second point
@@ -46,7 +46,7 @@ public class Line3D extends LineND implements ICollideable3D
 	}
 
 	/**
-	 * Creates a new {@code Segment3D}.
+	 * Creates a new {@code Line3D}.
 	 */
 	public Line3D()
 	{
@@ -55,7 +55,7 @@ public class Line3D extends LineND implements ICollideable3D
 	
 		
 	/**
-	 * Returns the first x-coördinate of the {@code Segment3D}.
+	 * Returns the first x-coördinate of the {@code Line3D}.
 	 * 
 	 * @return  the line's first x-coördinate
 	 */
@@ -65,7 +65,7 @@ public class Line3D extends LineND implements ICollideable3D
 	}
 	
 	/**
-	 * Returns the first y-coördinate of the {@code Segment3D}.
+	 * Returns the first y-coördinate of the {@code Line3D}.
 	 * 
 	 * @return  the line's first y-coördinate
 	 */
@@ -75,7 +75,7 @@ public class Line3D extends LineND implements ICollideable3D
 	}
 	
 	/**
-	 * Returns the first z-coördinate of the {@code Segment3D}.
+	 * Returns the first z-coördinate of the {@code Line3D}.
 	 * 
 	 * @return  the line's first z-coördinate
 	 */
@@ -85,7 +85,7 @@ public class Line3D extends LineND implements ICollideable3D
 	}
 	
 	/**
-	 * Returns the second x-coördinate of the {@code Segment3D}.
+	 * Returns the second x-coördinate of the {@code Line3D}.
 	 * 
 	 * @return  the line's second x-coördinate
 	 */
@@ -95,7 +95,7 @@ public class Line3D extends LineND implements ICollideable3D
 	}
 	
 	/**
-	 * Returns the second y-coördinate of the {@code Segment3D}.
+	 * Returns the second y-coördinate of the {@code Line3D}.
 	 * 
 	 * @return  the line's second y-coördinate
 	 */
@@ -105,7 +105,7 @@ public class Line3D extends LineND implements ICollideable3D
 	}
 	
 	/**
-	 * Returns the second y-coördinate of the {@code Segment3D}.
+	 * Returns the second y-coördinate of the {@code Line3D}.
 	 * 
 	 * @return  the line's second z-coördinate
 	 */
