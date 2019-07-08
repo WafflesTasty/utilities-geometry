@@ -3,14 +3,14 @@ package zeno.util.geom.collidables;
 import zeno.util.algebra.linear.matrix.Matrix;
 import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.geom.ICollidable;
-import zeno.util.geom._deprecated.collideables.lines.ILine;
-import zeno.util.geom._deprecated.collideables.lines.NLine;
 import zeno.util.geom.collidables.affine.ASpace;
 import zeno.util.geom.collidables.affine.ASpaces;
 import zeno.util.geom.collidables.geometry.generic.ICube;
 import zeno.util.geom.collidables.geometry.generic.ICuboid;
 import zeno.util.geom.collidables.geometry.generic.IEllipsoid;
+import zeno.util.geom.collidables.geometry.generic.ISegment;
 import zeno.util.geom.collidables.geometry.generic.ISphere;
+import zeno.util.geom.collidables.geometry.higher.NSegment;
 import zeno.util.geom.utilities.bounds.IBounded;
 import zeno.util.geom.utilities.bounds.Bounds;
 
@@ -28,10 +28,15 @@ import zeno.util.geom.utilities.bounds.Bounds;
  */
 public interface IGeometry extends ICollidable, IBounded, Bounds
 {		
-	public abstract boolean intersects(ILine l);
+	public abstract boolean intersects(ISegment l);
 	
 	public default boolean intersects(ASpace a)
 	{
+		if(a.Dimension() < 0)
+		{
+			return false;
+		}
+		
 		int dim = Dimension();
 		ASpace s = ASpaces.occupy(a, dim);
 		Matrix m = s.VMatrix();
@@ -42,7 +47,7 @@ public interface IGeometry extends ICollidable, IBounded, Bounds
 		
 		Vector p1 = m.Column(0);
 		Vector p2 = m.Column(1);
-		return intersects(new NLine(p1, p2));
+		return intersects(new NSegment(p1, p2));
 	}
 	
 	
@@ -130,7 +135,7 @@ public interface IGeometry extends ICollidable, IBounded, Bounds
 	 */
 	public default boolean intersects(ISphere s)
 	{
-		return contains((IEllipsoid) s);
+		return intersects((IEllipsoid) s);
 	}
 	
 	/**
@@ -144,7 +149,7 @@ public interface IGeometry extends ICollidable, IBounded, Bounds
 	 */
 	public default boolean intersects(ICube c)
 	{
-		return contains((ICuboid) c);
+		return intersects((ICuboid) c);
 	}
 
 	

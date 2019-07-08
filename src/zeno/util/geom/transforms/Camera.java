@@ -246,8 +246,4 @@ public class Camera extends DirtyValue implements Copyable<Camera>, ITransformat
 		
 		return copy;
 	}
-
-
-
-
 }

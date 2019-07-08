@@ -20,7 +20,7 @@ import zeno.util.geom.collidables.affine.ASpace;
  */
 public class FullASpace extends ASpace
 {
-	private int dim;
+	private int coords;
 	
 	/**
 	 * Creates a new {@code FullASpace}.
@@ -29,33 +29,20 @@ public class FullASpace extends ASpace
 	 */
 	public FullASpace(int coords)
 	{
-		dim = coords;
+		this.coords = coords;
 	}
 
 	
 	@Override
 	public Vector Origin()
 	{
-		return Vectors.create(dim);
+		return Vectors.create(coords);
 	}
 	
 	@Override
 	public VSpace Direction()
 	{
-		return VSpaces.full(dim);
-	}
-	
-	@Override
-	public Matrix VMatrix()
-	{
-		return Direction().Span();
-	}
-	
-	
-	@Override
-	public Matrix Span()
-	{
-		return Direction().Span();
+		return VSpaces.full(coords);
 	}
 	
 	@Override
@@ -64,6 +51,26 @@ public class FullASpace extends ASpace
 		return Direction().Complement();
 	}
 	
+	@Override
+	public Matrix Span()
+	{
+		return Direction().Span();
+	}
+	
+	
+	@Override
+	public Matrix VMatrix()
+	{
+		return Direction().Span();
+	}
+	
+	@Override
+	public int Dimension()
+	{
+		return coords;
+	}
+	
+		
 	@Override
 	public ASpace intersect(ASpace s)
 	{
@@ -75,13 +82,7 @@ public class FullASpace extends ASpace
 	{
 		return this;
 	}
-	
-	@Override
-	public int Dimension()
-	{
-		return dim;
-	}
-	
+		
 	
 	@Override
 	public boolean contains(Vector v)
@@ -89,6 +90,12 @@ public class FullASpace extends ASpace
 		return true;
 	}
 			
+	@Override
+	public boolean equals(ASpace s, int ulps)
+	{
+		return s.Dimension() == coords;
+	}
+
 	@Override
 	public boolean intersects(ASpace s)
 	{
@@ -99,18 +106,5 @@ public class FullASpace extends ASpace
 	public boolean contains(ASpace s)
 	{
 		return true;
-	}
-	
-	
-	@Override
-	public boolean equals(ASpace s, int ulps)
-	{
-		return s.Dimension() == -1;
-	}
-	
-	@Override
-	public ASpace instance()
-	{
-		return this;
 	}
 }

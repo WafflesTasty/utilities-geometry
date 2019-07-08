@@ -7,8 +7,6 @@ import zeno.util.algebra.linear.vector.VSpace;
 import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.algebra.linear.vector.Vectors;
 import zeno.util.geom.ICollidable;
-import zeno.util.geom.collidables.affine.spaces.TrivialASpace;
-import zeno.util.tools.patterns.properties.Copyable;
 import zeno.util.tools.patterns.properties.Inaccurate;
 
 /**
@@ -21,33 +19,14 @@ import zeno.util.tools.patterns.properties.Inaccurate;
  * @version 1.0
  * 
  * 
+ * @see ICollidable
  * @see Inaccurate
- * @see Copyable
  */
-public class ASpace implements Copyable<ASpace>, Inaccurate<ASpace>, ICollidable
+public class ASpace implements Inaccurate<ASpace>, ICollidable
 {
-	/**
-	 * Defines the trivial affine space for static access.
-	 * 
-	 * @param dim  an affine coördinate dimension 
-	 * @return  a trivial affine space
-	 */
-	public static ASpace trivial(int dim)
-	{
-		return new TrivialASpace(dim);
-	}
-	
 	private Matrix hmat;
 	private Vector origin;
 	private VSpace space;
-	
-	/**
-	 * Creates a new {@code ASpace}.
-	 */
-	protected ASpace()
-	{
-		// NOT APPLICABLE
-	}
 	
 	/**
 	 * Creates a new {@code ASpace}.
@@ -102,6 +81,14 @@ public class ASpace implements Copyable<ASpace>, Inaccurate<ASpace>, ICollidable
 		hmat = m;
 	}
 
+	/**
+	 * Creates a new {@code ASpace}.
+	 */
+	public ASpace()
+	{
+		// NOT APPLICABLE
+	}
+	
 	
 	/**
 	 * Returns the origin of the {@code ASpace}.
@@ -117,11 +104,11 @@ public class ASpace implements Copyable<ASpace>, Inaccurate<ASpace>, ICollidable
 		{
 			int rows = hmat.Rows();
 			int cols = hmat.Columns();
+	
 			
-			
-			origin = hmat.Column(cols - 1);
-			origin = Vectors.resize(origin, rows - 1);
-			float scale = hmat.get(rows, cols - 1);
+			origin = hmat.Column(cols-1);
+			origin = Vectors.resize(origin, rows-1);
+			float scale = hmat.get(rows-1, cols-1);
 			origin = origin.times(1f / scale);
 		}
 		
@@ -163,6 +150,61 @@ public class ASpace implements Copyable<ASpace>, Inaccurate<ASpace>, ICollidable
 		
 		return space;
 	}
+	
+	/**
+	 * Returns the complement of the {@code ASpace}.
+	 * 
+	 * @return  an affine complement matrix
+	 * 
+	 * 
+	 * @see Matrix
+	 */
+	public Matrix Complement()
+	{
+		Matrix comp = Direction().Complement();
+		
+		int cols = comp.Columns();
+		int rows = comp.Rows();
+		
+		comp = Matrices.resize(comp, rows, cols + 1);
+		for(int c = 0; c <= cols; c++)
+		{
+			for(int r = 0; r < rows; r++)
+			{
+				comp.set(comp.get(r, c) + origin.get(r), r, c);
+			}
+		}
+		
+		return comp;
+	}
+	
+	/**
+	 * Returns the affine span of the {@code ASpace}.
+	 * 
+	 * @return  an affine span matrix
+	 * 
+	 * 
+	 * @see Matrix
+	 */
+	public Matrix Span()
+	{
+		Matrix span = Direction().Span();
+		
+		int cols = span.Columns();
+		int rows = span.Rows();
+		
+		span = Matrices.resize(span, rows, cols + 1);
+		for(int c = 0; c <= cols; c++)
+		{
+			for(int r = 0; r < rows; r++)
+			{
+				span.set(span.get(r, c) + origin.get(r), r, c);
+			}
+		}
+		
+		return span;
+	}
+	
 	
 	/**
 	 * Returns the affine matrix of the {@code ASpace}.
@@ -220,59 +262,27 @@ public class ASpace implements Copyable<ASpace>, Inaccurate<ASpace>, ICollidable
 		return m;
 	}
 	
-	
 	/**
-	 * Returns the affine span of the {@code ASpace}.
+	 * Returns the dimension of the {@code ASpace}.
 	 * 
-	 * @return  an affine span matrix
-	 * 
-	 * 
-	 * @see Matrix
+	 * @return  a space dimension
 	 */
-	public Matrix Span()
+	public int Dimension()
 	{
-		Matrix span = Direction().Span();
-		
-		int cols = span.Columns();
-		int rows = span.Rows();
-		
-		span = Matrices.resize(span, rows, cols + 1);
-		for(int c = 0; c <= cols; c++)
-		{
-			for(int r = 0; r < rows; r++)
-			{
-				span.set(span.get(r, c) + origin.get(r), r, c);
-			}
-		}
-		
-		return span;
+		return Direction().Dimension();
 	}
+
 	
 	/**
-	 * Returns the affine complement of the {@code ASpace}.
+	 * Checks if the {@code ASpace} contains a space.
 	 * 
-	 * @return  an affine complement matrix
-	 * 
-	 * 
-	 * @see Matrix
+	 * @param s  a space to check
+	 * @return  {@code true} if the space is contained
 	 */
-	public Matrix Complement()
+	public boolean contains(ASpace s)
 	{
-		Matrix comp = Direction().Complement();
-		
-		int cols = comp.Columns();
-		int rows = comp.Rows();
-		
-		comp = Matrices.resize(comp, rows, cols + 1);
-		for(int c = 0; c <= cols; c++)
-		{
-			for(int r = 0; r < rows; r++)
-			{
-				comp.set(comp.get(r, c) + origin.get(r), r, c);
-			}
-		}
-		
-		return comp;
+		return Direction().contains(s.Direction())
+			&& intersects(s);
 	}
 	
 	/**
@@ -289,7 +299,7 @@ public class ASpace implements Copyable<ASpace>, Inaccurate<ASpace>, ICollidable
 		Vector x = sum.coordinates(v);
 		if(x == null)
 		{
-			return ASpace.trivial(size);
+			return ASpaces.trivial(size);
 		}
 		
 		x = Vectors.resize(x, size);
@@ -312,28 +322,6 @@ public class ASpace implements Copyable<ASpace>, Inaccurate<ASpace>, ICollidable
 		return new ASpace(Matrices.concat(AMatrix(), s.AMatrix()));
 	}
 
-	/**
-	 * Returns the dimension of the {@code ASpace}.
-	 * 
-	 * @return  a space dimension
-	 */
-	public int Dimension()
-	{
-		return Direction().Dimension();
-	}
-	
-		
-	/**
-	 * Checks if the {@code ASpace} contains a space.
-	 * 
-	 * @param s  a space to check
-	 * @return  {@code true} if the space is contained
-	 */
-	public boolean contains(ASpace s)
-	{
-		return Direction().contains(s.Direction())
-			&& intersects(s);
-	}
 	
 	@Override
 	public boolean equals(ASpace s, int ulps)
@@ -352,24 +340,5 @@ public class ASpace implements Copyable<ASpace>, Inaccurate<ASpace>, ICollidable
 	public boolean contains(Vector v)
 	{
 		return Direction().contains(v.minus(Origin()));
-	}
-	
-	
-	@Override
-	public ASpace instance()
-	{
-		return new ASpace();
-	}
-
-	@Override
-	public ASpace copy()
-	{
-		ASpace copy = Copyable.super.copy();
-		
-		copy.hmat = hmat;
-		copy.origin = origin;
-		copy.space = space;
-		
-		return copy;
 	}
 }

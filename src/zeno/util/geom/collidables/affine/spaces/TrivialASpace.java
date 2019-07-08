@@ -21,7 +21,7 @@ import zeno.util.geom.collidables.affine.ASpace;
  */
 public class TrivialASpace extends ASpace
 {
-	private int dim;
+	private int coords;
 	
 	/**
 	 * Creates a new {@code TrivialASpace}.
@@ -30,39 +30,20 @@ public class TrivialASpace extends ASpace
 	 */
 	public TrivialASpace(int coords)
 	{
-		dim = coords;
+		this.coords = coords;
 	}
 
 	
 	@Override
 	public Vector Origin()
 	{
-		return Vectors.create(dim);
+		return Vectors.create(coords);
 	}
 	
 	@Override
 	public VSpace Direction()
 	{
-		return VSpaces.trivial(dim);
-	}
-	
-	@Override
-	public Matrix AMatrix()
-	{
-		return Matrices.create(dim + 1, 0);
-	}
-	
-	@Override
-	public Matrix VMatrix()
-	{
-		return Matrices.create(dim, 0);
-	}
-	
-	
-	@Override
-	public Matrix Span()
-	{
-		return Direction().Span();
+		return VSpaces.trivial(coords);
 	}
 	
 	@Override
@@ -71,6 +52,32 @@ public class TrivialASpace extends ASpace
 		return Direction().Complement();
 	}
 	
+	@Override
+	public Matrix Span()
+	{
+		return Direction().Span();
+	}
+		
+	
+	@Override
+	public Matrix AMatrix()
+	{
+		return Matrices.create(coords + 1, 0);
+	}
+	
+	@Override
+	public Matrix VMatrix()
+	{
+		return Matrices.create(coords, 0);
+	}
+	
+	@Override
+	public int Dimension()
+	{
+		return -1;
+	}
+	
+		
 	@Override
 	public ASpace intersect(ASpace s)
 	{
@@ -83,11 +90,7 @@ public class TrivialASpace extends ASpace
 		return s;
 	}
 	
-	@Override
-	public int Dimension()
-	{
-		return -1;
-	}
+	
 	
 	
 	@Override
@@ -95,7 +98,13 @@ public class TrivialASpace extends ASpace
 	{
 		return false;
 	}
-			
+
+	@Override
+	public boolean equals(ASpace s, int ulps)
+	{
+		return s.Dimension() == -1;
+	}
+	
 	@Override
 	public boolean intersects(ASpace s)
 	{
@@ -106,18 +115,5 @@ public class TrivialASpace extends ASpace
 	public boolean contains(ASpace s)
 	{
 		return false;
-	}
-	
-	
-	@Override
-	public boolean equals(ASpace s, int ulps)
-	{
-		return s.Dimension() == -1;
-	}
-	
-	@Override
-	public ASpace instance()
-	{
-		return this;
 	}
 }
