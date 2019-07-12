@@ -51,4 +51,13 @@ public class NSphere extends NEllipsoid implements ISphere
 	{
 		this(dim, 2f);
 	}
+
+	
+	// Optional Bounds overrides.
+	
+	@Override
+	public NSphere Ball()
+	{
+		return this;
+	}
 }

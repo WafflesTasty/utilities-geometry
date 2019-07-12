@@ -80,6 +80,8 @@ public class Cuboid extends Geometry3D implements ICuboid
 	}
 
 	
+	// Optional Bounds overrides.
+	
 	@Override
 	public Cuboid Box()
 	{

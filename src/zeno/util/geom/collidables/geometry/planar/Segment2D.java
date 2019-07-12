@@ -95,6 +95,8 @@ public class Segment2D extends NSegment implements IGeometry2D
 	}
 
 	
+	// Obligatory Bounds overrides.
+	
 	@Override
 	public Vector2 Minimum()
 	{
@@ -131,6 +133,8 @@ public class Segment2D extends NSegment implements IGeometry2D
 		return (Vector2) super.P2();
 	}
 
+	
+	// Optional Bounds overrides.
 	
 	@Override
 	public float XMin()

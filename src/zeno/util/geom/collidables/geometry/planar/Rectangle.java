@@ -77,6 +77,8 @@ public class Rectangle extends Geometry2D implements ICuboid
 	}
 	
 	
+	// Optional Bounds overrides.
+	
 	@Override
 	public Rectangle Box()
 	{

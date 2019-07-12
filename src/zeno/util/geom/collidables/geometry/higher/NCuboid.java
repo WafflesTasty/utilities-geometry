@@ -66,6 +66,8 @@ public class NCuboid extends GeometryND implements ICuboid
 		return false;
 	}
 	
+	// Optional Bounds overrides.
+	
 	@Override
 	public NCuboid Box()
 	{

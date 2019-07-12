@@ -62,6 +62,8 @@ public class Sphere extends Ellipsoid implements ISphere
 	}
 
 	
+	// Optional Bounds overrides.
+	
 	@Override
 	public Sphere Ball()
 	{

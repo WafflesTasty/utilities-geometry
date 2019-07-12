@@ -117,6 +117,8 @@ public class Segment3D extends NSegment implements IGeometry3D
 	}
 
 	
+	// Obligatory Bounds overrides.
+	
 	@Override
 	public Vector3 Minimum()
 	{
@@ -153,6 +155,8 @@ public class Segment3D extends NSegment implements IGeometry3D
 		return (Vector3) super.P2();
 	}
 
+	
+	// Optional Bounds overrides.
 	
 	@Override
 	public float XMin()

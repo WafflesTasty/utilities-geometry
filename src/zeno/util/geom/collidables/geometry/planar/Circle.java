@@ -109,6 +109,8 @@ public class Circle extends Ellipse implements ISphere
 	}
 
 	
+	// Optional Bounds overrides.
+	
 	@Override
 	public Circle Ball()
 	{
