@@ -1,13 +1,8 @@
 package zeno.util.geom.collidables.geometry.generic;
 
 import zeno.util.algebra.linear.vector.Vector;
-import zeno.util.algebra.linear.vector.fixed.Vector2;
-import zeno.util.algebra.linear.vector.fixed.Vector3;
 import zeno.util.geom.collidables.IGeometry;
 import zeno.util.geom.collidables.affine.lines.ILine;
-import zeno.util.geom.collidables.geometry.higher.NSegment;
-import zeno.util.geom.collidables.geometry.planar.Segment2D;
-import zeno.util.geom.collidables.geometry.spatial.Segment3D;
 import zeno.util.geom.utilities.Containment;
 import zeno.util.geom.utilities.Intersection;
 
@@ -23,28 +18,7 @@ import zeno.util.geom.utilities.Intersection;
  * @see ILine
  */
 public interface ISegment extends IGeometry, ILine
-{
-	/**
-	 * Creates a new {@code ISegment}.
-	 * 
-	 * @param p1  the line's first point
-	 * @param p2  the line's second point
-	 * @return  a new line
-	 * 
-	 * 
-	 * @see Vector
-	 */
-	public static ISegment create(Vector p1, Vector p2)
-	{
-		if(p1.Size() == 2)
-			return new Segment2D((Vector2) p1, (Vector2) p2);
-		if(p1.Size() == 3)
-			return new Segment3D((Vector3) p1, (Vector3) p2);
-		
-		return new NSegment(p1, p2);
-	}
-	
-	
+{	
 	@Override
 	public default boolean contains(Vector p)
 	{

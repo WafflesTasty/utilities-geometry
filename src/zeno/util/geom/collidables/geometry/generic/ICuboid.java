@@ -1,12 +1,7 @@
 package zeno.util.geom.collidables.geometry.generic;
 
 import zeno.util.algebra.linear.vector.Vector;
-import zeno.util.algebra.linear.vector.fixed.Vector2;
-import zeno.util.algebra.linear.vector.fixed.Vector3;
 import zeno.util.geom.collidables.IGeometry;
-import zeno.util.geom.collidables.geometry.higher.NCuboid;
-import zeno.util.geom.collidables.geometry.planar.Rectangle;
-import zeno.util.geom.collidables.geometry.spatial.Cuboid;
 import zeno.util.geom.utilities.Containment;
 import zeno.util.geom.utilities.Intersection;
 
@@ -21,39 +16,7 @@ import zeno.util.geom.utilities.Intersection;
  * @see IGeometry
  */
 public interface ICuboid extends IGeometry
-{
-	/**
-	 * Creates a unit {@code ICuboid}.
-	 * 
-	 * @param dim  a cuboid dimension
-	 * @return  a unit cuboid
-	 */
-	public static ICuboid unit(int dim)
-	{
-		return ICube.unit(dim);
-	}
-	
-	/**
-	 * Creates a new {@code ICuboid}.
-	 * 
-	 * @param center  a cuboid center
-	 * @param size    a cuboid size
-	 * @return  a new cuboid
-	 * 
-	 * 
-	 * @see Vector
-	 */
-	public static ICuboid create(Vector center, Vector size)
-	{
-		if(center.Size() == 2)
-			return new Rectangle((Vector2) center, (Vector2) size);
-		if(center.Size() == 3)
-			return new Cuboid((Vector3) center, (Vector3) size);
-		
-		return new NCuboid(center, size);
-	}
-		
-	
+{	
 	@Override
 	public default boolean contains(Vector p)
 	{

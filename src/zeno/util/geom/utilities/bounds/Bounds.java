@@ -3,6 +3,7 @@ package zeno.util.geom.utilities.bounds;
 import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.geom.collidables.geometry.generic.ICuboid;
 import zeno.util.geom.collidables.geometry.generic.ISphere;
+import zeno.util.geom.utilities.Generate;
 
 /**
  * The {@code Bounds} interface defines object bounds in n dimensions.
@@ -21,7 +22,10 @@ public interface Bounds
 	 * 
 	 * @see Vector
 	 */
-	public abstract Vector Minimum();
+	public default Vector Minimum()
+	{
+		return Center().minus(Size().times(0.5f));
+	}
 	
 	/**
 	 * Returns the maximum of the {@code Bounds} object.
@@ -31,7 +35,10 @@ public interface Bounds
 	 * 
 	 * @see Vector
 	 */
-	public abstract Vector Maximum();
+	public default Vector Maximum()
+	{
+		return Center().plus(Size().times(0.5f));
+	}
 
 	
 	/**
@@ -78,7 +85,7 @@ public interface Bounds
 	 */
 	public default float Diameter()
 	{
-		return Size().norm();
+		return Radius() * 2;
 	}
 	
 	/**
@@ -88,7 +95,7 @@ public interface Bounds
 	 */
 	public default float Radius()
 	{
-		return 0.5f * Diameter();
+		return Diameter() / 2;
 	}
 			
 			
@@ -102,7 +109,7 @@ public interface Bounds
 	 */
 	public default ISphere Ball()
 	{
-		return ISphere.create(Center(), Radius());
+		return Generate.sphere(Center(), Radius());
 	}
 	
 	/**
@@ -115,6 +122,6 @@ public interface Bounds
 	 */
 	public default ICuboid Box()
 	{
-		return ICuboid.create(Center(), Size());
+		return Generate.cuboid(Center(), Size());
 	}
 }
