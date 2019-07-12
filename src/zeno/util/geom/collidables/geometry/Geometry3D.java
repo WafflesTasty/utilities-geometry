@@ -52,7 +52,7 @@ public abstract class Geometry3D extends GeometryND implements IGeometry3D
 	}
 
 	
-	// Obligatory IBounded overrides.
+	// Obligatory Bounds overrides.
 	
 	@Override
 	public Vector3 Minimum()
@@ -79,7 +79,7 @@ public abstract class Geometry3D extends GeometryND implements IGeometry3D
 	}
 
 	
-	// Optional IBounded overrides.
+	// Optional Bounds overrides.
 	
 	@Override
 	public float XMin()

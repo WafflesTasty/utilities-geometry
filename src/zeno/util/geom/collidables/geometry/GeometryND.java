@@ -83,7 +83,7 @@ public abstract class GeometryND implements IGeometry
 	}
 
 	
-	// Obligatory IBounded overrides.
+	// Obligatory Bounds overrides.
 	
 	@Override
 	public float Diameter()

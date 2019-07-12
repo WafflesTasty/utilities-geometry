@@ -60,12 +60,14 @@ public interface ISphere extends IEllipsoid
 	}
 	
 	
+	// Optional Bounds overrides.
+	
 	@Override
 	public default float Diameter()
 	{
 		return Size().get(0);
 	}
-
+	
 	@Override
 	public default ISphere Ball()
 	{

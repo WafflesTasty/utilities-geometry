@@ -61,6 +61,8 @@ public interface ICuboid extends IGeometry
 	}
 
 	
+	// Optional Bounds overrides.
+	
 	@Override
 	public default ICuboid Box()
 	{

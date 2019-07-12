@@ -68,6 +68,8 @@ public interface IEllipsoid extends IGeometry
 	}
 
 	
+	// Optional Bounds overrides.
+	
 	@Override
 	public default float Diameter()
 	{

@@ -52,7 +52,7 @@ public abstract class Geometry2D extends GeometryND implements IGeometry2D
 	}
 	
 			
-	// Obligatory IBounded overrides.
+	// Obligatory Bounds overrides.
 	
 	@Override
 	public Vector2 Minimum()
@@ -79,7 +79,7 @@ public abstract class Geometry2D extends GeometryND implements IGeometry2D
 	}
 
 	
-	// Optional IBounded overrides.
+	// Optional Bounds overrides.
 	
 	@Override
 	public float XMin()

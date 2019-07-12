@@ -63,18 +63,8 @@ public interface ISegment extends IGeometry, ILine
 	}
 	
 	
-	@Override
-	public default Vector Minimum()
-	{
-		return Center().minus(Size().times(0.5f));
-	}
-
-	@Override
-	public default Vector Maximum()
-	{
-		return Center().plus(Size().times(0.5f));
-	}
-		
+	// Optional Bounds overrides.
+	
 	@Override
 	public default Vector Center()
 	{
