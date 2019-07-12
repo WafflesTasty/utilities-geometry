@@ -15,50 +15,7 @@ import zeno.util.geom.collidables.geometry.spatial.Sphere;
  * @see Bounds
  */
 public interface Bounds3D extends Bounds
-{	
-	/**
-	 * Returns the minimum x-coördinate of the {@code Bounds3D}.
-	 * 
-	 * @return  the bounds minimum x
-	 */
-	public abstract float XMin();
-	
-	/**
-	 * Returns the maximum x-coördinate of the {@code Bounds3D}.
-	 * 
-	 * @return  the bounds maximum x
-	 */
-	public abstract float XMax();
-	
-	/**
-	 * Returns the minimum y-coördinate of the {@code Bounds3D}.
-	 * 
-	 * @return  the bounds minimum y
-	 */
-	public abstract float YMin();
-	
-	/**
-	 * Returns the maximum y-coördinate of the {@code Bounds3D}.
-	 * 
-	 * @return  the bounds maximum y
-	 */
-	public abstract float YMax();
-	
-	/**
-	 * Returns the minimum z-coördinate of the {@code Bounds3D}.
-	 * 
-	 * @return  the bounds minimum z
-	 */
-	public abstract float ZMin();
-	
-	/**
-	 * Returns the maximum z-coördinate of the {@code Bounds3D}.
-	 * 
-	 * @return  the bounds maximum z
-	 */
-	public abstract float ZMax();
-	
-	
+{		
 	/**
 	 * Returns the center x of the {@code Bounds3D}.
 	 * 
@@ -120,28 +77,89 @@ public interface Bounds3D extends Bounds
 	}
 	
 	
+	/**
+	 * Returns the minimum x-coördinate of the {@code Bounds3D}.
+	 * 
+	 * @return  the bounds minimum x
+	 */
+	public default float XMin()
+	{
+		return Minimum().X();
+	}
+	
+	/**
+	 * Returns the maximum x-coördinate of the {@code Bounds3D}.
+	 * 
+	 * @return  the bounds maximum x
+	 */
+	public default float XMax()
+	{
+		return Maximum().X();
+	}
+	
+	/**
+	 * Returns the minimum y-coördinate of the {@code Bounds3D}.
+	 * 
+	 * @return  the bounds minimum y
+	 */
+	public default float YMin()
+	{
+		return Minimum().Y();
+	}
+	
+	/**
+	 * Returns the maximum y-coördinate of the {@code Bounds3D}.
+	 * 
+	 * @return  the bounds maximum y
+	 */
+	public default float YMax()
+	{
+		return Maximum().Y();
+	}
+	
+	/**
+	 * Returns the minimum z-coördinate of the {@code Bounds3D}.
+	 * 
+	 * @return  the bounds minimum z
+	 */
+	public default float ZMin()
+	{
+		return Minimum().Z();
+	}
+	
+	/**
+	 * Returns the maximum z-coördinate of the {@code Bounds3D}.
+	 * 
+	 * @return  the bounds maximum z
+	 */
+	public default float ZMax()
+	{
+		return Maximum().Z();
+	}
+	
+	
 	@Override
 	public default Cuboid Box()
 	{
-		return new Cuboid(Center(), Size());
+		return (Cuboid) Bounds.super.Box();
 	}
 		
 	@Override
 	public default Sphere Ball()
 	{
-		return new Sphere(Center(), Radius());
+		return (Sphere) Bounds.super.Ball();
 	}
 			
 	@Override
 	public default Vector3 Minimum()
 	{
-		return new Vector3(XMin(), YMin(), ZMin());
+		return (Vector3) Bounds.super.Minimum();
 	}
 	
 	@Override
 	public default Vector3 Maximum()
 	{
-		return new Vector3(XMax(), YMax(), ZMax());
+		return (Vector3) Bounds.super.Maximum();
 	}
 	
 	@Override

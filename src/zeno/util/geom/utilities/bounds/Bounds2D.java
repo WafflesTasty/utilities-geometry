@@ -17,35 +17,6 @@ import zeno.util.geom.collidables.geometry.planar.Rectangle;
 public interface Bounds2D extends Bounds
 {	
 	/**
-	 * Returns the minimum x-coördinate of the {@code Bounds2D}.
-	 * 
-	 * @return  the bounds minimum x
-	 */
-	public abstract float XMin();
-	
-	/**
-	 * Returns the maximum x-coördinate of the {@code Bounds2D}.
-	 * 
-	 * @return  the bounds maximum x
-	 */
-	public abstract float XMax();
-	
-	/**
-	 * Returns the minimum y-coördinate of the {@code Bounds2D}.
-	 * 
-	 * @return  the bounds minimum y
-	 */
-	public abstract float YMin();
-	
-	/**
-	 * Returns the maximum y-coördinate of the {@code Bounds2D}.
-	 * 
-	 * @return  the bounds maximum y
-	 */
-	public abstract float YMax();
-	
-	
-	/**
 	 * Returns the center x of the {@code Bounds2D}.
 	 * 
 	 * @return  the bounds center x
@@ -85,29 +56,70 @@ public interface Bounds2D extends Bounds
 		return Size().Y();
 	}
 	
+	
+	/**
+	 * Returns the minimum x-coördinate of the {@code Bounds2D}.
+	 * 
+	 * @return  the bounds minimum x
+	 */
+	public default float XMin()
+	{
+		return Minimum().X();
+	}
+	
+	/**
+	 * Returns the maximum x-coördinate of the {@code Bounds2D}.
+	 * 
+	 * @return  the bounds maximum x
+	 */
+	public default float XMax()
+	{
+		return Maximum().X();
+	}
+	
+	/**
+	 * Returns the minimum y-coördinate of the {@code Bounds2D}.
+	 * 
+	 * @return  the bounds minimum y
+	 */
+	public default float YMin()
+	{
+		return Minimum().Y();
+	}
+	
+	/**
+	 * Returns the maximum y-coördinate of the {@code Bounds2D}.
+	 * 
+	 * @return  the bounds maximum y
+	 */
+	public default float YMax()
+	{
+		return Maximum().Y();
+	}
+	
 		
 	@Override
 	public default Circle Ball()
 	{
-		return new Circle(Center(), Radius());
+		return (Circle) Bounds.super.Ball();
 	}
 	
 	@Override
 	public default Rectangle Box()
 	{
-		return new Rectangle(Center(), Size());
+		return (Rectangle) Bounds.super.Box();
 	}
 		
 	@Override
 	public default Vector2 Minimum()
 	{
-		return new Vector2(XMin(), YMin());
+		return (Vector2) Bounds.super.Minimum();
 	}
 	
 	@Override
 	public default Vector2 Maximum()
 	{
-		return new Vector2(XMax(), YMax());
+		return (Vector2) Bounds.super.Maximum();
 	}
 	
 	@Override
