@@ -51,7 +51,9 @@ public abstract class Geometry2D extends GeometryND implements IGeometry2D
 		this(new Vector2(1, 1));
 	}
 	
-		
+			
+	// Obligatory IBounded overrides.
+	
 	@Override
 	public Vector2 Minimum()
 	{
@@ -76,6 +78,8 @@ public abstract class Geometry2D extends GeometryND implements IGeometry2D
 		return (Vector2) super.Size();
 	}
 
+	
+	// Optional IBounded overrides.
 	
 	@Override
 	public float XMin()

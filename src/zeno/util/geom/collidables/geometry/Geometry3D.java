@@ -52,6 +52,8 @@ public abstract class Geometry3D extends GeometryND implements IGeometry3D
 	}
 
 	
+	// Obligatory IBounded overrides.
+	
 	@Override
 	public Vector3 Minimum()
 	{
@@ -76,6 +78,8 @@ public abstract class Geometry3D extends GeometryND implements IGeometry3D
 		return (Vector3) super.Size();
 	}
 
+	
+	// Optional IBounded overrides.
 	
 	@Override
 	public float XMin()

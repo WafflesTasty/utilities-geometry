@@ -83,16 +83,12 @@ public abstract class GeometryND implements IGeometry
 	}
 
 	
-	@Override
-	public Vector Minimum()
-	{
-		return center.minus(size.times(0.5f));
-	}
+	// Obligatory IBounded overrides.
 	
 	@Override
-	public Vector Maximum()
+	public float Diameter()
 	{
-		return center.plus(size.times(0.5f));
+		return size.norm();
 	}
 	
 	@Override
