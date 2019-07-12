@@ -50,9 +50,9 @@ public class NSegment implements ISegment
 	
 	/**
 	 * Creates a new {@code NSegment}.
-	 * The created line fits in the unit cube.
+	 * The created line spans the unit cube diagonal.
 	 * 
-	 * @param dim  the line's dimension
+	 * @param dim  a line dimension
 	 */
 	public NSegment(int dim)
 	{
