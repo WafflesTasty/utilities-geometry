@@ -71,6 +71,7 @@ public interface ITransformation extends Function<Affine, Affine>
 		return Inverse(mat.Rows() - 1).times(mat);
 	}
 
+	
 	@Override
 	public default Affine unmap(Affine val)
 	{
