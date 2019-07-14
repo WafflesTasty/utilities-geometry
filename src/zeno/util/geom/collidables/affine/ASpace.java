@@ -2,11 +2,12 @@ package zeno.util.geom.collidables.affine;
 
 import zeno.util.algebra.linear.matrix.Matrices;
 import zeno.util.algebra.linear.matrix.Matrix;
-import zeno.util.algebra.linear.matrix.types.banded.Diagonal;
 import zeno.util.algebra.linear.vector.VSpace;
+import zeno.util.algebra.linear.vector.VSpaces;
 import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.algebra.linear.vector.Vectors;
 import zeno.util.geom.ICollidable;
+import zeno.util.geom.collidables.Affine;
 import zeno.util.tools.patterns.properties.Inaccurate;
 
 /**
@@ -24,21 +25,20 @@ import zeno.util.tools.patterns.properties.Inaccurate;
  */
 public class ASpace implements Inaccurate<ASpace>, ICollidable
 {
-	private Matrix hmat;
-	private Vector origin;
 	private VSpace space;
+	private APoint origin;
 	
 	/**
 	 * Creates a new {@code ASpace}.
 	 * 
 	 * @param o  an origin point
-	 * @param s  a vector direction
+	 * @param s  a direction space
 	 * 
 	 * 
-	 * @see Vector
+	 * @see APoint
 	 * @see VSpace
 	 */
-	public ASpace(Vector o, VSpace s)
+	public ASpace(APoint o, VSpace s)
 	{
 		origin = o;
 		space = s;
@@ -47,46 +47,17 @@ public class ASpace implements Inaccurate<ASpace>, ICollidable
 	/**
 	 * Creates a new {@code ASpace}.
 	 * 
-	 * @param pts  a set of affine points
+	 * @param o  an origin point
+	 * @param v  a direction vector
 	 * 
 	 * 
+	 * @see APoint
 	 * @see Vector
 	 */
-	public ASpace(Vector... pts)
+	public ASpace(APoint o, Vector v)
 	{
-		int cols = pts.length;
-		int rows = pts[0].Size();
-		
-		hmat = Matrices.create(rows + 1, cols);
-		for(int c = 0; c < cols; c++)
-		{
-			hmat.set(1f, rows, c);
-			for(int r = 0; r < rows; r++)
-			{
-				hmat.set(pts[c].get(r), r, c);
-			}
-		}
-	}
-	
-	/**
-	 * Creates a new {@code ASpace}.
-	 * 
-	 * @param m  a homogenous matrix
-	 * 
-	 * 
-	 * @see Matrix
-	 */
-	public ASpace(Matrix m)
-	{
-		hmat = m;
-	}
-
-	/**
-	 * Creates a new {@code ASpace}.
-	 */
-	public ASpace()
-	{
-		// NOT APPLICABLE
+		space = new VSpace(v);
+		origin = o;
 	}
 	
 	
@@ -96,22 +67,10 @@ public class ASpace implements Inaccurate<ASpace>, ICollidable
 	 * @return  an origin point
 	 * 
 	 * 
-	 * @see Vector
+	 * @see APoint
 	 */
-	public Vector Origin()
+	public APoint Origin()
 	{
-		if(origin == null)
-		{
-			int rows = hmat.Rows();
-			int cols = hmat.Columns();
-	
-			
-			origin = hmat.Column(cols-1);
-			origin = Vectors.resize(origin, rows-1);
-			float scale = hmat.get(rows-1, cols-1);
-			origin = origin.times(1f / scale);
-		}
-		
 		return origin;
 	}
 	
@@ -125,141 +84,7 @@ public class ASpace implements Inaccurate<ASpace>, ICollidable
 	 */
 	public VSpace Direction()
 	{
-		if(space == null)
-		{
-			int rows = hmat.Rows();
-			int cols = hmat.Columns();
-						
-			Vector s = hmat.Row(rows - 1);
-			Matrix d = Matrices.diagonal(s);
-			d.setOperator(Diagonal.Type());
-			
-			Matrix m = hmat.times(d.pseudoinverse());
-			m = Matrices.resize(m, rows - 1, cols - 1);
-			for(int r = 0; r < rows - 1; r++)
-			{
-				float val = m.get(r, cols - 1);
-				for(int c = 0; c < cols - 1; c++)
-				{
-					m.set(m.get(r, c) - val, r, c);
-				}
-			}
-			
-			space = new VSpace(m);
-		}
-		
 		return space;
-	}
-	
-	/**
-	 * Returns the complement of the {@code ASpace}.
-	 * 
-	 * @return  an affine complement matrix
-	 * 
-	 * 
-	 * @see Matrix
-	 */
-	public Matrix Complement()
-	{
-		Matrix comp = Direction().Complement();
-		
-		int cols = comp.Columns();
-		int rows = comp.Rows();
-		
-		comp = Matrices.resize(comp, rows, cols + 1);
-		for(int c = 0; c <= cols; c++)
-		{
-			for(int r = 0; r < rows; r++)
-			{
-				comp.set(comp.get(r, c) + origin.get(r), r, c);
-			}
-		}
-		
-		return comp;
-	}
-	
-	/**
-	 * Returns the affine span of the {@code ASpace}.
-	 * 
-	 * @return  an affine span matrix
-	 * 
-	 * 
-	 * @see Matrix
-	 */
-	public Matrix Span()
-	{
-		Matrix span = Direction().Span();
-		
-		int cols = span.Columns();
-		int rows = span.Rows();
-		
-		span = Matrices.resize(span, rows, cols + 1);
-		for(int c = 0; c <= cols; c++)
-		{
-			for(int r = 0; r < rows; r++)
-			{
-				span.set(span.get(r, c) + origin.get(r), r, c);
-			}
-		}
-		
-		return span;
-	}
-	
-	
-	/**
-	 * Returns the affine matrix of the {@code ASpace}.
-	 * 
-	 * @return  a homogenous matrix
-	 * 
-	 * 
-	 * @see Matrix
-	 */
-	public Matrix AMatrix()
-	{
-		if(hmat == null)
-		{
-			int rows = origin.Size() + 1;
-			int cols = space.Dimension() + 1;
-			
-			hmat = Matrices.resize(space.Span(), rows, cols);
-			for(int c = 0; c < cols; c++)
-			{
-				hmat.set(1f, rows - 1, c);
-				for(int r = 0; r < rows - 1; r++)
-				{
-					hmat.set(hmat.get(r, c) + origin.get(r), r, c);
-				}
-			}
-		}
-		
-		return hmat;
-	}
-	
-	/**
-	 * Returns the vector matrix of the {@code ASpace}.
-	 * 
-	 * @return  a non-homogenous matrix
-	 * 
-	 * 
-	 * @see Matrix
-	 */
-	public Matrix VMatrix()
-	{
-		Matrix mat = AMatrix();
-		int cols = mat.Columns();
-		int rows = mat.Rows();
-		
-		Matrix m = Matrices.resize(mat, rows - 1, cols);
-		for(int c = 0; c < cols; c++)
-		{
-			float val = AMatrix().get(rows - 1, c);
-			for(int r = 0; r < rows - 1; r++)
-			{
-				m.set(m.get(r, c) / val, r, c);
-			}
-		}
-		
-		return m;
 	}
 	
 	/**
@@ -271,18 +96,50 @@ public class ASpace implements Inaccurate<ASpace>, ICollidable
 	{
 		return Direction().Dimension();
 	}
+	
+	/**
+	 * Returns the span of the {@code ASpace}.
+	 * This generates a minimal affine set that spans the space.
+	 * 
+	 * @return  an affine set
+	 * 
+	 * 
+	 * @see Affine
+	 */
+	public Affine Span()
+	{
+		Matrix span = Direction().Span();
+		Matrix o = Origin().VMatrix();
+		
+		int cols = span.Columns();
+		int rows = span.Rows();
+		
+		span = Matrices.resize(span, rows, cols + 1);
+		for(int c = 0; c <= cols; c++)
+		{
+			for(int r = 0; r < rows; r++)
+			{
+				float val = span.get(r, c) + o.get(r);
+				span.set(val, r, c);
+			}
+		}
+		
+		return ASpaces.vset(span);
+	}
 
 	
 	/**
-	 * Checks if the {@code ASpace} contains a space.
+	 * Checks if the space contains an {@code ASpace}.
 	 * 
 	 * @param s  a space to check
 	 * @return  {@code true} if the space is contained
 	 */
 	public boolean contains(ASpace s)
 	{
-		return Direction().contains(s.Direction())
-			&& intersects(s);
+		Vector pq = Origin().minus(s.Origin());
+		VSpace dir = Direction().add(s.Direction());		
+		return dir.Dimension() == s.Dimension()
+			&& dir.contains(pq);
 	}
 	
 	/**
@@ -294,54 +151,62 @@ public class ASpace implements Inaccurate<ASpace>, ICollidable
 	public ASpace intersect(ASpace s)
 	{
 		int size = Origin().Size();
-		Vector v = Origin().minus(s.Origin());
-		VSpace sum = Direction().add(s.Direction());
-		Vector x = sum.coordinates(v);
+		Vector pq = Origin().minus(s.Origin());
+		VSpace dir = Direction().add(s.Direction());
+		
+		// If p-q not in V+W...
+		Vector x = dir.coordinates(pq);
 		if(x == null)
 		{
+			// The intersection is empty.
 			return ASpaces.trivial(size);
 		}
 		
+		// Otherwise, a common point is found.
 		x = Vectors.resize(x, size);
-		x = Origin().plus(Direction().Span().times(x));
+		x = Direction().Span().times(x);
+		x = Origin().VMatrix().plus(x);
 		
-		Matrix m = sum.RowComplement();
+		// Calculate the direction intersection.
+		Matrix m = dir.RowComplement();
 		m = Matrices.resize(m, Dimension(), m.Columns());
-		VSpace dir = new VSpace(sum.Span().times(m));
-		ASpace space = new ASpace(x, dir);
-		m = space.AMatrix();
+		m = dir.Span().times(m);
 		
-		return ASpaces.create(m);
-	}
-	
-	/**
-	 * Returns a direct sum with the {@code ASpace}.
-	 * 
-	 * @param s  a space to add
-	 * @return  an added space
-	 */
-	public ASpace add(ASpace s)
-	{
-		return ASpaces.create(Matrices.concat(AMatrix(), s.AMatrix()));
+		// Create the new affine subspace.
+		APoint o = new APoint(x);
+		VSpace v = VSpaces.create(m);
+		return ASpaces.span(o, v);
 	}
 
+	
+	@Override
+	public boolean intersects(ASpace s)
+	{
+		VSpace dir = Direction().add(s.Direction());		
+		Vector pq = Origin().minus(s.Origin());
+		return dir.contains(pq); 
+	}
 	
 	@Override
 	public boolean equals(ASpace s, int ulps)
 	{
-		return Direction().equals(s.Direction(), ulps)
+		VSpace dir1 = Direction();
+		VSpace dir2 = s.Direction();
+		return dir1.equals(dir2, ulps)
 			&& intersects(s);
-	}
-
-	@Override
-	public boolean intersects(ASpace s)
-	{
-		return intersect(s).Dimension() >= 0; 
 	}
 
 	@Override
 	public boolean contains(Vector v)
 	{
-		return Direction().contains(v.minus(Origin()));
+		return contains(new APoint(v));
+	}
+	
+	@Override
+	public boolean contains(APoint p)
+	{
+		VSpace dir = Direction();
+		Vector ov = p.minus(Origin());
+		return dir.contains(ov);
 	}
 }
