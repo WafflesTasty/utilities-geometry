@@ -2,7 +2,7 @@ package zeno.util.geom.collidables.affine.lines;
 
 import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.geom.collidables.affine.ASpace;
-import zeno.util.geom.collidables.affine.Point;
+import zeno.util.geom.collidables.affine.APoint;
 
 /**
  * The {@code LineND} class defines an n-dimensional line space.
@@ -13,9 +13,8 @@ import zeno.util.geom.collidables.affine.Point;
  * 
  * 
  * @see ASpace
- * @see ILine
  */
-public class LineND extends ASpace implements ILine
+public class LineND extends ASpace
 {			
 	/**
 	 * Creates a new {@code LineND}.
@@ -28,6 +27,21 @@ public class LineND extends ASpace implements ILine
 	 */
 	public LineND(Vector p1, Vector p2)
 	{
+		this(new APoint(p1), p2.minus(p1));
+	}
+	
+	/**
+	 * Creates a new {@code LineND}.
+	 * 
+	 * @param p1  the line's first point
+	 * @param p2  the line's second point
+	 * 
+	 * 
+	 * @see APoint
+	 * @see Vector
+	 */
+	public LineND(APoint p1, Vector p2)
+	{
 		super(p1, p2);
 	}
 
@@ -38,23 +52,10 @@ public class LineND extends ASpace implements ILine
 	 * @param p2  the line's second point
 	 * 
 	 * 
-	 * @see Point
+	 * @see APoint
 	 */
-	public LineND(Point p1, Point p2)
+	public LineND(APoint p1, APoint p2)
 	{
-		this(p1.VMatrix(), p2.VMatrix());
-	}
-	
-			
-	@Override
-	public Vector P1()
-	{
-		return VMatrix().Column(0);
-	}
-
-	@Override
-	public Vector P2()
-	{
-		return VMatrix().Column(1);
+		this(p1, p2.minus(p1));
 	}
 }

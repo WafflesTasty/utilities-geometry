@@ -2,7 +2,6 @@ package zeno.util.geom.collidables.geometry.generic;
 
 import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.geom.collidables.IGeometry;
-import zeno.util.geom.collidables.affine.lines.ILine;
 import zeno.util.geom.utilities.Containment;
 import zeno.util.geom.utilities.Intersection;
 
@@ -15,10 +14,30 @@ import zeno.util.geom.utilities.Intersection;
  * 
  * 
  * @see IGeometry
- * @see ILine
  */
-public interface ISegment extends IGeometry, ILine
+public interface ISegment extends IGeometry
 {	
+	/**
+	 * Returns the first point of the {@code ISegment}.
+	 * 
+	 * @return  the segment's first point
+	 * 
+	 * 
+	 * @see Vector
+	 */
+	public abstract Vector P1();
+	
+	/**
+	 * Returns the second point of the {@code ISegment}.
+	 * 
+	 * @return  the segment's second point
+	 * 
+	 * 
+	 * @see Vector
+	 */
+	public abstract Vector P2();
+	
+	
 	@Override
 	public default boolean contains(Vector p)
 	{

@@ -2,8 +2,8 @@ package zeno.util.geom.collidables.affine.lines;
 
 import zeno.util.algebra.linear.vector.fixed.Vector3;
 import zeno.util.geom.ICollideable3D;
+import zeno.util.geom.collidables.affine.APoint;
 import zeno.util.geom.collidables.affine.ASpaces;
-import zeno.util.geom.collidables.affine.Point;
 
 /**
  * The {@code Line3D} class defines a three-dimensional line space.
@@ -54,11 +54,26 @@ public class Line3D extends LineND implements ICollideable3D
 	 * @param p2  the line's second point
 	 * 
 	 * 
-	 * @see Point
+	 * @see Vector3
+	 * @see APoint
 	 */
-	public Line3D(Point p1, Point p2)
+	public Line3D(APoint p1, Vector3 p2)
 	{
-		super((Point) ASpaces.occupy(p1, 3), (Point) ASpaces.occupy(p2, 3));
+		super((APoint) ASpaces.occupy(p1, 3), p2);
+	}
+	
+	/**
+	 * Creates a new {@code Line3D}.
+	 * 
+	 * @param p1  the line's first point
+	 * @param p2  the line's second point
+	 * 
+	 * 
+	 * @see APoint
+	 */
+	public Line3D(APoint p1, APoint p2)
+	{
+		super((APoint) ASpaces.occupy(p1, 3), (APoint) ASpaces.occupy(p2, 3));
 	}
 	
 	/**
@@ -67,79 +82,5 @@ public class Line3D extends LineND implements ICollideable3D
 	public Line3D()
 	{
 		this(-.5f, -.5f, -.5f, .5f, .5f, .5f);
-	}
-	
-		
-	/**
-	 * Returns the first x-coördinate of the {@code Line3D}.
-	 * 
-	 * @return  the line's first x-coördinate
-	 */
-	public float X1()
-	{
-		return P1().X();
-	}
-	
-	/**
-	 * Returns the first y-coördinate of the {@code Line3D}.
-	 * 
-	 * @return  the line's first y-coördinate
-	 */
-	public float Y1()
-	{
-		return P1().Y();
-	}
-	
-	/**
-	 * Returns the first z-coördinate of the {@code Line3D}.
-	 * 
-	 * @return  the line's first z-coördinate
-	 */
-	public float Z1()
-	{
-		return P1().Z();
-	}
-	
-	/**
-	 * Returns the second x-coördinate of the {@code Line3D}.
-	 * 
-	 * @return  the line's second x-coördinate
-	 */
-	public float X2()
-	{
-		return P2().X();
-	}
-	
-	/**
-	 * Returns the second y-coördinate of the {@code Line3D}.
-	 * 
-	 * @return  the line's second y-coördinate
-	 */
-	public float Y2()
-	{
-		return P2().Y();
-	}
-	
-	/**
-	 * Returns the second y-coördinate of the {@code Line3D}.
-	 * 
-	 * @return  the line's second z-coördinate
-	 */
-	public float Z2()
-	{
-		return P2().Z();
-	}
-
-	
-	@Override
-	public Vector3 P1()
-	{
-		return (Vector3) super.P1();
-	}
-	
-	@Override
-	public Vector3 P2()
-	{
-		return (Vector3) super.P2();
 	}
 }

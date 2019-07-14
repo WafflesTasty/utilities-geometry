@@ -3,7 +3,7 @@ package zeno.util.geom.collidables.affine.lines;
 import zeno.util.algebra.linear.vector.fixed.Vector2;
 import zeno.util.geom.ICollideable2D;
 import zeno.util.geom.collidables.affine.ASpaces;
-import zeno.util.geom.collidables.affine.Point;
+import zeno.util.geom.collidables.affine.APoint;
 
 /**
  * The {@code Line2D} class defines a two-dimensional line space.
@@ -52,11 +52,26 @@ public class Line2D extends LineND implements ICollideable2D
 	 * @param p2  the line's second point
 	 * 
 	 * 
-	 * @see Point
+	 * @see Vector2
+	 * @see APoint
 	 */
-	public Line2D(Point p1, Point p2)
+	public Line2D(APoint p1, Vector2 p2)
 	{
-		super((Point) ASpaces.occupy(p1, 2), (Point) ASpaces.occupy(p2, 2));
+		super((APoint) ASpaces.occupy(p1, 2), p2);
+	}
+	
+	/**
+	 * Creates a new {@code Line2D}.
+	 * 
+	 * @param p1  the line's first point
+	 * @param p2  the line's second point
+	 * 
+	 * 
+	 * @see APoint
+	 */
+	public Line2D(APoint p1, APoint p2)
+	{
+		super((APoint) ASpaces.occupy(p1, 2), (APoint) ASpaces.occupy(p2, 2));
 	}
 	
 	/**
@@ -65,59 +80,5 @@ public class Line2D extends LineND implements ICollideable2D
 	public Line2D()
 	{
 		this(-.5f, -.5f, .5f, .5f);
-	}
-	
-	
-	/**
-	 * Returns the first x-coördinate of the {@code Line2D}.
-	 * 
-	 * @return  the line's first x-coördinate
-	 */
-	public float X1()
-	{
-		return P1().X();
-	}
-	
-	/**
-	 * Returns the first y-coördinate of the {@code Line2D}.
-	 * 
-	 * @return  the line's first y-coördinate
-	 */
-	public float Y1()
-	{
-		return P1().Y();
-	}
-	
-	/**
-	 * Returns the second x-coördinate of the {@code Line2D}.
-	 * 
-	 * @return  the line's second x-coördinate
-	 */
-	public float X2()
-	{
-		return P2().X();
-	}
-	
-	/**
-	 * Returns the second y-coördinate of the {@code Line2D}.
-	 * 
-	 * @return  the line's second y-coördinate
-	 */
-	public float Y2()
-	{
-		return P2().Y();
-	}
-
-	
-	@Override
-	public Vector2 P1()
-	{
-		return (Vector2) super.P1();
-	}
-	
-	@Override
-	public Vector2 P2()
-	{
-		return (Vector2) super.P2();
 	}
 }
