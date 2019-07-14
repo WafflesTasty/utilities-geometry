@@ -1,7 +1,5 @@
 package zeno.util.geom.utilities;
 
-import java.awt.Point;
-
 import zeno.util.algebra.linear.vector.fixed.Vector2;
 import zeno.util.geom.collidables.IGeometry2D;
 import zeno.util.geom.utilities.iterators.PerimeterIterator;
@@ -22,7 +20,7 @@ public final class Iterators
 	 * @return  a perimeter iterator
 	 * @see IGeometry2D
 	 * @see Iterable
-	 * @see Point
+	 * @see Vector2
 	 */
 	public static Iterable<Vector2> perimeter(IGeometry2D geom)
 	{
@@ -36,7 +34,7 @@ public final class Iterators
 	 * @return  a surface iterator
 	 * @see IGeometry2D
 	 * @see Iterable
-	 * @see Point
+	 * @see Vector2
 	 */
 	public static Iterable<Vector2> surface(IGeometry2D geom)
 	{
