@@ -6,7 +6,6 @@ import zeno.util.algebra.linear.vector.VSpaces;
 import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.algebra.linear.vector.Vectors;
 import zeno.util.geom.collidables.Affine;
-import zeno.util.tools.Floats;
 
 /**
  * The {@code APoint} class defines a zero-dimensional affine space.
@@ -76,20 +75,17 @@ public class APoint extends ASpace implements Affine.Set
 		
 		return this;
 	}
+
+	@Override
+	public boolean contains(Affine s)
+	{
+		return Affine.Set.super.contains(s);
+	}
 	
 	@Override
 	public boolean intersects(ASpace s)
 	{
 		return s.contains(this);
-	}
-
-	@Override
-	public boolean contains(ASpace s)
-	{
-		int size = vmat.Size();
-		Vector pq = Origin().minus(s.Origin());
-		return Floats.isZero(pq.norm(), 2 * size - 1)
-			&& s.Dimension() == 0;
 	}
 	
 	@Override

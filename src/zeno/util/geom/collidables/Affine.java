@@ -37,19 +37,7 @@ public interface Affine extends ICollidable
 	 * @see Affine
 	 */
 	public static interface Set extends Affine
-	{
-		@Override
-		public default boolean contains(ASpace s)
-		{
-			if(s.Dimension() == 1)
-			{
-				APoint p = s.Span().Points()[0];
-				return contains(p);
-			}
-
-			return false;
-		}
-		
+	{		
 		@Override
 		public default boolean contains(Vector v)
 		{
@@ -79,7 +67,27 @@ public interface Affine extends ICollidable
 
 			return false;
 		}
-				
+	
+		@Override
+		public default boolean contains(Affine s)
+		{
+			if(s instanceof Set)
+			{
+				Matrix vmat = s.Span().VMatrix();
+				for(int i = 0; i < s.Span().Size(); i++)
+				{
+					if(!contains(vmat.Column(i)))
+					{
+						return false;
+					}
+				}
+
+				return true;
+			}
+			
+			return false;
+		}
+		
 		@Override
 		public default Affine intersect(Affine s)
 		{
@@ -253,20 +261,14 @@ public interface Affine extends ICollidable
 	 * 
 	 * @param s  a subspace to check
 	 * @return  {@code true} if the subspace is contained
-	 * 
-	 * 
-	 * @see ASpace
 	 */
-	public abstract boolean contains(ASpace s);
+	public abstract boolean contains(Affine s);
 	
 	/**
 	 * Intersects a subspace with the {@code Affine}.
 	 * 
 	 * @param s  a subspace to intersect
 	 * @return  an affine intersection
-	 * 
-	 * 
-	 * @see ASpace
 	 */
 	public abstract Affine intersect(Affine s);
 	

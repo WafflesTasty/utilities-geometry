@@ -96,16 +96,7 @@ public class ASpace implements Affine, Inaccurate<ASpace>
 		return Direction().Dimension();
 	}
 
-	
-	@Override
-	public boolean contains(ASpace s)
-	{
-		Vector pq = Origin().minus(s.Origin());
-		VSpace dir = Direction().add(s.Direction());		
-		return dir.Dimension() == s.Dimension()
-			&& dir.contains(pq);
-	}
-	
+		
 	@Override
 	public boolean intersects(ASpace s)
 	{
@@ -168,6 +159,34 @@ public class ASpace implements Affine, Inaccurate<ASpace>
 		return ASpaces.span(o, v);
 	}
 
+	@Override
+	public boolean contains(Affine s)
+	{
+		if(s instanceof Set)
+		{
+			for(APoint p : s.Span().Points())
+			{
+				if(!contains(p))
+				{
+					return false;
+				}
+			}
+			
+			return true;
+		}
+		
+		if(s instanceof ASpace)
+		{
+			ASpace a = (ASpace) s;
+			Vector pq = Origin().minus(a.Origin());
+			VSpace dir = Direction().add(a.Direction());		
+			return dir.Dimension() == a.Dimension()
+				&& dir.contains(pq);
+		}
+		
+		return false;
+	}
+	
 	@Override
 	public Affine intersect(Affine s)
 	{

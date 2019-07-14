@@ -86,7 +86,7 @@ public class TrivialASpace extends ASpace
 	}
 	
 	@Override
-	public boolean contains(ASpace s)
+	public boolean contains(Affine s)
 	{
 		return false;
 	}

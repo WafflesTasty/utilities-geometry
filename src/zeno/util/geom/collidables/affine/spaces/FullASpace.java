@@ -87,7 +87,7 @@ public class FullASpace extends ASpace
 	}
 	
 	@Override
-	public boolean contains(ASpace s)
+	public boolean contains(Affine s)
 	{
 		return true;
 	}
