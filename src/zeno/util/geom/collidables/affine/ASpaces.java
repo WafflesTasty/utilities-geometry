@@ -68,7 +68,7 @@ public final class ASpaces
 	 */
 	public static Affine expand(Affine s, int coords)
 	{
-		Matrix mat = s.HMatrix();
+		Matrix mat = s.Span().HMatrix();
 		int cols = mat.Columns();
 		int rows = mat.Rows();
 		
@@ -104,7 +104,9 @@ public final class ASpaces
 				}
 			}
 		}
-				
+		
+		if(s instanceof ASpace)
+			return span(hset(m));
 		return hset(m);
 	}
 	
@@ -121,7 +123,7 @@ public final class ASpaces
 	 */
 	public static Affine occupy(Affine s, int coords)
 	{
-		Matrix mat = s.HMatrix();
+		Matrix mat = s.Span().HMatrix();
 		int cols = mat.Columns();
 		int rows = mat.Rows();
 		
@@ -135,41 +137,43 @@ public final class ASpaces
 				m.set(0f, rows - 1, c);
 			}
 		}
-			
+		
+		if(s instanceof ASpace)
+			return span(hset(m));
 		return hset(m);
 	}
 	
-	/**
-	 * Defines an affine space that expands a new coördinate count.
-	 * The amount of coördinates change and can increase dimension as well.
-	 * 
-	 * @param s  a space to expand
-	 * @param coords  a coördinate count to use
-	 * @return  a new expanded affine space
-	 * 
-	 * 
-	 * @see ASpace
-	 */
-	public static ASpace expand(ASpace s, int coords)
-	{
-		return span(expand(s.Span(), coords));
-	}
-	
-	/**
-	 * Defines an affine space that occupies a new coördinate count.
-	 * The amount of coördinates change but this does not increase dimension.
-	 * 
-	 * @param s  a space to occupy
-	 * @param coords  a coördinate count to use
-	 * @return  a new occupying affine space
-	 * 
-	 * 
-	 * @see ASpace
-	 */
-	public static ASpace occupy(ASpace s, int coords)
-	{
-		return span(occupy(s.Span(), coords));
-	}
+//	/**
+//	 * Defines an affine space that expands a new coördinate count.
+//	 * The amount of coördinates change and can increase dimension as well.
+//	 * 
+//	 * @param s  a space to expand
+//	 * @param coords  a coördinate count to use
+//	 * @return  a new expanded affine space
+//	 * 
+//	 * 
+//	 * @see ASpace
+//	 */
+//	public static ASpace expand(ASpace s, int coords)
+//	{
+//		return span(expand(s.Span(), coords));
+//	}
+//	
+//	/**
+//	 * Defines an affine space that occupies a new coördinate count.
+//	 * The amount of coördinates change but this does not increase dimension.
+//	 * 
+//	 * @param s  a space to occupy
+//	 * @param coords  a coördinate count to use
+//	 * @return  a new occupying affine space
+//	 * 
+//	 * 
+//	 * @see ASpace
+//	 */
+//	public static ASpace occupy(ASpace s, int coords)
+//	{
+//		return span(occupy(s.Span(), coords));
+//	}
 	
 	
 	/**
@@ -182,7 +186,7 @@ public final class ASpaces
 	 * @see ASpace
 	 * @see Affine
 	 */
-	public static ASpace span(Affine set)
+	public static ASpace span(Affine.Set set)
 	{
 		int size = set.Size() - 1;
 		APoint[] pts = set.Points();
@@ -328,7 +332,7 @@ public final class ASpaces
 	 * @see Affine
 	 * @see Matrix
 	 */
-	public static Affine hset(Matrix... mats)
+	public static Affine.Set hset(Matrix... mats)
 	{
 		Matrix m = Matrices.concat(mats);
 		if(m instanceof Vector)
@@ -350,7 +354,7 @@ public final class ASpaces
 	 * @see Affine
 	 * @see Matrix
 	 */
-	public static Affine vset(Matrix... mats)
+	public static Affine.Set vset(Matrix... mats)
 	{
 		Matrix m = Matrices.concat(mats);
 		if(m instanceof Vector)

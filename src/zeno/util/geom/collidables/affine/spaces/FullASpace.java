@@ -48,22 +48,22 @@ public class FullASpace extends ASpace
 	{
 		return VSpaces.full(coords);
 	}
-		
+	
+	@Override
+	public Affine.Set Span()
+	{
+		return ASpaces.vset(Matrices.identity(coords));
+	}
+	
 	@Override
 	public int Dimension()
 	{
 		return coords;
 	}
-	
-	@Override
-	public Affine Span()
-	{
-		return ASpaces.vset(Matrices.identity(coords));
-	}
-	
+		
 		
 	@Override
-	public ASpace intersect(ASpace s)
+	public Affine intersect(Affine s)
 	{
 		return s;
 	}

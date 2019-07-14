@@ -21,7 +21,7 @@ import zeno.util.tools.Floats;
  * @see ASpace
  * @see Affine
  */
-public class APoint extends ASpace implements Affine
+public class APoint extends ASpace implements Affine.Set
 {		
 	private Vector vmat;
 	
@@ -67,7 +67,7 @@ public class APoint extends ASpace implements Affine
 			
 		
 	@Override
-	public ASpace intersect(ASpace s)
+	public Affine intersect(Affine s)
 	{
 		if(!s.contains(this))
 		{
@@ -143,7 +143,7 @@ public class APoint extends ASpace implements Affine
 	}
 	
 	@Override
-	public Affine Span()
+	public Affine.Set Span()
 	{
 		return this;
 	}

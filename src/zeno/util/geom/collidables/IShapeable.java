@@ -36,13 +36,13 @@ public interface IShapeable extends IBounded, ICollidable, ITransformable
 	@Override
 	public default boolean contains(APoint p)
 	{
-		return Shape().contains((APoint) Transform().unmap((Affine) p));
+		return Shape().contains((APoint) Transform().unmap(p));
 	}
 	
 	@Override
 	public default boolean intersects(ASpace a)
 	{
-		return Shape().intersects(Transform().unmap(a));
+		return Shape().intersects((ASpace) Transform().unmap(a));
 	}
 	
 	@Override

@@ -47,22 +47,22 @@ public class TrivialASpace extends ASpace
 	{
 		return VSpaces.trivial(coords);
 	}
-		
+	
+	@Override
+	public Affine.Set Span()
+	{
+		return ASpaces.vset(Matrices.identity(0));
+	}
+	
 	@Override
 	public int Dimension()
 	{
 		return -1;
 	}
-	
-	@Override
-	public Affine Span()
-	{
-		return ASpaces.vset(Matrices.identity(0));
-	}
-	
+		
 		
 	@Override
-	public ASpace intersect(ASpace s)
+	public Affine intersect(Affine s)
 	{
 		return this;
 	}

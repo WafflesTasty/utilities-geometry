@@ -2,6 +2,7 @@ package zeno.util.geom;
 
 import zeno.util.algebra.Function;
 import zeno.util.algebra.linear.matrix.Matrix;
+import zeno.util.geom.collidables.Affine;
 import zeno.util.geom.collidables.affine.ASpace;
 import zeno.util.geom.collidables.affine.ASpaces;
 
@@ -15,9 +16,9 @@ import zeno.util.geom.collidables.affine.ASpaces;
  * 
  * 
  * @see Function
- * @see ASpace
+ * @see Affine
  */
-public interface ITransformation extends Function<ASpace, ASpace>
+public interface ITransformation extends Function<Affine, Affine>
 {	
 	/**
 	 * Returns a matrix for the {@code ITransformation}.
@@ -69,16 +70,38 @@ public interface ITransformation extends Function<ASpace, ASpace>
 	{
 		return Inverse(mat.Rows() - 1).times(mat);
 	}
-		
+
 	@Override
-	public default ASpace unmap(ASpace val)
+	public default Affine unmap(Affine val)
 	{
-		return ASpaces.create(unmap(val.AMatrix()));
+		Matrix hmat = val.Span().HMatrix();
+		if(val instanceof Affine.Set)
+		{
+			return ASpaces.hset(unmap(hmat));
+		}
+		
+		if(val instanceof ASpace)
+		{
+			return ASpaces.span(unmap(hmat));
+		}
+		
+		return null;
 	}
 	
 	@Override
-	public default ASpace map(ASpace val)
+	public default Affine map(Affine val)
 	{
-		return ASpaces.create(map(val.AMatrix()));
+		Matrix hmat = val.Span().HMatrix();
+		if(val instanceof Affine.Set)
+		{
+			return ASpaces.hset(map(hmat));
+		}
+		
+		if(val instanceof ASpace)
+		{
+			return ASpaces.span(map(hmat));
+		}
+		
+		return null;
 	}
 }
