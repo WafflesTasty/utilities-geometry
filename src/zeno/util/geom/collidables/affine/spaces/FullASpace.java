@@ -6,6 +6,7 @@ import zeno.util.algebra.linear.vector.VSpaces;
 import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.algebra.linear.vector.Vectors;
 import zeno.util.geom.collidables.Affine;
+import zeno.util.geom.collidables.affine.APoint;
 import zeno.util.geom.collidables.affine.ASpace;
 import zeno.util.geom.collidables.affine.ASpaces;
 
@@ -31,15 +32,15 @@ public class FullASpace extends ASpace
 	 */
 	public FullASpace(int size)
 	{
-		super(null);
+		super(null, VSpaces.full(size));
 		coords = size;
 	}
 
 	
 	@Override
-	public Vector Origin()
+	public APoint Origin()
 	{
-		return Vectors.create(coords);
+		return new APoint(Vectors.create(coords));
 	}
 	
 	@Override
@@ -57,7 +58,7 @@ public class FullASpace extends ASpace
 	@Override
 	public Affine Span()
 	{
-		return ASpaces.set(Matrices.identity(coords));
+		return ASpaces.vset(Matrices.identity(coords));
 	}
 	
 		

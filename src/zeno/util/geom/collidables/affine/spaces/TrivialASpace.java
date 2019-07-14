@@ -4,8 +4,8 @@ import zeno.util.algebra.linear.matrix.Matrices;
 import zeno.util.algebra.linear.vector.VSpace;
 import zeno.util.algebra.linear.vector.VSpaces;
 import zeno.util.algebra.linear.vector.Vector;
-import zeno.util.algebra.linear.vector.Vectors;
 import zeno.util.geom.collidables.Affine;
+import zeno.util.geom.collidables.affine.APoint;
 import zeno.util.geom.collidables.affine.ASpace;
 import zeno.util.geom.collidables.affine.ASpaces;
 
@@ -31,15 +31,15 @@ public class TrivialASpace extends ASpace
 	 */
 	public TrivialASpace(int size)
 	{
-		super(null);
+		super(null, VSpaces.trivial(size));
 		coords = size;
 	}
 
 	
 	@Override
-	public Vector Origin()
+	public APoint Origin()
 	{
-		return Vectors.create(coords);
+		return null;
 	}
 	
 	@Override
@@ -57,7 +57,7 @@ public class TrivialASpace extends ASpace
 	@Override
 	public Affine Span()
 	{
-		return ASpaces.set(Matrices.identity(0));
+		return ASpaces.vset(Matrices.identity(0));
 	}
 	
 		
