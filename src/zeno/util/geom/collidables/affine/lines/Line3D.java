@@ -3,7 +3,6 @@ package zeno.util.geom.collidables.affine.lines;
 import zeno.util.algebra.linear.vector.fixed.Vector3;
 import zeno.util.geom.ICollideable3D;
 import zeno.util.geom.collidables.affine.APoint;
-import zeno.util.geom.collidables.affine.ASpaces;
 
 /**
  * The {@code Line3D} class defines a three-dimensional line space.
@@ -59,7 +58,7 @@ public class Line3D extends LineND implements ICollideable3D
 	 */
 	public Line3D(APoint p1, Vector3 p2)
 	{
-		super((APoint) ASpaces.occupy(p1, 3), p2);
+		super(p1, p2);
 	}
 	
 	/**
@@ -73,7 +72,7 @@ public class Line3D extends LineND implements ICollideable3D
 	 */
 	public Line3D(APoint p1, APoint p2)
 	{
-		super((APoint) ASpaces.occupy(p1, 3), (APoint) ASpaces.occupy(p2, 3));
+		super(p1, p2);
 	}
 	
 	/**

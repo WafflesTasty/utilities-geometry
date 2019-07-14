@@ -2,7 +2,6 @@ package zeno.util.geom.collidables.affine.lines;
 
 import zeno.util.algebra.linear.vector.fixed.Vector2;
 import zeno.util.geom.ICollideable2D;
-import zeno.util.geom.collidables.affine.ASpaces;
 import zeno.util.geom.collidables.affine.APoint;
 
 /**
@@ -57,7 +56,7 @@ public class Line2D extends LineND implements ICollideable2D
 	 */
 	public Line2D(APoint p1, Vector2 p2)
 	{
-		super((APoint) ASpaces.occupy(p1, 2), p2);
+		super(p1, p2);
 	}
 	
 	/**
@@ -71,7 +70,7 @@ public class Line2D extends LineND implements ICollideable2D
 	 */
 	public Line2D(APoint p1, APoint p2)
 	{
-		super((APoint) ASpaces.occupy(p1, 2), (APoint) ASpaces.occupy(p2, 2));
+		super(p1, p2);
 	}
 	
 	/**
