@@ -2,7 +2,7 @@ package zeno.util.geom;
 
 import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.geom.collidables.affine.ASpace;
-import zeno.util.geom.collidables.affine.Point;
+import zeno.util.geom.collidables.affine.APoint;
 
 /**
  * The {@code ICollidable} interface defines an object that can be collided with.
@@ -43,9 +43,9 @@ public interface ICollidable
 	 * @return  {@code true} if the point is contained
 	 * 
 	 * 
-	 * @see Point
+	 * @see APoint
 	 */
-	public default boolean contains(Point p)
+	public default boolean contains(APoint p)
 	{
 		return contains(p.VMatrix());
 	}
