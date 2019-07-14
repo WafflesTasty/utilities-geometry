@@ -1,12 +1,13 @@
 package zeno.util.geom.collidables.affine.spaces;
 
 import zeno.util.algebra.linear.matrix.Matrices;
-import zeno.util.algebra.linear.matrix.Matrix;
 import zeno.util.algebra.linear.vector.VSpace;
 import zeno.util.algebra.linear.vector.VSpaces;
 import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.algebra.linear.vector.Vectors;
+import zeno.util.geom.collidables.Affine;
 import zeno.util.geom.collidables.affine.ASpace;
+import zeno.util.geom.collidables.affine.ASpaces;
 
 /**
  * The {@code TrivialASpace} class defines a trivial affine space.
@@ -26,11 +27,12 @@ public class TrivialASpace extends ASpace
 	/**
 	 * Creates a new {@code TrivialASpace}.
 	 * 
-	 * @param coords  a coördinate count
+	 * @param size  a coördinate count
 	 */
-	public TrivialASpace(int coords)
+	public TrivialASpace(int size)
 	{
-		this.coords = coords;
+		super(null);
+		coords = size;
 	}
 
 	
@@ -45,36 +47,17 @@ public class TrivialASpace extends ASpace
 	{
 		return VSpaces.trivial(coords);
 	}
-	
-	@Override
-	public Matrix Complement()
-	{
-		return Direction().Complement();
-	}
-	
-	@Override
-	public Matrix Span()
-	{
-		return Direction().Span();
-	}
 		
-	
-	@Override
-	public Matrix AMatrix()
-	{
-		return Matrices.create(coords + 1, 0);
-	}
-	
-	@Override
-	public Matrix VMatrix()
-	{
-		return Matrices.create(coords, 0);
-	}
-	
 	@Override
 	public int Dimension()
 	{
 		return -1;
+	}
+	
+	@Override
+	public Affine Span()
+	{
+		return ASpaces.set(Matrices.identity(0));
 	}
 	
 		
@@ -83,15 +66,6 @@ public class TrivialASpace extends ASpace
 	{
 		return this;
 	}
-	
-	@Override
-	public ASpace add(ASpace s)
-	{
-		return s;
-	}
-	
-	
-	
 	
 	@Override
 	public boolean contains(Vector v)

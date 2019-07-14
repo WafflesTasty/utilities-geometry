@@ -1,11 +1,13 @@
 package zeno.util.geom.collidables.affine.spaces;
 
-import zeno.util.algebra.linear.matrix.Matrix;
+import zeno.util.algebra.linear.matrix.Matrices;
 import zeno.util.algebra.linear.vector.VSpace;
 import zeno.util.algebra.linear.vector.VSpaces;
 import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.algebra.linear.vector.Vectors;
+import zeno.util.geom.collidables.Affine;
 import zeno.util.geom.collidables.affine.ASpace;
+import zeno.util.geom.collidables.affine.ASpaces;
 
 /**
  * The {@code FullASpace} class defines an entire affine space.
@@ -25,11 +27,12 @@ public class FullASpace extends ASpace
 	/**
 	 * Creates a new {@code FullASpace}.
 	 * 
-	 * @param coords  a coördinate count
+	 * @param size  a coördinate size
 	 */
-	public FullASpace(int coords)
+	public FullASpace(int size)
 	{
-		this.coords = coords;
+		super(null);
+		coords = size;
 	}
 
 	
@@ -44,30 +47,17 @@ public class FullASpace extends ASpace
 	{
 		return VSpaces.full(coords);
 	}
-	
-	@Override
-	public Matrix Complement()
-	{
-		return Direction().Complement();
-	}
-	
-	@Override
-	public Matrix Span()
-	{
-		return Direction().Span();
-	}
-	
-	
-	@Override
-	public Matrix VMatrix()
-	{
-		return Direction().Span();
-	}
-	
+		
 	@Override
 	public int Dimension()
 	{
 		return coords;
+	}
+	
+	@Override
+	public Affine Span()
+	{
+		return ASpaces.set(Matrices.identity(coords));
 	}
 	
 		
@@ -76,14 +66,7 @@ public class FullASpace extends ASpace
 	{
 		return s;
 	}
-	
-	@Override
-	public ASpace add(ASpace s)
-	{
-		return this;
-	}
 		
-	
 	@Override
 	public boolean contains(Vector v)
 	{
