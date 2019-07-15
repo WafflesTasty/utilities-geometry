@@ -4,15 +4,12 @@ import java.util.Iterator;
 import zeno.util.algebra.linear.matrix.Matrices;
 import zeno.util.algebra.linear.matrix.Matrix;
 import zeno.util.algebra.linear.vector.VSpace;
-import zeno.util.algebra.linear.vector.VSpaces;
 import zeno.util.algebra.linear.vector.Vector;
-import zeno.util.algebra.linear.vector.Vectors;
 import zeno.util.geom.ICollidable;
 import zeno.util.geom.collidables.affine.ASpaces;
 import zeno.util.geom.collidables.affine.Point;
 import zeno.util.geom.utilities.Containment;
 import zeno.util.geom.utilities.Intersection;
-import zeno.util.tools.helper.Array;
 import zeno.util.tools.patterns.properties.Inaccurate;
 
 /**
@@ -42,17 +39,6 @@ public interface Affine extends ICollidable, Inaccurate<Affine>
 	 */
 	public static interface Set extends Affine, Iterable<Point>
 	{		
-		@Override
-		public default boolean contains(Affine a)
-		{
-			if(a.isFinite())
-			{
-				return Containment.in(this, (Affine.Set) a); 
-			}
-			
-			return false;
-		}
-		
 		@Override
 		public default boolean equals(Affine a, int ulps)
 		{
@@ -90,19 +76,7 @@ public interface Affine extends ICollidable, Inaccurate<Affine>
 				}
 			};
 		}
-				
-		@Override
-		public default Affine intersect(Affine a)
-		{
-			if(!a.isFinite())
-			{
-				return Affine.super.intersect(a);
-			}
-			
-			Affine.Set s = (Affine.Set) a;
-			return Intersection.create(this, s);
-		}
-		
+						
 		@Override
 		public default Affine.Set Span()
 		{
@@ -162,7 +136,59 @@ public interface Affine extends ICollidable, Inaccurate<Affine>
 	 * @see Affine
 	 */
 	public static interface Space extends Affine
-	{
+	{		
+		@Override
+		public default boolean equals(Affine a, int ulps)
+		{
+			if(a instanceof Affine.Space)
+			{
+				Affine.Space s = (Affine.Space) a;
+				
+				VSpace dir1 = Direction();
+				VSpace dir2 = s.Direction();
+				return dir1.equals(dir2, ulps)
+					&& intersects(s);
+			}
+			
+			return false;
+		}
+
+		
+		@Override
+		public default boolean isEmpty()
+		{
+			return Dimension() < 0;
+		}
+		
+		@Override
+		public default boolean isFinite()
+		{
+			return Dimension() < 1;
+		}
+
+		@Override
+		public default Affine.Set Span()
+		{
+			Matrix span = Direction().Span();
+			Matrix o = Origin().VMatrix();
+			
+			int cols = span.Columns();
+			int rows = span.Rows();
+			
+			span = Matrices.resize(span, rows, cols + 1);
+			for(int c = 0; c <= cols; c++)
+			{
+				for(int r = 0; r < rows; r++)
+				{
+					float val = span.get(r, c) + o.get(r);
+					span.set(val, r, c);
+				}
+			}
+			
+			return ASpaces.vset(span);
+		}
+	
+		
 		/**
 		 * Returns the origin of the {@code Affine Space}.
 		 * 
@@ -191,132 +217,6 @@ public interface Affine extends ICollidable, Inaccurate<Affine>
 		public default int Dimension()
 		{
 			return Direction().Dimension();
-		}
-		
-		
-		@Override
-		public default Affine.Set Span()
-		{
-			Matrix span = Direction().Span();
-			Matrix o = Origin().VMatrix();
-			
-			int cols = span.Columns();
-			int rows = span.Rows();
-			
-			span = Matrices.resize(span, rows, cols + 1);
-			for(int c = 0; c <= cols; c++)
-			{
-				for(int r = 0; r < rows; r++)
-				{
-					float val = span.get(r, c) + o.get(r);
-					span.set(val, r, c);
-				}
-			}
-			
-			return ASpaces.vset(span);
-		}
-		
-		@Override
-		public default Affine intersect(Affine a)
-		{
-			if(a.isFinite())
-			{
-				return Affine.super.intersect(a);
-			}
-			
-			Affine.Space s = (Affine.Space) a;			
-			VSpace dir = Direction().add(s.Direction());
-			Vector pq = Origin().minus(s.Origin());
-			int size = Origin().Size();			
-			
-			// If p-q not in V+W...
-			Vector x = dir.coordinates(pq);
-			if(x == null)
-			{
-				// The intersection is empty.
-				return ASpaces.trivial(size);
-			}
-			
-			// Otherwise, a common point is found.
-			x = Vectors.resize(x, size);
-			x = Direction().Span().times(x);
-			x = Origin().VMatrix().plus(x);
-			
-			// Calculate the direction intersection.
-			Matrix m = dir.RowComplement();
-			m = Matrices.resize(m, Dimension(), m.Columns());
-			m = dir.Span().times(m);
-			
-			// Create the new affine subspace.
-			Point o = new Point(x);
-			VSpace v = VSpaces.create(m);
-			return ASpaces.span(o, v);
-		}
-		
-		@Override
-		public default boolean intersects(Affine a)
-		{
-			if(a.isFinite())
-			{
-				return Affine.super.intersects(a);
-			}
-			
-			Affine.Space s = (Affine.Space) a;
-			VSpace dir = Direction().add(s.Direction());		
-			Vector pq = Origin().minus(s.Origin());
-			return dir.contains(pq); 
-		}
-		
-		@Override
-		public default boolean equals(Affine a, int ulps)
-		{
-			if(a instanceof Affine.Space)
-			{
-				Affine.Space s = (Affine.Space) a;
-				
-				VSpace dir1 = Direction();
-				VSpace dir2 = s.Direction();
-				return dir1.equals(dir2, ulps)
-					&& intersects(s);
-			}
-			
-			return false;
-		}
-				
-		@Override
-		public default boolean contains(Affine a)
-		{
-			if(a.isFinite())
-			{
-				return Affine.super.contains(a);
-			}
-			
-			Affine.Space s = (Affine.Space) a;
-			Vector pq = Origin().minus(s.Origin());
-			VSpace dir = Direction().add(s.Direction());		
-			return dir.Dimension() == s.Dimension()
-				&& dir.contains(pq);
-		}
-
-		@Override
-		public default boolean contains(Point p)
-		{
-			VSpace dir = Direction();
-			Vector ov = p.minus(Origin());
-			return dir.contains(ov);
-		}
-
-		
-		@Override
-		public default boolean isFinite()
-		{
-			return Dimension() < 1;
-		}
-
-		@Override
-		public default boolean isEmpty()
-		{
-			return Dimension() < 0;
 		}
 	}
 	
@@ -351,18 +251,15 @@ public interface Affine extends ICollidable, Inaccurate<Affine>
 	 */
 	public default Affine intersect(Affine a)
 	{
-		Point[] pts = new Point[0];
-		for(Point p : Span())
-		{
-			if(a.contains(p))
-			{
-				pts = Array.add.to(pts, p);
-			}
-		}
-		
-		return ASpaces.set(pts);
+		return Intersection.create(this, a);
 	}
 	
+	
+	@Override
+	public default boolean contains(Affine a)
+	{
+		return Containment.in(this, a);
+	}
 	
 	@Override
 	public default boolean intersects(Affine a)

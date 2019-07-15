@@ -89,7 +89,8 @@ public class Point implements Affine.Set, Affine.Space
 		if(a instanceof Point)
 		{
 			Point p = (Point) a;
-			return vmat.equals(p.VMatrix(), ulps);
+			int acc = 2 * (ulps + 1);
+			return vmat.equals(p.VMatrix(), acc);
 		}
 		
 		return false;
