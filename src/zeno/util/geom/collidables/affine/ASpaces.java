@@ -11,6 +11,9 @@ import zeno.util.geom.collidables.Affine;
 import zeno.util.geom.collidables.affine.lines.Line2D;
 import zeno.util.geom.collidables.affine.lines.Line3D;
 import zeno.util.geom.collidables.affine.lines.LineND;
+import zeno.util.geom.collidables.affine.points.HSet;
+import zeno.util.geom.collidables.affine.points.Point;
+import zeno.util.geom.collidables.affine.points.VSet;
 import zeno.util.geom.collidables.affine.spaces.FullASpace;
 import zeno.util.geom.collidables.affine.spaces.TrivialASpace;
 
@@ -33,9 +36,9 @@ public final class ASpaces
 	 * @return  a full affine space
 	 * 
 	 * 
-	 * @see ASpace
+	 * @see Affine
 	 */
-	public static ASpace full(int dim)
+	public static Affine.Space full(int dim)
 	{
 		return new FullASpace(dim);
 	}
@@ -47,9 +50,9 @@ public final class ASpaces
 	 * @return  a trivial affine space
 	 * 
 	 * 
-	 * @see ASpace
+	 * @see Affine
 	 */
-	public static ASpace trivial(int dim)
+	public static Affine.Space trivial(int dim)
 	{
 		return new TrivialASpace(dim);
 	}
@@ -105,7 +108,7 @@ public final class ASpaces
 			}
 		}
 		
-		if(s instanceof ASpace)
+		if(!s.isFinite())
 			return span(hset(m));
 		return hset(m);
 	}
@@ -138,42 +141,10 @@ public final class ASpaces
 			}
 		}
 		
-		if(s instanceof ASpace)
+		if(!s.isFinite())
 			return span(hset(m));
 		return hset(m);
 	}
-	
-//	/**
-//	 * Defines an affine space that expands a new coördinate count.
-//	 * The amount of coördinates change and can increase dimension as well.
-//	 * 
-//	 * @param s  a space to expand
-//	 * @param coords  a coördinate count to use
-//	 * @return  a new expanded affine space
-//	 * 
-//	 * 
-//	 * @see ASpace
-//	 */
-//	public static ASpace expand(ASpace s, int coords)
-//	{
-//		return span(expand(s.Span(), coords));
-//	}
-//	
-//	/**
-//	 * Defines an affine space that occupies a new coördinate count.
-//	 * The amount of coördinates change but this does not increase dimension.
-//	 * 
-//	 * @param s  a space to occupy
-//	 * @param coords  a coördinate count to use
-//	 * @return  a new occupying affine space
-//	 * 
-//	 * 
-//	 * @see ASpace
-//	 */
-//	public static ASpace occupy(ASpace s, int coords)
-//	{
-//		return span(occupy(s.Span(), coords));
-//	}
 	
 	
 	/**
@@ -183,15 +154,14 @@ public final class ASpaces
 	 * @return  an affine space
 	 * 
 	 * 
-	 * @see ASpace
 	 * @see Affine
 	 */
-	public static ASpace span(Affine.Set set)
+	public static Affine.Space span(Affine.Set set)
 	{
 		int size = set.Size() - 1;
-		APoint[] pts = set.Points();
+		Point[] pts = set.Points();
 		
-		APoint o = pts[size];
+		Point o = pts[size];
 		Vector[] vecs = new Vector[size];
 		for(int i = 0; i < size; i++)
 		{
@@ -214,10 +184,10 @@ public final class ASpaces
 	 * @return  an affine space
 	 * 
 	 * 
+	 * @see Affine
 	 * @see Matrix
-	 * @see ASpace
 	 */
-	public static ASpace span(Matrix... mats)
+	public static Affine.Space span(Matrix... mats)
 	{
 		return span(vset(mats));
 	}
@@ -230,17 +200,23 @@ public final class ASpaces
 	 * @return  a new affine space
 	 * 
 	 * 
-	 * @see APoint
-	 * @see ASpace
+	 * @see Point
+	 * @see Affine
 	 * @see VSpace
 	 */
-	public static ASpace span(APoint o, VSpace v)
+	public static Affine.Space span(Point o, VSpace v)
 	{
-		if(v.Dimension() == 0)
-			return o;
+		int size = v.Span().Rows();
+
+		if(o == null)
+			return trivial(size);
+		if(v.Dimension() == size)
+			return full(size);
 		if(v.Dimension() == 1)
 			return span(o, (Vector) v.Span());
-		
+		if(v.Dimension() == 0)
+			return o;
+
 		return new ASpace(o, v);
 	}
 	
@@ -252,11 +228,11 @@ public final class ASpaces
 	 * @return  a new affine line
 	 * 
 	 * 
-	 * @see APoint
+	 * @see Point
 	 * @see ASpace
 	 * @see Vector
 	 */
-	public static ASpace span(APoint o, Vector v)
+	public static ASpace span(Point o, Vector v)
 	{
 		if(v.Size() == 2)
 			return new Line2D(o, (Vector2) v);
@@ -340,7 +316,7 @@ public final class ASpaces
 			return vset(vectorize(m));
 		}
 
-		return new Affine.HSet(m);
+		return new HSet(m);
 	}
 	
 	/**
@@ -359,10 +335,31 @@ public final class ASpaces
 		Matrix m = Matrices.concat(mats);
 		if(m instanceof Vector)
 		{
-			return new APoint((Vector) m);
+			return new Point((Vector) m);
 		}
 
-		return new Affine.VSet(m);
+		return new VSet(m);
+	}
+	
+	/**
+	 * Creates a new affine set from static access.
+	 * 
+	 * @param pts  a set of points
+	 * @return  an affine set
+	 * 
+	 * 
+	 * @see Affine
+	 * @see Point
+	 */
+	public static Affine.Set set(Point... pts)
+	{
+		Vector[] set = new Vector[pts.length];
+		for(int i = 0; i < pts.length; i++)
+		{
+			set[i] = pts[i].VMatrix();
+		}
+
+		return vset(set);
 	}
 	
 			
