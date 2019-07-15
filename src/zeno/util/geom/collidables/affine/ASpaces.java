@@ -12,7 +12,6 @@ import zeno.util.geom.collidables.affine.lines.Line2D;
 import zeno.util.geom.collidables.affine.lines.Line3D;
 import zeno.util.geom.collidables.affine.lines.LineND;
 import zeno.util.geom.collidables.affine.points.HPoints;
-import zeno.util.geom.collidables.affine.points.Point;
 import zeno.util.geom.collidables.affine.points.VPoints;
 import zeno.util.geom.collidables.affine.spaces.FullASpace;
 import zeno.util.geom.collidables.affine.spaces.TrivialASpace;

@@ -2,7 +2,7 @@ package zeno.util.geom.collidables.affine.lines;
 
 import zeno.util.algebra.linear.vector.fixed.Vector2;
 import zeno.util.geom.ICollideable2D;
-import zeno.util.geom.collidables.affine.points.Point;
+import zeno.util.geom.collidables.affine.Point;
 
 /**
  * The {@code Line2D} class defines a two-dimensional line space.

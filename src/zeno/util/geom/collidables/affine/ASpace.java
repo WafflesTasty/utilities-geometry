@@ -5,7 +5,6 @@ import zeno.util.algebra.linear.matrix.Matrix;
 import zeno.util.algebra.linear.vector.VSpace;
 import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.geom.collidables.Affine;
-import zeno.util.geom.collidables.affine.points.Point;
 
 /**
  * The {@code ASpace} class defines a standard euclidian affine space.

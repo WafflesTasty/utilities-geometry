@@ -10,7 +10,7 @@ import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.algebra.linear.vector.Vectors;
 import zeno.util.geom.ICollidable;
 import zeno.util.geom.collidables.affine.ASpaces;
-import zeno.util.geom.collidables.affine.points.Point;
+import zeno.util.geom.collidables.affine.Point;
 import zeno.util.tools.helper.Array;
 import zeno.util.tools.patterns.properties.Inaccurate;
 

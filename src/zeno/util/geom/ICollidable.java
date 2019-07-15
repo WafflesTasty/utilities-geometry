@@ -2,7 +2,7 @@ package zeno.util.geom;
 
 import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.geom.collidables.Affine;
-import zeno.util.geom.collidables.affine.points.Point;
+import zeno.util.geom.collidables.affine.Point;
 
 /**
  * The {@code ICollidable} interface defines an object that can be collided with.

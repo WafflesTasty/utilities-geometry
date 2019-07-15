@@ -5,7 +5,7 @@ import zeno.util.algebra.linear.vector.VSpaces;
 import zeno.util.algebra.linear.vector.Vectors;
 import zeno.util.geom.collidables.Affine;
 import zeno.util.geom.collidables.affine.ASpaces;
-import zeno.util.geom.collidables.affine.points.Point;
+import zeno.util.geom.collidables.affine.Point;
 
 /**
  * The {@code FullASpace} class defines an entire affine space.

@@ -2,7 +2,7 @@ package zeno.util.geom.collidables.affine.lines;
 
 import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.geom.collidables.affine.ASpace;
-import zeno.util.geom.collidables.affine.points.Point;
+import zeno.util.geom.collidables.affine.Point;
 
 /**
  * The {@code LineND} class defines an n-dimensional line space.

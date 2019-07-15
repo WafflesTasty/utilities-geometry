@@ -2,7 +2,7 @@ package zeno.util.geom.collidables;
 
 import zeno.util.geom.ICollidable;
 import zeno.util.geom.collidables.Affine.Space;
-import zeno.util.geom.collidables.affine.points.Point;
+import zeno.util.geom.collidables.affine.Point;
 import zeno.util.geom.collidables.geometry.generic.ICube;
 import zeno.util.geom.collidables.geometry.generic.ICuboid;
 import zeno.util.geom.collidables.geometry.generic.IEllipsoid;

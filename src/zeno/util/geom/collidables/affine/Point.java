@@ -1,4 +1,4 @@
-package zeno.util.geom.collidables.affine.points;
+package zeno.util.geom.collidables.affine;
 
 import java.util.Iterator;
 
@@ -8,7 +8,6 @@ import zeno.util.algebra.linear.vector.VSpaces;
 import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.algebra.linear.vector.Vectors;
 import zeno.util.geom.collidables.Affine;
-import zeno.util.geom.collidables.affine.ASpaces;
 import zeno.util.tools.helper.Iterables;
 
 /**

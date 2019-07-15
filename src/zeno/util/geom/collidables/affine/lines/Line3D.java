@@ -2,7 +2,7 @@ package zeno.util.geom.collidables.affine.lines;
 
 import zeno.util.algebra.linear.vector.fixed.Vector3;
 import zeno.util.geom.ICollideable3D;
-import zeno.util.geom.collidables.affine.points.Point;
+import zeno.util.geom.collidables.affine.Point;
 
 /**
  * The {@code Line3D} class defines a three-dimensional line space.
