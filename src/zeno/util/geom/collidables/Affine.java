@@ -296,6 +296,28 @@ public interface Affine extends ICollidable, Inaccurate<Affine>
 		}
 	}
 	
+
+	/**
+	 * Checks if the {@code Affine} is a finite set.
+	 * 
+	 * @return  {@code true} if the set is finite
+	 */
+	public abstract boolean isFinite();
+	
+	/**
+	 * Checks if the {@code Affine} is an empty set.
+	 * 
+	 * @return  {@code true} if the set is empty
+	 */
+	public abstract boolean isEmpty();	
+
+	
+	/**
+	 * Returns an affine span for the {@code Affine}.
+	 * 
+	 * @return  an affine span
+	 */
+	public abstract Affine.Set Span();
 	
 	/**
 	 * Intersects an affine set with the {@code Affine}.
@@ -316,29 +338,7 @@ public interface Affine extends ICollidable, Inaccurate<Affine>
 		
 		return ASpaces.set(pts);
 	}
-		
-	/**
-	 * Returns an affine span for the {@code Affine}.
-	 * 
-	 * @return  an affine span
-	 */
-	public abstract Affine.Set Span();
 	
-	
-	/**
-	 * Checks if the {@code Affine} is a finite set.
-	 * 
-	 * @return  {@code true} if the set is finite
-	 */
-	public abstract boolean isFinite();
-	
-	/**
-	 * Checks if the {@code Affine} is an empty set.
-	 * 
-	 * @return  {@code true} if the set is empty
-	 */
-	public abstract boolean isEmpty();	
-
 	
 	@Override
 	public default boolean intersects(Affine a)
