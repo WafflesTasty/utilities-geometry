@@ -1,13 +1,12 @@
 package zeno.util.geom.collidables.affine.spaces;
 
 import zeno.util.algebra.linear.matrix.Matrices;
+import zeno.util.algebra.linear.matrix.Matrix;
 import zeno.util.algebra.linear.vector.VSpace;
 import zeno.util.algebra.linear.vector.VSpaces;
-import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.geom.collidables.Affine;
-import zeno.util.geom.collidables.affine.APoint;
-import zeno.util.geom.collidables.affine.ASpace;
 import zeno.util.geom.collidables.affine.ASpaces;
+import zeno.util.geom.collidables.affine.points.Point;
 
 /**
  * The {@code TrivialASpace} class defines a trivial affine space.
@@ -18,34 +17,58 @@ import zeno.util.geom.collidables.affine.ASpaces;
  * @version 1.0
  * 
  * 
- * @see ASpace
+ * @see Affine
  */
-public class TrivialASpace extends ASpace
+public class TrivialASpace implements Affine.Space, Affine.Set
 {
-	private int coords;
+	private VSpace direction;
 	
 	/**
 	 * Creates a new {@code TrivialASpace}.
 	 * 
-	 * @param size  a coördinate count
+	 * @param size  a coördinate size
 	 */
 	public TrivialASpace(int size)
 	{
-		super(null, VSpaces.trivial(size));
-		coords = size;
+		direction = VSpaces.trivial(size);
 	}
 
 	
 	@Override
-	public APoint Origin()
+	public boolean contains(Point p)
 	{
-		return null;
+		return false;
 	}
+	
+	@Override
+	public boolean contains(Affine s)
+	{
+		return false;
+	}
+	
+	@Override
+	public boolean equals(Affine a, int ulps)
+	{
+		return a.isEmpty();
+	}
+	
+	@Override
+	public boolean intersects(Affine s)
+	{
+		return false;
+	}
+	
+	@Override
+	public Affine intersect(Affine s)
+	{
+		return this;
+	}
+	
 	
 	@Override
 	public VSpace Direction()
 	{
-		return VSpaces.trivial(coords);
+		return direction;
 	}
 	
 	@Override
@@ -55,39 +78,39 @@ public class TrivialASpace extends ASpace
 	}
 	
 	@Override
-	public int Dimension()
+	public Point Origin()
 	{
-		return -1;
+		return null;
 	}
-		
-		
+
+
 	@Override
-	public Affine intersect(Affine s)
+	public Matrix VMatrix()
 	{
-		return this;
+		return direction.Span();
 	}
 	
 	@Override
-	public boolean contains(Vector v)
+	public Matrix HMatrix()
 	{
-		return false;
+		return ASpaces.homogenize(VMatrix());
+	}
+	
+	@Override
+	public boolean isFinite()
+	{
+		return true;
+	}
+	
+	@Override
+	public boolean isEmpty()
+	{
+		return true;
 	}
 
 	@Override
-	public boolean equals(ASpace s, int ulps)
+	public int Size()
 	{
-		return s.Dimension() == -1;
-	}
-	
-	@Override
-	public boolean intersects(ASpace s)
-	{
-		return false;
-	}
-	
-	@Override
-	public boolean contains(Affine s)
-	{
-		return false;
+		return 0;
 	}
 }

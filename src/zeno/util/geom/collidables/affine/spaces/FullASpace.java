@@ -1,14 +1,11 @@
 package zeno.util.geom.collidables.affine.spaces;
 
-import zeno.util.algebra.linear.matrix.Matrices;
 import zeno.util.algebra.linear.vector.VSpace;
 import zeno.util.algebra.linear.vector.VSpaces;
-import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.algebra.linear.vector.Vectors;
 import zeno.util.geom.collidables.Affine;
-import zeno.util.geom.collidables.affine.APoint;
-import zeno.util.geom.collidables.affine.ASpace;
 import zeno.util.geom.collidables.affine.ASpaces;
+import zeno.util.geom.collidables.affine.points.Point;
 
 /**
  * The {@code FullASpace} class defines an entire affine space.
@@ -19,11 +16,12 @@ import zeno.util.geom.collidables.affine.ASpaces;
  * @version 1.0
  * 
  * 
- * @see ASpace
+ * @see Affine
  */
-public class FullASpace extends ASpace
+public class FullASpace implements Affine.Space
 {
-	private int coords;
+	private Point origin;
+	private VSpace direction;
 	
 	/**
 	 * Creates a new {@code FullASpace}.
@@ -32,56 +30,13 @@ public class FullASpace extends ASpace
 	 */
 	public FullASpace(int size)
 	{
-		super(null, VSpaces.full(size));
-		coords = size;
-	}
-
-	
-	@Override
-	public APoint Origin()
-	{
-		return new APoint(Vectors.create(coords));
-	}
-	
-	@Override
-	public VSpace Direction()
-	{
-		return VSpaces.full(coords);
-	}
-	
-	@Override
-	public Affine.Set Span()
-	{
-		return ASpaces.vset(Matrices.identity(coords));
-	}
-	
-	@Override
-	public int Dimension()
-	{
-		return coords;
+		origin = new Point(Vectors.create(size));
+		direction = VSpaces.full(size);
 	}
 		
-		
+				
 	@Override
-	public Affine intersect(Affine s)
-	{
-		return s;
-	}
-		
-	@Override
-	public boolean contains(Vector v)
-	{
-		return true;
-	}
-			
-	@Override
-	public boolean equals(ASpace s, int ulps)
-	{
-		return s.Dimension() == coords;
-	}
-
-	@Override
-	public boolean intersects(ASpace s)
+	public boolean contains(Point p)
 	{
 		return true;
 	}
@@ -90,5 +45,48 @@ public class FullASpace extends ASpace
 	public boolean contains(Affine s)
 	{
 		return true;
+	}
+	
+	@Override
+	public boolean equals(Affine a, int ulps)
+	{
+		if(a instanceof Affine.Space)
+		{
+			Affine.Space s = (Affine.Space) a;
+			return s.Dimension() == Dimension();
+		}
+		
+		return false;
+	}
+
+	@Override
+	public boolean intersects(Affine s)
+	{
+		return true;
+	}
+	
+	@Override
+	public Affine intersect(Affine s)
+	{
+		return s;
+	}
+	
+		
+	@Override
+	public VSpace Direction()
+	{
+		return direction;
+	}
+	
+	@Override
+	public Affine.Set Span()
+	{
+		return ASpaces.vset(direction.Span());
+	}
+
+	@Override
+	public Point Origin()
+	{
+		return origin;
 	}
 }
