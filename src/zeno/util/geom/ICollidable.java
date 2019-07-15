@@ -1,8 +1,8 @@
 package zeno.util.geom;
 
 import zeno.util.algebra.linear.vector.Vector;
-import zeno.util.geom.collidables.affine.ASpace;
-import zeno.util.geom.collidables.affine.APoint;
+import zeno.util.geom.collidables.Affine;
+import zeno.util.geom.collidables.affine.points.Point;
 
 /**
  * The {@code ICollidable} interface defines an object that can be collided with.
@@ -13,7 +13,52 @@ import zeno.util.geom.collidables.affine.APoint;
  * @version 1.0
  */
 public interface ICollidable
-{
+{	
+	/**
+	 * Indicates if the {@code ICollidable} contains a point.
+	 * 
+	 * @param p  an affine point to check
+	 * @return  {@code true} if the point is contained
+	 * 
+	 * 
+	 * @see Point
+	 */
+	public abstract boolean contains(Point p);
+	
+	/**
+	 * Indicates if the {@code ICollidable} intersects an affine set.
+	 * 
+	 * @param a  an affine set to check
+	 * @return  {@code true} if the set is intersected
+	 * 
+	 * 
+	 * @see Affine
+	 */
+	public abstract boolean intersects(Affine a);
+
+	
+	/**
+	 * Indicates if the {@code ICollidable} contains an affine set.
+	 * 
+	 * @param a  an affine set to check
+	 * @return  {@code true} if the set is contained
+	 * 
+	 * 
+	 * @see Affine
+	 */
+	public default boolean contains(Affine a)
+	{
+		for(Point p : a.Span())
+		{
+			if(!contains(p))
+			{
+				return false;
+			}
+		}
+		
+		return true;
+	}
+	
 	/**
 	 * Indicates if the {@code ICollidable} contains a point.
 	 * 
@@ -23,30 +68,8 @@ public interface ICollidable
 	 * 
 	 * @see Vector
 	 */
-	public abstract boolean contains(Vector v);
-	
-	/**
-	 * Indicates if the {@code ICollidable} intersects a space.
-	 * 
-	 * @param s  a space to check
-	 * @return  {@code true} if the space is intersected
-	 * 
-	 * 
-	 * @see ASpace
-	 */
-	public abstract boolean intersects(ASpace s);
-		
-	/**
-	 * Indicates if the {@code ICollidable} contains a point.
-	 * 
-	 * @param p  an affine point to check
-	 * @return  {@code true} if the point is contained
-	 * 
-	 * 
-	 * @see APoint
-	 */
-	public default boolean contains(APoint p)
+	public default boolean contains(Vector v)
 	{
-		return contains(p.VMatrix());
+		return contains(new Point(v));
 	}
 }

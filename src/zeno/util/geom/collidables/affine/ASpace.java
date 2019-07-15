@@ -3,11 +3,9 @@ package zeno.util.geom.collidables.affine;
 import zeno.util.algebra.linear.matrix.Matrices;
 import zeno.util.algebra.linear.matrix.Matrix;
 import zeno.util.algebra.linear.vector.VSpace;
-import zeno.util.algebra.linear.vector.VSpaces;
 import zeno.util.algebra.linear.vector.Vector;
-import zeno.util.algebra.linear.vector.Vectors;
 import zeno.util.geom.collidables.Affine;
-import zeno.util.tools.patterns.properties.Inaccurate;
+import zeno.util.geom.collidables.affine.points.Point;
 
 /**
  * The {@code ASpace} class defines a standard euclidian affine space.
@@ -19,13 +17,12 @@ import zeno.util.tools.patterns.properties.Inaccurate;
  * @version 1.0
  * 
  * 
- * @see Inaccurate
  * @see Affine
  */
-public class ASpace implements Affine, Inaccurate<ASpace>
+public class ASpace implements Affine.Space
 {
 	private VSpace space;
-	private APoint origin;
+	private Point origin;
 	
 	/**
 	 * Creates a new {@code ASpace}.
@@ -34,10 +31,10 @@ public class ASpace implements Affine, Inaccurate<ASpace>
 	 * @param s  a direction space
 	 * 
 	 * 
-	 * @see APoint
+	 * @see Point
 	 * @see VSpace
 	 */
-	public ASpace(APoint o, VSpace s)
+	public ASpace(Point o, VSpace s)
 	{
 		origin = o;
 		space = s;
@@ -50,159 +47,28 @@ public class ASpace implements Affine, Inaccurate<ASpace>
 	 * @param v  a direction vector
 	 * 
 	 * 
-	 * @see APoint
+	 * @see Point
 	 * @see Vector
 	 */
-	public ASpace(APoint o, Vector v)
+	public ASpace(Point o, Vector v)
 	{
 		space = new VSpace(v);
 		origin = o;
 	}
 	
 	
-	/**
-	 * Returns the origin of the {@code ASpace}.
-	 * 
-	 * @return  an origin point
-	 * 
-	 * 
-	 * @see APoint
-	 */
-	public APoint Origin()
+	@Override
+	public Point Origin()
 	{
 		return origin;
 	}
 	
-	/**
-	 * Returns the direction of the {@code ASpace}.
-	 * 
-	 * @return  a direction space
-	 * 
-	 * 
-	 * @see VSpace
-	 */
+	@Override
 	public VSpace Direction()
 	{
 		return space;
 	}
-	
-	/**
-	 * Returns the dimension of the {@code ASpace}.
-	 * 
-	 * @return  a space dimension
-	 */
-	public int Dimension()
-	{
-		return Direction().Dimension();
-	}
 
-		
-	@Override
-	public boolean intersects(ASpace s)
-	{
-		VSpace dir = Direction().add(s.Direction());		
-		Vector pq = Origin().minus(s.Origin());
-		return dir.contains(pq); 
-	}
-	
-	@Override
-	public boolean equals(ASpace s, int ulps)
-	{
-		VSpace dir1 = Direction();
-		VSpace dir2 = s.Direction();
-		return dir1.equals(dir2, ulps)
-			&& intersects(s);
-	}
-
-	@Override
-	public boolean contains(Vector v)
-	{
-		return contains(new APoint(v));
-	}
-	
-	@Override
-	public boolean contains(APoint p)
-	{
-		VSpace dir = Direction();
-		Vector ov = p.minus(Origin());
-		return dir.contains(ov);
-	}
-
-	
-	private ASpace intersect(ASpace s)
-	{
-		int size = Origin().Size();
-		Vector pq = Origin().minus(s.Origin());
-		VSpace dir = Direction().add(s.Direction());
-		
-		// If p-q not in V+W...
-		Vector x = dir.coordinates(pq);
-		if(x == null)
-		{
-			// The intersection is empty.
-			return ASpaces.trivial(size);
-		}
-		
-		// Otherwise, a common point is found.
-		x = Vectors.resize(x, size);
-		x = Direction().Span().times(x);
-		x = Origin().VMatrix().plus(x);
-		
-		// Calculate the direction intersection.
-		Matrix m = dir.RowComplement();
-		m = Matrices.resize(m, Dimension(), m.Columns());
-		m = dir.Span().times(m);
-		
-		// Create the new affine subspace.
-		APoint o = new APoint(x);
-		VSpace v = VSpaces.create(m);
-		return ASpaces.span(o, v);
-	}
-
-	@Override
-	public boolean contains(Affine s)
-	{
-		if(s instanceof Set)
-		{
-			for(APoint p : s.Span().Points())
-			{
-				if(!contains(p))
-				{
-					return false;
-				}
-			}
-			
-			return true;
-		}
-		
-		if(s instanceof ASpace)
-		{
-			ASpace a = (ASpace) s;
-			Vector pq = Origin().minus(a.Origin());
-			VSpace dir = Direction().add(a.Direction());		
-			return dir.Dimension() == a.Dimension()
-				&& dir.contains(pq);
-		}
-		
-		return false;
-	}
-	
-	@Override
-	public Affine intersect(Affine s)
-	{
-		if(s instanceof Affine.Set)
-		{
-			return s.intersect(this);
-		}
-		
-		if(s instanceof ASpace)
-		{
-			return intersect((ASpace) s);
-		}
-		
-		return null;
-	}
-	
 	@Override
 	public Affine.Set Span()
 	{

@@ -2,8 +2,7 @@ package zeno.util.geom.collidables;
 
 import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.geom.ICollidable;
-import zeno.util.geom.collidables.affine.ASpace;
-import zeno.util.geom.collidables.affine.APoint;
+import zeno.util.geom.collidables.affine.points.Point;
 import zeno.util.geom.transformables.ITransformable;
 import zeno.util.geom.utilities.bounds.IBounded;
 
@@ -34,20 +33,20 @@ public interface IShapeable extends IBounded, ICollidable, ITransformable
 
 	
 	@Override
-	public default boolean contains(APoint p)
+	public default boolean contains(Point p)
 	{
-		return Shape().contains((APoint) Transform().unmap(p));
+		return Shape().contains((Point) Transform().unmap(p));
 	}
 	
 	@Override
-	public default boolean intersects(ASpace a)
+	public default boolean intersects(Affine a)
 	{
-		return Shape().intersects((ASpace) Transform().unmap(a));
+		return Shape().intersects(Transform().unmap(a));
 	}
 	
 	@Override
 	public default boolean contains(Vector p)
 	{
-		return contains(new APoint(p));
+		return contains(new Point(p));
 	}
 }

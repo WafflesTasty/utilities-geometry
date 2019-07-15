@@ -1,12 +1,19 @@
 package zeno.util.geom.collidables;
 
+import java.util.Iterator;
+
+import zeno.util.algebra.linear.matrix.Matrices;
 import zeno.util.algebra.linear.matrix.Matrix;
+import zeno.util.algebra.linear.vector.VSpace;
+import zeno.util.algebra.linear.vector.VSpaces;
 import zeno.util.algebra.linear.vector.Vector;
+import zeno.util.algebra.linear.vector.Vectors;
 import zeno.util.geom.ICollidable;
-import zeno.util.geom.collidables.affine.APoint;
-import zeno.util.geom.collidables.affine.ASpace;
 import zeno.util.geom.collidables.affine.ASpaces;
+import zeno.util.geom.collidables.affine.points.Point;
 import zeno.util.tools.helper.Array;
+import zeno.util.tools.helper.Iterables;
+import zeno.util.tools.patterns.properties.Inaccurate;
 
 /**
  * The {@code Affine} interface defines a collection of affine points.
@@ -18,97 +25,59 @@ import zeno.util.tools.helper.Array;
  * 
  * 
  * @see ICollidable
+ * @see Inaccurate
  */
-public interface Affine extends ICollidable
-{
+public interface Affine extends ICollidable, Inaccurate<Affine>
+{	
 	/**
-	 * The {@code Affine} interface defines a finite affine set.
-	 * Along with the {@link APoint} class, two more implementations are provided.
-	 * <ul>
-	 * 	<li> The {@code HSet} class creates an affine set from a homogenized matrix. </li>
-	 *  <li> The {@code VSet} class creates an affine set from a vectorized matrix. </li>
-	 * </ul>
+	 * The {@code Affine Set} interface defines a finite affine point set.
 	 *
 	 * @author Zeno
 	 * @since Jul 14, 2019
 	 * @version 1.0
 	 * 
 	 * 
+	 * @see Iterable
 	 * @see Affine
 	 */
-	public static interface Set extends Affine
-	{		
+	public static interface Set extends Affine, Iterable<Point>
+	{				
 		@Override
-		public default boolean contains(Vector v)
+		public default boolean equals(Affine a, int ulps)
 		{
-			Matrix vmat = VMatrix();
-			for(int i = 0; i < Size(); i++)
+			if(!a.isFinite())
 			{
-				if(v.equals(vmat.Column(i), 1))
-				{
-					return true;
-				}
-			}
-
-			return false;
-		}
-		
-		@Override
-		public default boolean intersects(ASpace s)
-		{
-			Matrix vmat = VMatrix();
-			for(int i = 0; i < Size(); i++)
-			{
-				if(s.contains(vmat.Column(i)))
-				{
-					return true;
-				}
-			}
-
-			return false;
-		}
-	
-		@Override
-		public default boolean contains(Affine s)
-		{
-			if(s instanceof Set)
-			{
-				Matrix vmat = s.Span().VMatrix();
-				for(int i = 0; i < s.Span().Size(); i++)
-				{
-					if(!contains(vmat.Column(i)))
-					{
-						return false;
-					}
-				}
-
-				return true;
+				return false;
 			}
 			
-			return false;
+			Affine.Set s = (Affine.Set) a;
+			return Size() == s.Size()
+				&& contains(s);
 		}
 		
 		@Override
-		public default Affine intersect(Affine s)
+		public default Iterator<Point> iterator()
 		{
-			Matrix vmat = VMatrix();
-			Vector[] set = new Vector[0];			
-			for(int i = 0; i < Size(); i++)
-			{
-				Vector v = vmat.Column(i);
-				if(s.contains(v))
-				{
-					set = Array.add.to(set, v);
-				}
-			}
-
-			return ASpaces.vset(set);
+			return Iterables.of(Points()).iterator();
 		}
-		
+				
 		@Override
 		public default Affine.Set Span()
 		{
 			return this;
+		}
+		
+		
+		@Override
+		public default boolean isFinite()
+		{
+			return true;
+		}
+				
+		@Override
+		public default boolean isEmpty()
+		{
+			return iterator().hasNext();
 		}
 		
 		
@@ -118,15 +87,15 @@ public interface Affine extends ICollidable
 		 * @return  a list of affine points
 		 * 
 		 * 
-		 * @see APoint
+		 * @see Point
 		 */
-		public default APoint[] Points()
+		public default Point[] Points()
 		{
 			Matrix vmat = VMatrix();
-			APoint[] pts = new APoint[Size()];
+			Point[] pts = new Point[Size()];
 			for(int i = 0; i < Size(); i++)
 			{
-				pts[i] = new APoint(vmat.Column(i));
+				pts[i] = new Point(vmat.Column(i));
 			}
 			
 			return pts;
@@ -160,122 +129,244 @@ public interface Affine extends ICollidable
 		public abstract int Size();
 	}
 	
-	
 	/**
-	 * The {@code HSet} class defines an affine set from a homogeneous matrix.
+	 * The {@code Affine Space} interface defines an affine subspace.
 	 *
 	 * @author Zeno
-	 * @since Jul 14, 2019
+	 * @since Jul 15, 2019
 	 * @version 1.0
 	 * 
 	 * 
 	 * @see Affine
 	 */
-	public static class HSet implements Set
+	public static interface Space extends Affine
 	{
-		private Matrix hmat;
+		/**
+		 * Returns the origin of the {@code Affine Space}.
+		 * 
+		 * @return  an origin point
+		 * 
+		 * 
+		 * @see Point
+		 */
+		public abstract Point Origin();
 		
 		/**
-		 * Creates a new {@code Affine HSet}.
+		 * Returns the direction of the {@code Affine Space}.
 		 * 
-		 * @param m  an affine matrix
+		 * @return  a vector space direction
 		 * 
 		 * 
-		 * @see Matrix
+		 * @see VSpace
 		 */
-		public HSet(Matrix m)
+		public abstract VSpace Direction();
+		
+		/**
+		 * Returns the dimension of the {@code Affine Space}.
+		 * 
+		 * @return  a space dimension
+		 */
+		public default int Dimension()
 		{
-			hmat = m;
+			return Direction().Dimension();
 		}
 		
 		
 		@Override
-		public Matrix VMatrix()
+		public default Affine.Set Span()
 		{
-			return ASpaces.vectorize(hmat);
+			Matrix span = Direction().Span();
+			Matrix o = Origin().VMatrix();
+			
+			int cols = span.Columns();
+			int rows = span.Rows();
+			
+			span = Matrices.resize(span, rows, cols + 1);
+			for(int c = 0; c <= cols; c++)
+			{
+				for(int r = 0; r < rows; r++)
+				{
+					float val = span.get(r, c) + o.get(r);
+					span.set(val, r, c);
+				}
+			}
+			
+			return ASpaces.vset(span);
+		}
+		
+		@Override
+		public default Affine intersect(Affine a)
+		{
+			if(a.isFinite())
+			{
+				return Affine.super.intersect(a);
+			}
+			
+			Affine.Space s = (Affine.Space) a;			
+			VSpace dir = Direction().add(s.Direction());
+			Vector pq = Origin().minus(s.Origin());
+			int size = Origin().Size();			
+			
+			// If p-q not in V+W...
+			Vector x = dir.coordinates(pq);
+			if(x == null)
+			{
+				// The intersection is empty.
+				return ASpaces.trivial(size);
+			}
+			
+			// Otherwise, a common point is found.
+			x = Vectors.resize(x, size);
+			x = Direction().Span().times(x);
+			x = Origin().VMatrix().plus(x);
+			
+			// Calculate the direction intersection.
+			Matrix m = dir.RowComplement();
+			m = Matrices.resize(m, Dimension(), m.Columns());
+			m = dir.Span().times(m);
+			
+			// Create the new affine subspace.
+			Point o = new Point(x);
+			VSpace v = VSpaces.create(m);
+			return ASpaces.span(o, v);
+		}
+		
+		@Override
+		public default boolean intersects(Affine a)
+		{
+			if(a.isFinite())
+			{
+				return Affine.super.intersects(a);
+			}
+			
+			Affine.Space s = (Affine.Space) a;
+			VSpace dir = Direction().add(s.Direction());		
+			Vector pq = Origin().minus(s.Origin());
+			return dir.contains(pq); 
+		}
+		
+		@Override
+		public default boolean equals(Affine a, int ulps)
+		{
+			if(a instanceof Affine.Space)
+			{
+				Affine.Space s = (Affine.Space) a;
+				
+				VSpace dir1 = Direction();
+				VSpace dir2 = s.Direction();
+				return dir1.equals(dir2, ulps)
+					&& intersects(s);
+			}
+			
+			return false;
+		}
+				
+		@Override
+		public default boolean contains(Affine a)
+		{
+			if(a.isFinite())
+			{
+				return Affine.super.contains(a);
+			}
+			
+			Affine.Space s = (Affine.Space) a;
+			Vector pq = Origin().minus(s.Origin());
+			VSpace dir = Direction().add(s.Direction());		
+			return dir.Dimension() == s.Dimension()
+				&& dir.contains(pq);
 		}
 
 		@Override
-		public Matrix HMatrix()
+		public default boolean contains(Point p)
 		{
-			return hmat;
+			VSpace dir = Direction();
+			Vector ov = p.minus(Origin());
+			return dir.contains(ov);
+		}
+
+		
+		@Override
+		public default boolean isFinite()
+		{
+			return Dimension() < 1;
 		}
 
 		@Override
-		public int Size()
+		public default boolean isEmpty()
 		{
-			return hmat.Columns();
+			return Dimension() < 0;
 		}
 	}
 	
-	/**
-	 * The {@code VSet} class defines an affine set from a vectorized matrix.
-	 *
-	 * @author Zeno
-	 * @since Jul 14, 2019
-	 * @version 1.0
-	 * 
-	 * 
-	 * @see Affine
-	 */
-	public static class VSet implements Set
-	{
-		private Matrix vmat;
-		
-		/**
-		 * Creates a new {@code Affine VSet}.
-		 * 
-		 * @param m  an affine matrix
-		 * 
-		 * 
-		 * @see Matrix
-		 */
-		public VSet(Matrix m)
-		{
-			vmat = m;
-		}
-		
-		
-		@Override
-		public Matrix VMatrix()
-		{
-			return vmat;
-		}
-
-		@Override
-		public Matrix HMatrix()
-		{
-			return ASpaces.homogenize(vmat);
-		}
-
-		@Override
-		public int Size()
-		{
-			return vmat.Columns();
-		}
-	}
-	
 	
 	/**
-	 * Checks if a subspace is contained in the {@code Affine}.
+	 * Intersects an affine set with the {@code Affine}.
 	 * 
-	 * @param s  a subspace to check
-	 * @return  {@code true} if the subspace is contained
-	 */
-	public abstract boolean contains(Affine s);
-	
-	/**
-	 * Intersects a subspace with the {@code Affine}.
-	 * 
-	 * @param s  a subspace to intersect
+	 * @param a  an affine set to intersect
 	 * @return  an affine intersection
 	 */
-	public abstract Affine intersect(Affine s);
-	
+	public default Affine intersect(Affine a)
+	{
+		Point[] pts = new Point[0];
+		for(Point p : Span())
+		{
+			if(a.contains(p))
+			{
+				pts = Array.add.to(pts, p);
+			}
+		}
+		
+		return ASpaces.set(pts);
+	}
+		
 	/**
-	 * Returns a point span for the {@code Affine}.
+	 * Returns an affine span for the {@code Affine}.
 	 * 
 	 * @return  an affine span
 	 */
 	public abstract Affine.Set Span();
+	
+	
+	/**
+	 * Checks if the {@code Affine} is a finite set.
+	 * 
+	 * @return  {@code true} if the set is finite
+	 */
+	public abstract boolean isFinite();
+	
+	/**
+	 * Checks if the {@code Affine} is an empty set.
+	 * 
+	 * @return  {@code true} if the set is empty
+	 */
+	public abstract boolean isEmpty();	
+
+	
+	@Override
+	public default boolean intersects(Affine a)
+	{
+		for(Point p : a.Span())
+		{
+			if(contains(p))
+			{
+				return true;
+			}
+		}
+		
+		return false;
+	}
+
+	@Override
+	public default boolean contains(Point p)
+	{
+		for(Point q : Span())
+		{
+			if(p.equals(q, 1))
+			{
+				return true;
+			}
+		}
+		
+		return false;
+	}
 }
