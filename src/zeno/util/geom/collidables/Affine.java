@@ -12,7 +12,6 @@ import zeno.util.geom.ICollidable;
 import zeno.util.geom.collidables.affine.ASpaces;
 import zeno.util.geom.collidables.affine.points.Point;
 import zeno.util.tools.helper.Array;
-import zeno.util.tools.helper.Iterables;
 import zeno.util.tools.patterns.properties.Inaccurate;
 
 /**
@@ -58,7 +57,26 @@ public interface Affine extends ICollidable, Inaccurate<Affine>
 		@Override
 		public default Iterator<Point> iterator()
 		{
-			return Iterables.of(Points()).iterator();
+			return new Iterator<Point>()
+			{
+				private int i = 0;
+				
+				@Override
+				public boolean hasNext()
+				{
+					return i < VMatrix().Columns();
+				}
+
+				@Override
+				public Point next()
+				{
+					Vector v = VMatrix().Column(i);
+					Point p = new Point(v);
+					i++;
+					
+					return p;
+				}
+			};
 		}
 				
 		@Override
@@ -80,27 +98,7 @@ public interface Affine extends ICollidable, Inaccurate<Affine>
 			return iterator().hasNext();
 		}
 		
-		
-		/**
-		 * Returns the list of points spanning the {@code Affine}.
-		 * 
-		 * @return  a list of affine points
-		 * 
-		 * 
-		 * @see Point
-		 */
-		public default Point[] Points()
-		{
-			Matrix vmat = VMatrix();
-			Point[] pts = new Point[Size()];
-			for(int i = 0; i < Size(); i++)
-			{
-				pts[i] = new Point(vmat.Column(i));
-			}
-			
-			return pts;
-		}
-			
+					
 		/**
 		 * Returns a vectorized matrix spanning the {@code Affine}.
 		 * 

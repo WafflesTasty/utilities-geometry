@@ -11,11 +11,12 @@ import zeno.util.geom.collidables.Affine;
 import zeno.util.geom.collidables.affine.lines.Line2D;
 import zeno.util.geom.collidables.affine.lines.Line3D;
 import zeno.util.geom.collidables.affine.lines.LineND;
-import zeno.util.geom.collidables.affine.points.HSet;
+import zeno.util.geom.collidables.affine.points.HPoints;
 import zeno.util.geom.collidables.affine.points.Point;
-import zeno.util.geom.collidables.affine.points.VSet;
+import zeno.util.geom.collidables.affine.points.VPoints;
 import zeno.util.geom.collidables.affine.spaces.FullASpace;
 import zeno.util.geom.collidables.affine.spaces.TrivialASpace;
+import zeno.util.tools.helper.Array;
 
 /**
  * The {@code ASpaces} class defines basic {@code ASpace} operations.
@@ -158,23 +159,30 @@ public final class ASpaces
 	 */
 	public static Affine.Space span(Affine.Set set)
 	{
-		int size = set.Size() - 1;
-		Point[] pts = set.Points();
-		
-		Point o = pts[size];
-		Vector[] vecs = new Vector[size];
-		for(int i = 0; i < size; i++)
+		if(set.isEmpty())
 		{
-			vecs[i] = pts[i].minus(o);
+			return (Affine.Space) set;
 		}
 		
-		int dim = o.VMatrix().Size();
-		if(size == 0)
+		Point o = null;
+		Vector[] vecs = new Vector[0];
+		for(Point p : set)
 		{
-			return span(o, VSpaces.trivial(dim));
+			if(o != null)
+			{
+				vecs = Array.add.to(vecs, p.minus(o));
+				continue;
+			}
+			
+			o = p;
+		}
+
+		if(vecs.length > 0)
+		{
+			return span(o, VSpaces.create(vecs));
 		}
 		
-		return span(o, VSpaces.create(vecs));
+		return o;
 	}
 	
 	/**
@@ -316,7 +324,7 @@ public final class ASpaces
 			return vset(vectorize(m));
 		}
 
-		return new HSet(m);
+		return new HPoints(m);
 	}
 	
 	/**
@@ -333,12 +341,18 @@ public final class ASpaces
 	public static Affine.Set vset(Matrix... mats)
 	{
 		Matrix m = Matrices.concat(mats);
+		
+		if(m.Columns() == 0)
+		{
+			return (Affine.Set) trivial(m.Rows());
+		}
+		
 		if(m instanceof Vector)
 		{
 			return new Point((Vector) m);
 		}
 
-		return new VSet(m);
+		return new VPoints(m);
 	}
 	
 	/**

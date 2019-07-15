@@ -1,4 +1,6 @@
-package zeno.util.geom.collidables.affine;
+package zeno.util.geom.collidables.affine.points;
+
+import java.util.Iterator;
 
 import zeno.util.algebra.linear.matrix.Matrix;
 import zeno.util.algebra.linear.vector.VSpace;
@@ -6,10 +8,12 @@ import zeno.util.algebra.linear.vector.VSpaces;
 import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.algebra.linear.vector.Vectors;
 import zeno.util.geom.collidables.Affine;
+import zeno.util.geom.collidables.affine.ASpaces;
+import zeno.util.tools.helper.Iterables;
 
 /**
- * The {@code APoint} class defines a zero-dimensional affine space.
- * It both extends the {@code ASpace} class and implements the {@code Affine}
+ * The {@code Point} class defines a zero-dimensional affine space.
+ * It implements both the {@code Affine.Space} and {@code Affine.Set}
  * interface to allow it to be used in both applications.
  * 
  * @author Zeno
@@ -17,39 +21,37 @@ import zeno.util.geom.collidables.Affine;
  * @version 1.0
  * 
  * 
- * @see ASpace
  * @see Affine
  */
-public class APoint extends ASpace implements Affine.Set
+public class Point implements Affine.Set, Affine.Space
 {		
 	private Vector vmat;
-	
+
 	/**
-	 * Creates a new {@code APoint}.
+	 * Creates a new {@code Point}.
 	 * 
 	 * @param v  a vector point
 	 * 
 	 * 
 	 * @see Vector
 	 */
-	public APoint(Vector v)
+	public Point(Vector v)
 	{
-		super(null, VSpaces.trivial(v.Size()));
 		vmat = v;
 	}
 	
 	/**
-	 * Creates a new {@code APoint}.
+	 * Creates a new {@code Point}.
 	 * 
 	 * @param vals  a set of vector values
 	 */
-	public APoint(float... vals)
+	public Point(float... vals)
 	{
 		this(Vectors.create(vals));
 	}
 		
 	/**
-	 * Subtracts a point from the {@code APoint}.
+	 * Subtracts a {@code Point}.
 	 * 
 	 * @param p  a point to subtract
 	 * @return  a result vector
@@ -57,7 +59,7 @@ public class APoint extends ASpace implements Affine.Set
 	 * 
 	 * @see Vector
 	 */
-	public Vector minus(APoint p)
+	public Vector minus(Point p)
 	{
 		Vector v1 = VMatrix();
 		Vector v2 = p.VMatrix();
@@ -65,6 +67,47 @@ public class APoint extends ASpace implements Affine.Set
 	}
 			
 		
+	@Override
+	public boolean contains(Point p)
+	{
+		return equals(p);
+	}
+	
+	@Override
+	public boolean contains(Affine s)
+	{
+		if(s.isFinite())
+		{
+			return Affine.Space.super.contains(s);
+		}
+		
+		return false;
+	}
+	
+	@Override
+	public boolean equals(Affine a, int ulps)
+	{
+		if(a instanceof Point)
+		{
+			Point p = (Point) a;
+			return vmat.equals(p.VMatrix(), ulps);
+		}
+		
+		return false;
+	}
+	
+	@Override
+	public boolean intersects(Affine s)
+	{
+		return s.contains(this);
+	}
+	
+	@Override
+	public Iterator<Point> iterator()
+	{
+		return Iterables.singleton(this).iterator();
+	}
+	
 	@Override
 	public Affine intersect(Affine s)
 	{
@@ -75,31 +118,26 @@ public class APoint extends ASpace implements Affine.Set
 		
 		return this;
 	}
-
-	@Override
-	public boolean contains(Affine s)
-	{
-		return Affine.Set.super.contains(s);
-	}
-	
-	@Override
-	public boolean intersects(ASpace s)
-	{
-		return s.contains(this);
-	}
-	
-	@Override
-	public boolean contains(APoint p)
-	{
-		return equals(p);
-	}
 	
 	
 	@Override
-	public Matrix HMatrix()
+	public VSpace Direction()
 	{
-		return ASpaces.homogenize(VMatrix());
+		return VSpaces.trivial(vmat.Size());
 	}
+	
+	@Override
+	public Affine.Set Span()
+	{
+		return this;
+	}
+	
+	@Override
+	public Point Origin()
+	{
+		return this;
+	}
+	
 	
 	@Override
 	public Vector VMatrix()
@@ -107,6 +145,24 @@ public class APoint extends ASpace implements Affine.Set
 		return vmat;
 	}
 	
+	@Override
+	public Matrix HMatrix()
+	{
+		return ASpaces.homogenize(VMatrix());
+	}
+		
+	@Override
+	public boolean isFinite()
+	{
+		return true;
+	}
+	
+	@Override
+	public boolean isEmpty()
+	{
+		return false;
+	}
+
 	@Override
 	public int Dimension()
 	{
@@ -117,30 +173,5 @@ public class APoint extends ASpace implements Affine.Set
 	public int Size()
 	{
 		return 1;
-	}
-
-	
-	@Override
-	public APoint Origin()
-	{
-		return this;
-	}
-	
-	@Override
-	public APoint[] Points()
-	{
-		return new APoint[]{this};
-	}
-	
-	@Override
-	public VSpace Direction()
-	{
-		return VSpaces.trivial(Origin().Size());
-	}
-	
-	@Override
-	public Affine.Set Span()
-	{
-		return this;
 	}
 }
