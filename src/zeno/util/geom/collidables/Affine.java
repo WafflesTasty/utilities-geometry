@@ -1,7 +1,6 @@
 package zeno.util.geom.collidables;
 
 import java.util.Iterator;
-
 import zeno.util.algebra.linear.matrix.Matrices;
 import zeno.util.algebra.linear.matrix.Matrix;
 import zeno.util.algebra.linear.vector.VSpace;
@@ -11,6 +10,8 @@ import zeno.util.algebra.linear.vector.Vectors;
 import zeno.util.geom.ICollidable;
 import zeno.util.geom.collidables.affine.ASpaces;
 import zeno.util.geom.collidables.affine.Point;
+import zeno.util.geom.utilities.Containment;
+import zeno.util.geom.utilities.Intersection;
 import zeno.util.tools.helper.Array;
 import zeno.util.tools.patterns.properties.Inaccurate;
 
@@ -40,18 +41,29 @@ public interface Affine extends ICollidable, Inaccurate<Affine>
 	 * @see Affine
 	 */
 	public static interface Set extends Affine, Iterable<Point>
-	{				
+	{		
+		@Override
+		public default boolean contains(Affine a)
+		{
+			if(a.isFinite())
+			{
+				return Containment.in(this, (Affine.Set) a); 
+			}
+			
+			return false;
+		}
+		
 		@Override
 		public default boolean equals(Affine a, int ulps)
 		{
-			if(!a.isFinite())
+			if(a.isFinite())
 			{
-				return false;
+				Affine.Set s = (Affine.Set) a;
+				return Size() == s.Size()
+					&& contains(s);
 			}
 			
-			Affine.Set s = (Affine.Set) a;
-			return Size() == s.Size()
-				&& contains(s);
+			return false;
 		}
 		
 		@Override
@@ -79,6 +91,18 @@ public interface Affine extends ICollidable, Inaccurate<Affine>
 			};
 		}
 				
+		@Override
+		public default Affine intersect(Affine a)
+		{
+			if(!a.isFinite())
+			{
+				return Affine.super.intersect(a);
+			}
+			
+			Affine.Set s = (Affine.Set) a;
+			return Intersection.create(this, s);
+		}
+		
 		@Override
 		public default Affine.Set Span()
 		{
@@ -343,28 +367,12 @@ public interface Affine extends ICollidable, Inaccurate<Affine>
 	@Override
 	public default boolean intersects(Affine a)
 	{
-		for(Point p : a.Span())
-		{
-			if(contains(p))
-			{
-				return true;
-			}
-		}
-		
-		return false;
+		return Intersection.between(this, a);
 	}
 
 	@Override
 	public default boolean contains(Point p)
 	{
-		for(Point q : Span())
-		{
-			if(p.equals(q, 1))
-			{
-				return true;
-			}
-		}
-		
-		return false;
+		return Containment.in(this, p);
 	}
 }
