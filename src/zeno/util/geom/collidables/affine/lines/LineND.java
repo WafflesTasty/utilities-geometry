@@ -2,7 +2,7 @@ package zeno.util.geom.collidables.affine.lines;
 
 import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.geom.collidables.affine.ASpace;
-import zeno.util.geom.collidables.affine.APoint;
+import zeno.util.geom.collidables.affine.points.Point;
 
 /**
  * The {@code LineND} class defines an n-dimensional line space.
@@ -27,7 +27,7 @@ public class LineND extends ASpace
 	 */
 	public LineND(Vector p1, Vector p2)
 	{
-		this(new APoint(p1), p2.minus(p1));
+		this(new Point(p1), p2.minus(p1));
 	}
 	
 	/**
@@ -37,10 +37,10 @@ public class LineND extends ASpace
 	 * @param p2  the line's second point
 	 * 
 	 * 
-	 * @see APoint
+	 * @see Point
 	 * @see Vector
 	 */
-	public LineND(APoint p1, Vector p2)
+	public LineND(Point p1, Vector p2)
 	{
 		super(p1, p2);
 	}
@@ -52,9 +52,9 @@ public class LineND extends ASpace
 	 * @param p2  the line's second point
 	 * 
 	 * 
-	 * @see APoint
+	 * @see Point
 	 */
-	public LineND(APoint p1, APoint p2)
+	public LineND(Point p1, Point p2)
 	{
 		this(p1, p2.minus(p1));
 	}
