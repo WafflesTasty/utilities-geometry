@@ -13,9 +13,9 @@ import zeno.util.geom.collidables.affine.Point;
  * 
  * 
  * @see ICollideable2D
- * @see LineND
+ * @see Line
  */
-public class Line2D extends LineND implements ICollideable2D
+public class Line2D extends Line implements ICollideable2D
 {		
 	/**
 	 * Creates a new {@code Line2D}.

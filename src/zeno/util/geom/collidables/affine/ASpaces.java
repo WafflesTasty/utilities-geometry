@@ -10,7 +10,7 @@ import zeno.util.algebra.linear.vector.fixed.Vector3;
 import zeno.util.geom.collidables.Affine;
 import zeno.util.geom.collidables.affine.lines.Line2D;
 import zeno.util.geom.collidables.affine.lines.Line3D;
-import zeno.util.geom.collidables.affine.lines.LineND;
+import zeno.util.geom.collidables.affine.lines.Line;
 import zeno.util.geom.collidables.affine.points.HPoints;
 import zeno.util.geom.collidables.affine.points.VPoints;
 import zeno.util.geom.collidables.affine.spaces.FullASpace;
@@ -245,7 +245,7 @@ public final class ASpaces
 			return new Line2D(o, (Vector2) v);
 		if(v.Size() == 3)
 			return new Line3D(o, (Vector3) v);
-		return new LineND(o, v);
+		return new Line(o, v);
 	}
 
 	

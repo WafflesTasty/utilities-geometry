@@ -5,7 +5,7 @@ import zeno.util.geom.collidables.affine.ASpace;
 import zeno.util.geom.collidables.affine.Point;
 
 /**
- * The {@code LineND} class defines an n-dimensional line space.
+ * The {@code Line} class defines an n-dimensional line space.
  * 
  * @author Zeno
  * @since Jul 5, 2016
@@ -14,10 +14,10 @@ import zeno.util.geom.collidables.affine.Point;
  * 
  * @see ASpace
  */
-public class LineND extends ASpace
+public class Line extends ASpace
 {			
 	/**
-	 * Creates a new {@code LineND}.
+	 * Creates a new {@code Line}.
 	 * 
 	 * @param p1  the line's first point
 	 * @param p2  the line's second point
@@ -25,13 +25,13 @@ public class LineND extends ASpace
 	 * 
 	 * @see Vector
 	 */
-	public LineND(Vector p1, Vector p2)
+	public Line(Vector p1, Vector p2)
 	{
 		this(new Point(p1), p2.minus(p1));
 	}
 	
 	/**
-	 * Creates a new {@code LineND}.
+	 * Creates a new {@code Line}.
 	 * 
 	 * @param p1  the line's first point
 	 * @param p2  the line's second point
@@ -40,13 +40,13 @@ public class LineND extends ASpace
 	 * @see Point
 	 * @see Vector
 	 */
-	public LineND(Point p1, Vector p2)
+	public Line(Point p1, Vector p2)
 	{
 		super(p1, p2);
 	}
 
 	/**
-	 * Creates a new {@code LineND}.
+	 * Creates a new {@code Line}.
 	 * 
 	 * @param p1  the line's first point
 	 * @param p2  the line's second point
@@ -54,7 +54,7 @@ public class LineND extends ASpace
 	 * 
 	 * @see Point
 	 */
-	public LineND(Point p1, Point p2)
+	public Line(Point p1, Point p2)
 	{
 		this(p1, p2.minus(p1));
 	}
