@@ -5,8 +5,6 @@ import zeno.util.algebra.linear.matrix.Matrices;
 import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.algebra.linear.vector.Vectors;
 import zeno.util.geom.ITransformation;
-import zeno.util.geom.collidables.Affine;
-import zeno.util.geom.collidables.affine.ASpaces;
 import zeno.util.tools.Floats;
 import zeno.util.tools.Integers;
 
@@ -37,7 +35,6 @@ public class Projection implements ITransformation
 
 	
 	private Vector oculus;
-	private int iDim, oDim;
 		
 	/**
 	 * Creates a new {@code Projection}.
@@ -68,7 +65,6 @@ public class Projection implements ITransformation
 	public Projection(int iDim, int oDim)
 	{
 		oculus = DefaultOculus(iDim, oDim);
-		this.iDim = iDim; this.oDim = oDim;
 	}
 	
 	/**
@@ -137,31 +133,6 @@ public class Projection implements ITransformation
 		}
 		
 		return m;
-	}
-
-	
-	@Override
-	public Affine unmap(Affine val)
-	{
-		Affine img = ITransformation.super.unmap(val);
-		if(val instanceof Affine.Space)
-		{
-			return ASpaces.expand(img, iDim);
-		}
-
-		return img;
-	}
-
-	@Override
-	public Affine map(Affine val)
-	{		
-		Affine img = ITransformation.super.map(val);
-		if(val instanceof Affine.Space)
-		{
-			return ASpaces.occupy(img, oDim);
-		}
-		
-		return img;
 	}
 
 	
