@@ -75,7 +75,7 @@ public class Ellipse extends Geometry2D implements IEllipsoid
 	 */
 	public Ellipse()
 	{
-		this(1, 1);
+		super();
 	}
 	
 	

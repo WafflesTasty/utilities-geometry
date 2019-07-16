@@ -49,6 +49,7 @@ public abstract class Geometry3D extends GeometryND implements IGeometry3D
 	public Geometry3D()
 	{
 		this(new Vector3(1, 1, 1));
+		int i;
 	}
 
 	

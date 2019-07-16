@@ -51,6 +51,7 @@ public class Segment2D extends NSegment implements IGeometry2D
 	public Segment2D()
 	{
 		this(-.5f, -.5f, .5f, .5f);
+		int i;
 	}
 	
 	

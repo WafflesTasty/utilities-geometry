@@ -105,7 +105,7 @@ public class Circle extends Ellipse implements ISphere
 	 */
 	public Circle()
 	{
-		this(1);
+		super();
 	}
 
 	

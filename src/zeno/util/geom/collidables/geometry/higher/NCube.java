@@ -49,6 +49,6 @@ public class NCube extends NCuboid implements ICube
 	 */
 	public NCube(int dim)
 	{
-		this(dim, 1f);
+		super(dim);
 	}
 }

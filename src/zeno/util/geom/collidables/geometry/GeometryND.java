@@ -54,6 +54,7 @@ public abstract class GeometryND implements IGeometry
 	public GeometryND(int dim)
 	{
 		this(Vectors.create(1f, dim));
+		int i;
 	}
 	
 

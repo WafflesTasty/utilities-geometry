@@ -76,6 +76,6 @@ public class Ellipsoid extends Geometry3D implements IEllipsoid
 	 */
 	public Ellipsoid()
 	{
-		this(1, 1, 1);
+		super();
 	}
 }

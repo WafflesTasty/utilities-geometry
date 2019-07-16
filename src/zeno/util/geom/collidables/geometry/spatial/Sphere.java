@@ -58,7 +58,7 @@ public class Sphere extends Ellipsoid implements ISphere
 	 */
 	public Sphere()
 	{
-		this(1);
+		super();
 	}
 
 	

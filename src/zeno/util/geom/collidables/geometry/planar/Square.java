@@ -57,6 +57,6 @@ public class Square extends Rectangle implements ICube
 	 */
 	public Square()
 	{
-		this(1);
+		super();
 	}
 }

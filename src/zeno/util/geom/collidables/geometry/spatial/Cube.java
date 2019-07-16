@@ -58,6 +58,6 @@ public class Cube extends Cuboid implements ICube
 	 */
 	public Cube()
 	{
-		this(1);
+		super();
 	}
 }

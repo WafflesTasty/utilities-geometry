@@ -76,7 +76,7 @@ public class Cuboid extends Geometry3D implements ICuboid
 	 */
 	public Cuboid()
 	{
-		this(1, 1, 1);
+		super();
 	}
 
 	

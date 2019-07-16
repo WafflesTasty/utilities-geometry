@@ -73,7 +73,7 @@ public class Rectangle extends Geometry2D implements ICuboid
 	 */
 	public Rectangle()
 	{
-		this(1, 1);
+		super();
 	}
 	
 	
