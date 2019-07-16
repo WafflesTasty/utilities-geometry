@@ -48,8 +48,7 @@ public abstract class Geometry2D extends GeometryND implements IGeometry2D
 	 */
 	public Geometry2D()
 	{
-		this(new Vector2(1, 1));
-		int i;
+		this(new Vector2(2f, 2f));
 	}
 	
 			

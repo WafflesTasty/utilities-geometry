@@ -2,6 +2,7 @@ package zeno.util.geom.transforms;
 
 import zeno.util.algebra.linear.matrix.Matrix;
 import zeno.util.algebra.linear.vector.Vector;
+import zeno.util.algebra.linear.vector.Vectors;
 import zeno.util.geom.ITransformation;
 import zeno.util.geom.transforms.affine.Dilation;
 import zeno.util.geom.transforms.affine.Rotation;
@@ -79,13 +80,16 @@ public class AffineMap extends DirtyValue implements Copyable<AffineMap>, ITrans
 	/**
 	 * Changes the size of the {@code AffineMap}.
 	 * 
-	 * @param v  a size vector
+	 * @param s  a size vector
 	 * 
 	 * 
 	 * @see Vector
 	 */
-	public void setSize(Vector v)
+	public void setSize(Vector s)
 	{
+		// Divided by two because it scales in both
+		// the positive and negative direction of axes.
+		Vector v = Vectors.resize(s.times(0.5f), dimension);
 		dilation = new Dilation(v);
 		setChanged();
 	}

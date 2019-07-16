@@ -52,8 +52,7 @@ public class Segment3D extends NSegment implements IGeometry3D
 	 */
 	public Segment3D()
 	{
-		this(-.5f, -.5f, -.5f, .5f, .5f, .5f);
-		int i;
+		this(-1f, -1f, -1f, 1f, 1f, 1f);
 	}
 	
 		

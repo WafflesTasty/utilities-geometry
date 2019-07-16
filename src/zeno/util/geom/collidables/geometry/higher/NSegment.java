@@ -56,8 +56,7 @@ public class NSegment implements ISegment
 	 */
 	public NSegment(int dim)
 	{
-		this(Vectors.create(-0.5f, dim), Vectors.create(0.5f, dim));
-		int i;
+		this(Vectors.create(-1f, dim), Vectors.create(1f, dim));
 	}
 
 
