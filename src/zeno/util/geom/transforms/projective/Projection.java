@@ -5,6 +5,8 @@ import zeno.util.algebra.linear.matrix.Matrices;
 import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.algebra.linear.vector.Vectors;
 import zeno.util.geom.ITransformation;
+import zeno.util.geom.collidables.Affine;
+import zeno.util.geom.collidables.affine.ASpaces;
 import zeno.util.tools.Floats;
 import zeno.util.tools.Integers;
 
@@ -35,6 +37,7 @@ public class Projection implements ITransformation
 
 	
 	private Vector oculus;
+	private int iDim, oDim;
 		
 	/**
 	 * Creates a new {@code Projection}.
@@ -65,6 +68,7 @@ public class Projection implements ITransformation
 	public Projection(int iDim, int oDim)
 	{
 		oculus = DefaultOculus(iDim, oDim);
+		this.iDim = iDim; this.oDim = oDim;
 	}
 	
 	/**
@@ -80,29 +84,32 @@ public class Projection implements ITransformation
 		return oculus;
 	}
 	
-	
-	private float product(int index)
-	{
-		// This could be adapted for different matrix dimensions.
-		// However, the use of a homogeneous coördinate system
-		// makes sure these are all equivalent in use.
-		
-		float product = 1f;
-		for(int i = 0; i < oculus.Size(); i++)
-		{
-			if(i == index) continue;
 			
-			float val = oculus.get(i);
+	@Override
+	public Matrix Matrix(int dim)
+	{
+		Matrix m = Matrices.identity(dim + 1);
+		
+		float prod = 1f / product(-1);
+		for(int d = 0; d < dim + 1; d++)
+		{
+			float val = 0f;
+			if(d < Integers.min(dim, oculus.Size()))
+			{
+				val = oculus.get(d);
+			}
+			
+			m.set(prod, d, d);
 			if(Floats.isFinite(val))
 			{
 				if(!Floats.isZero(val, 1))
 				{
-					product *= -val;
+					m.set(prod / oculus.get(d), dim, d);
 				}
 			}
 		}
 		
-		return product;
+		return m;
 	}
 	
 	@Override
@@ -131,31 +138,54 @@ public class Projection implements ITransformation
 		
 		return m;
 	}
+
 	
 	@Override
-	public Matrix Matrix(int dim)
+	public Affine unmap(Affine val)
 	{
-		Matrix m = Matrices.identity(dim + 1);
-		
-		float prod = 1f / product(-1);
-		for(int d = 0; d < dim + 1; d++)
+		Affine img = ITransformation.super.unmap(val);
+		if(val instanceof Affine.Space)
 		{
-			float val = 0f;
-			if(d < Integers.min(dim, oculus.Size()))
-			{
-				val = oculus.get(d);
-			}
+			return ASpaces.expand(img, iDim);
+		}
+
+		return img;
+	}
+
+	@Override
+	public Affine map(Affine val)
+	{		
+		Affine img = ITransformation.super.map(val);
+		if(val instanceof Affine.Space)
+		{
+			return ASpaces.occupy(img, oDim);
+		}
+		
+		return img;
+	}
+
+	
+	float product(int index)
+	{
+		// This could be adapted for different matrix dimensions.
+		// However, the use of a homogeneous coördinate system
+		// makes sure these are all equivalent in use.
+		
+		float product = 1f;
+		for(int i = 0; i < oculus.Size(); i++)
+		{
+			if(i == index) continue;
 			
-			m.set(prod, d, d);
+			float val = oculus.get(i);
 			if(Floats.isFinite(val))
 			{
 				if(!Floats.isZero(val, 1))
 				{
-					m.set(prod / oculus.get(d), dim, d);
+					product *= -val;
 				}
 			}
 		}
 		
-		return m;
+		return product;
 	}
 }
