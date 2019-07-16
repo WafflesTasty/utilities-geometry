@@ -23,7 +23,7 @@ public interface ITransformation extends Function<Affine, Affine>
 	/**
 	 * Returns a matrix for the {@code ITransformation}.
 	 * 
-	 * @param dim  a square matrix dimension
+	 * @param dim  an affine space dimension
 	 * @return  a transformation matrix
 	 * 
 	 * 
@@ -34,7 +34,7 @@ public interface ITransformation extends Function<Affine, Affine>
 	/**
 	 * Returns an inverse for the {@code ITransformation}.
 	 * 
-	 * @param dim  a square matrix dimension
+	 * @param dim  an affine space dimension
 	 * @return  a transformation inverse
 	 * 
 	 * 
