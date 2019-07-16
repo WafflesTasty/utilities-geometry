@@ -175,13 +175,13 @@ public class Camera extends DirtyValue implements Copyable<Camera>, ITransformat
 	protected void update()
 	{
 		inv = dilation.Matrix(oDim);
-		inv = projection.Matrix(oDim).times(inv);
+		inv = projection.Inverse(oDim).times(inv);
 		inv = rotation.Matrix(oDim).times(inv);
 		inv = translation.Matrix(oDim).times(inv);
 		
 		mat = translation.Inverse(iDim);
 		mat = rotation.Inverse(iDim).times(mat);
-		mat = projection.Inverse(iDim).times(mat);
+		mat = projection.Matrix(iDim).times(mat);
 		mat = dilation.Inverse(iDim).times(mat);
 	}
 	

@@ -86,13 +86,13 @@ public class Projection implements ITransformation
 	{
 		Matrix m = Matrices.identity(dim + 1);
 		
-		float prod = 1f / product(-1);
+		float prod = product(-1);
 		for(int d = 0; d < dim + 1; d++)
 		{
 			float val = 0f;
 			if(d < Integers.min(dim, oculus.Size()))
 			{
-				val = oculus.get(d);
+				val = -oculus.get(d);
 			}
 			
 			m.set(prod, d, d);
@@ -100,7 +100,7 @@ public class Projection implements ITransformation
 			{
 				if(!Floats.isZero(val, 1))
 				{
-					m.set(prod / oculus.get(d), dim, d);
+					m.set(prod / val, dim, d);
 				}
 			}
 		}
@@ -113,13 +113,13 @@ public class Projection implements ITransformation
 	{
 		Matrix m = Matrices.identity(dim + 1);
 		
-		float prod = product(-1);
+		float prod = 1f / product(-1);
 		for(int d = 0; d < dim + 1; d++)
 		{
 			float val = 0f;
 			if(d < Integers.min(dim, oculus.Size()))
 			{
-				val = oculus.get(d);
+				val = -oculus.get(d);
 			}
 			
 			m.set(prod, d, d);
@@ -127,7 +127,7 @@ public class Projection implements ITransformation
 			{
 				if(!Floats.isZero(val, 1))
 				{
-					m.set(product(d), dim, d);
+					m.set(prod / val, dim, d);
 				}
 			}
 		}
@@ -147,12 +147,12 @@ public class Projection implements ITransformation
 		{
 			if(i == index) continue;
 			
-			float val = oculus.get(i);
+			float val = -oculus.get(i);
 			if(Floats.isFinite(val))
 			{
 				if(!Floats.isZero(val, 1))
 				{
-					product *= -val;
+					product *= val;
 				}
 			}
 		}
