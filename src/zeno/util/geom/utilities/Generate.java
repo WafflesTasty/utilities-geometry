@@ -32,7 +32,7 @@ import zeno.util.geom.collidables.geometry.spatial.Sphere;
  * @since Jul 17, 2019
  * @version 1.0
  */
-public class Generate
+public final class Generate
 {	
 	/**
 	 * Creates a new {@code ICube}.
