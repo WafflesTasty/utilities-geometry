@@ -5,7 +5,7 @@ import zeno.util.algebra.linear.vector.Vectors;
 import zeno.util.geom.collidables.IGeometry;
 
 /**
- * The {@code GeometryND} class is the base class for closed n-dimensional shapes.
+ * The {@code GeometryND} class is the base class for bounded n-dimensional shapes.
  *
  * @author Zeno
  * @since Apr 29, 2016
@@ -56,7 +56,6 @@ public abstract class GeometryND implements IGeometry
 		this(Vectors.create(2f, dim));
 	}
 	
-
 	
 	@Override
 	public int hashCode()

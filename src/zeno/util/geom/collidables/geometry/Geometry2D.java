@@ -4,7 +4,7 @@ import zeno.util.algebra.linear.vector.fixed.Vector2;
 import zeno.util.geom.collidables.IGeometry2D;
 
 /**
- * The {@code Geometry2D} class is the base class for closed two-dimensional shapes.
+ * The {@code Geometry2D} class is the base class for bounded two-dimensional shapes.
  *
  * @author Zeno
  * @since Apr 29, 2016
@@ -40,7 +40,7 @@ public abstract class Geometry2D extends GeometryND implements IGeometry2D
 	 */
 	public Geometry2D(Vector2 size)
 	{
-		this(new Vector2(), size);
+		super(size);
 	}
 	
 	/**
@@ -48,7 +48,7 @@ public abstract class Geometry2D extends GeometryND implements IGeometry2D
 	 */
 	public Geometry2D()
 	{
-		this(new Vector2(2f, 2f));
+		super(2);
 	}
 	
 			

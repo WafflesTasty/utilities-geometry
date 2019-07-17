@@ -4,7 +4,7 @@ import zeno.util.algebra.linear.vector.fixed.Vector3;
 import zeno.util.geom.collidables.IGeometry3D;
 
 /**
- * The {@code Geometry3D} class is the base class for closed three-dimensional shapes.
+ * The {@code Geometry3D} class is the base class for bounded three-dimensional shapes.
  *
  * @author Zeno
  * @since Apr 29, 2016
@@ -40,7 +40,7 @@ public abstract class Geometry3D extends GeometryND implements IGeometry3D
 	 */
 	public Geometry3D(Vector3 size)
 	{
-		this(new Vector3(), size);
+		super(size);
 	}
 	
 	/**
@@ -48,7 +48,7 @@ public abstract class Geometry3D extends GeometryND implements IGeometry3D
 	 */
 	public Geometry3D()
 	{
-		this(new Vector3(2f, 2f, 2f));
+		super(3);
 	}
 
 	
