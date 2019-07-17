@@ -3,7 +3,7 @@ package zeno.util.geom.collidables;
 import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.geom.ICollidable;
 import zeno.util.geom.collidables.affine.Point;
-import zeno.util.geom.transformables.ITransformable;
+import zeno.util.geom.transformables.IAdjustable;
 import zeno.util.geom.utilities.bounds.IBounded;
 
 /**
@@ -15,11 +15,11 @@ import zeno.util.geom.utilities.bounds.IBounded;
  * @version 1.0
  * 
  * 
- * @see ITransformable
+ * @see IAdjustable
  * @see ICollidable
  * @see IBounded
  */
-public interface IShapeable extends IBounded, ICollidable, ITransformable
+public interface IShapeable extends IAdjustable, IBounded, ICollidable
 {
 	/**
 	 * Returns the shape of the {@code IShapeable}.

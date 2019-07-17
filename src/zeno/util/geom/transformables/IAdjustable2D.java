@@ -6,19 +6,19 @@ import zeno.util.geom.transformables.affine.IScalable2D;
 import zeno.util.geom.transformables.affine.IVantage2D;
 
 /**
- * The {@code ITransformable2D} interface defines an object
- * capable of being transformed in two-dimensional affine space.
+ * The {@code IAdjustable2D} interface defines an object
+ * capable of being fully adjusted in two-dimensional affine space.
  *
  * @author Zeno
  * @since Feb 10, 2019
  * @version 1.0
  * 
  * 
- * @see ITransformable
+ * @see IAdjustable
  * @see IScalable2D
  * @see IVantage2D
  */
-public interface ITransformable2D extends ITransformable, IVantage2D, IScalable2D
+public interface IAdjustable2D extends IAdjustable, IScalable2D, IVantage2D
 {
 	@Override
 	public default Matrix2x2 Basis()

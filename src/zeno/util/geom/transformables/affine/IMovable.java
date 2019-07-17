@@ -22,7 +22,7 @@ public interface IMovable
 	 * @see Vector
 	 */
 	public abstract Vector Origin();
-	
+		
 	/**
 	 * Moves the {@code IMovable} to a new origin vector.
 	 * 

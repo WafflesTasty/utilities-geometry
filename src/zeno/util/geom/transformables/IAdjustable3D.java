@@ -6,19 +6,19 @@ import zeno.util.geom.transformables.affine.IScalable3D;
 import zeno.util.geom.transformables.affine.IVantage3D;
 
 /**
- * The {@code ITransformable3D} interface defines an object
- * capable of being transformed in three-dimensional affine space.
+ * The {@code IAdjustable3D} interface defines an object
+ * capable of being fully adjusted in three-dimensional affine space.
  *
  * @author Zeno
  * @since Feb 10, 2019
  * @version 1.0
  * 
  * 
- * @see ITransformable
+ * @see IAdjustable
  * @see IScalable3D
  * @see IVantage3D
  */
-public interface ITransformable3D extends ITransformable, IVantage3D, IScalable3D
+public interface IAdjustable3D extends IAdjustable, IScalable3D, IVantage3D
 {
 	@Override
 	public default Matrix3x3 Basis()
