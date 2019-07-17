@@ -12,7 +12,7 @@ import zeno.util.geom.utilities.bounds.IBounded;
 import zeno.util.geom.utilities.bounds.Bounds;
 
 /**
- * The {@code IGeometry} interface is the base for finite geometric shapes.
+ * The {@code IGeometry} interface is the base for bounded n-dimensional shapes.
  * <br> It allows for basic collision detection and bounding volumes.
  * 
  * @author Zeno

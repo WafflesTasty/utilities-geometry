@@ -6,7 +6,7 @@ import zeno.util.geom.utilities.bounds.Bounds3D;
 import zeno.util.geom.utilities.bounds.IBounded3D;
 
 /**
- * The {@code IGeometry3D} interface is the base for three-dimensional convex geometric shapes.
+ * The {@code IGeometry3D} interface is the base for bounded three-dimensional shapes.
  *
  * @author Zeno
  * @since Aug 22, 2015
