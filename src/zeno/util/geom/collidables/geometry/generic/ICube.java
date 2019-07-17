@@ -1,7 +1,7 @@
 package zeno.util.geom.collidables.geometry.generic;
 
 /**
- * The {@code ICube} interface defines the base for cube geometry.
+ * The {@code ICube} interface defines the collision operations for cube geometry.
  * 
  * @author Zeno
  * @since Mar 24, 2017

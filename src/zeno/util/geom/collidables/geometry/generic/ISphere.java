@@ -5,7 +5,7 @@ import zeno.util.geom.utilities.Containment;
 import zeno.util.geom.utilities.Intersection;
 
 /**
- * The {@code ISphere} interface defines the base for sphere geometry.
+ * The {@code ISphere} interface defines the collision operations for sphere geometry.
  * 
  * @author Zeno
  * @since Mar 24, 2017

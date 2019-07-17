@@ -6,7 +6,7 @@ import zeno.util.geom.utilities.Containment;
 import zeno.util.geom.utilities.Intersection;
 
 /**
- * The {ICuboid} interface defines the base for cuboid geometry.
+ * The {ICuboid} interface defines the collision operations for cuboid geometry.
  * 
  * @author Zeno
  * @since Mar 24, 2017

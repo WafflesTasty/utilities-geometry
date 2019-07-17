@@ -7,7 +7,7 @@ import zeno.util.geom.utilities.Intersection;
 import zeno.util.tools.Floats;
 
 /**
- * The {IEllipsoid} interface defines the base for ellipsoid geometry.
+ * The {IEllipsoid} interface defines the collision operations for ellipsoid geometry.
  * 
  * @author Zeno
  * @since Mar 24, 2017

@@ -6,7 +6,7 @@ import zeno.util.geom.utilities.Containment;
 import zeno.util.geom.utilities.Intersection;
 
 /**
- * The {@code ISegment} interface defines the base for line segment geometry.
+ * The {@code ISegment} interface defines the collision operations for line segment geometry.
  * 
  * @author Zeno
  * @since Mar 25, 2017
