@@ -1,9 +1,10 @@
-package zeno.util.geom.transformables.projective;
+package zeno.util.geom.transformables;
 
 import zeno.util.algebra.linear.matrix.fixed.Matrix2x2;
 import zeno.util.algebra.linear.vector.fixed.Vector2;
 import zeno.util.geom.transformables.affine.IScalable2D;
 import zeno.util.geom.transformables.affine.IVantage2D;
+import zeno.util.geom.transformables.projective.IProjectable2D;
 
 /**
  * The {@code IProjector2D} interface defines an object

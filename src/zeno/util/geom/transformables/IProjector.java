@@ -1,10 +1,11 @@
-package zeno.util.geom.transformables.projective;
+package zeno.util.geom.transformables;
 
 import zeno.util.algebra.linear.matrix.Matrix;
 import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.geom.ITransformable;
 import zeno.util.geom.transformables.affine.IScalable;
 import zeno.util.geom.transformables.affine.IVantage;
+import zeno.util.geom.transformables.projective.IProjectable;
 import zeno.util.geom.transforms.Camera;
 
 /**
