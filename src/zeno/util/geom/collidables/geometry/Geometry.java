@@ -5,7 +5,7 @@ import zeno.util.algebra.linear.vector.Vectors;
 import zeno.util.geom.collidables.IGeometry;
 
 /**
- * The {@code GeometryND} class is the base class for bounded n-dimensional shapes.
+ * The {@code Geometry} class is the base class for bounded n-dimensional shapes.
  *
  * @author Zeno
  * @since Apr 29, 2016
@@ -14,12 +14,12 @@ import zeno.util.geom.collidables.IGeometry;
  * 
  * @see IGeometry
  */
-public abstract class GeometryND implements IGeometry
+public abstract class Geometry implements IGeometry
 {		
 	private Vector center, size;
 		
 	/**
-	 * Creates a new {@code GeometryND}.
+	 * Creates a new {@code Geometry}.
 	 * 
 	 * @param center  a geometry center
 	 * @param size    a geometry size
@@ -27,31 +27,31 @@ public abstract class GeometryND implements IGeometry
 	 * 
 	 * @see Vector
 	 */
-	public GeometryND(Vector center, Vector size)
+	public Geometry(Vector center, Vector size)
 	{
 		this.size = size.Absolute();
 		this.center = center;
 	}
 	
 	/**
-	 * Creates a new {@code GeometryND}.
+	 * Creates a new {@code Geometry}.
 	 * 
 	 * @param size  a geometry size
 	 * 
 	 * 
 	 * @see Vector
 	 */
-	public GeometryND(Vector size)
+	public Geometry(Vector size)
 	{
 		this(Vectors.create(size.Size()), size);
 	}
 	
 	/**
-	 * Creates a new {@code GeometryND}.
+	 * Creates a new {@code Geometry}.
 	 * 
 	 * @param dim  a geometry dimension
 	 */
-	public GeometryND(int dim)
+	public Geometry(int dim)
 	{
 		this(Vectors.create(2f, dim));
 	}
@@ -71,9 +71,9 @@ public abstract class GeometryND implements IGeometry
 	@Override
 	public boolean equals(Object o)
 	{
-		if(o instanceof GeometryND)
+		if(o instanceof Geometry)
 		{
-			GeometryND oGeometry = (GeometryND) o;
+			Geometry oGeometry = (Geometry) o;
 			return center.equals(oGeometry.center)
 				&& size.equals(oGeometry.size);
 		}

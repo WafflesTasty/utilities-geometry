@@ -12,9 +12,9 @@ import zeno.util.geom.collidables.IGeometry3D;
  * 
  * 
  * @see IGeometry3D
- * @see GeometryND
+ * @see Geometry
  */
-public abstract class Geometry3D extends GeometryND implements IGeometry3D
+public abstract class Geometry3D extends Geometry implements IGeometry3D
 {	
 	/**
 	 * Creates a new {@code Geometry3D}.

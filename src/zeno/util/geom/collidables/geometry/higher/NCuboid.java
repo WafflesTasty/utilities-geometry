@@ -1,7 +1,7 @@
 package zeno.util.geom.collidables.geometry.higher;
 
 import zeno.util.algebra.linear.vector.Vector;
-import zeno.util.geom.collidables.geometry.GeometryND;
+import zeno.util.geom.collidables.geometry.Geometry;
 import zeno.util.geom.collidables.geometry.generic.ICuboid;
 
 /**
@@ -12,10 +12,10 @@ import zeno.util.geom.collidables.geometry.generic.ICuboid;
  * @version 1.0
  * 
  * 
- * @see GeometryND
+ * @see Geometry
  * @see ICuboid
  */
-public class NCuboid extends GeometryND implements ICuboid
+public class NCuboid extends Geometry implements ICuboid
 {
 	/**
 	 * Creates a new {@code NCuboid}.

@@ -1,7 +1,7 @@
 package zeno.util.geom.collidables.geometry.higher;
 
 import zeno.util.algebra.linear.vector.Vector;
-import zeno.util.geom.collidables.geometry.GeometryND;
+import zeno.util.geom.collidables.geometry.Geometry;
 import zeno.util.geom.collidables.geometry.generic.IEllipsoid;
 
 /**
@@ -13,9 +13,9 @@ import zeno.util.geom.collidables.geometry.generic.IEllipsoid;
  * 
  * 
  * @see IEllipsoid
- * @see GeometryND
+ * @see Geometry
  */
-public class NEllipsoid extends GeometryND implements IEllipsoid
+public class NEllipsoid extends Geometry implements IEllipsoid
 {	
 	/**
 	 * Creates a new {@code NEllipsoid}.
