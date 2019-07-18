@@ -1,8 +1,8 @@
 package zeno.util.geom.collidables.geometry.generic;
 
 import zeno.util.algebra.linear.vector.Vector;
-import zeno.util.geom.utilities.Containment;
-import zeno.util.geom.utilities.Intersection;
+import zeno.util.geom._deprecated.Containment;
+import zeno.util.geom._deprecated.Intersection;
 
 /**
  * The {@code ISphere} interface defines the collision operations for sphere geometry.

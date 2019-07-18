@@ -1,9 +1,9 @@
 package zeno.util.geom.collidables.geometry.generic;
 
 import zeno.util.algebra.linear.vector.Vector;
+import zeno.util.geom._deprecated.Containment;
+import zeno.util.geom._deprecated.Intersection;
 import zeno.util.geom.collidables.IGeometry;
-import zeno.util.geom.utilities.Containment;
-import zeno.util.geom.utilities.Intersection;
 
 /**
  * The {@code ISegment} interface defines the collision operations for line segment geometry.

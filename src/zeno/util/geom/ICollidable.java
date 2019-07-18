@@ -1,8 +1,8 @@
 package zeno.util.geom;
 
 import zeno.util.algebra.linear.vector.Vector;
-import zeno.util.geom._test.Collisions;
 import zeno.util.geom.collidables.affine.Point;
+import zeno.util.geom.utilities.Collisions;
 import zeno.util.tools.patterns.properties.Inaccurate;
 
 /**
