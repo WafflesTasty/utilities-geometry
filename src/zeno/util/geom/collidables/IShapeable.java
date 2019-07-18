@@ -1,10 +1,10 @@
 package zeno.util.geom.collidables;
 
-import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.geom.ICollidable;
-import zeno.util.geom.collidables.affine.Point;
+import zeno.util.geom._test.Collisions;
 import zeno.util.geom.transformables.IAdjustable;
 import zeno.util.geom.utilities.bounds.IBounded;
+import zeno.util.geom.utilities.bounds.Bounds;
 
 /**
  * The {@code IShapeable} interface defines an object that has a geometric shape.
@@ -31,22 +31,43 @@ public interface IShapeable extends IAdjustable, IBounded, ICollidable
 	 */
 	public abstract IGeometry Shape();
 
-	
+		
 	@Override
-	public default boolean contains(Point p)
+	public default ICollidable intersect(ICollidable c)
 	{
-		return Shape().contains((Point) Transform().unmap(p));
+		if(c instanceof Affine)
+		{
+			return Shape().intersect(Transform().unmap((Affine) c));
+		}
+		
+		throw new RuntimeException("Intersection between IShapeable and non-Affine has not been implemented.");
+	}
+		
+	@Override
+	public default boolean intersects(ICollidable c)
+	{
+		if(c instanceof Affine)
+		{
+			return Shape().intersects(Transform().unmap((Affine) c));
+		}
+		
+		throw new RuntimeException("Intersection between IShapeable and non-Affine has not been implemented.");
 	}
 	
 	@Override
-	public default boolean intersects(Affine a)
+	public default boolean contains(ICollidable c)
 	{
-		return Shape().intersects(Transform().unmap(a));
+		if(c instanceof Affine)
+		{
+			return Shape().contains(Transform().unmap((Affine) c));
+		}
+		
+		throw new RuntimeException("Containment between IShapeable and non-Affine has not been implemented.");
 	}
-	
+
 	@Override
-	public default boolean contains(Vector p)
+	public default Bounds Bounds()
 	{
-		return contains(new Point(p));
+		return Collisions.bounds(this);
 	}
 }

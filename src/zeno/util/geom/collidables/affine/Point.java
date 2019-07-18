@@ -24,6 +24,12 @@ import zeno.util.tools.helper.Iterables;
  */
 public class Point implements Affine.Set, Affine.Space
 {		
+	/**
+	 * Defines the type of the {@code Point} class.
+	 */
+	public static Point TYPE = new Point();	
+	
+	
 	private Vector vmat;
 
 	/**
@@ -65,60 +71,6 @@ public class Point implements Affine.Set, Affine.Space
 		return v1.minus(v2);
 	}
 			
-		
-	@Override
-	public boolean contains(Point p)
-	{
-		return equals(p);
-	}
-	
-	@Override
-	public boolean contains(Affine s)
-	{
-		if(s.isFinite())
-		{
-			return Affine.Space.super.contains(s);
-		}
-		
-		return false;
-	}
-	
-	@Override
-	public boolean equals(Affine a, int ulps)
-	{
-		if(a instanceof Point)
-		{
-			Point p = (Point) a;
-			int acc = 2 * (ulps + 1);
-			return vmat.equals(p.VMatrix(), acc);
-		}
-		
-		return false;
-	}
-	
-	@Override
-	public boolean intersects(Affine s)
-	{
-		return s.contains(this);
-	}
-	
-	@Override
-	public Iterator<Point> iterator()
-	{
-		return Iterables.singleton(this).iterator();
-	}
-	
-	@Override
-	public Affine intersect(Affine s)
-	{
-		if(!s.contains(this))
-		{
-			return ASpaces.trivial(Origin().Size());
-		}
-		
-		return this;
-	}
-	
 	
 	@Override
 	public VSpace Direction()
@@ -150,7 +102,14 @@ public class Point implements Affine.Set, Affine.Space
 	{
 		return ASpaces.homogenize(VMatrix());
 	}
-		
+	
+	
+	@Override
+	public Iterator<Point> iterator()
+	{
+		return Iterables.singleton(this).iterator();
+	}
+	
 	@Override
 	public boolean isFinite()
 	{

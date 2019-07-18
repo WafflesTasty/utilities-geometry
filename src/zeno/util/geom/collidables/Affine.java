@@ -8,8 +8,6 @@ import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.geom.ICollidable;
 import zeno.util.geom.collidables.affine.ASpaces;
 import zeno.util.geom.collidables.affine.Point;
-import zeno.util.geom.utilities.Containment;
-import zeno.util.geom.utilities.Intersection;
 import zeno.util.tools.patterns.properties.Inaccurate;
 
 /**
@@ -24,7 +22,7 @@ import zeno.util.tools.patterns.properties.Inaccurate;
  * @see ICollidable
  * @see Inaccurate
  */
-public interface Affine extends ICollidable, Inaccurate<Affine>
+public interface Affine extends ICollidable
 {	
 	/**
 	 * The {@code Affine Set} interface defines a finite affine point set.
@@ -38,20 +36,39 @@ public interface Affine extends ICollidable, Inaccurate<Affine>
 	 * @see Affine
 	 */
 	public static interface Set extends Affine, Iterable<Point>
-	{		
-		@Override
-		public default boolean equals(Affine a, int ulps)
+	{
+		/**
+		 * Defines the type of the {@code Affine.Set} interface.
+		 */
+		@SuppressWarnings("hiding")
+		public static Affine.Set TYPE = new Set()
 		{
-			if(a.isFinite())
+			@Override
+			public Matrix VMatrix()
 			{
-				Affine.Set s = (Affine.Set) a;
-				return Size() == s.Size()
-					&& contains(s);
+				return null;
 			}
-			
-			return false;
-		}
+
+			@Override
+			public Matrix HMatrix()
+			{
+				return null;
+			}
+
+			@Override
+			public int Size()
+			{
+				return 0;
+			}
+		};
 		
+		
+		@Override
+		public default Affine.Set Span()
+		{
+			return this;
+		}
+				
 		@Override
 		public default Iterator<Point> iterator()
 		{
@@ -76,13 +93,7 @@ public interface Affine extends ICollidable, Inaccurate<Affine>
 				}
 			};
 		}
-						
-		@Override
-		public default Affine.Set Span()
-		{
-			return this;
-		}
-		
+								
 		
 		@Override
 		public default boolean isFinite()
@@ -137,21 +148,24 @@ public interface Affine extends ICollidable, Inaccurate<Affine>
 	 */
 	public static interface Space extends Affine
 	{		
-		@Override
-		public default boolean equals(Affine a, int ulps)
+		/**
+		 * Defines the type of the {@code Affine.Space} interface.
+		 */
+		@SuppressWarnings("hiding")
+		public static Affine.Space TYPE = new Space()
 		{
-			if(a instanceof Affine.Space)
+			@Override
+			public VSpace Direction()
 			{
-				Affine.Space s = (Affine.Space) a;
-				
-				VSpace dir1 = Direction();
-				VSpace dir2 = s.Direction();
-				return dir1.equals(dir2, ulps)
-					&& intersects(s);
+				return null;
 			}
 			
-			return false;
-		}
+			@Override
+			public Point Origin()
+			{
+				return null;
+			}
+		};
 
 		
 		@Override
@@ -235,41 +249,10 @@ public interface Affine extends ICollidable, Inaccurate<Affine>
 	 */
 	public abstract boolean isEmpty();	
 
-	
 	/**
 	 * Returns an affine span for the {@code Affine}.
 	 * 
 	 * @return  an affine span
 	 */
 	public abstract Affine.Set Span();
-	
-	/**
-	 * Intersects an affine set with the {@code Affine}.
-	 * 
-	 * @param a  an affine set to intersect
-	 * @return  an affine intersection
-	 */
-	public default Affine intersect(Affine a)
-	{
-		return Intersection.create(this, a);
-	}
-	
-	
-	@Override
-	public default boolean contains(Affine a)
-	{
-		return Containment.in(this, a);
-	}
-	
-	@Override
-	public default boolean intersects(Affine a)
-	{
-		return Intersection.between(this, a);
-	}
-
-	@Override
-	public default boolean contains(Point p)
-	{
-		return Containment.in(this, p);
-	}
 }

@@ -4,6 +4,7 @@ import zeno.util.algebra.linear.matrix.Matrices;
 import zeno.util.algebra.linear.matrix.Matrix;
 import zeno.util.algebra.linear.vector.VSpace;
 import zeno.util.algebra.linear.vector.VSpaces;
+import zeno.util.geom.ICollidable;
 import zeno.util.geom.collidables.Affine;
 import zeno.util.geom.collidables.affine.ASpaces;
 import zeno.util.geom.collidables.affine.Point;
@@ -35,36 +36,36 @@ public class TrivialASpace implements Affine.Space, Affine.Set
 
 	
 	@Override
-	public boolean contains(Point p)
+	public boolean equals(ICollidable c, int ulps)
 	{
+		if(c instanceof Affine)
+		{
+			Affine a = (Affine) c;
+			return a.isEmpty();
+		}
+		
 		return false;
 	}
 	
 	@Override
-	public boolean contains(Affine s)
-	{
-		return false;
-	}
-	
-	@Override
-	public boolean equals(Affine a, int ulps)
-	{
-		return a.isEmpty();
-	}
-	
-	@Override
-	public boolean intersects(Affine s)
-	{
-		return false;
-	}
-	
-	@Override
-	public Affine intersect(Affine s)
+	public ICollidable intersect(ICollidable c)
 	{
 		return this;
 	}
 	
+	@Override
+	public boolean intersects(ICollidable c)
+	{
+		return false;
+	}
 	
+	@Override
+	public boolean contains(ICollidable c)
+	{
+		return false;
+	}
+	
+
 	@Override
 	public VSpace Direction()
 	{
