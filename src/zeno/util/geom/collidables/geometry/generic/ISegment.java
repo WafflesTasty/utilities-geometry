@@ -1,9 +1,10 @@
 package zeno.util.geom.collidables.geometry.generic;
 
 import zeno.util.algebra.linear.vector.Vector;
-import zeno.util.geom._deprecated.Containment;
-import zeno.util.geom._deprecated.Intersection;
+import zeno.util.geom.collidables.ICollision;
 import zeno.util.geom.collidables.IGeometry;
+import zeno.util.geom.collidables.affine.Point;
+import zeno.util.geom.collidables.collisions.geometry.CLSSegment;
 
 /**
  * The {@code ISegment} interface defines the collision operations for line segment geometry.
@@ -25,7 +26,7 @@ public interface ISegment extends IGeometry
 	 * 
 	 * @see Vector
 	 */
-	public abstract Vector P1();
+	public abstract Point P1();
 	
 	/**
 	 * Returns the second point of the {@code ISegment}.
@@ -35,53 +36,15 @@ public interface ISegment extends IGeometry
 	 * 
 	 * @see Vector
 	 */
-	public abstract Vector P2();
+	public abstract Point P2();
 	
 	
 	@Override
-	public default boolean contains(Vector p)
+	public default ICollision Collisions()
 	{
-		return Containment.in(this, p);
-	}
-		
-	@Override
-	public default boolean contains(IEllipsoid e)
-	{
-		return Containment.in(this, e);
-	}
-	
-	@Override
-	public default boolean contains(ICuboid c)
-	{
-		return Containment.in(this, c);
+		return new CLSSegment(this);
 	}
 
-
-	@Override
-	public default boolean intersects(ICuboid c)
-	{
-		return Intersection.between(this, c);
-	}
-	
-	@Override
-	public default boolean intersects(IEllipsoid e)
-	{
-		return Intersection.between(this, e);
-	}
-	
-	@Override
-	public default boolean intersects(ISegment l)
-	{
-		return Intersection.between(this, l);
-	}
-	
-	@Override
-	public default boolean intersects(ISphere s)
-	{
-		return Intersection.between(this, s);
-	}
-	
-	
 	// Optional Bounds overrides.
 	
 	@Override

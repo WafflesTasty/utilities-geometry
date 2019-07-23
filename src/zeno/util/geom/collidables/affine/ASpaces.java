@@ -206,11 +206,11 @@ public final class ASpaces
 	 * @return  a new affine line
 	 * 
 	 * 
-	 * @see Point
-	 * @see ASpace
 	 * @see Vector
+	 * @see Point
+	 * @see Line
 	 */
-	public static ASpace span(Point o, Vector v)
+	public static Line span(Point o, Vector v)
 	{
 		if(v.Size() == 2)
 			return new Line2D(o, (Vector2) v);

@@ -66,7 +66,37 @@ public class Point implements Affine.Set, Affine.Space
 		Vector v2 = p.VMatrix();
 		return v1.minus(v2);
 	}
-			
+	
+	/**
+	 * Adds a {@code Vector}.
+	 * 
+	 * @param v  a vector to add
+	 * @return  a result point
+	 * 
+	 * 
+	 * @see Vector
+	 */
+	public Point plus(Vector v)
+	{
+		return new Point(vmat.plus(v));
+	}
+	
+	/**
+	 * Adds a {@code Point}.
+	 * 
+	 * @param p  a point to add
+	 * @return  a result vector
+	 * 
+	 * 
+	 * @see Vector
+	 */
+	public Vector plus(Point p)
+	{
+		Vector v1 = VMatrix();
+		Vector v2 = p.VMatrix();
+		return v1.plus(v2);
+	}
+		
 	
 	@Override
 	public VSpace Direction()
