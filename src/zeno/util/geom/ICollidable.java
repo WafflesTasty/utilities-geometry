@@ -1,8 +1,10 @@
 package zeno.util.geom;
 
 import zeno.util.algebra.linear.vector.Vector;
+import zeno.util.geom.collidables.ICollision;
 import zeno.util.geom.collidables.affine.Point;
-import zeno.util.geom.utilities.Collisions;
+import zeno.util.geom.collidables.collisions.CLSEmpty;
+import zeno.util.geom.utilities.Geometries;
 import zeno.util.tools.patterns.properties.Inaccurate;
 
 /**
@@ -16,18 +18,28 @@ import zeno.util.tools.patterns.properties.Inaccurate;
 public interface ICollidable extends Inaccurate<ICollidable>
 {	
 	/**
-	 * Defines the type of the {@code ICollidable} interface.
+	 * Defines an empty-shaped {@code ICollidable} object.
 	 */
-	public static ICollidable TYPE = new ICollidable()
+	public static ICollidable EMPTY = () ->
 	{
-		// NOT APPLICABLE
+		return new CLSEmpty();
 	};
-
+	
 	
 	@Override
 	public default boolean equals(ICollidable c, int ulps)
 	{
-		return Collisions.equals(this, c, ulps);
+		Boolean bln = Collisions().equals(c, ulps);
+		if(bln == null)
+		{
+			bln = c.Collisions().equals(this, ulps);
+			if(bln == null)
+			{
+				throw new Geometries.EqualityError(this, c);
+			}
+		}
+		
+		return bln;
 	}
 
 	/**
@@ -38,7 +50,17 @@ public interface ICollidable extends Inaccurate<ICollidable>
 	 */
 	public default ICollidable intersect(ICollidable c)
 	{
-		return Collisions.intersect(this, c);
+		ICollidable isc = Collisions().intersect(c);
+		if(isc == null)
+		{
+			isc = c.Collisions().intersect(this);
+			if(isc == null)
+			{
+				throw new Geometries.IntersectionError(this, c);
+			}
+		}
+		
+		return isc;
 	}
 	
 	/**
@@ -49,7 +71,17 @@ public interface ICollidable extends Inaccurate<ICollidable>
 	 */
 	public default boolean intersects(ICollidable c)
 	{
-		return Collisions.intersects(this, c);
+		Boolean bln = Collisions().intersects(c);
+		if(bln == null)
+		{
+			bln = c.Collisions().intersects(this);
+			if(bln == null)
+			{
+				throw new Geometries.IntersectingError(this, c);
+			}
+		}
+		
+		return bln;
 	}
 	
 	/**
@@ -60,7 +92,17 @@ public interface ICollidable extends Inaccurate<ICollidable>
 	 */
 	public default boolean contains(ICollidable c)
 	{
-		return Collisions.contains(this, c);
+		Boolean bln = Collisions().contains(c);
+		if(bln == null)
+		{
+			bln = c.Collisions().inhabits(this);
+			if(bln == null)
+			{
+				throw new Geometries.ContainError(this, c);
+			}
+		}
+		
+		return bln;
 	}
 	
 	/**
@@ -78,12 +120,22 @@ public interface ICollidable extends Inaccurate<ICollidable>
 	}
 
 	/**
-	 * Returns the type of the {@code ICollidable}.
-	 *  
-	 * @return  the collidable type
+	 * Returns the collisions of the {@code ICollidable}.
+	 * 
+	 * @return  a collision object
+	 * 
+	 * 
+	 * @see ICollision
 	 */
-	public default ICollidable Type()
+	public abstract ICollision Collisions();
+
+	/**
+	 * Checks if the {@code ICollidable} is empty.
+	 * 
+	 * @return  {@code true} if the shape is empty
+	 */
+	public default boolean isEmpty()
 	{
-		return ICollidable.TYPE;
+		return true;
 	}
 }

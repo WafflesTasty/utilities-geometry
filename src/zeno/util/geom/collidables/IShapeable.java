@@ -1,9 +1,9 @@
 package zeno.util.geom.collidables;
 
 import zeno.util.geom.ICollidable;
+import zeno.util.geom._deprecated.Collisions;
 import zeno.util.geom.transformables.IAdjustable;
 import zeno.util.geom.utilities.bounds.IBounded;
-import zeno.util.geom.utilities.Collisions;
 import zeno.util.geom.utilities.bounds.Bounds;
 
 /**
@@ -65,6 +65,12 @@ public interface IShapeable extends IAdjustable, IBounded, ICollidable
 		throw new RuntimeException("Containment between IShapeable and non-Affine has not been implemented.");
 	}
 
+	@Override
+	public default boolean isEmpty()
+	{
+		return Shape().isEmpty();
+	}
+	
 	@Override
 	public default Bounds Bounds()
 	{

@@ -25,14 +25,14 @@ import zeno.util.geom.collidables.geometry.spatial.Segment3D;
 import zeno.util.geom.collidables.geometry.spatial.Sphere;
 
 /**
- * The {@code Generate} class provides static access methods to
+ * The {@code Generator} class provides static access methods to
  * generate various basic geometry objects of the appropriate class.
  *
  * @author Zeno
  * @since Jul 17, 2019
  * @version 1.0
  */
-public final class Generate
+public final class Generator
 {	
 	/**
 	 * Creates a new {@code ICube}.
@@ -175,7 +175,7 @@ public final class Generate
 	}
 
 	
-	private Generate()
+	private Generator()
 	{
 		// NOT APPLICABLE
 	}

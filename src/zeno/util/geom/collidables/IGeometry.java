@@ -140,34 +140,45 @@ public interface IGeometry extends ICollidable, IBounded, Bounds
 
 	
 	@Override
-	public default boolean contains(Point p)
+	public default boolean contains(ICollidable c)
 	{
-		return contains(p.VMatrix());
+		if(c instanceof Point)
+		{
+			return contains(((Point) c).VMatrix());
+		}
+		
+		throw new RuntimeException();
 	}
 	
 	@Override
-	public default boolean intersects(Affine a)
+	public default boolean intersects(ICollidable c)
 	{
-		if(a.isFinite())
+		if(c instanceof Affine)
 		{
-			for(Point p : a.Span())
+			Affine a = (Affine) c;
+			if(a.isFinite())
 			{
-				if(contains(p))
+				for(Point p : a.Span())
 				{
-					return true;
+					if(contains(p))
+					{
+						return true;
+					}
 				}
+				
+				return false;
 			}
-			
+
+			Affine.Space s = (Space) a;
+			if(s.Dimension() < 0)
+			{
+				return false;
+			}
+
 			return false;
 		}
-
-		Affine.Space s = (Space) a;
-		if(s.Dimension() < 0)
-		{
-			return false;
-		}
-
-		return false;
+		
+		throw new RuntimeException();
 	}
 	
 	@Override

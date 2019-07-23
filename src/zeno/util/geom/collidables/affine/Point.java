@@ -8,6 +8,8 @@ import zeno.util.algebra.linear.vector.VSpaces;
 import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.algebra.linear.vector.Vectors;
 import zeno.util.geom.collidables.Affine;
+import zeno.util.geom.collidables.ICollision;
+import zeno.util.geom.collidables.collisions.affine.CLSPoint;
 import zeno.util.tools.helper.Iterables;
 
 /**
@@ -24,12 +26,6 @@ import zeno.util.tools.helper.Iterables;
  */
 public class Point implements Affine.Set, Affine.Space
 {		
-	/**
-	 * Defines the type of the {@code Point} class.
-	 */
-	public static Point TYPE = new Point();	
-	
-	
 	private Vector vmat;
 
 	/**
@@ -109,6 +105,13 @@ public class Point implements Affine.Set, Affine.Space
 	{
 		return Iterables.singleton(this).iterator();
 	}
+	
+	@Override
+	public ICollision Collisions()
+	{
+		return new CLSPoint(this);
+	}
+
 	
 	@Override
 	public boolean isFinite()

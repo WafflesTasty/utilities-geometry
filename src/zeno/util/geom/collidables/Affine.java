@@ -8,6 +8,8 @@ import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.geom.ICollidable;
 import zeno.util.geom.collidables.affine.ASpaces;
 import zeno.util.geom.collidables.affine.Point;
+import zeno.util.geom.collidables.collisions.affine.CLSASet;
+import zeno.util.geom.collidables.collisions.affine.CLSASpace;
 import zeno.util.tools.patterns.properties.Inaccurate;
 
 /**
@@ -37,32 +39,6 @@ public interface Affine extends ICollidable
 	 */
 	public static interface Set extends Affine, Iterable<Point>
 	{
-		/**
-		 * Defines the type of the {@code Affine.Set} interface.
-		 */
-		@SuppressWarnings("hiding")
-		public static Affine.Set TYPE = new Set()
-		{
-			@Override
-			public Matrix VMatrix()
-			{
-				return null;
-			}
-
-			@Override
-			public Matrix HMatrix()
-			{
-				return null;
-			}
-
-			@Override
-			public int Size()
-			{
-				return 0;
-			}
-		};
-		
-		
 		@Override
 		public default Affine.Set Span()
 		{
@@ -94,6 +70,12 @@ public interface Affine extends ICollidable
 			};
 		}
 								
+		@Override
+		public default ICollision Collisions()
+		{
+			return new CLSASet(this);
+		}
+		
 		
 		@Override
 		public default boolean isFinite()
@@ -148,26 +130,6 @@ public interface Affine extends ICollidable
 	 */
 	public static interface Space extends Affine
 	{		
-		/**
-		 * Defines the type of the {@code Affine.Space} interface.
-		 */
-		@SuppressWarnings("hiding")
-		public static Affine.Space TYPE = new Space()
-		{
-			@Override
-			public VSpace Direction()
-			{
-				return null;
-			}
-			
-			@Override
-			public Point Origin()
-			{
-				return null;
-			}
-		};
-
-		
 		@Override
 		public default boolean isEmpty()
 		{
@@ -180,6 +142,12 @@ public interface Affine extends ICollidable
 			return Dimension() < 1;
 		}
 
+		@Override
+		public default ICollision Collisions()
+		{
+			return new CLSASpace(this);
+		}
+		
 		@Override
 		public default Affine.Set Span()
 		{
@@ -242,13 +210,6 @@ public interface Affine extends ICollidable
 	 */
 	public abstract boolean isFinite();
 	
-	/**
-	 * Checks if the {@code Affine} is an empty set.
-	 * 
-	 * @return  {@code true} if the set is empty
-	 */
-	public abstract boolean isEmpty();	
-
 	/**
 	 * Returns an affine span for the {@code Affine}.
 	 * 
