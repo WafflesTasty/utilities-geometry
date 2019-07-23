@@ -78,6 +78,12 @@ public class TrivialASpace implements Affine.Space, Affine.Set
 	}
 
 	@Override
+	public boolean isPoint()
+	{
+		return false;
+	}
+	
+	@Override
 	public int Size()
 	{
 		return 0;

@@ -75,11 +75,17 @@ public interface Affine extends ICollidable
 		{
 			return new CLSASet(this);
 		}
-		
+				
 		@Override
 		public default boolean isEmpty()
 		{
-			return iterator().hasNext();
+			return Size() == 0;
+		}
+		
+		@Override
+		public default boolean isPoint()
+		{
+			return Size() == 1;
 		}
 		
 					
@@ -126,7 +132,13 @@ public interface Affine extends ICollidable
 		@Override
 		public default boolean isEmpty()
 		{
-			return Dimension() < 0;
+			return Dimension() == -1;
+		}
+		
+		@Override
+		public default boolean isPoint()
+		{
+			return Dimension() == 0;
 		}
 		
 		@Override

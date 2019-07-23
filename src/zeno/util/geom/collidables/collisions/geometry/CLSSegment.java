@@ -23,9 +23,7 @@ import zeno.util.tools.Floats;
  * @see CLSGeometry
  */
 public class CLSSegment extends CLSGeometry
-{
-	private ISegment s;
-	
+{	
 	/**
 	 * Creates a new {@code CLSSegment}.
 	 * 
@@ -36,22 +34,26 @@ public class CLSSegment extends CLSGeometry
 	 */
 	public CLSSegment(ISegment s)
 	{
-		this.s = s;
+		super(s);
+	}
+	
+	@Override
+	protected ISegment Source()
+	{
+		return (ISegment) super.Source();
 	}
 	
 	
 	@Override
 	public Boolean contains(ICollidable c)
 	{
-		Point p1 = s.P1();
-		Point p2 = s.P2();
-		
-		// Eliminate degenerate segment.
-		if(p1.equals(p2, 1))
+		Boolean cnt = super.contains(c);
+		if(cnt != null)
 		{
-			return c.equals(p1, 1);
+			return cnt;
 		}
 		
+				
 		// Eliminate isolated point sets.
 		if(c instanceof Affine.Set)
 		{
@@ -73,21 +75,19 @@ public class CLSSegment extends CLSGeometry
 			return contains((ISegment) c);
 		}
 
-		return super.contains(c);
+		return null;
 	}
-
+	
 	@Override
 	public Boolean intersects(ICollidable c)
 	{
-		Point p1 = s.P1();
-		Point p2 = s.P2();
-		
-		// Eliminate degenerate segment.
-		if(p1.equals(p2, 1))
+		Boolean isect = super.intersects(c);
+		if(isect != null)
 		{
-			return c.equals(p1, 1);
+			return isect;
 		}
 		
+				
 		// Eliminate affine spaces.
 		if(c instanceof Affine.Space)
 		{
@@ -100,20 +100,18 @@ public class CLSSegment extends CLSGeometry
 			return intersects((ISegment) c);
 		}
 		
-		return super.intersects(c);
+		return null;
 	}
 	
 	@Override
 	public ICollidable intersect(ICollidable c)
 	{
-		Point p1 = s.P1();
-		Point p2 = s.P2();
-		
-		// Eliminate degenerate segment.
-		if(p1.equals(p2, 1))
+		ICollidable isect = super.intersect(c);
+		if(isect != null)
 		{
-			return c.intersect(p1);
+			return isect;
 		}
+
 		
 		// Eliminate affine spaces.
 		if(c instanceof Affine.Space)
@@ -127,17 +125,13 @@ public class CLSSegment extends CLSGeometry
 			return intersect((ISegment) c);
 		}
 		
-		return super.intersect(c);
+		return null;
 	}
 	
 	
 	private ICollidable intersect(ISegment t)
 	{
-		// Eliminate degenerate segment.
-		if(t.P1().equals(t.P2(), 1))
-		{
-			return s.intersect(t.P1());
-		}
+		ISegment s = Source();
 		
 		
 		Vector pq = s.P2().minus(s.P1());
@@ -189,6 +183,9 @@ public class CLSSegment extends CLSGeometry
 	
 	private ICollidable intersect(Affine.Space a)
 	{
+		ISegment s = Source();
+		
+		
 		VSpace dir = a.Direction();
 		Vector pq = s.P2().minus(s.P1());
 		Vector rp = s.P1().minus(a.Origin());
@@ -219,6 +216,9 @@ public class CLSSegment extends CLSGeometry
 	
 	private boolean intersects(Affine.Space a)
 	{
+		ISegment s = Source();
+		
+		
 		VSpace dir = a.Direction();
 		Vector pq = s.P2().minus(s.P1());
 		Vector rp = s.P1().minus(a.Origin());
@@ -244,12 +244,8 @@ public class CLSSegment extends CLSGeometry
 	
 	private boolean intersects(ISegment t)
 	{
-		// Eliminate degenerate segment.
-		if(t.P1().equals(t.P2(), 1))
-		{
-			return s.intersects(t.P1());
-		}
-		
+		ISegment s = Source();
+
 		
 		Vector pq = s.P2().minus(s.P1());
 		Vector rs = t.P2().minus(t.P1());
@@ -288,11 +284,7 @@ public class CLSSegment extends CLSGeometry
 	
 	private boolean contains(ISegment t)
 	{
-		// Eliminate degenerate segment.
-		if(t.P1().equals(t.P2(), 1))
-		{
-			return s.contains(t.P1());
-		}
+		ISegment s = Source();
 		
 		
 		Vector qp = s.P1().minus(s.P2());
@@ -318,6 +310,9 @@ public class CLSSegment extends CLSGeometry
 	
 	private boolean contains(Point x)
 	{
+		ISegment s = Source();
+		
+		
 		// Calculate the dot products.
 		Vector pq = s.P2().minus(s.P1());
 		Vector px = s.P2().minus(x);

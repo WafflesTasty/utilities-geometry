@@ -19,11 +19,11 @@ import zeno.util.geom.utilities.bounds.Bounds;
  * @see Bounds
  */
 public interface IGeometry extends ICollidable, IBounded, Bounds
-{			
+{				
 	@Override
 	public default ICollision Collisions()
 	{
-		return new CLSGeometry();
+		return new CLSGeometry(this);
 	}
 	
 	@Override

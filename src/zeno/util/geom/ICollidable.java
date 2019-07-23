@@ -120,6 +120,16 @@ public interface ICollidable extends Inaccurate<ICollidable>
 	public abstract ICollision Collisions();
 
 	/**
+	 * Checks if the {@code ICollidable} is a point.
+	 * 
+	 * @return  {@code true} if the shape is a point
+	 */
+	public default boolean isPoint()
+	{
+		return false;
+	}
+	
+	/**
 	 * Checks if the {@code ICollidable} is empty.
 	 * 
 	 * @return  {@code true} if the shape is empty

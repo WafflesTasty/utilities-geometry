@@ -131,7 +131,7 @@ public final class ASpaces
 	{
 		if(set.isEmpty())
 		{
-			return (Affine.Space) set;
+			return new TrivialASpace();
 		}
 		
 		Point o = null;

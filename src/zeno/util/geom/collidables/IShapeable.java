@@ -72,6 +72,12 @@ public interface IShapeable extends IAdjustable, IBounded, ICollidable
 	}
 	
 	@Override
+	public default boolean isPoint()
+	{
+		return Shape().isPoint();
+	}
+	
+	@Override
 	public default Bounds Bounds()
 	{
 		return Collisions.bounds(this);

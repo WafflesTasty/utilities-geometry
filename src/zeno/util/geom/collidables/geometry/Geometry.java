@@ -83,7 +83,7 @@ public abstract class Geometry implements IGeometry
 	}
 
 	@Override
-	public boolean isEmpty()
+	public boolean isPoint()
 	{
 		return Floats.isZero(size.norm(), Dimension());
 	}

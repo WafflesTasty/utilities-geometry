@@ -149,6 +149,12 @@ public class Point implements Affine.Set, Affine.Space
 	}
 
 	@Override
+	public boolean isPoint()
+	{
+		return true;
+	}
+	
+	@Override
 	public int Dimension()
 	{
 		return 0;

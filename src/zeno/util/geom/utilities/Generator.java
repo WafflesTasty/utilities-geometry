@@ -3,6 +3,8 @@ package zeno.util.geom.utilities;
 import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.algebra.linear.vector.fixed.Vector2;
 import zeno.util.algebra.linear.vector.fixed.Vector3;
+import zeno.util.geom.ICollidable;
+import zeno.util.geom.collidables.affine.Point;
 import zeno.util.geom.collidables.geometry.generic.ICube;
 import zeno.util.geom.collidables.geometry.generic.ICuboid;
 import zeno.util.geom.collidables.geometry.generic.IEllipsoid;
@@ -178,5 +180,11 @@ public final class Generator
 	private Generator()
 	{
 		// NOT APPLICABLE
+	}
+
+	
+	public static ISegment segment(Point p1, Point p2)
+	{
+		return segment(p1.VMatrix(), p2.VMatrix());
 	}
 }
