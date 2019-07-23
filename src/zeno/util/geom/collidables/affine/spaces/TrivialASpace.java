@@ -4,10 +4,11 @@ import zeno.util.algebra.linear.matrix.Matrices;
 import zeno.util.algebra.linear.matrix.Matrix;
 import zeno.util.algebra.linear.vector.VSpace;
 import zeno.util.algebra.linear.vector.VSpaces;
-import zeno.util.geom.ICollidable;
 import zeno.util.geom.collidables.Affine;
+import zeno.util.geom.collidables.ICollision;
 import zeno.util.geom.collidables.affine.ASpaces;
 import zeno.util.geom.collidables.affine.Point;
+import zeno.util.geom.collidables.collisions.affine.CLSATrivial;
 
 /**
  * The {@code TrivialASpace} class defines a trivial affine space.
@@ -26,50 +27,23 @@ public class TrivialASpace implements Affine.Space, Affine.Set
 	
 	/**
 	 * Creates a new {@code TrivialASpace}.
-	 * 
-	 * @param size  a coördinate size
 	 */
-	public TrivialASpace(int size)
+	public TrivialASpace()
 	{
-		direction = VSpaces.trivial(size);
+		direction = VSpaces.trivial(0);
 	}
 
 	
-	@Override
-	public boolean equals(ICollidable c, int ulps)
-	{
-		if(c instanceof Affine)
-		{
-			Affine a = (Affine) c;
-			return a.isEmpty();
-		}
-		
-		return false;
-	}
-	
-	@Override
-	public ICollidable intersect(ICollidable c)
-	{
-		return this;
-	}
-	
-	@Override
-	public boolean intersects(ICollidable c)
-	{
-		return false;
-	}
-	
-	@Override
-	public boolean contains(ICollidable c)
-	{
-		return false;
-	}
-	
-
 	@Override
 	public VSpace Direction()
 	{
 		return direction;
+	}
+	
+	@Override
+	public ICollision Collisions()
+	{
+		return new CLSATrivial();
 	}
 	
 	@Override
@@ -96,13 +70,7 @@ public class TrivialASpace implements Affine.Space, Affine.Set
 	{
 		return ASpaces.homogenize(VMatrix());
 	}
-	
-	@Override
-	public boolean isFinite()
-	{
-		return true;
-	}
-	
+		
 	@Override
 	public boolean isEmpty()
 	{

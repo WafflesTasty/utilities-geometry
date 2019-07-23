@@ -1,13 +1,13 @@
 package zeno.util.geom.collidables.affine.spaces;
 
-import zeno.util.algebra.linear.matrix.Matrix;
 import zeno.util.algebra.linear.vector.VSpace;
 import zeno.util.algebra.linear.vector.VSpaces;
 import zeno.util.algebra.linear.vector.Vectors;
-import zeno.util.geom.ICollidable;
 import zeno.util.geom.collidables.Affine;
+import zeno.util.geom.collidables.ICollision;
 import zeno.util.geom.collidables.affine.ASpaces;
 import zeno.util.geom.collidables.affine.Point;
+import zeno.util.geom.collidables.collisions.affine.CLSAFull;
 
 /**
  * The {@code FullASpace} class defines an entire affine space.
@@ -27,53 +27,30 @@ public class FullASpace implements Affine.Space
 	
 	/**
 	 * Creates a new {@code FullASpace}.
-	 * 
-	 * @param size  a coördinate size
 	 */
-	public FullASpace(int size)
+	public FullASpace()
 	{
-		origin = new Point(Vectors.create(size));
-		direction = VSpaces.full(size);
+		origin = new Point(Vectors.create(0));
+		direction = VSpaces.full(0);
 	}
 	
 	
 	@Override
-	public boolean equals(ICollidable c, int ulps)
+	public boolean isEmpty()
 	{
-		if(c instanceof Affine.Space)
-		{
-			Affine.Space s = (Affine.Space) c;
-			Matrix m = s.Direction().Complement();
-			return s.Dimension() == Dimension()
-				&& m.Columns() == 0;
-		}
-		
 		return false;
 	}
-	
-	@Override
-	public ICollidable intersect(ICollidable c)
-	{
-		return c;
-	}
-	
-	@Override
-	public boolean intersects(ICollidable c)
-	{
-		return true;
-	}
-	
-	@Override
-	public boolean contains(ICollidable c)
-	{
-		return true;
-	}
-	
 
 	@Override
 	public VSpace Direction()
 	{
 		return direction;
+	}
+	
+	@Override
+	public ICollision Collisions()
+	{
+		return new CLSAFull();
 	}
 	
 	@Override

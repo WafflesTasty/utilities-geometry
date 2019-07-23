@@ -3,7 +3,6 @@ package zeno.util.geom;
 import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.geom.collidables.ICollision;
 import zeno.util.geom.collidables.affine.Point;
-import zeno.util.geom.collidables.collisions.CLSEmpty;
 import zeno.util.geom.utilities.Geometries;
 import zeno.util.tools.patterns.properties.Inaccurate;
 
@@ -17,15 +16,6 @@ import zeno.util.tools.patterns.properties.Inaccurate;
  */
 public interface ICollidable extends Inaccurate<ICollidable>
 {	
-	/**
-	 * Defines an empty-shaped {@code ICollidable} object.
-	 */
-	public static ICollidable EMPTY = () ->
-	{
-		return new CLSEmpty();
-	};
-	
-	
 	@Override
 	public default boolean equals(ICollidable c, int ulps)
 	{
@@ -136,6 +126,6 @@ public interface ICollidable extends Inaccurate<ICollidable>
 	 */
 	public default boolean isEmpty()
 	{
-		return true;
+		return false;
 	}
 }

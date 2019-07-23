@@ -83,7 +83,7 @@ public interface ICollision
 		ICollidable isect = intersect(c);
 		if(isect != null)
 		{
-			return !isect.equals(ICollidable.EMPTY);
+			return !isect.isEmpty();
 		}
 		
 		return null;

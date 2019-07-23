@@ -112,13 +112,6 @@ public class Point implements Affine.Set, Affine.Space
 		return new CLSPoint(this);
 	}
 
-	
-	@Override
-	public boolean isFinite()
-	{
-		return true;
-	}
-	
 	@Override
 	public boolean isEmpty()
 	{

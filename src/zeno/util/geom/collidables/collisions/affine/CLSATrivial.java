@@ -1,10 +1,11 @@
-package zeno.util.geom.collidables.collisions;
+package zeno.util.geom.collidables.collisions.affine;
 
 import zeno.util.geom.ICollidable;
 import zeno.util.geom.collidables.ICollision;
+import zeno.util.geom.collidables.affine.spaces.TrivialASpace;
 
 /**
- * The {@code CLSEmpty} class defines collision for an empty shape.
+ * The {@code CLSATrivial} class defines collision for a trivial affine space.
  *
  * @author Zeno
  * @since Jul 23, 2019
@@ -13,7 +14,7 @@ import zeno.util.geom.collidables.ICollision;
  * 
  * @see ICollision
  */
-public class CLSEmpty implements ICollision
+public class CLSATrivial implements ICollision
 {
 	@Override
 	public Boolean contains(ICollidable c)
@@ -37,6 +38,6 @@ public class CLSEmpty implements ICollision
 	@Override
 	public ICollidable intersect(ICollidable c)
 	{
-		return ICollidable.EMPTY;
+		return new TrivialASpace();
 	}
 }

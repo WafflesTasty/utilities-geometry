@@ -2,10 +2,9 @@ package zeno.util.geom.collidables.collisions.affine;
 
 import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.geom.ICollidable;
-import zeno.util.geom.collidables.Affine;
 import zeno.util.geom.collidables.ICollision;
-import zeno.util.geom.collidables.affine.ASpaces;
 import zeno.util.geom.collidables.affine.Point;
+import zeno.util.geom.collidables.affine.spaces.TrivialASpace;
 
 /**
  * The {@code CLSPoint} class defines collision for a {@link Point}.
@@ -43,12 +42,7 @@ public class CLSPoint implements ICollision
 			return p;
 		}
 		
-		if(c instanceof Affine)
-		{
-			return ASpaces.trivial(p.VMatrix().Rows());
-		}
-		
-		return ICollidable.EMPTY;
+		return new TrivialASpace();
 	}
 					
 	@Override

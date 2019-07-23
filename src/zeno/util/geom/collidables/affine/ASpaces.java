@@ -30,35 +30,6 @@ import zeno.util.tools.helper.Array;
 public final class ASpaces
 {
 	/**
-	 * Defines a full affine space for static access.
-	 * 
-	 * @param dim  an affine coördinate dimension
-	 * @return  a full affine space
-	 * 
-	 * 
-	 * @see Affine
-	 */
-	public static Affine.Space full(int dim)
-	{
-		return new FullASpace(dim);
-	}
-	
-	/**
-	 * Defines a trivial affine space for static access.
-	 * 
-	 * @param dim  an affine coördinate dimension 
-	 * @return  a trivial affine space
-	 * 
-	 * 
-	 * @see Affine
-	 */
-	public static Affine.Space trivial(int dim)
-	{
-		return new TrivialASpace(dim);
-	}
-
-	
-	/**
 	 * Defines an affine set that expands a new coördinate count.
 	 * The amount of coördinates change and can increase dimension as well.
 	 * 
@@ -108,7 +79,7 @@ public final class ASpaces
 			}
 		}
 		
-		if(!s.isFinite())
+		if(s instanceof Affine.Space)
 			return span(hset(m));
 		return hset(m);
 	}
@@ -141,7 +112,7 @@ public final class ASpaces
 			}
 		}
 		
-		if(!s.isFinite())
+		if(s instanceof Affine.Space)
 			return span(hset(m));
 		return hset(m);
 	}
@@ -216,9 +187,9 @@ public final class ASpaces
 		int size = v.Span().Rows();
 
 		if(o == null)
-			return trivial(size);
+			return new TrivialASpace();
 		if(v.Dimension() == size)
-			return full(size);
+			return new FullASpace();
 		if(v.Dimension() == 1)
 			return span(o, (Vector) v.Span());
 		if(v.Dimension() == 0)
@@ -343,7 +314,7 @@ public final class ASpaces
 		
 		if(m.Columns() == 0)
 		{
-			return (Affine.Set) trivial(m.Rows());
+			return new TrivialASpace();
 		}
 		
 		if(m instanceof Vector)

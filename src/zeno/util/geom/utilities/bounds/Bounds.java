@@ -3,7 +3,7 @@ package zeno.util.geom.utilities.bounds;
 import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.geom.collidables.geometry.generic.ICuboid;
 import zeno.util.geom.collidables.geometry.generic.ISphere;
-import zeno.util.geom.utilities.Generate;
+import zeno.util.geom.utilities.Generator;
 
 /**
  * The {@code Bounds} interface defines object bounds in n dimensions.
@@ -109,7 +109,7 @@ public interface Bounds
 	 */
 	public default ISphere Ball()
 	{
-		return Generate.sphere(Center(), Radius());
+		return Generator.sphere(Center(), Radius());
 	}
 	
 	/**
@@ -122,6 +122,6 @@ public interface Bounds
 	 */
 	public default ICuboid Box()
 	{
-		return Generate.cuboid(Center(), Size());
+		return Generator.cuboid(Center(), Size());
 	}
 }

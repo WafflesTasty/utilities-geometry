@@ -156,7 +156,7 @@ public interface IGeometry extends ICollidable, IBounded, Bounds
 		if(c instanceof Affine)
 		{
 			Affine a = (Affine) c;
-			if(a.isFinite())
+			if(a instanceof Affine.Set)
 			{
 				for(Point p : a.Span())
 				{

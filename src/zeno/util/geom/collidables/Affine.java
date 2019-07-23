@@ -76,13 +76,6 @@ public interface Affine extends ICollidable
 			return new CLSASet(this);
 		}
 		
-		
-		@Override
-		public default boolean isFinite()
-		{
-			return true;
-		}
-				
 		@Override
 		public default boolean isEmpty()
 		{
@@ -136,12 +129,6 @@ public interface Affine extends ICollidable
 			return Dimension() < 0;
 		}
 		
-		@Override
-		public default boolean isFinite()
-		{
-			return Dimension() < 1;
-		}
-
 		@Override
 		public default ICollision Collisions()
 		{
@@ -201,14 +188,7 @@ public interface Affine extends ICollidable
 			return Direction().Dimension();
 		}
 	}
-	
 
-	/**
-	 * Checks if the {@code Affine} is a finite set.
-	 * 
-	 * @return  {@code true} if the set is finite
-	 */
-	public abstract boolean isFinite();
 	
 	/**
 	 * Returns an affine span for the {@code Affine}.

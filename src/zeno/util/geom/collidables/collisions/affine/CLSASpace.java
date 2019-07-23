@@ -13,6 +13,7 @@ import zeno.util.geom.collidables.Affine.Space;
 import zeno.util.geom.collidables.affine.ASpace;
 import zeno.util.geom.collidables.affine.ASpaces;
 import zeno.util.geom.collidables.affine.Point;
+import zeno.util.geom.collidables.affine.spaces.TrivialASpace;
 
 /**
  * The {@code CLSASpace} class defines collision for an {@code Affine} {@link Space}.
@@ -59,7 +60,7 @@ public class CLSASpace implements ICollision
 			if(x == null)
 			{
 				// The intersection is empty.
-				return ASpaces.trivial(size);
+				return new TrivialASpace();
 			}
 			
 			// Otherwise, a common point is found.
