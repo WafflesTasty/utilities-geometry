@@ -61,7 +61,7 @@ public class Segment2D extends NSegment implements IGeometry2D
 	 */
 	public float X1()
 	{
-		return P1().X();
+		return P1().VMatrix().get(0);
 	}
 	
 	/**
@@ -71,7 +71,7 @@ public class Segment2D extends NSegment implements IGeometry2D
 	 */
 	public float Y1()
 	{
-		return P1().Y();
+		return P1().VMatrix().get(1);
 	}
 	
 	/**
@@ -81,7 +81,7 @@ public class Segment2D extends NSegment implements IGeometry2D
 	 */
 	public float X2()
 	{
-		return P2().X();
+		return P2().VMatrix().get(0);
 	}
 	
 	/**
@@ -91,7 +91,7 @@ public class Segment2D extends NSegment implements IGeometry2D
 	 */
 	public float Y2()
 	{
-		return P2().Y();
+		return P2().VMatrix().get(1);
 	}
 
 	
@@ -119,18 +119,6 @@ public class Segment2D extends NSegment implements IGeometry2D
 	public Vector2 Size()
 	{
 		return (Vector2) super.Size();
-	}
-	
-	@Override
-	public Vector2 P1()
-	{
-		return (Vector2) super.P1();
-	}
-	
-	@Override
-	public Vector2 P2()
-	{
-		return (Vector2) super.P2();
 	}
 
 	

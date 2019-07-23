@@ -63,7 +63,7 @@ public class Segment3D extends NSegment implements IGeometry3D
 	 */
 	public float X1()
 	{
-		return P1().X();
+		return P1().VMatrix().get(0);
 	}
 	
 	/**
@@ -73,7 +73,7 @@ public class Segment3D extends NSegment implements IGeometry3D
 	 */
 	public float Y1()
 	{
-		return P1().Y();
+		return P1().VMatrix().get(1);
 	}
 	
 	/**
@@ -83,7 +83,7 @@ public class Segment3D extends NSegment implements IGeometry3D
 	 */
 	public float Z1()
 	{
-		return P1().Z();
+		return P1().VMatrix().get(2);
 	}
 	
 	/**
@@ -93,7 +93,7 @@ public class Segment3D extends NSegment implements IGeometry3D
 	 */
 	public float X2()
 	{
-		return P2().X();
+		return P2().VMatrix().get(0);
 	}
 	
 	/**
@@ -103,7 +103,7 @@ public class Segment3D extends NSegment implements IGeometry3D
 	 */
 	public float Y2()
 	{
-		return P2().Y();
+		return P2().VMatrix().get(1);
 	}
 	
 	/**
@@ -113,7 +113,7 @@ public class Segment3D extends NSegment implements IGeometry3D
 	 */
 	public float Z2()
 	{
-		return P2().Z();
+		return P2().VMatrix().get(2);
 	}
 
 	
@@ -141,18 +141,6 @@ public class Segment3D extends NSegment implements IGeometry3D
 	public Vector3 Size()
 	{
 		return (Vector3) super.Size();
-	}
-	
-	@Override
-	public Vector3 P1()
-	{
-		return (Vector3) super.P1();
-	}
-	
-	@Override
-	public Vector3 P2()
-	{
-		return (Vector3) super.P2();
 	}
 
 	
