@@ -15,6 +15,7 @@ import zeno.util.geom.collidables.geometry.generic.ICuboid;
 import zeno.util.geom.collidables.geometry.generic.ISegment;
 import zeno.util.geom.utilities.Generator;
 import zeno.util.tools.Floats;
+import zeno.util.tools.Integers;
 
 /**
  * The {@code CLSCuboid} class defines collision for an {@code ICuboid}.
@@ -204,23 +205,24 @@ public class CLSCuboid extends CLSGeometry
 	{
 		ICuboid c = Source();
 		
-		
-		Vector min1 = c.Minimum();
-		Vector min2 = d.Minimum();
-		Vector max1 = c.Maximum();
-		Vector max2 = d.Maximum();
-		
-		
-		Vector m = Vectors.create(c.Dimension());
-		Vector n = Vectors.create(c.Dimension());
-		for(int i = 0; i < c.Dimension(); i++)
+
+		int dim = Integers.min(c.Dimension(), d.Dimension());
+		Vector m = Vectors.create(dim); Vector n = Vectors.create(dim);
+		for(int i = 0; i < dim; i++)
 		{
-			m.set(Floats.min(max1.get(i), max2.get(i)), i);
-			n.set(Floats.max(min1.get(i), min2.get(i)), i);
-			if(m.get(i) < n.get(i))
+			float si = c.Size().get(i);
+			float ti = d.Size().get(i);
+			
+			float pi = c.Center().get(i);
+			float qi = d.Center().get(i);
+			
+			if(si + ti < 2 * Floats.abs(pi - qi))
 			{
 				return new TrivialASpace();
 			}
+			
+			m.set(Floats.min(pi + si / 2, qi + ti / 2), i);
+			n.set(Floats.max(pi - si / 2, qi - ti / 2), i);
 		}
 		
 		Vector s = m.minus(n);
@@ -237,19 +239,18 @@ public class CLSCuboid extends CLSGeometry
 	private boolean intersects(ICuboid d)
 	{
 		ICuboid c = Source();
-		
-		
-		Vector c1 = c.Center();
-		Vector c2 = d.Center();
-		Vector s1 = c.Size();
-		Vector s2 = c.Size();
-		
-		for(int i = 0; i < c.Dimension(); i++)
+
+
+		int dim = Integers.min(c.Dimension(), d.Dimension());
+		for(int i = 0; i < dim; i++)
 		{
-			float v1 = s1.get(i) + s2.get(i);
-			float v2 = c1.get(i) - c2.get(i);
+			float si = c.Size().get(i);
+			float ti = d.Size().get(i);
 			
-			if(v1 < 2 * Floats.abs(v2))
+			float pi = c.Center().get(i);
+			float qi = d.Center().get(i);
+			
+			if(si + ti < 2 * Floats.abs(pi - qi))
 			{
 				return false;
 			}
@@ -267,19 +268,18 @@ public class CLSCuboid extends CLSGeometry
 	private boolean contains(ICuboid d)
 	{
 		ICuboid c = Source();
-		
-		
-		Vector c1 = c.Center();
-		Vector c2 = d.Center();
-		Vector s1 = c.Size();
-		Vector s2 = c.Size();
-		
-		for(int i = 0; i < c.Dimension(); i++)
+
+
+		int dim = Integers.min(c.Dimension(), d.Dimension());
+		for(int i = 0; i < dim; i++)
 		{
-			float v1 = s1.get(i) - s2.get(i);
-			float v2 = c1.get(i) - c2.get(i);
+			float si = c.Size().get(i);
+			float ti = d.Size().get(i);
 			
-			if(v1 < 2 * Floats.abs(v2))
+			float pi = c.Center().get(i);
+			float qi = d.Center().get(i);
+			
+			if(si - ti < 2 * Floats.abs(pi - qi))
 			{
 				return false;
 			}

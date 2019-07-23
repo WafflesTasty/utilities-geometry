@@ -74,8 +74,9 @@ public class CLSSegment extends CLSGeometry
 		{
 			return contains((ISegment) c);
 		}
-
-		return null;
+		
+		// Other shapes have volume.
+		return false;
 	}
 	
 	@Override
