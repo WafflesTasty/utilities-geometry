@@ -6,12 +6,13 @@ import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.algebra.linear.vector.Vectors;
 import zeno.util.geom.ICollidable;
 import zeno.util.geom.algorithms.LineClipper;
-import zeno.util.geom.collidables.Affine;
+import zeno.util.geom.collidables.IGeometry;
 import zeno.util.geom.collidables.affine.Point;
 import zeno.util.geom.collidables.affine.lines.Line;
 import zeno.util.geom.collidables.affine.spaces.TrivialASpace;
 import zeno.util.geom.collidables.collisions.CLSGeometry;
 import zeno.util.geom.collidables.geometry.generic.ICuboid;
+import zeno.util.geom.collidables.geometry.generic.IEllipsoid;
 import zeno.util.geom.collidables.geometry.generic.ISegment;
 import zeno.util.geom.utilities.Generator;
 import zeno.util.tools.Floats;
@@ -45,6 +46,28 @@ public class CLSCuboid extends CLSGeometry
 		super(s);
 	}
 	
+	
+	@Override
+	protected boolean contains(Point x)
+	{
+		ICuboid c = Source();
+		
+		
+		for(int i = 0; i < c.Dimension(); i++)
+		{
+			float xi = x.get(i);
+			float si = c.Size().get(i);
+			float pi = c.Center().get(i);
+			
+			if(si < 2 * Floats.abs(xi - pi))
+			{
+				return false;
+			}
+		}
+
+		return true;
+	}
+	
 	@Override
 	protected ICuboid Source()
 	{
@@ -55,32 +78,11 @@ public class CLSCuboid extends CLSGeometry
 	@Override
 	public Boolean contains(ICollidable c)
 	{
+		// Eliminate base collision cases.
 		Boolean cnt = super.contains(c);
 		if(cnt != null)
 		{
 			return cnt;
-		}
-		
-				
-		// Eliminate isolated point sets.
-		if(c instanceof Affine.Set)
-		{
-			Affine.Set set = (Affine.Set) c;
-			for(Point p : set)
-			{
-				if(!contains(p))
-				{
-					return false;
-				}
-			}
-			
-			return true;
-		}
-		
-		// Eliminate line segments.
-		if(c instanceof ISegment)
-		{
-			return contains((ISegment) c);
 		}
 		
 		// Eliminate cuboids.
@@ -88,19 +90,44 @@ public class CLSCuboid extends CLSGeometry
 		{
 			return contains((ICuboid) c);
 		}
+		
+		// Eliminate ellipsoids.
+		if(c instanceof IEllipsoid)
+		{
+			return contains((IEllipsoid) c);
+		}
 
 		return null;
 	}
 
 	@Override
+	public Boolean inhabits(ICollidable c)
+	{
+		// Eliminate base collision cases.
+		Boolean cnt = super.inhabits(c);
+		if(cnt != null)
+		{
+			return cnt;
+		}
+		
+		// Eliminate geometries.
+		if(c instanceof IGeometry)
+		{
+			return inhabits((IGeometry) c);
+		}
+		
+		return null;
+	}
+	
+	@Override
 	public Boolean intersects(ICollidable c)
 	{
+		// Eliminate base collision cases.
 		Boolean isect = super.intersects(c);
 		if(isect != null)
 		{
 			return isect;
 		}
-		
 		
 		// Eliminate affine lines.
 		if(c instanceof Line)
@@ -108,7 +135,7 @@ public class CLSCuboid extends CLSGeometry
 			return intersects((Line) c);
 		}
 		
-		// Eliminate segments.
+		// Eliminate line segments.
 		if(c instanceof ISegment)
 		{
 			return intersects((ISegment) c);
@@ -126,12 +153,12 @@ public class CLSCuboid extends CLSGeometry
 	@Override
 	public ICollidable intersect(ICollidable c)
 	{
+		// Eliminate base collision cases.
 		ICollidable isect = super.intersect(c);
 		if(isect != null)
 		{
 			return isect;
 		}
-		
 		
 		// Eliminate affine lines.
 		if(c instanceof Line)
@@ -139,7 +166,7 @@ public class CLSCuboid extends CLSGeometry
 			return intersect((Line) c);
 		}
 		
-		// Eliminate segments.
+		// Eliminate line segments.
 		if(c instanceof ISegment)
 		{
 			return intersect((ISegment) c);
@@ -154,38 +181,7 @@ public class CLSCuboid extends CLSGeometry
 		return null;
 	}
 	
-	
-	private ICollidable intersect(Line l)
-	{
-		ICuboid c = Source();
 		
-		
-		Vector s = c.Size();
-		Vector p = c.Center();
-		Vector q = l.Origin().VMatrix();
-		Vector v = (Vector) l.Direction().Span();
-		
-		// Compute the lambda boundaries.
-		float lmin = Floats.NEG_INFINITY;
-		float lmax = Floats.POS_INFINITY;
-		for(int i = 0; i < c.Dimension(); i++)
-		{
-			float l1 = p.get(i) - q.get(i) - s.get(i) / 2;
-			float l2 = p.get(i) - q.get(i) + s.get(i) / 2;
-			
-			lmin = Floats.max(lmin, l1 / v.get(i));
-			lmax = Floats.min(lmin, l2 / v.get(i));
-			if(lmax < lmin)
-			{
-				return new TrivialASpace();
-			}
-		}
-		
-		Vector p1 = q.plus(v.times(lmin));
-		Vector p2 = q.plus(v.times(lmax));
-		return Generator.segment(p1, p2);
-	}
-	
 	private ICollidable intersect(ISegment s)
 	{
 		clipper.setBounds(Source());
@@ -229,7 +225,44 @@ public class CLSCuboid extends CLSGeometry
 		Vector p = m.plus( n).times(0.5f);
 		return Generator.cuboid(p, s);
 	}
+	
+	private ICollidable intersect(Line l)
+	{
+		ICuboid c = Source();
 		
+		
+		Point r = l.Origin();
+		Vector m1 = c.Minimum();
+		Vector m2 = c.Maximum();
+		Vector v = l.Vector();
+			
+		float lmin = Floats.NEG_INFINITY;
+		float lmax = Floats.POS_INFINITY;
+		// For every axis-aligned dimension...
+		for(int i = 0; i < c.Dimension(); i++)
+		{
+			float l1 = m1.get(i) - r.get(i);
+			float l2 = m2.get(i) - r.get(i);
+		
+			// Compute the minimum and maximum lambda.
+			lmin = Floats.max(lmin, l1 / v.get(i));
+			lmax = Floats.min(lmin, l2 / v.get(i));
+			
+			// If the halfspaces don't intersect...
+			if(lmax < lmin)
+			{
+				// The intersection is empty.
+				return new TrivialASpace();
+			}
+		}
+		
+		// Otherwise, compute the intersecting segment.
+		Point p1 = r.plus(v.times(lmin));
+		Point p2 = r.plus(v.times(lmax));
+		return Generator.segment(p1, p2);
+	}
+	
+	
 	private boolean intersects(ISegment s)
 	{
 		clipper.setBounds(Source());
@@ -258,13 +291,53 @@ public class CLSCuboid extends CLSGeometry
 		
 		return true;
 	}
-	
-	private boolean contains(ISegment s)
+
+	private boolean intersects(Line l)
 	{
-		return contains(s.P1())
-			&& contains(s.P2());
+		ICuboid c = Source();
+		
+		
+		Point r = l.Origin();
+		Vector m1 = c.Minimum();
+		Vector m2 = c.Maximum();
+		Vector v = l.Vector();
+		
+		float lmin = Floats.NEG_INFINITY;
+		float lmax = Floats.POS_INFINITY;
+		// For every axis-aligned dimension...
+		for(int i = 0; i < c.Dimension(); i++)
+		{
+			// Compute the minimum and maximum lambda.
+			float l1 = m1.get(i) - r.get(i);
+			float l2 = m2.get(i) - r.get(i);
+			
+			lmin = Floats.max(lmin, l1 / v.get(i));
+			lmax = Floats.min(lmin, l2 / v.get(i));
+			// If the halfspaces don't intersect...
+			if(lmax < lmin)
+			{
+				// The intersection is empty.
+				return false;
+			}
+		}
+		
+		// Otherwise, intersection occurs.
+		return true;
 	}
 
+	
+	private boolean inhabits(IGeometry g)
+	{
+		return g.contains(Source().Minimum())
+			&& g.contains(Source().Maximum());
+	}
+
+	private boolean contains(IEllipsoid e)
+	{
+		return contains(new Point(e.Minimum(), 1f))
+			&& contains(new Point(e.Maximum(), 1f));
+	}
+	
 	private boolean contains(ICuboid d)
 	{
 		ICuboid c = Source();
@@ -285,55 +358,6 @@ public class CLSCuboid extends CLSGeometry
 			}
 		}
 		
-		return true;
-	}
-	
-	private boolean intersects(Line l)
-	{
-		ICuboid c = Source();
-		
-		
-		Vector s = c.Size();
-		Vector p = c.Center();
-		Vector q = l.Origin().VMatrix();
-		Vector v = (Vector) l.Direction().Span();
-		
-		// Compute the lambda boundaries.
-		float lmin = Floats.NEG_INFINITY;
-		float lmax = Floats.POS_INFINITY;
-		for(int i = 0; i < c.Dimension(); i++)
-		{
-			float l1 = p.get(i) - q.get(i) - s.get(i) / 2;
-			float l2 = p.get(i) - q.get(i) + s.get(i) / 2;
-			
-			lmin = Floats.max(lmin, l1 / v.get(i));
-			lmax = Floats.min(lmin, l2 / v.get(i));
-			if(lmax < lmin)
-			{
-				return false;
-			}
-		}
-		
-		return true;
-	}
-	
-	private boolean contains(Point x)
-	{
-		ICuboid s = Source();
-		
-		
-		for(int i = 0; i < s.Dimension(); i++)
-		{
-			float si = s.Size().get(i);
-			float ci = s.Center().get(i);
-			float xi = x.VMatrix().get(i);
-			
-			if(si < 2 * Floats.abs(xi - ci))
-			{
-				return false;
-			}
-		}
-
 		return true;
 	}
 }

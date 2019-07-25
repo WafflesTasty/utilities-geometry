@@ -82,12 +82,15 @@ public interface Affine extends ICollidable
 			return Size() == 0;
 		}
 		
-		@Override
-		public default boolean isPoint()
-		{
-			return Size() == 1;
-		}
 		
+		/**
+		 * Returns a vectorized value of the {@code Affine}.
+		 * 
+		 * @param r  a matrix row
+		 * @param c  a matrix column
+		 * @return  a vector value
+		 */
+		public abstract float get(int r, int c);
 					
 		/**
 		 * Returns a vectorized matrix spanning the {@code Affine}.
@@ -133,12 +136,6 @@ public interface Affine extends ICollidable
 		public default boolean isEmpty()
 		{
 			return Dimension() == -1;
-		}
-		
-		@Override
-		public default boolean isPoint()
-		{
-			return Dimension() == 0;
 		}
 		
 		@Override

@@ -1,12 +1,14 @@
 package zeno.util.geom.collidables.collisions;
 
-import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.geom.ICollidable;
 import zeno.util.geom.collidables.Affine;
 import zeno.util.geom.collidables.ICollision;
 import zeno.util.geom.collidables.IGeometry;
+import zeno.util.geom.collidables.affine.ASpaces;
 import zeno.util.geom.collidables.affine.Point;
 import zeno.util.geom.collidables.affine.spaces.TrivialASpace;
+import zeno.util.tools.Floats;
+import zeno.util.tools.helper.Array;
 
 /**
  * The {@code CLSGeometry} class defines collision for an {@link IGeometry}.
@@ -18,7 +20,7 @@ import zeno.util.geom.collidables.affine.spaces.TrivialASpace;
  * 
  * @see ICollision
  */
-public class CLSGeometry implements ICollision
+public abstract class CLSGeometry implements ICollision
 {
 	private IGeometry src;
 	
@@ -34,10 +36,18 @@ public class CLSGeometry implements ICollision
 	{
 		this.src = src;
 	}
+		
+	
+	protected abstract boolean contains(Point p);
 	
 	protected IGeometry Source()
 	{
 		return src;
+	}
+	
+	boolean isDegenerate()
+	{
+		return Floats.isZero(src.Size().norm(), src.Dimension());
 	}
 	
 	
@@ -45,10 +55,30 @@ public class CLSGeometry implements ICollision
 	public Boolean contains(ICollidable c)
 	{
 		// Eliminate degenerate geometry.
-		if(src.isPoint())
+		if(isDegenerate())
 		{
 			Point p = new Point(src.Center());
 			return p.equals(c, 1);
+		}
+		
+		// Eliminate point containment.
+		if(c instanceof Point)
+		{
+			return contains((Point) c);
+		}
+		
+		// Eliminate point set containment.
+		if(c instanceof Affine.Set)
+		{
+			for(Point p : ((Affine.Set) c).Span())
+			{
+				if(!contains(p))
+				{
+					return false;
+				}
+			}
+			
+			return true;
 		}
 		
 		// Eliminate affine spaces.
@@ -64,10 +94,22 @@ public class CLSGeometry implements ICollision
 	public Boolean equals(ICollidable c, int ulps)
 	{
 		// Eliminate degenerate geometry.
-		if(src.isPoint())
+		if(isDegenerate())
 		{
 			Point p = new Point(src.Center());
 			return p.equals(c, ulps);
+		}
+		
+		// Eliminate point equality.
+		if(c instanceof Point)
+		{
+			return false;
+		}
+		
+		// Eliminate affine spaces.
+		if(c instanceof Affine.Space)
+		{
+			return false;
 		}
 		
 		return null;
@@ -77,7 +119,7 @@ public class CLSGeometry implements ICollision
 	public ICollidable intersect(ICollidable c)
 	{
 		// Eliminate degenerate geometry.
-		if(src.isPoint())
+		if(isDegenerate())
 		{
 			Point p = new Point(src.Center());
 			if(!c.contains(p))
@@ -88,6 +130,32 @@ public class CLSGeometry implements ICollision
 			return p;
 		}
 		
+		// Eliminate point intersection.
+		if(c instanceof Point)
+		{
+			if(!contains((Point) c))
+			{
+				return new TrivialASpace();
+			}
+			
+			return c;
+		}
+		
+		// Eliminate point set intersection.
+		if(c instanceof Affine.Set)
+		{
+			Point[] pts = new Point[0];
+			for(Point p : ((Affine.Set) c).Span())
+			{
+				if(contains(p))
+				{
+					pts = Array.add.to(pts, p);
+				}
+			}
+			
+			return ASpaces.set(pts);
+		}
+		
 		return null;
 	}
 	
@@ -95,10 +163,30 @@ public class CLSGeometry implements ICollision
 	public Boolean intersects(ICollidable c)
 	{
 		// Eliminate degenerate geometry.
-		if(src.isPoint())
+		if(isDegenerate())
 		{
 			Point p = new Point(src.Center());
 			return c.contains(p);
+		}
+		
+		// Eliminate point intersection.
+		if(c instanceof Point)
+		{
+			return contains((Point) c);
+		}
+		
+		// Eliminate point set intersection.
+		if(c instanceof Affine.Set)
+		{
+			for(Point p : ((Affine.Set) c).Span())
+			{
+				if(contains(p))
+				{
+					return true;
+				}
+			}
+			
+			return false;
 		}
 		
 		return null;
@@ -108,26 +196,10 @@ public class CLSGeometry implements ICollision
 	public Boolean inhabits(ICollidable c)
 	{
 		// Eliminate degenerate geometry.
-		if(src.isPoint())
+		if(isDegenerate())
 		{
 			Point p = new Point(src.Center());
 			return c.contains(p);
-		}
-		
-		// Eliminate isolated point sets.
-		if(c instanceof Affine.Set)
-		{
-			return false;
-		}
-		
-		// Eliminate affine spaces.
-		if(c instanceof Affine.Space)
-		{
-			Vector v1 = src.Minimum();
-			Vector v2 = src.Maximum();
-			
-			return c.contains(v1)
-				&& c.contains(v2);
 		}
 		
 		return null;

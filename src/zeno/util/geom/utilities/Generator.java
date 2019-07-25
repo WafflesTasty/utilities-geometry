@@ -3,7 +3,6 @@ package zeno.util.geom.utilities;
 import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.algebra.linear.vector.fixed.Vector2;
 import zeno.util.algebra.linear.vector.fixed.Vector3;
-import zeno.util.geom.ICollidable;
 import zeno.util.geom.collidables.affine.Point;
 import zeno.util.geom.collidables.geometry.generic.ICube;
 import zeno.util.geom.collidables.geometry.generic.ICuboid;
@@ -36,6 +35,16 @@ import zeno.util.geom.collidables.geometry.spatial.Sphere;
  */
 public final class Generator
 {	
+	public static IEllipsoid ellipsoid(Point p, Point s)
+	{
+		return ellipsoid(p.VMatrix(), s.VMatrix());
+	}
+	
+	public static ICuboid cuboid(Point center, Point size)
+	{
+		return cuboid(center.VMatrix(), size.VMatrix());
+	}
+	
 	/**
 	 * Creates a new {@code ICube}.
 	 * 
@@ -187,4 +196,5 @@ public final class Generator
 	{
 		return segment(p1.VMatrix(), p2.VMatrix());
 	}
+
 }

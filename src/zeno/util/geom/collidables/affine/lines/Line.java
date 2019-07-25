@@ -58,4 +58,17 @@ public class Line extends ASpace
 	{
 		this(p1, p2.minus(p1));
 	}
+	
+	/**
+	 * Returns the line direction.
+	 * 
+	 * @return  a direction vector
+	 * 
+	 * 
+	 * @see Vector
+	 */
+	public Vector Vector()
+	{
+		return (Vector) Direction().Span();
+	}
 }

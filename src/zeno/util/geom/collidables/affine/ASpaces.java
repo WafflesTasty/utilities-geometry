@@ -15,6 +15,7 @@ import zeno.util.geom.collidables.affine.points.HPoints;
 import zeno.util.geom.collidables.affine.points.VPoints;
 import zeno.util.geom.collidables.affine.spaces.FullASpace;
 import zeno.util.geom.collidables.affine.spaces.TrivialASpace;
+import zeno.util.tools.Floats;
 import zeno.util.tools.helper.Array;
 
 /**
@@ -266,7 +267,12 @@ public final class ASpaces
 		{
 			for(int r = 0; r < rows; r++)
 			{
-				float val = mat.get(r, c) / mat.get(rows, c);
+				float val = mat.get(r, c);
+				if(!Floats.isZero(mat.get(rows, c), 1))
+				{
+					val /= mat.get(rows, c);
+				}
+				
 				vmat.set(val, r, c);
 			}
 		}

@@ -5,6 +5,9 @@ import zeno.util.algebra.linear.matrix.Matrix;
 import zeno.util.geom.collidables.Affine;
 import zeno.util.geom.collidables.affine.ASpace;
 import zeno.util.geom.collidables.affine.ASpaces;
+import zeno.util.geom.collidables.affine.Point;
+import zeno.util.geom.collidables.geometry.generic.ISegment;
+import zeno.util.geom.utilities.Generator;
 
 /**
  * The {@code ITransformation} interface defines a transformation in geometric space.
@@ -71,6 +74,38 @@ public interface ITransformation extends Function<Affine, Affine>
 		return Inverse(mat.Rows() - 1).times(mat);
 	}
 
+	/**
+	 * Maps a target to its source {@code ISegment}.
+	 * 
+	 * @param s  a target segment
+	 * @return   a source segment
+	 * 
+	 * 
+	 * @see ISegment
+	 */
+	public default ISegment unmap(ISegment s)
+	{
+		Point p1 = (Point) unmap(s.P1());
+		Point p2 = (Point) unmap(s.P2());
+		return Generator.segment(p1, p2);
+	}
+	
+	/**
+	 * Maps a source to its target {@code ISegment}.
+	 * 
+	 * @param s  a source segment
+	 * @return   a target segment
+	 * 
+	 * 
+	 * @see ISegment
+	 */
+	public default ISegment map(ISegment s)
+	{
+		Point p1 = (Point) map(s.P1());
+		Point p2 = (Point) map(s.P2());
+		return Generator.segment(p1, p2);
+	}
+	
 	
 	@Override
 	public default Affine unmap(Affine val)

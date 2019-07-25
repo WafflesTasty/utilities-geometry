@@ -1,7 +1,7 @@
 package zeno.util.geom.collidables;
 
 import zeno.util.geom.ICollidable;
-import zeno.util.geom.collidables.collisions.CLSGeometry;
+import zeno.util.geom.transforms.AffineMap;
 import zeno.util.geom.utilities.bounds.IBounded;
 import zeno.util.geom.utilities.bounds.Bounds;
 
@@ -19,12 +19,22 @@ import zeno.util.geom.utilities.bounds.Bounds;
  * @see Bounds
  */
 public interface IGeometry extends ICollidable, IBounded, Bounds
-{				
-	@Override
-	public default ICollision Collisions()
+{	
+	/**
+	 * Creates bounds after transformation of the {@code IGeometry}.
+	 * 
+	 * @param map  an affine map to use
+	 * @return  a transformed bounds
+	 * 
+	 * 
+	 * @see AffineMap
+	 * @see Bounds
+	 */
+	public default Bounds Bounds(AffineMap map)
 	{
-		return new CLSGeometry(this);
+		return null;
 	}
+		
 	
 	@Override
 	public default Bounds Bounds()

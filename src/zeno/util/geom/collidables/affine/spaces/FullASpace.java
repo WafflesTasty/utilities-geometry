@@ -40,12 +40,6 @@ public class FullASpace implements Affine.Space
 	{
 		return false;
 	}
-
-	@Override
-	public boolean isPoint()
-	{
-		return false;
-	}
 	
 	@Override
 	public VSpace Direction()

@@ -80,4 +80,11 @@ public class Line2D extends Line implements ICollideable2D
 	{
 		this(-.5f, -.5f, .5f, .5f);
 	}
+
+	
+	@Override
+	public Vector2 Vector()
+	{
+		return (Vector2) super.Vector();
+	}
 }

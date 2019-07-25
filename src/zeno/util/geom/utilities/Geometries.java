@@ -1,6 +1,8 @@
 package zeno.util.geom.utilities;
 
 import zeno.util.geom.ICollidable;
+import zeno.util.geom.collidables.geometry.generic.IEllipsoid;
+import zeno.util.geom.transforms.AffineMap;
 
 /**
  * The {@code Geometries} class defines static-access geometry operations.
@@ -135,6 +137,25 @@ public final class Geometries
 		}
 	}
 	
+	
+	/**
+	 * Creates an affine map of an {@code IEllipsoid}.
+	 * This maps the unit sphere to the ellipsoid parameter.
+	 * 
+	 * @param e  an ellipsoid to map
+	 * @return  an affine map
+	 * 
+	 * 
+	 * @see IEllipsoid
+	 * @see AffineMap
+	 */
+	public static AffineMap elliptic(IEllipsoid e)
+	{
+		AffineMap map = new AffineMap(e.Dimension());
+		map.setSize(e.Size().times(0.5f));
+		map.setOrigin(e.Center());
+		return map;
+	}
 	
 	private Geometries()
 	{

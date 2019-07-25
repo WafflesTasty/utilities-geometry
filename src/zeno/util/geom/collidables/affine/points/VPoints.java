@@ -33,6 +33,18 @@ public class VPoints implements Affine.Set
 	
 	
 	@Override
+	public float get(int r, int c)
+	{
+		int rows = vmat.Rows();
+		if(r < rows)
+		{
+			return vmat.get(r, c);
+		}
+		
+		return 0f;
+	}	
+	
+	@Override
 	public Matrix VMatrix()
 	{
 		return vmat;

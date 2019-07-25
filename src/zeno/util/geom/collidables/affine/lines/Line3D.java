@@ -82,4 +82,11 @@ public class Line3D extends Line implements ICollideable3D
 	{
 		this(-.5f, -.5f, -.5f, .5f, .5f, .5f);
 	}
+
+	
+	@Override
+	public Vector3 Vector()
+	{
+		return (Vector3) super.Vector();
+	}
 }

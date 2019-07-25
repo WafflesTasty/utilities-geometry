@@ -10,6 +10,7 @@ import zeno.util.algebra.linear.vector.Vectors;
 import zeno.util.geom.collidables.Affine;
 import zeno.util.geom.collidables.ICollision;
 import zeno.util.geom.collidables.collisions.affine.CLSPoint;
+import zeno.util.tools.Floats;
 import zeno.util.tools.helper.Iterables;
 
 /**
@@ -26,7 +27,7 @@ import zeno.util.tools.helper.Iterables;
  */
 public class Point implements Affine.Set, Affine.Space
 {		
-	private Vector vmat;
+	private Vector hmat;
 
 	/**
 	 * Creates a new {@code Point}.
@@ -38,7 +39,7 @@ public class Point implements Affine.Set, Affine.Space
 	 */
 	public Point(Vector v)
 	{
-		vmat = v;
+		this(v, 1f);
 	}
 	
 	/**
@@ -50,7 +51,50 @@ public class Point implements Affine.Set, Affine.Space
 	{
 		this(Vectors.create(vals));
 	}
-		
+	
+	/**
+	 * Creates a new {@code Point}.
+	 * 
+	 * @param v  a vector point
+	 * @param h  a homogeneous coördinate
+	 * 
+	 * 
+	 * @see Vector
+	 */
+	public Point(Vector v, float h)
+	{
+		hmat = Vectors.resize(v, v.Size() + 1);
+		hmat.set(h, v.Size());
+	}
+
+	/**
+	 * Returns a {@code Point} value.
+	 * 
+	 * @param i  a coördinate index
+	 * @return  a vector value
+	 */
+	public float get(int i)
+	{
+		return get(i, 0);
+	}
+	
+	
+	/**
+	 * Adds a {@code Point}.
+	 * 
+	 * @param p  a point to add
+	 * @return  a result vector
+	 * 
+	 * 
+	 * @see Vector
+	 */
+	public Vector plus(Point p)
+	{
+		Vector v1 = VMatrix();
+		Vector v2 = p.VMatrix();
+		return v1.plus(v2);
+	}
+	
 	/**
 	 * Subtracts a {@code Point}.
 	 * 
@@ -68,6 +112,20 @@ public class Point implements Affine.Set, Affine.Space
 	}
 	
 	/**
+	 * Subtracts a {@code Vector}.
+	 * 
+	 * @param v  a vector to subtract
+	 * @return  a result point
+	 * 
+	 * 
+	 * @see Vector
+	 */
+	public Point minus(Vector v)
+	{
+		return new Point(VMatrix().minus(v));
+	}
+	
+	/**
 	 * Adds a {@code Vector}.
 	 * 
 	 * @param v  a vector to add
@@ -78,30 +136,14 @@ public class Point implements Affine.Set, Affine.Space
 	 */
 	public Point plus(Vector v)
 	{
-		return new Point(vmat.plus(v));
+		return new Point(VMatrix().plus(v));
 	}
-	
-	/**
-	 * Adds a {@code Point}.
-	 * 
-	 * @param p  a point to add
-	 * @return  a result vector
-	 * 
-	 * 
-	 * @see Vector
-	 */
-	public Vector plus(Point p)
-	{
-		Vector v1 = VMatrix();
-		Vector v2 = p.VMatrix();
-		return v1.plus(v2);
-	}
-		
+			
 	
 	@Override
 	public VSpace Direction()
 	{
-		return VSpaces.trivial(vmat.Size());
+		return VSpaces.trivial(hmat.Size() - 1);
 	}
 	
 	@Override
@@ -120,15 +162,33 @@ public class Point implements Affine.Set, Affine.Space
 	@Override
 	public Vector VMatrix()
 	{
-		return vmat;
+		return (Vector) ASpaces.vectorize(hmat);
 	}
 	
 	@Override
 	public Matrix HMatrix()
 	{
-		return ASpaces.homogenize(VMatrix());
+		return hmat;
 	}
 	
+	
+	@Override
+	public float get(int r, int c)
+	{
+		int rows = hmat.Rows() - 1;
+		if(r < rows)
+		{
+			float val = hmat.get(r, c);
+			if(!Floats.isZero(hmat.get(rows, c), 1))
+			{
+				val /= hmat.get(rows, c);
+			}
+			
+			return val;
+		}
+		
+		return 0f;
+	}
 	
 	@Override
 	public Iterator<Point> iterator()
@@ -146,12 +206,6 @@ public class Point implements Affine.Set, Affine.Space
 	public boolean isEmpty()
 	{
 		return false;
-	}
-
-	@Override
-	public boolean isPoint()
-	{
-		return true;
 	}
 	
 	@Override

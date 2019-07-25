@@ -45,6 +45,12 @@ public class TrivialASpace implements Affine.Space, Affine.Set
 	{
 		return new CLSATrivial();
 	}
+
+	@Override
+	public float get(int r, int c)
+	{
+		return 0;
+	}
 	
 	@Override
 	public Affine.Set Span()
@@ -76,16 +82,12 @@ public class TrivialASpace implements Affine.Space, Affine.Set
 	{
 		return true;
 	}
-
-	@Override
-	public boolean isPoint()
-	{
-		return false;
-	}
 	
 	@Override
 	public int Size()
 	{
 		return 0;
 	}
+
+
 }

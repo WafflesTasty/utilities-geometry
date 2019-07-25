@@ -3,7 +3,6 @@ package zeno.util.geom.collidables.geometry;
 import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.algebra.linear.vector.Vectors;
 import zeno.util.geom.collidables.IGeometry;
-import zeno.util.tools.Floats;
 
 /**
  * The {@code Geometry} class is the base class for bounded n-dimensional shapes.
@@ -80,12 +79,6 @@ public abstract class Geometry implements IGeometry
 		}
 		
 		return false;
-	}
-
-	@Override
-	public boolean isPoint()
-	{
-		return Floats.isZero(size.norm(), Dimension());
 	}
 	
 	
