@@ -30,12 +30,8 @@ public interface IGeometry extends ICollidable, IBounded, Bounds
 	 * @see AffineMap
 	 * @see Bounds
 	 */
-	public default Bounds Bounds(AffineMap map)
-	{
-		return null;
-	}
+	public abstract Bounds Bounds(AffineMap map);
 		
-	
 	@Override
 	public default Bounds Bounds()
 	{

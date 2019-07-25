@@ -5,6 +5,8 @@ import zeno.util.geom.collidables.ICollision;
 import zeno.util.geom.collidables.IGeometry;
 import zeno.util.geom.collidables.affine.Point;
 import zeno.util.geom.collidables.collisions.geometry.CLSSegment;
+import zeno.util.geom.transforms.AffineMap;
+import zeno.util.geom.utilities.bounds.Bounds;
 
 /**
  * The {@code ISegment} interface defines the collision operations for line segment geometry.
@@ -17,7 +19,7 @@ import zeno.util.geom.collidables.collisions.geometry.CLSSegment;
  * @see IGeometry
  */
 public interface ISegment extends IGeometry
-{	
+{		
 	/**
 	 * Returns the first point of the {@code ISegment}.
 	 * 
@@ -38,6 +40,12 @@ public interface ISegment extends IGeometry
 	 */
 	public abstract Point P2();
 	
+	
+	@Override
+	public default Bounds Bounds(AffineMap map)
+	{
+		return map.map(this).Bounds();
+	}
 	
 	@Override
 	public default ICollision Collisions()
