@@ -1,6 +1,7 @@
 package zeno.util.geom.collidables;
 
 import zeno.util.geom.ICollidable;
+import zeno.util.geom.collidables.collisions.CLSShaped;
 import zeno.util.geom.transformables.IAdjustable;
 import zeno.util.geom.utilities.bounds.IBounded;
 import zeno.util.geom.utilities.bounds.Bounds;
@@ -30,47 +31,19 @@ public interface IShapeable extends IAdjustable, IBounded, ICollidable
 	 */
 	public abstract IGeometry Shape();
 
-		
-	@Override
-	public default ICollidable intersect(ICollidable c)
-	{
-		if(c instanceof Affine)
-		{
-			return Shape().intersect(Transform().unmap((Affine) c));
-		}
-		
-		throw new RuntimeException("Intersection between IShapeable and non-Affine has not been implemented.");
-	}
-		
-	@Override
-	public default boolean intersects(ICollidable c)
-	{
-		if(c instanceof Affine)
-		{
-			return Shape().intersects(Transform().unmap((Affine) c));
-		}
-		
-		throw new RuntimeException("Intersection between IShapeable and non-Affine has not been implemented.");
-	}
-	
-	@Override
-	public default boolean contains(ICollidable c)
-	{
-		if(c instanceof Affine)
-		{
-			return Shape().contains(Transform().unmap((Affine) c));
-		}
-		
-		throw new RuntimeException("Containment between IShapeable and non-Affine has not been implemented.");
-	}
-
 	
 	@Override
 	public default boolean isEmpty()
 	{
 		return Shape().isEmpty();
 	}
-	
+
+	@Override
+	public default ICollision Collisions()
+	{
+		return new CLSShaped(this);
+	}
+		
 	@Override
 	public default Bounds Bounds()
 	{
