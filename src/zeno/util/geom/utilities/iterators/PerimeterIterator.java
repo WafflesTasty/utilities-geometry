@@ -11,8 +11,10 @@ import zeno.util.tools.Integers;
  * The {@code PerimeterIterator} class defines an iterator
  * over the perimeter of a {@code Geometry2D}.
  *
- * @since Sep 12, 2015
  * @author Zeno
+ * @since Sep 12, 2015
+ * @version 1.0
+ * 
  * 
  * @see Iterator
  * @see Vector2
@@ -27,6 +29,8 @@ public class PerimeterIterator implements Iterator<Vector2>
 	 * Creates a new {@code PerimeterIterator}.
 	 * 
 	 * @param geom  a geometry to use
+	 * 
+	 * 
 	 * @see IGeometry2D
 	 */
 	public PerimeterIterator(IGeometry2D geom)

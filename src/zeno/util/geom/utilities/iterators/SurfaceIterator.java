@@ -10,8 +10,10 @@ import zeno.util.tools.Integers;
  * The {@code SurfaceIterator} class defines an iterator
  * over the surface of a {@code Geometry2D}.
  *
- * @since Sep 12, 2015
  * @author Zeno
+ * @since Sep 12, 2015
+ * @version 1.0
+ * 
  * 
  * @see Iterator
  * @see Vector2
@@ -26,6 +28,8 @@ public class SurfaceIterator implements Iterator<Vector2>
 	 * Creates a new {@code SurfaceIterator}.
 	 * 
 	 * @param geom  a geometry to use
+	 * 
+	 * 
 	 * @see IGeometry2D
 	 */
 	public SurfaceIterator(IGeometry2D geom)
