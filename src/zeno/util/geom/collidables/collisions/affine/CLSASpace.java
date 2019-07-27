@@ -74,7 +74,7 @@ public class CLSASpace implements ICollision
 			m = dir.Span().times(m);
 			
 			// Create the new affine subspace.
-			Point o = new Point(x);
+			Point o = new Point(x, 1f);
 			VSpace v = VSpaces.create(m);
 			return ASpaces.span(o, v);
 		}

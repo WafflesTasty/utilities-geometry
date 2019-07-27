@@ -106,7 +106,7 @@ public interface ICollidable extends Inaccurate<ICollidable>
 	 */
 	public default boolean contains(Vector v)
 	{
-		return contains(new Point(v));
+		return contains(new Point(v, 1f));
 	}
 
 	/**
