@@ -6,6 +6,7 @@ import zeno.util.geom.ITransformation;
 import zeno.util.geom.collidables.affine.ASpaces;
 import zeno.util.geom.collidables.affine.Point;
 import zeno.util.geom.transforms.types.Translator;
+import zeno.util.geom.utilities.Geometries;
 
 /**
  * The {@code Translation} class defines an affine translation.
@@ -71,6 +72,12 @@ public class Translation implements ITransformation
 	@Override
 	public Matrix Inverse(int dim)
 	{
+		if(origin.Type() != Point.Type.AFFINE)
+		{
+			throw new Geometries.TypeError(origin, Point.Type.AFFINE);
+		}
+		
+		
 		Matrix m = Matrices.identity(dim + 1);
 		m.setOperator(Translator.Type());
 		for(int d = 0; d <= dim; d++)
@@ -88,6 +95,12 @@ public class Translation implements ITransformation
 	@Override
 	public Matrix Matrix(int dim)
 	{
+		if(origin.Type() != Point.Type.AFFINE)
+		{
+			throw new Geometries.TypeError(origin, Point.Type.AFFINE);
+		}
+		
+		
 		Matrix m = Matrices.identity(dim + 1);
 		m.setOperator(Translator.Type());
 		for(int d = 0; d <= dim; d++)

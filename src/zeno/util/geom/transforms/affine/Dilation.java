@@ -6,6 +6,9 @@ import zeno.util.algebra.linear.matrix.types.banded.Diagonal;
 import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.algebra.linear.vector.Vectors;
 import zeno.util.geom.ITransformation;
+import zeno.util.geom.collidables.affine.ASpaces;
+import zeno.util.geom.collidables.affine.Point;
+import zeno.util.geom.utilities.Geometries;
 
 /**
  * The {@code Dilation} interface defines an affine dilation.
@@ -21,7 +24,7 @@ import zeno.util.geom.ITransformation;
  */
 public class Dilation implements ITransformation
 {
-	private static Vector DefaultSize(int dim)
+	private static Point DefaultSize(int dim)
 	{
 		Vector v = Vectors.create(dim);
 		for(int i = 0; i < dim; i++)
@@ -29,11 +32,11 @@ public class Dilation implements ITransformation
 			v.set(0.5f, i);
 		}
 		
-		return v;
+		return ASpaces.point(v, 0f);
 	}
 	
 	
-	private Vector size;
+	private Point size;
 		
 	/**
 	 * Creates a new {@code Dilation}.
@@ -47,26 +50,28 @@ public class Dilation implements ITransformation
 	
 	/**
 	 * Creates a new {@code Dilation}.
+	 * </br> NOTE: The point provided should be part of the vector
+	 * subset i.e. it is supposed to have a zero mass.
 	 * 
-	 * @param v  a size vector
+	 * @param s  a size vector
 	 * 
 	 * 
-	 * @see Vector
+	 * @see Point
 	 */
-	public Dilation(Vector v)
+	public Dilation(Point s)
 	{
-		size = v;
+		size = s;
 	}
 		
 	/**
-	 * Returns the size vector.
+	 * Returns the size point.
 	 * 
-	 * @return  a size vector
+	 * @return  a size point
 	 * 
 	 * 
-	 * @see Vector
+	 * @see Point
 	 */
-	public Vector Size()
+	public Point Size()
 	{
 		return size;
 	}
@@ -75,6 +80,12 @@ public class Dilation implements ITransformation
 	@Override
 	public Matrix Inverse(int dim)
 	{
+		if(size.Type() != Point.Type.VECTOR)
+		{
+			throw new Geometries.TypeError(size, Point.Type.VECTOR);
+		}
+		
+		
 		Matrix m = Matrices.identity(dim + 1);
 		m.setOperator(Diagonal.Type());
 		for(int d = 0; d < dim; d++)
@@ -91,6 +102,12 @@ public class Dilation implements ITransformation
 	@Override
 	public Matrix Matrix(int dim)
 	{
+		if(size.Type() != Point.Type.VECTOR)
+		{
+			throw new Geometries.TypeError(size, Point.Type.VECTOR);
+		}
+		
+		
 		Matrix m = Matrices.identity(dim + 1);
 		m.setOperator(Diagonal.Type());
 		for(int d = 0; d < dim; d++)
