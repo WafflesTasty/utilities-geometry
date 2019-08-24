@@ -54,7 +54,7 @@ public class TranslatorDotProduct implements Operation<Float>
 		double dot = 0d;
 		for(int r = 0; r < row1; r++)
 		{
-			dot += m.get(r, r);
+			dot += m.get(r, r) * t.get(r, r);
 			if(r < row1 - 1)
 			{
 				dot += m.get(r, col1 - 1) * t.get(r, col1 - 1);
@@ -82,6 +82,6 @@ public class TranslatorDotProduct implements Operation<Float>
 		// Cost of translation.
 		return 2 * r2
 		// Cost of diagonal.
-			 + r2;
+			 + 2 * r2;
 	}
 }

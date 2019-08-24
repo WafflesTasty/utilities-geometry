@@ -62,9 +62,7 @@ public class TranslatorAddition implements Operation<Tensor>
 				if(c == col1 - 1)
 					val += t.get(r, c);
 				else if(c == r)
-				{
-					val += 1f;
-				}
+					val += t.get(r, c);
 				
 				result.set(val, r, c);
 			}
@@ -89,7 +87,7 @@ public class TranslatorAddition implements Operation<Tensor>
 
 
 		// Cost of translation.
-		return r2
+		return r2 + 1
 		// Cost of diagonal.
 			 + r2;
 	}

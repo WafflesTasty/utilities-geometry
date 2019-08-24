@@ -57,7 +57,7 @@ public class TranslatorLProduct implements Operation<Matrix>
 		{
 			for(int c = 0; c < col2; c++)
 			{
-				double val = m.get(r, c);
+				double val = t.get(r, r) * m.get(r, c);
 				if(r < row2 - 1)
 				{
 					val += t.get(r, col1 - 1) * m.get(row2 - 1, c);
@@ -86,6 +86,6 @@ public class TranslatorLProduct implements Operation<Matrix>
 		
 
 		// Total cost of multiplication.
-		return 2 * r1 * c2;
+		return 3 * r1 * c2 - 2;
 	}
 }

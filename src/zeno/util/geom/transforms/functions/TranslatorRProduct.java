@@ -55,6 +55,13 @@ public class TranslatorRProduct implements Operation<Matrix>
 		Matrix result = Matrices.create(row1, col2);
 		for(int r = 0; r < row1; r++)
 		{
+			for(int c = 0; c < col2 - 1; c++)
+			{
+				float val = m.get(r, c);
+				val = val * t.get(c, c);
+				result.set(val, r, c);
+			}
+			
 			double val = 0d;
 			for(int c = 0; c < col1; c++)
 			{
@@ -62,10 +69,6 @@ public class TranslatorRProduct implements Operation<Matrix>
 			}
 			
 			result.set((float) val, r, col2 - 1);
-			for(int c = 0; c < col2 - 1; c++)
-			{
-				result.set(m.get(r, c), r, c);
-			}
 		}
 		
 		return result;
@@ -78,6 +81,7 @@ public class TranslatorRProduct implements Operation<Matrix>
 		int r2 = t.Rows();
 		
 		int c1 = m.Columns();
+		int c2 = t.Columns();
 			
 		if(c1 != r2)
 		{
@@ -85,7 +89,9 @@ public class TranslatorRProduct implements Operation<Matrix>
 		}
 		
 
-		// Total cost of multiplication.
-		return 2 * r1 * c1;
+		// Cost of translation.
+		return r1 * (c2 - 1)
+		// Cost of diagonal.
+			 + r1 * (2 * c1 - 1);
 	}
 }
