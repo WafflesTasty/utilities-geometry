@@ -2,9 +2,9 @@ package zeno.util.geom.transforms.affine;
 
 import zeno.util.algebra.linear.matrix.Matrices;
 import zeno.util.algebra.linear.matrix.Matrix;
-import zeno.util.algebra.linear.vector.Vector;
-import zeno.util.algebra.linear.vector.Vectors;
 import zeno.util.geom.ITransformation;
+import zeno.util.geom.collidables.affine.ASpaces;
+import zeno.util.geom.collidables.affine.Point;
 import zeno.util.geom.transforms.types.Translator;
 
 /**
@@ -21,13 +21,13 @@ import zeno.util.geom.transforms.types.Translator;
  */
 public class Translation implements ITransformation
 {
-	private static Vector DefaultOrigin(int dim)
+	private static Point DefaultOrigin(int dim)
 	{
-		return Vectors.create(dim);
+		return ASpaces.point(dim);
 	}
 	
 	
-	private Vector origin;
+	private Point origin;
 	
 	/**
 	 * Creates a new {@code Translation}.
@@ -41,26 +41,28 @@ public class Translation implements ITransformation
 	
 	/**
 	 * Creates a new {@code Translation}.
+	 * </br> NOTE: The point provided should be part of the affine
+	 * subset i.e. it is supposed to have a non-zero mass.
 	 * 
-	 * @param o  an origin vector
+	 * @param p  an origin point
 	 * 
 	 * 
-	 * @see Vector
+	 * @see Point
 	 */
-	public Translation(Vector o)
+	public Translation(Point p)
 	{
-		origin = o;
+		origin = p;
 	}
 	
 	/**
-	 * Returns the origin vector.
+	 * Returns the origin point.
 	 * 
-	 * @return  an origin vector
+	 * @return  an origin point
 	 * 
 	 * 
-	 * @see Vector
+	 * @see Point
 	 */
-	public Vector Origin()
+	public Point Origin()
 	{
 		return origin;
 	}
@@ -71,9 +73,10 @@ public class Translation implements ITransformation
 	{
 		Matrix m = Matrices.identity(dim + 1);
 		m.setOperator(Translator.Type());
-		for(int d = 0; d < dim; d++)
+		for(int d = 0; d <= dim; d++)
 		{
-			if(d < origin.Size())
+			m.set(origin.Mass(), d, d);
+			if(d < dim)
 			{
 				m.set(-origin.get(d), d, dim);
 			}
@@ -87,9 +90,10 @@ public class Translation implements ITransformation
 	{
 		Matrix m = Matrices.identity(dim + 1);
 		m.setOperator(Translator.Type());
-		for(int d = 0; d < dim; d++)
+		for(int d = 0; d <= dim; d++)
 		{
-			if(d < origin.Size())
+			m.set(origin.Mass(), d, d);
+			if(d < dim)
 			{
 				m.set(origin.get(d), d, dim);
 			}
