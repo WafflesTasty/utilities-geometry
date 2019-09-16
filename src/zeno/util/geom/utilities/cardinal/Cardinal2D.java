@@ -143,6 +143,7 @@ public final class Cardinal2D extends Vector2
 		return new Cardinal2D[]{CENTER, EAST, NORTHEAST, NORTH, NORTHWEST, WEST, SOUTHWEST, SOUTH, SOUTHEAST};
 	}
 	
+	
 	private Cardinal2D(int x, int y)
 	{
 		super(x, y);
