@@ -7,8 +7,10 @@ import zeno.util.geom.utilities.bounds.IBounded3D;
  * The {@code Cardinal3D} class defines all cardinal directions in three dimensions.
  * <br> All 27 directions are available through static access.
  *
- * @since Apr 30, 2016
  * @author Zeno
+ * @since Apr 30, 2016
+ * @version 1.0
+ * 
  * 
  * @see Vector3
  */
@@ -284,9 +286,9 @@ public final class Cardinal3D extends Vector3
 	 * 
 	 * @return an array of perpendicular directions
 	 */
-	public static Cardinal3D[] getPerpendiculars()
+	public static Cardinal3D[] Perpendiculars()
 	{
-		return new Cardinal3D[]{EAST, NORTH, SOUTH, WEST};
+		return new Cardinal3D[]{UP, EAST, NORTH, SOUTH, WEST, DOWN};
 	}
 	
 	/**
@@ -294,9 +296,13 @@ public final class Cardinal3D extends Vector3
 	 * 
 	 * @return an array of diagonal directions
 	 */
-	public static Cardinal3D[] getDiagonals()
+	public static Cardinal3D[] Diagonals()
 	{
-		return new Cardinal3D[]{NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST};
+		return new Cardinal3D[]
+		{
+			UPPER_NORTHEAST, UPPER_NORTHWEST, UPPER_SOUTHEAST, UPPER_SOUTHWEST,
+			LOWER_NORTHEAST, LOWER_NORTHWEST, LOWER_SOUTHEAST, LOWER_SOUTHWEST,
+		};
 	}
 		
 	/**
@@ -304,7 +310,7 @@ public final class Cardinal3D extends Vector3
 	 * 
 	 * @return  an array of cardinal directions
 	 */
-	public static Cardinal3D[] getAll()
+	public static Cardinal3D[] All()
 	{
 		return new Cardinal3D[]
 		{

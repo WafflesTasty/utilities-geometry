@@ -7,8 +7,10 @@ import zeno.util.geom.utilities.bounds.IBounded2D;
  * The {@code Cardinal2D} class defines all cardinal directions in two dimensions.
  * <br> All nine directions are available through static access.
  *
- * @since Apr 30, 2016
  * @author Zeno
+ * @since Apr 30, 2016
+ * @version 1.0
+ * 
  * 
  * @see Vector2
  */
@@ -116,7 +118,7 @@ public final class Cardinal2D extends Vector2
 	 * 
 	 * @return an array of perpendicular directions
 	 */
-	public static Cardinal2D[] getPerpendiculars()
+	public static Cardinal2D[] Perpendiculars()
 	{
 		return new Cardinal2D[]{EAST, NORTH, SOUTH, WEST};
 	}
@@ -126,7 +128,7 @@ public final class Cardinal2D extends Vector2
 	 * 
 	 * @return an array of diagonal directions
 	 */
-	public static Cardinal2D[] getDiagonals()
+	public static Cardinal2D[] Diagonals()
 	{
 		return new Cardinal2D[]{NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST};
 	}
@@ -136,7 +138,7 @@ public final class Cardinal2D extends Vector2
 	 * 
 	 * @return  an array of cardinal directions
 	 */
-	public static Cardinal2D[] getAll()
+	public static Cardinal2D[] All()
 	{
 		return new Cardinal2D[]{CENTER, EAST, NORTHEAST, NORTH, NORTHWEST, WEST, SOUTHWEST, SOUTH, SOUTHEAST};
 	}

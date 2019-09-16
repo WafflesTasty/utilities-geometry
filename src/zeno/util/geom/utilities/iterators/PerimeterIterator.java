@@ -81,7 +81,7 @@ public class PerimeterIterator implements Iterator<Vector2>
 		}
 		
 		Vector2 vNew = new Vector2();
-		for(Cardinal2D car : Cardinal2D.getAll())
+		for(Cardinal2D car : Cardinal2D.All())
 		{
 			if(car == Cardinal2D.CENTER)
 			{
