@@ -9,6 +9,5 @@
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Utilities - Tools"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Utilities - Algebra"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Utilities - Calculus"/>
-	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Utilities - Collections"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
