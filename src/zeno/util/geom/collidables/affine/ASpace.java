@@ -25,14 +25,7 @@ import zeno.util.tools.helper.Array;
  * @see Affine
  */
 public class ASpace implements Affine
-{
-	@Override
-	public ICollision Collisions()
-	{
-		return new CLSASpace(this);
-	}
-	
-	
+{	
 	private VSpace space;
 	private Point origin;
 	
@@ -104,8 +97,8 @@ public class ASpace implements Affine
 	{
 		return Direction().Dimension();
 	}
-	
 
+	
 	@Override
 	public Factory Factory()
 	{
@@ -136,6 +129,12 @@ public class ASpace implements Affine
 			VSpace space = VSpaces.create(vecs);
 			return Geometries.span(o, space);
 		};
+	}
+	
+	@Override
+	public ICollision Collisions()
+	{
+		return new CLSASpace(this);
 	}
 	
 	@Override

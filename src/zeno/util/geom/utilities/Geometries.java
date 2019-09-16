@@ -236,9 +236,7 @@ public final class Geometries
 	 */
 	public static Vector subtract(Point p, Point q)
 	{
-		Point r = p.times(q.Mass());
-		Point s = q.times(p.Mass());
-		return r.minus(s).asVector();
+		return p.asVector().minus(q.asVector());
 	}
 	
 	/**
@@ -254,9 +252,7 @@ public final class Geometries
 	 */
 	public static Point add(Point p, Vector v)
 	{
-		Vector w = v.times(p.Mass());
-		Point q = new Point(w, 0f);
-		return p.plus(q);
+		return p.plus(new Point(v, 0f).times(p.Mass()));
 	}
 	
 	
