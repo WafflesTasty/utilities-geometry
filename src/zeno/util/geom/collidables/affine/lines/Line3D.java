@@ -20,12 +20,12 @@ public class Line3D extends Line implements ICollideable3D
 	/**
 	 * Creates a new {@code Line3D}.
 	 * 
-	 * @param x1  the line's first x-coördinate
-	 * @param y1  the line's first y-coördinate
-	 * @param z1  the line's first z-coördinate
-	 * @param x2  the line's second x-coördinate
-	 * @param y2  the line's second y-coördinate
-	 * @param z2  the line's second z-coördinate
+	 * @param x1  the line's first x-coï¿½rdinate
+	 * @param y1  the line's first y-coï¿½rdinate
+	 * @param z1  the line's first z-coï¿½rdinate
+	 * @param x2  the line's second x-coï¿½rdinate
+	 * @param y2  the line's second y-coï¿½rdinate
+	 * @param z2  the line's second z-coï¿½rdinate
 	 */
 	public Line3D(float x1, float y1, float z1, float x2, float y2, float z2)
 	{

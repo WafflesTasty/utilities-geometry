@@ -1,14 +1,12 @@
 package zeno.util.geom.collidables.collisions;
 
 import zeno.util.geom.ICollidable;
-import zeno.util.geom.collidables.Affine;
 import zeno.util.geom.collidables.ICollision;
 import zeno.util.geom.collidables.IGeometry;
-import zeno.util.geom.collidables.affine.ASpaces;
+import zeno.util.geom.collidables.affine.ASpace;
 import zeno.util.geom.collidables.affine.Point;
-import zeno.util.geom.collidables.affine.spaces.TrivialASpace;
+import zeno.util.geom.utilities.Geometries;
 import zeno.util.tools.Floats;
-import zeno.util.tools.helper.Array;
 
 /**
  * The {@code CLSGeometry} class defines collision for an {@link IGeometry}.
@@ -36,7 +34,7 @@ public abstract class CLSGeometry implements ICollision
 	{
 		this.src = src;
 	}
-		
+	
 	
 	protected abstract boolean contains(Point p);
 	
@@ -57,8 +55,8 @@ public abstract class CLSGeometry implements ICollision
 		// Eliminate degenerate geometry.
 		if(isDegenerate())
 		{
-			Point p = new Point(src.Center());
-			return p.equals(c, 1);
+			Point p = new Point(src.Center(), 1f);
+			return c.equals(p, 1);
 		}
 		
 		// Eliminate point containment.
@@ -67,24 +65,10 @@ public abstract class CLSGeometry implements ICollision
 			return contains((Point) c);
 		}
 		
-		// Eliminate point set containment.
-		if(c instanceof Affine.Set)
-		{
-			for(Point p : ((Affine.Set) c).Span())
-			{
-				if(!contains(p))
-				{
-					return false;
-				}
-			}
-			
-			return true;
-		}
-		
 		// Eliminate affine spaces.
-		if(c instanceof Affine.Space)
+		if(c instanceof ASpace)
 		{
-			return c.isEmpty();
+			return c.equals(Geometries.VOID);
 		}
 		
 		return null;
@@ -96,8 +80,8 @@ public abstract class CLSGeometry implements ICollision
 		// Eliminate degenerate geometry.
 		if(isDegenerate())
 		{
-			Point p = new Point(src.Center());
-			return p.equals(c, ulps);
+			Point p = new Point(src.Center(), 1f);
+			return c.equals(p, ulps);
 		}
 		
 		// Eliminate point equality.
@@ -107,7 +91,7 @@ public abstract class CLSGeometry implements ICollision
 		}
 		
 		// Eliminate affine spaces.
-		if(c instanceof Affine.Space)
+		if(c instanceof ASpace)
 		{
 			return false;
 		}
@@ -121,13 +105,12 @@ public abstract class CLSGeometry implements ICollision
 		// Eliminate degenerate geometry.
 		if(isDegenerate())
 		{
-			Point p = new Point(src.Center());
-			if(!c.contains(p))
+			if(c.contains(src.Center()))
 			{
-				return new TrivialASpace();
+				return new Point(src.Center(), 1f);
 			}
 			
-			return p;
+			return Geometries.VOID;
 		}
 		
 		// Eliminate point intersection.
@@ -135,25 +118,10 @@ public abstract class CLSGeometry implements ICollision
 		{
 			if(!contains((Point) c))
 			{
-				return new TrivialASpace();
+				return Geometries.VOID;
 			}
 			
 			return c;
-		}
-		
-		// Eliminate point set intersection.
-		if(c instanceof Affine.Set)
-		{
-			Point[] pts = new Point[0];
-			for(Point p : ((Affine.Set) c).Span())
-			{
-				if(contains(p))
-				{
-					pts = Array.add.to(pts, p);
-				}
-			}
-			
-			return ASpaces.set(pts);
 		}
 		
 		return null;
@@ -165,28 +133,13 @@ public abstract class CLSGeometry implements ICollision
 		// Eliminate degenerate geometry.
 		if(isDegenerate())
 		{
-			Point p = new Point(src.Center());
-			return c.contains(p);
+			return c.contains(src.Center());
 		}
 		
 		// Eliminate point intersection.
 		if(c instanceof Point)
 		{
 			return contains((Point) c);
-		}
-		
-		// Eliminate point set intersection.
-		if(c instanceof Affine.Set)
-		{
-			for(Point p : ((Affine.Set) c).Span())
-			{
-				if(contains(p))
-				{
-					return true;
-				}
-			}
-			
-			return false;
 		}
 		
 		return null;
@@ -198,8 +151,7 @@ public abstract class CLSGeometry implements ICollision
 		// Eliminate degenerate geometry.
 		if(isDegenerate())
 		{
-			Point p = new Point(src.Center());
-			return c.contains(p);
+			return c.contains(src.Center());
 		}
 		
 		return null;

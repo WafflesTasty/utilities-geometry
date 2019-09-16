@@ -2,7 +2,10 @@ package zeno.util.geom.collidables.geometry.planar;
 
 import zeno.util.algebra.linear.vector.fixed.Vector2;
 import zeno.util.geom.collidables.geometry.Geometry2D;
+import zeno.util.geom.collidables.geometry.bounds.BNDCuboid2D;
 import zeno.util.geom.collidables.geometry.generic.ICuboid;
+import zeno.util.geom.transforms.AffineMap;
+import zeno.util.geom.utilities.bounds.Bounds2D;
 
 /**
  * The {@code Rectangle} class defines a two-dimensional rectangular shape.
@@ -20,8 +23,8 @@ public class Rectangle extends Geometry2D implements ICuboid
 	/**
 	 * Creates a new {@code Rectangle}.
 	 * 
-	 * @param x  a rectangle center x-coördinate
-	 * @param y  a rectangle center y-coördinate
+	 * @param x  a rectangle center x-coï¿½rdinate
+	 * @param y  a rectangle center y-coï¿½rdinate
 	 * @param w  a rectangle width
 	 * @param h  a rectangle height
 	 */
@@ -76,9 +79,15 @@ public class Rectangle extends Geometry2D implements ICuboid
 		super();
 	}
 	
+		
+	@Override
+	public Bounds2D Bounds(AffineMap map)
+	{
+		return new BNDCuboid2D(this, map);
+	}
 	
 	// Optional Bounds overrides.
-	
+		
 	@Override
 	public Rectangle Box()
 	{

@@ -1,12 +1,13 @@
 package zeno.util.geom.collidables.collisions;
 
+import zeno.util.geom.Affine;
 import zeno.util.geom.ICollidable;
-import zeno.util.geom.collidables.Affine;
 import zeno.util.geom.collidables.ICollision;
 import zeno.util.geom.collidables.IGeometry;
 import zeno.util.geom.collidables.IShapeable;
 import zeno.util.geom.collidables.geometry.generic.ISegment;
 import zeno.util.geom.transforms.AffineMap;
+import zeno.util.geom.utilities.Geometries;
 
 /**
  * The {@code CLSShaped} class defines collision for an {@link IShapeable}.
@@ -48,7 +49,7 @@ public class CLSShaped implements ICollision
 		}
 		
 		if(c instanceof Affine)
-		{
+		{			
 			return shape.contains(tform.unmap((Affine) c));
 		}
 		
@@ -83,12 +84,12 @@ public class CLSShaped implements ICollision
 		if(c instanceof ISegment)
 		{
 			ICollidable s = shape.intersect(tform.unmap((ISegment) c));
-			if(s instanceof ISegment)
+			if(s instanceof Affine)
 			{
-				return tform.map((ISegment) s);
+				return tform.map((Affine) s);
 			}
 			
-			if(s.isEmpty())
+			if(s.equals(Geometries.VOID))
 			{
 				return s;
 			}
@@ -102,7 +103,7 @@ public class CLSShaped implements ICollision
 				return tform.map((Affine) s);
 			}
 			
-			if(s.isEmpty())
+			if(s.equals(Geometries.VOID))
 			{
 				return s;
 			}

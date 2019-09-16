@@ -2,12 +2,10 @@ package zeno.util.geom;
 
 import zeno.util.algebra.Function;
 import zeno.util.algebra.linear.matrix.Matrix;
-import zeno.util.geom.collidables.Affine;
-import zeno.util.geom.collidables.affine.ASpaces;
 
 /**
  * The {@code ITransformation} interface defines a transformation in geometric space.
- * Transformations are defined as mappings between homogeneous coördinate systems.
+ * Transformations are defined as mappings between homogeneous coï¿½rdinate systems.
  * 
  * @author Zeno
  * @since Feb 27, 2018
@@ -74,16 +72,12 @@ public interface ITransformation extends Function<Affine, Affine>
 	@Override
 	public default Affine unmap(Affine val)
 	{
-		Matrix hmat = unmap(val.Span().HMatrix());
-		Affine.Set set = ASpaces.hset(hmat);
-		return val.Factory().create(set);
+		return val.Factory().create(unmap(val.Span()));
 	}
 	
 	@Override
 	public default Affine map(Affine val)
 	{
-		Matrix hmat = map(val.Span().HMatrix());
-		Affine.Set set = ASpaces.hset(hmat);
-		return val.Factory().create(set);
+		return val.Factory().create(map(val.Span()));
 	}
 }

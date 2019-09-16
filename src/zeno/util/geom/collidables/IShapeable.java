@@ -31,12 +31,6 @@ public interface IShapeable extends IAdjustable, IBounded, ICollidable
 	 */
 	public abstract IGeometry Shape();
 
-	
-	@Override
-	public default boolean isEmpty()
-	{
-		return Shape().isEmpty();
-	}
 
 	@Override
 	public default ICollision Collisions()

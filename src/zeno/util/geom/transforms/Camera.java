@@ -3,8 +3,8 @@ package zeno.util.geom.transforms;
 import zeno.util.algebra.linear.matrix.Matrices;
 import zeno.util.algebra.linear.matrix.Matrix;
 import zeno.util.algebra.linear.vector.Vector;
-import zeno.util.algebra.linear.vector.Vectors;
 import zeno.util.geom.ITransformation;
+import zeno.util.geom.collidables.affine.Point;
 import zeno.util.geom.transforms.affine.Dilation;
 import zeno.util.geom.transforms.affine.Rotation;
 import zeno.util.geom.transforms.affine.Translation;
@@ -16,7 +16,7 @@ import zeno.util.tools.patterns.properties.Copyable;
  * The {@code Camera} class defines a generalized pinhole camera.
  * The implementation is provided as a homogeneous transformation. It projects
  * an m-dimensional vector space onto an oriented n-dimensional subspace,
- * then scales it down to normalized coördinates. These coördinates
+ * then scales it down to normalized coï¿½rdinates. These coï¿½rdinates
  * are assumed to fall inside the unit square of size 2.
  * 
  * @author Zeno
@@ -55,19 +55,18 @@ public class Camera extends DirtyValue implements Copyable<Camera>, ITransformat
 		this.oDim = oDim;
 	}
 
-
+	
 	/**
 	 * Changes the origin of the {@code Camera}.
 	 * 
-	 * @param o  an origin vector
+	 * @param o  an origin point
 	 * 
 	 * 
-	 * @see Vector
+	 * @see Point
 	 */
-	public void setOrigin(Vector o)
+	public void setOrigin(Point o)
 	{
-		Vector v = Vectors.resize(o, iDim);
-		translation = new Translation(v);
+		translation = new Translation(o);
 		setChanged();
 	}
 	
@@ -108,12 +107,11 @@ public class Camera extends DirtyValue implements Copyable<Camera>, ITransformat
 	 * 
 	 * @see Vector
 	 */
-	public void setSize(Vector s)
+	public void setSize(Point s)
 	{
 		// Divided by two because it scales in both
 		// the positive and negative direction of axes.
-		Vector v = Vectors.resize(s.times(0.5f), iDim);
-		dilation = new Dilation(v);
+		dilation = new Dilation(s.times(0.5f));
 		setChanged();
 	}
 	
@@ -124,11 +122,11 @@ public class Camera extends DirtyValue implements Copyable<Camera>, ITransformat
 	 * @return  a camera origin
 	 * 
 	 * 
-	 * @see Vector
+	 * @see Point
 	 */
 	public Vector Origin()
 	{
-		return translation.Origin();
+		return translation.Origin().asVector();
 	}
 		
 	/**
@@ -163,11 +161,11 @@ public class Camera extends DirtyValue implements Copyable<Camera>, ITransformat
 	 * @return  a camera size
 	 * 
 	 * 
-	 * @see Vector
+	 * @see Point
 	 */
 	public Vector Size()
 	{
-		return dilation.Size();
+		return dilation.Size().asVector();
 	}
 
 

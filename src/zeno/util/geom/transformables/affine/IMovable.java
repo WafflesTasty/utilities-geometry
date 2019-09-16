@@ -1,6 +1,7 @@
 package zeno.util.geom.transformables.affine;
 
 import zeno.util.algebra.linear.vector.Vector;
+import zeno.util.geom.collidables.affine.Point;
 import zeno.util.tools.Floats;
 
 /**
@@ -16,10 +17,10 @@ public interface IMovable
 	/**
 	 * Returns the origin of the {@code IMovable}.
 	 * 
-	 * @return  an origin vector
+	 * @return  an origin point
 	 * 
 	 * 
-	 * @see Vector
+	 * @see Point
 	 */
 	public abstract Vector Origin();
 		

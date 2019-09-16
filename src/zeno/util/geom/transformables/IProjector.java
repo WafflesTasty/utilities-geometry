@@ -2,7 +2,7 @@ package zeno.util.geom.transformables;
 
 import zeno.util.algebra.linear.matrix.Matrix;
 import zeno.util.algebra.linear.vector.Vector;
-import zeno.util.geom.ITransformable;
+import zeno.util.geom.collidables.affine.Point;
 import zeno.util.geom.transformables.affine.IScalable;
 import zeno.util.geom.transformables.affine.IVantage;
 import zeno.util.geom.transformables.projective.IProjectable;
@@ -17,12 +17,11 @@ import zeno.util.geom.transforms.Camera;
  * @version 1.0
  * 
  * 
- * @see ITransformable
  * @see IProjectable
  * @see IScalable
  * @see IVantage
  */
-public interface IProjector extends IProjectable, IScalable, ITransformable, IVantage
+public interface IProjector extends IProjectable, IScalable, IVantage
 {
 	/**
 	 * Returns the camera of the {@code IProjector}.
@@ -50,13 +49,13 @@ public interface IProjector extends IProjectable, IScalable, ITransformable, IVa
 	@Override
 	public default void scaleTo(Vector s)
 	{
-		Camera().setSize(s);
+		Camera().setSize(new Point(s, 0f));
 	}
 	
 	@Override
 	public default void moveTo(Vector o)
 	{
-		Camera().setOrigin(o);
+		Camera().setOrigin(new Point(o, 1f));
 	}
 	
 			

@@ -14,6 +14,7 @@ import zeno.util.tools.patterns.properties.Inaccurate;
  * @since Feb 27, 2018
  * @version 1.0
  */
+@FunctionalInterface
 public interface ICollidable extends Inaccurate<ICollidable>
 {	
 	@Override
@@ -118,14 +119,4 @@ public interface ICollidable extends Inaccurate<ICollidable>
 	 * @see ICollision
 	 */
 	public abstract ICollision Collisions();
-	
-	/**
-	 * Checks if the {@code ICollidable} is empty.
-	 * 
-	 * @return  {@code true} if the shape is empty
-	 */
-	public default boolean isEmpty()
-	{
-		return false;
-	}
 }

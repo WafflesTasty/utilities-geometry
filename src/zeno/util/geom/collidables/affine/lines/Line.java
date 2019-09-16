@@ -3,6 +3,7 @@ package zeno.util.geom.collidables.affine.lines;
 import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.geom.collidables.affine.ASpace;
 import zeno.util.geom.collidables.affine.Point;
+import zeno.util.geom.utilities.Geometries;
 
 /**
  * The {@code Line} class defines an n-dimensional line space.
@@ -27,7 +28,7 @@ public class Line extends ASpace
 	 */
 	public Line(Vector p1, Vector p2)
 	{
-		this(new Point(p1), p2.minus(p1));
+		this(new Point(p1, 1f), p2.minus(p1));
 	}
 	
 	/**
@@ -56,8 +57,9 @@ public class Line extends ASpace
 	 */
 	public Line(Point p1, Point p2)
 	{
-		this(p1, p2.minus(p1));
+		this(p1, Geometries.subtract(p2, p1));
 	}
+	
 	
 	/**
 	 * Returns the line direction.

@@ -2,7 +2,6 @@ package zeno.util.geom.collidables.geometry.higher;
 
 import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.algebra.linear.vector.Vectors;
-import zeno.util.geom.collidables.affine.Point;
 import zeno.util.geom.collidables.geometry.generic.ISegment;
 
 /**
@@ -17,8 +16,8 @@ import zeno.util.geom.collidables.geometry.generic.ISegment;
  */
 public class NSegment implements ISegment
 {	
-	private Point p1, p2;
-		
+	private Vector p1, p2;
+	
 	/**
 	 * Creates a new {@code NSegment}.
 	 * 
@@ -26,26 +25,12 @@ public class NSegment implements ISegment
 	 * @param p2  a segment endpoint
 	 * 
 	 * 
-	 * @see Point
+	 * @see Vector
 	 */
-	public NSegment(Point p1, Point p2)
+	public NSegment(Vector p1, Vector p2)
 	{
 		this.p1 = p1;
 		this.p2 = p2;
-	}
-	
-	/**
-	 * Creates a new {@code NSegment}.
-	 * 
-	 * @param v1  a segment endpoint
-	 * @param v2  a segment endpoint
-	 * 
-	 * 
-	 * @see Vector
-	 */
-	public NSegment(Vector v1, Vector v2)
-	{
-		this(new Point(v1), new Point(v2));
 	}
 	
 	/**
@@ -59,8 +44,8 @@ public class NSegment implements ISegment
 	{
 		Vector[] split = Vectors.split(2, vals);
 		
-		p1 = new Point(split[0]);
-		p2 = new Point(split[1]);
+		p1 = split[0];
+		p2 = split[1];
 	}
 	
 	/**
@@ -104,13 +89,13 @@ public class NSegment implements ISegment
 
 		
 	@Override
-	public Point P1()
+	public Vector P1()
 	{
 		return p1;
 	}
 
 	@Override
-	public Point P2()
+	public Vector P2()
 	{
 		return p2;
 	}

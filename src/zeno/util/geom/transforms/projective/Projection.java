@@ -24,8 +24,8 @@ public class Projection implements ITransformation
 {
 	private static Vector DefaultOculus(int iDim, int oDim)
 	{
-		Vector v = Vectors.create(oDim);
-		for(int i = iDim; i < oDim; i++)
+		Vector v = Vectors.create(iDim);
+		for(int i = oDim; i < iDim; i++)
 		{
 			v.set(Floats.NEG_INFINITY, i);
 		}
@@ -49,7 +49,6 @@ public class Projection implements ITransformation
 	public Projection(Vector o, int iDim, int oDim)
 	{
 		this(iDim, oDim);
-		
 		for(int i = oDim; i < Integers.min(o.Size(), iDim); i++)
 		{
 			oculus.set(o.get(i), i);
@@ -139,7 +138,7 @@ public class Projection implements ITransformation
 	float product(int index)
 	{
 		// This could be adapted for different matrix dimensions.
-		// However, the use of a homogeneous coördinate system
+		// However, the use of a homogeneous coï¿½rdinate system
 		// makes sure these are all equivalent in use.
 		
 		float product = 1f;

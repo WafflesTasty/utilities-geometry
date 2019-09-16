@@ -1,45 +1,60 @@
 package zeno.util.geom.collidables.affine;
 
-import java.util.Iterator;
-
+import zeno.util.algebra.linear.Measurable;
 import zeno.util.algebra.linear.matrix.Matrix;
-import zeno.util.algebra.linear.vector.VSpace;
-import zeno.util.algebra.linear.vector.VSpaces;
 import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.algebra.linear.vector.Vectors;
-import zeno.util.geom.collidables.Affine;
+import zeno.util.geom.Affine;
 import zeno.util.geom.collidables.ICollision;
 import zeno.util.geom.collidables.collisions.affine.CLSPoint;
 import zeno.util.tools.Floats;
-import zeno.util.tools.helper.Iterables;
 
 /**
- * The {@code Point} class defines a zero-dimensional affine space.
- * It implements both the {@code Affine.Space} and {@code Affine.Set}
- * interface to allow it to be used in both applications.
+ * The {@code Point} class defines a euclidian point in mass-point coördinates.
+ * Its {@link #Mass()} defines the homogeneous coördinate of a point in the
+ * corresponding affine space, if it is non-zero. If it is zero, the
+ * object defines a vector in the corresponding vector space.
  * 
  * @author Zeno
  * @since Apr 9, 2019
  * @version 1.0
  * 
  * 
+ * @see Measurable
  * @see Affine
  */
-public class Point implements Affine.Set, Affine.Space
+public class Point implements Affine, Measurable<Point>
 {		
-	private Vector hmat;
-
+	/**
+	 * The {@code Type} enum defines the two {@code Point} subsets.
+	 *
+	 * @author Zeno
+	 * @since Aug 24, 2019
+	 * @version 1.0
+	 */
+	public static enum Type
+	{
+		/**
+		 * An affine point has a non-zero mass.
+		 */
+		AFFINE,
+		/**
+		 * A vector point has a zero mass.
+		 */
+		VECTOR;
+	}
+	
+	
+	private Vector v;
+	
 	/**
 	 * Creates a new {@code Point}.
 	 * 
-	 * @param v  a vector point
-	 * 
-	 * 
-	 * @see Vector
+	 * @param v  a point vector
 	 */
 	public Point(Vector v)
 	{
-		this(v, 1f);
+		this.v = v;
 	}
 	
 	/**
@@ -55,168 +70,197 @@ public class Point implements Affine.Set, Affine.Space
 	/**
 	 * Creates a new {@code Point}.
 	 * 
-	 * @param v  a vector point
-	 * @param h  a homogeneous co�rdinate
+	 * @param p  a point vector
+	 * @param m  a point mass
 	 * 
 	 * 
 	 * @see Vector
 	 */
-	public Point(Vector v, float h)
+	public Point(Vector p, float m)
 	{
-		hmat = Vectors.resize(v, v.Size() + 1);
-		hmat.set(h, v.Size());
+		v = Vectors.create(p.Size() + 1);
+		v.set(m, p.Size());
+		
+		for(int i = 0; i < p.Size(); i++)
+		{
+			v.set(p.get(i), i);
+		}
 	}
 
 	/**
-	 * Returns a {@code Point} value.
+	 * Changes a value in the {@code Point}.
 	 * 
-	 * @param i  a co�rdinate index
-	 * @return  a vector value
+	 * @param val  a coördinate value
+	 * @param i  a coördinate index
+	 */
+	public void set(float val, int i)
+	{
+		float m = Mass();
+		if(i >= v.Size() - 1)
+		{
+			v.set(0f, v.Size() - 1);
+			v = Vectors.resize(v, i + 2);
+			v.set( m, v.Size() - 1);
+		}
+		
+		
+		if(!Floats.isZero(m, 1))
+			v.set(m * val, i);
+		else
+			v.set(val,  i);
+	}
+	
+	/**
+	 * Changes the mass of the {@code Point}.
+	 * 
+	 * @param m  a new point mass
+	 */
+	public void setMass(float m)
+	{
+		if(!Floats.isZero(m, 1))
+			v = v.times(m / Mass());
+		else
+		{
+			v = v.times(1f / Mass());
+			v.set(0f, v.Size() - 1);
+		}
+	}
+
+	
+	/**
+	 * Returns the {@code Point} size.
+	 * 
+	 * @return  a point size
+	 */
+	public int Size()
+	{
+		return v.Size() - 1;
+	}
+		
+	/**
+	 * Returns a {@code Point} coördinate.
+	 * 
+	 * @param i  a coördinate index
+	 * @return  a point value
 	 */
 	public float get(int i)
 	{
-		return get(i, 0);
-	}
-	
-	
-	/**
-	 * Adds a {@code Point}.
-	 * 
-	 * @param p  a point to add
-	 * @return  a result vector
-	 * 
-	 * 
-	 * @see Vector
-	 */
-	public Vector plus(Point p)
-	{
-		Vector v1 = VMatrix();
-		Vector v2 = p.VMatrix();
-		return v1.plus(v2);
-	}
-	
-	/**
-	 * Subtracts a {@code Point}.
-	 * 
-	 * @param p  a point to subtract
-	 * @return  a result vector
-	 * 
-	 * 
-	 * @see Vector
-	 */
-	public Vector minus(Point p)
-	{
-		Vector v1 = VMatrix();
-		Vector v2 = p.VMatrix();
-		return v1.minus(v2);
-	}
-	
-	/**
-	 * Subtracts a {@code Vector}.
-	 * 
-	 * @param v  a vector to subtract
-	 * @return  a result point
-	 * 
-	 * 
-	 * @see Vector
-	 */
-	public Point minus(Vector v)
-	{
-		return new Point(VMatrix().minus(v));
-	}
-	
-	/**
-	 * Adds a {@code Vector}.
-	 * 
-	 * @param v  a vector to add
-	 * @return  a result point
-	 * 
-	 * 
-	 * @see Vector
-	 */
-	public Point plus(Vector v)
-	{
-		return new Point(VMatrix().plus(v));
-	}
-			
-	
-	@Override
-	public VSpace Direction()
-	{
-		return VSpaces.trivial(hmat.Size() - 1);
-	}
-	
-	@Override
-	public Affine.Set Span()
-	{
-		return this;
-	}
-	
-	@Override
-	public Point Origin()
-	{
-		return this;
-	}
-	
-	
-	@Override
-	public Vector VMatrix()
-	{
-		return (Vector) ASpaces.vectorize(hmat);
-	}
-	
-	@Override
-	public Matrix HMatrix()
-	{
-		return hmat;
-	}
-	
-	
-	@Override
-	public float get(int r, int c)
-	{
-		int rows = hmat.Rows() - 1;
-		if(r < rows)
+		if(i < v.Size() - 1)
 		{
-			float val = hmat.get(r, c);
-			if(!Floats.isZero(hmat.get(rows, c), 1))
-			{
-				val /= hmat.get(rows, c);
-			}
-			
-			return val;
+			return v.get(i);
 		}
 		
 		return 0f;
 	}
 	
-	@Override
-	public Iterator<Point> iterator()
+	/**
+	 * Returns the {@code Point} mass.
+	 * This value is zero for vectors, and acts
+	 * as a homogeneous co�rdinate if non-zero.
+	 * 
+	 * @return  a point mass
+	 */
+	public float Mass()
 	{
-		return Iterables.singleton(this).iterator();
+		return v.get(v.Size() - 1);
 	}
+	
+	
+	/**
+	 * Translates the {@code Point} with a vector.
+	 * 
+	 * @param w  a vector to translate to
+	 * @return  a translated point
+	 * 
+	 * 
+	 * @see Vector
+	 */
+	public Point plus(Vector w)
+	{
+		Vector hw = Vectors.resize(w.times(Mass()), v.Size());
+		return new Point(v.plus(hw));
+	}
+	
+	/**
+	 * Returns the {@code Point} as a vector.
+	 * 
+	 * @return  a point vector
+	 * 
+	 * 
+	 * @see Vector
+	 */
+	public Vector asVector()
+	{
+		Vector w = Vectors.resize(v, v.Size() - 1);
+		if(!Floats.isZero(Mass(), 1))
+		{
+			w = w.times(1f / Mass());
+		}
+		
+		return w;
+	}
+	
+	/**
+	 * Returns the {@code Point} type.
+	 * A point with non-zero mass is affine, while
+	 * a point with zero mass is a vector.
+	 * 
+	 * @return  a point type
+	 * 
+	 * 
+	 * @see Type
+	 */
+	public Type Type()
+	{
+		if(Floats.isZero(Mass(), 1))
+			return Type.VECTOR;
+		return Type.AFFINE;
+	}
+
+	
+	@Override
+	public Point instance()
+	{
+		return new Point(v.copy());
+	}
+	
+	@Override
+	public Point plus(Point p)
+	{
+		return new Point(v.plus(p.v));
+	}
+	
+	@Override
+	public Point times(float val)
+	{
+		return new Point(v.times(val));
+	}
+		
+	@Override
+	public float dot(Point p)
+	{
+		return v.dot(p.v);
+	}
+	
 	
 	@Override
 	public ICollision Collisions()
 	{
 		return new CLSPoint(this);
 	}
-
+	
 	@Override
-	public boolean isEmpty()
+	public Factory Factory()
 	{
-		return false;
+		return (m) ->
+		{
+			return new Point((Vector) m);
+		};
 	}
 	
 	@Override
-	public int Dimension()
+	public Matrix Span()
 	{
-		return 0;
-	}
-	
-	@Override
-	public int Size()
-	{
-		return 1;
+		return v;
 	}
 }

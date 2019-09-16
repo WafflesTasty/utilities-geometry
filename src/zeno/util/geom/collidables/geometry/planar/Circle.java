@@ -58,17 +58,16 @@ public class Circle extends Ellipse implements ISphere
 		float x = (as * y32 + bs * y13 + cs * y21) / d;
 		float y = (as * x23 + bs * x31 + cs * x12) / d;
 		
-		Vector2 center = new Vector2(x, y);
-		float rad = center.dist(a);
-		return new Circle(center, rad);
+		Vector2 v = new Vector2(x, y);
+		return new Circle(v, v.dist(a));
 	}
 	
 	
 	/**
 	 * Creates a new {@code Circle}.
 	 * 
-	 * @param x  a circle center x-coördinate
-	 * @param y  a circle center y-coördinate
+	 * @param x  a circle center x-coï¿½rdinate
+	 * @param y  a circle center y-coï¿½rdinate
 	 * @param r  a circle radius
 	 */
 	public Circle(float x, float y, float r)

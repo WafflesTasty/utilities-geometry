@@ -2,7 +2,10 @@ package zeno.util.geom.collidables.geometry.spatial;
 
 import zeno.util.algebra.linear.vector.fixed.Vector3;
 import zeno.util.geom.collidables.geometry.Geometry3D;
+import zeno.util.geom.collidables.geometry.bounds.BNDCuboid3D;
 import zeno.util.geom.collidables.geometry.generic.ICuboid;
+import zeno.util.geom.transforms.AffineMap;
+import zeno.util.geom.utilities.bounds.Bounds3D;
 
 /**
  * The {@code Cuboid} class defines a three-dimensional rectangular shape.
@@ -16,13 +19,13 @@ import zeno.util.geom.collidables.geometry.generic.ICuboid;
  * @see ICuboid
  */
 public class Cuboid extends Geometry3D implements ICuboid
-{
+{	
 	/**
 	 * Creates a new {@code Cuboid}.
 	 * 
-	 * @param x  a cuboid center x-coördinate
-	 * @param y  a cuboid center y-coördinate
-	 * @param z  a cuboid center z-coördinate
+	 * @param x  a cuboid center x-coï¿½rdinate
+	 * @param y  a cuboid center y-coï¿½rdinate
+	 * @param z  a cuboid center z-coï¿½rdinate
 	 * @param w  a cuboid width
 	 * @param h  a cuboid height
 	 * @param d  a cuboid depth
@@ -79,6 +82,12 @@ public class Cuboid extends Geometry3D implements ICuboid
 		super();
 	}
 
+	
+	@Override
+	public Bounds3D Bounds(AffineMap map)
+	{
+		return new BNDCuboid3D(this, map);
+	}
 	
 	// Optional Bounds overrides.
 	

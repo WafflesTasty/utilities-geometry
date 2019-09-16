@@ -19,8 +19,8 @@ public class Square extends Rectangle implements ICube
 	/**
 	 * Creates a new {@code Square}.
 	 * 
-	 * @param x  a square center x-coördinate
-	 * @param y  a square center y-coördinate
+	 * @param x  a square center x-coï¿½rdinate
+	 * @param y  a square center y-coï¿½rdinate
 	 * @param l  a square length
 	 */
 	public Square(float x, float y, float l)

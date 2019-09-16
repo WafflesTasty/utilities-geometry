@@ -2,8 +2,9 @@ package zeno.util.geom.transforms.affine;
 
 import zeno.util.algebra.linear.matrix.Matrices;
 import zeno.util.algebra.linear.matrix.Matrix;
+import zeno.util.algebra.linear.vector.Vector;
+import zeno.util.algebra.linear.vector.Vectors;
 import zeno.util.geom.ITransformation;
-import zeno.util.geom.collidables.affine.ASpaces;
 import zeno.util.geom.collidables.affine.Point;
 import zeno.util.geom.transforms.types.Translator;
 import zeno.util.geom.utilities.Geometries;
@@ -24,7 +25,7 @@ public class Translation implements ITransformation
 {
 	private static Point DefaultOrigin(int dim)
 	{
-		return ASpaces.point(dim);
+		return new Point(Vectors.create(dim), 1f);
 	}
 	
 	
@@ -37,7 +38,20 @@ public class Translation implements ITransformation
 	 */
 	public Translation(int dim)
 	{
-		origin = DefaultOrigin(dim);
+		this(DefaultOrigin(dim));
+	}
+	
+	/**
+	 * Creates a new {@code Translation}.
+	 * 
+	 * @param v  an origin vector
+	 * 
+	 * 
+	 * @see Vector
+	 */
+	public Translation(Vector v)
+	{
+		this(new Point(v, 1f));
 	}
 	
 	/**
@@ -54,7 +68,8 @@ public class Translation implements ITransformation
 	{
 		origin = p;
 	}
-	
+		
+
 	/**
 	 * Returns the origin point.
 	 * 

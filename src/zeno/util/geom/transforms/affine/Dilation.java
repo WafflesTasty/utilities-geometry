@@ -6,9 +6,9 @@ import zeno.util.algebra.linear.matrix.types.banded.Diagonal;
 import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.algebra.linear.vector.Vectors;
 import zeno.util.geom.ITransformation;
-import zeno.util.geom.collidables.affine.ASpaces;
 import zeno.util.geom.collidables.affine.Point;
 import zeno.util.geom.utilities.Geometries;
+import zeno.util.tools.Floats;
 
 /**
  * The {@code Dilation} interface defines an affine dilation.
@@ -32,7 +32,7 @@ public class Dilation implements ITransformation
 			v.set(0.5f, i);
 		}
 		
-		return ASpaces.point(v, 0f);
+		return new Point(v, 0f);
 	}
 	
 	
@@ -46,6 +46,19 @@ public class Dilation implements ITransformation
 	public Dilation(int dim)
 	{
 		size = DefaultSize(dim);
+	}
+	
+	/**
+	 * Creates a new {@code Dilation}.
+	 * 
+	 * @param s  a size vector
+	 * 
+	 * 
+	 * @see Vector
+	 */
+	public Dilation(Vector s)
+	{
+		this(new Point(s, 0f));
 	}
 	
 	/**
@@ -90,9 +103,10 @@ public class Dilation implements ITransformation
 		m.setOperator(Diagonal.Type());
 		for(int d = 0; d < dim; d++)
 		{
-			if(d < size.Size())
+			float s = size.get(d);
+			if(!Floats.isZero(s, 1))
 			{
-				m.set(1f / size.get(d), d, d);
+				m.set(1f / s, d, d);
 			}
 		}
 		
@@ -112,9 +126,10 @@ public class Dilation implements ITransformation
 		m.setOperator(Diagonal.Type());
 		for(int d = 0; d < dim; d++)
 		{
-			if(d < size.Size())
+			float s = size.get(d);
+			if(!Floats.isZero(s, 1))
 			{
-				m.set(size.get(d), d, d);
+				m.set(s, d, d);
 			}
 		}
 		

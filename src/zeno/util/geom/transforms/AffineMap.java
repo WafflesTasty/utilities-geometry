@@ -2,7 +2,6 @@ package zeno.util.geom.transforms;
 
 import zeno.util.algebra.linear.matrix.Matrix;
 import zeno.util.algebra.linear.vector.Vector;
-import zeno.util.algebra.linear.vector.Vectors;
 import zeno.util.geom.ITransformation;
 import zeno.util.geom.transforms.affine.Dilation;
 import zeno.util.geom.transforms.affine.Rotation;
@@ -52,7 +51,7 @@ public class AffineMap extends DirtyValue implements Copyable<AffineMap>, ITrans
 	/**
 	 * Changes the origin of the {@code AffineMap}.
 	 * 
-	 * @param o  an origin vector
+	 * @param o  an origin point
 	 * 
 	 * 
 	 * @see Vector
@@ -80,7 +79,7 @@ public class AffineMap extends DirtyValue implements Copyable<AffineMap>, ITrans
 	/**
 	 * Changes the size of the {@code AffineMap}.
 	 * 
-	 * @param s  a size vector
+	 * @param s  a size point
 	 * 
 	 * 
 	 * @see Vector
@@ -89,8 +88,7 @@ public class AffineMap extends DirtyValue implements Copyable<AffineMap>, ITrans
 	{
 		// Divided by two because it scales in both
 		// the positive and negative direction of axes.
-		Vector v = Vectors.resize(s.times(0.5f), dimension);
-		dilation = new Dilation(v);
+		dilation = new Dilation(s.times(0.5f));
 		setChanged();
 	}
 	
@@ -105,7 +103,7 @@ public class AffineMap extends DirtyValue implements Copyable<AffineMap>, ITrans
 	 */
 	public Vector Origin()
 	{
-		return translation.Origin();
+		return translation.Origin().asVector();
 	}
 	
 	/**
@@ -131,7 +129,7 @@ public class AffineMap extends DirtyValue implements Copyable<AffineMap>, ITrans
 	 */
 	public Vector Size()
 	{
-		return dilation.Size();
+		return dilation.Size().asVector();
 	}
 
 	
@@ -192,9 +190,9 @@ public class AffineMap extends DirtyValue implements Copyable<AffineMap>, ITrans
 	{
 		AffineMap copy = Copyable.super.copy();
 		
-		copy.setOrigin(translation.Origin());
-		copy.setBasis(rotation.Basis());
-		copy.setSize(dilation.Size());
+		copy.rotation = new Rotation(rotation.Basis());
+		copy.translation = new Translation(translation.Origin());
+		copy.dilation = new Dilation(dilation.Size());
 		
 		return copy;
 	}

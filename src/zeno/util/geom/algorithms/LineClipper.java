@@ -45,8 +45,8 @@ public class LineClipper
 		Vector[] points = new Vector[2 * lines.length];
 		for(int i = 0; i < lines.length; i++)
 		{
-			points[2 * i + 0] = lines[i].P1().VMatrix();
-			points[2 * i + 1] = lines[i].P2().VMatrix();
+			points[2 * i + 0] = lines[i].P1();
+			points[2 * i + 1] = lines[i].P2();
 		}
 		
 		return clip(points);

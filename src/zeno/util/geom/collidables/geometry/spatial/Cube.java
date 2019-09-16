@@ -19,9 +19,9 @@ public class Cube extends Cuboid implements ICube
 	/**
 	 * Creates a new {@code Cube}.
 	 * 
-	 * @param x  a cube center x-coördinate
-	 * @param y  a cube center y-coördinate
-	 * @param z  a cube center z-coördinate
+	 * @param x  a cube center x-coï¿½rdinate
+	 * @param y  a cube center y-coï¿½rdinate
+	 * @param z  a cube center z-coï¿½rdinate
 	 * @param l  a cube length
 	 */
 	public Cube(float x, float y, float z, float l)
@@ -50,7 +50,7 @@ public class Cube extends Cuboid implements ICube
 	 */
 	public Cube(float l)
 	{
-		this(new Vector3(), l);
+		this(0f, 0f, 0f, l);
 	}
 	
 	/**

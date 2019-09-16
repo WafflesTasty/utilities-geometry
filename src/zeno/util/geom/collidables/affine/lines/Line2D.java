@@ -20,10 +20,10 @@ public class Line2D extends Line implements ICollideable2D
 	/**
 	 * Creates a new {@code Line2D}.
 	 * 
-	 * @param x1  the line's first x-coördinate
-	 * @param y1  the line's first y-coördinate
-	 * @param x2  the line's second x-coördinate
-	 * @param y2  the line's second y-coördinate
+	 * @param x1  the line's first x-coï¿½rdinate
+	 * @param y1  the line's first y-coï¿½rdinate
+	 * @param x2  the line's second x-coï¿½rdinate
+	 * @param y2  the line's second y-coï¿½rdinate
 	 */
 	public Line2D(float x1, float y1, float x2, float y2)
 	{

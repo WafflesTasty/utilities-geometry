@@ -1,5 +1,6 @@
 package zeno.util.geom.collidables.collisions.geometry;
 
+import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.geom.ICollidable;
 import zeno.util.geom.collidables.affine.Point;
 import zeno.util.geom.collidables.affine.lines.Line;
@@ -9,8 +10,8 @@ import zeno.util.geom.collidables.geometry.generic.IEllipsoid;
 import zeno.util.geom.collidables.geometry.generic.ISegment;
 import zeno.util.geom.collidables.geometry.generic.ISphere;
 import zeno.util.geom.transforms.AffineMap;
-import zeno.util.geom.utilities.Generator;
 import zeno.util.geom.utilities.Geometries;
+import zeno.util.geom.utilities.Transforms;
 import zeno.util.tools.Floats;
 
 /**
@@ -43,18 +44,20 @@ public class CLSEllipsoid extends CLSGeometry
 	protected boolean contains(Point x)
 	{
 		IEllipsoid e = Source();
+		float m = x.Mass();
 		
 		
 		float val, sum = 0;
 		for(int i = 0; i < e.Dimension(); i++)
 		{
-			val = x.get(i) - e.Center().get(i);
+			val = x.get(i) - m * e.Center().get(i);
 			
 			if(!Floats.isZero(val, 1))
 			{
 				val /= e.Size().get(i);
+				
 				sum += val * val;
-				if(4 * sum > 1)
+				if(4 * sum > m * m)
 				{
 					return false;
 				}
@@ -171,13 +174,13 @@ public class CLSEllipsoid extends CLSGeometry
 		
 		
 		// Map the ellipse to the unit sphere space.
-		AffineMap map = Geometries.elliptic(Source());
-		ISphere sphere = Generator.sphere(e.Dimension());
+		AffineMap map = Transforms.elliptic(Source());
+		ISphere sphere = Geometries.sphere(e.Dimension());
 		// Perform intersection in unit sphere space.
 		ICollidable c = sphere.intersect(map.unmap(t));
 		
 		// If no intersection occurs...
-		if(c.isEmpty())
+		if(c.equals(Geometries.VOID))
 		{
 			// Return the empty intersection.
 			return c;
@@ -206,13 +209,13 @@ public class CLSEllipsoid extends CLSGeometry
 		
 		
 		// Map the ellipse to the unit sphere space.
-		AffineMap map = Geometries.elliptic(Source());
-		ISphere sphere = Generator.sphere(e.Dimension());
+		AffineMap map = Transforms.elliptic(Source());
+		ISphere sphere = Geometries.sphere(e.Dimension());
 		// Perform intersection in unit sphere space.
 		ICollidable c = sphere.intersect(map.unmap(l));
 		
 		// If no intersection occurs...
-		if(c.isEmpty())
+		if(c.equals(Geometries.VOID))
 		{
 			// Return the empty intersection.
 			return c;
@@ -242,12 +245,15 @@ public class CLSEllipsoid extends CLSGeometry
 		
 		
 		// Map the ellipsoid to the unit sphere space.
-		AffineMap map = Geometries.elliptic(Source());
-		ISphere sphere = Generator.sphere(e.Dimension());
+		AffineMap map = Transforms.elliptic(Source());
+		ISphere sphere = Geometries.sphere(e.Dimension());
 		// Perform intersection in unit sphere space.
 		Point p = (Point) map.unmap(new Point(f.Center(), 1f));
 		Point s = (Point) map.unmap(new Point(f.Size(), 0f));
-		return sphere.intersects(Generator.ellipsoid(p, s));
+		Vector q = p.asVector(); Vector t = s.asVector();
+		
+		IEllipsoid g = Geometries.ellipsoid(q, t);
+		return sphere.intersects(g);
 	}
 	
 	private boolean intersects(ISegment t)
@@ -256,8 +262,8 @@ public class CLSEllipsoid extends CLSGeometry
 		
 		
 		// Map the ellipse to the unit sphere space.
-		AffineMap map = Geometries.elliptic(Source());
-		ISphere sphere = Generator.sphere(e.Dimension());
+		AffineMap map = Transforms.elliptic(Source());
+		ISphere sphere = Geometries.sphere(e.Dimension());
 		// Perform intersection in unit sphere space.
 		return sphere.intersects(map.unmap(t));
 	}
@@ -268,12 +274,15 @@ public class CLSEllipsoid extends CLSGeometry
 		
 		
 		// Map the ellipse to the unit sphere space.
-		AffineMap map = Geometries.elliptic(Source());
-		ISphere sphere = Generator.sphere(e.Dimension());
+		AffineMap map = Transforms.elliptic(Source());
+		ISphere sphere = Geometries.sphere(e.Dimension());
 		// Perform intersection in unit sphere space.
 		Point p = (Point) map.unmap(new Point(c.Center(), 1f));
 		Point s = (Point) map.unmap(new Point(c.Size(), 0f));
-		return sphere.intersects(Generator.cuboid(p, s));
+		Vector q = p.asVector(); Vector t = s.asVector();
+		
+		ICuboid d = Geometries.cuboid(q, t);
+		return sphere.intersects(d);
 	}
 	
 	private boolean intersects(Line l)
@@ -282,8 +291,8 @@ public class CLSEllipsoid extends CLSGeometry
 		
 		
 		// Map the ellipse to the unit sphere space.
-		AffineMap map = Geometries.elliptic(Source());
-		ISphere sphere = Generator.sphere(e.Dimension());
+		AffineMap map = Transforms.elliptic(Source());
+		ISphere sphere = Geometries.sphere(e.Dimension());
 		// Perform intersection in unit sphere space.
 		return sphere.intersects(map.unmap(l));
 	}
@@ -295,12 +304,15 @@ public class CLSEllipsoid extends CLSGeometry
 		
 		
 		// Map the ellipsoid to the unit sphere space.
-		AffineMap map = Geometries.elliptic(Source());
-		ISphere sphere = Generator.sphere(e.Dimension());
+		AffineMap map = Transforms.elliptic(Source());
+		ISphere sphere = Geometries.sphere(e.Dimension());
 		// Perform containment in unit sphere space.
 		Point p = (Point) map.unmap(new Point(f.Center(), 1f));
 		Point s = (Point) map.unmap(new Point(f.Size(), 0f));
-		return sphere.contains(Generator.ellipsoid(p, s));
+		Vector q = p.asVector(); Vector t = s.asVector();
+		
+		IEllipsoid g = Geometries.ellipsoid(q, t);
+		return sphere.contains(g);
 	}
 	
 	private boolean contains(ISphere s)

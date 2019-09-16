@@ -19,9 +19,9 @@ public class Sphere extends Ellipsoid implements ISphere
 	/**
 	 * Creates a new {@code Sphere}.
 	 * 
-	 * @param x  the sphere's center x-coördinate
-	 * @param y  the sphere's center y-coördinate
-	 * @param z  the sphere's center z-coördinate
+	 * @param x  the sphere's center x-coï¿½rdinate
+	 * @param y  the sphere's center y-coï¿½rdinate
+	 * @param z  the sphere's center z-coï¿½rdinate
 	 * @param r  the sphere's radius
 	 */
 	public Sphere(float x, float y, float z, float r)
@@ -50,7 +50,7 @@ public class Sphere extends Ellipsoid implements ISphere
 	 */
 	public Sphere(float r)
 	{
-		this(new Vector3(), r);
+		this(0f, 0f, 0f, r);
 	}
 	
 	/**

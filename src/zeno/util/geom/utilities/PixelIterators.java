@@ -11,7 +11,7 @@ import zeno.util.geom.utilities.iterators.SurfaceIterator;
  * @since Sep 12, 2015
  * @author Zeno
  */
-public final class Iterators
+public final class PixelIterators
 {
 	/**
 	 * Iterates over the perimeter of an {@code Geometry2D}.
@@ -42,7 +42,7 @@ public final class Iterators
 	}
 	
 	
-	private Iterators()
+	private PixelIterators()
 	{
 		// NOT APPLICABLE
 	}

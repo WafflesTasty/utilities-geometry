@@ -31,7 +31,7 @@ public interface IGeometry extends ICollidable, IBounded, Bounds
 	 * @see Bounds
 	 */
 	public abstract Bounds Bounds(AffineMap map);
-		
+	
 	@Override
 	public default Bounds Bounds()
 	{

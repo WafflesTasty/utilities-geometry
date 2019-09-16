@@ -4,13 +4,11 @@ import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.geom.ICollidable;
 import zeno.util.geom.collidables.affine.Point;
 import zeno.util.geom.collidables.affine.lines.Line;
-import zeno.util.geom.collidables.affine.spaces.TrivialASpace;
 import zeno.util.geom.collidables.collisions.CLSGeometry;
 import zeno.util.geom.collidables.geometry.generic.ICuboid;
 import zeno.util.geom.collidables.geometry.generic.IEllipsoid;
 import zeno.util.geom.collidables.geometry.generic.ISegment;
 import zeno.util.geom.collidables.geometry.generic.ISphere;
-import zeno.util.geom.utilities.Generator;
 import zeno.util.geom.utilities.Geometries;
 import zeno.util.tools.Floats;
 
@@ -45,9 +43,9 @@ public class CLSSphere extends CLSGeometry
 	{
 		ISphere s = Source();
 		
-		
+
 		float rad = s.Radius();
-		Point p = x.minus(s.Center());
+		Vector p = x.asVector().minus(s.Center());
 		int dim = s.Dimension();
 		
 		float sum = 0f;
@@ -174,11 +172,11 @@ public class CLSSphere extends CLSGeometry
 		int dim = s.Dimension();
 		float rad = s.Radius();
 		
-		Point p = t.P1();
-		Point q = t.P2();
+		Vector p = t.P1();
+		Vector q = t.P2();
 		
 		Vector qp = q.minus(p);
-		Vector po = p.minus(o).VMatrix();
+		Vector po = p.minus(o);
 		
 		float d1 = qp.dot(po);
 		float d2 = qp.dot(qp);
@@ -191,7 +189,7 @@ public class CLSSphere extends CLSGeometry
 		if(disc < 0)
 		{
 			// The intersection is empty.
-			return new TrivialASpace();
+			return Geometries.VOID;
 		}
 		
 		// If the discriminant is zero...
@@ -201,11 +199,12 @@ public class CLSSphere extends CLSGeometry
 			if(0 <= -d1 && -d1 <= d2)
 			{
 				// Return the intersection point.
-				return p.plus(qp.times(-d1 / d2));
+				Vector v = p.plus(qp.times(-d1 / d2));
+				return new Point(v, 1f);
 			}
 			
 			// Otherwise, the intersection is empty.
-			return new TrivialASpace();
+			return Geometries.VOID;
 		}
 		
 		// Limit the solution to the segment.
@@ -215,13 +214,13 @@ public class CLSSphere extends CLSGeometry
 		if(l1 <= l2)
 		{
 			// return the intersection segment.
-			Point p1 = p.plus(qp.times(l1));
-			Point p2 = p.plus(qp.times(l2));
-			return Generator.segment(p1, p2);
+			Vector p1 = p.plus(qp.times(l1));
+			Vector p2 = p.plus(qp.times(l2));
+			return Geometries.segment(p1, p2);
 		}
 		
 		// Otherwise, the intersection is empty.
-		return new TrivialASpace();
+		return Geometries.VOID;
 	}
 	
 	private ICollidable intersect(Line l)
@@ -236,7 +235,7 @@ public class CLSSphere extends CLSGeometry
 		Vector v = l.Vector();
 		
 		
-		Vector rp = r.minus(p).VMatrix();
+		Vector rp = r.asVector().minus(p);
 		float d1 = rp.dot(v); float d2 = rp.dot(rp);		
 		// Compute the quadratic discriminant.
 		float disc = d1 * d1 - d2 + rad * rad;
@@ -245,22 +244,22 @@ public class CLSSphere extends CLSGeometry
 		if(disc < 0)
 		{
 			// The intersection is empty.
-			return new TrivialASpace();
+			return Geometries.VOID;
 		}
 		
 		// If the discriminant is zero...
 		if(Floats.isZero(disc, 4 + dim / 2))
 		{
 			// The intersection is a point.
-			return r.minus(v.times(d1));
+			return r.plus(v.times(-d1));
 		}
 		
 		// Otherwise, the intersection is a segment.
 		float l1 = -d1 - Floats.sqrt(disc);
 		float l2 = -d1 + Floats.sqrt(disc);
-		Point p1 = r.plus(v.times(l1));
-		Point p2 = r.plus(v.times(l2));
-		return Generator.segment(p1, p2);
+		Vector p1 = p.plus(v.times(l1));
+		Vector p2 = p.plus(v.times(l2));
+		return Geometries.segment(p1, p2);
 	}
 	
 	
@@ -278,11 +277,11 @@ public class CLSSphere extends CLSGeometry
 		int dim = s.Dimension();
 		float rad = s.Radius();
 		
-		Point p = t.P1();
-		Point q = t.P2();
+		Vector p = t.P1();
+		Vector q = t.P2();
 		
 		Vector qp = q.minus(p);
-		Vector po = p.minus(o).VMatrix();
+		Vector po = p.minus(o);
 		
 		float d1 = qp.dot(po);
 		float d2 = qp.dot(qp);
@@ -343,10 +342,10 @@ public class CLSSphere extends CLSGeometry
 		ISphere s = Source();
 		
 		
-		float r1  = s.Radius(); float r2  = t.Radius();
 		Vector p1 = s.Center(); Vector p2 = t.Center();
+		float r1  = s.Radius(); float r2  = t.Radius();
 		
-		return p1.minus(p2).normSqr() <= (r1 + r2) * (r1 + r2);
+		return p2.minus(p1).normSqr() <= (r1 + r2) * (r1 + r2);
 	}
 	
 	private boolean intersects(Line l)
@@ -359,9 +358,10 @@ public class CLSSphere extends CLSGeometry
 		float rad = s.Radius();
 		Vector v = l.Vector();
 		
-		
-		Vector rp = r.minus(p).VMatrix();
-		float d1 = rp.dot(v); float d2 = rp.dot(rp);		
+	
+		Vector rp = r.asVector().minus(p);
+		float d1 = rp.dot( v);
+		float d2 = rp.dot(rp);		
 		// Compute the quadratic discriminant.
 		float disc = d1 - d2 + rad * rad;
 		// Intersection depends on its sign.
@@ -379,9 +379,9 @@ public class CLSSphere extends CLSGeometry
 		ISphere s = Source();
 		
 		
-		float r1  = s.Radius(); float r2  = t.Radius();
 		Vector p1 = s.Center(); Vector p2 = t.Center();
+		float r1  = s.Radius(); float r2  = t.Radius();
 		
-		return p1.minus(p2).norm() <= r2 - r1;
+		return p2.minus(p1).norm() <= r2 - r1;
 	}
 }

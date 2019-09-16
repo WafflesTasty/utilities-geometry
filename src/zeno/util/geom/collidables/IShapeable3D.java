@@ -1,9 +1,7 @@
 package zeno.util.geom.collidables;
 
-import zeno.util.algebra.linear.vector.fixed.Vector3;
 import zeno.util.geom.ICollideable3D;
 import zeno.util.geom.transformables.IAdjustable3D;
-import zeno.util.geom.utilities.bounds.Bounds;
 import zeno.util.geom.utilities.bounds.Bounds3D;
 import zeno.util.geom.utilities.bounds.IBounded3D;
 
@@ -29,46 +27,6 @@ public interface IShapeable3D extends IAdjustable3D, IBounded3D, ICollideable3D,
 	@Override
 	public default Bounds3D Bounds()
 	{
-		Bounds bounds = IShapeable.super.Bounds();
-		return new Bounds3D()
-		{
-			@Override
-			public Vector3 Minimum()
-			{
-				return (Vector3) bounds.Minimum();
-			}
-			
-			@Override
-			public Vector3 Maximum()
-			{
-				return (Vector3) bounds.Maximum();
-			}
-			
-			
-			@Override
-			public Vector3 Center()
-			{
-				return (Vector3) bounds.Center();
-			}
-			
-			@Override
-			public Vector3 Size()
-			{
-				return (Vector3) bounds.Size();
-			}
-			
-			
-			@Override
-			public float Diameter()
-			{
-				return bounds.Diameter();
-			}
-			
-			@Override
-			public float Radius()
-			{
-				return bounds.Radius();
-			}
-		};
+		return Shape().Bounds(Transform());
 	}
 }

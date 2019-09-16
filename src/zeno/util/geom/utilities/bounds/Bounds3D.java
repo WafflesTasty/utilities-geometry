@@ -78,7 +78,7 @@ public interface Bounds3D extends Bounds
 	
 	
 	/**
-	 * Returns the minimum x-coördinate of the {@code Bounds3D}.
+	 * Returns the minimum x-coï¿½rdinate of the {@code Bounds3D}.
 	 * 
 	 * @return  the bounds minimum x
 	 */
@@ -88,7 +88,7 @@ public interface Bounds3D extends Bounds
 	}
 	
 	/**
-	 * Returns the maximum x-coördinate of the {@code Bounds3D}.
+	 * Returns the maximum x-coï¿½rdinate of the {@code Bounds3D}.
 	 * 
 	 * @return  the bounds maximum x
 	 */
@@ -98,7 +98,7 @@ public interface Bounds3D extends Bounds
 	}
 	
 	/**
-	 * Returns the minimum y-coördinate of the {@code Bounds3D}.
+	 * Returns the minimum y-coï¿½rdinate of the {@code Bounds3D}.
 	 * 
 	 * @return  the bounds minimum y
 	 */
@@ -108,7 +108,7 @@ public interface Bounds3D extends Bounds
 	}
 	
 	/**
-	 * Returns the maximum y-coördinate of the {@code Bounds3D}.
+	 * Returns the maximum y-coï¿½rdinate of the {@code Bounds3D}.
 	 * 
 	 * @return  the bounds maximum y
 	 */
@@ -118,7 +118,7 @@ public interface Bounds3D extends Bounds
 	}
 	
 	/**
-	 * Returns the minimum z-coördinate of the {@code Bounds3D}.
+	 * Returns the minimum z-coï¿½rdinate of the {@code Bounds3D}.
 	 * 
 	 * @return  the bounds minimum z
 	 */
@@ -128,7 +128,7 @@ public interface Bounds3D extends Bounds
 	}
 	
 	/**
-	 * Returns the maximum z-coördinate of the {@code Bounds3D}.
+	 * Returns the maximum z-coï¿½rdinate of the {@code Bounds3D}.
 	 * 
 	 * @return  the bounds maximum z
 	 */
@@ -149,7 +149,8 @@ public interface Bounds3D extends Bounds
 	{
 		return (Sphere) Bounds.super.Ball();
 	}
-			
+		
+	
 	@Override
 	public default Vector3 Minimum()
 	{

@@ -2,6 +2,7 @@ package zeno.util.geom.collidables;
 
 import zeno.util.geom.ICollideable3D;
 import zeno.util.geom.collidables.geometry.spatial.Cuboid;
+import zeno.util.geom.transforms.AffineMap;
 import zeno.util.geom.utilities.bounds.Bounds3D;
 import zeno.util.geom.utilities.bounds.IBounded3D;
 
@@ -23,9 +24,9 @@ public interface IGeometry3D extends IGeometry, ICollideable3D, IBounded3D, Boun
 	/**
 	 * Indicates if the {@code IGeometry3D} intersects a cuboid.
 	 * 
-	 * @param x  the cuboid's center x-coördinate
-	 * @param y  the cuboid's center y-coördinate
-	 * @param z  the cuboid's center z-coördinate
+	 * @param x  the cuboid's center x-coï¿½rdinate
+	 * @param y  the cuboid's center y-coï¿½rdinate
+	 * @param z  the cuboid's center z-coï¿½rdinate
 	 * @param w  the cuboid's width
 	 * @param h  the cuboid's height
 	 * @param d  the cuboid's depth
@@ -39,9 +40,9 @@ public interface IGeometry3D extends IGeometry, ICollideable3D, IBounded3D, Boun
 	/**
 	 * Indicates if the {@code IGeometry3D} contains a cuboid.
 	 * 
-	 * @param x  the cuboid's center x-coördinate
-	 * @param y  the cuboid's center y-coördinate
-	 * @param z  the cuboid's center z-coördinate
+	 * @param x  the cuboid's center x-coï¿½rdinate
+	 * @param y  the cuboid's center y-coï¿½rdinate
+	 * @param z  the cuboid's center z-coï¿½rdinate
 	 * @param w  the cuboid's width
 	 * @param h  the cuboid's height
 	 * @param d  the cuboid's depth
@@ -52,6 +53,9 @@ public interface IGeometry3D extends IGeometry, ICollideable3D, IBounded3D, Boun
 		return contains(new Cuboid(x, y, z, w, h, d));
 	}
 
+	
+	@Override
+	public abstract Bounds3D Bounds(AffineMap map);
 	
 	@Override
 	public default Bounds3D Bounds()

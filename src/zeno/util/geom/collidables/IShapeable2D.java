@@ -1,9 +1,7 @@
 package zeno.util.geom.collidables;
 
-import zeno.util.algebra.linear.vector.fixed.Vector2;
 import zeno.util.geom.ICollideable2D;
 import zeno.util.geom.transformables.IAdjustable2D;
-import zeno.util.geom.utilities.bounds.Bounds;
 import zeno.util.geom.utilities.bounds.Bounds2D;
 import zeno.util.geom.utilities.bounds.IBounded2D;
 
@@ -29,46 +27,6 @@ public interface IShapeable2D extends IAdjustable2D, IBounded2D, ICollideable2D,
 	@Override
 	public default Bounds2D Bounds()
 	{
-		Bounds bounds = IShapeable.super.Bounds();
-		return new Bounds2D()
-		{
-			@Override
-			public Vector2 Minimum()
-			{
-				return (Vector2) bounds.Minimum();
-			}
-			
-			@Override
-			public Vector2 Maximum()
-			{
-				return (Vector2) bounds.Maximum();
-			}
-			
-			
-			@Override
-			public Vector2 Center()
-			{
-				return (Vector2) bounds.Center();
-			}
-			
-			@Override
-			public Vector2 Size()
-			{
-				return (Vector2) bounds.Size();
-			}
-			
-			
-			@Override
-			public float Diameter()
-			{
-				return bounds.Diameter();
-			}
-			
-			@Override
-			public float Radius()
-			{
-				return bounds.Radius();
-			}
-		};
+		return Shape().Bounds(Transform());
 	}
 }

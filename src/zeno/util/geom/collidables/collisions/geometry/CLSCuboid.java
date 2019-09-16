@@ -9,12 +9,11 @@ import zeno.util.geom.algorithms.LineClipper;
 import zeno.util.geom.collidables.IGeometry;
 import zeno.util.geom.collidables.affine.Point;
 import zeno.util.geom.collidables.affine.lines.Line;
-import zeno.util.geom.collidables.affine.spaces.TrivialASpace;
 import zeno.util.geom.collidables.collisions.CLSGeometry;
 import zeno.util.geom.collidables.geometry.generic.ICuboid;
 import zeno.util.geom.collidables.geometry.generic.IEllipsoid;
 import zeno.util.geom.collidables.geometry.generic.ISegment;
-import zeno.util.geom.utilities.Generator;
+import zeno.util.geom.utilities.Geometries;
 import zeno.util.tools.Floats;
 import zeno.util.tools.Integers;
 
@@ -52,14 +51,14 @@ public class CLSCuboid extends CLSGeometry
 	{
 		ICuboid c = Source();
 		
-		
+		float m = x.Mass();
 		for(int i = 0; i < c.Dimension(); i++)
 		{
 			float xi = x.get(i);
 			float si = c.Size().get(i);
 			float pi = c.Center().get(i);
 			
-			if(si < 2 * Floats.abs(xi - pi))
+			if(si * Floats.abs(m) < 2 * Floats.abs(xi - m * pi))
 			{
 				return false;
 			}
@@ -191,10 +190,10 @@ public class CLSCuboid extends CLSGeometry
 			Vector p1 = clip.get(0);
 			Vector p2 = clip.get(1);
 			
-			return Generator.segment(p1, p2);
+			return Geometries.segment(p1, p2);
 		}
 		
-		return new TrivialASpace();
+		return Geometries.VOID;
 	}
 	
 	private ICollidable intersect(ICuboid d)
@@ -214,7 +213,7 @@ public class CLSCuboid extends CLSGeometry
 			
 			if(si + ti < 2 * Floats.abs(pi - qi))
 			{
-				return new TrivialASpace();
+				return Geometries.VOID;
 			}
 			
 			m.set(Floats.min(pi + si / 2, qi + ti / 2), i);
@@ -222,8 +221,8 @@ public class CLSCuboid extends CLSGeometry
 		}
 		
 		Vector s = m.minus(n);
-		Vector p = m.plus( n).times(0.5f);
-		return Generator.cuboid(p, s);
+		Vector p = m.plus(n).times(0.5f);
+		return Geometries.cuboid(p, s);
 	}
 	
 	private ICollidable intersect(Line l)
@@ -236,30 +235,31 @@ public class CLSCuboid extends CLSGeometry
 		Vector m2 = c.Maximum();
 		Vector v = l.Vector();
 			
+		float m = r.Mass();
 		float lmin = Floats.NEG_INFINITY;
 		float lmax = Floats.POS_INFINITY;
 		// For every axis-aligned dimension...
 		for(int i = 0; i < c.Dimension(); i++)
 		{
-			float l1 = m1.get(i) - r.get(i);
-			float l2 = m2.get(i) - r.get(i);
+			float l1 = m * m1.get(i) - r.get(i);
+			float l2 = m * m2.get(i) - r.get(i);
 		
 			// Compute the minimum and maximum lambda.
-			lmin = Floats.max(lmin, l1 / v.get(i));
-			lmax = Floats.min(lmin, l2 / v.get(i));
+			lmin = Floats.max(lmin, l1 / (m * v.get(i)));
+			lmax = Floats.min(lmax, l2 / (m * v.get(i)));
 			
 			// If the halfspaces don't intersect...
 			if(lmax < lmin)
 			{
 				// The intersection is empty.
-				return new TrivialASpace();
+				return Geometries.VOID;
 			}
 		}
 		
 		// Otherwise, compute the intersecting segment.
-		Point p1 = r.plus(v.times(lmin));
-		Point p2 = r.plus(v.times(lmax));
-		return Generator.segment(p1, p2);
+		Vector p1 = r.plus(v.times(lmin)).asVector();
+		Vector p2 = r.plus(v.times(lmax)).asVector();
+		return Geometries.segment(p1, p2);
 	}
 	
 	
@@ -302,17 +302,18 @@ public class CLSCuboid extends CLSGeometry
 		Vector m2 = c.Maximum();
 		Vector v = l.Vector();
 		
+		float m = r.Mass();
 		float lmin = Floats.NEG_INFINITY;
 		float lmax = Floats.POS_INFINITY;
 		// For every axis-aligned dimension...
 		for(int i = 0; i < c.Dimension(); i++)
 		{
 			// Compute the minimum and maximum lambda.
-			float l1 = m1.get(i) - r.get(i);
-			float l2 = m2.get(i) - r.get(i);
+			float l1 = m * m1.get(i) - r.get(i);
+			float l2 = m * m2.get(i) - r.get(i);
 			
-			lmin = Floats.max(lmin, l1 / v.get(i));
-			lmax = Floats.min(lmin, l2 / v.get(i));
+			lmin = Floats.max(lmin, l1 / (m * v.get(i)));
+			lmax = Floats.min(lmax, l2 / (m * v.get(i)));
 			// If the halfspaces don't intersect...
 			if(lmax < lmin)
 			{

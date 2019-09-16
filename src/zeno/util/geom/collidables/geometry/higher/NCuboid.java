@@ -2,7 +2,10 @@ package zeno.util.geom.collidables.geometry.higher;
 
 import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.geom.collidables.geometry.Geometry;
+import zeno.util.geom.collidables.geometry.bounds.BNDCuboid;
 import zeno.util.geom.collidables.geometry.generic.ICuboid;
+import zeno.util.geom.transforms.AffineMap;
+import zeno.util.geom.utilities.bounds.Bounds;
 
 /**
  * The {@code NCuboid} class defines an n-dimensional rectangular shape.
@@ -54,6 +57,12 @@ public class NCuboid extends Geometry implements ICuboid
 		super(dim);
 	}
 	
+	
+	@Override
+	public Bounds Bounds(AffineMap map)
+	{
+		return new BNDCuboid(this, map);
+	}
 		
 	@Override
 	public boolean equals(Object o)

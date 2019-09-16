@@ -3,6 +3,8 @@ package zeno.util.geom.collidables.geometry.spatial;
 import zeno.util.algebra.linear.vector.fixed.Vector3;
 import zeno.util.geom.collidables.IGeometry3D;
 import zeno.util.geom.collidables.geometry.higher.NSegment;
+import zeno.util.geom.transforms.AffineMap;
+import zeno.util.geom.utilities.bounds.Bounds3D;
 import zeno.util.tools.Floats;
 
 /**
@@ -21,12 +23,12 @@ public class Segment3D extends NSegment implements IGeometry3D
 	/**
 	 * Creates a new {@code Segment3D}.
 	 * 
-	 * @param x1  the line's first x-coördinate
-	 * @param y1  the line's first y-coördinate
-	 * @param z1  the line's first z-coördinate
-	 * @param x2  the line's second x-coördinate
-	 * @param y2  the line's second y-coördinate
-	 * @param z2  the line's second z-coördinate
+	 * @param x1  the line's first x-coï¿½rdinate
+	 * @param y1  the line's first y-coï¿½rdinate
+	 * @param z1  the line's first z-coï¿½rdinate
+	 * @param x2  the line's second x-coï¿½rdinate
+	 * @param y2  the line's second y-coï¿½rdinate
+	 * @param z2  the line's second z-coï¿½rdinate
 	 */
 	public Segment3D(float x1, float y1, float z1, float x2, float y2, float z2)
 	{
@@ -57,65 +59,71 @@ public class Segment3D extends NSegment implements IGeometry3D
 	
 		
 	/**
-	 * Returns the first x-coördinate of the {@code Segment3D}.
+	 * Returns the first x-coï¿½rdinate of the {@code Segment3D}.
 	 * 
-	 * @return  the line's first x-coördinate
+	 * @return  the line's first x-coï¿½rdinate
 	 */
 	public float X1()
 	{
-		return P1().VMatrix().get(0);
+		return P1().get(0);
 	}
 	
 	/**
-	 * Returns the first y-coördinate of the {@code Segment3D}.
+	 * Returns the first y-coï¿½rdinate of the {@code Segment3D}.
 	 * 
-	 * @return  the line's first y-coördinate
+	 * @return  the line's first y-coï¿½rdinate
 	 */
 	public float Y1()
 	{
-		return P1().VMatrix().get(1);
+		return P1().get(1);
 	}
 	
 	/**
-	 * Returns the first z-coördinate of the {@code Segment3D}.
+	 * Returns the first z-coï¿½rdinate of the {@code Segment3D}.
 	 * 
-	 * @return  the line's first z-coördinate
+	 * @return  the line's first z-coï¿½rdinate
 	 */
 	public float Z1()
 	{
-		return P1().VMatrix().get(2);
+		return P1().get(2);
 	}
 	
 	/**
-	 * Returns the second x-coördinate of the {@code Segment3D}.
+	 * Returns the second x-coï¿½rdinate of the {@code Segment3D}.
 	 * 
-	 * @return  the line's second x-coördinate
+	 * @return  the line's second x-coï¿½rdinate
 	 */
 	public float X2()
 	{
-		return P2().VMatrix().get(0);
+		return P2().get(0);
 	}
 	
 	/**
-	 * Returns the second y-coördinate of the {@code Segment3D}.
+	 * Returns the second y-coï¿½rdinate of the {@code Segment3D}.
 	 * 
-	 * @return  the line's second y-coördinate
+	 * @return  the line's second y-coï¿½rdinate
 	 */
 	public float Y2()
 	{
-		return P2().VMatrix().get(1);
+		return P2().get(1);
 	}
 	
 	/**
-	 * Returns the second z-coördinate of the {@code Segment3D}.
+	 * Returns the second z-coï¿½rdinate of the {@code Segment3D}.
 	 * 
-	 * @return  the line's second z-coördinate
+	 * @return  the line's second z-coï¿½rdinate
 	 */
 	public float Z2()
 	{
-		return P2().VMatrix().get(2);
+		return P2().get(2);
 	}
 
+	
+	@Override
+	public Bounds3D Bounds(AffineMap map)
+	{
+		return (Bounds3D) super.Bounds(map);
+	}
 	
 	// Obligatory Bounds overrides.
 	

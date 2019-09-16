@@ -4,7 +4,8 @@ import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.geom.ICollidable;
 import zeno.util.geom.collidables.ICollision;
 import zeno.util.geom.collidables.affine.Point;
-import zeno.util.geom.collidables.affine.spaces.TrivialASpace;
+import zeno.util.geom.utilities.Geometries;
+import zeno.util.tools.Floats;
 
 /**
  * The {@code CLSPoint} class defines collision for a {@link Point}.
@@ -42,7 +43,7 @@ public class CLSPoint implements ICollision
 			return p;
 		}
 		
-		return new TrivialASpace();
+		return Geometries.VOID;
 	}
 					
 	@Override
@@ -50,12 +51,11 @@ public class CLSPoint implements ICollision
 	{
 		if(c instanceof Point)
 		{
-			Point q = (Point)  c;
+			Vector vp = p.asVector();
+			Vector vc = ((Point) c).asVector();	
+			float norm = vp.minus(vc).normSqr();
 			
-			Vector v1 = p.VMatrix();
-			Vector v2 = q.VMatrix();
-
-			return v1.equals(v2, 2 * (ulps + 1));
+			return Floats.isZero(norm, (4 + vp.Size()) / 2 * ulps);
 		}
 
 		return null;

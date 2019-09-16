@@ -3,7 +3,10 @@ package zeno.util.geom.collidables.geometry.planar;
 import zeno.util.algebra.linear.vector.fixed.Vector2;
 import zeno.util.calc.variables.functions.Polynomial;
 import zeno.util.geom.collidables.geometry.Geometry2D;
+import zeno.util.geom.collidables.geometry.bounds.BNDEllipsoid2D;
 import zeno.util.geom.collidables.geometry.generic.IEllipsoid;
+import zeno.util.geom.transforms.AffineMap;
+import zeno.util.geom.utilities.bounds.Bounds2D;
 import zeno.util.tools.Floats;
 
 /**
@@ -18,12 +21,12 @@ import zeno.util.tools.Floats;
  * @see IEllipsoid
  */
 public class Ellipse extends Geometry2D implements IEllipsoid
-{
+{	
 	/**
 	 * Creates a new {@code Ellipse}.
 	 * 
-	 * @param x  an ellipse center x-coördinate
-	 * @param y  an ellipse center y-coördinate
+	 * @param x  an ellipse center x-coï¿½rdinate
+	 * @param y  an ellipse center y-coï¿½rdinate
 	 * @param w  an ellipse width
 	 * @param h  an ellipse height
 	 */
@@ -166,5 +169,11 @@ public class Ellipse extends Geometry2D implements IEllipsoid
 			new Vector2(tangentx[0], tangenty[0]),
 			new Vector2(tangentx[1], tangenty[1]),
 		};
+	}
+	
+	@Override
+	public Bounds2D Bounds(AffineMap map)
+	{
+		return new BNDEllipsoid2D(this, map);
 	}
 }

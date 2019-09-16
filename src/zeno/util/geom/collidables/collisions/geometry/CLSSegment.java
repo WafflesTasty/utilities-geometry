@@ -4,13 +4,12 @@ import zeno.util.algebra.linear.vector.VSpace;
 import zeno.util.algebra.linear.vector.VSpaces;
 import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.geom.ICollidable;
-import zeno.util.geom.collidables.Affine;
 import zeno.util.geom.collidables.IGeometry;
+import zeno.util.geom.collidables.affine.ASpace;
 import zeno.util.geom.collidables.affine.Point;
-import zeno.util.geom.collidables.affine.spaces.TrivialASpace;
 import zeno.util.geom.collidables.collisions.CLSGeometry;
 import zeno.util.geom.collidables.geometry.generic.ISegment;
-import zeno.util.geom.utilities.Generator;
+import zeno.util.geom.utilities.Geometries;
 import zeno.util.tools.Floats;
 
 /**
@@ -46,8 +45,8 @@ public class CLSSegment extends CLSGeometry
 		
 		
 		// Calculate the dot products.
+		Vector xp = s.P2().minus(x.asVector());
 		Vector qp = s.P2().minus(s.P1());
-		Vector xp = x.minus(s.P2());
 		
 		float d1 = qp.dot(xp);
 		float d2 = qp.dot(qp);
@@ -123,9 +122,9 @@ public class CLSSegment extends CLSGeometry
 		}
 		
 		// Eliminate affine spaces.
-		if(c instanceof Affine.Space)
+		if(c instanceof ASpace)
 		{
-			return intersects((Affine.Space) c);
+			return intersects((ASpace) c);
 		}
 		
 		// Eliminate line segments.
@@ -148,9 +147,9 @@ public class CLSSegment extends CLSGeometry
 		}
 
 		// Eliminate affine spaces.
-		if(c instanceof Affine.Space)
+		if(c instanceof ASpace)
 		{
-			return intersect((Affine.Space) c);
+			return intersect((ASpace) c);
 		}
 		
 		// Eliminate line segments.
@@ -163,14 +162,14 @@ public class CLSSegment extends CLSGeometry
 	}
 
 				
-	private ICollidable intersect(Affine.Space a)
+	private ICollidable intersect(ASpace a)
 	{
 		ISegment s = Source();
 		
 		
 		VSpace dir = a.Direction();
 		Vector qp = s.P2().minus(s.P1());
-		Vector pr = s.P1().minus(a.Origin());
+		Vector pr = s.P1().minus(a.Origin().asVector());
 		// Create the affine intersection space.
 		VSpace sum = VSpaces.create(dir.Span(), qp);
 		Vector crd = sum.coordinates(pr);
@@ -179,7 +178,7 @@ public class CLSSegment extends CLSGeometry
 		if(crd == null)
 		{
 			// The intersection is empty.
-			return new TrivialASpace();
+			return Geometries.VOID;
 		}
 		
 		// If the solution is not unique...
@@ -194,11 +193,12 @@ public class CLSSegment extends CLSGeometry
 		if(0 <= lbd && lbd <= 1)
 		{
 			// Return the intersection point.
-			return s.P1().plus(qp.times(lbd));
+			Vector v = s.P1().plus(qp.times(lbd));
+			return new Point(v, 1f);
 		}
 		
 		// Otherwise, the intersection is empty.
-		return new TrivialASpace();
+		return Geometries.VOID;
 	}
 	
 	private ICollidable intersect(ISegment t)
@@ -210,6 +210,7 @@ public class CLSSegment extends CLSGeometry
 		Vector sr = t.P2().minus(t.P1());
 		Vector pr = s.P1().minus(t.P1());
 		Vector ps = s.P1().minus(t.P2());
+		
 		// Create the affine intersection space.
 		VSpace sum = VSpaces.create(qp, sr);
 		
@@ -218,7 +219,7 @@ public class CLSSegment extends CLSGeometry
 		if(crd == null)
 		{
 			// The intersection is empty.
-			return new TrivialASpace();
+			return Geometries.VOID;
 		}
 				
 		// If the solution is unique...
@@ -231,11 +232,12 @@ public class CLSSegment extends CLSGeometry
 			if(0 <= lbd1 && lbd1 <= 1 && 0 <= lbd2 && lbd2 <= 1)
 			{
 				// Return the intersection point.
-				return s.P1().plus(qp.times(lbd1));
+				Vector v = s.P1().plus(qp.times(lbd1));
+				return new Point(v, 1f);
 			}
 			
 			// Otherwise, the intersection is empty.
-			return new TrivialASpace();
+			return Geometries.VOID;
 		}
 		
 		
@@ -250,32 +252,32 @@ public class CLSSegment extends CLSGeometry
 		if(lmin <= lmax)
 		{
 			// Return the intersection segment.
-			Point p1 = s.P1().plus(qp.times(lmin));
-			Point p2 = s.P1().plus(qp.times(lmax));
-			return Generator.segment(p1, p2);
+			Vector p1 = s.P1().plus(qp.times(lmin));
+			Vector p2 = s.P1().plus(qp.times(lmax));
+			return Geometries.segment(p1, p2);
 		}
 		
 		// Otherwise, the intersection is empty.		
-		return new TrivialASpace();
+		return Geometries.VOID;
 	}
 	
 	
-	private boolean intersects(Affine.Space a)
+	private boolean intersects(ASpace a)
 	{
 		ISegment s = Source();
 		
 		
 		VSpace dir = a.Direction();
-		Vector pq = s.P2().minus(s.P1());
-		Vector rp = s.P1().minus(a.Origin());
+		Vector qp = s.P2().minus(s.P1());
+		Vector pr = s.P1().minus(a.Origin().asVector());
 		// Create the affine intersection space.
-		VSpace sum = VSpaces.create(dir.Span(), pq);
+		VSpace sum = VSpaces.create(dir.Span(), qp);
 		// If the linear system has a solution...
-		Vector coords = sum.coordinates(rp);
+		Vector coords = sum.coordinates(pr);
 		if(coords != null)
 		{
 			// And the solution is not unique...
-			if(dir.contains(pq))
+			if(dir.contains(qp))
 			{
 				// The entire segment is contained.
 				return true;
@@ -299,6 +301,7 @@ public class CLSSegment extends CLSGeometry
 		Vector sr = t.P2().minus(t.P1());
 		Vector pr = s.P1().minus(t.P1());
 		Vector ps = s.P1().minus(t.P2());
+
 		// Create the affine intersection space.
 		VSpace sum = VSpaces.create(qp, sr);
 		
@@ -347,8 +350,8 @@ public class CLSSegment extends CLSGeometry
 		
 		Vector pq = s.P1().minus(s.P2());
 		Vector sr = t.P2().minus(t.P1());
-		Vector ps = s.P1().minus(t.P1());
-		Vector pr = s.P1().minus(t.P2());
+		Vector pr = s.P1().minus(t.P1());
+		Vector ps = s.P1().minus(t.P2());
 		
 		VSpace sum = VSpaces.create(pq, sr);
 		// If the segments are not collinear...

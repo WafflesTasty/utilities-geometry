@@ -2,7 +2,10 @@ package zeno.util.geom.collidables.geometry.higher;
 
 import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.geom.collidables.geometry.Geometry;
+import zeno.util.geom.collidables.geometry.bounds.BNDEllipsoid;
 import zeno.util.geom.collidables.geometry.generic.IEllipsoid;
+import zeno.util.geom.transforms.AffineMap;
+import zeno.util.geom.utilities.bounds.Bounds;
 
 /**
  * The {@code NEllipsoid} class defines an n-dimensional ellipsoid shape.
@@ -54,6 +57,12 @@ public class NEllipsoid extends Geometry implements IEllipsoid
 		super(dim);
 	}
 	
+	
+	@Override
+	public Bounds Bounds(AffineMap map)
+	{
+		return new BNDEllipsoid(this, map);
+	}
 	
 	@Override
 	public boolean equals(Object o)

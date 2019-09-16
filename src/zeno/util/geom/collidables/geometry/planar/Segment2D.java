@@ -3,6 +3,8 @@ package zeno.util.geom.collidables.geometry.planar;
 import zeno.util.algebra.linear.vector.fixed.Vector2;
 import zeno.util.geom.collidables.IGeometry2D;
 import zeno.util.geom.collidables.geometry.higher.NSegment;
+import zeno.util.geom.transforms.AffineMap;
+import zeno.util.geom.utilities.bounds.Bounds2D;
 import zeno.util.tools.Floats;
 
 /**
@@ -17,14 +19,14 @@ import zeno.util.tools.Floats;
  * @see NSegment
  */
 public class Segment2D extends NSegment implements IGeometry2D
-{		
+{			
 	/**
 	 * Creates a new {@code Segment2D}.
 	 * 
-	 * @param x1  the line's first x-coördinate
-	 * @param y1  the line's first y-coördinate
-	 * @param x2  the line's second x-coördinate
-	 * @param y2  the line's second y-coördinate
+	 * @param x1  the line's first x-coï¿½rdinate
+	 * @param y1  the line's first y-coï¿½rdinate
+	 * @param x2  the line's second x-coï¿½rdinate
+	 * @param y2  the line's second y-coï¿½rdinate
 	 */
 	public Segment2D(float x1, float y1, float x2, float y2)
 	{
@@ -55,45 +57,51 @@ public class Segment2D extends NSegment implements IGeometry2D
 	
 	
 	/**
-	 * Returns the first x-coördinate of the {@code Segment2D}.
+	 * Returns the first x-coï¿½rdinate of the {@code Segment2D}.
 	 * 
-	 * @return  the line's first x-coördinate
+	 * @return  the line's first x-coï¿½rdinate
 	 */
 	public float X1()
 	{
-		return P1().VMatrix().get(0);
+		return P1().get(0);
 	}
 	
 	/**
-	 * Returns the first y-coördinate of the {@code Segment2D}.
+	 * Returns the first y-coï¿½rdinate of the {@code Segment2D}.
 	 * 
-	 * @return  the line's first y-coördinate
+	 * @return  the line's first y-coï¿½rdinate
 	 */
 	public float Y1()
 	{
-		return P1().VMatrix().get(1);
+		return P1().get(1);
 	}
 	
 	/**
-	 * Returns the second x-coördinate of the {@code Segment2D}.
+	 * Returns the second x-coï¿½rdinate of the {@code Segment2D}.
 	 * 
-	 * @return  the line's second x-coördinate
+	 * @return  the line's second x-coï¿½rdinate
 	 */
 	public float X2()
 	{
-		return P2().VMatrix().get(0);
+		return P2().get(0);
 	}
 	
 	/**
-	 * Returns the second y-coördinate of the {@code Segment2D}.
+	 * Returns the second y-coï¿½rdinate of the {@code Segment2D}.
 	 * 
-	 * @return  the line's second y-coördinate
+	 * @return  the line's second y-coï¿½rdinate
 	 */
 	public float Y2()
 	{
-		return P2().VMatrix().get(1);
+		return P2().get(1);
 	}
 
+	
+	@Override
+	public Bounds2D Bounds(AffineMap map)
+	{
+		return (Bounds2D) super.Bounds(map);
+	}
 	
 	// Obligatory Bounds overrides.
 	

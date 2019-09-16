@@ -1,6 +1,7 @@
 package zeno.util.geom.collidables;
 
 import zeno.util.geom.ICollidable;
+import zeno.util.geom.utilities.Geometries;
 
 /**
  * The {@code ICollision} interface defines collision for a {@code ICollidable} subtype.
@@ -83,7 +84,7 @@ public interface ICollision
 		ICollidable isect = intersect(c);
 		if(isect != null)
 		{
-			return !isect.isEmpty();
+			return !isect.equals(Geometries.VOID);
 		}
 		
 		return null;

@@ -19,8 +19,8 @@ public interface IMovable2D extends IMovable
 	/**
 	 * Moves the {@code IMovable2D} for a specified distance.
 	 * 
-	 * @param x  a distance x-coördinate
-	 * @param y  a distance y-coördinate
+	 * @param x  a distance x-coï¿½rdinate
+	 * @param y  a distance y-coï¿½rdinate
 	 */
 	public default void moveFor(float x, float y)
 	{
@@ -34,8 +34,8 @@ public interface IMovable2D extends IMovable
 	/**
 	 * Moves the {@code IMovable2D} to a new origin vector.
 	 * 
-	 * @param x  a new x-coördinate
-	 * @param y  a new y-coördinate
+	 * @param x  a new x-coï¿½rdinate
+	 * @param y  a new y-coï¿½rdinate
 	 */
 	public default void moveTo(float x, float y)
 	{
@@ -47,9 +47,9 @@ public interface IMovable2D extends IMovable
 	public abstract Vector2 Origin();
 
 	/**
-	 * Returns the x-coördinate of the {@code IMovable2D}.
+	 * Returns the x-coï¿½rdinate of the {@code IMovable2D}.
 	 * 
-	 * @return  an x-coördinate
+	 * @return  an x-coï¿½rdinate
 	 */
 	public default float X()
 	{
@@ -57,9 +57,9 @@ public interface IMovable2D extends IMovable
 	}
 
 	/**
-	 * Returns the y-coördinate of the {@code IMovable2D}.
+	 * Returns the y-coï¿½rdinate of the {@code IMovable2D}.
 	 * 
-	 * @return  an y-coördinate
+	 * @return  an y-coï¿½rdinate
 	 */
 	public default float Y()
 	{

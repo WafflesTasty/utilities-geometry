@@ -2,7 +2,10 @@ package zeno.util.geom.collidables.geometry.spatial;
 
 import zeno.util.algebra.linear.vector.fixed.Vector3;
 import zeno.util.geom.collidables.geometry.Geometry3D;
+import zeno.util.geom.collidables.geometry.bounds.BNDEllipsoid3D;
 import zeno.util.geom.collidables.geometry.generic.IEllipsoid;
+import zeno.util.geom.transforms.AffineMap;
+import zeno.util.geom.utilities.bounds.Bounds3D;
 
 /**
  * The {@code Ellipsoid} class defines a three-dimensional ellipsoid shape.
@@ -16,13 +19,13 @@ import zeno.util.geom.collidables.geometry.generic.IEllipsoid;
  * @see Geometry3D
  */
 public class Ellipsoid extends Geometry3D implements IEllipsoid
-{
+{	
 	/**
 	 * Creates a new {@code Ellipsoid}.
 	 * 
-	 * @param x  a ellipsoid center x-coördinate
-	 * @param y  a ellipsoid center y-coördinate
-	 * @param z  a ellipsoid center z-coördinate
+	 * @param x  a ellipsoid center x-coï¿½rdinate
+	 * @param y  a ellipsoid center y-coï¿½rdinate
+	 * @param z  a ellipsoid center z-coï¿½rdinate
 	 * @param w  a ellipsoid width
 	 * @param h  a ellipsoid height
 	 * @param d  a ellipsoid depth
@@ -77,5 +80,12 @@ public class Ellipsoid extends Geometry3D implements IEllipsoid
 	public Ellipsoid()
 	{
 		super();
+	}
+
+	
+	@Override
+	public Bounds3D Bounds(AffineMap map)
+	{
+		return new BNDEllipsoid3D(this, map);
 	}
 }

@@ -19,9 +19,9 @@ public interface IMovable3D extends IMovable
 	/**
 	 * Moves the {@code IMovable3D} for a specified distance.
 	 * 
-	 * @param x  a distance x-coördinate
-	 * @param y  a distance y-coördinate
-	 * @param z  a distance z-coördinate
+	 * @param x  a distance x-coï¿½rdinate
+	 * @param y  a distance y-coï¿½rdinate
+	 * @param z  a distance z-coï¿½rdinate
 	 */
 	public default void moveFor(float x, float y, float z)
 	{
@@ -36,9 +36,9 @@ public interface IMovable3D extends IMovable
 	/**
 	 * Moves the {@code IMovable3D} to a new origin vector.
 	 * 
-	 * @param x  a new x-coördinate
-	 * @param y  a new y-coördinate
-	 * @param z  a new z-coördinate
+	 * @param x  a new x-coï¿½rdinate
+	 * @param y  a new y-coï¿½rdinate
+	 * @param z  a new z-coï¿½rdinate
 	 */
 	public default void moveTo(float x, float y, float z)
 	{
@@ -50,9 +50,9 @@ public interface IMovable3D extends IMovable
 	public abstract Vector3 Origin();
 
 	/**
-	 * Returns the x-coördinate of the {@code IMovable3D}.
+	 * Returns the x-coï¿½rdinate of the {@code IMovable3D}.
 	 * 
-	 * @return  an x-coördinate
+	 * @return  an x-coï¿½rdinate
 	 */
 	public default float X()
 	{
@@ -60,9 +60,9 @@ public interface IMovable3D extends IMovable
 	}
 
 	/**
-	 * Returns the y-coördinate of the {@code IMovable3D}.
+	 * Returns the y-coï¿½rdinate of the {@code IMovable3D}.
 	 * 
-	 * @return  an y-coördinate
+	 * @return  an y-coï¿½rdinate
 	 */
 	public default float Y()
 	{
@@ -70,9 +70,9 @@ public interface IMovable3D extends IMovable
 	}
 	
 	/**
-	 * Returns the z-coördinate of the {@code IMovable3D}.
+	 * Returns the z-coï¿½rdinate of the {@code IMovable3D}.
 	 * 
-	 * @return  an z-coördinate
+	 * @return  an z-coï¿½rdinate
 	 */
 	public default float Z()
 	{
