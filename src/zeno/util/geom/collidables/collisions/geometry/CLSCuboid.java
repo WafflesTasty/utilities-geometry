@@ -5,7 +5,6 @@ import java.util.List;
 import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.algebra.linear.vector.Vectors;
 import zeno.util.geom.ICollidable;
-import zeno.util.geom.algorithms.LineClipper;
 import zeno.util.geom.collidables.IGeometry;
 import zeno.util.geom.collidables.affine.Point;
 import zeno.util.geom.collidables.affine.lines.Line;
@@ -14,6 +13,7 @@ import zeno.util.geom.collidables.geometry.generic.ICuboid;
 import zeno.util.geom.collidables.geometry.generic.IEllipsoid;
 import zeno.util.geom.collidables.geometry.generic.ISegment;
 import zeno.util.geom.utilities.Geometries;
+import zeno.util.geom.utilities.algorithms.LineClipper;
 import zeno.util.tools.Floats;
 import zeno.util.tools.Integers;
 

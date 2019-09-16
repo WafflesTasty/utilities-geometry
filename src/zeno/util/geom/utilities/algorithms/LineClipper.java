@@ -1,4 +1,4 @@
-package zeno.util.geom.algorithms;
+package zeno.util.geom.utilities.algorithms;
 
 import java.util.ArrayList;
 import java.util.List;

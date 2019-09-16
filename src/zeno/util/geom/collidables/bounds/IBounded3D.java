@@ -1,4 +1,4 @@
-package zeno.util.geom.utilities.bounds;
+package zeno.util.geom.collidables.bounds;
 
 /**
  * The {@code IBounded3D} interface defines an object bound in three dimensions.

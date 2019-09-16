@@ -3,10 +3,10 @@ package zeno.util.geom.collidables.geometry.bounds;
 import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.geom.ITransformation;
 import zeno.util.geom.collidables.affine.Point;
+import zeno.util.geom.collidables.bounds.Bounds;
 import zeno.util.geom.collidables.geometry.generic.ICuboid;
 import zeno.util.geom.transforms.AffineMap;
 import zeno.util.geom.utilities.Transforms;
-import zeno.util.geom.utilities.bounds.Bounds;
 
 /**
  * The {@code BNDCuboid} class defines the bounds of a transformed {@link NCuboid}.

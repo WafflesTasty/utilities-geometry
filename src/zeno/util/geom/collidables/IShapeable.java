@@ -1,10 +1,10 @@
 package zeno.util.geom.collidables;
 
 import zeno.util.geom.ICollidable;
+import zeno.util.geom.collidables.bounds.Bounds;
+import zeno.util.geom.collidables.bounds.IBounded;
 import zeno.util.geom.collidables.collisions.CLSShaped;
 import zeno.util.geom.transformables.IAdjustable;
-import zeno.util.geom.utilities.bounds.IBounded;
-import zeno.util.geom.utilities.bounds.Bounds;
 
 /**
  * The {@code IShapeable} interface defines an object that has a geometric shape.

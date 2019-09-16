@@ -2,11 +2,11 @@ package zeno.util.geom.collidables.geometry.planar;
 
 import zeno.util.algebra.linear.vector.fixed.Vector2;
 import zeno.util.calc.variables.functions.Polynomial;
+import zeno.util.geom.collidables.bounds.Bounds2D;
 import zeno.util.geom.collidables.geometry.Geometry2D;
 import zeno.util.geom.collidables.geometry.bounds.BNDEllipsoid2D;
 import zeno.util.geom.collidables.geometry.generic.IEllipsoid;
 import zeno.util.geom.transforms.AffineMap;
-import zeno.util.geom.utilities.bounds.Bounds2D;
 import zeno.util.tools.Floats;
 
 /**

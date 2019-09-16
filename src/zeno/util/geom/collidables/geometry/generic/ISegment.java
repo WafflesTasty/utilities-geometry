@@ -8,10 +8,10 @@ import zeno.util.geom.collidables.ICollision;
 import zeno.util.geom.collidables.IGeometry;
 import zeno.util.geom.collidables.affine.Point;
 import zeno.util.geom.collidables.affine.Point.Type;
+import zeno.util.geom.collidables.bounds.Bounds;
 import zeno.util.geom.collidables.collisions.geometry.CLSSegment;
 import zeno.util.geom.transforms.AffineMap;
 import zeno.util.geom.utilities.Geometries;
-import zeno.util.geom.utilities.bounds.Bounds;
 
 /**
  * The {@code ISegment} interface defines the collision operations for line segment geometry.

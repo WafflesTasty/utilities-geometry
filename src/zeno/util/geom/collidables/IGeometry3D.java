@@ -1,10 +1,10 @@
 package zeno.util.geom.collidables;
 
 import zeno.util.geom.ICollideable3D;
+import zeno.util.geom.collidables.bounds.Bounds3D;
+import zeno.util.geom.collidables.bounds.IBounded3D;
 import zeno.util.geom.collidables.geometry.spatial.Cuboid;
 import zeno.util.geom.transforms.AffineMap;
-import zeno.util.geom.utilities.bounds.Bounds3D;
-import zeno.util.geom.utilities.bounds.IBounded3D;
 
 /**
  * The {@code IGeometry3D} interface is the base for bounded three-dimensional shapes.

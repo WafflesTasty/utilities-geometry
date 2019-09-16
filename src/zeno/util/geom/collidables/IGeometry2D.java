@@ -1,10 +1,10 @@
 package zeno.util.geom.collidables;
 
 import zeno.util.geom.ICollideable2D;
+import zeno.util.geom.collidables.bounds.Bounds2D;
+import zeno.util.geom.collidables.bounds.IBounded2D;
 import zeno.util.geom.collidables.geometry.planar.Rectangle;
 import zeno.util.geom.transforms.AffineMap;
-import zeno.util.geom.utilities.bounds.Bounds2D;
-import zeno.util.geom.utilities.bounds.IBounded2D;
 
 /**
  * The {@code IGeometry2D} interface is the base for bounded two-dimensional shapes.

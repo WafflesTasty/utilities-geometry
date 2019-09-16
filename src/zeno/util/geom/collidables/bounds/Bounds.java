@@ -1,4 +1,4 @@
-package zeno.util.geom.utilities.bounds;
+package zeno.util.geom.collidables.bounds;
 
 import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.geom.collidables.geometry.generic.ICuboid;

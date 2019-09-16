@@ -1,9 +1,9 @@
 package zeno.util.geom.collidables;
 
 import zeno.util.geom.ICollidable;
+import zeno.util.geom.collidables.bounds.Bounds;
+import zeno.util.geom.collidables.bounds.IBounded;
 import zeno.util.geom.transforms.AffineMap;
-import zeno.util.geom.utilities.bounds.IBounded;
-import zeno.util.geom.utilities.bounds.Bounds;
 
 /**
  * The {@code IGeometry} interface is the base for bounded n-dimensional shapes.

@@ -1,4 +1,4 @@
-package zeno.util.geom.utilities.bounds;
+package zeno.util.geom.collidables.bounds;
 
 import zeno.util.algebra.linear.vector.fixed.Vector2;
 import zeno.util.geom.collidables.geometry.planar.Circle;

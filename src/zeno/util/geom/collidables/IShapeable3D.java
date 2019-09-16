@@ -1,9 +1,9 @@
 package zeno.util.geom.collidables;
 
 import zeno.util.geom.ICollideable3D;
+import zeno.util.geom.collidables.bounds.Bounds3D;
+import zeno.util.geom.collidables.bounds.IBounded3D;
 import zeno.util.geom.transformables.IAdjustable3D;
-import zeno.util.geom.utilities.bounds.Bounds3D;
-import zeno.util.geom.utilities.bounds.IBounded3D;
 
 /**
  * The {@code IShapeable3D} interface defines an object that has a 3D geometric shape.

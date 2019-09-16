@@ -1,7 +1,7 @@
 package zeno.util.geom.utilities.cardinal;
 
 import zeno.util.algebra.linear.vector.fixed.Vector3;
-import zeno.util.geom.utilities.bounds.IBounded3D;
+import zeno.util.geom.collidables.bounds.IBounded3D;
 
 /**
  * The {@code Cardinal3D} class defines all cardinal directions in three dimensions.

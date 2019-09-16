@@ -1,9 +1,9 @@
 package zeno.util.geom.collidables;
 
 import zeno.util.geom.ICollideable2D;
+import zeno.util.geom.collidables.bounds.Bounds2D;
+import zeno.util.geom.collidables.bounds.IBounded2D;
 import zeno.util.geom.transformables.IAdjustable2D;
-import zeno.util.geom.utilities.bounds.Bounds2D;
-import zeno.util.geom.utilities.bounds.IBounded2D;
 
 /**
  * The {@code IShapeable2D} interface defines an object that has a 2D geometric shape.

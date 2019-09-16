@@ -1,9 +1,9 @@
 package zeno.util.geom.collidables.geometry.bounds;
 
 import zeno.util.algebra.linear.vector.fixed.Vector3;
+import zeno.util.geom.collidables.bounds.Bounds3D;
 import zeno.util.geom.collidables.geometry.spatial.Ellipsoid;
 import zeno.util.geom.transforms.AffineMap;
-import zeno.util.geom.utilities.bounds.Bounds3D;
 
 /**
  * The {@code BNDEllipsoid2D} class defines the bounds of a transformed {@link Ellipsoid}.

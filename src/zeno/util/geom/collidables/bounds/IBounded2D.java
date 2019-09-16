@@ -1,4 +1,4 @@
-package zeno.util.geom.utilities.bounds;
+package zeno.util.geom.collidables.bounds;
 
 /**
  * The {@code IBounded2D} interface defines an object bound in two dimensions.
