@@ -109,7 +109,7 @@ public class Bresenham implements Messenger, Iterator<Vector>
 
 	/**
 	 * Generates a new set of points.
-	 * <br> The value list contains the coï¿½rdinates
+	 * <br> The value list contains the coördinates
 	 * of the first and the second point, and should
 	 * therefore contain an even number of values.
 	 * 

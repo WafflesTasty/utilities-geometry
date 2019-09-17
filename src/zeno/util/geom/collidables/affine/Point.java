@@ -10,7 +10,7 @@ import zeno.util.geom.collidables.collisions.affine.CLSPoint;
 import zeno.util.tools.Floats;
 
 /**
- * The {@code Point} class defines a euclidian point in mass-point coördinates.
+ * The {@code Point} class defines a euclidian point in mass-point co�rdinates.
  * Its {@link #Mass()} defines the homogeneous coördinate of a point in the
  * corresponding affine space, if it is non-zero. If it is zero, the
  * object defines a vector in the corresponding vector space.

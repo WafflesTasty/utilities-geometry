@@ -279,7 +279,7 @@ public final class Geometries
 			m = Matrices.resize(m, coords + 1, cols);
 			for(int c = 0; c < cols; c++)
 			{
-				// Move the original homogenous coÃ¶rdinates.
+				// Move the original homogenous coördinates.
 				m.set(mat.get(rows - 1, c), coords, c);
 			}
 		}
@@ -288,7 +288,7 @@ public final class Geometries
 			m = Matrices.resize(m, coords + 1, coords + cols - rows + 1);
 			for(int c = 0; c < cols; c++)
 			{
-				// Move the original homogenous coÃ¶rdinates.
+				// Move the original homogenous coördinates.
 				m.set(mat.get(rows - 1, c), coords, c);
 				m.set(0f, rows - 1, c);
 			}
@@ -311,10 +311,10 @@ public final class Geometries
 	
 	/**
 	 * Defines an affine set that occupies a new coÃ¶rdinate count.
-	 * The amount of coÃ¶rdinates change but this does not increase dimension.
+	 * The amount of coördinates change but this does not increase dimension.
 	 * 
 	 * @param s  a set to occupy
-	 * @param coords  a coÃ¶rdinate count to use
+	 * @param coords  a coördinate count to use
 	 * @return  a new occupying affine set
 	 * 
 	 * 
@@ -329,7 +329,7 @@ public final class Geometries
 		Matrix m = Matrices.resize(mat, coords + 1, cols);
 		for(int c = 0; c < cols; c++)
 		{
-			// Move the original homogenous coÃ¶rdinates.
+			// Move the original homogenous coördinates.
 			m.set(mat.get(rows - 1, c), coords, c);
 			if(rows <= coords)
 			{
