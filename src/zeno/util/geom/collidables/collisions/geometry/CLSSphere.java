@@ -40,7 +40,7 @@ public class CLSSphere extends CLSGeometry
 	
 	@Override
 	protected boolean contains(Point x)
-	{
+	{		
 		ISphere s = Source();
 		
 
