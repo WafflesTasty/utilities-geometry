@@ -1,6 +1,5 @@
 package zeno.util.geom.transforms;
 
-import zeno.util.algebra.linear.matrix.Matrices;
 import zeno.util.algebra.linear.matrix.Matrix;
 import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.geom.ITransformation;
@@ -10,7 +9,6 @@ import zeno.util.geom.transforms.affine.Rotation;
 import zeno.util.geom.transforms.affine.Translation;
 import zeno.util.geom.transforms.projective.Projection;
 import zeno.util.tools.patterns.DirtyValue;
-import zeno.util.tools.patterns.properties.Copyable;
 
 /**
  * The {@code Camera} class defines a generalized pinhole camera.
@@ -26,11 +24,10 @@ import zeno.util.tools.patterns.properties.Copyable;
  * 
  * @see ITransformation
  * @see DirtyValue
- * @see Copyable
+ * @see Integer
  */
-public class Camera extends DirtyValue implements Copyable<Camera>, ITransformation
+public class Camera extends DirtyValue<Integer> implements ITransformation
 {
-	private int iDim, oDim;
 	private Rotation rotation;
 	private Projection projection;
 	private Translation translation;
@@ -50,11 +47,22 @@ public class Camera extends DirtyValue implements Copyable<Camera>, ITransformat
 		projection = new Projection(oDim, iDim);
 		translation = new Translation(iDim);
 		dilation = new Dilation(iDim);
-		
-		this.iDim = iDim;
-		this.oDim = oDim;
 	}
 
+	@Override
+	protected void update(Integer dim)
+	{
+		inv = dilation.Matrix(dim);
+		inv = projection.Inverse(dim).times(inv);
+		inv = rotation.Matrix(dim).times(inv);
+		inv = translation.Matrix(dim).times(inv);
+		
+		mat = translation.Inverse(dim);
+		mat = rotation.Inverse(dim).times(mat);
+		mat = projection.Matrix(dim).times(mat);
+		mat = dilation.Inverse(dim).times(mat);
+	}
+	
 	
 	/**
 	 * Changes the origin of the {@code Camera}.
@@ -80,8 +88,7 @@ public class Camera extends DirtyValue implements Copyable<Camera>, ITransformat
 	 */
 	public void setBasis(Matrix r)
 	{
-		Matrix m = Matrices.resize(r, iDim, iDim);
-		rotation = new Rotation(m);
+		rotation = new Rotation(r);
 		setChanged();
 	}
 	
@@ -95,7 +102,7 @@ public class Camera extends DirtyValue implements Copyable<Camera>, ITransformat
 	 */
 	public void setOculus(Vector o)
 	{
-		projection = new Projection(o, iDim, oDim);
+		projection = new Projection(o);
 		setChanged();
 	}
 	
@@ -167,73 +174,19 @@ public class Camera extends DirtyValue implements Copyable<Camera>, ITransformat
 	{
 		return dilation.Size().asVector();
 	}
-
-
-	@Override
-	protected void update()
-	{
-		inv = dilation.Matrix(oDim);
-		inv = projection.Inverse(oDim).times(inv);
-		inv = rotation.Matrix(oDim).times(inv);
-		inv = translation.Matrix(oDim).times(inv);
-		
-		mat = translation.Inverse(iDim);
-		mat = rotation.Inverse(iDim).times(mat);
-		mat = projection.Matrix(iDim).times(mat);
-		mat = dilation.Inverse(iDim).times(mat);
-	}
 	
-	void setIDimension(int dim)
-	{
-		if(iDim != dim)
-		{
-			iDim = dim;
-			setChanged();
-		}
-	}
-	
-	void setODimension(int dim)
-	{
-		if(oDim != dim)
-		{
-			oDim = dim;
-			setChanged();
-		}
-	}
-
 	
 	@Override
 	public Matrix Inverse(int dim)
 	{
-		setODimension(dim);
-		checkCache();
+		checkCache(dim);
 		return inv;
 	}
 	
 	@Override
 	public Matrix Matrix(int dim)
 	{
-		setIDimension(dim);
-		checkCache();
+		checkCache(dim);
 		return mat;
-	}
-	
-	@Override
-	public Camera instance()
-	{
-		return new Camera(iDim, oDim);
-	}
-	
-	@Override
-	public Camera copy()
-	{
-		Camera copy = Copyable.super.copy();
-		
-		copy.setOrigin(translation.Origin());
-		copy.setOculus(projection.Oculus());
-		copy.setBasis(rotation.Basis());
-		copy.setSize(dilation.Size());
-		
-		return copy;
 	}
 }

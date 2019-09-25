@@ -7,7 +7,6 @@ import zeno.util.geom.transforms.affine.Dilation;
 import zeno.util.geom.transforms.affine.Rotation;
 import zeno.util.geom.transforms.affine.Translation;
 import zeno.util.tools.patterns.DirtyValue;
-import zeno.util.tools.patterns.properties.Copyable;
 
 /**
  * The {@code AffineMap} defines a generalized affine map.
@@ -22,16 +21,15 @@ import zeno.util.tools.patterns.properties.Copyable;
  * 
  * @see ITransformation
  * @see DirtyValue
- * @see Copyable
+ * @see Integer
  */
-public class AffineMap extends DirtyValue implements Copyable<AffineMap>, ITransformation
+public class AffineMap extends DirtyValue<Integer> implements ITransformation
 {
 	private Dilation dilation;
 	private Translation translation;
 	private Rotation rotation;
 	
 	private Matrix mat, inv;
-	private int dimension;
 	
 	/**
 	 * Creates a new {@code AffineMap}.
@@ -43,8 +41,18 @@ public class AffineMap extends DirtyValue implements Copyable<AffineMap>, ITrans
 		dilation = new Dilation(dim);
 		translation = new Translation(dim);
 		rotation = new Rotation(dim);
-		
-		dimension = dim;
+	}
+
+	@Override
+	protected void update(Integer dim)
+	{
+		inv = translation.Inverse(dim);
+		inv = rotation.Inverse(dim).times(inv);
+		inv = dilation.Inverse(dim).times(inv);
+
+		mat = dilation.Matrix(dim);
+		mat = rotation.Matrix(dim).times(mat);
+		mat = translation.Matrix(dim).times(mat);
 	}
 	
 	
@@ -134,58 +142,16 @@ public class AffineMap extends DirtyValue implements Copyable<AffineMap>, ITrans
 
 	
 	@Override
-	protected void update()
-	{
-		inv = translation.Inverse(dimension);
-		inv = rotation.Inverse(dimension).times(inv);
-		inv = dilation.Inverse(dimension).times(inv);
-
-		mat = dilation.Matrix(dimension);
-		mat = rotation.Matrix(dimension).times(mat);
-		mat = translation.Matrix(dimension).times(mat);
-	}
-
-	void setDimension(int dim)
-	{
-		if(dimension != dim)
-		{
-			dimension = dim;
-			setChanged();
-		}
-	}
-	
-	
-	@Override
 	public Matrix Inverse(int dim)
 	{
-		setDimension(dim);
-		checkCache();
+		checkCache(dim);
 		return inv;
 	}
 	
 	@Override
 	public Matrix Matrix(int dim)
 	{
-		setDimension(dim);
-		checkCache();
+		checkCache(dim);
 		return mat;
-	}
-	
-	@Override
-	public AffineMap instance()
-	{
-		return new AffineMap(dimension);
-	}
-	
-	@Override
-	public AffineMap copy()
-	{
-		AffineMap copy = Copyable.super.copy();
-		
-		copy.rotation = new Rotation(rotation.Basis());
-		copy.translation = new Translation(translation.Origin());
-		copy.dilation = new Dilation(dilation.Size());
-		
-		return copy;
 	}
 }
