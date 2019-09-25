@@ -159,11 +159,7 @@ public class AffineMap extends DirtyValue implements Copyable<AffineMap>, ITrans
 	public Matrix Inverse(int dim)
 	{
 		setDimension(dim);
-		if(isDirty())
-		{
-			update();
-		}
-
+		checkCache();
 		return inv;
 	}
 	
@@ -171,11 +167,7 @@ public class AffineMap extends DirtyValue implements Copyable<AffineMap>, ITrans
 	public Matrix Matrix(int dim)
 	{
 		setDimension(dim);
-		if(isDirty())
-		{
-			update();
-		}
-
+		checkCache();
 		return mat;
 	}
 	

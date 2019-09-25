@@ -16,7 +16,7 @@ import zeno.util.tools.patterns.properties.Copyable;
  * The {@code Camera} class defines a generalized pinhole camera.
  * The implementation is provided as a homogeneous transformation. It projects
  * an m-dimensional vector space onto an oriented n-dimensional subspace,
- * then scales it down to normalized coördinates. These coördinates
+ * then scales it down to normalized coï¿½rdinates. These coï¿½rdinates
  * are assumed to fall inside the unit square of size 2.
  * 
  * @author Zeno
@@ -206,11 +206,7 @@ public class Camera extends DirtyValue implements Copyable<Camera>, ITransformat
 	public Matrix Inverse(int dim)
 	{
 		setODimension(dim);
-		if(isDirty())
-		{
-			update();
-		}
-
+		checkCache();
 		return inv;
 	}
 	
@@ -218,11 +214,7 @@ public class Camera extends DirtyValue implements Copyable<Camera>, ITransformat
 	public Matrix Matrix(int dim)
 	{
 		setIDimension(dim);
-		if(isDirty())
-		{
-			update();
-		}
-
+		checkCache();
 		return mat;
 	}
 	
