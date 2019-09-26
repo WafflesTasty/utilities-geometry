@@ -180,7 +180,7 @@ public interface IRotatable3D extends IRotatable
 	 */
 	public default Vector3 Forward()
 	{
-		return Basis().Column(1);
+		return Basis().Column(2);
 	}
 	
 	/**
@@ -206,6 +206,6 @@ public interface IRotatable3D extends IRotatable
 	 */
 	public default Vector3 Up()
 	{
-		return Basis().Column(2);
+		return Basis().Column(1);
 	}
 }
