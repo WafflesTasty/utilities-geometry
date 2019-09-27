@@ -10,7 +10,7 @@ import zeno.util.geom.collidables.collisions.affine.CLSPoint;
 import zeno.util.tools.Floats;
 
 /**
- * The {@code Point} class defines a euclidian point in mass-point coördinates.
+ * The {@code Point} class defines a euclidian point in mass-point coï¿½rdinates.
  * Its {@link #Mass()} defines the homogeneous coÃ¶rdinate of a point in the
  * corresponding affine space, if it is non-zero. If it is zero, the
  * object defines a vector in the corresponding vector space.
@@ -83,7 +83,10 @@ public class Point implements Affine, Measurable<Point>
 		
 		for(int i = 0; i < p.Size(); i++)
 		{
-			v.set(p.get(i), i);
+			if(!Floats.isZero(m, 1))
+				v.set(m * p.get(i), i);
+			else
+				v.set(p.get(i), i);
 		}
 	}
 
