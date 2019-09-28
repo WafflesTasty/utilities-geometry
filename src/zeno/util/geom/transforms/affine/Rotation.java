@@ -26,7 +26,7 @@ public class Rotation implements ITransformation
 	}
 	
 	
-	private Matrix basis;
+	private Matrix basis, mat;
 	
 	/**
 	 * Creates a new {@code Rotation}.
@@ -50,6 +50,7 @@ public class Rotation implements ITransformation
 	{
 		basis = new LSQSVD(b).NearestOrthogonal();
 		basis.setOperator(Orthogonal.Type());
+		mat = Matrices.identity(0);
 	}
 		
 	/**
@@ -69,18 +70,26 @@ public class Rotation implements ITransformation
 	@Override
 	public Matrix Inverse(int dim)
 	{
-		Matrix mat = Matrices.resize(basis, dim + 1, dim + 1);
-		mat = new LSQSVD(mat).NearestOrthogonal();
-		mat.setOperator(Orthogonal.Type());
+		if(mat.Rows() != dim + 1)
+		{
+			mat = Matrices.resize(basis, dim + 1, dim + 1);
+			mat = new LSQSVD(mat).NearestOrthogonal();
+			mat.setOperator(Orthogonal.Type());
+		}
+		
 		return mat.transpose();
 	}
 	
 	@Override
 	public Matrix Matrix(int dim)
 	{
-		Matrix mat = Matrices.resize(basis, dim + 1, dim + 1);
-		mat = new LSQSVD(mat).NearestOrthogonal();
-		mat.setOperator(Orthogonal.Type());
+		if(mat.Rows() != dim + 1)
+		{
+			mat = Matrices.resize(basis, dim + 1, dim + 1);
+			mat = new LSQSVD(mat).NearestOrthogonal();
+			mat.setOperator(Orthogonal.Type());
+		}
+		
 		return mat;
 	}
 }
