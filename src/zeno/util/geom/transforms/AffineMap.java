@@ -1,5 +1,6 @@
 package zeno.util.geom.transforms;
 
+import zeno.util.algebra.linear.matrix.Matrices;
 import zeno.util.algebra.linear.matrix.Matrix;
 import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.geom.ITransformation;
@@ -38,6 +39,8 @@ public class AffineMap extends DirtyValue<Integer> implements ITransformation
 	 */
 	public AffineMap(int dim)
 	{		
+		super(dim);
+		
 		dilation = new Dilation(dim);
 		translation = new Translation(dim);
 		rotation = new Rotation(dim);
@@ -124,7 +127,10 @@ public class AffineMap extends DirtyValue<Integer> implements ITransformation
 	 */
 	public Matrix Basis()
 	{
-		return rotation.Basis();
+		int dim = Parameter();
+		Matrix m = rotation.Matrix(dim);
+		m = Matrices.resize(m, dim, dim);
+		return m;
 	}
 	
 	/**
