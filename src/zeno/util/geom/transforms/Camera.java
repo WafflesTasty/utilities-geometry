@@ -1,6 +1,5 @@
 package zeno.util.geom.transforms;
 
-import zeno.util.algebra.linear.matrix.Matrices;
 import zeno.util.algebra.linear.matrix.Matrix;
 import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.geom.ITransformation;
@@ -162,10 +161,7 @@ public class Camera extends DirtyValue<Integer> implements ITransformation
 	 */
 	public Matrix Basis()
 	{
-		int dim = Parameter();
-		Matrix m = rotation.Matrix(dim);
-		m = Matrices.resize(m, dim, dim);
-		return m;
+		return rotation.Basis();
 	}
 	
 	/**
