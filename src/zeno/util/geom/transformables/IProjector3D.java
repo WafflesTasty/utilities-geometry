@@ -1,10 +1,10 @@
 package zeno.util.geom.transformables;
 
-import zeno.util.algebra.linear.matrix.fixed.Matrix3x3;
 import zeno.util.algebra.linear.vector.fixed.Vector3;
 import zeno.util.geom.transformables.affine.IScalable3D;
 import zeno.util.geom.transformables.affine.IVantage3D;
 import zeno.util.geom.transformables.projective.IProjectable3D;
+import zeno.util.geom.utilities.spin.Spin3D;
 
 /**
  * The {@code IProjector3D} interface defines an object
@@ -23,9 +23,9 @@ import zeno.util.geom.transformables.projective.IProjectable3D;
 public interface IProjector3D extends IProjector, IProjectable3D, IVantage3D, IScalable3D
 {
 	@Override
-	public default Matrix3x3 Basis()
+	public default Spin3D Spin()
 	{
-		return (Matrix3x3) Camera().Basis();
+		return (Spin3D) Camera().Spin();
 	}
 	
 	@Override

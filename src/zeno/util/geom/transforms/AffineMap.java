@@ -6,6 +6,7 @@ import zeno.util.geom.ITransformation;
 import zeno.util.geom.transforms.affine.Dilation;
 import zeno.util.geom.transforms.affine.Rotation;
 import zeno.util.geom.transforms.affine.Translation;
+import zeno.util.geom.utilities.spin.Spin;
 import zeno.util.tools.patterns.DirtyValue;
 
 /**
@@ -46,7 +47,7 @@ public class AffineMap extends DirtyValue<Integer> implements ITransformation
 	}
 
 	@Override
-	protected void update(Integer dim)
+	public void update(Integer dim)
 	{
 		inv = translation.Inverse(dim);
 		inv = rotation.Inverse(dim).times(inv);
@@ -71,21 +72,7 @@ public class AffineMap extends DirtyValue<Integer> implements ITransformation
 		translation = new Translation(o);
 		setChanged();
 	}
-	
-	/**
-	 * Changes the basis of the {@code AffineMap}.
-	 * 
-	 * @param r  a rotation matrix
-	 * 
-	 * 
-	 * @see Matrix
-	 */
-	public void setBasis(Matrix r)
-	{
-		rotation = new Rotation(r);
-		setChanged();
-	}
-	
+		
 	/**
 	 * Changes the size of the {@code AffineMap}.
 	 * 
@@ -102,6 +89,20 @@ public class AffineMap extends DirtyValue<Integer> implements ITransformation
 		setChanged();
 	}
 	
+	/**
+	 * Changes the spin of the {@code AffineMap}.
+	 * 
+	 * @param s  a rotation spin
+	 * 
+	 * 
+	 * @see Spin
+	 */
+	public void setSpin(Spin s)
+	{
+		rotation = new Rotation(s);
+		setChanged();
+	}
+	
 	
 	/**
 	 * Returns the origin of the {@code AffineMap}.
@@ -115,20 +116,7 @@ public class AffineMap extends DirtyValue<Integer> implements ITransformation
 	{
 		return translation.Origin().asVector();
 	}
-	
-	/**
-	 * Returns the basis of the {@code AffineMap}.
-	 * 
-	 * @return  an affine basis
-	 * 
-	 * 
-	 * @see Matrix
-	 */
-	public Matrix Basis()
-	{
-		return rotation.Basis();
-	}
-	
+		
 	/**
 	 * Returns the scale of the {@code AffineMap}.
 	 * 
@@ -142,6 +130,19 @@ public class AffineMap extends DirtyValue<Integer> implements ITransformation
 		return dilation.Size().asVector();
 	}
 
+	/**
+	 * Returns the spin of the {@code AffineMap}.
+	 * 
+	 * @return  a rotation spin
+	 * 
+	 * 
+	 * @see Spin
+	 */
+	public Spin Spin()
+	{
+		return rotation.Spin();
+	}
+	
 	
 	@Override
 	public Matrix Inverse(int dim)

@@ -1,9 +1,9 @@
 package zeno.util.geom.transformables;
 
-import zeno.util.algebra.linear.matrix.fixed.Matrix3x3;
 import zeno.util.algebra.linear.vector.fixed.Vector3;
 import zeno.util.geom.transformables.affine.IScalable3D;
 import zeno.util.geom.transformables.affine.IVantage3D;
+import zeno.util.geom.utilities.spin.Spin3D;
 
 /**
  * The {@code IAdjustable3D} interface defines an object
@@ -21,9 +21,9 @@ import zeno.util.geom.transformables.affine.IVantage3D;
 public interface IAdjustable3D extends IAdjustable, IScalable3D, IVantage3D
 {
 	@Override
-	public default Matrix3x3 Basis()
+	public default Spin3D Spin()
 	{
-		return (Matrix3x3) Transform().Basis();
+		return (Spin3D) Transform().Spin();
 	}
 	
 	@Override

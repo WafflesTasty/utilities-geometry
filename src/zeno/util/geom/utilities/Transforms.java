@@ -82,7 +82,7 @@ public final class Transforms
 		return map;
 	}
 
-	
+
 	private Transforms()
 	{
 		// NOT APPLICABLE

@@ -1,9 +1,9 @@
 package zeno.util.geom.transformables;
 
-import zeno.util.algebra.linear.matrix.fixed.Matrix2x2;
 import zeno.util.algebra.linear.vector.fixed.Vector2;
 import zeno.util.geom.transformables.affine.IScalable2D;
 import zeno.util.geom.transformables.affine.IVantage2D;
+import zeno.util.geom.utilities.spin.Spin2D;
 
 /**
  * The {@code IAdjustable2D} interface defines an object
@@ -21,9 +21,9 @@ import zeno.util.geom.transformables.affine.IVantage2D;
 public interface IAdjustable2D extends IAdjustable, IScalable2D, IVantage2D
 {
 	@Override
-	public default Matrix2x2 Basis()
+	public default Spin2D Spin()
 	{
-		return (Matrix2x2) Transform().Basis();
+		return (Spin2D) Transform().Spin();
 	}
 	
 	@Override

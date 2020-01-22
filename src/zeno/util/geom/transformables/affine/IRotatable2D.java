@@ -1,7 +1,7 @@
 package zeno.util.geom.transformables.affine;
 
-import zeno.util.algebra.linear.matrix.fixed.Matrix2x2;
 import zeno.util.algebra.linear.vector.fixed.Vector2;
+import zeno.util.geom.utilities.spin.Spin2D;
 import zeno.util.tools.Floats;
 
 /**
@@ -26,7 +26,7 @@ public interface IRotatable2D extends IRotatable
 	{
 		if(!Floats.isZero(a, 1))
 		{
-			rotateFor(Matrix2x2.rotate2D(a));
+			rotateFor(new Spin2D(a));
 		}
 	}
 	
@@ -37,12 +37,12 @@ public interface IRotatable2D extends IRotatable
 	 */
 	public default void rotateTo(float a)
 	{
-		rotateTo(Matrix2x2.rotate2D(a));
+		rotateTo(new Spin2D(a));
 	}
 
 	
 	@Override
-	public abstract Matrix2x2 Basis();
+	public abstract Spin2D Spin();
 
 	/**
 	 * Returns the forward vector of the {@code IRotatable2D}.
@@ -54,7 +54,7 @@ public interface IRotatable2D extends IRotatable
 	 */
 	public default Vector2 Forward()
 	{
-		return Basis().Column(1);
+		return Spin().Forward();
 	}
 	
 	/**
@@ -67,6 +67,6 @@ public interface IRotatable2D extends IRotatable
 	 */
 	public default Vector2 Right()
 	{
-		return Basis().Column(0);
+		return Spin().Right();
 	}
 }

@@ -1,12 +1,12 @@
 package zeno.util.geom.transformables;
 
-import zeno.util.algebra.linear.matrix.Matrix;
 import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.geom.collidables.affine.Point;
 import zeno.util.geom.transformables.affine.IScalable;
 import zeno.util.geom.transformables.affine.IVantage;
 import zeno.util.geom.transformables.projective.IProjectable;
 import zeno.util.geom.transforms.Camera;
+import zeno.util.geom.utilities.spin.Spin;
 
 /**
  * The {@code IProjector} interface defines an object
@@ -35,17 +35,17 @@ public interface IProjector extends IProjectable, IScalable, IVantage
 	
 	
 	@Override
+	public default void rotateTo(Spin s)
+	{
+		Camera().setSpin(s);
+	}
+	
+	@Override
 	public default void projectTo(Vector o)
 	{
 		Camera().setOculus(o);
 	}
-	
-	@Override
-	public default void rotateTo(Matrix b)
-	{
-		Camera().setBasis(b);
-	}
-	
+		
 	@Override
 	public default void scaleTo(Vector s)
 	{
@@ -58,6 +58,12 @@ public interface IProjector extends IProjectable, IScalable, IVantage
 		Camera().setOrigin(new Point(o, 1f));
 	}
 	
+	
+	@Override
+	public default Spin Spin()
+	{
+		return Camera().Spin();
+	}
 			
 	@Override
 	public default Vector Origin()
@@ -70,13 +76,7 @@ public interface IProjector extends IProjectable, IScalable, IVantage
 	{
 		return Camera().Oculus();
 	}
-	
-	@Override
-	public default Matrix Basis()
-	{
-		return Camera().Basis();
-	}
-	
+		
 	@Override
 	public default Vector Size()
 	{

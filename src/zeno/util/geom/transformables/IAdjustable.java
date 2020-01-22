@@ -1,10 +1,10 @@
 package zeno.util.geom.transformables;
 
-import zeno.util.algebra.linear.matrix.Matrix;
 import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.geom.transformables.affine.IScalable;
 import zeno.util.geom.transformables.affine.IVantage;
 import zeno.util.geom.transforms.AffineMap;
+import zeno.util.geom.utilities.spin.Spin;
 
 /**
  * The {@code IAdjustable} interface defines an object
@@ -32,9 +32,9 @@ public interface IAdjustable extends IScalable, IVantage
 	
 	
 	@Override
-	public default void rotateTo(Matrix b)
+	public default void rotateTo(Spin s)
 	{
-		Transform().setBasis(b);
+		Transform().setSpin(s);
 	}
 		
 	@Override
@@ -55,16 +55,16 @@ public interface IAdjustable extends IScalable, IVantage
 	{
 		return Transform().Origin();
 	}
-	
-	@Override
-	public default Matrix Basis()
-	{
-		return Transform().Basis();
-	}
-	
+		
 	@Override
 	public default Vector Size()
 	{
 		return Transform().Size();
+	}
+	
+	@Override
+	public default Spin Spin()
+	{
+		return Transform().Spin();
 	}
 }

@@ -1,6 +1,6 @@
 package zeno.util.geom.transformables.affine;
 
-import zeno.util.algebra.linear.matrix.Matrix;
+import zeno.util.geom.utilities.spin.Spin;
 
 /**
  * The {@code IRotatable} interface defines an object
@@ -13,35 +13,35 @@ import zeno.util.algebra.linear.matrix.Matrix;
 public interface IRotatable
 {
 	/**
-	 * Returns the basis of the {@code IRotatable}.
+	 * Returns the spin of the {@code IRotatable}.
 	 * 
-	 * @return  a basis matrix
+	 * @return  a rotation spin
 	 * 
 	 * 
-	 * @see Matrix
+	 * @see Spin
 	 */
-	public abstract Matrix Basis();
+	public abstract Spin Spin();
 	
 	/**
-	 * Rotates the {@code IRotatable} to a new basis.
+	 * Rotates the {@code IRotatable} to a new spin.
 	 * 
-	 * @param m  a basis matrix
+	 * @param s  a rotation spin
 	 * 
 	 * 
-	 * @see Matrix
+	 * @see Spin
 	 */
-	public abstract void rotateTo(Matrix m);
+	public abstract void rotateTo(Spin s);
 	
 	/**
-	 * Rotates the {@code IRotatable} from its basis.
+	 * Rotates the {@code IRotatable} from its spin.
 	 * 
-	 * @param m  a rotation matrix
+	 * @param s  a rotation spin
 	 * 
 	 * 
-	 * @see Matrix
+	 * @see Spin
 	 */
-	public default void rotateFor(Matrix m)
+	public default void rotateFor(Spin s)
 	{
-		rotateTo(m.times(Basis()));
+		rotateTo(s.compose(Spin()));
 	}
 }

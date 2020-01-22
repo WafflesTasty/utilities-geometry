@@ -1,10 +1,11 @@
 package zeno.util.geom.transforms.affine;
 
 import zeno.util.algebra.linear.matrix.Matrix;
-import zeno.util.algebra.algorithms.lsquares.LSQSVD;
-import zeno.util.algebra.linear.matrix.Matrices;
-import zeno.util.algebra.linear.matrix.types.orthogonal.Orthogonal;
 import zeno.util.geom.ITransformation;
+import zeno.util.geom.utilities.spin.Spin;
+import zeno.util.geom.utilities.spin.Spin2D;
+import zeno.util.geom.utilities.spin.Spin3D;
+import zeno.util.geom.utilities.spin.SpinND;
 
 /**
  * The {@code Rotation} class defines an affine rotation.
@@ -20,13 +21,18 @@ import zeno.util.geom.ITransformation;
  */
 public class Rotation implements ITransformation
 {
-	private static Matrix DefaultRotation(int dim)
+	private static Spin DefaultSpin(int dim)
 	{
-		return Matrices.identity(dim);
+		if(dim == 2)
+			return new Spin2D();
+		if(dim == 3)
+			return new Spin3D();
+		
+		return new SpinND();
 	}
 	
 	
-	private Matrix basis, mat;
+	private Spin spin;
 	
 	/**
 	 * Creates a new {@code Rotation}.
@@ -35,61 +41,45 @@ public class Rotation implements ITransformation
 	 */
 	public Rotation(int dim)
 	{
-		this(DefaultRotation(dim));
+		this(DefaultSpin(dim));
 	}
 	
 	/**
 	 * Creates a new {@code Rotation}.
 	 * 
-	 * @param b  a basis matrix
+	 * @param s  a rotation spin
 	 * 
 	 * 
-	 * @see Matrix
+	 * @see Spin
 	 */
-	public Rotation(Matrix b)
+	public Rotation(Spin s)
 	{
-		basis = new LSQSVD(b).NearestOrthogonal();
-		basis.setOperator(Orthogonal.Type());
-		mat = Matrices.identity(0);
+		spin = s;
 	}
-		
+			
 	/**
-	 * Returns the rotation basis.
+	 * Returns the rotation spin.
 	 * 
-	 * @return  a basis matrix
+	 * @return  a rotation spin
 	 * 
 	 * 
-	 * @see Matrix
+	 * @see Spin
 	 */
-	public Matrix Basis()
+	public Spin Spin()
 	{
-		return basis;
+		return spin;
 	}
 
-	
+
 	@Override
 	public Matrix Inverse(int dim)
 	{
-		if(mat.Rows() != dim + 1)
-		{
-			mat = Matrices.resize(basis, dim + 1, dim + 1);
-			mat = new LSQSVD(mat).NearestOrthogonal();
-			mat.setOperator(Orthogonal.Type());
-		}
-		
-		return mat.transpose();
+		return spin.generate(dim).transpose();
 	}
 	
 	@Override
 	public Matrix Matrix(int dim)
 	{
-		if(mat.Rows() != dim + 1)
-		{
-			mat = Matrices.resize(basis, dim + 1, dim + 1);
-			mat = new LSQSVD(mat).NearestOrthogonal();
-			mat.setOperator(Orthogonal.Type());
-		}
-		
-		return mat;
+		return spin.generate(dim);
 	}
 }

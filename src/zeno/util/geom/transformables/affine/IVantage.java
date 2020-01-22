@@ -26,7 +26,7 @@ public interface IVantage extends IMovable, IRotatable
 	{
 		if(!Floats.isZero(d, 1))
 		{
-			moveFor(Basis().Column(i), d);
+			moveFor(Spin().vector(i), d);
 		}
 	}
 }

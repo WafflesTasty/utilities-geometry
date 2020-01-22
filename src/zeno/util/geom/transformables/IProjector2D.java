@@ -1,10 +1,10 @@
 package zeno.util.geom.transformables;
 
-import zeno.util.algebra.linear.matrix.fixed.Matrix2x2;
 import zeno.util.algebra.linear.vector.fixed.Vector2;
 import zeno.util.geom.transformables.affine.IScalable2D;
 import zeno.util.geom.transformables.affine.IVantage2D;
 import zeno.util.geom.transformables.projective.IProjectable2D;
+import zeno.util.geom.utilities.spin.Spin2D;
 
 /**
  * The {@code IProjector2D} interface defines an object
@@ -23,9 +23,9 @@ import zeno.util.geom.transformables.projective.IProjectable2D;
 public interface IProjector2D extends IProjector, IProjectable2D, IVantage2D, IScalable2D
 {
 	@Override
-	public default Matrix2x2 Basis()
+	public default Spin2D Spin()
 	{
-		return (Matrix2x2) Camera().Basis();
+		return (Spin2D) Camera().Spin();
 	}
 	
 	@Override

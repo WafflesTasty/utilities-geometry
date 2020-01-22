@@ -35,6 +35,7 @@ import zeno.util.geom.collidables.geometry.spatial.Cuboid;
 import zeno.util.geom.collidables.geometry.spatial.Ellipsoid;
 import zeno.util.geom.collidables.geometry.spatial.Segment3D;
 import zeno.util.geom.collidables.geometry.spatial.Sphere;
+import zeno.util.geom.utilities.spin.Spin;
 
 /**
  * The {@code Geometries} class defines static-access geometry operations.
@@ -50,6 +51,37 @@ public final class Geometries
 	 */
 	public static Affine VOID = new Void();
 	
+	
+	/**
+	 * The {@code SpinError} defines an error thrown when
+	 * two {@code Spin} objects are not compatible.
+	 *
+	 * @author Zeno
+	 * @since Jan 22, 2020
+	 * @version 1.0
+	 * 
+	 *
+	 * @see RuntimeException
+	 */
+	public static class SpinError extends RuntimeException
+	{
+		private static final long serialVersionUID = 6899503424285607547L;
+
+		
+		/**
+		 * Creates a new {@code SpinError}.
+		 * 
+		 * @param s1  a spin object
+		 * @param s2  a spin object
+		 * 
+		 * 
+		 * @see Spin
+		 */
+		public SpinError(Spin s1, Spin s2)
+		{
+			super("Spins are not compatible for (" + s1 + ", " + s2 + ").");
+		}
+	}
 		
 	/**
 	 * The {@code EqualityError} defines an error thrown when
@@ -279,7 +311,7 @@ public final class Geometries
 			m = Matrices.resize(m, coords + 1, cols);
 			for(int c = 0; c < cols; c++)
 			{
-				// Move the original homogenous coördinates.
+				// Move the original homogenous coï¿½rdinates.
 				m.set(mat.get(rows - 1, c), coords, c);
 			}
 		}
@@ -288,7 +320,7 @@ public final class Geometries
 			m = Matrices.resize(m, coords + 1, coords + cols - rows + 1);
 			for(int c = 0; c < cols; c++)
 			{
-				// Move the original homogenous coördinates.
+				// Move the original homogenous coï¿½rdinates.
 				m.set(mat.get(rows - 1, c), coords, c);
 				m.set(0f, rows - 1, c);
 			}
@@ -311,10 +343,10 @@ public final class Geometries
 	
 	/**
 	 * Defines an affine set that occupies a new coÃ¶rdinate count.
-	 * The amount of coördinates change but this does not increase dimension.
+	 * The amount of coï¿½rdinates change but this does not increase dimension.
 	 * 
 	 * @param s  a set to occupy
-	 * @param coords  a coördinate count to use
+	 * @param coords  a coï¿½rdinate count to use
 	 * @return  a new occupying affine set
 	 * 
 	 * 
@@ -329,7 +361,7 @@ public final class Geometries
 		Matrix m = Matrices.resize(mat, coords + 1, cols);
 		for(int c = 0; c < cols; c++)
 		{
-			// Move the original homogenous coördinates.
+			// Move the original homogenous coï¿½rdinates.
 			m.set(mat.get(rows - 1, c), coords, c);
 			if(rows <= coords)
 			{

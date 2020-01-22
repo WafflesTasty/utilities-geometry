@@ -8,6 +8,7 @@ import zeno.util.geom.transforms.affine.Dilation;
 import zeno.util.geom.transforms.affine.Rotation;
 import zeno.util.geom.transforms.affine.Translation;
 import zeno.util.geom.transforms.projective.Projection;
+import zeno.util.geom.utilities.spin.Spin;
 import zeno.util.tools.patterns.DirtyValue;
 
 /**
@@ -46,13 +47,13 @@ public class Camera extends DirtyValue<Integer> implements ITransformation
 		super(iDim);
 		
 		rotation = new Rotation(iDim);
-		projection = new Projection(oDim, iDim);
+		projection = new Projection(iDim, oDim);
 		translation = new Translation(iDim);
 		dilation = new Dilation(iDim);
 	}
 
 	@Override
-	protected void update(Integer dim)
+	public void update(Integer dim)
 	{
 		inv = dilation.Matrix(dim);
 		inv = projection.Inverse(dim).times(inv);
@@ -67,6 +68,20 @@ public class Camera extends DirtyValue<Integer> implements ITransformation
 	
 	
 	/**
+	 * Changes the spin of the {@code Camera}.
+	 * 
+	 * @param s  a rotation spin
+	 * 
+	 * 
+	 * @see Spin
+	 */
+	public void setSpin(Spin s)
+	{
+		rotation = new Rotation(s);
+		setChanged();
+	}
+	
+	/**
 	 * Changes the origin of the {@code Camera}.
 	 * 
 	 * @param o  an origin point
@@ -77,20 +92,6 @@ public class Camera extends DirtyValue<Integer> implements ITransformation
 	public void setOrigin(Point o)
 	{
 		translation = new Translation(o);
-		setChanged();
-	}
-	
-	/**
-	 * Changes the rotation of the {@code Camera}.
-	 * 
-	 * @param r  a rotation matrix
-	 * 
-	 * 
-	 * @see Matrix
-	 */
-	public void setBasis(Matrix r)
-	{
-		rotation = new Rotation(r);
 		setChanged();
 	}
 	
@@ -123,7 +124,20 @@ public class Camera extends DirtyValue<Integer> implements ITransformation
 		dilation = new Dilation(s.times(0.5f));
 		setChanged();
 	}
+
 	
+	/**
+	 * Returns the spin of the {@code Camera}.
+	 * 
+	 * @return  a camera spin
+	 * 
+	 * 
+	 * @see Spin
+	 */
+	public Spin Spin()
+	{
+		return rotation.Spin();
+	}
 
 	/**
 	 * Returns the origin of the {@code Camera}.
@@ -149,19 +163,6 @@ public class Camera extends DirtyValue<Integer> implements ITransformation
 	public Vector Oculus()
 	{
 		return projection.Oculus();
-	}
-	
-	/**
-	 * Returns the basis of the {@code Camera}.
-	 * 
-	 * @return  a camera basis
-	 * 
-	 * 
-	 * @see Matrix
-	 */
-	public Matrix Basis()
-	{
-		return rotation.Basis();
 	}
 	
 	/**
