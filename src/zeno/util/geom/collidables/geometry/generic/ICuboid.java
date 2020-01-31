@@ -23,6 +23,12 @@ public interface ICuboid extends IGeometry
 	}
 	
 	// Optional Bounds overrides.
+
+	@Override
+	public default float Diameter()
+	{
+		return Size().norm();
+	}
 	
 	@Override
 	public default ICuboid Box()

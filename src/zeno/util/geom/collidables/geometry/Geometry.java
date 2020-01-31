@@ -85,12 +85,6 @@ public abstract class Geometry implements IGeometry
 	// Obligatory Bounds overrides.
 	
 	@Override
-	public float Diameter()
-	{
-		return size.norm();
-	}
-	
-	@Override
 	public Vector Center()
 	{
 		return center;

@@ -86,7 +86,7 @@ public class Circle extends Ellipse implements ISphere
 	 */
 	public Circle(Vector2 c, float r)
 	{
-		super(c, new Vector2(r, r));
+		super(c, new Vector2(2 * r, 2 * r));
 	}
 	
 	/**
@@ -96,7 +96,7 @@ public class Circle extends Ellipse implements ISphere
 	 */
 	public Circle(float r)
 	{
-		super(r, r);
+		super(2 * r, 2 * r);
 	}
 	
 	/**
