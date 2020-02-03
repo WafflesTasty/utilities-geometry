@@ -1,10 +1,10 @@
 package zeno.util.geom.collidables.geometry.spatial;
 
 import zeno.util.algebra.linear.vector.fixed.Vector3;
+import zeno.util.geom.AffineMap;
 import zeno.util.geom.collidables.IGeometry3D;
 import zeno.util.geom.collidables.bounds.Bounds3D;
 import zeno.util.geom.collidables.geometry.higher.NSegment;
-import zeno.util.geom.transforms.AffineMap;
 import zeno.util.tools.Floats;
 
 /**

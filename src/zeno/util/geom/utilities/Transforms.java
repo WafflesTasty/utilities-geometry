@@ -4,7 +4,7 @@ import zeno.util.algebra.linear.matrix.Matrices;
 import zeno.util.algebra.linear.matrix.Matrix;
 import zeno.util.geom.ITransformation;
 import zeno.util.geom.collidables.geometry.generic.IEllipsoid;
-import zeno.util.geom.transforms.AffineMap;
+import zeno.util.geom.transforms.StandardMap;
 import zeno.util.tools.Floats;
 
 /**
@@ -72,11 +72,11 @@ public final class Transforms
 	 * 
 	 * 
 	 * @see IEllipsoid
-	 * @see AffineMap
+	 * @see StandardMap
 	 */
-	public static AffineMap elliptic(IEllipsoid e)
+	public static StandardMap elliptic(IEllipsoid e)
 	{
-		AffineMap map = new AffineMap(e.Dimension());
+		StandardMap map = new StandardMap(e.Dimension());
 		map.setSize(e.Size().times(0.5f));
 		map.setOrigin(e.Center());
 		return map;

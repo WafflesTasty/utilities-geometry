@@ -1,12 +1,12 @@
 package zeno.util.geom.collidables.collisions;
 
 import zeno.util.geom.Affine;
+import zeno.util.geom.AffineMap;
 import zeno.util.geom.ICollidable;
 import zeno.util.geom.collidables.ICollision;
 import zeno.util.geom.collidables.IGeometry;
 import zeno.util.geom.collidables.IShapeable;
 import zeno.util.geom.collidables.geometry.generic.ISegment;
-import zeno.util.geom.transforms.AffineMap;
 import zeno.util.geom.utilities.Geometries;
 
 /**

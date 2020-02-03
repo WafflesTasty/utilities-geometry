@@ -4,11 +4,11 @@ import zeno.util.algebra.linear.matrix.Matrices;
 import zeno.util.algebra.linear.matrix.Matrix;
 import zeno.util.algebra.linear.matrix.types.banded.Diagonal;
 import zeno.util.algebra.linear.vector.Vector;
+import zeno.util.geom.AffineMap;
 import zeno.util.geom.collidables.affine.Point;
 import zeno.util.geom.collidables.bounds.Bounds;
 import zeno.util.geom.collidables.geometry.generic.IEllipsoid;
 import zeno.util.geom.collidables.geometry.higher.NEllipsoid;
-import zeno.util.geom.transforms.AffineMap;
 import zeno.util.tools.Floats;
 
 /**

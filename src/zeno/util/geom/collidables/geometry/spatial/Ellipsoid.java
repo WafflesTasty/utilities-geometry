@@ -1,11 +1,11 @@
 package zeno.util.geom.collidables.geometry.spatial;
 
 import zeno.util.algebra.linear.vector.fixed.Vector3;
+import zeno.util.geom.AffineMap;
 import zeno.util.geom.collidables.bounds.Bounds3D;
 import zeno.util.geom.collidables.geometry.Geometry3D;
 import zeno.util.geom.collidables.geometry.bounds.BNDEllipsoid3D;
 import zeno.util.geom.collidables.geometry.generic.IEllipsoid;
-import zeno.util.geom.transforms.AffineMap;
 
 /**
  * The {@code Ellipsoid} class defines a three-dimensional ellipsoid shape.

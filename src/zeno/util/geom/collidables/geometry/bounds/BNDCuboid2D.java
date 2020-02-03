@@ -1,9 +1,9 @@
 package zeno.util.geom.collidables.geometry.bounds;
 
 import zeno.util.algebra.linear.vector.fixed.Vector2;
+import zeno.util.geom.AffineMap;
 import zeno.util.geom.collidables.bounds.Bounds2D;
 import zeno.util.geom.collidables.geometry.planar.Rectangle;
-import zeno.util.geom.transforms.AffineMap;
 
 /**
  * The {@code BNDCuboid2D} class defines the bounds of a transformed {@link Rectangle}.

@@ -2,7 +2,7 @@ package zeno.util.geom.transforms;
 
 import zeno.util.algebra.linear.matrix.Matrix;
 import zeno.util.algebra.linear.vector.Vector;
-import zeno.util.geom.ITransformation;
+import zeno.util.geom.AffineMap;
 import zeno.util.geom.transforms.affine.Dilation;
 import zeno.util.geom.transforms.affine.Rotation;
 import zeno.util.geom.transforms.affine.Translation;
@@ -10,9 +10,9 @@ import zeno.util.geom.utilities.spin.Spin;
 import zeno.util.tools.patterns.DirtyValue;
 
 /**
- * The {@code AffineMap} defines a generalized affine map.
- * The implementation is provided as a homogeneous transformation.
- * It combines a translation, dilation and rotation to create a basic
+ * The {@code StandardMap} defines a standard affine map.
+ * </br> The implementation is provided as a homogeneous transformation.
+ * </br> It combines a translation, dilation and rotation to create a basic
  * geometric transformation for n-dimensional objects.
  *
  * @author Zeno
@@ -20,11 +20,11 @@ import zeno.util.tools.patterns.DirtyValue;
  * @version 1.0
  * 
  * 
- * @see ITransformation
  * @see DirtyValue
+ * @see AffineMap
  * @see Integer
  */
-public class AffineMap extends DirtyValue<Integer> implements ITransformation
+public class StandardMap extends DirtyValue<Integer> implements AffineMap
 {
 	private Dilation dilation;
 	private Translation translation;
@@ -33,11 +33,11 @@ public class AffineMap extends DirtyValue<Integer> implements ITransformation
 	private Matrix mat, inv;
 	
 	/**
-	 * Creates a new {@code AffineMap}.
+	 * Creates a new {@code StandardMap}.
 	 * 
 	 * @param dim  a space dimension
 	 */
-	public AffineMap(int dim)
+	public StandardMap(int dim)
 	{		
 		super(dim);
 		
@@ -46,6 +46,7 @@ public class AffineMap extends DirtyValue<Integer> implements ITransformation
 		rotation = new Rotation(dim);
 	}
 
+	
 	@Override
 	public void update(Integer dim)
 	{
@@ -57,92 +58,6 @@ public class AffineMap extends DirtyValue<Integer> implements ITransformation
 		mat = rotation.Matrix(dim).times(mat);
 		mat = translation.Matrix(dim).times(mat);
 	}
-	
-	
-	/**
-	 * Changes the origin of the {@code AffineMap}.
-	 * 
-	 * @param o  an origin point
-	 * 
-	 * 
-	 * @see Vector
-	 */
-	public void setOrigin(Vector o)
-	{
-		translation = new Translation(o);
-		setChanged();
-	}
-		
-	/**
-	 * Changes the size of the {@code AffineMap}.
-	 * 
-	 * @param s  a size point
-	 * 
-	 * 
-	 * @see Vector
-	 */
-	public void setSize(Vector s)
-	{
-		// Divided by two because it scales in both
-		// the positive and negative direction of axes.
-		dilation = new Dilation(s.times(0.5f));
-		setChanged();
-	}
-	
-	/**
-	 * Changes the spin of the {@code AffineMap}.
-	 * 
-	 * @param s  a rotation spin
-	 * 
-	 * 
-	 * @see Spin
-	 */
-	public void setSpin(Spin s)
-	{
-		rotation = new Rotation(s);
-		setChanged();
-	}
-	
-	
-	/**
-	 * Returns the origin of the {@code AffineMap}.
-	 * 
-	 * @return  an affine origin
-	 * 
-	 * 
-	 * @see Vector
-	 */
-	public Vector Origin()
-	{
-		return translation.Origin().asVector();
-	}
-		
-	/**
-	 * Returns the scale of the {@code AffineMap}.
-	 * 
-	 * @return  an affine size
-	 * 
-	 * 
-	 * @see Vector
-	 */
-	public Vector Size()
-	{
-		return dilation.Size().asVector();
-	}
-
-	/**
-	 * Returns the spin of the {@code AffineMap}.
-	 * 
-	 * @return  a rotation spin
-	 * 
-	 * 
-	 * @see Spin
-	 */
-	public Spin Spin()
-	{
-		return rotation.Spin();
-	}
-	
 	
 	@Override
 	public Matrix Inverse(int dim)
@@ -156,5 +71,48 @@ public class AffineMap extends DirtyValue<Integer> implements ITransformation
 	{
 		checkCache(dim);
 		return mat;
+	}
+	
+	
+	@Override
+	public void setOrigin(Vector o)
+	{
+		translation = new Translation(o);
+		setChanged();
+	}
+		
+	@Override
+	public void setSize(Vector s)
+	{
+		// Divided by two because it scales in both
+		// the positive and negative direction of axes.
+		dilation = new Dilation(s.times(0.5f));
+		setChanged();
+	}
+	
+	@Override
+	public void setSpin(Spin s)
+	{
+		rotation = new Rotation(s);
+		setChanged();
+	}
+	
+	
+	@Override
+	public Vector Origin()
+	{
+		return translation.Origin().asVector();
+	}
+	
+	@Override
+	public Vector Size()
+	{
+		return dilation.Size().asVector();
+	}
+
+	@Override
+	public Spin Spin()
+	{
+		return rotation.Spin();
 	}
 }

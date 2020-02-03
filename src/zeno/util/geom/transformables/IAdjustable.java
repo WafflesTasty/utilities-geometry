@@ -1,9 +1,9 @@
 package zeno.util.geom.transformables;
 
 import zeno.util.algebra.linear.vector.Vector;
+import zeno.util.geom.AffineMap;
 import zeno.util.geom.transformables.affine.IScalable;
 import zeno.util.geom.transformables.affine.IVantage;
-import zeno.util.geom.transforms.AffineMap;
 import zeno.util.geom.utilities.spin.Spin;
 
 /**

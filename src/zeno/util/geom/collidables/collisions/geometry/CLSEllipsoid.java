@@ -1,6 +1,7 @@
 package zeno.util.geom.collidables.collisions.geometry;
 
 import zeno.util.algebra.linear.vector.Vector;
+import zeno.util.geom.AffineMap;
 import zeno.util.geom.ICollidable;
 import zeno.util.geom.collidables.affine.Point;
 import zeno.util.geom.collidables.affine.lines.Line;
@@ -9,7 +10,6 @@ import zeno.util.geom.collidables.geometry.generic.ICuboid;
 import zeno.util.geom.collidables.geometry.generic.IEllipsoid;
 import zeno.util.geom.collidables.geometry.generic.ISegment;
 import zeno.util.geom.collidables.geometry.generic.ISphere;
-import zeno.util.geom.transforms.AffineMap;
 import zeno.util.geom.utilities.Geometries;
 import zeno.util.geom.utilities.Transforms;
 import zeno.util.tools.Floats;

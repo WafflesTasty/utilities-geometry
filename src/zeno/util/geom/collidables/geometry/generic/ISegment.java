@@ -4,13 +4,13 @@ import zeno.util.algebra.linear.matrix.Matrices;
 import zeno.util.algebra.linear.matrix.Matrix;
 import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.geom.Affine;
+import zeno.util.geom.AffineMap;
 import zeno.util.geom.collidables.ICollision;
 import zeno.util.geom.collidables.IGeometry;
 import zeno.util.geom.collidables.affine.Point;
 import zeno.util.geom.collidables.affine.Point.Type;
 import zeno.util.geom.collidables.bounds.Bounds;
 import zeno.util.geom.collidables.collisions.geometry.CLSSegment;
-import zeno.util.geom.transforms.AffineMap;
 import zeno.util.geom.utilities.Geometries;
 
 /**
