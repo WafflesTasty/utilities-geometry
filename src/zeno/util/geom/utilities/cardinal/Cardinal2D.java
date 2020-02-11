@@ -2,6 +2,7 @@ package zeno.util.geom.utilities.cardinal;
 
 import zeno.util.algebra.linear.vector.fixed.Vector2;
 import zeno.util.geom.collidables.bounds.IBounded2D;
+import zeno.util.geom.collidables.geometry.planar.Rectangle;
 
 /**
  * The {@code Cardinal2D} class defines all cardinal directions in two dimensions.
@@ -113,6 +114,21 @@ public final class Cardinal2D extends Vector2
 		return CENTER;
 	}
 		
+	/**
+	 * Creates a cardinal direction defined by the given coördinates.
+	 * 
+	 * @param x  a cardinal x-coördinate
+	 * @param y  a cardinal y-coördinate
+	 * @return  a cardinal direction
+	 * 
+	 * 
+	 * @see Cardinal2D
+	 */
+	public static Cardinal2D create(int x, int y)
+	{
+		return relativeTo(new Rectangle(0, 0, 0, 0), new Vector2(x, y));
+	}
+	
 	/**
 	 * Returns an array that contains every perpendicular {@code Cardinal2D}.
 	 * 
