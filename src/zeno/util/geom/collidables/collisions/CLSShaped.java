@@ -49,8 +49,13 @@ public class CLSShaped implements ICollision
 		}
 		
 		if(c instanceof Affine)
-		{			
-			return shape.contains(tform.unmap((Affine) c));
+		{		
+			if(!c.equals(Geometries.VOID))
+			{
+				return shape.contains(tform.unmap((Affine) c));
+			}
+			
+			return true;
 		}
 		
 		return null;
@@ -69,7 +74,12 @@ public class CLSShaped implements ICollision
 		
 		if(c instanceof Affine)
 		{
-			return shape.intersects(tform.unmap((Affine) c));
+			if(!c.equals(Geometries.VOID))
+			{
+				return shape.intersects(tform.unmap((Affine) c));
+			}
+			
+			return false;
 		}
 		
 		return null;
@@ -97,6 +107,11 @@ public class CLSShaped implements ICollision
 		
 		if(c instanceof Affine)
 		{
+			if(c.equals(Geometries.VOID))
+			{
+				return Geometries.VOID;
+			}
+			
 			ICollidable s = shape.intersect(tform.unmap((Affine) c));
 			if(s instanceof Affine)
 			{
