@@ -58,7 +58,7 @@ public interface Bounds2D extends Bounds
 	
 	
 	/**
-	 * Returns the minimum x-co�rdinate of the {@code Bounds2D}.
+	 * Returns the minimum x-coordinate of the {@code Bounds2D}.
 	 * 
 	 * @return  the bounds minimum x
 	 */
@@ -68,7 +68,7 @@ public interface Bounds2D extends Bounds
 	}
 	
 	/**
-	 * Returns the maximum x-co�rdinate of the {@code Bounds2D}.
+	 * Returns the maximum x-coordinate of the {@code Bounds2D}.
 	 * 
 	 * @return  the bounds maximum x
 	 */
@@ -78,7 +78,7 @@ public interface Bounds2D extends Bounds
 	}
 	
 	/**
-	 * Returns the minimum y-co�rdinate of the {@code Bounds2D}.
+	 * Returns the minimum y-coordinate of the {@code Bounds2D}.
 	 * 
 	 * @return  the bounds minimum y
 	 */
@@ -88,7 +88,7 @@ public interface Bounds2D extends Bounds
 	}
 	
 	/**
-	 * Returns the maximum y-co�rdinate of the {@code Bounds2D}.
+	 * Returns the maximum y-coordinate of the {@code Bounds2D}.
 	 * 
 	 * @return  the bounds maximum y
 	 */
