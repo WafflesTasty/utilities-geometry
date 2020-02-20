@@ -25,7 +25,7 @@ public interface IScalable3D extends IScalable
 	 */
 	public default void scaleFor(float w, float h, float d)
 	{
-		if(!Floats.isEqual(w, 1f, 1) && !Floats.isEqual(h, 1f, 1) && !Floats.isEqual(d, 1f, 1))
+		if(!Floats.isEqual(w, 1f, 1) || !Floats.isEqual(h, 1f, 1) || !Floats.isEqual(d, 1f, 1))
 		{
 			scaleFor(new Vector3(w, h, d));
 		}

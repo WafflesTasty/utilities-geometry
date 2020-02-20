@@ -24,7 +24,7 @@ public interface IScalable2D extends IScalable
 	 */
 	public default void scaleFor(float w, float h)
 	{
-		if(!Floats.isEqual(w, 1f, 1) && !Floats.isEqual(h, 1f, 1))
+		if(!Floats.isEqual(w, 1f, 1) || !Floats.isEqual(h, 1f, 1))
 		{
 			scaleFor(new Vector2(w, h));
 		}

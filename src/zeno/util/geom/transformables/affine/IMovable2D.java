@@ -25,7 +25,7 @@ public interface IMovable2D extends IMovable
 	public default void moveFor(float x, float y)
 	{
 		if(!Floats.isZero(x, 1)
-		&& !Floats.isZero(y, 1))
+		|| !Floats.isZero(y, 1))
 		{
 			moveFor(new Vector2(x, y));
 		}

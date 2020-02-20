@@ -26,8 +26,8 @@ public interface IMovable3D extends IMovable
 	public default void moveFor(float x, float y, float z)
 	{
 		if(!Floats.isZero(x, 1)
-		&& !Floats.isZero(y, 1)
-		&& !Floats.isZero(z, 1))
+		|| !Floats.isZero(y, 1)
+		|| !Floats.isZero(z, 1))
 		{
 			moveFor(new Vector3(x, y, z));
 		}
