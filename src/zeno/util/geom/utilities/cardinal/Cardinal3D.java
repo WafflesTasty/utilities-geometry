@@ -17,7 +17,7 @@ import zeno.util.geom.collidables.bounds.IBounded3D;
 public final class Cardinal3D extends Vector3
 {
 	/**
-	 * The up {@code Cardinal3D} points along the positive z-axis.
+	 * The up {@code Cardinal3D} points along the positive y-axis.
 	 */
 	public static Cardinal3D UP			 		= new Cardinal3D( 0, 1, 0);
 	/**
@@ -55,7 +55,7 @@ public final class Cardinal3D extends Vector3
 	
 	
 	/**
-	 * The down {@code Cardinal3D} points along the negative z-axis.
+	 * The down {@code Cardinal3D} points along the negative y-axis.
 	 */
 	public static Cardinal3D DOWN		 		= new Cardinal3D( 0,-1, 0);
 	/**
