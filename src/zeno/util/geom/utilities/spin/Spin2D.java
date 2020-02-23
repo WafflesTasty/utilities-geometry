@@ -42,6 +42,17 @@ public class Spin2D implements Spin
 	
 	
 	/**
+	 * Multiplies the {@code Spin2D} with a value.
+	 * 
+	 * @param val  a value to multiply
+	 * @return  a scaled spin
+	 */
+	public Spin2D times(float val)
+	{
+		return new Spin2D(angle * val);
+	}
+	
+	/**
 	 * Returns the forward {@code Spin} vector.
 	 * 
 	 * @return  a forward vector

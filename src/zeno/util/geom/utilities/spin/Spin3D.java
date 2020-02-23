@@ -59,7 +59,18 @@ public class Spin3D implements Spin
 	
 	
 	/**
-	 * Returns the {@code Spin} versor quaternion.
+	 * Multiplies the {@code Spin3D} with a value.
+	 * 
+	 * @param val  a value to multiply
+	 * @return  a scaled spin
+	 */
+	public Spin3D times(float val)
+	{
+		return new Spin3D(versor.Axis(), versor.Angle() * val);
+	}
+	
+	/**
+	 * Returns the {@code Spin3D} versor quaternion.
 	 * 
 	 * @return  a spin versor
 	 * 
@@ -72,7 +83,7 @@ public class Spin3D implements Spin
 	}
 	
 	/**
-	 * Returns the forward {@code Spin} vector.
+	 * Returns the forward {@code Spin3D} vector.
 	 * 
 	 * @return  a forward vector
 	 * 
@@ -95,7 +106,7 @@ public class Spin3D implements Spin
 	}
 	
 	/**
-	 * Returns the right {@code Spin} vector.
+	 * Returns the right {@code Spin3D} vector.
 	 * 
 	 * @return  a right vector
 	 * 
@@ -118,7 +129,7 @@ public class Spin3D implements Spin
 	}
 	
 	/**
-	 * Returns the up {@code Spin} vector.
+	 * Returns the up {@code Spin3D} vector.
 	 * 
 	 * @return  an up vector
 	 * 
