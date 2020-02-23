@@ -9,7 +9,7 @@ import zeno.util.geom.utilities.Geometries;
 
 /**
  * The {@code Spin3D} class defines spin in the 3D space.
- * It is completely determined by its versor.
+ * </br> It is completely determined by its versor.
  *
  * @author Zeno
  * @since Jan 22, 2020
