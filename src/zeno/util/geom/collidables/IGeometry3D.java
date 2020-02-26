@@ -1,7 +1,7 @@
 package zeno.util.geom.collidables;
 
-import zeno.util.geom.AffineMap;
 import zeno.util.geom.ICollideable3D;
+import zeno.util.geom.ITransformation;
 import zeno.util.geom.collidables.bounds.Bounds3D;
 import zeno.util.geom.collidables.bounds.IBounded3D;
 import zeno.util.geom.collidables.geometry.spatial.Cuboid;
@@ -55,7 +55,7 @@ public interface IGeometry3D extends IGeometry, ICollideable3D, IBounded3D, Boun
 
 	
 	@Override
-	public abstract Bounds3D Bounds(AffineMap map);
+	public abstract Bounds3D Bounds(ITransformation map);
 	
 	@Override
 	public default Bounds3D Bounds()

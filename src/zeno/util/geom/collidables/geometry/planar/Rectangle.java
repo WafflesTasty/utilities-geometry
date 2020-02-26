@@ -1,7 +1,7 @@
 package zeno.util.geom.collidables.geometry.planar;
 
 import zeno.util.algebra.linear.vector.fixed.Vector2;
-import zeno.util.geom.AffineMap;
+import zeno.util.geom.ITransformation;
 import zeno.util.geom.collidables.bounds.Bounds2D;
 import zeno.util.geom.collidables.geometry.Geometry2D;
 import zeno.util.geom.collidables.geometry.bounds.BNDCuboid2D;
@@ -81,7 +81,7 @@ public class Rectangle extends Geometry2D implements ICuboid
 	
 		
 	@Override
-	public Bounds2D Bounds(AffineMap map)
+	public Bounds2D Bounds(ITransformation map)
 	{
 		return new BNDCuboid2D(this, map);
 	}

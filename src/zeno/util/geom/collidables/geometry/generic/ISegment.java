@@ -4,7 +4,7 @@ import zeno.util.algebra.linear.matrix.Matrices;
 import zeno.util.algebra.linear.matrix.Matrix;
 import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.geom.Affine;
-import zeno.util.geom.AffineMap;
+import zeno.util.geom.ITransformation;
 import zeno.util.geom.collidables.ICollision;
 import zeno.util.geom.collidables.IGeometry;
 import zeno.util.geom.collidables.affine.Point;
@@ -48,7 +48,7 @@ public interface ISegment extends Affine, IGeometry
 	
 	
 	@Override
-	public default Bounds Bounds(AffineMap map)
+	public default Bounds Bounds(ITransformation map)
 	{
 		return ((ISegment) map.map(this)).Bounds();
 	}

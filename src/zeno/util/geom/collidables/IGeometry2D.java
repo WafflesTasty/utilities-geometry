@@ -1,7 +1,7 @@
 package zeno.util.geom.collidables;
 
-import zeno.util.geom.AffineMap;
 import zeno.util.geom.ICollideable2D;
+import zeno.util.geom.ITransformation;
 import zeno.util.geom.collidables.bounds.Bounds2D;
 import zeno.util.geom.collidables.bounds.IBounded2D;
 import zeno.util.geom.collidables.geometry.planar.Rectangle;
@@ -51,7 +51,7 @@ public interface IGeometry2D extends IGeometry, ICollideable2D, IBounded2D, Boun
 
 	
 	@Override
-	public abstract Bounds2D Bounds(AffineMap map);
+	public abstract Bounds2D Bounds(ITransformation map);
 	
 	@Override
 	public default Bounds2D Bounds()

@@ -1,7 +1,7 @@
 package zeno.util.geom.collidables.geometry.spatial;
 
 import zeno.util.algebra.linear.vector.fixed.Vector3;
-import zeno.util.geom.AffineMap;
+import zeno.util.geom.ITransformation;
 import zeno.util.geom.collidables.bounds.Bounds3D;
 import zeno.util.geom.collidables.geometry.Geometry3D;
 import zeno.util.geom.collidables.geometry.bounds.BNDEllipsoid3D;
@@ -84,7 +84,7 @@ public class Ellipsoid extends Geometry3D implements IEllipsoid
 
 	
 	@Override
-	public Bounds3D Bounds(AffineMap map)
+	public Bounds3D Bounds(ITransformation map)
 	{
 		return new BNDEllipsoid3D(this, map);
 	}

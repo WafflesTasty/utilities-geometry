@@ -1,7 +1,7 @@
 package zeno.util.geom.collidables.geometry.bounds;
 
 import zeno.util.algebra.linear.vector.fixed.Vector2;
-import zeno.util.geom.AffineMap;
+import zeno.util.geom.ITransformation;
 import zeno.util.geom.collidables.bounds.Bounds2D;
 import zeno.util.geom.collidables.geometry.planar.Ellipse;
 
@@ -25,10 +25,10 @@ public class BNDEllipsoid2D extends BNDEllipsoid implements Bounds2D
 	 * @param m  an affine map
 	 * 
 	 * 
-	 * @see AffineMap
+	 * @see ITransformation
 	 * @see Ellipse
 	 */
-	public BNDEllipsoid2D(Ellipse e, AffineMap m)
+	public BNDEllipsoid2D(Ellipse e, ITransformation m)
 	{
 		super(e, m);
 	}

@@ -1,7 +1,7 @@
 package zeno.util.geom.collidables.geometry.spatial;
 
 import zeno.util.algebra.linear.vector.fixed.Vector3;
-import zeno.util.geom.AffineMap;
+import zeno.util.geom.ITransformation;
 import zeno.util.geom.collidables.IGeometry3D;
 import zeno.util.geom.collidables.bounds.Bounds3D;
 import zeno.util.geom.collidables.geometry.higher.NSegment;
@@ -120,7 +120,7 @@ public class Segment3D extends NSegment implements IGeometry3D
 
 	
 	@Override
-	public Bounds3D Bounds(AffineMap map)
+	public Bounds3D Bounds(ITransformation map)
 	{
 		return (Bounds3D) super.Bounds(map);
 	}

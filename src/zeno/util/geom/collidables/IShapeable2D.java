@@ -1,32 +1,21 @@
 package zeno.util.geom.collidables;
 
-import zeno.util.geom.ICollideable2D;
-import zeno.util.geom.collidables.bounds.Bounds2D;
-import zeno.util.geom.collidables.bounds.IBounded2D;
 import zeno.util.geom.transformables.IAdjustable2D;
 
 /**
- * The {@code IShapeable2D} interface defines an object that has a 2D geometric shape.
- * It can be collided with through affine spaces and can be transformed.
+ * The {@code IShapeable} interface defines an interactive 2D geometric object.
+ * It defines an affine transformation which can be manipulated.
  *
  * @author Zeno
  * @since Feb 27, 2018
- * @version 1.0
+ * @version 1.1
  * 
  * 
- * @see IBounded2D
  * @see IAdjustable2D
- * @see ICollideable2D
+ * @see IGeometrical2D
  * @see IShapeable
  */
-public interface IShapeable2D extends IAdjustable2D, IBounded2D, ICollideable2D, IShapeable
+public interface IShapeable2D extends IAdjustable2D, IGeometrical2D, IShapeable
 {
-	@Override
-	public abstract IGeometry2D Shape();
-
-	@Override
-	public default Bounds2D Bounds()
-	{
-		return Shape().Bounds(Transform());
-	}
+	// NOT APPLICABLE
 }

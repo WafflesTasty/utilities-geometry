@@ -1,7 +1,7 @@
 package zeno.util.geom.collidables.geometry.planar;
 
 import zeno.util.algebra.linear.vector.fixed.Vector2;
-import zeno.util.geom.AffineMap;
+import zeno.util.geom.ITransformation;
 import zeno.util.geom.collidables.IGeometry2D;
 import zeno.util.geom.collidables.bounds.Bounds2D;
 import zeno.util.geom.collidables.geometry.higher.NSegment;
@@ -98,7 +98,7 @@ public class Segment2D extends NSegment implements IGeometry2D
 
 	
 	@Override
-	public Bounds2D Bounds(AffineMap map)
+	public Bounds2D Bounds(ITransformation map)
 	{
 		return (Bounds2D) super.Bounds(map);
 	}

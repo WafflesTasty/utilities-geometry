@@ -2,6 +2,7 @@ package zeno.util.geom.transformables;
 
 import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.geom.AffineMap;
+import zeno.util.geom.ITransformable;
 import zeno.util.geom.transformables.affine.IScalable;
 import zeno.util.geom.transformables.affine.IVantage;
 import zeno.util.geom.utilities.spin.Spin;
@@ -18,16 +19,9 @@ import zeno.util.geom.utilities.spin.Spin;
  * @see IScalable
  * @see IVantage
  */
-public interface IAdjustable extends IScalable, IVantage
+public interface IAdjustable extends ITransformable, IScalable, IVantage
 {
-	/**
-	 * Returns the transform of the {@code IAdjustable}.
-	 * 
-	 * @return  an affine transform
-	 * 
-	 * 
-	 * @see AffineMap
-	 */
+	@Override
 	public abstract AffineMap Transform();
 	
 	

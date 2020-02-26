@@ -1,7 +1,6 @@
 package zeno.util.geom.collidables.geometry.bounds;
 
 import zeno.util.algebra.linear.vector.Vector;
-import zeno.util.geom.AffineMap;
 import zeno.util.geom.ITransformation;
 import zeno.util.geom.collidables.affine.Point;
 import zeno.util.geom.collidables.bounds.Bounds;
@@ -22,7 +21,7 @@ import zeno.util.geom.utilities.Transforms;
 public class BNDCuboid implements Bounds
 {
 	private ICuboid cube;
-	private AffineMap map;
+	private ITransformation map;
 	
 	/**
 	 * Creates a new {@code BNDCuboid}.
@@ -31,10 +30,10 @@ public class BNDCuboid implements Bounds
 	 * @param m  an affine map
 	 * 
 	 * 
-	 * @see AffineMap
+	 * @see ITransformation
 	 * @see ICuboid
 	 */
-	public BNDCuboid(ICuboid c, AffineMap m)
+	public BNDCuboid(ICuboid c, ITransformation m)
 	{
 		cube = c;
 		map = m;

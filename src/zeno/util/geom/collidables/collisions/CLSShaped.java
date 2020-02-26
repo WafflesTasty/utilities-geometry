@@ -1,16 +1,16 @@
 package zeno.util.geom.collidables.collisions;
 
 import zeno.util.geom.Affine;
-import zeno.util.geom.AffineMap;
 import zeno.util.geom.ICollidable;
+import zeno.util.geom.ITransformation;
 import zeno.util.geom.collidables.ICollision;
+import zeno.util.geom.collidables.IGeometrical;
 import zeno.util.geom.collidables.IGeometry;
-import zeno.util.geom.collidables.IShapeable;
 import zeno.util.geom.collidables.geometry.generic.ISegment;
 import zeno.util.geom.utilities.Geometries;
 
 /**
- * The {@code CLSShaped} class defines collision for an {@link IShapeable}.
+ * The {@code CLSShaped} class defines collision for a shaped object.
  *
  * @author Zeno
  * @since Jul 25, 2019
@@ -21,17 +21,17 @@ import zeno.util.geom.utilities.Geometries;
  */
 public class CLSShaped implements ICollision
 {
-	private IShapeable src;
+	private IGeometrical src;
 	
 	/**
 	 * Creates a new {@code CLSShaped}.
 	 * 
-	 * @param s  a shapeable source
+	 * @param s  a geometrical source
 	 * 
 	 * 
-	 * @see IShapeable
+	 * @see IGeometrical
 	 */
-	public CLSShaped(IShapeable s)
+	public CLSShaped(IGeometrical s)
 	{
 		src = s;
 	}
@@ -40,7 +40,7 @@ public class CLSShaped implements ICollision
 	@Override
 	public Boolean contains(ICollidable c)
 	{
-		AffineMap tform = src.Transform();
+		ITransformation tform = src.Transform();
 		IGeometry shape = src.Shape();
 		
 		if(c instanceof ISegment)
@@ -64,7 +64,7 @@ public class CLSShaped implements ICollision
 	@Override
 	public Boolean intersects(ICollidable c)
 	{
-		AffineMap tform = src.Transform();
+		ITransformation tform = src.Transform();
 		IGeometry shape = src.Shape();
 		
 		if(c instanceof ISegment)
@@ -88,7 +88,7 @@ public class CLSShaped implements ICollision
 	@Override
 	public ICollidable intersect(ICollidable c)
 	{
-		AffineMap tform = src.Transform();
+		ITransformation tform = src.Transform();
 		IGeometry shape = src.Shape();
 		
 		if(c instanceof ISegment)

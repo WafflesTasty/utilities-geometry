@@ -4,7 +4,7 @@ import zeno.util.algebra.linear.matrix.Matrices;
 import zeno.util.algebra.linear.matrix.Matrix;
 import zeno.util.algebra.linear.matrix.types.banded.Diagonal;
 import zeno.util.algebra.linear.vector.Vector;
-import zeno.util.geom.AffineMap;
+import zeno.util.geom.ITransformation;
 import zeno.util.geom.collidables.affine.Point;
 import zeno.util.geom.collidables.bounds.Bounds;
 import zeno.util.geom.collidables.geometry.generic.IEllipsoid;
@@ -23,8 +23,8 @@ import zeno.util.tools.Floats;
  */
 public class BNDEllipsoid implements Bounds
 {
-	private AffineMap map;
 	private IEllipsoid ellipse;
+	private ITransformation map;
 	
 	/**
 	 * Creates a new {@code BNDEllipsoid}.
@@ -33,10 +33,10 @@ public class BNDEllipsoid implements Bounds
 	 * @param m  an affine map
 	 * 
 	 * 
+	 * @see ITransformation
 	 * @see IEllipsoid
-	 * @see AffineMap
 	 */
-	public BNDEllipsoid(IEllipsoid e, AffineMap m)
+	public BNDEllipsoid(IEllipsoid e, ITransformation m)
 	{
 		ellipse = e;
 		map = m;

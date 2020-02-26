@@ -1,7 +1,7 @@
 package zeno.util.geom.collidables;
 
-import zeno.util.geom.AffineMap;
 import zeno.util.geom.ICollidable;
+import zeno.util.geom.ITransformation;
 import zeno.util.geom.collidables.bounds.Bounds;
 import zeno.util.geom.collidables.bounds.IBounded;
 
@@ -27,10 +27,10 @@ public interface IGeometry extends ICollidable, IBounded, Bounds
 	 * @return  a transformed bounds
 	 * 
 	 * 
-	 * @see AffineMap
+	 * @see ITransformation
 	 * @see Bounds
 	 */
-	public abstract Bounds Bounds(AffineMap map);
+	public abstract Bounds Bounds(ITransformation map);
 	
 	@Override
 	public default Bounds Bounds()

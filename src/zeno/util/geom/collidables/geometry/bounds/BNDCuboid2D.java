@@ -1,7 +1,7 @@
 package zeno.util.geom.collidables.geometry.bounds;
 
 import zeno.util.algebra.linear.vector.fixed.Vector2;
-import zeno.util.geom.AffineMap;
+import zeno.util.geom.ITransformation;
 import zeno.util.geom.collidables.bounds.Bounds2D;
 import zeno.util.geom.collidables.geometry.planar.Rectangle;
 
@@ -25,10 +25,10 @@ public class BNDCuboid2D extends BNDCuboid implements Bounds2D
 	 * @param m  an affine map
 	 * 
 	 * 
-	 * @see AffineMap
+	 * @see ITransformation
 	 * @see Rectangle
 	 */
-	public BNDCuboid2D(Rectangle r, AffineMap m)
+	public BNDCuboid2D(Rectangle r, ITransformation m)
 	{
 		super(r, m);
 	}

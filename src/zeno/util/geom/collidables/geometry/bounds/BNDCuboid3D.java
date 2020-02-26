@@ -1,7 +1,7 @@
 package zeno.util.geom.collidables.geometry.bounds;
 
 import zeno.util.algebra.linear.vector.fixed.Vector3;
-import zeno.util.geom.AffineMap;
+import zeno.util.geom.ITransformation;
 import zeno.util.geom.collidables.bounds.Bounds3D;
 import zeno.util.geom.collidables.geometry.spatial.Cuboid;
 
@@ -25,10 +25,10 @@ public class BNDCuboid3D extends BNDCuboid implements Bounds3D
 	 * @param m  an affine map
 	 * 
 	 * 
-	 * @see AffineMap
+	 * @see ITransformation
 	 * @see Cuboid
 	 */
-	public BNDCuboid3D(Cuboid c, AffineMap m)
+	public BNDCuboid3D(Cuboid c, ITransformation m)
 	{
 		super(c, m);
 	}
