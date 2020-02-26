@@ -5,7 +5,7 @@ import zeno.util.algebra.linear.matrix.Matrix;
 
 /**
  * The {@code ITransformation} interface defines a transformation in geometric space.
- * Transformations are defined as mappings between homogeneous co�rdinate systems.
+ * Transformations are defined as mappings between homogeneous coordinate systems.
  * 
  * @author Zeno
  * @since Feb 27, 2018
