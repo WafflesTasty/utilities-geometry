@@ -1,6 +1,6 @@
 package zeno.util.geom.utilities.spin;
 
-import zeno.util.algebra.algorithms.lsquares.LSQSVD;
+import zeno.util.algebra.algorithms.orthogonal.ORTNewton;
 import zeno.util.algebra.linear.matrix.Matrices;
 import zeno.util.algebra.linear.matrix.Matrix;
 import zeno.util.algebra.linear.matrix.types.orthogonal.Orthogonal;
@@ -76,7 +76,7 @@ public class SpinND implements Spin
 	{
 		if(!basis.is(Orthogonal.Type()))
 		{
-			basis = new LSQSVD(basis).NearestOrthogonal();
+			basis = new ORTNewton(basis).NearestOrthogonal();
 			basis.setOperator(Orthogonal.Type());
 		}
 		
