@@ -1,5 +1,6 @@
 package zeno.util.geom.transformables.affine;
 
+import zeno.util.algebra.imaginary.Quaternion;
 import zeno.util.algebra.linear.vector.fixed.Vector3;
 import zeno.util.geom.utilities.spin.Spin3D;
 import zeno.util.tools.Floats;
@@ -17,6 +18,22 @@ import zeno.util.tools.Floats;
  */
 public interface IRotatable3D extends IRotatable
 {	
+	/**
+	 * Rotates the {@code IRotatable3D} around an arbitrary versor.
+	 * 
+	 * @param q  a unit quaternion
+	 * 
+	 * 
+	 * @see Quaternion
+	 */
+	public default void rotateFor(Quaternion q)
+	{
+		if(!Floats.isEqual(q.W(), 1f, 1))
+		{
+			rotateFor(new Spin3D(q));
+		}
+	}
+	
 	/**
 	 * Rotates the {@code IRotatable3D} around an arbitrary vector.
 	 * 
