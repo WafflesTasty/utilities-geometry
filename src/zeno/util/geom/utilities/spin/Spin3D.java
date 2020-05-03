@@ -92,16 +92,11 @@ public class Spin3D implements Spin
 	 */
 	public Vector3 Forward()
 	{
-		float x = versor.X();
-		float y = versor.Y();
-		float z = versor.Z();
-		float w = versor.W();
-		
 		return new Vector3
 		(
-			0 + 2 * (x * z + y * w),
-			0 + 2 * (y * z - x * w),
-			1 - 2 * (x * x + y * y)
+			get(0, 2),
+			get(1, 2),
+			get(2, 2)
 		);
 	}
 	
@@ -115,16 +110,11 @@ public class Spin3D implements Spin
 	 */
 	public Vector3 Right()
 	{
-		float x = versor.X();
-		float y = versor.Y();
-		float z = versor.Z();
-		float w = versor.W();
-		
 		return new Vector3
 		(
-			1 - 2 * (y * y + z * z),
-			0 + 2 * (x * y + z * w),
-			0 + 2 * (x * z - y * w)
+			get(0, 0),
+			get(1, 0),
+			get(2, 0)
 		);
 	}
 	
@@ -138,16 +128,11 @@ public class Spin3D implements Spin
 	 */
 	public Vector3 Up()
 	{
-		float x = versor.X();
-		float y = versor.Y();
-		float z = versor.Z();
-		float w = versor.W();
-		
 		return new Vector3
 		(
-			0 + 2 * (x * y - z * w),
-			1 - 2 * (x * x + z * z),
-			0 + 2 * (x * w + y * z)
+			get(0, 1),
+			get(1, 1),
+			get(2, 1)
 		);
 	}
 	
@@ -169,22 +154,13 @@ public class Spin3D implements Spin
 		Matrix mat = Matrices.identity(dim + 1);
 		mat.setOperator(Orthogonal.Type());
 		
-		float x = versor.X();
-		float y = versor.Y();
-		float z = versor.Z();
-		float w = versor.W();
-		
-		mat.set(1 - 2 * (y * y + z * z), 0, 0);
-		mat.set(0 + 2 * (x * y - z * w), 0, 1);
-		mat.set(0 + 2 * (x * z + y * w), 0, 2);
-		
-		mat.set(0 + 2 * (x * y + z * w), 1, 0);
-		mat.set(1 - 2 * (x * x + z * z), 1, 1);
-		mat.set(0 + 2 * (y * z - x * w), 1, 2);
-		
-		mat.set(0 + 2 * (x * z - y * w), 2, 0);
-		mat.set(0 + 2 * (x * w + y * z), 2, 1);
-		mat.set(1 - 2 * (x * x + y * y), 2, 2);
+		for(int r = 0; r < 3; r++)
+		{
+			for(int c = 0; c < 3; c++)
+			{
+				mat.set(get(r, c), r, c);
+			}
+		}
 		
 		return mat;
 	}
@@ -198,6 +174,50 @@ public class Spin3D implements Spin
 			return Forward();
 		if(i == 2)
 			return Up();
+		
+		return null;
+	}
+
+	Float get(int r, int c)
+	{
+		float x = versor.X();
+		float y = versor.Y();
+		float z = versor.Z();
+		float w = versor.W();
+		
+		
+		// Right vector.
+		if(c == 0)
+		{
+			if(r == 0)
+				return 1 - 2 * (y * y + z * z);
+			if(r == 1)
+				return 0 + 2 * (x * y + z * w);
+			if(r == 2)
+				return 0 + 2 * (x * z - y * w);
+		}
+		
+		// Up vector.
+		if(c == 1)
+		{
+			if(r == 0)
+				return 0 + 2 * (x * y - z * w);
+			if(r == 1)
+				return 1 - 2 * (x * x + z * z);
+			if(r == 2)
+				return 0 + 2 * (x * w + y * z);
+		}
+		
+		// Forward vector.
+		if(c == 2)
+		{
+			if(r == 0)
+				return 0 + 2 * (x * z + y * w);
+			if(r == 1)
+				return 0 + 2 * (y * z - x * w);
+			if(r == 2)
+				return 1 - 2 * (x * x + y * y);
+		}
 		
 		return null;
 	}
