@@ -76,12 +76,11 @@ public class BNDEllipsoid implements Bounds
 	{
 		Matrix e = Matrices.diagonal(ellipse.Size().times(0.5f));
 		e.setOperator(Diagonal.Type());
-		e = e.times(e);
 		
 		int dim = Dimension();
 		Matrix p = map.Matrix(dim);
-		p = p.times(p.transpose());
 		p = Matrices.resize(p, dim, dim);
+		p = p.times(p.transpose());
 		p = e.times(p).times(e);
 		
 		Vector s = Vectors.create(dim);
@@ -89,7 +88,7 @@ public class BNDEllipsoid implements Bounds
 		{
 			s.set(2 * Floats.sqrt(p.get(i, i)), i);
 		}
-		
+		Matrices.print(s);
 		return s;
 	}
 }
