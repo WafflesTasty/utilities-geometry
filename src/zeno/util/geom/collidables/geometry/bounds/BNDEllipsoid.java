@@ -4,6 +4,7 @@ import zeno.util.algebra.linear.matrix.Matrices;
 import zeno.util.algebra.linear.matrix.Matrix;
 import zeno.util.algebra.linear.matrix.types.banded.Diagonal;
 import zeno.util.algebra.linear.vector.Vector;
+import zeno.util.algebra.linear.vector.Vectors;
 import zeno.util.geom.ITransformation;
 import zeno.util.geom.collidables.affine.Point;
 import zeno.util.geom.collidables.bounds.Bounds;
@@ -83,7 +84,7 @@ public class BNDEllipsoid implements Bounds
 		p = Matrices.resize(p, dim, dim);
 		p = e.times(p).times(e);
 		
-		Vector s = new Vector(dim);
+		Vector s = Vectors.create(dim);
 		for(int i = 0; i < dim; i++)
 		{
 			s.set(2 * Floats.sqrt(p.get(i, i)), i);
