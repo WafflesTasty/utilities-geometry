@@ -88,7 +88,7 @@ public class BNDEllipsoid implements Bounds
 		{
 			s.set(2 * Floats.sqrt(p.get(i, i)), i);
 		}
-		Matrices.print(s);
+
 		return s;
 	}
 }
