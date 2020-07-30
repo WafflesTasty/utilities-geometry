@@ -8,6 +8,8 @@ import zeno.util.geom.ICollidable;
 import zeno.util.geom.collidables.IGeometry;
 import zeno.util.geom.collidables.affine.Point;
 import zeno.util.geom.collidables.affine.lines.Line;
+import zeno.util.geom.collidables.bounds.Bounds;
+import zeno.util.geom.collidables.bounds.IBounded;
 import zeno.util.geom.collidables.collisions.CLSGeometry;
 import zeno.util.geom.collidables.geometry.generic.ICuboid;
 import zeno.util.geom.collidables.geometry.generic.IEllipsoid;
@@ -94,6 +96,13 @@ public class CLSCuboid extends CLSGeometry
 		if(c instanceof IEllipsoid)
 		{
 			return contains((IEllipsoid) c);
+		}
+		
+		// Eliminate bounded shapes.
+		if(c instanceof IBounded)
+		{
+			Bounds bounds = ((IBounded) c).Bounds();
+			return contains(bounds.Box());
 		}
 
 		return null;
