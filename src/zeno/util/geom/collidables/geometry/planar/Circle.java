@@ -1,7 +1,7 @@
 package zeno.util.geom.collidables.geometry.planar;
 
 import zeno.util.algebra.linear.vector.fixed.Vector2;
-import zeno.util.calc._deprecated.Operators;
+import zeno.util.calc.Operators;
 import zeno.util.geom.collidables.geometry.generic.ISphere;
 
 /**
