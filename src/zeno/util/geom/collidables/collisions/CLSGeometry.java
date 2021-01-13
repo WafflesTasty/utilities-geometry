@@ -25,7 +25,7 @@ public abstract class CLSGeometry implements ICollision
 	/**
 	 * Creates a new {@code CLSGeometry}.
 	 * 
-	 * @param src  a source geometry$
+	 * @param src  a source geometry
 	 * 
 	 * 
 	 * @see IGeometry

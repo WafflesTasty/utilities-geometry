@@ -8,33 +8,41 @@ import zeno.util.algebra.linear.vector.fixed.Vector2;
 import zeno.util.algebra.linear.vector.fixed.Vector3;
 import zeno.util.geom.Affine;
 import zeno.util.geom.ICollidable;
+import zeno.util.geom.ITransformation;
 import zeno.util.geom.collidables.ICollision;
+import zeno.util.geom.collidables.IShapeable;
 import zeno.util.geom.collidables.affine.ASpace;
 import zeno.util.geom.collidables.affine.Point;
 import zeno.util.geom.collidables.affine.lines.Line;
 import zeno.util.geom.collidables.affine.lines.Line2D;
 import zeno.util.geom.collidables.affine.lines.Line3D;
+import zeno.util.geom.collidables.bounds.Bounds;
 import zeno.util.geom.collidables.collisions.affine.CLSVoid;
+import zeno.util.geom.collidables.geometry.generic.IConvex;
 import zeno.util.geom.collidables.geometry.generic.ICube;
 import zeno.util.geom.collidables.geometry.generic.ICuboid;
 import zeno.util.geom.collidables.geometry.generic.IEllipsoid;
 import zeno.util.geom.collidables.geometry.generic.ISegment;
 import zeno.util.geom.collidables.geometry.generic.ISphere;
+import zeno.util.geom.collidables.geometry.generic.ITriangle;
 import zeno.util.geom.collidables.geometry.higher.NCube;
 import zeno.util.geom.collidables.geometry.higher.NCuboid;
 import zeno.util.geom.collidables.geometry.higher.NEllipsoid;
 import zeno.util.geom.collidables.geometry.higher.NSegment;
 import zeno.util.geom.collidables.geometry.higher.NSphere;
+import zeno.util.geom.collidables.geometry.higher.NTriangle;
 import zeno.util.geom.collidables.geometry.planar.Circle;
 import zeno.util.geom.collidables.geometry.planar.Ellipse;
 import zeno.util.geom.collidables.geometry.planar.Rectangle;
 import zeno.util.geom.collidables.geometry.planar.Segment2D;
 import zeno.util.geom.collidables.geometry.planar.Square;
+import zeno.util.geom.collidables.geometry.planar.Triangle2D;
 import zeno.util.geom.collidables.geometry.spatial.Cube;
 import zeno.util.geom.collidables.geometry.spatial.Cuboid;
 import zeno.util.geom.collidables.geometry.spatial.Ellipsoid;
 import zeno.util.geom.collidables.geometry.spatial.Segment3D;
 import zeno.util.geom.collidables.geometry.spatial.Sphere;
+import zeno.util.geom.collidables.geometry.spatial.Triangle3D;
 import zeno.util.geom.utilities.spin.Spin;
 
 /**
@@ -459,7 +467,7 @@ public final class Geometries
 		
 		return new NCuboid(c, s);
 	}
-	
+		
 	/**
 	 * Generates a new {@code IEllipsoid} geometry.
 	 * 
@@ -480,7 +488,29 @@ public final class Geometries
 		
 		return new NEllipsoid(c, s);
 	}
-		
+	
+	/**
+	 * Generates a new {@code ITriangle} geometry.
+	 * 
+	 * @param a  a first triangle point
+	 * @param b  a second triangle point
+	 * @param c  a third triangle point
+	 * @return  a new triangle
+	 * 
+	 * 
+	 * @see ITriangle
+	 * @see Vector
+	 */
+	public static ITriangle triangle(Vector a, Vector b, Vector c)
+	{
+		if(a.Size() == 2)
+			return new Triangle2D((Vector2) a, (Vector2) b, (Vector2) c);
+		if(a.Size() == 3)
+			return new Triangle3D((Vector3) a, (Vector3) b, (Vector3) c);
+
+		return new NTriangle(a, b, c);
+	}
+	
 	/**
 	 * Generates a new {@code ISegment} geometry.
 	 * 
@@ -522,7 +552,73 @@ public final class Geometries
 		
 		return new NSphere(c, r);
 	}
+		
 	
+	/**
+	 * Generates a new {@code IConvex} geometry.
+	 * </b> This method returns a Minkowski difference used for collision.
+	 * 
+	 * @param a   a convex geometry
+	 * @param b   a convex geometry
+	 * @return  a convex difference
+	 * 
+	 * 
+	 * @see IConvex
+	 */
+	public static IConvex diff(IConvex a, IConvex b)
+	{
+		return new IConvex()
+		{
+			@Override
+			public Bounds Bounds(ITransformation map)
+			{
+				Vector min = a.Minimum().minus(b.Maximum());
+				Vector max = a.Maximum().minus(b.Minimum());
+				
+				return Geometries.cuboid
+				(
+					min.plus(max).times(0.5f),
+					max.minus(min)
+				);
+			}
+			
+			@Override
+			public Vector Extremum(Vector v)
+			{
+				return a.Extremum(v).minus(b.Extremum(v.times(-1f)));
+			}
+		};
+	}
+	
+	/**
+	 * Generates a new {@code IConvex} geometry.
+	 * 
+	 * @param s  a target shapeable
+	 * @return  a convex object
+	 * 
+	 * 
+	 * @see IConvex
+	 */
+	public static IConvex convex(IShapeable s)
+	{
+		return new IConvex()
+		{	
+			@Override
+			public Bounds Bounds(ITransformation map)
+			{
+				return s.Shape().Bounds(map);
+			}
+			
+			@Override
+			public Vector Extremum(Vector v)
+			{
+				Point p = (Point) s.Transform().unmap(new Point(v, 0f));
+				Vector w = ((IConvex) s.Shape()).Extremum(p.asVector());
+				p = (Point) s.Transform().map(new Point(w, 0f));
+				return p.asVector();
+			}
+		};
+	}
 		
 	/**
 	 * Creates a unit {@code ISphere} geometry.

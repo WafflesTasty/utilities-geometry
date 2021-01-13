@@ -3,6 +3,7 @@ package zeno.util.geom.collidables.geometry.generic;
 import zeno.util.algebra.linear.matrix.Matrices;
 import zeno.util.algebra.linear.matrix.Matrix;
 import zeno.util.algebra.linear.vector.Vector;
+import zeno.util.algebra.linear.vector.Vectors;
 import zeno.util.geom.Affine;
 import zeno.util.geom.ITransformation;
 import zeno.util.geom.collidables.ICollision;
@@ -12,6 +13,7 @@ import zeno.util.geom.collidables.affine.Point.Type;
 import zeno.util.geom.collidables.bounds.Bounds;
 import zeno.util.geom.collidables.collisions.geometry.CLSSegment;
 import zeno.util.geom.utilities.Geometries;
+import zeno.util.tools.Floats;
 
 /**
  * The {@code ISegment} interface defines the collision operations for line segment geometry.
@@ -24,7 +26,7 @@ import zeno.util.geom.utilities.Geometries;
  * @see IGeometry
  * @see Affine
  */
-public interface ISegment extends Affine, IGeometry
+public interface ISegment extends Affine, IConvex
 {		
 	/**
 	 * Returns the first point of the {@code ISegment}.
@@ -46,6 +48,27 @@ public interface ISegment extends Affine, IGeometry
 	 */
 	public abstract Vector P2();
 	
+	
+	@Override
+	public default Vector Extremum(Vector v)
+	{
+		Vector cen = Center();
+		Vector min = Minimum();
+		Vector max = Maximum();
+		
+		Vector e = Vectors.create(Dimension());
+		for(int i = 0; i < Dimension(); i++)
+		{
+			if(Floats.isZero(v.get(i), 1))
+				e.set(cen.get(i), i);
+			else if(v.get(i) < 0)
+				e.set(min.get(i), i);
+			else
+				e.set(max.get(i), i);
+		}
+
+		return e;
+	}
 	
 	@Override
 	public default Bounds Bounds(ITransformation map)
@@ -105,7 +128,7 @@ public interface ISegment extends Affine, IGeometry
 		return Matrices.fromCols(P1(), P2());
 	}
 	
-	// Optional Bounds overrides.
+	// Obligatory Bounds overrides.
 	
 	@Override
 	public default Vector Center()

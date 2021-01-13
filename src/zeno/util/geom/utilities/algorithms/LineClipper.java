@@ -82,33 +82,33 @@ public class LineClipper
 				addResult(p);
 				continue;
 			}
+
 			
-			// If this isn't the first point...
-			if(i > 0)
-			{
-				// Fetch the previous point.
+			// Fetch the previous point.
+			if(i == 0)
+				q = points[points.length - 1];
+			else
 				q = points[i - 1];
-				
-				// Project p along previous line.
-				q = clip(p, q);
-				if(q != null)
-				{
-					addResult(q);
-				}
+
+			// Project p along previous line.
+			q = clip(p, q);
+			if(q != null)
+			{
+				addResult(q);
 			}
 			
-			// If this isn't the last point...
+			
+			// Fetch the next point.
 			if(i < points.length - 1)
-			{
-				// Fetch the next point.
 				q = points[i + 1];
-				
-				// Project p along next line.
-				q = clip(p, q);
-				if(q != null)
-				{
-					addResult(q);
-				}
+			else
+				q = points[0];
+			
+			// Project p along next line.
+			q = clip(p, q);
+			if(q != null)
+			{
+				addResult(q);
 			}
 		}
 

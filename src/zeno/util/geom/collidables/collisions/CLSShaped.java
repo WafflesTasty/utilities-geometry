@@ -6,6 +6,8 @@ import zeno.util.geom.ITransformation;
 import zeno.util.geom.collidables.ICollision;
 import zeno.util.geom.collidables.IGeometrical;
 import zeno.util.geom.collidables.IGeometry;
+import zeno.util.geom.collidables.IShapeable;
+import zeno.util.geom.collidables.geometry.generic.IConvex;
 import zeno.util.geom.collidables.geometry.generic.ISegment;
 import zeno.util.geom.utilities.Geometries;
 
@@ -80,6 +82,17 @@ public class CLSShaped implements ICollision
 			}
 			
 			return false;
+		}
+		
+		if(c instanceof IConvex)
+		{
+			return c.intersects(src);
+		}
+		
+		if(c instanceof IShapeable)
+		{
+			IConvex cvx = Geometries.convex((IShapeable) c);
+			return cvx.intersects(src);
 		}
 		
 		return null;

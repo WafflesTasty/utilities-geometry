@@ -146,7 +146,7 @@ public final class Cardinal2D extends Vector2
 	 */
 	public static Cardinal2D[] Diagonals()
 	{
-		return new Cardinal2D[]{NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST};
+		return new Cardinal2D[]{NORTHEAST, NORTHWEST, SOUTHWEST, SOUTHEAST};
 	}
 		
 	/**

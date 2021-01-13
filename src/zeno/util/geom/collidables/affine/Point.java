@@ -120,13 +120,7 @@ public class Point implements Affine, Measurable<Point>
 	 */
 	public void setMass(float m)
 	{
-		if(!Floats.isZero(m, 1))
-			v = v.times(m / Mass());
-		else
-		{
-			v = v.times(1f / Mass());
-			v.set(0f, v.Size() - 1);
-		}
+		v.set(m, v.Size()-1);
 	}
 
 	
