@@ -21,9 +21,6 @@ import zeno.util.tools.Floats;
  */
 public class CLSConvex extends CLSGeometry
 {
-	private static final int ULPS = 3;
-	
-	
 	/**
 	 * Creates a new {@code CLSConvex}.
 	 * 
@@ -69,30 +66,25 @@ public class CLSConvex extends CLSGeometry
 		Vector q = p.asVector();
 		Vector x = Source().Center();
 		
-		while(!Floats.isZero(x.minus(q).normSqr(), ULPS))
+		int ulps = 0;
+		while(!Floats.isZero(x.minus(q).normSqr(), ulps))
 		{
 			Vector y = Source().Extremum(q.minus(x));
-			
-			Vector u = x.minus(y); Vector v = x.minus(q);
-			if(Floats.isZero(u.dot(v), Source().Dimension()))
-			{
-				return false;
-			}
-			
+
+			Vector u = x.minus(y);
+			Vector v = x.minus(q);
 			Vector w = y.minus(q);
 			if(v.dot(w) > 0)
 			{
 				return false;
 			}
 			
-			
-			Vector d = w.minus(v);
-			d = d.times(v.dot(v.minus(w)));
-			d = d.times(1f / w.minus(v).normSqr());
-			
+			float val = v.dot(u) / u.normSqr();
+			Vector d = y.minus(x).times(val);
 			x = x.plus(d);
+			ulps++;
 		}
-		
+
 		return true;
 	}
 	

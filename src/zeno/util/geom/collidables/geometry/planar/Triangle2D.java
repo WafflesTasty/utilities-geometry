@@ -123,6 +123,24 @@ public class Triangle2D extends NTriangle implements IGeometry2D
 		return (Bounds2D) super.Bounds(map);
 	}
 	
+	@Override
+	public Vector2 P1()
+	{
+		return (Vector2) super.P1();
+	}
+	
+	@Override
+	public Vector2 P2()
+	{
+		return (Vector2) super.P2();
+	}
+	
+	@Override
+	public Vector2 P3()
+	{
+		return (Vector2) super.P3();
+	}
+	
 	// Obligatory Bounds overrides.
 	
 	@Override
@@ -149,7 +167,6 @@ public class Triangle2D extends NTriangle implements IGeometry2D
 		return (Vector2) super.Size();
 	}
 
-	
 	// Optional Bounds overrides.
 	
 	@Override

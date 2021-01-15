@@ -61,23 +61,26 @@ public interface ITriangle extends Affine, IConvex
 	@Override
 	public default Vector Extremum(Vector v)
 	{
-		Vector c = Center();
-		
-		float d1 = v.dot(P1().minus(c));
-		float d2 = v.dot(P2().minus(c));
-		float d3 = v.dot(P3().minus(c));
-		
-		if(d1 < d2)
+		float d1 = P2().minus(P1()).normalize().dot(v.normalize());
+		float d2 = P3().minus(P2()).normalize().dot(v.normalize());
+		float d3 = P1().minus(P3()).normalize().dot(v.normalize());
+
+		if(d1 < 0)
 		{
-			if(d2 < d3)
+			if(d3 > 0)
 			{
-				return P3();
+				return P1();
 			}
-			
+						
+			return P3();
+		}
+		
+		if(d2 < 0)
+		{
 			return P2();
 		}
-
-		return P1();
+		
+		return P3();
 	}
 	
 	@Override
@@ -155,5 +158,11 @@ public interface ITriangle extends Affine, IConvex
 		}
 		
 		return max;
+	}
+	
+	@Override
+	public default int Dimension()
+	{
+		return P1().Size();
 	}
 }

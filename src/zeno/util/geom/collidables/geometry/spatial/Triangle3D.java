@@ -156,6 +156,25 @@ public class Triangle3D extends NTriangle implements IGeometry3D
 		return (Bounds3D) super.Bounds(map);
 	}
 	
+	@Override
+	public Vector3 P1()
+	{
+		return (Vector3) super.P1();
+	}
+	
+	@Override
+	public Vector3 P2()
+	{
+		return (Vector3) super.P2();
+	}
+	
+	@Override
+	public Vector3 P3()
+	{
+		return (Vector3) super.P3();
+	}
+	
+	
 	// Obligatory Bounds overrides.
 	
 	@Override
