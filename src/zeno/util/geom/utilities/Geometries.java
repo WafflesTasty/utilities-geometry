@@ -587,6 +587,18 @@ public final class Geometries
 			{
 				return a.Extremum(v).minus(b.Extremum(v.times(-1f)));
 			}
+			
+			@Override
+			public Vector Minimum()
+			{
+				return a.Minimum().minus(b.Maximum());
+			}
+			
+			@Override
+			public Vector Maximum()
+			{
+				return a.Maximum().minus(b.Minimum());
+			}
 		};
 	}
 	
@@ -606,7 +618,25 @@ public final class Geometries
 			@Override
 			public Bounds Bounds(ITransformation map)
 			{
-				return s.Shape().Bounds(map);
+				return s.Shape().Bounds
+				(
+					new ITransformation()
+					{							
+						@Override
+						public Matrix Inverse(int dim)
+						{
+							return s.Transform().Inverse(dim)
+							.times(map.Inverse(dim));
+						}
+						
+						@Override
+						public Matrix Matrix(int dim)
+						{
+							return map.Matrix(dim).times
+							(s.Transform().Matrix(dim));
+						}
+					}
+				);
 			}
 			
 			@Override
@@ -616,6 +646,18 @@ public final class Geometries
 				Vector w = ((IConvex) s.Shape()).Extremum(p.asVector());
 				p = (Point) s.Transform().map(new Point(w, 0f));
 				return p.asVector();
+			}
+			
+			@Override
+			public Vector Center()
+			{
+				return s.Origin();
+			}
+			
+			@Override
+			public Vector Size()
+			{
+				return s.Size();
 			}
 		};
 	}

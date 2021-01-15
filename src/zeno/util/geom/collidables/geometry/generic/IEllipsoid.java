@@ -25,14 +25,14 @@ public interface IEllipsoid extends IConvex
 		Vector n = Vectors.create(Dimension());
 		for(int i = 0; i < Dimension(); i++)
 		{
-			float si = Size().get(i);
+			float si = Size().get(i) / 2;
 			n.set(v.get(i) * si, i);
 		}
 		
 		Vector e = Vectors.create(Dimension());
 		for(int i = 0; i < Dimension(); i++)
 		{
-			float si = Size().get(i);
+			float si = Size().get(i) / 2;
 			e.set(v.get(i) * si * si, i);
 		}
 		

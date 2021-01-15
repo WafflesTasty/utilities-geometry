@@ -1,6 +1,7 @@
 package zeno.util.geom.collidables.collisions.geometry;
 
 import zeno.util.algebra.linear.vector.Vector;
+import zeno.util.algebra.linear.vector.Vectors;
 import zeno.util.geom.ICollidable;
 import zeno.util.geom.collidables.IShapeable;
 import zeno.util.geom.collidables.affine.Point;
@@ -107,6 +108,7 @@ public class CLSConvex extends CLSGeometry
 	
 	private boolean intersects(IConvex c)
 	{
-		return Geometries.diff(c, Source()).contains(new Point(0f));
+		Vector v = Vectors.create(Source().Dimension());
+		return Geometries.diff(c, Source()).contains(new Point(v, 1f));
 	}
 }
