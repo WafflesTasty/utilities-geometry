@@ -9,6 +9,7 @@ import zeno.util.geom.collidables.collisions.CLSGeometry;
 import zeno.util.geom.collidables.geometry.generic.IConvex;
 import zeno.util.geom.utilities.Geometries;
 import zeno.util.tools.Floats;
+import zeno.util.tools.Integers;
 
 /**
  * The {@code CLSConvex} class defines collision for an {@code IConvex}.
@@ -66,16 +67,17 @@ public class CLSConvex extends CLSGeometry
 	{
 		Vector q = p.asVector();
 		Vector x = Source().Center();
-		
+
 		int ulps = 0;
-		while(!Floats.isZero(x.minus(q).normSqr(), ulps))
+		while(!Floats.isZero(x.minus(q).normSqr(), Integers.pow(2, ulps)))
 		{
 			Vector y = Source().Extremum(q.minus(x));
-
+			
+			
 			Vector u = x.minus(y);
 			Vector v = x.minus(q);
 			Vector w = y.minus(q);
-			if(v.dot(w) > 0)
+			if(v.normalize().dot(w.normalize()) > 0)
 			{
 				return false;
 			}
