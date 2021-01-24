@@ -3,6 +3,7 @@ package zeno.util.geom.collidables.geometry.spatial;
 import zeno.util.algebra.linear.vector.fixed.Vector3;
 import zeno.util.geom.ITransformation;
 import zeno.util.geom.collidables.IGeometry3D;
+import zeno.util.geom.collidables.affine.Point;
 import zeno.util.geom.collidables.bounds.Bounds3D;
 import zeno.util.geom.collidables.geometry.higher.NTriangle;
 import zeno.util.tools.Floats;
@@ -37,9 +38,9 @@ public class Triangle3D extends NTriangle implements IGeometry3D
 	{
 		this
 		(
-			new Vector3(x1, y1, z1),
-			new Vector3(x2, y2, z2),
-			new Vector3(x3, y3, z3)
+			new Point(x1, y1, z1),
+			new Point(x2, y2, z2),
+			new Point(x3, y3, z3)
 		);
 	}
 	
@@ -58,6 +59,21 @@ public class Triangle3D extends NTriangle implements IGeometry3D
 		super(p1, p2, p3);
 	}
 	
+	/**
+	 * Creates a new {@code Triangle3D}.
+	 * 
+	 * @param p1  a first point
+	 * @param p2  a second point
+	 * @param p3  a third point
+	 * 
+	 * 
+	 * @see Point
+	 */
+	public Triangle3D(Point p1, Point p2, Point p3)
+	{
+		super(p1, p2, p3);
+	}
+	
 		
 	/**
 	 * Returns the first x-coordinate of the {@code Triangle3D}.
@@ -66,7 +82,7 @@ public class Triangle3D extends NTriangle implements IGeometry3D
 	 */
 	public float X1()
 	{
-		return P1().get(0);
+		return P1().get(0) / P1().Mass();
 	}
 	
 	/**
@@ -76,7 +92,7 @@ public class Triangle3D extends NTriangle implements IGeometry3D
 	 */
 	public float Y1()
 	{
-		return P1().get(1);
+		return P1().get(1) / P1().Mass();
 	}
 	
 	/**
@@ -86,7 +102,7 @@ public class Triangle3D extends NTriangle implements IGeometry3D
 	 */
 	public float Z1()
 	{
-		return P1().get(2);
+		return P1().get(2) / P1().Mass();
 	}
 	
 	/**
@@ -96,7 +112,7 @@ public class Triangle3D extends NTriangle implements IGeometry3D
 	 */
 	public float X2()
 	{
-		return P2().get(0);
+		return P2().get(0) / P2().Mass();
 	}
 	
 	/**
@@ -106,7 +122,7 @@ public class Triangle3D extends NTriangle implements IGeometry3D
 	 */
 	public float Y2()
 	{
-		return P2().get(1);
+		return P2().get(1) / P2().Mass();
 	}
 	
 	/**
@@ -116,7 +132,7 @@ public class Triangle3D extends NTriangle implements IGeometry3D
 	 */
 	public float Z2()
 	{
-		return P2().get(2);
+		return P2().get(2) / P2().Mass();
 	}
 	
 	/**
@@ -126,7 +142,7 @@ public class Triangle3D extends NTriangle implements IGeometry3D
 	 */
 	public float X3()
 	{
-		return P3().get(0);
+		return P3().get(0) / P3().Mass();
 	}
 	
 	/**
@@ -136,7 +152,7 @@ public class Triangle3D extends NTriangle implements IGeometry3D
 	 */
 	public float Y3()
 	{
-		return P3().get(1);
+		return P3().get(1) / P3().Mass();
 	}
 	
 	/**
@@ -146,7 +162,7 @@ public class Triangle3D extends NTriangle implements IGeometry3D
 	 */
 	public float Z3()
 	{
-		return P3().get(2);
+		return P3().get(2) / P3().Mass();
 	}
 
 	
@@ -155,26 +171,7 @@ public class Triangle3D extends NTriangle implements IGeometry3D
 	{
 		return (Bounds3D) super.Bounds(map);
 	}
-	
-	@Override
-	public Vector3 P1()
-	{
-		return (Vector3) super.P1();
-	}
-	
-	@Override
-	public Vector3 P2()
-	{
-		return (Vector3) super.P2();
-	}
-	
-	@Override
-	public Vector3 P3()
-	{
-		return (Vector3) super.P3();
-	}
-	
-	
+
 	// Obligatory Bounds overrides.
 	
 	@Override

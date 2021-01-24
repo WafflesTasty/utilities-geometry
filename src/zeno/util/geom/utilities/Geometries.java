@@ -512,6 +512,28 @@ public final class Geometries
 	}
 	
 	/**
+	 * Generates a new {@code ITriangle} geometry.
+	 * 
+	 * @param a  a first triangle point
+	 * @param b  a second triangle point
+	 * @param c  a third triangle point
+	 * @return  a new triangle
+	 * 
+	 * 
+	 * @see ITriangle
+	 * @see Point
+	 */
+	public static ITriangle triangle(Point a, Point b, Point c)
+	{
+		if(a.Size() == 2)
+			return new Triangle2D(a, b, c);
+		if(a.Size() == 3)
+			return new Triangle3D(a, b, c);
+
+		return new NTriangle(a, b, c);
+	}
+	
+	/**
 	 * Generates a new {@code ISegment} geometry.
 	 * 
 	 * @param p  a segment endpoint
@@ -530,6 +552,22 @@ public final class Geometries
 			return new Segment3D((Vector3) p, (Vector3) q);
 		
 		return new NSegment(p, q);
+	}
+	
+	/**
+	 * Generates a new {@code ISegment} geometry.
+	 * 
+	 * @param p  a segment endpoint
+	 * @param q  a segment endpoint
+	 * @return  a new segment
+	 * 
+	 * 
+	 * @see ISegment
+	 * @see Point
+	 */
+	public static ISegment segment(Point p, Point q)
+	{
+		return segment(p.asVector(), q.asVector());
 	}
 	
 	/**

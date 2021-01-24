@@ -77,6 +77,7 @@ public class CLSConvex extends CLSGeometry
 			Vector u = x.minus(y);
 			Vector v = x.minus(q);
 			Vector w = y.minus(q);
+			
 			if(v.normalize().dot(w.normalize()) > 0)
 			{
 				return false;

@@ -3,6 +3,7 @@ package zeno.util.geom.collidables.geometry.planar;
 import zeno.util.algebra.linear.vector.fixed.Vector2;
 import zeno.util.geom.ITransformation;
 import zeno.util.geom.collidables.IGeometry2D;
+import zeno.util.geom.collidables.affine.Point;
 import zeno.util.geom.collidables.bounds.Bounds2D;
 import zeno.util.geom.collidables.geometry.higher.NTriangle;
 import zeno.util.tools.Floats;
@@ -34,9 +35,9 @@ public class Triangle2D extends NTriangle implements IGeometry2D
 	{
 		this
 		(
-			new Vector2(x1, y1),
-			new Vector2(x2, y2),
-			new Vector2(x3, y3)
+			new Point(x1, y1),
+			new Point(x2, y2),
+			new Point(x3, y3)
 		);
 	}
 	
@@ -55,6 +56,21 @@ public class Triangle2D extends NTriangle implements IGeometry2D
 		super(p1, p2, p3);
 	}
 	
+	/**
+	 * Creates a new {@code Triangle2D}.
+	 * 
+	 * @param p1  a first point
+	 * @param p2  a second point
+	 * @param p3  a third point
+	 * 
+	 * 
+	 * @see Point
+	 */
+	public Triangle2D(Point p1, Point p2, Point p3)
+	{
+		super(p1, p2, p3);
+	}
+	
 		
 	/**
 	 * Returns the first x-coordinate of the {@code Triangle2D}.
@@ -63,7 +79,7 @@ public class Triangle2D extends NTriangle implements IGeometry2D
 	 */
 	public float X1()
 	{
-		return P1().get(0);
+		return P1().get(0) / P1().Mass();
 	}
 	
 	/**
@@ -73,7 +89,7 @@ public class Triangle2D extends NTriangle implements IGeometry2D
 	 */
 	public float Y1()
 	{
-		return P1().get(1);
+		return P1().get(1) / P1().Mass();
 	}
 	
 	/**
@@ -83,7 +99,7 @@ public class Triangle2D extends NTriangle implements IGeometry2D
 	 */
 	public float X2()
 	{
-		return P2().get(0);
+		return P2().get(0) / P2().Mass();
 	}
 	
 	/**
@@ -93,7 +109,7 @@ public class Triangle2D extends NTriangle implements IGeometry2D
 	 */
 	public float Y2()
 	{
-		return P2().get(1);
+		return P2().get(1) / P2().Mass();
 	}
 	
 	/**
@@ -103,7 +119,7 @@ public class Triangle2D extends NTriangle implements IGeometry2D
 	 */
 	public float X3()
 	{
-		return P3().get(0);
+		return P3().get(0) / P3().Mass();
 	}
 	
 	/**
@@ -113,7 +129,7 @@ public class Triangle2D extends NTriangle implements IGeometry2D
 	 */
 	public float Y3()
 	{
-		return P3().get(1);
+		return P3().get(1) / P3().Mass();
 	}
 	
 	
@@ -121,24 +137,6 @@ public class Triangle2D extends NTriangle implements IGeometry2D
 	public Bounds2D Bounds(ITransformation map)
 	{
 		return (Bounds2D) super.Bounds(map);
-	}
-	
-	@Override
-	public Vector2 P1()
-	{
-		return (Vector2) super.P1();
-	}
-	
-	@Override
-	public Vector2 P2()
-	{
-		return (Vector2) super.P2();
-	}
-	
-	@Override
-	public Vector2 P3()
-	{
-		return (Vector2) super.P3();
 	}
 	
 	// Obligatory Bounds overrides.

@@ -1,7 +1,6 @@
 package zeno.util.geom.collidables.affine;
 
 import zeno.util.algebra.linear.Measurable;
-import zeno.util.algebra.linear.matrix.Matrix;
 import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.algebra.linear.vector.Vectors;
 import zeno.util.geom.Affine;
@@ -256,7 +255,7 @@ public class Point implements Affine, Measurable<Point>
 	}
 	
 	@Override
-	public Matrix Span()
+	public Vector Span()
 	{
 		return v;
 	}

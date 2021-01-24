@@ -1,6 +1,7 @@
 package zeno.util.geom.collidables.geometry.higher;
 
 import zeno.util.algebra.linear.vector.Vector;
+import zeno.util.geom.collidables.affine.Point;
 import zeno.util.geom.collidables.geometry.generic.ITriangle;
 
 /**
@@ -16,7 +17,7 @@ import zeno.util.geom.collidables.geometry.generic.ITriangle;
  */
 public class NTriangle implements ITriangle
 {
-	private Vector p1, p2, p3;
+	private Point p1, p2, p3;
 	
 	/**
 	 * Creates a new {@code NTriangle}.
@@ -29,6 +30,21 @@ public class NTriangle implements ITriangle
 	 * @see Vector
 	 */
 	public NTriangle(Vector p1, Vector p2, Vector p3)
+	{
+		this(new Point(p1), new Point(p2), new Point(p3));
+	}
+	
+	/**
+	 * Creates a new {@code NTriangle}.
+	 * 
+	 * @param p1  a first point
+	 * @param p2  a second point
+	 * @param p3  a third point
+	 * 
+	 * 
+	 * @see Point
+	 */
+	public NTriangle(Point p1, Point p2, Point p3)
 	{
 		this.p1 = p1;
 		this.p2 = p2;
@@ -84,19 +100,19 @@ public class NTriangle implements ITriangle
 	
 
 	@Override
-	public Vector P1()
+	public Point P1()
 	{
 		return p1;
 	}
 
 	@Override
-	public Vector P2()
+	public Point P2()
 	{
 		return p2;
 	}
 
 	@Override
-	public Vector P3()
+	public Point P3()
 	{
 		return p3;
 	}

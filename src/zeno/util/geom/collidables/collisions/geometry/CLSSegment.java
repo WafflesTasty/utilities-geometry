@@ -24,6 +24,8 @@ import zeno.util.tools.Floats;
  */
 public class CLSSegment extends CLSGeometry
 {	
+	private CLSConvex convex;
+	
 	/**
 	 * Creates a new {@code CLSSegment}.
 	 * 
@@ -34,7 +36,7 @@ public class CLSSegment extends CLSGeometry
 	 */
 	public CLSSegment(ISegment s)
 	{
-		super(s);
+		super(s); convex = new CLSConvex(s);
 	}
 	
 	
@@ -108,7 +110,7 @@ public class CLSSegment extends CLSGeometry
 			return inhabits((IGeometry) c); 
 		}
 		
-		return null;
+		return convex.inhabits(c);
 	}
 	
 	@Override
@@ -133,7 +135,7 @@ public class CLSSegment extends CLSGeometry
 			return intersects((ISegment) c);
 		}
 		
-		return null;
+		return convex.intersects(c);
 	}
 	
 	@Override
@@ -158,7 +160,7 @@ public class CLSSegment extends CLSGeometry
 			return intersect((ISegment) c);
 		}
 		
-		return null;
+		return convex.intersect(c);
 	}
 
 				

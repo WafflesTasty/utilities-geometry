@@ -34,6 +34,8 @@ public class CLSCuboid extends CLSGeometry
 	private static final LineClipper clipper = new LineClipper();
 	
 	
+	private CLSConvex convex;
+	
 	/**
 	 * Creates a new {@code CLSCuboid}.
 	 * 
@@ -44,7 +46,7 @@ public class CLSCuboid extends CLSGeometry
 	 */
 	public CLSCuboid(ICuboid s)
 	{
-		super(s);
+		super(s); convex = new CLSConvex(s);
 	}
 	
 	
@@ -105,7 +107,7 @@ public class CLSCuboid extends CLSGeometry
 			return contains(bounds.Box());
 		}
 
-		return null;
+		return convex.contains(c);
 	}
 
 	@Override
@@ -124,7 +126,7 @@ public class CLSCuboid extends CLSGeometry
 			return inhabits((IGeometry) c);
 		}
 		
-		return null;
+		return convex.inhabits(c);
 	}
 	
 	@Override
@@ -155,7 +157,7 @@ public class CLSCuboid extends CLSGeometry
 			return intersects((ICuboid) c);
 		}
 		
-		return null;
+		return convex.intersects(c);
 	}
 	
 	@Override
@@ -186,7 +188,7 @@ public class CLSCuboid extends CLSGeometry
 			return intersect((ICuboid) c);
 		}
 		
-		return null;
+		return convex.intersect(c);
 	}
 	
 		

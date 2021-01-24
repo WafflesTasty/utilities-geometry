@@ -33,9 +33,9 @@ public interface ITriangle extends Affine, IConvex
 	 * @return  the triangle's first point
 	 * 
 	 * 
-	 * @see Vector
+	 * @see Point
 	 */
-	public abstract Vector P1();
+	public abstract Point P1();
 	
 	/**
 	 * Returns the second point of the {@code ITriangle}.
@@ -43,9 +43,9 @@ public interface ITriangle extends Affine, IConvex
 	 * @return  the triangle's second point
 	 * 
 	 * 
-	 * @see Vector
+	 * @see Point
 	 */
-	public abstract Vector P2();
+	public abstract Point P2();
 	
 	/**
 	 * Returns the third point of the {@code ITriangle}.
@@ -53,34 +53,38 @@ public interface ITriangle extends Affine, IConvex
 	 * @return  the triangle's third point
 	 * 
 	 * 
-	 * @see Vector
+	 * @see Point
 	 */
-	public abstract Vector P3();
+	public abstract Point P3();
 	
 	
 	@Override
 	public default Vector Extremum(Vector v)
 	{
-		float d1 = P2().minus(P1()).normalize().dot(v.normalize());
-		float d2 = P3().minus(P2()).normalize().dot(v.normalize());
-		float d3 = P1().minus(P3()).normalize().dot(v.normalize());
+		Vector p1 = P1().asVector();
+		Vector p2 = P2().asVector();
+		Vector p3 = P3().asVector();
+		
+		float d1 = p2.minus(p1).normalize().dot(v.normalize());
+		float d2 = p3.minus(p2).normalize().dot(v.normalize());
+		float d3 = p1.minus(p3).normalize().dot(v.normalize());
 
 		if(d1 < 0)
 		{
 			if(d3 > 0)
 			{
-				return P1();
+				return p1;
 			}
 						
-			return P3();
+			return p3;
 		}
 		
 		if(d2 < 0)
 		{
-			return P2();
+			return p2;
 		}
 		
-		return P3();
+		return p3;
 	}
 	
 	@Override
@@ -110,16 +114,12 @@ public interface ITriangle extends Affine, IConvex
 				Point p1 = new Point(m.Column(0));
 				Point p2 = new Point(m.Column(1));
 				Point p3 = new Point(m.Column(2));
-				
-				Vector v1 = p1.asVector();
-				Vector v2 = p2.asVector();
-				Vector v3 = p3.asVector();
-				
+
 				if(p1.Type() != Type.AFFINE) return null;
 				if(p2.Type() != Type.AFFINE) return null;
 				if(p3.Type() != Type.AFFINE) return null;
 				
-				return Geometries.triangle(v1, v2, v3);
+				return Geometries.triangle(p1, p2, p3);
 			}
 			
 			return null;
@@ -129,7 +129,7 @@ public interface ITriangle extends Affine, IConvex
 	@Override
 	public default Matrix Span()
 	{
-		return Matrices.fromCols(P1(), P2(), P3());
+		return Matrices.fromCols(P1().Span(), P2().Span(), P3().Span());
 	}
 	
 	// Obligatory Bounds overrides.

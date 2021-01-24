@@ -26,6 +26,8 @@ import zeno.util.tools.Floats;
  */
 public class CLSEllipsoid extends CLSGeometry
 {	
+	private CLSConvex convex;
+	
 	/**
 	 * Creates a new {@code CLSEllipsoid}.
 	 * 
@@ -36,7 +38,7 @@ public class CLSEllipsoid extends CLSGeometry
 	 */
 	public CLSEllipsoid(IEllipsoid s)
 	{
-		super(s);
+		super(s); convex = new CLSConvex(s);
 	}
 	
 	
@@ -96,7 +98,7 @@ public class CLSEllipsoid extends CLSGeometry
 			return contains((IEllipsoid) c);
 		}
 		
-		return null;
+		return convex.contains(c);
 	}
 	
 	@Override
@@ -139,7 +141,7 @@ public class CLSEllipsoid extends CLSGeometry
 			return intersects((IEllipsoid) c);
 		}
 		
-		return null;
+		return convex.intersects(c);
 	}
 	
 	@Override
@@ -164,7 +166,7 @@ public class CLSEllipsoid extends CLSGeometry
 			return intersect((ISegment) c);
 		}
 		
-		return null;
+		return convex.intersect(c);
 	}
 	
 	

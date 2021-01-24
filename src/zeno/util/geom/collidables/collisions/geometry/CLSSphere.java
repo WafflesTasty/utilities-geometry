@@ -24,6 +24,8 @@ import zeno.util.tools.Floats;
  */
 public class CLSSphere extends CLSGeometry
 {	
+	private CLSConvex convex;
+	
 	/**
 	 * Creates a new {@code CLSSphere}.
 	 * 
@@ -34,7 +36,7 @@ public class CLSSphere extends CLSGeometry
 	 */
 	public CLSSphere(ISphere s)
 	{
-		super(s);
+		super(s); convex = new CLSConvex(s);
 	}
 	
 	
@@ -90,8 +92,7 @@ public class CLSSphere extends CLSGeometry
 			return contains((IEllipsoid) c);
 		}
 		
-		// Other shapes have volume.
-		return false;
+		return convex.contains(c);
 	}
 	
 	@Override
@@ -134,7 +135,7 @@ public class CLSSphere extends CLSGeometry
 			return intersects((IEllipsoid) c);
 		}
 		
-		return null;
+		return convex.intersects(c);
 	}
 	
 	@Override
@@ -159,7 +160,7 @@ public class CLSSphere extends CLSGeometry
 			return intersect((ISegment) c);
 		}
 		
-		return null;
+		return convex.intersect(c);
 	}
 	
 	
