@@ -2,6 +2,7 @@ package zeno.util.geom.collidables.geometry;
 
 import zeno.util.algebra.linear.vector.fixed.Vector2;
 import zeno.util.geom.collidables.IGeometry2D;
+import zeno.util.geom.collidables.bounds.Bounds2D;
 
 /**
  * The {@code Geometry2D} class is the base class for bounded two-dimensional shapes.
@@ -51,8 +52,14 @@ public abstract class Geometry2D extends Geometry implements IGeometry2D
 		super(2);
 	}
 	
-			
+				
 	// Obligatory Bounds overrides.
+	
+	@Override
+	public Bounds2D Bounds()
+	{
+		return (Bounds2D) super.Bounds();
+	}
 	
 	@Override
 	public Vector2 Minimum()

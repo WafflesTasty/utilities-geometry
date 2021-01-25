@@ -2,6 +2,7 @@ package zeno.util.geom.collidables.geometry;
 
 import zeno.util.algebra.linear.vector.fixed.Vector3;
 import zeno.util.geom.collidables.IGeometry3D;
+import zeno.util.geom.collidables.bounds.Bounds3D;
 
 /**
  * The {@code Geometry3D} class is the base class for bounded three-dimensional shapes.
@@ -53,6 +54,12 @@ public abstract class Geometry3D extends Geometry implements IGeometry3D
 
 	
 	// Obligatory Bounds overrides.
+	
+	@Override
+	public Bounds3D Bounds()
+	{
+		return (Bounds3D) super.Bounds();
+	}
 	
 	@Override
 	public Vector3 Minimum()
