@@ -35,9 +35,9 @@ public class Triangle2D extends NTriangle implements IGeometry2D
 	{
 		this
 		(
-			new Point(x1, y1),
-			new Point(x2, y2),
-			new Point(x3, y3)
+			new Point(x1, y1, 1f),
+			new Point(x2, y2, 1f),
+			new Point(x3, y3, 1f)
 		);
 	}
 	

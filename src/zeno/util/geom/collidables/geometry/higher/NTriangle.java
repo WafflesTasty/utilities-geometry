@@ -31,7 +31,12 @@ public class NTriangle implements ITriangle
 	 */
 	public NTriangle(Vector p1, Vector p2, Vector p3)
 	{
-		this(new Point(p1), new Point(p2), new Point(p3));
+		this
+		(
+			new Point(p1, 1f),
+			new Point(p2, 1f),
+			new Point(p3, 1f)
+		);
 	}
 	
 	/**

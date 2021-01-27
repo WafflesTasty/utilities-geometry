@@ -38,9 +38,9 @@ public class Triangle3D extends NTriangle implements IGeometry3D
 	{
 		this
 		(
-			new Point(x1, y1, z1),
-			new Point(x2, y2, z2),
-			new Point(x3, y3, z3)
+			new Point(x1, y1, z1, 1f),
+			new Point(x2, y2, z2, 1f),
+			new Point(x3, y3, z3, 1f)
 		);
 	}
 	
