@@ -107,7 +107,7 @@ public class StandardMap extends DirtyValue<Integer> implements AffineMap
 	@Override
 	public Vector Size()
 	{
-		return dilation.Size().asVector();
+		return dilation.Size().asVector().times(2f);
 	}
 
 	@Override
