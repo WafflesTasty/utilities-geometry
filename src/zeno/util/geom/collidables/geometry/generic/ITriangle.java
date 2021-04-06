@@ -56,7 +56,7 @@ public interface ITriangle extends Affine, IConvex
 	 * @see Point
 	 */
 	public abstract Point P3();
-	
+		
 	
 	@Override
 	public default Vector Extremum(Vector v)
