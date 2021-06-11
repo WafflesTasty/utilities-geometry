@@ -109,7 +109,7 @@ public class Bresenham implements Messenger, Iterator<Vector>
 
 	/**
 	 * Generates a new set of points.
-	 * <br> The value list contains the coördinates
+	 * <br> The value list contains the coï¿½rdinates
 	 * of the first and the second point, and should
 	 * therefore contain an even number of values.
 	 * 
@@ -148,7 +148,7 @@ public class Bresenham implements Messenger, Iterator<Vector>
 			iErr  = err.get(i);
 			iErr -= Floats.abs(dif.get(i));
 			
-			sendMessage("Checking coï¿½rdinate " + i + "...");
+			sendMessage("Checking coordinate " + i + "...");
 			
 			if(iErr <= 0)
 			{
@@ -156,7 +156,7 @@ public class Bresenham implements Messenger, Iterator<Vector>
 				iNxt += Floats.sign(dif.get(i));
 				iErr += Floats.max(Floats.abs(dif.Values()));
 				
-				sendMessage("Coï¿½rdinate incremented.");
+				sendMessage("Coordinate incremented.");
 				
 				nxt.set(iNxt, i);
 			}
