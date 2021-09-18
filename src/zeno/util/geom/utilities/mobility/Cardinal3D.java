@@ -1,4 +1,4 @@
-package zeno.util.geom.utilities.cardinal;
+package zeno.util.geom.utilities.mobility;
 
 import zeno.util.algebra.linear.vector.fixed.Vector3;
 import zeno.util.geom.collidables.bounds.IBounded3D;

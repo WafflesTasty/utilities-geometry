@@ -4,7 +4,7 @@ import java.util.Iterator;
 
 import zeno.util.algebra.linear.vector.fixed.Vector2;
 import zeno.util.geom.collidables.IGeometry2D;
-import zeno.util.geom.utilities.cardinal.Cardinal2D;
+import zeno.util.geom.utilities.mobility.Cardinal2D;
 import zeno.util.tools.Integers;
 
 /**

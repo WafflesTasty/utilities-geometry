@@ -16,7 +16,7 @@ import zeno.util.geom.collidables.geometry.generic.ITriangle;
  * @see ITriangle
  */
 public class NTriangle implements ITriangle
-{
+{	
 	private Point p1, p2, p3;
 	
 	/**

@@ -20,7 +20,7 @@ import zeno.util.tools.Floats;
  * @see NTriangle
  */
 public class Triangle2D extends NTriangle implements IGeometry2D
-{
+{	
 	/**
 	 * Creates a new {@code Triangle2D}.
 	 * 

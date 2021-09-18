@@ -9,7 +9,6 @@ import zeno.util.algebra.linear.vector.fixed.Vector3;
 import zeno.util.geom.Affine;
 import zeno.util.geom.ICollidable;
 import zeno.util.geom.ITransformation;
-import zeno.util.geom.collidables.ICollision;
 import zeno.util.geom.collidables.IShapeable;
 import zeno.util.geom.collidables.affine.ASpace;
 import zeno.util.geom.collidables.affine.Point;
@@ -17,11 +16,13 @@ import zeno.util.geom.collidables.affine.lines.Line;
 import zeno.util.geom.collidables.affine.lines.Line2D;
 import zeno.util.geom.collidables.affine.lines.Line3D;
 import zeno.util.geom.collidables.bounds.Bounds;
-import zeno.util.geom.collidables.collisions.affine.CLSVoid;
+import zeno.util.geom.collidables.collisions.CLSVoid;
+import zeno.util.geom.collidables.geometry.Hull;
 import zeno.util.geom.collidables.geometry.generic.IConvex;
 import zeno.util.geom.collidables.geometry.generic.ICube;
 import zeno.util.geom.collidables.geometry.generic.ICuboid;
 import zeno.util.geom.collidables.geometry.generic.IEllipsoid;
+import zeno.util.geom.collidables.geometry.generic.IHull;
 import zeno.util.geom.collidables.geometry.generic.ISegment;
 import zeno.util.geom.collidables.geometry.generic.ISphere;
 import zeno.util.geom.collidables.geometry.generic.ITriangle;
@@ -55,9 +56,9 @@ import zeno.util.geom.utilities.spin.Spin;
 public final class Geometries
 {
 	/**
-	 * Defines an empty {@code Affine} object.
+	 * Defines an empty geometrical object.
 	 */
-	public static Affine VOID = new Void();
+	public static Void VOID = new Void();
 	
 	
 	/**
@@ -246,14 +247,31 @@ public final class Geometries
 		}
 	}
 	
-	private static class Void implements Affine
+	/**
+	 * The {@code Void} class defines empty geometry.
+	 *
+	 * @author Waffles
+	 * @since 12 May 2021
+	 * @version 1.0
+	 * 
+	 * 
+	 * @see Affine
+	 * @see IHull
+	 */
+	public static class Void implements IHull
 	{
 		@Override
-		public ICollision Collisions()
+		public CLSVoid Collisions()
 		{
 			return new CLSVoid();
 		}
 
+		@Override
+		public Matrix Vertices()
+		{
+			return Span();
+		}
+		
 		@Override
 		public Matrix Span()
 		{
@@ -425,6 +443,43 @@ public final class Geometries
 		return new Line(p, v);
 	}
 	
+	/**
+	 * Generates a convex {@code Hull} from an affine span.
+	 * 
+	 * @param span  a span of points
+	 * @return  a convex hull
+	 * 
+	 * 
+	 * @see IHull
+	 */
+	public static IHull hull(Matrix span)
+	{
+		int cols = span.Columns();
+		if(cols == 0) return VOID;
+		if(cols == 1)
+		{
+			Vector v = span.Column(0);
+			return new Point(v, 1f);
+		}
+		
+		if(cols == 2)
+		{
+			Vector p = span.Column(0);
+			Vector q = span.Column(1);
+			return segment(p,q);
+		}
+		
+		if(cols == 3)
+		{
+			Vector p = span.Column(0);
+			Vector q = span.Column(1);
+			Vector r = span.Column(2);
+			return triangle(p,q,r);
+		}
+		
+		return new Hull(span);
+	}
+	
 	
 	/**
 	 * Generates a new {@code ICube} geometry.
@@ -525,9 +580,9 @@ public final class Geometries
 	 */
 	public static ITriangle triangle(Point a, Point b, Point c)
 	{
-		if(a.Size() == 2)
+		if(a.Dimension() == 2)
 			return new Triangle2D(a, b, c);
-		if(a.Size() == 3)
+		if(a.Dimension() == 3)
 			return new Triangle3D(a, b, c);
 
 		return new NTriangle(a, b, c);
@@ -590,56 +645,7 @@ public final class Geometries
 		
 		return new NSphere(c, r);
 	}
-		
-	
-	/**
-	 * Generates a new {@code IConvex} geometry.
-	 * </b> This method returns a Minkowski difference used for collision.
-	 * 
-	 * @param a   a convex geometry
-	 * @param b   a convex geometry
-	 * @return  a convex difference
-	 * 
-	 * 
-	 * @see IConvex
-	 */
-	public static IConvex diff(IConvex a, IConvex b)
-	{
-		return new IConvex()
-		{
-			@Override
-			public Bounds Bounds(ITransformation map)
-			{
-				Vector min = a.Minimum().minus(b.Maximum());
-				Vector max = a.Maximum().minus(b.Minimum());
-				
-				return Geometries.cuboid
-				(
-					min.plus(max).times(0.5f),
-					max.minus(min)
-				);
-			}
 			
-			@Override
-			public Vector Extremum(Vector v)
-			{
-				return a.Extremum(v).minus(b.Extremum(v.times(-1f)));
-			}
-			
-			@Override
-			public Vector Minimum()
-			{
-				return a.Minimum().minus(b.Maximum());
-			}
-			
-			@Override
-			public Vector Maximum()
-			{
-				return a.Maximum().minus(b.Minimum());
-			}
-		};
-	}
-	
 	/**
 	 * Generates a new {@code IConvex} geometry.
 	 * 
@@ -678,12 +684,19 @@ public final class Geometries
 			}
 			
 			@Override
-			public Vector Extremum(Vector v)
+			public Extremum Extremum()
 			{
-				Point p = (Point) s.Transform().unmap(new Point(v, 0f));
-				Vector w = ((IConvex) s.Shape()).Extremum(p.asVector());
-				p = (Point) s.Transform().map(new Point(w, 0f));
-				return p.asVector();
+				Extremum ext = ((IConvex) s.Shape()).Extremum();
+				return v ->
+				{
+					Point p = new Point(v, 0f);
+					p = (Point) s.Transform().unmap(p);
+					Vector w = ext.along(p.asVector());
+					
+					Point q = new Point(w, 0f);
+					q = (Point) s.Transform().unmap(q);
+					return q.asVector();
+				};
 			}
 			
 			@Override

@@ -1,7 +1,6 @@
 package zeno.util.geom.collidables.geometry.generic;
 
-import zeno.util.algebra.linear.vector.Vector;
-import zeno.util.geom.collidables.ICollision;
+import zeno.util.geom.collidables.collisions.convex.CLSConvex;
 import zeno.util.geom.collidables.collisions.geometry.CLSSphere;
 
 /**
@@ -17,13 +16,13 @@ import zeno.util.geom.collidables.collisions.geometry.CLSSphere;
 public interface ISphere extends IEllipsoid
 {	
 	@Override
-	public default Vector Extremum(Vector v)
+	public default Extremum Extremum()
 	{
-		return Center().plus(v.normalize().times(Radius()));
+		return v -> Center().plus(v.normalize().times(Radius()));
 	}
 	
 	@Override
-	public default ICollision Collisions()
+	public default CLSConvex Collisions()
 	{
 		return new CLSSphere(this);
 	}

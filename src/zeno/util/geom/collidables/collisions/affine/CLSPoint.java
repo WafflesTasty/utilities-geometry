@@ -4,6 +4,7 @@ import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.geom.ICollidable;
 import zeno.util.geom.collidables.ICollision;
 import zeno.util.geom.collidables.affine.Point;
+import zeno.util.geom.collidables.collisions.convex.CLSHull;
 import zeno.util.geom.utilities.Geometries;
 import zeno.util.tools.Floats;
 
@@ -15,11 +16,68 @@ import zeno.util.tools.Floats;
  * @version 1.0
  * 
  * 
- * @see ICollision
+ * @see CLSHull
  */
-public class CLSPoint implements ICollision
+public class CLSPoint extends CLSHull
 {
-	private Point p;
+	/**
+	 * The {@code RSPPoint} class defines collision response for a point.
+	 *
+	 * @author Waffles
+	 * @since 12 May 2021
+	 * @version 1.0
+	 * 
+	 * 
+	 * @see ICollision
+	 */
+	public class RSPPoint implements Response
+	{
+		private Response rsp;
+		
+		/**
+		 * Creates a new {@code RSPPoint}.
+		 * 
+		 * @param c  a target object
+		 * 
+		 * 
+		 * @see ICollidable
+		 */
+		public RSPPoint(ICollidable c)
+		{
+			rsp = c.contain(Source());
+		}
+		
+		
+		@Override
+		public boolean isEmpty()
+		{
+			return rsp.isEmpty();
+		}
+		
+		@Override
+		public Vector Penetration()
+		{
+			return rsp.Penetration().times(-1f);
+		}
+
+		@Override
+		public ICollidable Shape()
+		{
+			if(isEmpty())
+			{
+				return Geometries.VOID;
+			}
+			
+			return Source();
+		}
+
+		@Override
+		public Vector Distance()
+		{
+			return rsp.Distance().times(-1f);
+		}
+	}
+	
 	
 	/**
 	 * Creates a new {@code CLSPoint}.
@@ -31,19 +89,14 @@ public class CLSPoint implements ICollision
 	 */
 	public CLSPoint(Point p)
 	{
-		this.p = p;
+		super(p);
 	}
 	
 	
 	@Override
-	public ICollidable intersect(ICollidable c)
+	public Response intersect(ICollidable c)
 	{
-		if(c.contains(p))
-		{
-			return p;
-		}
-		
-		return Geometries.VOID;
+		return new RSPPoint(c);
 	}
 					
 	@Override
@@ -51,7 +104,7 @@ public class CLSPoint implements ICollision
 	{
 		if(c instanceof Point)
 		{
-			Vector vp = p.asVector();
+			Vector vp = Source().asVector();
 			Vector vc = ((Point) c).asVector();	
 			float norm = vp.minus(vc).normSqr();
 			
@@ -64,12 +117,18 @@ public class CLSPoint implements ICollision
 	@Override
 	public Boolean intersects(ICollidable c)
 	{
-		return c.contains(p);
+		return c.contains(Source());
 	}
 	
 	@Override
 	public Boolean contains(ICollidable c)
 	{
 		return equals(c, 2);
+	}
+	
+	@Override
+	protected Point Source()
+	{
+		return (Point) super.Source();
 	}
 }

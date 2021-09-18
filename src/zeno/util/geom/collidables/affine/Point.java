@@ -3,9 +3,8 @@ package zeno.util.geom.collidables.affine;
 import zeno.util.algebra.linear.Measurable;
 import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.algebra.linear.vector.Vectors;
-import zeno.util.geom.Affine;
-import zeno.util.geom.collidables.ICollision;
 import zeno.util.geom.collidables.collisions.affine.CLSPoint;
+import zeno.util.geom.collidables.geometry.generic.IHull;
 import zeno.util.tools.Floats;
 
 /**
@@ -20,9 +19,9 @@ import zeno.util.tools.Floats;
  * 
  * 
  * @see Measurable
- * @see Affine
+ * @see IHull
  */
-public class Point implements Affine, Measurable<Point>
+public class Point implements Measurable<Point>, IHull
 {		
 	/**
 	 * The {@code Type} enum defines the two {@code Point} subsets.
@@ -44,7 +43,7 @@ public class Point implements Affine, Measurable<Point>
 	}
 	
 	
-	private Vector v;
+	private Vector v, w;
 	
 	/**
 	 * Creates a new {@code Point}.
@@ -122,17 +121,6 @@ public class Point implements Affine, Measurable<Point>
 		v.set(m, v.Size()-1);
 	}
 
-	
-	/**
-	 * Returns the {@code Point} size.
-	 * 
-	 * @return  a point size
-	 */
-	public int Size()
-	{
-		return v.Size() - 1;
-	}
-		
 	/**
 	 * Returns a {@code Point} coördinate.
 	 * 
@@ -187,10 +175,13 @@ public class Point implements Affine, Measurable<Point>
 	 */
 	public Vector asVector()
 	{
-		Vector w = Vectors.resize(v, v.Size() - 1);
-		if(!Floats.isZero(Mass(), 1))
+		if(w == null)
 		{
-			w = w.times(1f / Mass());
+			w = Vectors.resize(v, v.Size() - 1);
+			if(!Floats.isZero(Mass(), 1))
+			{
+				w = w.times(1f / Mass());
+			}
 		}
 		
 		return w;
@@ -239,8 +230,14 @@ public class Point implements Affine, Measurable<Point>
 	}
 	
 	
+//	@Override
+//	public Extremum Extremum()
+//	{
+//		return v -> asVector();
+//	}
+
 	@Override
-	public ICollision Collisions()
+	public CLSPoint Collisions()
 	{
 		return new CLSPoint(this);
 	}
@@ -255,8 +252,50 @@ public class Point implements Affine, Measurable<Point>
 	}
 	
 	@Override
+	public Vector Vertices()
+	{
+		return asVector();
+	}
+	
+	@Override
 	public Vector Span()
 	{
 		return v;
+	}
+
+	
+	// Obligatory bounds overrides.
+	
+	@Override
+	public float Radius()
+	{
+		return 0f;
+	}
+	
+	@Override
+	public Vector Center()
+	{
+		return asVector();
+	}
+	
+	@Override
+	public Vector Size()
+	{
+		return Vectors.create(0f, Dimension());
+	}
+
+	
+	// Optional bounds overrides.
+	
+	@Override
+	public Vector Minimum()
+	{
+		return asVector();
+	}
+	
+	@Override
+	public Vector Maximum()
+	{
+		return asVector();
 	}
 }

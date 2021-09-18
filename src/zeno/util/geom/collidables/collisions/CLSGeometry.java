@@ -1,5 +1,6 @@
 package zeno.util.geom.collidables.collisions;
 
+import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.geom.ICollidable;
 import zeno.util.geom.collidables.ICollision;
 import zeno.util.geom.collidables.IGeometry;
@@ -20,6 +21,76 @@ import zeno.util.tools.Floats;
  */
 public abstract class CLSGeometry implements ICollision
 {
+	/**
+	 * The {@code RSPPoint} class defines collision response for a point.
+	 *
+	 * @author Waffles
+	 * @since 12 May 2021
+	 * @version 1.0
+	 * 
+	 * 
+	 * @see ICollision
+	 */
+	public class RSPPoint implements Response
+	{
+		private Point point;
+		private Response rsp;
+		
+		/**
+		 * Creates a new {@code RSPPoint}.
+		 * 
+		 * @param p  a target point
+		 * 
+		 * 
+		 * @see Point
+		 */
+		public RSPPoint(Point p)
+		{
+			point = p;
+		}
+		
+		
+		@Override
+		public boolean isEmpty()
+		{
+			return Response().isEmpty();
+		}
+
+		@Override
+		public ICollidable Shape()
+		{
+			if(isEmpty())
+			{
+				return Geometries.VOID;
+			}
+			
+			return point;
+		}
+
+		@Override
+		public Vector Penetration()
+		{
+			return Response().Penetration();
+		}
+		
+		@Override
+		public Vector Distance()
+		{
+			return Response().Distance();
+		}
+		
+		Response Response()
+		{
+			if(rsp == null)
+			{
+				rsp = contain(point);
+			}
+			
+			return rsp;
+		}
+	}
+	
+	
 	private IGeometry src;
 	
 	/**
@@ -34,35 +105,21 @@ public abstract class CLSGeometry implements ICollision
 	{
 		this.src = src;
 	}
-	
-	
-	protected abstract boolean contains(Point p);
-	
-	protected IGeometry Source()
-	{
-		return src;
-	}
-	
-	boolean isDegenerate()
-	{
-		return Floats.isZero(src.Size().norm(), src.Dimension());
-	}
-	
+
 	
 	@Override
 	public Boolean contains(ICollidable c)
 	{
-		// Eliminate degenerate geometry.
-		if(isDegenerate())
+		// Eliminate void geometry.
+		if(c.equals(Geometries.VOID))
 		{
-			Point p = new Point(src.Center(), 1f);
-			return c.equals(p, 1);
+			return true;
 		}
-		
+				
 		// Eliminate point containment.
 		if(c instanceof Point)
 		{
-			return contains((Point) c);
+			return !contain((Point) c).isEmpty();
 		}
 		
 		// Eliminate affine spaces.
@@ -75,15 +132,45 @@ public abstract class CLSGeometry implements ICollision
 	}
 	
 	@Override
-	public Boolean equals(ICollidable c, int ulps)
+	public Response intersect(ICollidable c)
 	{
-		// Eliminate degenerate geometry.
-		if(isDegenerate())
+		// Eliminate void geometry.
+		if(c.equals(Geometries.VOID))
 		{
-			Point p = new Point(src.Center(), 1f);
-			return c.equals(p, ulps);
+			return c.intersect(Source());
 		}
 		
+		// Eliminate point intersection.
+		if(c instanceof Point)
+		{
+			return contain((Point) c);
+		}
+		
+		return null;
+	}
+			
+	@Override
+	public Boolean intersects(ICollidable c)
+	{
+		// Eliminate point intersection.
+		if(c instanceof Point)
+		{
+			return contains((Point) c);
+		}
+		
+		return null;
+	}
+		
+	@Override
+	public Boolean inhabits(ICollidable c)
+	{
+		return null;
+	}
+
+	
+	@Override
+	public Boolean equals(ICollidable c, int ulps)
+	{
 		// Eliminate point equality.
 		if(c instanceof Point)
 		{
@@ -99,61 +186,13 @@ public abstract class CLSGeometry implements ICollision
 		return null;
 	}
 	
-	@Override
-	public ICollidable intersect(ICollidable c)
+	protected IGeometry Source()
 	{
-		// Eliminate degenerate geometry.
-		if(isDegenerate())
-		{
-			if(c.contains(src.Center()))
-			{
-				return new Point(src.Center(), 1f);
-			}
-			
-			return Geometries.VOID;
-		}
-		
-		// Eliminate point intersection.
-		if(c instanceof Point)
-		{
-			if(!contains((Point) c))
-			{
-				return Geometries.VOID;
-			}
-			
-			return c;
-		}
-		
-		return null;
+		return src;
 	}
 	
-	@Override
-	public Boolean intersects(ICollidable c)
+	boolean isDegenerate()
 	{
-		// Eliminate degenerate geometry.
-		if(isDegenerate())
-		{
-			return c.contains(src.Center());
-		}
-		
-		// Eliminate point intersection.
-		if(c instanceof Point)
-		{
-			return contains((Point) c);
-		}
-		
-		return null;
-	}
-		
-	@Override
-	public Boolean inhabits(ICollidable c)
-	{
-		// Eliminate degenerate geometry.
-		if(isDegenerate())
-		{
-			return c.contains(src.Center());
-		}
-		
-		return null;
+		return Floats.isZero(src.Size().norm(), src.Dimension());
 	}
 }

@@ -19,7 +19,7 @@ import zeno.util.geom.collidables.geometry.generic.ICuboid;
  * @see ICuboid
  */
 public class Rectangle extends Geometry2D implements ICuboid
-{	
+{		
 	/**
 	 * Creates a new {@code Rectangle}.
 	 * 

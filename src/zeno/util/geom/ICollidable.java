@@ -2,6 +2,7 @@ package zeno.util.geom;
 
 import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.geom.collidables.ICollision;
+import zeno.util.geom.collidables.ICollision.Response;
 import zeno.util.geom.collidables.affine.Point;
 import zeno.util.geom.utilities.Geometries;
 import zeno.util.tools.patterns.properties.Inaccurate;
@@ -13,6 +14,9 @@ import zeno.util.tools.patterns.properties.Inaccurate;
  * @author Zeno
  * @since Feb 27, 2018
  * @version 1.0
+ * 
+ * 
+ * @see Inaccurate
  */
 @FunctionalInterface
 public interface ICollidable extends Inaccurate<ICollidable>
@@ -33,15 +37,50 @@ public interface ICollidable extends Inaccurate<ICollidable>
 		return bln;
 	}
 
+	
+	/**
+	 * Contains a {@code Vector} into the object.
+	 * 
+	 * @param v  a target vector
+	 * @return  a collision response
+	 * 
+	 * 
+	 * @see Response
+	 * @see Vector
+	 */
+	public default Response contain(Vector v)
+	{
+		return contain(new Point(v, 1f));
+	}
+	
+	/**
+	 * Contains a {@code Point} into the object.
+	 * 
+	 * @param p  a target point
+	 * @return  a collision response
+	 * 
+	 * 
+	 * @see Response
+	 * @see Point
+	 */
+	public default Response contain(Point p)
+	{
+		return Collisions().contain(p);
+	}
+	
 	/**
 	 * Intersects the {@code ICollidable} with another object.
 	 * 
 	 * @param c  an object to check
 	 * @return  the object intersection
+	 * 
+	 * 
+	 * @see ICollidable
+	 * @see Response
 	 */
-	public default ICollidable intersect(ICollidable c)
+	public default Response intersect(ICollidable c)
 	{
-		ICollidable isc = Collisions().intersect(c);
+		Response isc = Collisions().intersect(c);
 		if(isc == null)
 		{
 			isc = c.Collisions().intersect(this);
@@ -83,6 +122,11 @@ public interface ICollidable extends Inaccurate<ICollidable>
 	 */
 	public default boolean contains(ICollidable c)
 	{
+		if(c instanceof Point)
+		{
+			
+		}
+		
 		Boolean bln = Collisions().contains(c);
 		if(bln == null)
 		{

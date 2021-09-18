@@ -1,7 +1,8 @@
 package zeno.util.geom.collidables;
 
+import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.geom.ICollidable;
-import zeno.util.geom.utilities.Geometries;
+import zeno.util.geom.collidables.affine.Point;
 
 /**
  * The {@code ICollision} interface defines collision for a {@code ICollidable} subtype.
@@ -12,6 +13,60 @@ import zeno.util.geom.utilities.Geometries;
  */
 public interface ICollision
 {	
+	/**
+	 * The {@code Response} interface defines the result of a collision check.
+	 *
+	 * @author Waffles
+	 * @since 11 May 2021
+	 * @version 1.0
+	 */
+	public static interface Response
+	{
+		/**
+		 * Checks if the shape intersection is empty.
+		 * 
+		 * @return  {@code true} if intersection is empty
+		 */
+		public abstract boolean isEmpty();
+		
+		/**
+		 * Returns the shape of the intersection.
+		 * 
+		 * @return  an intersection shape
+		 * 
+		 * 
+		 * @see ICollidable
+		 */
+		public abstract ICollidable Shape();
+		
+		/**
+		 * Returns the minimum penetration vector.
+		 * If the intersection is non-empty, this vector defines
+		 * the smallest translation of the source to clear it. If the
+		 * intersection is empty, this vector should be null.
+		 * 
+		 * @return  a penetration vector
+		 * 
+		 * 
+		 * @see Vector
+		 */
+		public abstract Vector Penetration();
+		
+		/**
+		 * Returns the minimum collision distance.
+		 * If the intersection is empty, this vector defines the
+		 * smallest translation of the source to intersect it. If the
+		 * intersection is non-empty, this vector should be null.
+		 * 
+		 * @return  a distance vector
+		 * 
+		 * 
+		 * @see Vector
+		 */
+		public abstract Vector Distance();
+	}
+	
+		
 	/**
 	 * Checks if the source contains a {@code ICollidable}.
 	 * 
@@ -42,15 +97,30 @@ public interface ICollision
 	
 	
 	/**
+	 * Computes the collision response with a {@code Point}.
+	 * 
+	 * @param p  a target point
+	 * @return  a collision response
+	 * 
+	 * 
+	 * @see Response
+	 * @see Point
+	 */
+	public default Response contain(Point p)
+	{
+		return null;
+	}
+	
+	/**
 	 * Computes the intersection with a {@code ICollidable}.
 	 * 
 	 * @param c  a collidable object to intersect
 	 * @return  an object intersection
 	 * 
 	 * 
-	 * @see ICollidable
+	 * @see Response
 	 */
-	public default ICollidable intersect(ICollidable c)
+	public default Response intersect(ICollidable c)
 	{
 		return null;
 	}
@@ -81,10 +151,10 @@ public interface ICollision
 	 */
 	public default Boolean intersects(ICollidable c)
 	{
-		ICollidable isect = intersect(c);
-		if(isect != null)
+		Response r = intersect(c);
+		if(r != null)
 		{
-			return !isect.equals(Geometries.VOID);
+			return !r.isEmpty();
 		}
 		
 		return null;

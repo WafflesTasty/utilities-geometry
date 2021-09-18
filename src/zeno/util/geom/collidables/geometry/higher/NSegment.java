@@ -87,7 +87,7 @@ public class NSegment implements ISegment
 		return false;
 	}
 
-		
+			
 	@Override
 	public Vector P1()
 	{

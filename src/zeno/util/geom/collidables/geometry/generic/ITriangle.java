@@ -4,13 +4,11 @@ import zeno.util.algebra.linear.matrix.Matrices;
 import zeno.util.algebra.linear.matrix.Matrix;
 import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.algebra.linear.vector.Vectors;
-import zeno.util.geom.Affine;
 import zeno.util.geom.ITransformation;
-import zeno.util.geom.collidables.ICollision;
 import zeno.util.geom.collidables.affine.Point;
 import zeno.util.geom.collidables.affine.Point.Type;
 import zeno.util.geom.collidables.bounds.Bounds;
-import zeno.util.geom.collidables.collisions.geometry.CLSConvex;
+import zeno.util.geom.collidables.collisions.geometry.CLSTriangle;
 import zeno.util.geom.utilities.Geometries;
 import zeno.util.tools.Floats;
 
@@ -22,10 +20,9 @@ import zeno.util.tools.Floats;
  * @version 1.0 
  * 
  * 
- * @see IConvex
- * @see Affine
+ * @see IHull
  */
-public interface ITriangle extends Affine, IConvex
+public interface ITriangle extends IHull
 {
 	/**
 	 * Returns the first point of the {@code ITriangle}.
@@ -58,34 +55,34 @@ public interface ITriangle extends Affine, IConvex
 	public abstract Point P3();
 		
 	
-	@Override
-	public default Vector Extremum(Vector v)
-	{
-		Vector p1 = P1().asVector();
-		Vector p2 = P2().asVector();
-		Vector p3 = P3().asVector();
-		
-		float d1 = p2.minus(p1).normalize().dot(v.normalize());
-		float d2 = p3.minus(p2).normalize().dot(v.normalize());
-		float d3 = p1.minus(p3).normalize().dot(v.normalize());
-
-		if(d1 < 0)
-		{
-			if(d3 > 0)
-			{
-				return p1;
-			}
-						
-			return p3;
-		}
-		
-		if(d2 < 0)
-		{
-			return p2;
-		}
-		
-		return p3;
-	}
+//	@Override
+//	public default Vector Extremum(Vector v)
+//	{
+//		Vector p1 = P1().asVector();
+//		Vector p2 = P2().asVector();
+//		Vector p3 = P3().asVector();
+//		
+//		float d1 = p2.minus(p1).normalize().dot(v.normalize());
+//		float d2 = p3.minus(p2).normalize().dot(v.normalize());
+//		float d3 = p1.minus(p3).normalize().dot(v.normalize());
+//
+//		if(d1 < 0)
+//		{
+//			if(d3 > 0)
+//			{
+//				return p1;
+//			}
+//						
+//			return p3;
+//		}
+//		
+//		if(d2 < 0)
+//		{
+//			return p2;
+//		}
+//		
+//		return p3;
+//	}
 	
 	@Override
 	public default Bounds Bounds(ITransformation map)
@@ -94,9 +91,9 @@ public interface ITriangle extends Affine, IConvex
 	}
 	
 	@Override
-	public default ICollision Collisions()
+	public default CLSTriangle Collisions()
 	{
-		return new CLSConvex(this);
+		return new CLSTriangle(this);
 	}
 	
 	@Override
@@ -127,10 +124,15 @@ public interface ITriangle extends Affine, IConvex
 	}
 	
 	@Override
-	public default Matrix Span()
+	public default Matrix Vertices()
 	{
-		return Matrices.fromCols(P1().Span(), P2().Span(), P3().Span());
+		Vector v1 = P1().asVector();
+		Vector v2 = P2().asVector();
+		Vector v3 = P3().asVector();
+				
+		return Matrices.fromCols(v1, v2, v3);
 	}
+
 	
 	// Obligatory Bounds overrides.
 	
@@ -163,6 +165,6 @@ public interface ITriangle extends Affine, IConvex
 	@Override
 	public default int Dimension()
 	{
-		return P1().Size();
+		return P1().Dimension();
 	}
 }

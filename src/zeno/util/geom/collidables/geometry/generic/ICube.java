@@ -11,7 +11,7 @@ package zeno.util.geom.collidables.geometry.generic;
  * @see ICuboid
  */
 public interface ICube extends ICuboid
-{	
+{		
 	/**
 	 * Returns the length of the {@code ICube}.
 	 * 

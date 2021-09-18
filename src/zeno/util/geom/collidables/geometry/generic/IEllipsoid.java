@@ -2,8 +2,8 @@ package zeno.util.geom.collidables.geometry.generic;
 
 import zeno.util.algebra.linear.vector.Vector;
 import zeno.util.algebra.linear.vector.Vectors;
-import zeno.util.geom.collidables.ICollision;
 import zeno.util.geom.collidables.IGeometry;
+import zeno.util.geom.collidables.collisions.convex.CLSConvex;
 import zeno.util.geom.collidables.collisions.geometry.CLSEllipsoid;
 import zeno.util.tools.Floats;
 
@@ -20,27 +20,31 @@ import zeno.util.tools.Floats;
 public interface IEllipsoid extends IConvex
 {	
 	@Override
-	public default Vector Extremum(Vector v)
+	public default Extremum Extremum()
 	{
-		Vector n = Vectors.create(Dimension());
-		for(int i = 0; i < Dimension(); i++)
+		return v ->
 		{
-			float si = Size().get(i) / 2;
-			n.set(v.get(i) * si, i);
-		}
-		
-		Vector e = Vectors.create(Dimension());
-		for(int i = 0; i < Dimension(); i++)
-		{
-			float si = Size().get(i) / 2;
-			e.set(v.get(i) * si * si, i);
-		}
-		
-		return Center().plus(e.times(1f / n.norm()));
+			Vector n = Vectors.create(Dimension());
+			for(int i = 0; i < Dimension(); i++)
+			{
+				float si = Size().get(i) / 2;
+				n.set(v.get(i) * si, i);
+			}
+			
+			float nrm = n.norm();
+			Vector e = Vectors.create(Dimension());
+			for(int i = 0; i < Dimension(); i++)
+			{
+				float si = Size().get(i) / 2;
+				e.set(v.get(i) * si * si / nrm, i);
+			}
+			
+			return Center().plus(e);
+		};
 	}
 	
 	@Override
-	public default ICollision Collisions()
+	public default CLSConvex Collisions()
 	{
 		return new CLSEllipsoid(this);
 	}

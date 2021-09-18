@@ -8,7 +8,7 @@ import zeno.util.geom.utilities.Geometries;
 /**
  * The {@code Bounds} interface defines object bounds in n dimensions.
  * 
- * @author Zeno
+ * @author Waffles
  * @since Apr 06, 2019
  * @version 1.0
  */

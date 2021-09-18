@@ -19,7 +19,7 @@ import zeno.util.geom.collidables.geometry.generic.ICuboid;
  * @see ICuboid
  */
 public class NCuboid extends Geometry implements ICuboid
-{
+{	
 	/**
 	 * Creates a new {@code NCuboid}.
 	 * 

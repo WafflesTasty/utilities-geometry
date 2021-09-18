@@ -69,8 +69,8 @@ public class Line extends ASpace
 	 * 
 	 * @see Vector
 	 */
-	public Vector Vector()
+	public Point Vector()
 	{
-		return (Vector) Direction().Span();
+		return new Point((Vector) Direction().Span(), 0f);
 	}
 }

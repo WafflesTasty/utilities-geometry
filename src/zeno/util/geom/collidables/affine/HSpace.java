@@ -11,10 +11,8 @@ import zeno.util.geom.utilities.Geometries;
 
 /**
  * The {@code HSpace} class defines a euclidian affine halfspace.
- * Affine spaces are immutable objects designed to produce various bases,
- * and allow for intersection and containment checks.
  *
- * @author Zeno
+ * @author Waffles
  * @since Apr 8, 2019
  * @version 1.0
  * 
@@ -70,13 +68,13 @@ public class HSpace implements Affine
 	}
 	
 	/**
-	 * Returns the dimension of the {@code Affine Space}.
+	 * Returns the dimension of the {@code HSpace}.
 	 * 
 	 * @return  a space dimension
 	 */
 	public int Dimension()
 	{
-		return origin.Size() - 2;
+		return origin.Dimension();
 	}
 
 	
