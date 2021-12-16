@@ -70,7 +70,6 @@ public class StandardMap extends DirtyValue<Integer> implements AffineMap
 	public Matrix Matrix(int dim)
 	{
 		checkCache(dim);
-		System.out.println(mat);
 		return mat;
 	}
 	
