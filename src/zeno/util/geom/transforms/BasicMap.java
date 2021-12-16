@@ -38,7 +38,7 @@ public class BasicMap extends DirtyValue<Integer> implements AffineMap
 	 */
 	public BasicMap(int dim)
 	{		
-		super(dim);
+		super(-1);
 		
 		rotation = new Rotation(dim);
 		translation = new Translation(dim);

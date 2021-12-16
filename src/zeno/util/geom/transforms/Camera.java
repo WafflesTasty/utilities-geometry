@@ -44,7 +44,7 @@ public class Camera extends DirtyValue<Integer> implements ITransformation
 	 */
 	public Camera(int iDim, int oDim)
 	{	
-		super(iDim);
+		super(-1);
 		
 		rotation = new Rotation(iDim);
 		projection = new Projection(iDim, oDim);

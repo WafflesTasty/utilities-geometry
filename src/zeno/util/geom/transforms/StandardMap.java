@@ -39,7 +39,7 @@ public class StandardMap extends DirtyValue<Integer> implements AffineMap
 	 */
 	public StandardMap(int dim)
 	{		
-		super(dim);
+		super(-1);
 		
 		dilation = new Dilation(dim);
 		translation = new Translation(dim);
@@ -70,6 +70,7 @@ public class StandardMap extends DirtyValue<Integer> implements AffineMap
 	public Matrix Matrix(int dim)
 	{
 		checkCache(dim);
+		System.out.println(mat);
 		return mat;
 	}
 	
