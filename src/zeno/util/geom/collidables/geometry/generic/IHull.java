@@ -42,7 +42,6 @@ public interface IHull extends IConvex, Affine
 	{
 		private Vector c;
 		private Matrix span;
-//		private List<Integer> pts;
 		
 		/**
 		 * Creates a new {@code Extremum}.
@@ -56,26 +55,17 @@ public interface IHull extends IConvex, Affine
 		{
 			c = hull.Center();
 			span = hull.Vertices();
-
-//			pts = new ArrayList<>();
-//			for(int i = 0; i < span.Columns(); i++)
-//			{
-//				pts.add(i);
-//			}
 		}
 		
 		
 		@Override
 		public Vector along(Vector v)
 		{
-//			if(pts.isEmpty()) return null;
-			
 			int idx = Integers.MIN_VALUE;
 			float dot = Floats.NEG_INFINITY;
-//			for(int i = 0; i < pts.size(); i++)
+
 			for(int i = 0; i < span.Columns(); i++)
 			{
-//				Vector w = span.Column(pts.get(i));
 				Vector w = span.Column(i);
 				float val = v.dot(w.minus(c));
 				if(dot < val)
@@ -85,7 +75,6 @@ public interface IHull extends IConvex, Affine
 				}
 			}
 
-//			idx = pts.remove(idx);
 			return span.Column(idx);
 		}
 	}

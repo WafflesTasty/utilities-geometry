@@ -9,6 +9,7 @@ import zeno.util.algebra.linear.vector.fixed.Vector3;
 import zeno.util.geom.Affine;
 import zeno.util.geom.ICollidable;
 import zeno.util.geom.ITransformation;
+import zeno.util.geom.collidables.IGeometry;
 import zeno.util.geom.collidables.IShapeable;
 import zeno.util.geom.collidables.affine.ASpace;
 import zeno.util.geom.collidables.affine.Point;
@@ -16,6 +17,7 @@ import zeno.util.geom.collidables.affine.lines.Line;
 import zeno.util.geom.collidables.affine.lines.Line2D;
 import zeno.util.geom.collidables.affine.lines.Line3D;
 import zeno.util.geom.collidables.bounds.Bounds;
+import zeno.util.geom.collidables.collisions.CLSUniverse;
 import zeno.util.geom.collidables.collisions.CLSVoid;
 import zeno.util.geom.collidables.geometry.Hull;
 import zeno.util.geom.collidables.geometry.generic.IConvex;
@@ -55,6 +57,10 @@ import zeno.util.geom.utilities.spin.Spin;
  */
 public final class Geometries
 {
+	/**
+	 * Defines a universal geometrical object.
+	 */
+	public static Universe UNIVERSE = new Universe();
 	/**
 	 * Defines an empty geometrical object.
 	 */
@@ -244,6 +250,31 @@ public final class Geometries
 		public TypeError(Point p, Point.Type type)
 		{
 			super("Point " + p + " is not of the " + type + " type.");
+		}
+	}
+	
+	/**
+	 * The {@code Universe} class defines universal geometry.
+	 *
+	 * @author Waffles
+	 * @since 02 Jan 2022
+	 * @version 1.0
+	 * 
+	 * 
+	 * @see IGeometry
+	 */
+	public static class Universe implements IGeometry
+	{
+		@Override
+		public Bounds Bounds(ITransformation map)
+		{
+			return this;
+		}
+		
+		@Override
+		public CLSUniverse Collisions()
+		{
+			return new CLSUniverse();
 		}
 	}
 	
