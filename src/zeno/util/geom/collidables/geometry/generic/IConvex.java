@@ -1,11 +1,8 @@
 package zeno.util.geom.collidables.geometry.generic;
 
 import zeno.util.algebra.linear.vector.Vector;
-import zeno.util.geom.ITransformation;
 import zeno.util.geom.collidables.IGeometry;
-import zeno.util.geom.collidables.bounds.Bounds;
 import zeno.util.geom.collidables.collisions.convex.CLSConvex;
-import zeno.util.geom.utilities.Geometries;
 
 /**
  * The {@code IConvex} interface is the base for convex n-dimensional shapes.
@@ -42,58 +39,6 @@ public interface IConvex extends IGeometry
 		public abstract Vector along(Vector v);
 	}
 	
-	public static class Difference implements IConvex
-	{
-		private IConvex a, b;
-		
-		public Difference(IConvex a, IConvex b)
-		{
-			this.a = a;
-			this.b = b;
-		}
-		
-		@Override
-		public Bounds Bounds(ITransformation map)
-		{
-			Vector min = Minimum();
-			Vector max = Maximum();
-			
-			return Geometries.cuboid
-			(
-				min.plus(max).times(0.5f),
-				max.minus(min)
-			);
-		}
-		
-		@Override
-		public Extremum Extremum()
-		{			
-			return v ->
-			{
-				Extremum aExt = a.Extremum();
-				Extremum bExt = b.Extremum();
-				
-				Vector v1 = aExt.along(v.times(+1f));
-				if(v1 == null) return null;
-				Vector v2 = bExt.along(v.times(-1f));
-				if(v2 == null) return null;
-				return v1.minus(v2);
-			};
-		}
-		
-		@Override
-		public Vector Minimum()
-		{
-			return a.Minimum().minus(b.Maximum());
-		}
-		
-		@Override
-		public Vector Maximum()
-		{
-			return a.Maximum().minus(b.Minimum());
-		}
-	}
-	
 	/**
 	 * Returns the extremum of an {@code IConvex}.
 	 * 
@@ -112,7 +57,7 @@ public interface IConvex extends IGeometry
 	 */
 	public default IConvex minus(IConvex c)
 	{
-		return new Difference(this, c);
+		return new DConvex(this, c);
 	}
 	
 	

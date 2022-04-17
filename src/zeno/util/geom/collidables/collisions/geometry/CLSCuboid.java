@@ -47,8 +47,8 @@ public class CLSCuboid extends CLSHull
 	public class RSPCuboid implements Response
 	{
 		private ICuboid tgt;
+		private Vector dst, pnt;
 		private ICollidable shape;
-		private Response rsp;
 		
 		/**
 		 * Creates a new {@code RSPCuboid}.
@@ -61,6 +61,9 @@ public class CLSCuboid extends CLSHull
 		public RSPCuboid(ICuboid tgt)
 		{
 			this.tgt = tgt;
+			
+			dst = Vectors.create(tgt.Dimension());
+			pnt = Vectors.create(tgt.Dimension());
 		}
 		
 		
@@ -76,9 +79,13 @@ public class CLSCuboid extends CLSHull
 			if(shape == null)
 			{
 				ICuboid src = Source();
-				int dim = Integers.min(src.Dimension(), tgt.Dimension());
-				Vector m = Vectors.create(dim); Vector n = Vectors.create(dim);
+				int d1 = src.Dimension();
+				int d2 = tgt.Dimension();
 				
+				
+				int dim = Integers.min(d1, d2);
+				Vector m = Vectors.create(dim);
+				Vector n = Vectors.create(dim);
 				for(int i = 0; i < dim; i++)
 				{
 					float si = src.Size().get(i);
@@ -93,8 +100,11 @@ public class CLSCuboid extends CLSHull
 						return shape;
 					}
 					
-					m.set(Floats.min(pi + si / 2, qi + ti / 2), i);
-					n.set(Floats.max(pi - si / 2, qi - ti / 2), i);
+					float iMin = Floats.max(pi - si / 2, qi - ti / 2);
+					float iMax = Floats.min(pi + si / 2, qi + ti / 2); 
+					
+					m.set(iMax, i);
+					n.set(iMin, i);
 				}
 				
 				Vector s = m.minus(n);
@@ -108,25 +118,31 @@ public class CLSCuboid extends CLSHull
 		@Override
 		public Vector Penetration()
 		{
-			if(rsp == null)
+			if(dst == null && pnt == null)
 			{
 				CLSHull cls = new CLSHull(Source());
-				rsp = cls.intersect(tgt);
+				Response rsp = cls.intersect(tgt);
+				
+				pnt = rsp.Penetration();
+				dst = rsp.Distance();
 			}
 			
-			return rsp.Penetration();
+			return pnt;
 		}
 		
 		@Override
 		public Vector Distance()
 		{
-			if(rsp == null)
+			if(dst == null && pnt == null)
 			{
 				CLSHull cls = new CLSHull(Source());
-				rsp = cls.intersect(tgt);
+				Response rsp = cls.intersect(tgt);
+				
+				pnt = rsp.Penetration();
+				dst = rsp.Distance();				
 			}
 			
-			return rsp.Distance();
+			return dst;
 		}
 	}
 	

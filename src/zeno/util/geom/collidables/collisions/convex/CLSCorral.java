@@ -123,11 +123,6 @@ public class CLSCorral
 		return pIndex == -1;
 	}
 	
-	public boolean isDegenerate()
-	{
-		return isDegenerate;
-	}
-
 	/**
 	 * Maximizes the affine set of the {@code CLSCorral}.
 	 * 
@@ -170,6 +165,16 @@ public class CLSCorral
 		}
 	}
 
+	/**
+	 * Checks the degenerate state of the {@code CLSCorral}.
+	 * 
+	 * @return  {@code true} if the shape is degenerate
+	 */
+	public boolean isDegenerate()
+	{
+		return isDegenerate;
+	}
+	
 	
 	/**
 	 * Returns the face of the {@code CLSCorral}.

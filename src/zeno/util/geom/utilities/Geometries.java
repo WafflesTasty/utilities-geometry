@@ -17,6 +17,8 @@ import zeno.util.geom.collidables.affine.lines.Line;
 import zeno.util.geom.collidables.affine.lines.Line2D;
 import zeno.util.geom.collidables.affine.lines.Line3D;
 import zeno.util.geom.collidables.bounds.Bounds;
+import zeno.util.geom.collidables.bounds.Bounds2D;
+import zeno.util.geom.collidables.bounds.Bounds3D;
 import zeno.util.geom.collidables.collisions.CLSUniverse;
 import zeno.util.geom.collidables.collisions.CLSVoid;
 import zeno.util.geom.collidables.geometry.Hull;
@@ -553,7 +555,72 @@ public final class Geometries
 		
 		return new NCuboid(c, s);
 	}
+	
+	/**
+	 * Generates a new {@code Bounds} geometry.
+	 * 
+	 * @param min  a minimum vector
+	 * @param max  a maximum vector
+	 * @return  a new bounds
+	 * 
+	 * 
+	 * @see Bounds
+	 * @see Vector
+	 */
+	public static Bounds bounds(Vector min, Vector max)
+	{
+		if(min.Size() == 2)
+		{
+			return new Bounds2D()
+			{
+				@Override
+				public Vector2 Minimum()
+				{
+					return (Vector2) min;
+				}
+				
+				@Override
+				public Vector2 Maximum()
+				{
+					return (Vector2) max;
+				}
+			};
+		}
 		
+		if(min.Size() == 3)
+		{
+			return new Bounds3D()
+			{
+				@Override
+				public Vector3 Minimum()
+				{
+					return (Vector3) min;
+				}
+				
+				@Override
+				public Vector3 Maximum()
+				{
+					return (Vector3) max;
+				}
+			};
+		}
+		
+		return new Bounds()
+		{
+			@Override
+			public Vector Minimum()
+			{
+				return min;
+			}
+			
+			@Override
+			public Vector Maximum()
+			{
+				return max;
+			}
+		};
+	}
+	
 	/**
 	 * Generates a new {@code IEllipsoid} geometry.
 	 * 
