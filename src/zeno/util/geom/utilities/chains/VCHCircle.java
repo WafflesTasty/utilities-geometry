@@ -188,6 +188,7 @@ public class VCHCircle implements VChain
 	
 	
 	private int count;
+	private float min, max;
 	private Circle shape;
 	private Mode mode;
 	
@@ -217,9 +218,44 @@ public class VCHCircle implements VChain
 	 */
 	public VCHCircle(Circle shape, Mode mode, int count)
 	{
+		this(shape, 0f, 2 * Floats.PI, mode, count);
+	}
+	
+	/**
+	 * Creates a new {@code VCHCircle}.
+	 * 
+	 * @param shape a target shape
+	 * @param min   a minimum angle
+	 * @param max	a maximum angle
+	 * @param mode  an index mode
+	 * 
+	 * 
+	 * @see Circle
+	 */
+	public VCHCircle(Circle shape, float min, float max, Mode mode)
+	{
+		this(shape, min, max, mode, DEF_COUNT);
+	}
+	
+	/**
+	 * Creates a new {@code VCHCircle}.
+	 * 
+	 * @param shape a target shape
+	 * @param min   a minimum angle
+	 * @param max	a maximum angle
+	 * @param mode  an index mode
+	 * @param count a vertex count
+	 * 
+	 * 
+	 * @see Circle
+	 */
+	public VCHCircle(Circle shape, float min, float max, Mode mode, int count)
+	{
 		this.count = count;
 		this.shape = shape;
 		this.mode  = mode;
+		this.min = min;
+		this.max = max;
 	}
 	
 	
@@ -298,7 +334,7 @@ public class VCHCircle implements VChain
 					i++; return new Vector2();
 				}
 				
-				float angle = 2 * Floats.PI * i / count;
+				float angle = min + (max - min) * i / count;
 				float x = Floats.cos(angle) * shape.Radius();
 				float y = Floats.sin(angle) * shape.Radius();
 				Vector2 v = new Vector2(x, y);

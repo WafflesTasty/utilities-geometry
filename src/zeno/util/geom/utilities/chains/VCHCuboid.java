@@ -53,6 +53,11 @@ public class VCHCuboid implements VChain
 		0, 2, 3, 0, 1, 3
 	};
 	
+	private static Integer[] TRIANGLE_FAN_2D = new Integer[]
+	{
+		0, 1, 2, 3
+	};
+	
 	private static Integer[] TRIANGLE_STRIP_2D = new Integer[]
 	{
 		0, 2, 1, 3
@@ -127,10 +132,11 @@ public class VCHCuboid implements VChain
 			return dim == 2 ? Iterables.of(TRIANGLES_2D) : (dim == 3 ? Iterables.of(TRIANGLES_3D) : null);
 		case TRIANGLE_STRIP:
 			return dim == 2 ? Iterables.of(TRIANGLE_STRIP_2D) : (dim == 3 ? Iterables.of(TRIANGLE_STRIP_3D) : null);
+		case TRIANGLE_FAN:
+			return dim == 2 ? Iterables.of(TRIANGLE_FAN_2D) : null;
 		case POINTS:
 			return () -> new IntegerCounter(Integers.pow(2, dim));
 		case PATCHES:
-		case TRIANGLE_FAN:
 		case TRIANGLES_ADJ:
 		case TRIANGLE_STRIP_ADJ:
 		default:
