@@ -34,7 +34,7 @@ public class VCHCircle implements VChain
 			@Override
 			public boolean hasNext()
 			{
-				return curr < count;
+				return curr < count - 1;
 			}
 
 			@Override
@@ -57,7 +57,7 @@ public class VCHCircle implements VChain
 			@Override
 			public boolean hasNext()
 			{
-				return curr - 2 < count;
+				return curr - 2 <= count;
 			}
 
 			@Override
@@ -70,8 +70,8 @@ public class VCHCircle implements VChain
 			}
 		};
 	}
-
-	private Iterable<Integer> LineLoop()
+	
+	private Iterable<Integer> LineStrip()
 	{
 		return () -> new Iterator<>()
 		{
@@ -91,26 +91,6 @@ public class VCHCircle implements VChain
 		};
 	}
 	
-	private Iterable<Integer> LineStrip()
-	{
-		return () -> new Iterator<>()
-		{
-			private int curr;
-			
-			@Override
-			public boolean hasNext()
-			{
-				return curr <= count;
-			}
-
-			@Override
-			public Integer next()
-			{
-				return Integers.mod(curr++, count);
-			}
-		};
-	}
-	
 	private Iterable<Integer> LineStripAdj()
 	{
 		return () -> new Iterator<>()
@@ -120,7 +100,7 @@ public class VCHCircle implements VChain
 			@Override
 			public boolean hasNext()
 			{
-				return curr - 1 <= count;
+				return curr <= count;
 			}
 
 			@Override
@@ -141,7 +121,7 @@ public class VCHCircle implements VChain
 			@Override
 			public boolean hasNext()
 			{
-				return curr <= count;
+				return curr < count;
 			}
 
 			@Override
@@ -161,7 +141,7 @@ public class VCHCircle implements VChain
 			@Override
 			public boolean hasNext()
 			{
-				return add != 2 || curr < count - 1;
+				return add != 2 || curr < count - 2;
 			}
 
 			@Override
@@ -183,7 +163,7 @@ public class VCHCircle implements VChain
 	
 	private Iterable<Integer> Points()
 	{
-		return () -> new IntegerCounter(count);
+		return () -> new IntegerCounter(count+1);
 	}
 	
 	
@@ -269,7 +249,6 @@ public class VCHCircle implements VChain
 		case LINES_ADJ:
 			return LinesAdj();
 		case LINE_LOOP:
-			return LineLoop();
 		case LINE_STRIP:
 			return LineStrip();
 		case LINE_STRIP_ADJ:
@@ -334,11 +313,12 @@ public class VCHCircle implements VChain
 					i++; return new Vector2();
 				}
 				
-				float angle = min + (max - min) * i / count;
+				
+				float angle = min + (max - min) * i / (count - 1);
 				float x = Floats.cos(angle) * shape.Radius();
 				float y = Floats.sin(angle) * shape.Radius();
-				Vector2 v = new Vector2(x, y);
 				
+				Vector2 v = new Vector2(x, y);
 				i++; return v;
 			}
 		};

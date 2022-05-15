@@ -55,7 +55,7 @@ public class VCHCuboid implements VChain
 	
 	private static Integer[] TRIANGLE_FAN_2D = new Integer[]
 	{
-		0, 1, 2, 3
+		0, 1, 3, 2
 	};
 	
 	private static Integer[] TRIANGLE_STRIP_2D = new Integer[]
