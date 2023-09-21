@@ -8,6 +8,6 @@
 	</classpathentry>
 	<classpathentry combineaccessrules="false" kind="src" path="/Utilities - Tools"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Utilities - Algebra"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/Utilities - Calculus"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Utilities - Collections"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
