@@ -5,8 +5,10 @@ import waffles.utils.algebra.elements.linear.vector.Vectors;
 import waffles.utils.geom.Collidable;
 import waffles.utils.geom.Collision.Response;
 import waffles.utils.geom.collidable.ConvexSet;
+import waffles.utils.geom.collidable.ConvexSet.Extremum;
 import waffles.utils.geom.collidable.fixed.Point;
 import waffles.utils.geom.utilities.Geometries;
+import waffles.utils.tools.primitives.Floats;
 import waffles.utils.tools.primitives.Integers;
 
 /**
@@ -102,8 +104,37 @@ public class CNTPoint implements Response
 	Vector Phase1()
 	{
 		int i;
-		hasImpact = false;
-		return Vectors.create(src.Dimension());
+//		return Vectors.create(src.Dimension());
+		
+		// USING SIMPLE NEWTON INTEGRATION FOR NOW.
+		
+		int dim = src.Dimension();
+		Extremum ext = src.Extremum();
+		Vector x = src.Bounds().Center();
+		Vector dx = tgt.minus(x);
+		
+		
+		while(!Floats.isZero(dx.normSqr(), 2 * dim - 1))
+		{
+			Vector y = ext.along(tgt.minus(x));
+			Vector dy = tgt.minus(y);
+			if(dx.dot(dy) > 0)
+			{
+				hasImpact = false;
+				return x;
+			}
+			
+			
+			Vector yx = y.minus(x);
+			float d1 = yx.dot(dx);
+			float d2 = yx.dot(yx);
+			
+			x = x.plus(yx.times(d1 / d2));
+			dx = tgt.minus(x);
+		}
+		
+		hasImpact = true;
+		return x;
 	}
 	
 	Vector Phase2()
