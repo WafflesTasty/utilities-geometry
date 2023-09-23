@@ -44,14 +44,20 @@ public interface IndexNode extends Geometrical
 	
 	
 	@Override
+	public default Geometry Shape()
+	{
+		return Geometries.cube(Dimension());
+	}
+	
+	@Override
 	public default GlobalMap Transform()
 	{
 		return new IndexTransform(this);
 	}
-		
+				
 	@Override
-	public default Geometry Shape()
+	public default int Dimension()
 	{
-		return Geometries.cube(Dimension());
+		return Minimum().length;
 	}
 }
