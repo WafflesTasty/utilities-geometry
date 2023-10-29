@@ -2,7 +2,7 @@ package waffles.utils.geom.bounds.axial;
 
 import waffles.utils.algebra.elements.linear.vector.Vector;
 import waffles.utils.geom.bounds.Bounds;
-import waffles.utils.geom.spatial.Axial;
+import waffles.utils.geom.spatial.data.Axial;
 
 /**
  * A {@code BNDAxial} creates a bounding volume around an {@code Axial} object.

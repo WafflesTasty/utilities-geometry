@@ -3,8 +3,9 @@ package waffles.utils.geom.maps.project;
 import waffles.utils.algebra.elements.linear.vector.Vector;
 import waffles.utils.algebra.utilities.matrix.LazyMatrix;
 import waffles.utils.geom.maps.AffineMap;
-import waffles.utils.geom.spatial.Watcher;
-import waffles.utils.geom.spatial.structs.Eye;
+import waffles.utils.geom.spatial.data.Watcher;
+import waffles.utils.geom.spatial.data.structs.Eye;
+import waffles.utils.geom.spatial.data.unary.Projected;
 
 /**
  * The {@code Camera} class defines a generalized pinhole camera.
@@ -20,7 +21,7 @@ import waffles.utils.geom.spatial.structs.Eye;
  * @see AffineMap
  * @see Watcher
  */
-public class Camera implements AffineMap, Watcher
+public class Camera implements AffineMap, Watcher.Mutable
 {
 	private CamToWorld ctw;
 	private WorldToCam wtc;
@@ -29,22 +30,48 @@ public class Camera implements AffineMap, Watcher
 	/**
 	 * Creates a new {@code Camera}.
 	 * 
+	 * @param s  a source watcher
+	 * 
+	 * 
+	 * @see Watcher
+	 */
+	public Camera(Watcher s)
+	{
+		src = s;
+		
+		ctw = new CamToWorld(src);
+		wtc = new WorldToCam(src);
+	}
+	
+	/**
+	 * Creates a new {@code Camera}.
+	 * 
 	 * @param iDim  a source dimension
 	 * @param oDim  a target dimension
 	 */
 	public Camera(int iDim, int oDim)
 	{	
-		src = new Eye(iDim, oDim);
-		ctw = new CamToWorld(src);
-		wtc = new WorldToCam(src);
+		this(new Eye(iDim, oDim));
+	}
+	
+	/**
+	 * Creates a new {@code Camera}.
+	 */
+	public Camera()
+	{
+		this(new Eye());
 	}
 
 	
 	@Override
 	public void setOculus(Vector o)
 	{
-		src.setOculus(o);
-		setChanged();
+		Projected.Mutable src = Source().Mutator();
+		if(src != null)
+		{
+			src.setOculus(o);
+			setChanged();	
+		}
 	}
 
 	@Override

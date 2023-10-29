@@ -2,11 +2,11 @@ package waffles.utils.geom.maps.linear;
 
 import waffles.utils.algebra.elements.linear.LinearMap;
 import waffles.utils.algebra.elements.linear.matrix.Matrix;
-import waffles.utils.geom.spatial.Spatial;
-import waffles.utils.geom.spatial.spin.Spin;
-import waffles.utils.geom.spatial.spin.Spin2D;
-import waffles.utils.geom.spatial.spin.Spin3D;
-import waffles.utils.geom.spatial.spin.SpinND;
+import waffles.utils.geom.spatial.data.spin.Spin;
+import waffles.utils.geom.spatial.data.spin.Spin2D;
+import waffles.utils.geom.spatial.data.spin.Spin3D;
+import waffles.utils.geom.spatial.data.spin.SpinND;
+import waffles.utils.geom.spatial.data.unary.Rotated;
 
 /**
  * A {@code Rotation} defines a linear map which rotates vectors
@@ -41,7 +41,7 @@ public class Rotation implements LinearMap
 	}
 	
 	
-	private Spin spin;
+	private Rotated src;
 	
 	/**
 	 * Creates a new {@code Rotation}.
@@ -56,14 +56,14 @@ public class Rotation implements LinearMap
 	/**
 	 * Creates a new {@code Rotation}.
 	 * 
-	 * @param s  a spatial source
+	 * @param s  a rotated source
 	 * 
 	 * 
-	 * @see Spatial
+	 * @see Rotated
 	 */
-	public Rotation(Spatial s)
+	public Rotation(Rotated s)
 	{
-		this(s.Spin());
+		src = s;
 	}
 	
 	/**
@@ -76,7 +76,7 @@ public class Rotation implements LinearMap
 	 */
 	public Rotation(Spin s)
 	{
-		spin = s;
+		src = () -> s;
 	}
 			
 	/**
@@ -89,20 +89,20 @@ public class Rotation implements LinearMap
 	 */
 	public Spin Spin()
 	{
-		return spin;
+		return src.Spin();
 	}
 
 
 	@Override
 	public Matrix Inverse(int dim)
 	{
-		Matrix m = Spin.Matrix(spin, dim);
+		Matrix m = Spin.Matrix(src.Spin(), dim);
 		return m.transpose();
 	}
 	
 	@Override
 	public Matrix Matrix(int dim)
 	{
-		return Spin.Matrix(spin, dim);
+		return Spin.Matrix(src.Spin(), dim);
 	}
 }

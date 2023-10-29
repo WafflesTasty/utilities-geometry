@@ -8,7 +8,7 @@ import waffles.utils.geom.bounds.axial.spheroid.BNDSpheroid;
 import waffles.utils.geom.collidable.ConvexSet;
 import waffles.utils.geom.collision.convex.CLSSpheroid;
 import waffles.utils.geom.maps.GlobalMap;
-import waffles.utils.geom.spatial.Axial;
+import waffles.utils.geom.spatial.data.Axial;
 
 /**
  * An {ISpheroid} defines axis-aligned spheroid geometry with a center and size.

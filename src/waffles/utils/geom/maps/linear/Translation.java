@@ -7,7 +7,8 @@ import waffles.utils.algebra.elements.linear.vector.Vector;
 import waffles.utils.algebra.elements.linear.vector.Vectors;
 import waffles.utils.geom.collidable.fixed.Point;
 import waffles.utils.geom.maps.linear.types.Translator;
-import waffles.utils.geom.spatial.Spatial;
+import waffles.utils.geom.spatial.data.unary.Positioned;
+import waffles.utils.tools.primitives.Integers;
 
 /**
  * A {@code Translation} defines a linear map which
@@ -37,7 +38,7 @@ public class Translation implements LinearMap
 	}
 
 
-	private Point origin;
+	private Positioned src;
 	
 	/**
 	 * Creates a new {@code Translation}.
@@ -52,14 +53,14 @@ public class Translation implements LinearMap
 	/**
 	 * Creates a new {@code Translation}.
 	 * 
-	 * @param s  a spatial source
+	 * @param s  a positioned source
 	 * 
 	 * 
-	 * @see Spatial
+	 * @see Positioned
 	 */
-	public Translation(Spatial s)
+	public Translation(Positioned s)
 	{
-		this(s.Origin());
+		src = s;
 	}
 	
 	/**
@@ -87,7 +88,7 @@ public class Translation implements LinearMap
 	 */
 	public Translation(Point o)
 	{
-		origin = o;
+		src = () -> o.Generator();
 	}
 		
 	/**
@@ -100,22 +101,22 @@ public class Translation implements LinearMap
 	 */
 	public Vector Origin()
 	{
-		return origin.Generator();
+		return src.Origin();
 	}
 	
 	
 	@Override
 	public Matrix Inverse(int dim)
 	{
+		Vector o = Origin();
 		Matrix m = Matrices.identity(dim);
 		m.setOperator(Translator.Type());
 		
 		for(int d = 0; d < dim; d++)
 		{
-			m.set(origin.Mass(), d, d);
-			if(d < dim-1)
+			if(d < Integers.min(dim-1, o.Size()))
 			{
-				m.set(-origin.get(d), d, dim-1);
+				m.set(-o.get(d), d, dim-1);
 			}
 		}
 		
@@ -125,15 +126,15 @@ public class Translation implements LinearMap
 	@Override
 	public Matrix Matrix(int dim)
 	{
+		Vector o = Origin();
 		Matrix m = Matrices.identity(dim);
 		m.setOperator(Translator.Type());
 		
 		for(int d = 0; d < dim; d++)
 		{
-			m.set(origin.Mass(), d, d);
-			if(d < dim-1)
+			if(d < Integers.min(dim-1, o.Size()))
 			{
-				m.set(origin.get(d), d, dim-1);
+				m.set(o.get(d), d, dim-1);
 			}
 		}
 		

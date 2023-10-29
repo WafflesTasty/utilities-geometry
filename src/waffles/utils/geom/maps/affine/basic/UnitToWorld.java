@@ -7,10 +7,10 @@ import waffles.utils.algebra.elements.linear.vector.Vector;
 import waffles.utils.algebra.utilities.matrix.LazyMatrix;
 import waffles.utils.geom.maps.linear.Dilation;
 import waffles.utils.geom.maps.linear.Translation;
-import waffles.utils.geom.spatial.Spatial;
+import waffles.utils.geom.spatial.data.Axial;
 
 /**
- * The {@code UnitToWorld} class constructs an {@code AffineMap}
+ * The {@code UnitToWorld} class constructs an {@code AlignedMap}
  * matrix which transforms a unit object into world space.
  *
  * @author Waffles
@@ -22,17 +22,17 @@ import waffles.utils.geom.spatial.Spatial;
  */
 public class UnitToWorld extends LazyMatrix
 {
-	private Spatial src;
+	private Axial src;
 	
 	/**
 	 * Creates a new {@code UnitToWorld}.
 	 * 
-	 * @param s  a source spatial
+	 * @param s  a source axial
 	 * 
 	 * 
-	 * @see Spatial
+	 * @see Axial
 	 */
-	public UnitToWorld(Spatial s)
+	public UnitToWorld(Axial s)
 	{
 		src = s;
 	}

@@ -8,7 +8,7 @@ import waffles.utils.geom.bounds.axial.BNDAxial;
 import waffles.utils.geom.collidable.Geometry;
 import waffles.utils.geom.collidable.fixed.Point;
 import waffles.utils.geom.maps.GlobalMap;
-import waffles.utils.geom.spatial.Axial;
+import waffles.utils.geom.spatial.data.Axial;
 
 /**
  * An {@code AxialSet} defines n-dimensional geometry through a center and size vector.
@@ -21,7 +21,7 @@ import waffles.utils.geom.spatial.Axial;
  * @see Geometry
  * @see Axial
  */
-public abstract class AxialSet implements Axial, Geometry
+public abstract class AxialSet implements Axial.Mutable, Geometry
 {
 	private Vector size;
 	private Vector origin;

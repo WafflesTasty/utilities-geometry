@@ -4,8 +4,8 @@ import waffles.utils.algebra.utilities.matrix.LazyMatrix;
 import waffles.utils.geom.maps.AffineMap;
 import waffles.utils.geom.maps.affine.standard.UnitToWorld;
 import waffles.utils.geom.maps.affine.standard.WorldToUnit;
-import waffles.utils.geom.spatial.Spatial;
-import waffles.utils.geom.spatial.structs.Locus;
+import waffles.utils.geom.spatial.data.Spatial;
+import waffles.utils.geom.spatial.data.structs.Locus;
 
 /**
  * A {@code StandardMap} implements an {@code AffineMap} in the usual way,

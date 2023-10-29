@@ -1,6 +1,6 @@
 package waffles.utils.geom.collidable;
 
-import waffles.utils.geom.spatial.owners.Adjustable3D;
+import waffles.utils.geom.spatial.Adjustable3D;
 
 /**
  * A {@code Shapeable} object defines a fully adjustable, three-dimensional geometric object.

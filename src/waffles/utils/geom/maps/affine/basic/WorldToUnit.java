@@ -7,7 +7,7 @@ import waffles.utils.algebra.elements.linear.vector.Vector;
 import waffles.utils.algebra.utilities.matrix.LazyMatrix;
 import waffles.utils.geom.maps.linear.Dilation;
 import waffles.utils.geom.maps.linear.Translation;
-import waffles.utils.geom.spatial.Spatial;
+import waffles.utils.geom.spatial.data.Axial;
 
 /**
  * The {@code WorldToUnit} class constructs an {@code AffineMap}
@@ -22,17 +22,17 @@ import waffles.utils.geom.spatial.Spatial;
  */
 public class WorldToUnit extends LazyMatrix
 {
-	private Spatial src;
+	private Axial src;
 	
 	/**
 	 * Creates a new {@code WorldToUnit}.
 	 * 
-	 * @param s  a spatial source
+	 * @param s  an axial source
 	 * 
 	 * 
-	 * @see Spatial
+	 * @see Axial
 	 */
-	public WorldToUnit(Spatial s)
+	public WorldToUnit(Axial s)
 	{
 		src = s;
 	}

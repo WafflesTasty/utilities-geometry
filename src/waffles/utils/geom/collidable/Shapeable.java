@@ -1,7 +1,7 @@
 package waffles.utils.geom.collidable;
 
 import waffles.utils.geom.maps.AffineMap;
-import waffles.utils.geom.spatial.owners.Adjustable;
+import waffles.utils.geom.spatial.Adjustable;
 
 /**
  * A {@code Shapeable} object defines a fully adjustable, n-dimensional geometric object.

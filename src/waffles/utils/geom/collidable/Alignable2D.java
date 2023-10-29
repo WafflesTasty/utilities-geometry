@@ -1,7 +1,7 @@
 package waffles.utils.geom.collidable;
 
 import waffles.utils.geom.collidable.axial.AxialSet2D;
-import waffles.utils.geom.spatial.owners.Aligned2D;
+import waffles.utils.geom.spatial.Aligned2D;
 
 /**
  * An {@code Alignable2D} object defines an axis-aligned, two-dimensional geometric object.

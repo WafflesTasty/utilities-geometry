@@ -2,7 +2,7 @@ package waffles.utils.geom.maps.affine.align;
 
 import waffles.utils.algebra.utilities.matrix.LazyMatrix;
 import waffles.utils.geom.maps.AlignedMap;
-import waffles.utils.geom.spatial.Axial;
+import waffles.utils.geom.spatial.data.Axial;
 
 /**
  * The {@code ALGInverse} class inverts an {@code AlignedMap}.

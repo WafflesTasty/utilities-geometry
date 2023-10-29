@@ -1,7 +1,7 @@
 package waffles.utils.geom.collidable;
 
 import waffles.utils.geom.collidable.axial.AxialSet3D;
-import waffles.utils.geom.spatial.owners.Aligned3D;
+import waffles.utils.geom.spatial.Aligned3D;
 
 /**
  * An {@code Alignable3D} object defines an axis-aligned, three-dimensional geometric object.

@@ -6,7 +6,7 @@ import waffles.utils.geom.maps.linear.Dilation;
 import waffles.utils.geom.maps.linear.Projection;
 import waffles.utils.geom.maps.linear.Rotation;
 import waffles.utils.geom.maps.linear.Translation;
-import waffles.utils.geom.spatial.Watcher;
+import waffles.utils.geom.spatial.data.Watcher;
 
 /**
  * The {@code CamToWorld} class constructs a {@code Camera}
@@ -26,7 +26,7 @@ public class CamToWorld extends LazyMatrix
 	/**
 	 * Creates a new {@code CamToWorld}.
 	 * 
-	 * @param s  a source projectable
+	 * @param s  a source watcher
 	 * 
 	 * 
 	 * @see Watcher

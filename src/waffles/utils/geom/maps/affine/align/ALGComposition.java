@@ -2,7 +2,7 @@ package waffles.utils.geom.maps.affine.align;
 
 import waffles.utils.geom.maps.AlignedMap;
 import waffles.utils.geom.maps.fixed.Composition;
-import waffles.utils.geom.spatial.Axial;
+import waffles.utils.geom.spatial.data.Axial;
 
 /**
  * The {@code BasicComposite} class composits two {@code AlignedMaps}.

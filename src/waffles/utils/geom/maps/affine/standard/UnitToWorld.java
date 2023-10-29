@@ -8,8 +8,8 @@ import waffles.utils.algebra.utilities.matrix.LazyMatrix;
 import waffles.utils.geom.maps.linear.Dilation;
 import waffles.utils.geom.maps.linear.Rotation;
 import waffles.utils.geom.maps.linear.Translation;
-import waffles.utils.geom.spatial.Spatial;
-import waffles.utils.geom.spatial.spin.Spin;
+import waffles.utils.geom.spatial.data.Spatial;
+import waffles.utils.geom.spatial.data.spin.Spin;
 
 /**
  * The {@code UnitToWorld} class constructs an {@code AffineMap}

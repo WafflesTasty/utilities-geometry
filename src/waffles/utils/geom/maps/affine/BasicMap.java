@@ -4,8 +4,8 @@ import waffles.utils.algebra.utilities.matrix.LazyMatrix;
 import waffles.utils.geom.maps.AlignedMap;
 import waffles.utils.geom.maps.affine.basic.UnitToWorld;
 import waffles.utils.geom.maps.affine.basic.WorldToUnit;
-import waffles.utils.geom.spatial.Spatial;
-import waffles.utils.geom.spatial.structs.Locus;
+import waffles.utils.geom.spatial.data.Axial;
+import waffles.utils.geom.spatial.data.structs.Locus;
 
 /**
  * A {@code BasicMap} implements an {@code AffineMap} without rotations,
@@ -22,19 +22,19 @@ import waffles.utils.geom.spatial.structs.Locus;
  */
 public class BasicMap implements AlignedMap
 {	
-	private Spatial src;
+	private Axial src;
 	private UnitToWorld utw;
 	private WorldToUnit wtu;
 	
 	/**
 	 * Creates a new {@code BasicMap}.
 	 * 
-	 * @param s  a spatial source
+	 * @param s  an axial source
 	 * 
 	 * 
-	 * @see Spatial
+	 * @see Axial
 	 */
-	public BasicMap(Spatial s)
+	public BasicMap(Axial s)
 	{
 		src = s;
 		
@@ -74,7 +74,7 @@ public class BasicMap implements AlignedMap
 	}
 	
 	@Override
-	public Spatial Source()
+	public Axial Source()
 	{
 		return src;
 	}

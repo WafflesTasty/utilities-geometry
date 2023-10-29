@@ -7,7 +7,7 @@ import waffles.utils.algebra.elements.linear.matrix.types.banded.Diagonal;
 import waffles.utils.algebra.elements.linear.vector.Vector;
 import waffles.utils.algebra.elements.linear.vector.Vectors;
 import waffles.utils.geom.collidable.fixed.Point;
-import waffles.utils.geom.spatial.Spatial;
+import waffles.utils.geom.spatial.data.unary.Scaled;
 import waffles.utils.tools.primitives.Floats;
 
 /**
@@ -44,7 +44,8 @@ public class Dilation implements LinearMap
 	}
 	
 	
-	private Point size;
+	private Scaled src;
+//	private Vector size;
 		
 	/**
 	 * Creates a new {@code Dilation}.
@@ -66,7 +67,8 @@ public class Dilation implements LinearMap
 	 */
 	public Dilation(Vector s)
 	{
-		this(new Point(s, 0f));
+		src = () -> s.times(2f);
+//		size = s;
 	}
 	
 	/**
@@ -75,16 +77,15 @@ public class Dilation implements LinearMap
 	 * by two, since the map scales in
 	 * both directions of the axes.
 	 * 
-	 * @param s  a spatial source
+	 * @param s  a scaled source
 	 * 
 	 * 
-	 * @see Spatial
+	 * @see Scaled
 	 */
-	public Dilation(Spatial s)
+	public Dilation(Scaled s)
 	{
-		// Divided by two because it scales in both
-		// the positive and negative direction of axes.
-		this(s.Size().times(0.5f));
+//		this(s.Size().times(0.5f));
+		src = s;
 	}
 	
 	/**
@@ -99,7 +100,8 @@ public class Dilation implements LinearMap
 	 */
 	public Dilation(Point s)
 	{
-		size = s;
+//		src = () -> s.Generator();
+		this((Vector) s.Generator());
 	}
 		
 	/**
@@ -112,54 +114,57 @@ public class Dilation implements LinearMap
 	 */
 	public Vector Size()
 	{
-		return size.Generator();
+		return src.Size();
+//		return size;
 	}
 	
 
 	@Override
 	public Matrix Inverse(int dim)
 	{
+		// Divided by two because it scales in both
+		// the positive and negative direction of axes.
+		Vector size = Size().times(0.5f);
 		Matrix m = Matrices.identity(dim);		
 		m.setOperator(Diagonal.Type());
+		int sDim = Size().Size();
 		
 		for(int d = 0; d < dim; d++)
 		{
-			float s = size.get(d);
-			if(!Floats.isZero(s, 1))
+			if(d < sDim)
 			{
-				m.set(1f / s, d, d);
+				float s = size.get(d);
+				if(!Floats.isZero(s, 1))
+				{
+					m.set(1f / s, d, d);
+				}	
 			}
 		}
-		
-		float mass = size.Mass();
-		if(!Floats.isZero(mass, 1))
-		{
-			m.set(1f / mass, dim-1, dim-1);
-		}
-		
+
 		return m;
 	}
 	
 	@Override
 	public Matrix Matrix(int dim)
 	{
+		// Divided by two because it scales in both
+		// the positive and negative direction of axes.
+		Vector size = Size().times(0.5f);
 		Matrix m = Matrices.identity(dim);
 		m.setOperator(Diagonal.Type());
+		int sDim = Size().Size();
 		
 		for(int d = 0; d < dim; d++)
 		{
-			float s = size.get(d);
-			if(!Floats.isZero(s, 1))
+			if(d < sDim)
 			{
-				m.set(s, d, d);
+				float s = size.get(d);
+				if(!Floats.isZero(s, 1))
+				{
+					m.set(s, d, d);
+				}	
 			}
 		}
-		
-		float mass = size.Mass();
-		if(!Floats.isZero(mass, 1))
-		{
-			m.set(mass, dim-1, dim-1);
-		}		
 		
 		return m;
 	}

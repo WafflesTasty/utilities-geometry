@@ -12,7 +12,6 @@ import waffles.utils.geom.spaces.binary.kd.queries.QRYCuboid;
 import waffles.utils.geom.spaces.binary.kd.queries.QRYPoint;
 import waffles.utils.geom.utilities.Geometries;
 import waffles.utils.sets.trees.binary.BiTree;
-import waffles.utils.tools.patterns.semantics.Ordered;
 import waffles.utils.tools.primitives.Floats;
 
 /**
@@ -25,7 +24,7 @@ import waffles.utils.tools.primitives.Floats;
  * 
  * @param <O>  an object type
  * @see Iterable
- * @see Ordered
+ * @see ICuboid
  * @see BiTree
  * @see Space
  */
@@ -93,19 +92,6 @@ public class KDTree<O> extends BiTree implements ICuboid, Iterable<O>, Space<O>
 	public KDNode<O> Root()
 	{
 		return (KDNode<O>) super.Root();
-	}
-
-	
-	@Override
-	public void setOrigin(Vector o)
-	{
-		shape.setOrigin(o);
-	}
-
-	@Override
-	public void setSize(Vector s)
-	{
-		shape.setSize(s);
 	}
 
 	

@@ -1,7 +1,9 @@
 package waffles.utils.geom.maps;
 
 import waffles.utils.algebra.elements.linear.vector.Vector;
-import waffles.utils.geom.spatial.Axial;
+import waffles.utils.geom.spatial.data.Axial;
+import waffles.utils.geom.spatial.data.unary.Positioned;
+import waffles.utils.geom.spatial.data.unary.Scaled;
 
 /**
  * An {@code AlignedMap} interface defines a global map with axis-aligned spatial data.
@@ -16,7 +18,7 @@ import waffles.utils.geom.spatial.Axial;
  * @see GlobalMap
  * @see Axial
  */
-public interface AlignedMap extends GlobalMap, Axial
+public interface AlignedMap extends GlobalMap, Axial.Mutable
 {
 	/**
 	 * Returns the source of the {@code AlignedMap}.
@@ -32,15 +34,23 @@ public interface AlignedMap extends GlobalMap, Axial
 	@Override
 	public default void setOrigin(Vector o)
 	{
-		Source().setOrigin(o);
-		setChanged();
+		Positioned.Mutable src = Source().Mutator();
+		if(src != null)
+		{
+			src.setOrigin(o);
+			setChanged();
+		}
 	}
 	
 	@Override
 	public default void setSize(Vector s)
 	{
-		Source().setSize(s);
-		setChanged();
+		Scaled.Mutable src = Source().Mutator();
+		if(src != null)
+		{
+			src.setSize(s);
+			setChanged();
+		}
 	}
 	
 	

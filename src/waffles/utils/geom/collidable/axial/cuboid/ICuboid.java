@@ -9,7 +9,7 @@ import waffles.utils.geom.bounds.axial.cuboid.BNDCuboid;
 import waffles.utils.geom.collidable.hulls.IHull;
 import waffles.utils.geom.collision.hulls.CLSCuboid;
 import waffles.utils.geom.maps.GlobalMap;
-import waffles.utils.geom.spatial.Axial;
+import waffles.utils.geom.spatial.data.Axial;
 import waffles.utils.geom.utilities.VChain;
 import waffles.utils.geom.utilities.VChain.Mode;
 import waffles.utils.tools.primitives.Integers;

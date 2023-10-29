@@ -1,8 +1,8 @@
 package waffles.utils.geom.maps;
 
-import waffles.utils.algebra.elements.linear.vector.Vector;
-import waffles.utils.geom.spatial.Spatial;
-import waffles.utils.geom.spatial.spin.Spin;
+import waffles.utils.geom.spatial.data.Spatial;
+import waffles.utils.geom.spatial.data.spin.Spin;
+import waffles.utils.geom.spatial.data.unary.Rotated;
 
 /**
  * An {@code AffineMap} interface defines a global map with spatial data.
@@ -14,10 +14,10 @@ import waffles.utils.geom.spatial.spin.Spin;
  * @version 1.0
  * 
  * 
- * @see GlobalMap
+ * @see AlignedMap
  * @see Spatial
  */
-public interface AffineMap extends GlobalMap, Spatial
+public interface AffineMap extends AlignedMap, Spatial.Mutable
 {
 	/**
 	 * Returns the source of the {@code AffineMap}.
@@ -27,41 +27,19 @@ public interface AffineMap extends GlobalMap, Spatial
 	 * 
 	 * @see Spatial
 	 */
+	@Override
 	public abstract Spatial Source();
 
-	
-	@Override
-	public default void setOrigin(Vector o)
-	{
-		Source().setOrigin(o);
-		setChanged();
-	}
-	
-	@Override
-	public default void setSize(Vector s)
-	{
-		Source().setSize(s);
-		setChanged();
-	}
-	
+		
 	@Override
 	public default void setSpin(Spin s)
 	{
-		Source().setSpin(s);
-		setChanged();
-	}
-	
-	
-	@Override
-	public default Vector Origin()
-	{
-		return Source().Origin();
-	}
-	
-	@Override
-	public default Vector Size()
-	{
-		return Source().Size();
+		Rotated.Mutable src = Source().Mutator();
+		if(src != null)
+		{
+			src.setSpin(s);
+			setChanged();
+		}
 	}
 	
 	@Override

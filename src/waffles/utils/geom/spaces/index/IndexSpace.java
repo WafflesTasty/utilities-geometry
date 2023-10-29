@@ -7,7 +7,6 @@ import waffles.utils.geom.bounds.Bounds;
 import waffles.utils.geom.collidable.axial.cuboid.ICuboid;
 import waffles.utils.geom.collidable.fixed.Point;
 import waffles.utils.geom.spaces.Space;
-import waffles.utils.geom.spatial.Axial;
 import waffles.utils.geom.utilities.Geometries;
 import waffles.utils.sets.indexed.IndexedSet;
 import waffles.utils.tools.collections.Iterables;
@@ -23,7 +22,6 @@ import waffles.utils.tools.collections.Iterables;
  * @param <O>  an object type
  * @see IndexedSet
  * @see Bounded
- * @see Axial
  * @see Space
  */
 public interface IndexSpace<O> extends IndexedSet<O>, Space<O>,  Bounded
