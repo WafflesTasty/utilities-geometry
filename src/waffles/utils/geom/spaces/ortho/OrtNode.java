@@ -2,12 +2,11 @@ package waffles.utils.geom.spaces.ortho;
 
 import waffles.utils.algebra.elements.linear.vector.Vector;
 import waffles.utils.algebra.elements.linear.vector.Vectors;
-import waffles.utils.geom.Collidable;
-import waffles.utils.geom.Collision;
 import waffles.utils.geom.bounds.Bounded;
 import waffles.utils.geom.bounds.Bounds;
+import waffles.utils.geom.collidable.axial.IAxialSet;
 import waffles.utils.geom.collidable.axial.cuboid.ICuboid;
-import waffles.utils.geom.utilities.Geometries;
+import waffles.utils.geom.spatial.structs.Axis;
 import waffles.utils.sets.MutableSet;
 import waffles.utils.sets.mutable.AtomicSet;
 import waffles.utils.sets.mutable.JHashSet;
@@ -26,31 +25,30 @@ import waffles.utils.tools.primitives.Integers;
  * 
  * 
  * @param <O>  an object type
- * @see Collidable
  * @see MutableSet
- * @see Bounded
+ * @see IAxialSet
  * @see Node
  */
-public class OrtNode<O extends Bounded> extends Node implements MutableSet<O>, Collidable, Bounded
+public class OrtNode<O extends Bounded> extends Node implements ICuboid, MutableSet<O>
 {		
-	private ICuboid shape;
+	private Axis axis;
 	private AtomicSet<O> set;
 			
 	/**
 	 * Creates a new {@code OrtNode}.
 	 * 
 	 * @param tree  a parent tree
-	 * @param s  a cuboid shape
+	 * @param a  a node axis
 	 * 
 	 * 
 	 * @see OrtTree
-	 * @see ICuboid
+	 * @see Axis
 	 */
-	public OrtNode(OrtTree<O> tree, ICuboid s)
+	public OrtNode(OrtTree<O> tree, Axis a)
 	{
 		super(tree);
 		set = new JHashSet<>();
-		shape = s;
+		axis = a;
 	}
 	
 	/**
@@ -66,22 +64,9 @@ public class OrtNode<O extends Bounded> extends Node implements MutableSet<O>, C
 	 */
 	public OrtNode(OrtTree<O> tree, Vector c, Vector s)
 	{
-		this(tree, Geometries.Cuboid(c, s));
+		this(tree, new Axis(c, s));
 	}
 	
-	
-	/***
-	 * Returns the shape of the {@code OrtNode}.
-	 * 
-	 * @return  a node shape
-	 * 
-	 * 
-	 * @see ICuboid
-	 */
-	public ICuboid Shape()
-	{
-		return shape;
-	}
 	
 	/**
 	 * Returns the objects in the {@code OrtNode}.
@@ -172,7 +157,19 @@ public class OrtNode<O extends Bounded> extends Node implements MutableSet<O>, C
 			addChild(Set().createNode(v, s));
 		}
 	}
+
 	
+	@Override
+	public Vector Size()
+	{
+		return axis.Size();
+	}
+	
+	@Override
+	public Vector Origin()
+	{
+		return axis.Origin();
+	}
 	
 	@Override
 	public OrtTree<O> Set()
@@ -192,24 +189,6 @@ public class OrtNode<O extends Bounded> extends Node implements MutableSet<O>, C
 		return (OrtNode<O>) super.Child(i);
 	}
 	
-	@Override
-	public Collision Collisions()
-	{
-		return shape.Collisions();
-	}
-
-	@Override
-	public Bounds Bounds()
-	{
-		return shape.Bounds();
-	}
-	
-	@Override
-	public int Dimension()
-	{
-		return shape.Dimension();
-	}
-
 	
 	@Override
 	public boolean isEmpty()

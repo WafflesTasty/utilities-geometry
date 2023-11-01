@@ -5,10 +5,11 @@ import waffles.utils.algebra.elements.linear.matrix.Matrix;
 import waffles.utils.algebra.elements.linear.vector.Vector;
 import waffles.utils.geom.Collision;
 import waffles.utils.geom.bounds.Bounds;
+import waffles.utils.geom.bounds.axial.BNDAxial;
 import waffles.utils.geom.bounds.axial.cuboid.BNDCuboid;
+import waffles.utils.geom.collidable.axial.IAxialSet;
 import waffles.utils.geom.collidable.convex.hulls.IHull;
 import waffles.utils.geom.collision.convex.hulls.CLSCuboid;
-import waffles.utils.geom.spatial.data.Axial;
 import waffles.utils.geom.spatial.maps.GlobalMap;
 import waffles.utils.geom.utilities.VChain;
 import waffles.utils.geom.utilities.VChain.Mode;
@@ -22,11 +23,17 @@ import waffles.utils.tools.primitives.Integers;
  * @version 1.0
  * 
  * 
- * @see Axial
+ * @see IAxialSet
  * @see IHull
  */
-public interface ICuboid extends IHull, Axial
+public interface ICuboid extends IAxialSet, IHull
 {		
+	@Override
+	public default Bounds Bounds()
+	{
+		return new BNDAxial(this);
+	}
+	
 	@Override
 	public default Bounds Bounds(GlobalMap map)
 	{

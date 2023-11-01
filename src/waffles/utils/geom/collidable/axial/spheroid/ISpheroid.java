@@ -5,9 +5,9 @@ import waffles.utils.algebra.elements.linear.vector.Vectors;
 import waffles.utils.geom.Collision;
 import waffles.utils.geom.bounds.Bounds;
 import waffles.utils.geom.bounds.axial.spheroid.BNDSpheroid;
+import waffles.utils.geom.collidable.axial.IAxialSet;
 import waffles.utils.geom.collidable.convex.ConvexSet;
 import waffles.utils.geom.collision.convex.CLSSpheroid;
-import waffles.utils.geom.spatial.data.Axial;
 import waffles.utils.geom.spatial.maps.GlobalMap;
 
 /**
@@ -18,10 +18,10 @@ import waffles.utils.geom.spatial.maps.GlobalMap;
  * @version 1.0
  * 
  * 
+ * @see IAxialSet
  * @see ConvexSet
- * @see Axial
  */
-public interface ISpheroid extends Axial, ConvexSet
+public interface ISpheroid extends IAxialSet, ConvexSet
 {		
 	@Override
 	public default Bounds Bounds(GlobalMap map)

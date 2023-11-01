@@ -1,14 +1,10 @@
 package waffles.utils.geom.collidable.axial;
 
-import waffles.utils.algebra.elements.linear.Affine;
 import waffles.utils.algebra.elements.linear.vector.Vector;
 import waffles.utils.algebra.elements.linear.vector.Vectors;
-import waffles.utils.geom.bounds.Bounds;
-import waffles.utils.geom.bounds.axial.BNDAxial;
 import waffles.utils.geom.collidable.Geometry;
 import waffles.utils.geom.collidable.fixed.Point;
 import waffles.utils.geom.spatial.data.Axial;
-import waffles.utils.geom.spatial.maps.axial.AxialMap;
 
 /**
  * An {@code AxialSet} defines n-dimensional geometry through a center and size vector.
@@ -21,34 +17,25 @@ import waffles.utils.geom.spatial.maps.axial.AxialMap;
  * @see Geometry
  * @see Axial
  */
-public abstract class AxialSet implements Axial, Geometry
+public abstract class AxialSet implements IAxialSet
 {
 	private Vector size;
 	private Vector origin;
-	
+
 	/**
 	 * Creates a new {@code AxialSet}.
 	 * 
-	 * @param dim  a space dimension
-	 */
-	public AxialSet(int dim)
-	{
-		this(Vectors.create(2f, dim));
-	}
-	
-	/**
-	 * Creates a new {@code AxialSet}.
-	 * 
+	 * @param o  an origin vector
 	 * @param s  a size vector
 	 * 
 	 * 
 	 * @see Vector
 	 */
-	public AxialSet(Vector s)
+	public AxialSet(Vector o, Vector s)
 	{
-		this(Vectors.create(s.Size()), s);
+		size = s.absolute();
+		origin = o;
 	}
-	
 	
 	/**
 	 * Creates a new {@code AxialSet}.
@@ -68,87 +55,26 @@ public abstract class AxialSet implements Axial, Geometry
 	/**
 	 * Creates a new {@code AxialSet}.
 	 * 
-	 * @param o  an origin vector
 	 * @param s  a size vector
 	 * 
 	 * 
 	 * @see Vector
 	 */
-	public AxialSet(Vector o, Vector s)
+	public AxialSet(Vector s)
 	{
-		size = s.absolute();
-		origin = o;
+		this(Vectors.create(s.Size()), s);
 	}
-	
 	
 	/**
-	 * Creates a new {@code AxialSet} given the origin and size.
+	 * Creates a new {@code AxialSet}.
 	 * 
-	 * @param o  an origin vector
-	 * @param s  a size vector
-	 * @return  an axial set
-	 * 
-	 * 
-	 * @see Vector
+	 * @param dim  a space dimension
 	 */
-	public abstract AxialSet create(Vector o, Vector s);
-	
-	/**
-	 * Transforms the {@code AxialSet} along an axial map.
-	 * 
-	 * @param map  an axial map
-	 * @return  a transformed axial set
-	 * 
-	 * 
-	 * @see AxialMap
-	 */
-	public AxialSet map(AxialMap map)
+	public AxialSet(int dim)
 	{
-		Point o1 = new Point(Origin(), 1f);
-		Affine o2 = map.map(o1);
-		if(!(o2 instanceof Point))
-		{
-			return null;
-		}
-
-		Point s1 = new Point(Size(), 0f);
-		Affine s2 = map.map(s1);
-		if(!(s2 instanceof Point))
-		{
-			return null;
-		}
-		
-		
-		o1 = (Point) o2;
-		s1 = (Point) s2;
-		
-		return create
-		(
-			o1.Generator(),
-			s1.Generator()
-		);
+		this(Vectors.create(2f, dim));
 	}
 	
-	
-	@Override
-	public boolean equals(Object o)
-	{
-		if(o instanceof AxialSet)
-		{
-			AxialSet s = (AxialSet) o;
-			return Origin().equals(s.Origin())
-				&& Size().equals(s.Size());
-		}
-		
-		return false;
-	}
-	
-
-	@Override
-	public Bounds Bounds()
-	{
-		return new BNDAxial(this);
-	}
 	
 	@Override
 	public Vector Origin()

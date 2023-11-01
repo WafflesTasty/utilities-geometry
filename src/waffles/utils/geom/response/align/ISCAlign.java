@@ -3,7 +3,7 @@ package waffles.utils.geom.response.align;
 import waffles.utils.algebra.elements.linear.vector.Vector;
 import waffles.utils.geom.Collidable;
 import waffles.utils.geom.Collision.Response;
-import waffles.utils.geom.collidable.axial.AxialSet;
+import waffles.utils.geom.collidable.axial.IAxialSet;
 import waffles.utils.geom.collidable.shaped.Alignable;
 import waffles.utils.geom.spatial.maps.axial.AxialMap;
 import waffles.utils.geom.utilities.Geometries;
@@ -104,8 +104,8 @@ public class ISCAlign implements Response
 		AxialMap m2 = Transforms.inverse(src.Transform());
 		AxialMap cm = Transforms.compose(m2, m1);
 	
-		AxialSet s1 = tgt.Shape().map(cm);
-		AxialSet s2 = src.Shape();
+		IAxialSet s1 = tgt.Shape().map(cm);
+		IAxialSet s2 = src.Shape();
 		return s2.intersect(s1);
 	}
 }

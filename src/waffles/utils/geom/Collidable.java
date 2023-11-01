@@ -78,20 +78,7 @@ public interface Collidable
 	{
 		Response rsp1 =   Collisions().intersect(c);
 		Response rsp2 = c.Collisions().intersect(this);
-		
-//		This is a useful starting point to debug collision.
-//		+++++++++++++++++++++++++++++++++++++++++++++++++++
-//		rsp1.Cost(); rsp2.Cost();
-//		if(c instanceof Geometrical)
-//		{
-//			System.out.println("START");
-//			System.out.println(  getClass().getSimpleName() + ":" +   Collisions().getClass().getSimpleName());
-//			System.out.println(c.getClass().getSimpleName() + ":" + c.Collisions().getClass().getSimpleName());
-//			System.out.println("RSP1: " + rsp1.getClass().getTypeName() + "(" + rsp1.Cost() + ")");
-//			System.out.println("RSP2: " + rsp2.getClass().getTypeName() + "(" + rsp2.Cost() + ")");
-//			System.out.println("STOP");
-//		}
-		
+
 		rsp2 = new RSPFlip(rsp2);
 		if(rsp1.Cost() < rsp2.Cost())
 			return rsp1;
