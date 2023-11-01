@@ -1,6 +1,7 @@
 package waffles.utils.geom.spatial.data.unary;
 
 import waffles.utils.geom.spatial.data.spin.Spin;
+import waffles.utils.tools.patterns.semantics.Immutable;
 
 /**
  * A {@code Rotated} object defines a rotation spin.
@@ -8,9 +9,12 @@ import waffles.utils.geom.spatial.data.spin.Spin;
  * @author Waffles
  * @since 16 Oct 2023
  * @version 1.0
+ * 
+ * 
+ * @see Immutable
  */
 @FunctionalInterface
-public interface Rotated
+public interface Rotated extends Immutable
 {
 	/**
 	 * A {@code Mutable Rotated} can change its own spin.
@@ -22,7 +26,7 @@ public interface Rotated
 	 * 
 	 * @see Rotated
 	 */
-	public static interface Mutable extends Rotated
+	public static interface Mutable extends Immutable.Mutable, Rotated
 	{
 		/**
 		 * Changes the spin of the {@code Rotated}.
@@ -33,34 +37,8 @@ public interface Rotated
 		 * @see Spin
 		 */
 		public abstract void setSpin(Spin s);
-		
-		@Override
-		public default Mutable Mutator()
-		{
-			return this;
-		}
 	}
 	
-	
-	/**
-	 * Returns a mutable {@code Rotated}.
-	 * If the object is mutable, it will be returned
-	 * as mutable. Otherwise this returns null.
-	 * 
-	 * @return  a mutable object
-	 * 
-	 * 
-	 * @see Mutable
-	 */
-	public default Mutable Mutator()
-	{
-		if(this instanceof Mutable)
-		{
-			return (Mutable) this;
-		}
-		
-		return null;
-	}
 	
 	/**
 	 * Returns the spin of the {@code Rotated}.

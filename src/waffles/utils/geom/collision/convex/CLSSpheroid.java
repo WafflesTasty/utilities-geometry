@@ -2,13 +2,13 @@ package waffles.utils.geom.collision.convex;
 
 import waffles.utils.geom.Collidable;
 import waffles.utils.geom.collidable.axial.spheroid.ISpheroid;
+import waffles.utils.geom.collidable.convex.hulls.IHull;
 import waffles.utils.geom.collidable.fixed.Point;
-import waffles.utils.geom.collidable.hulls.IHull;
 import waffles.utils.geom.collidable.spaces.ASpace;
 import waffles.utils.geom.collidable.spaces.VSpace;
-import waffles.utils.geom.collision.convex.spheroid.CNTPoint;
-import waffles.utils.geom.collision.convex.spheroid.ISCASpace;
-import waffles.utils.geom.collision.convex.spheroid.ISCHull;
+import waffles.utils.geom.response.convex.spheroid.CNTPoint;
+import waffles.utils.geom.response.convex.spheroid.ISCASpace;
+import waffles.utils.geom.response.convex.spheroid.ISCHull;
 
 /**
  * The {@code CLSSpheroid} class defines collision responses for {@code ISpheroid} objects.

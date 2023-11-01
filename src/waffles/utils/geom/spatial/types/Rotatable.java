@@ -1,38 +1,46 @@
 package waffles.utils.geom.spatial.types;
 
 import waffles.utils.geom.spatial.data.spin.Spin;
+import waffles.utils.geom.spatial.data.unary.Rotated;
 
 /**
- * An {@code Rotated} object can be rotated in a vector space.
+ * An {@code Rotatable} object can be rotated in an n-dimensional vector space.
  * 
  * @author Waffles
  * @since Apr 22, 2016
  * @version 1.0
+ * 
+ * 
+ * @see Rotated
  */
-public interface Rotatable
+public interface Rotatable extends Rotated
 {
 	/**
-	 * Returns the spin of the {@code Rotated}.
+	 * Returns the transform of the {@code Rotatable}.
 	 * 
-	 * @return  a rotation spin
+	 * @return  a rotation mutable
 	 * 
 	 * 
-	 * @see Spin
+	 * @see Rotated
 	 */
-	public abstract Spin Spin();
+	public abstract Rotated.Mutable Transform();
+	
 	
 	/**
-	 * Rotates the {@code Rotated} to a new spin.
+	 * Rotates the {@code Rotatable} to a new spin.
 	 * 
 	 * @param s  a rotation spin
 	 * 
 	 * 
 	 * @see Spin
 	 */
-	public abstract void rotateTo(Spin s);
+	public default void rotateTo(Spin s)
+	{
+		Transform().setSpin(s);
+	}
 	
 	/**
-	 * Rotates the {@code Rotated} from its spin.
+	 * Rotates the {@code Rotatable} from its spin.
 	 * 
 	 * @param s  a rotation spin
 	 * 
@@ -42,5 +50,12 @@ public interface Rotatable
 	public default void rotateFor(Spin s)
 	{
 		rotateTo(s.compose(Spin()));
+	}
+	
+	
+	@Override
+	public default Spin Spin()
+	{
+		return Transform().Spin();
 	}
 }

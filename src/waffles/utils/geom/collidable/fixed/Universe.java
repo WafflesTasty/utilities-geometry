@@ -6,7 +6,7 @@ import waffles.utils.geom.bounds.fixed.BNDUniverse2D;
 import waffles.utils.geom.bounds.fixed.BNDUniverse3D;
 import waffles.utils.geom.collidable.Geometry;
 import waffles.utils.geom.collision.CLSUniverse;
-import waffles.utils.geom.maps.GlobalMap;
+import waffles.utils.geom.spatial.maps.GlobalMap;
 
 /**
  * A {@code Universe} defines a geometry that spans the entire space.

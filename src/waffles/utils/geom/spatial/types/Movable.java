@@ -2,37 +2,31 @@ package waffles.utils.geom.spatial.types;
 
 import waffles.utils.algebra.elements.linear.vector.Vector;
 import waffles.utils.geom.collidable.fixed.Point;
+import waffles.utils.geom.spatial.data.unary.Positioned;
 import waffles.utils.tools.primitives.Floats;
 
 /**
- * An {@code Movable} object can be moved around a vector space.
+ * An {@code Movable} object can be moved around an n-dimensional vector space.
  * 
  * @author Waffles
  * @since Apr 22, 2016
  * @version 1.0
+ * 
+ * 
+ * @see Positioned
  */
-public interface Movable
+public interface Movable extends Positioned
 {
 	/**
-	 * Returns the origin of the {@code Movable}.
+	 * Returns the transform of the {@code Movable}.
 	 * 
-	 * @return  an origin vector
+	 * @return  a position mutable
 	 * 
 	 * 
-	 * @see Vector
+	 * @see Positioned
 	 */
-	public abstract Vector Origin();
-			
-	/**
-	 * Moves the {@code Movable} to a new origin.
-	 * 
-	 * @param v  an origin vector
-	 * 
-	 * 
-	 * @see Vector
-	 */
-	public abstract void moveTo(Vector v);
-	
+	public abstract Positioned.Mutable Transform();
+
 	
 	/**
 	 * Moves the {@code Movable} to a new origin.
@@ -46,7 +40,20 @@ public interface Movable
 	{
 		moveTo(p.Generator());
 	}
-	
+			
+	/**
+	 * Moves the {@code Movable} to a new origin.
+	 * 
+	 * @param v  an origin vector
+	 * 
+	 * 
+	 * @see Vector
+	 */
+	public default void moveTo(Vector v)
+	{
+		Transform().setOrigin(v);
+	}
+		
 	/**
 	 * Moves the {@code Movable} for a specified distance.
 	 * 
@@ -75,5 +82,12 @@ public interface Movable
 	public default void moveFor(Vector v)
 	{
 		moveTo(Origin().plus(v));
+	}
+
+	
+	@Override
+	public default Vector Origin()
+	{
+		return Transform().Origin();
 	}
 }

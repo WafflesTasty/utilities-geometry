@@ -1,7 +1,7 @@
 package waffles.utils.geom.spatial;
 
-import waffles.utils.geom.spatial.data.spin.Spin3D;
-import waffles.utils.geom.spatial.types.Vantage3D;
+import waffles.utils.geom.spatial.types.Rotatable3D;
+import waffles.utils.tools.primitives.Floats;
 
 /**
  * An {@code Adjustable3D} object can be fully transformed in a three-dimensional vector space.
@@ -12,14 +12,47 @@ import waffles.utils.geom.spatial.types.Vantage3D;
  * 
  * 
  * @see Adjustable
+ * @see Rotatable3D
  * @see Aligned3D
- * @see Vantage3D
  */
-public interface Adjustable3D extends Adjustable, Aligned3D, Vantage3D
+public interface Adjustable3D extends Adjustable, Aligned3D, Rotatable3D
 {
-	@Override
-	public default Spin3D Spin()
+	/**
+	 * Strafes the {@code Vantage3D} for a given distance.
+	 * 
+	 * @param d  a distance to strafe
+	 */
+	public default void strafeFor(float d)
 	{
-		return (Spin3D) Spatial().Spin();
+		if(!Floats.isZero(d, 1))
+		{
+			moveFor(Right(), d);
+		}
+	}
+		
+	/**
+	 * Advances the {@code Vantage3D} for a given distance.
+	 * 
+	 * @param d  a distance to advance
+	 */
+	public default void advanceFor(float d)
+	{
+		if(!Floats.isZero(d, 1))
+		{
+			moveFor(Forward(), d);
+		}
+	}
+
+	/**
+	 * Lifts the {@code Vantage3D} for a given distance.
+	 * 
+	 * @param d  a distance to lift
+	 */
+	public default void liftFor(float d)
+	{
+		if(!Floats.isZero(d, 1))
+		{
+			moveFor(Up(), d);
+		}
 	}
 }

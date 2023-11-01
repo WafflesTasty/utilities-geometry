@@ -16,7 +16,10 @@ import waffles.utils.tools.primitives.Floats;
 public interface Scalable3D extends Scalable
 {	
 	@Override
-	public abstract Vector3 Size();
+	public default Vector3 Size()
+	{
+		return (Vector3) Scalable.super.Size();
+	}
 	
 	
 	/**

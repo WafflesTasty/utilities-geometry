@@ -24,7 +24,7 @@ import waffles.utils.tools.collections.Iterables;
  * @see Bounded
  * @see Space
  */
-public interface IndexSpace<O> extends IndexedSet<O>, Space<O>,  Bounded
+public interface IndexSpace<O> extends IndexedSet<O>, Space<O>, Bounded
 {	
 	/**
 	 * Returns the shape of the {@code IndexSpace}.
@@ -45,7 +45,7 @@ public interface IndexSpace<O> extends IndexedSet<O>, Space<O>,  Bounded
 		}
 		
 		Vector c = s.times(0.5f);
-		return Geometries.cuboid(c, s);
+		return Geometries.Cuboid(c, s);
 	}
 	
 	/**

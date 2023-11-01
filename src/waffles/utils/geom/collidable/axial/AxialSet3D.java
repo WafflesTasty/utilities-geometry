@@ -21,20 +21,6 @@ public abstract class AxialSet3D extends AxialSet implements Geometry3D
 	/**
 	 * Creates a new {@code AxialSet3D}.
 	 * 
-	 * @param o  an origin vector
-	 * @param s  a size vector
-	 * 
-	 * 
-	 * @see Vector3
-	 */
-	public AxialSet3D(Vector3 o, Vector3 s)
-	{
-		super(o, s);
-	}
-	
-	/**
-	 * Creates a new {@code AxialSet3D}.
-	 * 
 	 * @param s  a size vector
 	 * 
 	 * 
@@ -45,6 +31,20 @@ public abstract class AxialSet3D extends AxialSet implements Geometry3D
 		super(s);
 	}
 	
+	/**
+	 * Creates a new {@code AxialSet3D}.
+	 * 
+	 * @param o  an origin vector
+	 * @param s  a size vector
+	 * 
+	 * 
+	 * @see Vector3
+	 */
+	public AxialSet3D(Vector3 o, Vector3 s)
+	{
+		super(o, s);
+	}
+		
 	/**
 	 * Creates a new {@code AxialSet3D}.
 	 * 

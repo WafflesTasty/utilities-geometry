@@ -16,7 +16,10 @@ import waffles.utils.tools.primitives.Floats;
 public interface Movable3D extends Movable
 {	
 	@Override
-	public abstract Vector3 Origin();
+	public default Vector3 Origin()
+	{
+		return (Vector3) Movable.super.Origin();
+	}
 	
 	
 	/**

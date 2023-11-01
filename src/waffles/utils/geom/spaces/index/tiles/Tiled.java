@@ -3,10 +3,10 @@ package waffles.utils.geom.spaces.index.tiles;
 import waffles.utils.algebra.utilities.matrix.LazyMatrix;
 import waffles.utils.geom.collidable.Geometrical;
 import waffles.utils.geom.collidable.axial.cuboid.ICube;
-import waffles.utils.geom.maps.GlobalMap;
 import waffles.utils.geom.spaces.index.TiledSpace;
 import waffles.utils.geom.spaces.index.tiles.maps.TileToWorld;
 import waffles.utils.geom.spaces.index.tiles.maps.WorldToTile;
+import waffles.utils.geom.spatial.maps.GlobalMap;
 import waffles.utils.geom.utilities.Geometries;
 import waffles.utils.tools.patterns.semantics.Ordered;
 
@@ -95,7 +95,7 @@ public interface Tiled extends Geometrical, Ordered
 	@Override
 	public default ICube Shape()
 	{
-		return Geometries.cube(Order());
+		return Geometries.Cube(Order());
 	}
 	
 	@Override

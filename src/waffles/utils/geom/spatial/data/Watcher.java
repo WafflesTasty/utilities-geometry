@@ -30,22 +30,6 @@ public interface Watcher extends Spatial, Projected
 	 */
 	public static interface Mutable extends Watcher, Spatial.Mutable, Projected.Mutable
 	{
-		@Override
-		public default Watcher.Mutable Mutator()
-		{
-			return this;
-		}
-	}
-	
-	
-	@Override
-	public default Mutable Mutator()
-	{
-		if(this instanceof Mutable)
-		{
-			return (Mutable) this;
-		}
-		
-		return null;
+		// NOT APPLICABLE
 	}
 }

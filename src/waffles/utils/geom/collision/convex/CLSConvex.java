@@ -2,10 +2,10 @@ package waffles.utils.geom.collision.convex;
 
 import waffles.utils.geom.Collidable;
 import waffles.utils.geom.Collision;
-import waffles.utils.geom.collidable.ConvexSet;
+import waffles.utils.geom.collidable.convex.ConvexSet;
 import waffles.utils.geom.collidable.fixed.Point;
-import waffles.utils.geom.collision.convex.general.CNTPoint;
-import waffles.utils.geom.collision.hulls.general.ISCConvex;
+import waffles.utils.geom.response.convex.CNTPoint;
+import waffles.utils.geom.response.hulls.ISCConvex;
 
 /**
  * The {@code CLSConvex} class defines collision responses for {@code ConvexSet} objects.

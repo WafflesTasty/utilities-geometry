@@ -3,7 +3,7 @@ package waffles.utils.geom.spatial.types;
 import waffles.utils.algebra.elements.linear.vector.fixed.Vector2;
 
 /**
- * An {@code Projectable2D} object can be projected into a two-dimensional vector space.
+ * A {@code Projectable2D} object can be projected into a two-dimensional vector space.
  * 
  * @author Waffles
  * @since Apr 22, 2016
@@ -15,7 +15,10 @@ import waffles.utils.algebra.elements.linear.vector.fixed.Vector2;
 public interface Projectable2D extends Projectable
 {	
 	@Override
-	public abstract Vector2 Oculus();
+	public default Vector2 Oculus()
+	{
+		return (Vector2) Projectable.super.Oculus();
+	}
 	
 	
 	/**

@@ -3,7 +3,7 @@ package waffles.utils.geom.utilities.vchains;
 import java.util.Iterator;
 
 import waffles.utils.algebra.elements.linear.vector.Vector;
-import waffles.utils.geom.collidable.hulls.triangles.ITriangle;
+import waffles.utils.geom.collidable.convex.hulls.triangles.ITriangle;
 import waffles.utils.geom.utilities.VChain;
 import waffles.utils.tools.primitives.Integers;
 

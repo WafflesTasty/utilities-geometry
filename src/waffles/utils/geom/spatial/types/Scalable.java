@@ -1,26 +1,31 @@
 package waffles.utils.geom.spatial.types;
 
 import waffles.utils.algebra.elements.linear.vector.Vector;
+import waffles.utils.geom.spatial.data.unary.Scaled;
 import waffles.utils.tools.primitives.Floats;
 
 /**
- * An {@code Scaled} object can be scaled in a vector space.
+ * A {@code Scalable} object can be scaled in an n-dimensional vector space.
  * 
  * @author Waffles
  * @since Apr 22, 2016
  * @version 1.0
+ * 
+ * 
+ * @see Scaled
  */
-public interface Scalable
+public interface Scalable extends Scaled
 {
 	/**
-	 * Returns the size of the {@code Scaled}.
+	 * Returns the transform of the {@code Scalable}.
 	 * 
-	 * @return  a scale vector
+	 * @return  a scaling mutable
 	 * 
 	 * 
-	 * @see Vector
+	 * @see Scaled
 	 */
-	public abstract Vector Size();
+	public abstract Scaled.Mutable Transform();
+	
 	
 	/**
 	 * Scales the {@code Scaled} to a new size.
@@ -30,7 +35,10 @@ public interface Scalable
 	 * 
 	 * @see Vector
 	 */
-	public abstract void scaleTo(Vector v);
+	public default void scaleTo(Vector v)
+	{
+		Transform().setSize(v);
+	}
 	
 	/**
 	 * Scales the {@code Scaled} for a given factor.
@@ -60,5 +68,12 @@ public interface Scalable
 	public default void scaleFor(Vector v)
 	{		
 		scaleTo(Size().ltimes(v));
+	}
+	
+	
+	@Override
+	public default Vector Size()
+	{
+		return Transform().Size();
 	}
 }

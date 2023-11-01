@@ -12,6 +12,7 @@ import waffles.utils.geom.spaces.binary.kd.queries.QRYCuboid;
 import waffles.utils.geom.spaces.binary.kd.queries.QRYPoint;
 import waffles.utils.geom.utilities.Geometries;
 import waffles.utils.sets.trees.binary.BiTree;
+import waffles.utils.tools.patterns.semantics.Ordered;
 import waffles.utils.tools.primitives.Floats;
 
 /**
@@ -24,7 +25,7 @@ import waffles.utils.tools.primitives.Floats;
  * 
  * @param <O>  an object type
  * @see Iterable
- * @see ICuboid
+ * @see Ordered
  * @see BiTree
  * @see Space
  */
@@ -56,7 +57,7 @@ public class KDTree<O> extends BiTree implements ICuboid, Iterable<O>, Space<O>
 	 */
 	public KDTree(Vector c, Vector s)
 	{
-		shape = Geometries.cuboid(c, s);
+		shape = Geometries.Cuboid(c, s);
 	}
 		
 	/**

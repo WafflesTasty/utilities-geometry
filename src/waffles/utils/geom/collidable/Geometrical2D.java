@@ -17,7 +17,7 @@ import waffles.utils.geom.bounds.Bounds2D;
  * @see Collideable2D
  * @see Bounded2D
  */
-public interface Geometrical2D extends Bounded2D, Collideable2D, Geometrical
+public interface Geometrical2D extends Geometrical, Bounded2D, Collideable2D
 {
 	@Override
 	public abstract Geometry2D Shape();

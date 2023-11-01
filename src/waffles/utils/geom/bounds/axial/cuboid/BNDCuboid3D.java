@@ -2,8 +2,8 @@ package waffles.utils.geom.bounds.axial.cuboid;
 
 import waffles.utils.algebra.elements.linear.vector.fixed.Vector3;
 import waffles.utils.geom.bounds.Bounds3D;
-import waffles.utils.geom.collidable.axial.cuboid.Cuboid;
-import waffles.utils.geom.maps.GlobalMap;
+import waffles.utils.geom.collidable.axial.cuboid.ICuboid;
+import waffles.utils.geom.spatial.maps.GlobalMap;
 
 /**
  * A {@code BNDCuboid2D} defines {@code Bounds} for a transformed {@code Cuboid}.
@@ -26,9 +26,9 @@ public class BNDCuboid3D extends BNDCuboid implements Bounds3D
 	 * 
 	 * 
 	 * @see GlobalMap
-	 * @see Cuboid
+	 * @see ICuboid
 	 */
-	public BNDCuboid3D(Cuboid c, GlobalMap m)
+	public BNDCuboid3D(ICuboid c, GlobalMap m)
 	{
 		super(c, m);
 	}

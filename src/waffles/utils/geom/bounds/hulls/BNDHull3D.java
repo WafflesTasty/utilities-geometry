@@ -2,7 +2,7 @@ package waffles.utils.geom.bounds.hulls;
 
 import waffles.utils.algebra.elements.linear.vector.fixed.Vector3;
 import waffles.utils.geom.bounds.Bounds3D;
-import waffles.utils.geom.collidable.hulls.IHull;
+import waffles.utils.geom.collidable.convex.hulls.IHull;
 
 /**
  * A {@code BNDHull3D} creates a bounding volume around a three-dimensional {@code IHull} object.

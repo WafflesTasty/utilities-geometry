@@ -111,7 +111,7 @@ public interface Bounds
 	 */
 	public default ISphere Ball()
 	{
-		return Geometries.sphere(Center(), Radius());
+		return Geometries.Sphere(Center(), Radius());
 	}
 	
 	/**
@@ -124,6 +124,6 @@ public interface Bounds
 	 */
 	public default ICuboid Box()
 	{
-		return Geometries.cuboid(Center(), Size());
+		return Geometries.Cuboid(Center(), Size());
 	}
 }

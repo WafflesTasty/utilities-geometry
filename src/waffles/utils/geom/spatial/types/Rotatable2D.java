@@ -17,7 +17,10 @@ import waffles.utils.tools.primitives.Floats;
 public interface Rotatable2D extends Rotatable
 {
 	@Override
-	public abstract Spin2D Spin();
+	public default Spin2D Spin()
+	{
+		return (Spin2D) Rotatable.super.Spin();
+	}
 	
 	
 	/**

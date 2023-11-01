@@ -4,7 +4,7 @@ import waffles.utils.algebra.elements.linear.matrix.Matrix;
 import waffles.utils.algebra.elements.linear.vector.Vector;
 import waffles.utils.algebra.elements.linear.vector.Vectors;
 import waffles.utils.geom.bounds.Bounds;
-import waffles.utils.geom.collidable.hulls.IHull;
+import waffles.utils.geom.collidable.convex.hulls.IHull;
 import waffles.utils.tools.primitives.Floats;
 
 /**

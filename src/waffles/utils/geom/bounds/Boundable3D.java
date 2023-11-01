@@ -1,6 +1,6 @@
 package waffles.utils.geom.bounds;
 
-import waffles.utils.geom.maps.GlobalMap;
+import waffles.utils.geom.spatial.maps.GlobalMap;
 
 /**
  * A {@code Boundable} object defines a three-dimensional boundary after applying a {@code GlobalMap}.

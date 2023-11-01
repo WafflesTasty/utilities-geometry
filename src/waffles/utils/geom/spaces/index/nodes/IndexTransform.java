@@ -1,9 +1,9 @@
 package waffles.utils.geom.spaces.index.nodes;
 
 import waffles.utils.algebra.utilities.matrix.LazyMatrix;
-import waffles.utils.geom.maps.GlobalMap;
 import waffles.utils.geom.spaces.index.nodes.maps.NodeToWorld;
 import waffles.utils.geom.spaces.index.nodes.maps.WorldToNode;
+import waffles.utils.geom.spatial.maps.GlobalMap;
 
 /**
  * An {@code IndexTransform} defines a global map for an {@code IndexNode}.

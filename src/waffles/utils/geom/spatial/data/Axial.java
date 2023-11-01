@@ -29,22 +29,6 @@ public interface Axial extends Positioned, Scaled
 	 */
 	public static interface Mutable extends Axial, Positioned.Mutable, Scaled.Mutable
 	{
-		@Override
-		public default Axial.Mutable Mutator()
-		{
-			return this;
-		}
-	}
-	
-	
-	@Override
-	public default Mutable Mutator()
-	{
-		if(this instanceof Mutable)
-		{
-			return (Mutable) this;
-		}
-		
-		return null;
+		// NOT APPLICABLE
 	}
 }

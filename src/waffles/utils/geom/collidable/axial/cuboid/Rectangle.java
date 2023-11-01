@@ -6,7 +6,7 @@ import waffles.utils.geom.bounds.Bounds2D;
 import waffles.utils.geom.bounds.axial.cuboid.BNDCuboid2D;
 import waffles.utils.geom.collidable.axial.AxialSet2D;
 import waffles.utils.geom.collidable.fixed.Point;
-import waffles.utils.geom.maps.GlobalMap;
+import waffles.utils.geom.spatial.maps.GlobalMap;
 
 /**
  * A {@code Rectangle} defines a two-dimensional cuboid shape.

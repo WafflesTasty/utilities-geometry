@@ -3,14 +3,14 @@ package waffles.utils.geom.collision;
 import waffles.utils.geom.Collidable;
 import waffles.utils.geom.Collision;
 import waffles.utils.geom.collidable.Geometrical;
+import waffles.utils.geom.collidable.convex.hulls.IHull;
 import waffles.utils.geom.collidable.fixed.Point;
-import waffles.utils.geom.collidable.hulls.IHull;
 import waffles.utils.geom.collidable.spaces.ASpace;
 import waffles.utils.geom.collidable.spaces.VSpace;
-import waffles.utils.geom.collision.general.CNTPoint;
-import waffles.utils.geom.collision.general.ISCASpace;
-import waffles.utils.geom.collision.general.ISCGeometric;
-import waffles.utils.geom.collision.general.ISCHull;
+import waffles.utils.geom.response.CNTPoint;
+import waffles.utils.geom.response.ISCASpace;
+import waffles.utils.geom.response.ISCGeometric;
+import waffles.utils.geom.response.ISCHull;
 
 /**
  * The {@code CLSGeometrical} class defines collision responses for {@code Geometrical} objects.

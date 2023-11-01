@@ -8,6 +8,8 @@ import waffles.utils.geom.bounds.Bounds;
 import waffles.utils.geom.collidable.axial.cuboid.ICuboid;
 import waffles.utils.geom.collidable.fixed.Point;
 import waffles.utils.geom.spaces.Space;
+import waffles.utils.geom.spaces.ortho.queries.QRYCuboid;
+import waffles.utils.geom.spaces.ortho.queries.QRYPoint;
 import waffles.utils.sets.mutable.AtomicSet;
 import waffles.utils.sets.trees.Tree;
 

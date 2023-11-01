@@ -3,7 +3,7 @@ package waffles.utils.geom.spatial.types;
 import waffles.utils.algebra.elements.linear.vector.fixed.Vector3;
 
 /**
- * An {@code Projectable3D} object can be projected into a three-dimensional vector space.
+ * A {@code Projectable3D} object can be projected into a three-dimensional vector space.
  * 
  * @author Waffles
  * @since Apr 22, 2016
@@ -14,9 +14,11 @@ import waffles.utils.algebra.elements.linear.vector.fixed.Vector3;
  */
 public interface Projectable3D extends Projectable
 {	
-	
 	@Override
-	public abstract Vector3 Oculus();
+	public default Vector3 Oculus()
+	{
+		return (Vector3) Projectable.super.Oculus();
+	}
 	
 	
 	/**

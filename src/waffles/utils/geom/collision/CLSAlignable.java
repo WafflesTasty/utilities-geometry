@@ -1,9 +1,9 @@
 package waffles.utils.geom.collision;
 
 import waffles.utils.geom.Collidable;
-import waffles.utils.geom.collidable.Alignable;
-import waffles.utils.geom.collision.general.align.ISCAlign;
-import waffles.utils.geom.collision.general.align.ISCGeneral;
+import waffles.utils.geom.collidable.shaped.Alignable;
+import waffles.utils.geom.response.align.ISCAlign;
+import waffles.utils.geom.response.align.ISCGeneral;
 
 /**
  * The {@code CLSAlignable} class defines collision responses for {@code Alignable} objects.

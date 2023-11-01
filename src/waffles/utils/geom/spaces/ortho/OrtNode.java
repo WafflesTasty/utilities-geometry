@@ -66,7 +66,7 @@ public class OrtNode<O extends Bounded> extends Node implements MutableSet<O>, C
 	 */
 	public OrtNode(OrtTree<O> tree, Vector c, Vector s)
 	{
-		this(tree, Geometries.cuboid(c, s));
+		this(tree, Geometries.Cuboid(c, s));
 	}
 	
 	

@@ -8,7 +8,7 @@ import waffles.utils.algebra.elements.linear.vector.Vectors;
 import waffles.utils.geom.bounds.Bounds;
 import waffles.utils.geom.collidable.axial.spheroid.ISpheroid;
 import waffles.utils.geom.collidable.fixed.Point;
-import waffles.utils.geom.maps.GlobalMap;
+import waffles.utils.geom.spatial.maps.GlobalMap;
 import waffles.utils.tools.primitives.Floats;
 
 /**

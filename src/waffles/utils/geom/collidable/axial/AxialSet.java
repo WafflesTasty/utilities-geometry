@@ -7,8 +7,8 @@ import waffles.utils.geom.bounds.Bounds;
 import waffles.utils.geom.bounds.axial.BNDAxial;
 import waffles.utils.geom.collidable.Geometry;
 import waffles.utils.geom.collidable.fixed.Point;
-import waffles.utils.geom.maps.GlobalMap;
 import waffles.utils.geom.spatial.data.Axial;
+import waffles.utils.geom.spatial.maps.axial.AxialMap;
 
 /**
  * An {@code AxialSet} defines n-dimensional geometry through a center and size vector.
@@ -21,7 +21,7 @@ import waffles.utils.geom.spatial.data.Axial;
  * @see Geometry
  * @see Axial
  */
-public abstract class AxialSet implements Axial.Mutable, Geometry
+public abstract class AxialSet implements Axial, Geometry
 {
 	private Vector size;
 	private Vector origin;
@@ -94,15 +94,15 @@ public abstract class AxialSet implements Axial.Mutable, Geometry
 	public abstract AxialSet create(Vector o, Vector s);
 	
 	/**
-	 * Maps the {@code AxialSet} along a basic map.
+	 * Transforms the {@code AxialSet} along an axial map.
 	 * 
-	 * @param map  a basic map
-	 * @return  a mapped axial set
+	 * @param map  an axial map
+	 * @return  a transformed axial set
 	 * 
 	 * 
-	 * @see GlobalMap
+	 * @see AxialMap
 	 */
-	public AxialSet map(GlobalMap map)
+	public AxialSet map(AxialMap map)
 	{
 		Point o1 = new Point(Origin(), 1f);
 		Affine o2 = map.map(o1);
@@ -143,19 +143,7 @@ public abstract class AxialSet implements Axial.Mutable, Geometry
 		return false;
 	}
 	
-	@Override
-	public void setOrigin(Vector o)
-	{
-		origin = o;
-	}
-		
-	@Override
-	public void setSize(Vector s)
-	{
-		size = s;
-	}
-	
-	
+
 	@Override
 	public Bounds Bounds()
 	{

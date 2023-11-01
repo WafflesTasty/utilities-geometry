@@ -5,7 +5,7 @@ import waffles.utils.geom.Collision;
 import waffles.utils.geom.bounds.Bounded;
 import waffles.utils.geom.bounds.Bounds;
 import waffles.utils.geom.collision.CLSGeometrical;
-import waffles.utils.geom.maps.Transformable;
+import waffles.utils.geom.spatial.maps.GlobalMap;
 
 /**
  * A {@code Geometrical} object defines an object with an n-dimensional geometric shape.
@@ -16,11 +16,10 @@ import waffles.utils.geom.maps.Transformable;
  * @version 1.1
  * 
  * 
- * @see Transformable
  * @see Collidable
  * @see Bounded
  */
-public interface Geometrical extends Bounded, Collidable, Transformable
+public interface Geometrical extends Bounded, Collidable
 {
 	/**
 	 * Returns the shape of the {@code Geometrical}.
@@ -31,6 +30,16 @@ public interface Geometrical extends Bounded, Collidable, Transformable
 	 * @see Geometry
 	 */
 	public abstract Geometry Shape();
+	
+	/**
+	 * Returns the transform of the {@code Geometrical}.
+	 * 
+	 * @return  a global map
+	 * 
+	 * 
+	 * @see GlobalMap
+	 */
+	public abstract GlobalMap Transform();
 
 	
 	@Override

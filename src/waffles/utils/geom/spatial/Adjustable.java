@@ -1,38 +1,36 @@
 package waffles.utils.geom.spatial;
 
 import waffles.utils.geom.spatial.data.Spatial;
-import waffles.utils.geom.spatial.data.spin.Spin;
-import waffles.utils.geom.spatial.types.Vantage;
+import waffles.utils.geom.spatial.types.Rotatable;
+import waffles.utils.tools.primitives.Floats;
 
 /**
- * An {@code Adjustable} object can be fully transformed in a vector space.
+ * An {@code Adjustable} object can be fully transformed in an n-dimensional vector space.
  *
  * @author Waffles
  * @since Feb 10, 2019
  * @version 1.0
  * 
  * 
+ * @see Rotatable
  * @see Aligned
- * @see Vantage
  */
-public interface Adjustable extends Aligned, Vantage
+public interface Adjustable extends Aligned, Rotatable
 {
 	@Override
-	public abstract Spatial Spatial();
+	public abstract Spatial.Mutable Transform();
 	
-	@Override
-	public default void rotateTo(Spin s)
+	/**
+	 * Moves the {@code Adjustable} for a given distance.
+	 * 
+	 * @param i  a basis vector index
+	 * @param d  a distance to move
+	 */
+	public default void moveFor(int i, float d)
 	{
-		Spatial.Mutable src = Spatial().Mutator();
-		if(src != null)
+		if(!Floats.isZero(d, 1))
 		{
-			src.setSpin(s);
+			moveFor(Spin().Basis(i), d);
 		}
-	}
-
-	@Override
-	public default Spin Spin()
-	{
-		return Spatial().Spin();
 	}
 }

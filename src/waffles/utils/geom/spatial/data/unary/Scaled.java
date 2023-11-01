@@ -1,6 +1,7 @@
 package waffles.utils.geom.spatial.data.unary;
 
 import waffles.utils.algebra.elements.linear.vector.Vector;
+import waffles.utils.tools.patterns.semantics.Immutable;
 
 /**
  * A {@code Scaled} object defines a size vector.
@@ -8,9 +9,11 @@ import waffles.utils.algebra.elements.linear.vector.Vector;
  * @author Waffles
  * @since 16 Oct 2023
  * @version 1.0
+ * 
+ * 
+ * @see Immutable
  */
-@FunctionalInterface
-public interface Scaled
+public interface Scaled extends Immutable
 {
 	/**
 	 * A {@code Mutable Scaled} can change its own size.
@@ -22,7 +25,7 @@ public interface Scaled
 	 * 
 	 * @see Scaled
 	 */
-	public static interface Mutable extends Scaled
+	public static interface Mutable extends Immutable.Mutable, Scaled
 	{
 		/**
 		 * Changes the size of the {@code Scaled}.
@@ -33,34 +36,8 @@ public interface Scaled
 		 * @see Vector
 		 */
 		public abstract void setSize(Vector s);
-		
-		@Override
-		public default Mutable Mutator()
-		{
-			return this;
-		}
 	}
 	
-	
-	/**
-	 * Returns a mutable {@code Scaled}.
-	 * If the object is mutable, it will be returned
-	 * as mutable. Otherwise this returns null.
-	 * 
-	 * @return  a mutable object
-	 * 
-	 * 
-	 * @see Mutable
-	 */
-	public default Mutable Mutator()
-	{
-		if(this instanceof Mutable)
-		{
-			return (Mutable) this;
-		}
-		
-		return null;
-	}
 	
 	/**
 	 * Returns the size of the {@code Scaled}.

@@ -27,22 +27,6 @@ public interface Spatial extends Axial, Rotated
 	 */
 	public static interface Mutable extends Spatial, Axial.Mutable, Rotated.Mutable
 	{
-		@Override
-		public default Spatial.Mutable Mutator()
-		{
-			return this;
-		}
-	}
-	
-	
-	@Override
-	public default Mutable Mutator()
-	{
-		if(this instanceof Mutable)
-		{
-			return (Mutable) this;
-		}
-		
-		return null;
+		// NOT APPLICABLE
 	}
 }

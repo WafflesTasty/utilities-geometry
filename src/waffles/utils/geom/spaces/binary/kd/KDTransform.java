@@ -1,9 +1,9 @@
 package waffles.utils.geom.spaces.binary.kd;
 
 import waffles.utils.algebra.utilities.matrix.LazyMatrix;
-import waffles.utils.geom.maps.GlobalMap;
 import waffles.utils.geom.spaces.binary.kd.maps.NodeToWorld;
 import waffles.utils.geom.spaces.binary.kd.maps.WorldToNode;
+import waffles.utils.geom.spatial.maps.GlobalMap;
 
 /**
  * A {@code KDTransform} defines a global map for a {@code KDNode}.

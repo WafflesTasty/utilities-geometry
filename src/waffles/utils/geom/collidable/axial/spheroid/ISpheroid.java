@@ -5,10 +5,10 @@ import waffles.utils.algebra.elements.linear.vector.Vectors;
 import waffles.utils.geom.Collision;
 import waffles.utils.geom.bounds.Bounds;
 import waffles.utils.geom.bounds.axial.spheroid.BNDSpheroid;
-import waffles.utils.geom.collidable.ConvexSet;
+import waffles.utils.geom.collidable.convex.ConvexSet;
 import waffles.utils.geom.collision.convex.CLSSpheroid;
-import waffles.utils.geom.maps.GlobalMap;
 import waffles.utils.geom.spatial.data.Axial;
+import waffles.utils.geom.spatial.maps.GlobalMap;
 
 /**
  * An {ISpheroid} defines axis-aligned spheroid geometry with a center and size.

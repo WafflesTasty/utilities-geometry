@@ -9,7 +9,7 @@ import waffles.utils.geom.bounds.fixed.BNDVoid2D;
 import waffles.utils.geom.bounds.fixed.BNDVoid3D;
 import waffles.utils.geom.collidable.Geometry;
 import waffles.utils.geom.collision.CLSVoid;
-import waffles.utils.geom.maps.GlobalMap;
+import waffles.utils.geom.spatial.maps.GlobalMap;
 
 /**
  * A {@code Void} defines a geometry that contains nothing at all.

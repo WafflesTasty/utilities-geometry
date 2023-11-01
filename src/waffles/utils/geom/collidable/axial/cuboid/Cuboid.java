@@ -5,7 +5,7 @@ import waffles.utils.algebra.elements.linear.vector.fixed.Vector3;
 import waffles.utils.geom.bounds.Bounds3D;
 import waffles.utils.geom.bounds.axial.cuboid.BNDCuboid3D;
 import waffles.utils.geom.collidable.axial.AxialSet3D;
-import waffles.utils.geom.maps.GlobalMap;
+import waffles.utils.geom.spatial.maps.GlobalMap;
 
 /**
  * A {@code Cuboid} defines a three-dimensional cuboid shape.

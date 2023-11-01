@@ -10,7 +10,7 @@ import waffles.utils.algebra.elements.linear.vector.Vector;
 import waffles.utils.algebra.elements.linear.vector.Vectors;
 import waffles.utils.geom.Collidable;
 import waffles.utils.geom.Collision;
-import waffles.utils.geom.collision.spaces.CLSVSpace;
+import waffles.utils.geom.response.spaces.CLSVSpace;
 
 /**
  * A {@code VSpace} defines a real-valued euclidian vector space.

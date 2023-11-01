@@ -5,11 +5,11 @@ import waffles.utils.geom.collidable.axial.spheroid.ISphere;
 import waffles.utils.geom.collidable.fixed.Point;
 import waffles.utils.geom.collidable.spaces.ASpace;
 import waffles.utils.geom.collidable.spaces.VSpace;
-import waffles.utils.geom.collision.convex.spheres.CNTPoint;
-import waffles.utils.geom.collision.convex.spheres.CNTSphere;
-import waffles.utils.geom.collision.convex.spheres.ISCASpace;
-import waffles.utils.geom.collision.convex.spheres.ISCGeneral;
-import waffles.utils.geom.collision.convex.spheres.ISCSphere;
+import waffles.utils.geom.response.convex.spheres.CNTPoint;
+import waffles.utils.geom.response.convex.spheres.CNTSphere;
+import waffles.utils.geom.response.convex.spheres.ISCASpace;
+import waffles.utils.geom.response.convex.spheres.ISCGeneral;
+import waffles.utils.geom.response.convex.spheres.ISCSphere;
 
 /**
  * The {@code CLSSpheroid} class defines collision responses for {@code ISphere} objects.

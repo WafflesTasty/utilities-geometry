@@ -16,7 +16,10 @@ import waffles.utils.tools.primitives.Floats;
 public interface Scalable2D extends Scalable
 {	
 	@Override
-	public abstract Vector2 Size();
+	public default Vector2 Size()
+	{
+		return (Vector2) Scalable.super.Size();
+	}
 	
 	
 	/**

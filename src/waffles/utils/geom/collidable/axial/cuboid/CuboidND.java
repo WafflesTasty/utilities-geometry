@@ -4,7 +4,7 @@ import waffles.utils.algebra.elements.linear.vector.Vector;
 import waffles.utils.geom.bounds.Bounds;
 import waffles.utils.geom.bounds.axial.cuboid.BNDCuboid;
 import waffles.utils.geom.collidable.axial.AxialSet;
-import waffles.utils.geom.maps.GlobalMap;
+import waffles.utils.geom.spatial.maps.GlobalMap;
 
 /**
  * A {@code CuboidND} defines an n-dimensional cuboid shape.

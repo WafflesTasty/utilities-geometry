@@ -2,8 +2,8 @@ package waffles.utils.geom.spaces.index.nodes;
 
 import waffles.utils.geom.collidable.Geometrical;
 import waffles.utils.geom.collidable.Geometry;
-import waffles.utils.geom.maps.GlobalMap;
 import waffles.utils.geom.spaces.index.IndexSpace;
+import waffles.utils.geom.spatial.maps.GlobalMap;
 import waffles.utils.geom.utilities.Geometries;
 
 /**
@@ -46,7 +46,7 @@ public interface IndexNode extends Geometrical
 	@Override
 	public default Geometry Shape()
 	{
-		return Geometries.cube(Dimension());
+		return Geometries.Cube(Dimension());
 	}
 	
 	@Override

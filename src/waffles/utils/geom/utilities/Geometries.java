@@ -21,20 +21,20 @@ import waffles.utils.geom.collidable.axial.spheroid.Sphere;
 import waffles.utils.geom.collidable.axial.spheroid.SphereND;
 import waffles.utils.geom.collidable.axial.spheroid.Spheroid;
 import waffles.utils.geom.collidable.axial.spheroid.SpheroidND;
+import waffles.utils.geom.collidable.convex.hulls.Hull2D;
+import waffles.utils.geom.collidable.convex.hulls.Hull3D;
+import waffles.utils.geom.collidable.convex.hulls.HullND;
+import waffles.utils.geom.collidable.convex.hulls.IHull;
+import waffles.utils.geom.collidable.convex.hulls.segments.ISegment;
+import waffles.utils.geom.collidable.convex.hulls.segments.Segment2D;
+import waffles.utils.geom.collidable.convex.hulls.segments.Segment3D;
+import waffles.utils.geom.collidable.convex.hulls.segments.SegmentND;
+import waffles.utils.geom.collidable.convex.hulls.triangles.ITriangle;
+import waffles.utils.geom.collidable.convex.hulls.triangles.Triangle2D;
+import waffles.utils.geom.collidable.convex.hulls.triangles.Triangle3D;
+import waffles.utils.geom.collidable.convex.hulls.triangles.TriangleND;
 import waffles.utils.geom.collidable.fixed.Point;
 import waffles.utils.geom.collidable.fixed.Void;
-import waffles.utils.geom.collidable.hulls.Hull2D;
-import waffles.utils.geom.collidable.hulls.Hull3D;
-import waffles.utils.geom.collidable.hulls.HullND;
-import waffles.utils.geom.collidable.hulls.IHull;
-import waffles.utils.geom.collidable.hulls.segments.ISegment;
-import waffles.utils.geom.collidable.hulls.segments.Segment2D;
-import waffles.utils.geom.collidable.hulls.segments.Segment3D;
-import waffles.utils.geom.collidable.hulls.segments.SegmentND;
-import waffles.utils.geom.collidable.hulls.triangles.ITriangle;
-import waffles.utils.geom.collidable.hulls.triangles.Triangle2D;
-import waffles.utils.geom.collidable.hulls.triangles.Triangle3D;
-import waffles.utils.geom.collidable.hulls.triangles.TriangleND;
 import waffles.utils.geom.collidable.spaces.ASpace;
 import waffles.utils.geom.collidable.spaces.VSpace;
 import waffles.utils.geom.collidable.spaces.lines.Line;
@@ -163,7 +163,7 @@ public final class Geometries
 		{
 			Vector p = gen.Column(0);
 			Vector q = gen.Column(1);
-			return segment(p,q);
+			return Segment(p,q);
 		}
 		
 		if(cols == 3)
@@ -171,7 +171,7 @@ public final class Geometries
 			Vector p = gen.Column(0);
 			Vector q = gen.Column(1);
 			Vector r = gen.Column(2);
-			return triangle(p,q,r);
+			return Triangle(p,q,r);
 		}
 		
 		
@@ -200,7 +200,7 @@ public final class Geometries
 	 * @see Vector
 	 * @see ICube
 	 */
-	public static ICube cube(Vector c, float l)
+	public static ICube Cube(Vector c, float l)
 	{
 		if(c.Size() == 2)
 			return new Square((Vector2) c, l);
@@ -221,7 +221,7 @@ public final class Geometries
 	 * @see ICuboid
 	 * @see Vector
 	 */
-	public static ICuboid cuboid(Vector c, Vector s)
+	public static ICuboid Cuboid(Vector c, Vector s)
 	{
 		if(c.Size() == 2)
 			return new Rectangle((Vector2) c, (Vector2) s);
@@ -242,7 +242,7 @@ public final class Geometries
 	 * @see ISegment
 	 * @see Vector
 	 */
-	public static ISegment segment(Vector p, Vector q)
+	public static ISegment Segment(Vector p, Vector q)
 	{
 		if(p.Size() == 2)
 			return new Segment2D((Vector2) p, (Vector2) q);
@@ -264,7 +264,7 @@ public final class Geometries
 	 * @see ITriangle
 	 * @see Vector
 	 */
-	public static ITriangle triangle(Vector a, Vector b, Vector c)
+	public static ITriangle Triangle(Vector a, Vector b, Vector c)
 	{
 		if(a.Size() == 2)
 			return new Triangle2D((Vector2) a, (Vector2) b, (Vector2) c);
@@ -285,7 +285,7 @@ public final class Geometries
 	 * @see ISpheroid
 	 * @see Vector
 	 */
-	public static ISpheroid ellipsoid(Vector c, Vector s)
+	public static ISpheroid Ellipsoid(Vector c, Vector s)
 	{
 		if(c.Size() == 2)
 			return new Ellipse((Vector2) c, (Vector2) s);
@@ -306,7 +306,7 @@ public final class Geometries
 	 * @see ISphere
 	 * @see Vector
 	 */
-	public static ISphere sphere(Vector c, float r)
+	public static ISphere Sphere(Vector c, float r)
 	{
 		if(c.Size() == 2)
 			return new Circle((Vector2) c, r);
@@ -326,7 +326,7 @@ public final class Geometries
 	 * 
 	 * @see ISphere
 	 */
-	public static ISphere sphere(int dim)
+	public static ISphere Sphere(int dim)
 	{
 		if(dim <= 1) return null;
 		if(dim == 2) return new Circle();
@@ -343,7 +343,7 @@ public final class Geometries
 	 * 
 	 * @see ICube
 	 */
-	public static ICube cube(int dim)
+	public static ICube Cube(int dim)
 	{
 		if(dim <= 1) return null;
 		if(dim == 2) return new Square();

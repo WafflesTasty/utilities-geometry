@@ -3,7 +3,7 @@ package waffles.utils.geom.collision;
 import waffles.utils.geom.Collidable;
 import waffles.utils.geom.Collision;
 import waffles.utils.geom.collidable.fixed.Void;
-import waffles.utils.geom.collision.general.fixed.RSPVoid;
+import waffles.utils.geom.response.fixed.RSPVoid;
 
 /**
  * A {@code CLSVoid} defines collision responses for a {@code Void} object.

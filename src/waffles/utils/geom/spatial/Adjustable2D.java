@@ -1,7 +1,7 @@
 package waffles.utils.geom.spatial;
 
-import waffles.utils.geom.spatial.data.spin.Spin2D;
-import waffles.utils.geom.spatial.types.Vantage2D;
+import waffles.utils.geom.spatial.types.Rotatable2D;
+import waffles.utils.tools.primitives.Floats;
 
 /**
  * An {@code Adjustable2D} object can be fully transformed in a two-dimensional vector space.
@@ -12,14 +12,34 @@ import waffles.utils.geom.spatial.types.Vantage2D;
  * 
  * 
  * @see Adjustable
+ * @see Rotatable2D
  * @see Aligned2D
- * @see Vantage2D
  */
-public interface Adjustable2D extends Adjustable, Aligned2D, Vantage2D
+public interface Adjustable2D extends Adjustable, Aligned2D, Rotatable2D
 {
-	@Override
-	public default Spin2D Spin()
+	/**
+	 * Strafes the {@code Vantage2D} for a given distance.
+	 * 
+	 * @param d  a distance to strafe
+	 */
+	public default void strafeFor(float d)
 	{
-		return (Spin2D) Spatial().Spin();
+		if(!Floats.isZero(d, 1))
+		{
+			moveFor(Right(), d);
+		}
+	}
+		
+	/**
+	 * Advances the {@code Vantage2D} for a given distance.
+	 * 
+	 * @param d  a distance to advance
+	 */
+	public default void advanceFor(float d)
+	{
+		if(!Floats.isZero(d, 1))
+		{
+			moveFor(Forward(), d);
+		}
 	}
 }

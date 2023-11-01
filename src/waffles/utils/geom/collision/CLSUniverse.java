@@ -3,8 +3,8 @@ package waffles.utils.geom.collision;
 import waffles.utils.geom.Collidable;
 import waffles.utils.geom.Collision;
 import waffles.utils.geom.collidable.fixed.Universe;
-import waffles.utils.geom.collision.general.fixed.RSPTrivial;
-import waffles.utils.geom.collision.general.fixed.RSPUniverse;
+import waffles.utils.geom.response.fixed.RSPTrivial;
+import waffles.utils.geom.response.fixed.RSPUniverse;
 
 /**
  * A {@code CLSUniverse} defines collision responses for a {@code Universe} object.

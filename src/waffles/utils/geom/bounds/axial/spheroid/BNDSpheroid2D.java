@@ -3,7 +3,7 @@ package waffles.utils.geom.bounds.axial.spheroid;
 import waffles.utils.algebra.elements.linear.vector.fixed.Vector2;
 import waffles.utils.geom.bounds.Bounds2D;
 import waffles.utils.geom.collidable.axial.spheroid.Ellipse;
-import waffles.utils.geom.maps.GlobalMap;
+import waffles.utils.geom.spatial.maps.GlobalMap;
 
 /**
  * A {@code BNDSpheroid2D} defines {@code Bounds} for a transformed {@code Ellipse}.

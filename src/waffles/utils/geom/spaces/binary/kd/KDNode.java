@@ -2,7 +2,7 @@ package waffles.utils.geom.spaces.binary.kd;
 
 import waffles.utils.geom.collidable.Geometrical;
 import waffles.utils.geom.collidable.axial.cuboid.ICube;
-import waffles.utils.geom.maps.GlobalMap;
+import waffles.utils.geom.spatial.maps.GlobalMap;
 import waffles.utils.geom.utilities.Geometries;
 import waffles.utils.sets.trees.binary.BiNode;
 
@@ -144,7 +144,7 @@ public abstract class KDNode<O> extends BiNode implements Geometrical
 	@Override
 	public ICube Shape()
 	{
-		return Geometries.cube(Dimension());
+		return Geometries.Cube(Dimension());
 	}
 	
 			

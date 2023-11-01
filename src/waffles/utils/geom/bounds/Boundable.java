@@ -1,7 +1,7 @@
 package waffles.utils.geom.bounds;
 
-import waffles.utils.geom.maps.GlobalMap;
-import waffles.utils.geom.maps.fixed.IdentityMap;
+import waffles.utils.geom.spatial.maps.GlobalMap;
+import waffles.utils.geom.utilities.Transforms;
 
 /**
  * A {@code Boundable} object defines an n-dimensional boundary after applying a {@code GlobalMap}.
@@ -31,6 +31,6 @@ public interface Boundable extends Bounded
 	@Override
 	public default Bounds Bounds()
 	{
-		return Bounds(new IdentityMap());
+		return Bounds(Transforms.identity());
 	}
 }

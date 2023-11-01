@@ -3,7 +3,7 @@ package waffles.utils.geom.collidable;
 import waffles.utils.geom.Collideable2D;
 import waffles.utils.geom.bounds.Boundable2D;
 import waffles.utils.geom.bounds.Bounds2D;
-import waffles.utils.geom.maps.GlobalMap;
+import waffles.utils.geom.spatial.maps.GlobalMap;
 
 /**
  * The {@code Geometry2D} interface is the base for bounded two-dimensional shapes.

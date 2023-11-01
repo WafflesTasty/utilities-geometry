@@ -1,6 +1,7 @@
 package waffles.utils.geom.spatial.data.unary;
 
 import waffles.utils.algebra.elements.linear.vector.Vector;
+import waffles.utils.tools.patterns.semantics.Immutable;
 
 /**
  * A {@code Projected} object defines a projection oculus.
@@ -8,9 +9,12 @@ import waffles.utils.algebra.elements.linear.vector.Vector;
  * @author Waffles
  * @since 16 Oct 2023
  * @version 1.0
+ * 
+ * 
+ * @see Immutable
  */
 @FunctionalInterface
-public interface Projected
+public interface Projected extends Immutable
 {
 	/**
 	 * A {@code Mutable Projected} can change its own oculus.
@@ -22,7 +26,7 @@ public interface Projected
 	 * 
 	 * @see Projected
 	 */
-	public static interface Mutable extends Projected
+	public static interface Mutable extends Immutable.Mutable, Projected
 	{
 		/**
 		 * Changes the oculus of the {@code Projected}.
@@ -33,34 +37,8 @@ public interface Projected
 		 * @see Vector
 		 */
 		public abstract void setOculus(Vector o);
-		
-		@Override
-		public default Mutable Mutator()
-		{
-			return this;
-		}
 	}
 	
-	
-	/**
-	 * Returns a mutable {@code Projected}.
-	 * If the object is mutable, it will be returned
-	 * as mutable. Otherwise this returns null.
-	 * 
-	 * @return  a mutable object
-	 * 
-	 * 
-	 * @see Mutable
-	 */
-	public default Mutable Mutator()
-	{
-		if(this instanceof Mutable)
-		{
-			return (Mutable) this;
-		}
-		
-		return null;
-	}
 	
 	/**
 	 * Returns the oculus of the {@code Projected}.
