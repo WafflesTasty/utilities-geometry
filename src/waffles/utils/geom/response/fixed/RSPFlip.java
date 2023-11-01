@@ -1,4 +1,4 @@
-package waffles.utils.geom.response;
+package waffles.utils.geom.response.fixed;
 
 import waffles.utils.algebra.elements.linear.vector.Vector;
 import waffles.utils.geom.Collidable;

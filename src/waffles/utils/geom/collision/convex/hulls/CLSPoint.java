@@ -2,7 +2,7 @@ package waffles.utils.geom.collision.convex.hulls;
 
 import waffles.utils.geom.Collidable;
 import waffles.utils.geom.collidable.fixed.Point;
-import waffles.utils.geom.response.RSPFlip;
+import waffles.utils.geom.response.fixed.RSPFlip;
 import waffles.utils.geom.response.hulls.points.CNTPoint;
 
 /**
