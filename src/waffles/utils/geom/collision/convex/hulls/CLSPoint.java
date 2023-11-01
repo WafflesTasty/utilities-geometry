@@ -2,8 +2,8 @@ package waffles.utils.geom.collision.convex.hulls;
 
 import waffles.utils.geom.Collidable;
 import waffles.utils.geom.collidable.fixed.Point;
+import waffles.utils.geom.response.RSPFlip;
 import waffles.utils.geom.response.hulls.points.CNTPoint;
-import waffles.utils.geom.utilities.collision.RSPFlip;
 
 /**
  * The {@code CLSPoint} class defines collision responses for {@code Point} objects.

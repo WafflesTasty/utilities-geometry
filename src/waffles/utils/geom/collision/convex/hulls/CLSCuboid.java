@@ -7,12 +7,12 @@ import waffles.utils.geom.collidable.axial.cuboid.ICuboid;
 import waffles.utils.geom.collidable.convex.ConvexSet;
 import waffles.utils.geom.collidable.fixed.Point;
 import waffles.utils.geom.collidable.spaces.lines.Line;
+import waffles.utils.geom.response.RSPFlip;
 import waffles.utils.geom.response.hulls.cuboids.CNTCuboid;
 import waffles.utils.geom.response.hulls.cuboids.CNTPoint;
 import waffles.utils.geom.response.hulls.cuboids.INHConvex;
 import waffles.utils.geom.response.hulls.cuboids.ISCCuboid;
 import waffles.utils.geom.response.hulls.cuboids.ISCLine;
-import waffles.utils.geom.utilities.collision.RSPFlip;
 
 /**
  * The {@code CLSSpheroid} class defines collision responses for {@code ICuboid} objects.

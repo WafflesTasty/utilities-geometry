@@ -1,4 +1,4 @@
-package waffles.utils.geom.utilities.collision;
+package waffles.utils.geom.response;
 
 import waffles.utils.algebra.elements.linear.vector.Vector;
 import waffles.utils.geom.Collidable;

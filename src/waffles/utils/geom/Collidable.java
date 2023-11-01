@@ -3,7 +3,7 @@ package waffles.utils.geom;
 import waffles.utils.algebra.elements.linear.vector.Vector;
 import waffles.utils.geom.Collision.Response;
 import waffles.utils.geom.collidable.fixed.Point;
-import waffles.utils.geom.utilities.collision.RSPFlip;
+import waffles.utils.geom.response.RSPFlip;
 
 /**
  * A {@code Collidable} object defines a {@code #Collisions()} property
