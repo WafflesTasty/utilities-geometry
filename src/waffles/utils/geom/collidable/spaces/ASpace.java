@@ -9,7 +9,7 @@ import waffles.utils.geom.Collidable;
 import waffles.utils.geom.Collision;
 import waffles.utils.geom.collidable.fixed.Point;
 import waffles.utils.geom.response.spaces.CLSASpace;
-import waffles.utils.geom.spatial.maps.linear.Translation;
+import waffles.utils.geom.spatial.maps.fixed.linear.Translation;
 import waffles.utils.geom.utilities.Geometries;
 
 /**

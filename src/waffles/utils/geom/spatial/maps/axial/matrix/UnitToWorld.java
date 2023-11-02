@@ -5,8 +5,8 @@ import waffles.utils.algebra.elements.linear.matrix.Matrix;
 import waffles.utils.algebra.elements.linear.matrix.types.orthogonal.Identity;
 import waffles.utils.algebra.utilities.matrix.LazyMatrix;
 import waffles.utils.geom.spatial.data.Axial;
-import waffles.utils.geom.spatial.maps.linear.Dilation;
-import waffles.utils.geom.spatial.maps.linear.Translation;
+import waffles.utils.geom.spatial.maps.fixed.linear.Dilation;
+import waffles.utils.geom.spatial.maps.fixed.linear.Translation;
 
 /**
  * The {@code UnitToWorld} class constructs an {@code AxialMap}

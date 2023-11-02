@@ -1,4 +1,4 @@
-package waffles.utils.geom.spatial.maps.linear.matrix.ops;
+package waffles.utils.geom.spatial.maps.fixed.linear.matrix.ops;
 
 import waffles.utils.algebra.elements.linear.matrix.Matrices;
 import waffles.utils.algebra.elements.linear.matrix.Matrix;
@@ -6,7 +6,7 @@ import waffles.utils.tools.patterns.operator.Operation;
 import waffles.utils.tools.primitives.Integers;
 
 /**
- * A {@code TranslatorLProduct} multiplies a translation matrix on the left.
+ * A {@code TranslatorRProduct} multiplies a translation matrix on the right.
  * The operation is optimized to skip zero values in the translation matrix.
  *
  * @author Waffles
@@ -17,12 +17,12 @@ import waffles.utils.tools.primitives.Integers;
  * @see Operation
  * @see Matrix
  */
-public class TranslatorLProduct implements Operation<Matrix>
+public class TranslatorRProduct implements Operation<Matrix>
 {
 	private Matrix t, m;
 	
 	/**
-	 * Creates a new {@code TranslatorLProduct}.
+	 * Creates a new {@code TranslatorRProduct}.
 	 * 
 	 * @param t  a translation matrix
 	 * @param m  a matrix
@@ -30,20 +30,21 @@ public class TranslatorLProduct implements Operation<Matrix>
 	 * 
 	 * @see Matrix
 	 */
-	public TranslatorLProduct(Matrix t, Matrix m)
+	public TranslatorRProduct(Matrix t, Matrix m)
 	{
-		this.t = t;
 		this.m = m;
+		this.t = t;
 	}
 	
 	
 	@Override
 	public Matrix result()
 	{
-		int row1 = t.Rows();
-		int row2 = m.Rows();
-		int col1 = t.Columns();
-		int col2 = m.Columns();
+		int row1 = m.Rows();
+		int row2 = t.Rows();
+		
+		int col1 = m.Columns();
+		int col2 = t.Columns();
 			
 		if(col1 != row2)
 		{
@@ -54,16 +55,20 @@ public class TranslatorLProduct implements Operation<Matrix>
 		Matrix result = Matrices.create(row1, col2);
 		for(int r = 0; r < row1; r++)
 		{
-			for(int c = 0; c < col2; c++)
+			for(int c = 0; c < col2 - 1; c++)
 			{
-				float val = t.get(r, r) * m.get(r, c);
-				if(r < row2 - 1)
-				{
-					val += t.get(r, col1-1) * m.get(row2-1, c);
-				}
-				
+				float val = m.get(r, c);
+				val = val * t.get(c, c);
 				result.set(val, r, c);
 			}
+			
+			float val = 0f;
+			for(int c = 0; c < col1; c++)
+			{
+				val += m.get(r, c) * t.get(c, col2-1);
+			}
+			
+			result.set(val, r, col2-1);
 		}
 		
 		return result;
@@ -72,11 +77,11 @@ public class TranslatorLProduct implements Operation<Matrix>
 	@Override
 	public int cost()
 	{
-		int r1 = t.Rows();
-		int r2 = m.Rows();
+		int r1 = m.Rows();
+		int r2 = t.Rows();
 		
-		int c1 = t.Columns();
-		int c2 = m.Columns();
+		int c1 = m.Columns();
+		int c2 = t.Columns();
 			
 		if(c1 != r2)
 		{
@@ -84,7 +89,9 @@ public class TranslatorLProduct implements Operation<Matrix>
 		}
 		
 
-		// Total cost of multiplication.
-		return 3 * r1 * c2 - 2;
+		// Cost of translation.
+		return r1 * (c2 - 1)
+		// Cost of diagonal.
+			 + r1 * (2 * c1 - 1);
 	}
 }

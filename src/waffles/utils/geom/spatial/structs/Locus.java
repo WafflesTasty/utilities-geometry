@@ -2,7 +2,7 @@ package waffles.utils.geom.spatial.structs;
 
 import waffles.utils.geom.spatial.data.Spatial;
 import waffles.utils.geom.spatial.data.spin.Spin;
-import waffles.utils.geom.spatial.maps.linear.Rotation;
+import waffles.utils.geom.spatial.maps.fixed.linear.Rotation;
 
 /**
  * A {@code Locus} defines a basic {@code Spatial} implementation.

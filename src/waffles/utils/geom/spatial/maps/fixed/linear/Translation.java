@@ -1,4 +1,4 @@
-package waffles.utils.geom.spatial.maps.linear;
+package waffles.utils.geom.spatial.maps.fixed.linear;
 
 import waffles.utils.algebra.elements.linear.LinearMap;
 import waffles.utils.algebra.elements.linear.matrix.Matrices;
@@ -7,7 +7,7 @@ import waffles.utils.algebra.elements.linear.vector.Vector;
 import waffles.utils.algebra.elements.linear.vector.Vectors;
 import waffles.utils.geom.collidable.fixed.Point;
 import waffles.utils.geom.spatial.data.unary.Positioned;
-import waffles.utils.geom.spatial.maps.linear.matrix.Translator;
+import waffles.utils.geom.spatial.maps.fixed.linear.matrix.Translator;
 import waffles.utils.tools.primitives.Integers;
 
 /**

@@ -1,4 +1,4 @@
-package waffles.utils.geom.spatial.maps.linear.matrix.ops;
+package waffles.utils.geom.spatial.maps.fixed.linear.matrix.ops;
 
 import waffles.utils.algebra.elements.linear.matrix.Matrices;
 import waffles.utils.algebra.elements.linear.matrix.Matrix;

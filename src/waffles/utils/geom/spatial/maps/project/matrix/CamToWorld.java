@@ -5,10 +5,10 @@ import waffles.utils.algebra.elements.linear.matrix.Matrix;
 import waffles.utils.algebra.elements.linear.matrix.types.orthogonal.Identity;
 import waffles.utils.algebra.utilities.matrix.LazyMatrix;
 import waffles.utils.geom.spatial.data.Watcher;
-import waffles.utils.geom.spatial.maps.linear.Dilation;
-import waffles.utils.geom.spatial.maps.linear.Projection;
-import waffles.utils.geom.spatial.maps.linear.Rotation;
-import waffles.utils.geom.spatial.maps.linear.Translation;
+import waffles.utils.geom.spatial.maps.fixed.linear.Dilation;
+import waffles.utils.geom.spatial.maps.fixed.linear.Projection;
+import waffles.utils.geom.spatial.maps.fixed.linear.Rotation;
+import waffles.utils.geom.spatial.maps.fixed.linear.Translation;
 
 /**
  * The {@code CamToWorld} class constructs a {@code Camera}

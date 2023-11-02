@@ -1,13 +1,13 @@
-package waffles.utils.geom.spatial.maps.linear.matrix;
+package waffles.utils.geom.spatial.maps.fixed.linear.matrix;
 
 import waffles.utils.algebra.elements.linear.matrix.Matrix;
 import waffles.utils.algebra.elements.linear.matrix.types.banded.upper.UpperTriangular;
 import waffles.utils.algebra.elements.linear.tensor.Tensor;
-import waffles.utils.geom.spatial.maps.linear.matrix.ops.TranslatorAddition;
-import waffles.utils.geom.spatial.maps.linear.matrix.ops.TranslatorDotProduct;
-import waffles.utils.geom.spatial.maps.linear.matrix.ops.TranslatorLProduct;
-import waffles.utils.geom.spatial.maps.linear.matrix.ops.TranslatorRProduct;
-import waffles.utils.geom.spatial.maps.linear.matrix.ops.TranslatorScalar;
+import waffles.utils.geom.spatial.maps.fixed.linear.matrix.ops.TranslatorAddition;
+import waffles.utils.geom.spatial.maps.fixed.linear.matrix.ops.TranslatorDotProduct;
+import waffles.utils.geom.spatial.maps.fixed.linear.matrix.ops.TranslatorLProduct;
+import waffles.utils.geom.spatial.maps.fixed.linear.matrix.ops.TranslatorRProduct;
+import waffles.utils.geom.spatial.maps.fixed.linear.matrix.ops.TranslatorScalar;
 import waffles.utils.tools.patterns.operator.Operation;
 import waffles.utils.tools.primitives.Floats;
 
