@@ -17,7 +17,7 @@ import waffles.utils.geom.spatial.maps.axial.AxialMap;
  * 
  * 
  * @see Geometrical
- * @see Aligned
+ * @see Alignable
  */
 public interface Alignable extends Aligned, Geometrical
 {	
