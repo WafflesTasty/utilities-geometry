@@ -1,19 +1,19 @@
 package waffles.utils.geom.collidable.axial.cuboid;
 
 /**
- * An {ICube} defines axis-aligned cube geometry with a center and length.
+ * An {HyperCube} defines axis-aligned cube geometry with a center and length.
  * 
  * @author Waffles
  * @since Mar 24, 2017
  * @version 1.0
  * 
  * 
- * @see ICuboid
+ * @see HyperCuboid
  */
-public interface ICube extends ICuboid
+public interface HyperCube extends HyperCuboid
 {		
 	/**
-	 * Returns the length of the {@code ICube}.
+	 * Returns the length of the {@code HyperCube}.
 	 * 
 	 * @return  a cube length
 	 */

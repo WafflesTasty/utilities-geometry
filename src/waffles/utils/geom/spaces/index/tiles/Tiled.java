@@ -2,7 +2,7 @@ package waffles.utils.geom.spaces.index.tiles;
 
 import waffles.utils.algebra.utilities.matrix.LazyMatrix;
 import waffles.utils.geom.collidable.Geometrical;
-import waffles.utils.geom.collidable.axial.cuboid.ICube;
+import waffles.utils.geom.collidable.axial.cuboid.HyperCube;
 import waffles.utils.geom.spaces.index.TiledSpace;
 import waffles.utils.geom.spaces.index.tiles.maps.TileToWorld;
 import waffles.utils.geom.spaces.index.tiles.maps.WorldToTile;
@@ -93,7 +93,7 @@ public interface Tiled extends Geometrical, Ordered
 	}
 
 	@Override
-	public default ICube Shape()
+	public default HyperCube Shape()
 	{
 		return Geometries.Cube(Order());
 	}

@@ -4,7 +4,7 @@ import waffles.utils.algebra.elements.linear.vector.Vector;
 import waffles.utils.algebra.elements.linear.vector.Vectors;
 import waffles.utils.geom.bounds.Bounded;
 import waffles.utils.geom.bounds.Bounds;
-import waffles.utils.geom.collidable.axial.cuboid.ICuboid;
+import waffles.utils.geom.collidable.axial.cuboid.HyperCuboid;
 import waffles.utils.geom.collidable.fixed.Point;
 import waffles.utils.geom.spaces.Space;
 import waffles.utils.geom.utilities.Geometries;
@@ -32,9 +32,9 @@ public interface IndexSpace<O> extends IndexedSet<O>, Space<O>, Bounded
 	 * @return  a cuboid shape
 	 * 
 	 * 
-	 * @see ICuboid
+	 * @see HyperCuboid
 	 */
-	public default ICuboid Shape()
+	public default HyperCuboid Shape()
 	{
 		int[] dims = Dimensions();
 

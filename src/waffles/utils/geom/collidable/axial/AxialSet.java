@@ -17,7 +17,7 @@ import waffles.utils.geom.spatial.data.Axial;
  * @see Geometry
  * @see Axial
  */
-public abstract class AxialSet implements IAxialSet
+public abstract class AxialSet implements AxialShape
 {
 	private Vector size;
 	private Vector origin;

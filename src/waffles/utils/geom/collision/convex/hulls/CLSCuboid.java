@@ -3,7 +3,7 @@ package waffles.utils.geom.collision.convex.hulls;
 import waffles.utils.geom.Collidable;
 import waffles.utils.geom.Collision;
 import waffles.utils.geom.bounds.Bounded;
-import waffles.utils.geom.collidable.axial.cuboid.ICuboid;
+import waffles.utils.geom.collidable.axial.cuboid.HyperCuboid;
 import waffles.utils.geom.collidable.convex.ConvexSet;
 import waffles.utils.geom.collidable.fixed.Point;
 import waffles.utils.geom.collidable.spaces.lines.Line;
@@ -15,7 +15,7 @@ import waffles.utils.geom.response.hulls.cuboids.ISCCuboid;
 import waffles.utils.geom.response.hulls.cuboids.ISCLine;
 
 /**
- * The {@code CLSSpheroid} class defines collision responses for {@code ICuboid} objects.
+ * The {@code CLSSpheroid} class defines collision responses for {@code HyperCuboid} objects.
  *
  * @author Waffles
  * @since Jul 23, 2019
@@ -32,9 +32,9 @@ public class CLSCuboid extends CLSHull
 	 * @param s  a source cuboid
 	 * 
 	 * 
-	 * @see ICuboid
+	 * @see HyperCuboid
 	 */
-	public CLSCuboid(ICuboid s)
+	public CLSCuboid(HyperCuboid s)
 	{
 		super(s);
 	}
@@ -43,7 +43,7 @@ public class CLSCuboid extends CLSHull
 	@Override
 	public Response contain(Collidable c)
 	{
-		ICuboid s = Source();
+		HyperCuboid s = Source();
 		
 		// Eliminate points.
 		if(c instanceof Point)
@@ -53,9 +53,9 @@ public class CLSCuboid extends CLSHull
 		}
 		
 		// Eliminate cuboids.
-		if(c instanceof ICuboid)
+		if(c instanceof HyperCuboid)
 		{
-			ICuboid t = (ICuboid) c;
+			HyperCuboid t = (HyperCuboid) c;
 			return new CNTCuboid(s, t);
 		}
 		
@@ -63,7 +63,7 @@ public class CLSCuboid extends CLSHull
 		if(c instanceof Bounded)
 		{
 			Bounded b = (Bounded) c;
-			ICuboid t = b.Bounds().Box();
+			HyperCuboid t = b.Bounds().Box();
 			return new CNTCuboid(s, t);
 		}
 		
@@ -73,7 +73,7 @@ public class CLSCuboid extends CLSHull
 	@Override
 	public Response intersect(Collidable c)
 	{
-		ICuboid s = Source();
+		HyperCuboid s = Source();
 		
 		// Eliminate lines.
 		if(c instanceof Line)
@@ -83,9 +83,9 @@ public class CLSCuboid extends CLSHull
 		}
 
 		// Eliminate cuboids.
-		if(c instanceof ICuboid)
+		if(c instanceof HyperCuboid)
 		{
-			ICuboid t = (ICuboid) c;
+			HyperCuboid t = (HyperCuboid) c;
 			return new ISCCuboid(s, t);
 		}
 		
@@ -95,12 +95,12 @@ public class CLSCuboid extends CLSHull
 	@Override
 	public Response inhabit(Collidable c)
 	{
-		ICuboid s = Source();
+		HyperCuboid s = Source();
 		
 		// Eliminate cuboids.
-		if(c instanceof ICuboid)
+		if(c instanceof HyperCuboid)
 		{
-			ICuboid t = (ICuboid) c;
+			HyperCuboid t = (HyperCuboid) c;
 			Collision cls = t.Collisions();
 			return new RSPFlip(cls.contain(s));
 		}
@@ -116,8 +116,8 @@ public class CLSCuboid extends CLSHull
 	}
 
 	@Override
-	public ICuboid Source()
+	public HyperCuboid Source()
 	{
-		return (ICuboid) super.Source();
+		return (HyperCuboid) super.Source();
 	}
 }

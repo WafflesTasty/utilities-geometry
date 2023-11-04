@@ -1,6 +1,6 @@
 package waffles.utils.geom.spaces.index;
 
-import waffles.utils.geom.collidable.axial.cuboid.ICuboid;
+import waffles.utils.geom.collidable.axial.cuboid.HyperCuboid;
 import waffles.utils.geom.spaces.index.tiles.Tiled;
 import waffles.utils.sets.indexed.MutableIndex;
 import waffles.utils.sets.utilities.Iterables;
@@ -49,7 +49,7 @@ public interface TiledSpace<T extends Tiled> extends IndexSpace<T>, MutableIndex
 	}
 	
 	@Override
-	public default Iterable<T> query(ICuboid c)
+	public default Iterable<T> query(HyperCuboid c)
 	{
 		int[] min = indexOf(c.Bounds().Minimum());
 		int[] max = indexOf(c.Bounds().Maximum());

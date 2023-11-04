@@ -4,7 +4,7 @@ import waffles.utils.algebra.elements.linear.vector.Vector;
 import waffles.utils.algebra.elements.linear.vector.Vectors;
 import waffles.utils.geom.Collidable;
 import waffles.utils.geom.Collision.Response;
-import waffles.utils.geom.collidable.axial.cuboid.ICuboid;
+import waffles.utils.geom.collidable.axial.cuboid.HyperCuboid;
 import waffles.utils.geom.utilities.Geometries;
 import waffles.utils.tools.primitives.Floats;
 import waffles.utils.tools.primitives.Integers;
@@ -22,7 +22,7 @@ import waffles.utils.tools.primitives.Integers;
 public class ISCCuboid implements Response
 {
 	private Vector min, max;
-	private ICuboid src, tgt;
+	private HyperCuboid src, tgt;
 	private Vector dst, pnt, dlt;
 	private Boolean hasImpact;
 	
@@ -33,9 +33,9 @@ public class ISCCuboid implements Response
 	 * @param t  a target cuboid
 	 * 
 	 * 
-	 * @see ICuboid
+	 * @see HyperCuboid
 	 */
-	public ISCCuboid(ICuboid s, ICuboid t)
+	public ISCCuboid(HyperCuboid s, HyperCuboid t)
 	{
 		src = s;
 		tgt = t;

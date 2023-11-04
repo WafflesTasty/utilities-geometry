@@ -12,9 +12,9 @@ import waffles.utils.algebra.elements.linear.vector.Vectors;
  * 
  * 
  * @see CuboidND
- * @see ICube
+ * @see HyperCube
  */
-public class CubeND extends CuboidND implements ICube
+public class CubeND extends CuboidND implements HyperCube
 {	
 	/**
 	 * Creates a new {@code CubeND}.

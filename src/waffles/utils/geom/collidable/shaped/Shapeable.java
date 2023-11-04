@@ -6,7 +6,7 @@ import waffles.utils.geom.spatial.maps.spatial.SpatialMap;
 
 /**
  * A {@code Shapeable} object defines a fully adjustable, n-dimensional geometric object.
- * It defines a shape, an affine transformation, and various utility methods.
+ * It defines a shape, a spatial transformation, and various utility methods.
  *
  * @author Waffles
  * @since Feb 27, 2018

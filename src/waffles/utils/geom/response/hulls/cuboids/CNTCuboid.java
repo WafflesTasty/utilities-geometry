@@ -3,7 +3,7 @@ package waffles.utils.geom.response.hulls.cuboids;
 import waffles.utils.algebra.elements.linear.vector.Vector;
 import waffles.utils.geom.Collision;
 import waffles.utils.geom.Collision.Response;
-import waffles.utils.geom.collidable.axial.cuboid.ICuboid;
+import waffles.utils.geom.collidable.axial.cuboid.HyperCuboid;
 import waffles.utils.tools.primitives.Floats;
 import waffles.utils.tools.primitives.Integers;
 
@@ -20,7 +20,7 @@ import waffles.utils.tools.primitives.Integers;
 public class CNTCuboid implements Response
 {
 	private Response rsp;
-	private ICuboid src, tgt;
+	private HyperCuboid src, tgt;
 	private Boolean hasImpact;
 	
 	/**
@@ -30,9 +30,9 @@ public class CNTCuboid implements Response
 	 * @param t  a target cuboid
 	 * 
 	 * 
-	 * @see ICuboid
+	 * @see HyperCuboid
 	 */
-	public CNTCuboid(ICuboid s, ICuboid t)
+	public CNTCuboid(HyperCuboid s, HyperCuboid t)
 	{
 		src = s;
 		tgt = t;

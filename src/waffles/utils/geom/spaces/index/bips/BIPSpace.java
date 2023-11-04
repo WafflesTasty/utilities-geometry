@@ -1,7 +1,7 @@
 package waffles.utils.geom.spaces.index.bips;
 
 import waffles.utils.geom.bounds.Bounds;
-import waffles.utils.geom.collidable.axial.cuboid.ICuboid;
+import waffles.utils.geom.collidable.axial.cuboid.HyperCuboid;
 import waffles.utils.geom.spaces.index.IndexSpace;
 import waffles.utils.sets.trees.Rooted;
 
@@ -95,7 +95,7 @@ public class BIPSpace<N extends BIPSNode> implements Rooted, IndexSpace<N>
 	}
 	
 	@Override
-	public Iterable<N> query(ICuboid c)
+	public Iterable<N> query(HyperCuboid c)
 	{
 		int[] min = indexOf(c.Bounds().Minimum());
 		int[] max = indexOf(c.Bounds().Maximum());

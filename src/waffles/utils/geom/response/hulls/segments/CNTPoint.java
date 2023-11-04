@@ -3,7 +3,7 @@ package waffles.utils.geom.response.hulls.segments;
 import waffles.utils.algebra.elements.linear.vector.Vector;
 import waffles.utils.geom.Collidable;
 import waffles.utils.geom.Collision.Response;
-import waffles.utils.geom.collidable.convex.hulls.segments.ISegment;
+import waffles.utils.geom.collidable.convex.hulls.segments.Segment;
 import waffles.utils.geom.collidable.fixed.Point;
 import waffles.utils.geom.utilities.Geometries;
 import waffles.utils.tools.primitives.Floats;
@@ -21,7 +21,7 @@ import waffles.utils.tools.primitives.Floats;
 public class CNTPoint implements Response
 {
 	private Float min;
-	private ISegment src;
+	private Segment src;
 	private Boolean hasImpact;
 	private Vector tgt;
 	
@@ -32,10 +32,10 @@ public class CNTPoint implements Response
 	 * @param p  a target point
 	 * 
 	 * 
-	 * @see ISegment
+	 * @see Segment
 	 * @see Point
 	 */
-	public CNTPoint(ISegment s, Point p)
+	public CNTPoint(Segment s, Point p)
 	{
 		src = s;
 		tgt = p.Generator();

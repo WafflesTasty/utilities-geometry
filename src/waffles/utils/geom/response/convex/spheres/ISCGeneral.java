@@ -3,7 +3,7 @@ package waffles.utils.geom.response.convex.spheres;
 import waffles.utils.algebra.elements.linear.vector.Vector;
 import waffles.utils.geom.Collidable;
 import waffles.utils.geom.Collision.Response;
-import waffles.utils.geom.collidable.axial.spheroid.ISphere;
+import waffles.utils.geom.collidable.axial.spheroid.HyperSphere;
 import waffles.utils.geom.utilities.Geometries;
 
 /**
@@ -18,7 +18,7 @@ import waffles.utils.geom.utilities.Geometries;
  */
 public class ISCGeneral implements Response
 {
-	private ISphere src;
+	private HyperSphere src;
 	private Response rsp;
 	
 	/**
@@ -29,9 +29,9 @@ public class ISCGeneral implements Response
 	 * 
 	 * 
 	 * @see Collidable
-	 * @see ISphere
+	 * @see HyperSphere
 	 */
-	public ISCGeneral(ISphere s, Collidable c)
+	public ISCGeneral(HyperSphere s, Collidable c)
 	{
 		rsp = c.contain(s.Origin());
 		src = s;

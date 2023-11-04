@@ -12,9 +12,9 @@ import waffles.utils.geom.collidable.fixed.Point;
  * 
  * 
  * @see Rectangle
- * @see ICube
+ * @see HyperCube
  */
-public class Square extends Rectangle implements ICube
+public class Square extends Rectangle implements HyperCube
 {
 	/**
 	 * Creates a new {@code Square}.

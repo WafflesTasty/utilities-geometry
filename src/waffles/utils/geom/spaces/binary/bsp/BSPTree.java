@@ -3,7 +3,7 @@ package waffles.utils.geom.spaces.binary.bsp;
 import waffles.utils.algebra.elements.linear.vector.Vector;
 import waffles.utils.geom.Collision.Response;
 import waffles.utils.geom.bounds.Bounded;
-import waffles.utils.geom.collidable.axial.cuboid.ICuboid;
+import waffles.utils.geom.collidable.axial.cuboid.HyperCuboid;
 import waffles.utils.geom.spaces.binary.kd.KDTree;
 import waffles.utils.geom.spaces.binary.kd.KDNode.Cut;
 import waffles.utils.sets.mutable.AtomicSet;
@@ -72,7 +72,7 @@ public class BSPTree<O extends Bounded> extends KDTree<O> implements AtomicSet<O
 			return;
 		}
 		
-		ICuboid cb1 = obj.Bounds().Box();
+		HyperCuboid cb1 = obj.Bounds().Box();
 
 		
 		O abj = null;
@@ -82,7 +82,7 @@ public class BSPTree<O extends Bounded> extends KDTree<O> implements AtomicSet<O
 		{
 			for(O o : node.Objects())
 			{
-				ICuboid cb2 = o.Bounds().Box();
+				HyperCuboid cb2 = o.Bounds().Box();
 				Response rsp = cb1.intersect(cb2);
 				
 				dst = rsp.Distance();

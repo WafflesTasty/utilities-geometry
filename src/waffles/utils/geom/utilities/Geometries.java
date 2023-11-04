@@ -9,14 +9,14 @@ import waffles.utils.geom.collidable.axial.cuboid.Cube;
 import waffles.utils.geom.collidable.axial.cuboid.CubeND;
 import waffles.utils.geom.collidable.axial.cuboid.Cuboid;
 import waffles.utils.geom.collidable.axial.cuboid.CuboidND;
-import waffles.utils.geom.collidable.axial.cuboid.ICube;
-import waffles.utils.geom.collidable.axial.cuboid.ICuboid;
+import waffles.utils.geom.collidable.axial.cuboid.HyperCube;
+import waffles.utils.geom.collidable.axial.cuboid.HyperCuboid;
 import waffles.utils.geom.collidable.axial.cuboid.Rectangle;
 import waffles.utils.geom.collidable.axial.cuboid.Square;
 import waffles.utils.geom.collidable.axial.spheroid.Circle;
 import waffles.utils.geom.collidable.axial.spheroid.Ellipse;
-import waffles.utils.geom.collidable.axial.spheroid.ISphere;
-import waffles.utils.geom.collidable.axial.spheroid.ISpheroid;
+import waffles.utils.geom.collidable.axial.spheroid.HyperSphere;
+import waffles.utils.geom.collidable.axial.spheroid.HyperSpheroid;
 import waffles.utils.geom.collidable.axial.spheroid.Sphere;
 import waffles.utils.geom.collidable.axial.spheroid.SphereND;
 import waffles.utils.geom.collidable.axial.spheroid.Spheroid;
@@ -24,12 +24,12 @@ import waffles.utils.geom.collidable.axial.spheroid.SpheroidND;
 import waffles.utils.geom.collidable.convex.hulls.Hull2D;
 import waffles.utils.geom.collidable.convex.hulls.Hull3D;
 import waffles.utils.geom.collidable.convex.hulls.HullND;
-import waffles.utils.geom.collidable.convex.hulls.IHull;
-import waffles.utils.geom.collidable.convex.hulls.segments.ISegment;
+import waffles.utils.geom.collidable.convex.hulls.Hull;
+import waffles.utils.geom.collidable.convex.hulls.segments.Segment;
 import waffles.utils.geom.collidable.convex.hulls.segments.Segment2D;
 import waffles.utils.geom.collidable.convex.hulls.segments.Segment3D;
 import waffles.utils.geom.collidable.convex.hulls.segments.SegmentND;
-import waffles.utils.geom.collidable.convex.hulls.triangles.ITriangle;
+import waffles.utils.geom.collidable.convex.hulls.triangles.Triangle;
 import waffles.utils.geom.collidable.convex.hulls.triangles.Triangle2D;
 import waffles.utils.geom.collidable.convex.hulls.triangles.Triangle3D;
 import waffles.utils.geom.collidable.convex.hulls.triangles.TriangleND;
@@ -139,16 +139,16 @@ public final class Geometries
 	}
 	
 	/**
-	 * Generates {@code IHull} geometry.
+	 * Generates {@code Hull} geometry.
 	 * 
 	 * @param gen  a generating matrix
 	 * @return  a convex hull
 	 * 
 	 * 
 	 * @see Matrix
-	 * @see IHull
+	 * @see Hull
 	 */
-	public static IHull Hull(Matrix gen)
+	public static Hull Hull(Matrix gen)
 	{
 		int rows = gen.Rows();
 		int cols = gen.Columns();
@@ -190,7 +190,7 @@ public final class Geometries
 	
 	
 	/**
-	 * Generates {@code ICube} geometry.
+	 * Generates {@code HyperCube} geometry.
 	 * 
 	 * @param c  a cube center
 	 * @param l  a cube length
@@ -198,9 +198,9 @@ public final class Geometries
 	 * 
 	 * 
 	 * @see Vector
-	 * @see ICube
+	 * @see HyperCube
 	 */
-	public static ICube Cube(Vector c, float l)
+	public static HyperCube Cube(Vector c, float l)
 	{
 		if(c.Size() == 2)
 			return new Square((Vector2) c, l);
@@ -211,17 +211,17 @@ public final class Geometries
 	}
 	
 	/**
-	 * Generates {@code ICuboid} geometry.
+	 * Generates {@code HyperCuboid} geometry.
 	 * 
 	 * @param c  a cuboid center
 	 * @param s  a cuboid size
 	 * @return   a cuboid
 	 * 
 	 * 
-	 * @see ICuboid
+	 * @see HyperCuboid
 	 * @see Vector
 	 */
-	public static ICuboid Cuboid(Vector c, Vector s)
+	public static HyperCuboid Cuboid(Vector c, Vector s)
 	{
 		if(c.Size() == 2)
 			return new Rectangle((Vector2) c, (Vector2) s);
@@ -232,17 +232,17 @@ public final class Geometries
 	}
 		
 	/**
-	 * Generates {@code ISegment} geometry.
+	 * Generates {@code Segment} geometry.
 	 * 
 	 * @param p  a point vector
 	 * @param q  a point vector
 	 * @return   a segment
 	 * 
 	 * 
-	 * @see ISegment
+	 * @see Segment
 	 * @see Vector
 	 */
-	public static ISegment Segment(Vector p, Vector q)
+	public static Segment Segment(Vector p, Vector q)
 	{
 		if(p.Size() == 2)
 			return new Segment2D((Vector2) p, (Vector2) q);
@@ -253,7 +253,7 @@ public final class Geometries
 	}
 	
 	/**
-	 * Generates {@code ITriangle} geometry.
+	 * Generates {@code Triangle} geometry.
 	 * 
 	 * @param a  a point vector
 	 * @param b  a point vector
@@ -261,10 +261,10 @@ public final class Geometries
 	 * @return   a triangle
 	 * 
 	 * 
-	 * @see ITriangle
+	 * @see Triangle
 	 * @see Vector
 	 */
-	public static ITriangle Triangle(Vector a, Vector b, Vector c)
+	public static Triangle Triangle(Vector a, Vector b, Vector c)
 	{
 		if(a.Size() == 2)
 			return new Triangle2D((Vector2) a, (Vector2) b, (Vector2) c);
@@ -275,17 +275,17 @@ public final class Geometries
 	}
 	
 	/**
-	 * Generates {@code ISpheroid} geometry.
+	 * Generates {@code HyperSpheroid} geometry.
 	 * 
 	 * @param c  a spheroid center
 	 * @param s  a spheroid size
 	 * @return   a spheroid
 	 * 
 	 * 
-	 * @see ISpheroid
+	 * @see HyperSpheroid
 	 * @see Vector
 	 */
-	public static ISpheroid Ellipsoid(Vector c, Vector s)
+	public static HyperSpheroid Ellipsoid(Vector c, Vector s)
 	{
 		if(c.Size() == 2)
 			return new Ellipse((Vector2) c, (Vector2) s);
@@ -296,17 +296,17 @@ public final class Geometries
 	}
 	
 	/**
-	 * Generates {@code ISphere} geometry.
+	 * Generates {@code HyperSphere} geometry.
 	 * 
 	 * @param c  a sphere center
 	 * @param r  a sphere radius
 	 * @return   a sphere
 	 * 
 	 * 
-	 * @see ISphere
+	 * @see HyperSphere
 	 * @see Vector
 	 */
-	public static ISphere Sphere(Vector c, float r)
+	public static HyperSphere Sphere(Vector c, float r)
 	{
 		if(c.Size() == 2)
 			return new Circle((Vector2) c, r);
@@ -318,15 +318,15 @@ public final class Geometries
 			
 	
 	/**
-	 * Generates unit {@code ISphere} geometry.
+	 * Generates unit {@code HyperSphere} geometry.
 	 * 
 	 * @param dim  a space dimension
 	 * @return  a unit sphere
 	 * 
 	 * 
-	 * @see ISphere
+	 * @see HyperSphere
 	 */
-	public static ISphere Sphere(int dim)
+	public static HyperSphere Sphere(int dim)
 	{
 		if(dim <= 1) return null;
 		if(dim == 2) return new Circle();
@@ -335,15 +335,15 @@ public final class Geometries
 	}
 	
 	/**
-	 * Generates unit {@code ICube} geometry.
+	 * Generates unit {@code HyperCube} geometry.
 	 * 
 	 * @param dim  a space dimension
 	 * @return  a unit cube
 	 * 
 	 * 
-	 * @see ICube
+	 * @see HyperCube
 	 */
-	public static ICube Cube(int dim)
+	public static HyperCube Cube(int dim)
 	{
 		if(dim <= 1) return null;
 		if(dim == 2) return new Square();

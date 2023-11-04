@@ -3,9 +3,9 @@ package waffles.utils.geom.response.convex.spheroid;
 import waffles.utils.algebra.elements.linear.vector.Vector;
 import waffles.utils.geom.Collidable;
 import waffles.utils.geom.Collision.Response;
-import waffles.utils.geom.collidable.axial.spheroid.ISphere;
-import waffles.utils.geom.collidable.axial.spheroid.ISpheroid;
-import waffles.utils.geom.collidable.convex.hulls.IHull;
+import waffles.utils.geom.collidable.axial.spheroid.HyperSphere;
+import waffles.utils.geom.collidable.axial.spheroid.HyperSpheroid;
+import waffles.utils.geom.collidable.convex.hulls.Hull;
 import waffles.utils.geom.spatial.maps.spatial.StandardMap;
 import waffles.utils.geom.utilities.Geometries;
 import waffles.utils.geom.utilities.Transforms;
@@ -22,9 +22,9 @@ import waffles.utils.geom.utilities.Transforms;
  */
 public class ISCHull implements Response
 {
-	private IHull tgt;
+	private Hull tgt;
 	private Response rsp;
-	private ISpheroid src;
+	private HyperSpheroid src;
 	private StandardMap map;
 	
 	/**
@@ -34,10 +34,10 @@ public class ISCHull implements Response
 	 * @param t  a target hull
 	 * 
 	 * 
-	 * @see ISpheroid
-	 * @see IHull
+	 * @see HyperSpheroid
+	 * @see Hull
 	 */
-	public ISCHull(ISpheroid s, IHull t)
+	public ISCHull(HyperSpheroid s, Hull t)
 	{
 		src = s;
 		tgt = t;
@@ -107,8 +107,8 @@ public class ISCHull implements Response
 		int dim = src.Dimension();
 		
 		map = Transforms.fromUSphere(src);
-		ISphere s = Geometries.Sphere(dim);
-		IHull h = (IHull) map.unmap(tgt);
+		HyperSphere s = Geometries.Sphere(dim);
+		Hull h = (Hull) map.unmap(tgt);
 		
 		return s.intersect(h);
 	}

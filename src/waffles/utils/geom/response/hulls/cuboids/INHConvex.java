@@ -4,7 +4,7 @@ import waffles.utils.algebra.elements.linear.vector.Vector;
 import waffles.utils.geom.Collidable;
 import waffles.utils.geom.Collision;
 import waffles.utils.geom.Collision.Response;
-import waffles.utils.geom.collidable.axial.cuboid.ICuboid;
+import waffles.utils.geom.collidable.axial.cuboid.HyperCuboid;
 import waffles.utils.geom.collidable.convex.ConvexSet;
 import waffles.utils.geom.collidable.fixed.Point;
 import waffles.utils.geom.utilities.Geometries;
@@ -21,7 +21,7 @@ import waffles.utils.geom.utilities.Geometries;
  */
 public class INHConvex implements Response
 {
-	private ICuboid src;
+	private HyperCuboid src;
 	private ConvexSet tgt;
 	
 	private Response[] rsp;
@@ -35,9 +35,9 @@ public class INHConvex implements Response
 	 * 
 	 * 
 	 * @see ConvexSet
-	 * @see ICuboid
+	 * @see HyperCuboid
 	 */
-	public INHConvex(ICuboid s, ConvexSet t)
+	public INHConvex(HyperCuboid s, ConvexSet t)
 	{
 		src = s;
 		tgt = t;

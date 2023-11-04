@@ -11,9 +11,9 @@ import waffles.utils.algebra.elements.linear.vector.fixed.Vector3;
  * 
  * 
  * @see Cuboid
- * @see ICube
+ * @see HyperCube
  */
-public class Cube extends Cuboid implements ICube
+public class Cube extends Cuboid implements HyperCube
 {
 	/**
 	 * Creates a new {@code Cube}.

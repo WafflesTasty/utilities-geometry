@@ -3,7 +3,7 @@ package waffles.utils.geom.spaces.ortho.queries;
 import java.util.Iterator;
 
 import waffles.utils.geom.bounds.Bounded;
-import waffles.utils.geom.collidable.axial.cuboid.ICuboid;
+import waffles.utils.geom.collidable.axial.cuboid.HyperCuboid;
 import waffles.utils.geom.spaces.ortho.OrtNode;
 import waffles.utils.geom.spaces.ortho.OrtTree;
 import waffles.utils.sets.queues.Queue;
@@ -23,7 +23,7 @@ import waffles.utils.sets.queues.delegate.JFIFOQueue;
  */
 public class QRYCuboid<O extends Bounded> implements Iterator<O>
 {
-	private ICuboid tgt;
+	private HyperCuboid tgt;
 	private Iterator<O> obj;
 	private Queue<OrtNode<O>> queue;
 
@@ -35,9 +35,9 @@ public class QRYCuboid<O extends Bounded> implements Iterator<O>
 	 * 
 	 * 
 	 * @see OrtTree
-	 * @see ICuboid
+	 * @see HyperCuboid
 	 */
-	public QRYCuboid(OrtTree<O> s, ICuboid t)
+	public QRYCuboid(OrtTree<O> s, HyperCuboid t)
 	{
 		this(s.Root(), t);
 	}
@@ -50,9 +50,9 @@ public class QRYCuboid<O extends Bounded> implements Iterator<O>
 	 * 
 	 * 
 	 * @see OrtNode
-	 * @see ICuboid
+	 * @see HyperCuboid
 	 */
-	public QRYCuboid(OrtNode<O> n, ICuboid t)
+	public QRYCuboid(OrtNode<O> n, HyperCuboid t)
 	{
 		queue = new JFIFOQueue<>();
 		

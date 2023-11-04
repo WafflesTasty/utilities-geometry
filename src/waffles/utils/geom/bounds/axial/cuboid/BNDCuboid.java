@@ -4,12 +4,12 @@ import waffles.utils.algebra.elements.linear.matrix.Matrices;
 import waffles.utils.algebra.elements.linear.matrix.Matrix;
 import waffles.utils.algebra.elements.linear.vector.Vector;
 import waffles.utils.geom.bounds.Bounds;
-import waffles.utils.geom.collidable.axial.cuboid.ICuboid;
+import waffles.utils.geom.collidable.axial.cuboid.HyperCuboid;
 import waffles.utils.geom.collidable.fixed.Point;
 import waffles.utils.geom.spatial.maps.GlobalMap;
 
 /**
- * A {@code BNDCuboid} defines {@code Bounds} for a transformed {@code ICuboid}.
+ * A {@code BNDCuboid} defines {@code Bounds} for a transformed {@code HyperCuboid}.
  *
  * @author Waffles
  * @since Sep 11, 2019
@@ -20,7 +20,7 @@ import waffles.utils.geom.spatial.maps.GlobalMap;
  */
 public class BNDCuboid implements Bounds
 {
-	private ICuboid src;
+	private HyperCuboid src;
 	private GlobalMap map;
 	
 	/**
@@ -31,9 +31,9 @@ public class BNDCuboid implements Bounds
 	 * 
 	 * 
 	 * @see GlobalMap
-	 * @see ICuboid
+	 * @see HyperCuboid
 	 */
-	public BNDCuboid(ICuboid c, GlobalMap m)
+	public BNDCuboid(HyperCuboid c, GlobalMap m)
 	{
 		src = c;
 		map = m;

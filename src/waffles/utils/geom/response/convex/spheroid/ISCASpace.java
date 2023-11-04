@@ -3,8 +3,8 @@ package waffles.utils.geom.response.convex.spheroid;
 import waffles.utils.algebra.elements.linear.vector.Vector;
 import waffles.utils.geom.Collidable;
 import waffles.utils.geom.Collision.Response;
-import waffles.utils.geom.collidable.axial.spheroid.ISphere;
-import waffles.utils.geom.collidable.axial.spheroid.ISpheroid;
+import waffles.utils.geom.collidable.axial.spheroid.HyperSphere;
+import waffles.utils.geom.collidable.axial.spheroid.HyperSpheroid;
 import waffles.utils.geom.collidable.spaces.ASpace;
 import waffles.utils.geom.collidable.spaces.VSpace;
 import waffles.utils.geom.spatial.maps.spatial.StandardMap;
@@ -25,7 +25,7 @@ public class ISCASpace implements Response
 {
 	private ASpace tgt;
 	private Response rsp;
-	private ISpheroid src;
+	private HyperSpheroid src;
 	private StandardMap map;
 	
 	/**
@@ -35,10 +35,10 @@ public class ISCASpace implements Response
 	 * @param t  a target space
 	 * 
 	 * 
-	 * @see ISpheroid
+	 * @see HyperSpheroid
 	 * @see ASpace
 	 */
-	public ISCASpace(ISpheroid s, ASpace t)
+	public ISCASpace(HyperSpheroid s, ASpace t)
 	{
 		src = s;
 		tgt = t;
@@ -51,10 +51,10 @@ public class ISCASpace implements Response
 	 * @param t  a target space
 	 * 
 	 * 
-	 * @see ISpheroid
+	 * @see HyperSpheroid
 	 * @see VSpace
 	 */
-	public ISCASpace(ISpheroid s, VSpace t)
+	public ISCASpace(HyperSpheroid s, VSpace t)
 	{
 		this(s, ASpace.Default(t));
 	}
@@ -118,7 +118,7 @@ public class ISCASpace implements Response
 		int dim = src.Dimension();
 		
 		map = Transforms.fromUSphere(src);
-		ISphere s = Geometries.Sphere(dim);
+		HyperSphere s = Geometries.Sphere(dim);
 		ASpace h = (ASpace) map.unmap(tgt);
 		
 		return s.intersect(h);

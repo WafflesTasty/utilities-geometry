@@ -4,14 +4,14 @@ import java.util.Iterator;
 
 import waffles.utils.algebra.elements.linear.vector.Vector;
 import waffles.utils.algebra.elements.linear.vector.Vectors;
-import waffles.utils.geom.collidable.axial.cuboid.ICuboid;
+import waffles.utils.geom.collidable.axial.cuboid.HyperCuboid;
 import waffles.utils.geom.utilities.VChain;
 import waffles.utils.tools.collections.Iterables;
 import waffles.utils.tools.collections.iterators.counters.IntegerCounter;
 import waffles.utils.tools.primitives.Integers;
 
 /**
- * A {@code VCHCuboid} generates vertex chains for an {@code ICuboid}.
+ * A {@code VCHCuboid} generates vertex chains for an {@code HyperCuboid}.
  *
  * @author Waffles
  * @since 18 Jun 2020
@@ -94,7 +94,7 @@ public class VCHCuboid implements VChain
 	
 	
 	private Mode mode;
-	private ICuboid src;
+	private HyperCuboid src;
 	
 	/**
 	 * Creates a new {@code VCHCuboid}.
@@ -103,9 +103,9 @@ public class VCHCuboid implements VChain
 	 * @param m  a chain mode
 	 * 
 	 * 
-	 * @see ICuboid
+	 * @see HyperCuboid
 	 */
-	public VCHCuboid(ICuboid s, Mode m)
+	public VCHCuboid(HyperCuboid s, Mode m)
 	{
 		mode = m;
 		src = s;

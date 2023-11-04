@@ -1,24 +1,24 @@
 package waffles.utils.geom.collidable.convex.hulls.triangles;
 
 import waffles.utils.algebra.elements.linear.vector.Vector;
-import waffles.utils.geom.collidable.convex.hulls.IHull;
+import waffles.utils.geom.collidable.convex.hulls.Hull;
 import waffles.utils.geom.collidable.fixed.Point;
 import waffles.utils.geom.collision.convex.hulls.CLSTriangle;
 
 /**
- * The {@code ITriangle} interface is the base for convex hulls of three point sets.
+ * The {@code Triangle} interface is the base for convex hulls of three point sets.
  * 
  * @author Waffles
  * @since 13 Jan 2021
  * @version 1.0 
  * 
  * 
- * @see IHull
+ * @see Hull
  */
-public interface ITriangle extends IHull
+public interface Triangle extends Hull
 {
 	/**
-	 * Returns the first point of the {@code ITriangle}.
+	 * Returns the first point of the {@code Triangle}.
 	 * 
 	 * @return  a triangle point
 	 * 
@@ -32,7 +32,7 @@ public interface ITriangle extends IHull
 	}
 	
 	/**
-	 * Returns the second point of the {@code ITriangle}.
+	 * Returns the second point of the {@code Triangle}.
 	 * 
 	 * @return  a triangle point
 	 * 
@@ -46,7 +46,7 @@ public interface ITriangle extends IHull
 	}
 	
 	/**
-	 * Returns the third point of the {@code ITriangle}.
+	 * Returns the third point of the {@code Triangle}.
 	 * 
 	 * @return  a triangle point
 	 * 

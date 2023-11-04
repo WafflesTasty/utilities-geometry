@@ -6,13 +6,13 @@ import waffles.utils.algebra.elements.linear.matrix.types.banded.Diagonal;
 import waffles.utils.algebra.elements.linear.vector.Vector;
 import waffles.utils.algebra.elements.linear.vector.Vectors;
 import waffles.utils.geom.bounds.Bounds;
-import waffles.utils.geom.collidable.axial.spheroid.ISpheroid;
+import waffles.utils.geom.collidable.axial.spheroid.HyperSpheroid;
 import waffles.utils.geom.collidable.fixed.Point;
 import waffles.utils.geom.spatial.maps.GlobalMap;
 import waffles.utils.tools.primitives.Floats;
 
 /**
- * A {@code BNDSpheroid} defines {@code Bounds} for a transformed {@code ISpheroid}.
+ * A {@code BNDSpheroid} defines {@code Bounds} for a transformed {@code HyperSpheroid}.
  *
  * @author Waffles
  * @since Sep 11, 2019
@@ -23,7 +23,7 @@ import waffles.utils.tools.primitives.Floats;
  */
 public class BNDSpheroid implements Bounds
 {
-	private ISpheroid src;
+	private HyperSpheroid src;
 	private GlobalMap map;
 	
 	/**
@@ -34,9 +34,9 @@ public class BNDSpheroid implements Bounds
 	 * 
 	 * 
 	 * @see GlobalMap
-	 * @see ISpheroid
+	 * @see HyperSpheroid
 	 */
-	public BNDSpheroid(ISpheroid e, GlobalMap m)
+	public BNDSpheroid(HyperSpheroid e, GlobalMap m)
 	{
 		src = e;
 		map = m;

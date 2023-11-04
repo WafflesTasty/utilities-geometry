@@ -10,7 +10,7 @@ import waffles.utils.geom.spatial.data.Axial;
 import waffles.utils.geom.spatial.maps.axial.AxialMap;
 
 /**
- * An {@code IAxialSet} defines n-dimensional geometry through a center and size vector.
+ * An {@code AxialShape} defines n-dimensional geometry through a center and size vector.
  *
  * @author Waffles
  * @since 15 Sep 2023
@@ -20,10 +20,10 @@ import waffles.utils.geom.spatial.maps.axial.AxialMap;
  * @see Geometry
  * @see Axial
  */
-public interface IAxialSet extends Axial, Geometry
+public interface AxialShape extends Axial, Geometry
 {	
 	/**
-	 * Creates a new {@code AxialSet} given an origin and size.
+	 * Creates a new {@code AxialShape} given an origin and size.
 	 * 
 	 * @param o  an origin vector
 	 * @param s  a size vector
@@ -32,13 +32,13 @@ public interface IAxialSet extends Axial, Geometry
 	 * 
 	 * @see Vector
 	 */
-	public default IAxialSet create(Vector o, Vector s)
+	public default AxialShape create(Vector o, Vector s)
 	{
 		return null;
 	}
 	
 	/**
-	 * Transforms the {@code AxialSet} along an axial map.
+	 * Transforms the {@code AxialShape} along an axial map.
 	 * 
 	 * @param map  an axial map
 	 * @return  a transformed axial set
@@ -46,7 +46,7 @@ public interface IAxialSet extends Axial, Geometry
 	 * 
 	 * @see AxialMap
 	 */
-	public default IAxialSet map(AxialMap map)
+	public default AxialShape map(AxialMap map)
 	{
 		Point o1 = new Point(Origin(), 1f);
 		Affine o2 = map.map(o1);

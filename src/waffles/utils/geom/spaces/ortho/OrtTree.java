@@ -5,7 +5,7 @@ import java.util.Iterator;
 import waffles.utils.algebra.elements.linear.vector.Vector;
 import waffles.utils.geom.bounds.Bounded;
 import waffles.utils.geom.bounds.Bounds;
-import waffles.utils.geom.collidable.axial.cuboid.ICuboid;
+import waffles.utils.geom.collidable.axial.cuboid.HyperCuboid;
 import waffles.utils.geom.collidable.fixed.Point;
 import waffles.utils.geom.spaces.Space;
 import waffles.utils.geom.spaces.ortho.queries.QRYCuboid;
@@ -36,9 +36,9 @@ public class OrtTree<O extends Bounded> extends Tree implements Bounded, AtomicS
 	 * @param b  a cuboid bounds
 	 * 
 	 * 
-	 * @see ICuboid
+	 * @see HyperCuboid
 	 */
-	public OrtTree(ICuboid b)
+	public OrtTree(HyperCuboid b)
 	{
 		this(b.Origin(), b.Size());
 	}
@@ -71,7 +71,7 @@ public class OrtTree<O extends Bounded> extends Tree implements Bounded, AtomicS
 	}
 
 	@Override
-	public Iterable<O> query(ICuboid c)
+	public Iterable<O> query(HyperCuboid c)
 	{
 		if(!Root().intersects(c))
 			return Root().Objects();

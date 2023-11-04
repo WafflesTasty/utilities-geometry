@@ -5,7 +5,7 @@ import waffles.utils.geom.Collidable;
 import waffles.utils.geom.Collision.Response;
 import waffles.utils.geom.collidable.Geometrical;
 import waffles.utils.geom.collidable.Geometry;
-import waffles.utils.geom.collidable.convex.hulls.IHull;
+import waffles.utils.geom.collidable.convex.hulls.Hull;
 import waffles.utils.geom.spatial.maps.GlobalMap;
 import waffles.utils.geom.utilities.Geometries;
 
@@ -21,7 +21,7 @@ import waffles.utils.geom.utilities.Geometries;
  */
 public class ISCHull implements Response
 {
-	private IHull tgt;
+	private Hull tgt;
 	private Response rsp;
 	private Geometrical src;
 	
@@ -33,9 +33,9 @@ public class ISCHull implements Response
 	 * 
 	 * 
 	 * @see Geometrical
-	 * @see IHull
+	 * @see Hull
 	 */
-	public ISCHull(Geometrical s, IHull t)
+	public ISCHull(Geometrical s, Hull t)
 	{
 		src = s;
 		tgt = t;
@@ -107,7 +107,7 @@ public class ISCHull implements Response
 		Geometry s = src.Shape();
 		GlobalMap map = src.Transform();
 		
-		IHull h = (IHull) map.unmap(tgt);
+		Hull h = (Hull) map.unmap(tgt);
 		return s.intersect(h);
 	}
 }

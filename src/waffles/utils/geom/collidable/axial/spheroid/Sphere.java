@@ -15,9 +15,9 @@ import waffles.utils.geom.collidable.fixed.Point;
  * 
  * 
  * @see Spheroid
- * @see ISphere
+ * @see HyperSphere
  */
-public class Sphere extends Spheroid implements ISphere
+public class Sphere extends Spheroid implements HyperSphere
 {
 	/**
 	 * Creates a new {@code Sphere}.

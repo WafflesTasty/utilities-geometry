@@ -16,9 +16,9 @@ import waffles.utils.geom.spatial.maps.GlobalMap;
  * 
  * 
  * @see AxialSet3D
- * @see ICuboid
+ * @see HyperCuboid
  */
-public class Cuboid extends AxialSet3D implements ICuboid
+public class Cuboid extends AxialSet3D implements HyperCuboid
 {	
 	/**
 	 * Creates a new {@code Cuboid}.

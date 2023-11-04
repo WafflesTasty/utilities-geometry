@@ -5,7 +5,7 @@ import java.util.Iterator;
 import waffles.utils.algebra.elements.linear.vector.Vector;
 import waffles.utils.geom.bounds.Bounded;
 import waffles.utils.geom.bounds.Bounds;
-import waffles.utils.geom.collidable.axial.cuboid.ICuboid;
+import waffles.utils.geom.collidable.axial.cuboid.HyperCuboid;
 import waffles.utils.geom.spaces.ortho.OrtNode;
 import waffles.utils.sets.indexed.delegate.List;
 import waffles.utils.tools.primitives.Integers;
@@ -36,10 +36,10 @@ public class QRYChildren<O extends Bounded> implements Iterator<OrtNode<O>>
 	 * @param t  a target cuboid
 	 * 
 	 * 
-	 * @see ICuboid
+	 * @see HyperCuboid
 	 * @see OrtNode
 	 */
-	public QRYChildren(OrtNode<O> s,  ICuboid t)
+	public QRYChildren(OrtNode<O> s,  HyperCuboid t)
 	{
 		src = s;
 		findIndices();

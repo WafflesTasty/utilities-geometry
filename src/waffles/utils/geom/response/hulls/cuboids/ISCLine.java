@@ -3,7 +3,7 @@ package waffles.utils.geom.response.hulls.cuboids;
 import waffles.utils.algebra.elements.linear.vector.Vector;
 import waffles.utils.geom.Collidable;
 import waffles.utils.geom.Collision.Response;
-import waffles.utils.geom.collidable.axial.cuboid.ICuboid;
+import waffles.utils.geom.collidable.axial.cuboid.HyperCuboid;
 import waffles.utils.geom.collidable.spaces.lines.Line;
 import waffles.utils.geom.utilities.Geometries;
 import waffles.utils.tools.primitives.Floats;
@@ -21,7 +21,7 @@ import waffles.utils.tools.primitives.Floats;
 public class ISCLine implements Response
 {
 	private Line tgt;
-	private ICuboid src;
+	private HyperCuboid src;
 	
 	private Collidable shape;
 	private Float lMin, lMax;
@@ -34,10 +34,10 @@ public class ISCLine implements Response
 	 * @param t  a target line
 	 * 
 	 * 
-	 * @see ICuboid
+	 * @see HyperCuboid
 	 * @see Line
 	 */
-	public ISCLine(ICuboid s, Line t)
+	public ISCLine(HyperCuboid s, Line t)
 	{
 		src = s;
 		tgt = t;

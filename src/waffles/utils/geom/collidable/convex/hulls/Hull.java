@@ -4,6 +4,7 @@ import waffles.utils.algebra.elements.linear.Affine;
 import waffles.utils.algebra.elements.linear.matrix.Matrices;
 import waffles.utils.algebra.elements.linear.matrix.Matrix;
 import waffles.utils.algebra.elements.linear.vector.Vector;
+import waffles.utils.algebra.utilities.Generated;
 import waffles.utils.geom.Collision;
 import waffles.utils.geom.bounds.Bounds;
 import waffles.utils.geom.bounds.hulls.BNDHull;
@@ -15,20 +16,21 @@ import waffles.utils.tools.primitives.Floats;
 import waffles.utils.tools.primitives.Integers;
 
 /**
- * The {@code IHull} interface is the base for convex hulls of finite point sets.
+ * The {@code Hull} interface is the base for convex hulls of finite point sets.
  *
  * @author Waffles
  * @since 11 Jan 2021
  * @version 1.0
  * 
  * 
+ * @see Generated
  * @see ConvexSet
  * @see Affine
  */
-public interface IHull extends Affine, ConvexSet
+public interface Hull extends Affine, ConvexSet, Generated
 {		
 	/**
-	 * An {@code Extremum} computes boundary points on an {@code IHull}.
+	 * An {@code Extremum} computes boundary points on an {@code Hull}.
 	 *
 	 * @author Waffles
 	 * @since 01 Sep 2021
@@ -48,9 +50,9 @@ public interface IHull extends Affine, ConvexSet
 		 * @param hull  a target hull
 		 * 
 		 * 
-		 * @see IHull
+		 * @see Hull
 		 */
-		public Extremum(IHull hull)
+		public Extremum(Hull hull)
 		{
 			c = hull.Bounds().Center();
 			span = hull.Generator();
@@ -78,41 +80,7 @@ public interface IHull extends Affine, ConvexSet
 		}
 	}
 	
-	/**
-	 * Returns a vector generator of the {@code IHull}.
-	 * 
-	 * @param i  a generator index
-	 * @return   a vector generator
-	 * 
-	 * 
-	 * @see Vector
-	 */
-	public default <V extends Vector> V Generator(int i)
-	{
-		return (V) Generator().Column(i);
-	}
-	
-	/**
-	 * Returns the matrix generator of the {@code IHull}.
-	 * 
-	 * @return  a generating matrix
-	 * 
-	 * 
-	 * @see Matrix
-	 */
-	public abstract <M extends Matrix> M Generator();
-	
-	/**
-	 * Returns a generator count of the {@code IHull}.
-	 * 
-	 * @return  a generator count
-	 */
-	public default int Generators()
-	{
-		return Generator().Columns();
-	}
-	
-	
+		
 	@Override
 	public default Bounds Bounds()
 	{
@@ -128,10 +96,16 @@ public interface IHull extends Affine, ConvexSet
 	@Override
 	public default Bounds Bounds(GlobalMap map)
 	{
-		IHull hull = (IHull) map.map(this);
+		Hull hull = (Hull) map.map(this);
 		return hull.Bounds();
 	}
 
+	
+	@Override
+	public default int Dimension()
+	{
+		return Generated.super.Dimension();
+	}
 	
 	@Override
 	public default Extremum Extremum()

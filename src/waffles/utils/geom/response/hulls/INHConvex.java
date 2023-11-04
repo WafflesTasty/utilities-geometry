@@ -6,7 +6,7 @@ import waffles.utils.geom.Collidable;
 import waffles.utils.geom.Collision;
 import waffles.utils.geom.Collision.Response;
 import waffles.utils.geom.collidable.convex.ConvexSet;
-import waffles.utils.geom.collidable.convex.hulls.IHull;
+import waffles.utils.geom.collidable.convex.hulls.Hull;
 import waffles.utils.geom.collidable.fixed.Point;
 import waffles.utils.geom.utilities.Geometries;
 
@@ -22,7 +22,7 @@ import waffles.utils.geom.utilities.Geometries;
  */
 public class INHConvex implements Response
 {
-	private IHull src;
+	private Hull src;
 	private ConvexSet tgt;
 	private Response[] rsp;
 	private Response rspv;
@@ -35,9 +35,9 @@ public class INHConvex implements Response
 	 * 
 	 * 
 	 * @see ConvexSet
-	 * @see IHull
+	 * @see Hull
 	 */
-	public INHConvex(IHull s, ConvexSet t)
+	public INHConvex(Hull s, ConvexSet t)
 	{
 		src = s;
 		tgt = t;

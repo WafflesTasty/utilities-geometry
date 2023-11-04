@@ -1,12 +1,12 @@
 package waffles.utils.geom.collision.convex.hulls;
 
 import waffles.utils.geom.Collidable;
-import waffles.utils.geom.collidable.convex.hulls.segments.ISegment;
+import waffles.utils.geom.collidable.convex.hulls.segments.Segment;
 import waffles.utils.geom.collidable.fixed.Point;
 import waffles.utils.geom.response.hulls.segments.CNTPoint;
 
 /**
- * The {@code CLSSegment} class defines collision responses for {@code ISegment} objects.
+ * The {@code CLSSegment} class defines collision responses for {@code Segment} objects.
  *
  * @author Waffles
  * @since Jul 23, 2019
@@ -23,9 +23,9 @@ public class CLSSegment extends CLSHull
 	 * @param s  a source segment
 	 * 
 	 * 
-	 * @see ISegment
+	 * @see Segment
 	 */
-	public CLSSegment(ISegment s)
+	public CLSSegment(Segment s)
 	{
 		super(s);
 	}
@@ -38,7 +38,7 @@ public class CLSSegment extends CLSHull
 		if(c instanceof Point)
 		{
 			Point p = (Point) c;
-			ISegment s = Source();
+			Segment s = Source();
 			return new CNTPoint(s, p);
 		}
 		
@@ -46,8 +46,8 @@ public class CLSSegment extends CLSHull
 	}
 	
 	@Override
-	public ISegment Source()
+	public Segment Source()
 	{
-		return (ISegment) super.Source();
+		return (Segment) super.Source();
 	}
 }

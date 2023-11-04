@@ -4,7 +4,7 @@ import waffles.utils.algebra.elements.linear.vector.Vector;
 import waffles.utils.algebra.elements.linear.vector.Vectors;
 import waffles.utils.geom.Collidable;
 import waffles.utils.geom.Collision.Response;
-import waffles.utils.geom.collidable.axial.cuboid.ICuboid;
+import waffles.utils.geom.collidable.axial.cuboid.HyperCuboid;
 import waffles.utils.geom.collidable.fixed.Point;
 import waffles.utils.geom.utilities.Geometries;
 import waffles.utils.tools.primitives.Floats;
@@ -22,7 +22,7 @@ import waffles.utils.tools.primitives.Floats;
 public class CNTPoint implements Response
 {
 	private Point tgt;
-	private ICuboid src;
+	private HyperCuboid src;
 	private Vector dst, pnt;
 	private Boolean hasImpact;
 	
@@ -33,10 +33,10 @@ public class CNTPoint implements Response
 	 * @param p  a target point
 	 * 
 	 * 
-	 * @see ICuboid
+	 * @see HyperCuboid
 	 * @see Point
 	 */
-	public CNTPoint(ICuboid s, Point p)
+	public CNTPoint(HyperCuboid s, Point p)
 	{
 		src = s;
 		tgt = p;

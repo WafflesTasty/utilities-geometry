@@ -18,9 +18,9 @@ import waffles.utils.tools.primitives.Floats;
  * 
  * 
  * @see AxialSet3D
- * @see ISpheroid
+ * @see HyperSpheroid
  */
-public class Spheroid extends AxialSet3D implements ISpheroid
+public class Spheroid extends AxialSet3D implements HyperSpheroid
 {	
 	/**
 	 * Creates a new {@code Spheroid}.

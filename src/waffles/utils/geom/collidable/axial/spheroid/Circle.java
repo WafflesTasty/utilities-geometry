@@ -16,9 +16,9 @@ import waffles.utils.geom.utilities.constants.Dial;
  * 
  * 
  * @see Ellipse
- * @see ISphere
+ * @see HyperSphere
  */
-public class Circle extends Ellipse implements ISphere
+public class Circle extends Ellipse implements HyperSphere
 {
 	/**
 	 * Creates a circle through three {@code Vector2} points.

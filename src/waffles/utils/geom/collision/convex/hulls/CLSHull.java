@@ -2,7 +2,7 @@ package waffles.utils.geom.collision.convex.hulls;
 
 import waffles.utils.geom.Collidable;
 import waffles.utils.geom.collidable.convex.ConvexSet;
-import waffles.utils.geom.collidable.convex.hulls.IHull;
+import waffles.utils.geom.collidable.convex.hulls.Hull;
 import waffles.utils.geom.collidable.spaces.ASpace;
 import waffles.utils.geom.collidable.spaces.VSpace;
 import waffles.utils.geom.collidable.spaces.lines.Line;
@@ -12,7 +12,7 @@ import waffles.utils.geom.response.hulls.INHConvex;
 import waffles.utils.geom.response.hulls.INHLine;
 
 /**
- * The {@code CLSHull} class defines collision responses for {@code IHull} objects.
+ * The {@code CLSHull} class defines collision responses for {@code Hull} objects.
  * 
  * @author Waffles
  * @since 11 Jan 2021
@@ -29,9 +29,9 @@ public class CLSHull extends CLSConvex
 	 * @param src  a source hull
 	 * 
 	 * 
-	 * @see IHull
+	 * @see Hull
 	 */
-	public CLSHull(IHull src)
+	public CLSHull(Hull src)
 	{
 		super(src);
 	}
@@ -40,7 +40,7 @@ public class CLSHull extends CLSConvex
 	@Override
 	public Response inhabit(Collidable c)
 	{
-		IHull s = Source();
+		Hull s = Source();
 		
 		// Eliminate lines.
 		if(c instanceof Line)
@@ -74,8 +74,8 @@ public class CLSHull extends CLSConvex
 	}
 
 	@Override
-	public IHull Source()
+	public Hull Source()
 	{
-		return (IHull) super.Source();
+		return (Hull) super.Source();
 	}
 }

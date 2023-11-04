@@ -1,24 +1,24 @@
 package waffles.utils.geom.collidable.convex.hulls.segments;
 
 import waffles.utils.algebra.elements.linear.vector.Vector;
-import waffles.utils.geom.collidable.convex.hulls.IHull;
+import waffles.utils.geom.collidable.convex.hulls.Hull;
 import waffles.utils.geom.collidable.fixed.Point;
 import waffles.utils.geom.collision.convex.hulls.CLSSegment;
 
 /**
- * The {@code ISegment} interface is the base for convex hulls of two point sets.
+ * The {@code Segment} interface is the base for convex hulls of two point sets.
  * 
  * @author Waffles
  * @since Mar 25, 2017
  * @version 1.0
  * 
  * 
- * @see IHull
+ * @see Hull
  */
-public interface ISegment extends IHull
+public interface Segment extends Hull
 {		
 	/**
-	 * Returns the first point of the {@code ISegment}.
+	 * Returns the first point of the {@code Segment}.
 	 * 
 	 * @return  a segment point
 	 * 
@@ -32,7 +32,7 @@ public interface ISegment extends IHull
 	}
 	
 	/**
-	 * Returns the second point of the {@code ISegment}.
+	 * Returns the second point of the {@code Segment}.
 	 * 
 	 * @return  a segment point
 	 * 

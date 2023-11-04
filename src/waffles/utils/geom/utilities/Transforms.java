@@ -1,6 +1,6 @@
 package waffles.utils.geom.utilities;
 
-import waffles.utils.geom.collidable.axial.spheroid.ISpheroid;
+import waffles.utils.geom.collidable.axial.spheroid.HyperSpheroid;
 import waffles.utils.geom.spatial.maps.GlobalMap;
 import waffles.utils.geom.spatial.maps.axial.AxialMap;
 import waffles.utils.geom.spatial.maps.fixed.IdentityMap;
@@ -21,16 +21,16 @@ import waffles.utils.geom.spatial.maps.spatial.StandardMap;
 public final class Transforms
 {
 	/**
-	 * Creates a map from the unit sphere to an {@code ISpheroid}.
+	 * Creates a map from the unit sphere to an {@code HyperSpheroid}.
 	 * 
 	 * @param e  an ellipsoid
 	 * @return   an affine map
 	 * 
 	 * 
 	 * @see StandardMap
-	 * @see ISpheroid
+	 * @see HyperSpheroid
 	 */
-	public static StandardMap fromUSphere(ISpheroid e)
+	public static StandardMap fromUSphere(HyperSpheroid e)
 	{
 		StandardMap map = new StandardMap(e.Dimension());
 		map.setSize(e.Size().times(0.5f));

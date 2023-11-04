@@ -2,12 +2,12 @@ package waffles.utils.geom.utilities;
 
 import waffles.utils.algebra.elements.linear.vector.Vector;
 import waffles.utils.geom.collidable.Geometry;
-import waffles.utils.geom.collidable.axial.cuboid.ICuboid;
+import waffles.utils.geom.collidable.axial.cuboid.HyperCuboid;
 import waffles.utils.geom.collidable.axial.spheroid.Circle;
 import waffles.utils.geom.collidable.axial.spheroid.Ellipse;
 import waffles.utils.geom.collidable.axial.spheroid.Sphere;
-import waffles.utils.geom.collidable.convex.hulls.segments.ISegment;
-import waffles.utils.geom.collidable.convex.hulls.triangles.ITriangle;
+import waffles.utils.geom.collidable.convex.hulls.segments.Segment;
+import waffles.utils.geom.collidable.convex.hulls.triangles.Triangle;
 import waffles.utils.geom.utilities.vchains.VCHCircle;
 import waffles.utils.geom.utilities.vchains.VCHCuboid;
 import waffles.utils.geom.utilities.vchains.VCHEllipse;
@@ -42,9 +42,9 @@ public interface VChain
 		if(s instanceof Circle) return new VCHCircle((Circle) s, m);
 		if(s instanceof Ellipse) return new VCHEllipse((Ellipse) s, m);
 		if(s instanceof Sphere) return new VCHOctahedron((Sphere) s, m);
-		if(s instanceof ITriangle) return new VCHTriangle((ITriangle) s, m);
-		if(s instanceof ISegment) return new VCHSegment((ISegment) s, m);
-		if(s instanceof ICuboid) return new VCHCuboid((ICuboid) s, m);
+		if(s instanceof Triangle) return new VCHTriangle((Triangle) s, m);
+		if(s instanceof Segment) return new VCHSegment((Segment) s, m);
+		if(s instanceof HyperCuboid) return new VCHCuboid((HyperCuboid) s, m);
 		
 		return null;
 	}

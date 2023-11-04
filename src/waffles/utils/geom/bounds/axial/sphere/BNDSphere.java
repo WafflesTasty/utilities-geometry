@@ -1,10 +1,10 @@
 package waffles.utils.geom.bounds.axial.sphere;
 
 import waffles.utils.geom.bounds.axial.BNDAxial;
-import waffles.utils.geom.collidable.axial.spheroid.ISphere;
+import waffles.utils.geom.collidable.axial.spheroid.HyperSphere;
 
 /**
- * A {@code BNDSphere} creates a bounding volume around an {@code ISphere} object.
+ * A {@code BNDSphere} creates a bounding volume around an {@code HyperSphere} object.
  *
  * @author Waffles
  * @since 18 Sep 2023
@@ -21,9 +21,9 @@ public class BNDSphere extends BNDAxial
 	 * @param s  a source sphere
 	 * 
 	 * 
-	 * @see ISphere
+	 * @see HyperSphere
 	 */
-	public BNDSphere(ISphere s)
+	public BNDSphere(HyperSphere s)
 	{
 		super(s);
 	}

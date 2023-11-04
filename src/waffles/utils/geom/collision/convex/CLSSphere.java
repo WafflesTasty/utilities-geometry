@@ -1,7 +1,7 @@
 package waffles.utils.geom.collision.convex;
 
 import waffles.utils.geom.Collidable;
-import waffles.utils.geom.collidable.axial.spheroid.ISphere;
+import waffles.utils.geom.collidable.axial.spheroid.HyperSphere;
 import waffles.utils.geom.collidable.fixed.Point;
 import waffles.utils.geom.collidable.spaces.ASpace;
 import waffles.utils.geom.collidable.spaces.VSpace;
@@ -12,7 +12,7 @@ import waffles.utils.geom.response.convex.spheres.ISCGeneral;
 import waffles.utils.geom.response.convex.spheres.ISCSphere;
 
 /**
- * The {@code CLSSpheroid} class defines collision responses for {@code ISphere} objects.
+ * The {@code CLSSpheroid} class defines collision responses for {@code HyperSphere} objects.
  *
  * @author Waffles
  * @since Jul 23, 2019
@@ -29,9 +29,9 @@ public class CLSSphere extends CLSConvex
 	 * @param s  a source sphere
 	 * 
 	 * 
-	 * @see ISphere
+	 * @see HyperSphere
 	 */
-	public CLSSphere(ISphere s)
+	public CLSSphere(HyperSphere s)
 	{
 		super(s);
 	}
@@ -40,7 +40,7 @@ public class CLSSphere extends CLSConvex
 	@Override
 	public Response intersect(Collidable c)
 	{	
-		ISphere s = Source();
+		HyperSphere s = Source();
 		
 		// Eliminate affine spaces.
 		if(c instanceof ASpace)
@@ -57,9 +57,9 @@ public class CLSSphere extends CLSConvex
 		}
 
 		// Eliminate spheres.
-		if(c instanceof ISphere)
+		if(c instanceof HyperSphere)
 		{
-			ISphere t = (ISphere) c;
+			HyperSphere t = (HyperSphere) c;
 			return new ISCSphere(s, t);
 		}
 
@@ -70,7 +70,7 @@ public class CLSSphere extends CLSConvex
 	@Override
 	public Response contain(Collidable c)
 	{
-		ISphere s = Source();
+		HyperSphere s = Source();
 		
 		// Eliminate points.
 		if(c instanceof Point)
@@ -80,9 +80,9 @@ public class CLSSphere extends CLSConvex
 		}
 		
 		// Eliminate spheres.
-		if(c instanceof ISphere)
+		if(c instanceof HyperSphere)
 		{
-			ISphere t = (ISphere) c;
+			HyperSphere t = (HyperSphere) c;
 			return new CNTSphere(s, t);
 		}
 		
@@ -90,8 +90,8 @@ public class CLSSphere extends CLSConvex
 	}
 		
 	@Override
-	public ISphere Source()
+	public HyperSphere Source()
 	{
-		return (ISphere) super.Source();
+		return (HyperSphere) super.Source();
 	}
 }

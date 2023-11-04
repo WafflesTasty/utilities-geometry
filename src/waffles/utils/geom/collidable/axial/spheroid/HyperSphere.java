@@ -7,19 +7,19 @@ import waffles.utils.geom.bounds.axial.sphere.BNDSphere;
 import waffles.utils.geom.collision.convex.CLSSphere;
 
 /**
- * An {ISphere} defines axis-aligned spherical geometry with a center and radius.
+ * An {HyperSphere} defines axis-aligned spherical geometry with a center and radius.
  * 
  * @author Waffles
  * @since Mar 24, 2017
  * @version 1.0
  * 
  * 
- * @see ISpheroid
+ * @see HyperSpheroid
  */
-public interface ISphere extends ISpheroid
+public interface HyperSphere extends HyperSpheroid
 {	
 	/**
-	 * Returns the radius of the {@code ISphere}.
+	 * Returns the radius of the {@code HyperSphere}.
 	 * 
 	 * @return  a sphere radius
 	 */
@@ -29,7 +29,7 @@ public interface ISphere extends ISpheroid
 	}
 	
 	/**
-	 * Returns the diameter of the {@code ISphere}.
+	 * Returns the diameter of the {@code HyperSphere}.
 	 * 
 	 * @return  a sphere diameter
 	 */

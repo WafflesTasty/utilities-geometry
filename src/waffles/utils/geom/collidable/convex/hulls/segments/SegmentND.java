@@ -12,10 +12,10 @@ import waffles.utils.geom.collidable.fixed.Point;
  * @version 1.0
  * 
  * 
- * @see ISegment
+ * @see Segment
  * @see HullND
  */
-public class SegmentND extends HullND implements ISegment
+public class SegmentND extends HullND implements Segment
 {	
 	/**
 	 * Creates a new {@code SegmentND}.

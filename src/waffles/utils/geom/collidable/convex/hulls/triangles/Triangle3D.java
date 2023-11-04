@@ -12,10 +12,10 @@ import waffles.utils.geom.collidable.fixed.Point;
  * @version 1.0
  * 
  * 
- * @see ITriangle
+ * @see Triangle
  * @see Hull3D
  */
-public class Triangle3D extends Hull3D implements ITriangle
+public class Triangle3D extends Hull3D implements Triangle
 {
 	/**
 	 * Creates a new {@code Triangle3D}.

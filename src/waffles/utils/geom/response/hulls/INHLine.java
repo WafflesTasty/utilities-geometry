@@ -2,7 +2,7 @@ package waffles.utils.geom.response.hulls;
 
 import waffles.utils.algebra.elements.linear.vector.Vector;
 import waffles.utils.algebra.elements.linear.vector.Vectors;
-import waffles.utils.geom.collidable.convex.hulls.IHull;
+import waffles.utils.geom.collidable.convex.hulls.Hull;
 import waffles.utils.geom.collidable.spaces.lines.Line;
 
 /**
@@ -26,10 +26,10 @@ public class INHLine extends INHASpace
 	 * @param t  a target line
 	 * 
 	 * 
-	 * @see IHull
+	 * @see Hull
 	 * @see Line
 	 */
-	public INHLine(IHull s, Line t)
+	public INHLine(Hull s, Line t)
 	{
 		super(s, t);
 		dim = s.Dimension();

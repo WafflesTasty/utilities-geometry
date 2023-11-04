@@ -1,6 +1,5 @@
 package waffles.utils.geom.collidable.shaped;
 
-import waffles.utils.geom.collidable.Geometrical;
 import waffles.utils.geom.collidable.Geometrical2D;
 import waffles.utils.geom.collidable.axial.AxialSet2D;
 import waffles.utils.geom.spatial.Aligned2D;
@@ -14,7 +13,7 @@ import waffles.utils.geom.spatial.Aligned2D;
  * @version 1.1
  * 
  * 
- * @see Geometrical
+ * @see Geometrical2D
  * @see Aligned2D
  * @see Alignable
  */

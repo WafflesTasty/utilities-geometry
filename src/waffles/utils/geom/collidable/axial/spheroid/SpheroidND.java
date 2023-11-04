@@ -16,10 +16,10 @@ import waffles.utils.tools.primitives.Floats;
  * @version 1.0
  * 
  * 
- * @see ISpheroid
+ * @see HyperSpheroid
  * @see AxialSet
  */
-public class SpheroidND extends AxialSet implements ISpheroid
+public class SpheroidND extends AxialSet implements HyperSpheroid
 {	
 	/**
 	 * Creates a new {@code SpheroidND}.

@@ -3,7 +3,7 @@ package waffles.utils.geom.spaces.binary.kd.queries;
 import java.util.Iterator;
 
 import waffles.utils.algebra.elements.linear.vector.Vector;
-import waffles.utils.geom.collidable.axial.cuboid.ICuboid;
+import waffles.utils.geom.collidable.axial.cuboid.HyperCuboid;
 import waffles.utils.geom.spaces.binary.kd.KDNode;
 import waffles.utils.geom.spaces.binary.kd.KDTree;
 import waffles.utils.geom.spaces.binary.kd.KDNode.Cut;
@@ -12,7 +12,7 @@ import waffles.utils.sets.queues.delegate.JFIFOQueue;
 import waffles.utils.tools.collections.iterators.EmptyIterator;
 
 /**
- * The {@code QRYPoint} class iterates over all curr in a {@code KDTree} inside a {@code ICuboid}.
+ * The {@code QRYPoint} class iterates over all curr in a {@code KDTree} inside a {@code HyperCuboid}.
  *
  * @author Waffles
  * @since 04 Apr 2022
@@ -25,7 +25,7 @@ import waffles.utils.tools.collections.iterators.EmptyIterator;
 public class QRYCuboid<O> implements Iterator<O>
 {
 	private O next;
-	private ICuboid tgt;
+	private HyperCuboid tgt;
 	private Iterator<O> curr;
 	private Queue<KDNode<O>> nodes;
 	
@@ -36,9 +36,9 @@ public class QRYCuboid<O> implements Iterator<O>
 	 * @param t  a target cuboid
 	 * 
 	 * 
-	 * @see ICuboid
+	 * @see HyperCuboid
 	 */
-	public QRYCuboid(KDTree<O> s, ICuboid t)
+	public QRYCuboid(KDTree<O> s, HyperCuboid t)
 	{
 		tgt = t;
 

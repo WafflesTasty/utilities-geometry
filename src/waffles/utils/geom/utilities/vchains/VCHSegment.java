@@ -3,12 +3,12 @@ package waffles.utils.geom.utilities.vchains;
 import java.util.Iterator;
 
 import waffles.utils.algebra.elements.linear.vector.Vector;
-import waffles.utils.geom.collidable.convex.hulls.segments.ISegment;
+import waffles.utils.geom.collidable.convex.hulls.segments.Segment;
 import waffles.utils.geom.utilities.VChain;
 import waffles.utils.tools.primitives.Integers;
 
 /**
- * A {@code VCHSegment} generates vertex chains for an {@code ISegment}.
+ * A {@code VCHSegment} generates vertex chains for an {@code Segment}.
  *
  * @author Waffles
  * @since 18 Jun 2020
@@ -62,7 +62,7 @@ public class VCHSegment implements VChain
 	
 	
 	private Mode mode;
-	private ISegment src;
+	private Segment src;
 	
 	/**
 	 * Creates a new {@code VCHSegment}.
@@ -71,9 +71,9 @@ public class VCHSegment implements VChain
 	 * @param m  a chain mode
 	 * 
 	 * 
-	 * @see ISegment
+	 * @see Segment
 	 */
-	public VCHSegment(ISegment s, Mode m)
+	public VCHSegment(Segment s, Mode m)
 	{
 		mode = m;
 		src = s;

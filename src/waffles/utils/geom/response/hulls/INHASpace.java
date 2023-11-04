@@ -5,7 +5,7 @@ import waffles.utils.algebra.elements.linear.vector.Vector;
 import waffles.utils.geom.Collidable;
 import waffles.utils.geom.Collision;
 import waffles.utils.geom.Collision.Response;
-import waffles.utils.geom.collidable.convex.hulls.IHull;
+import waffles.utils.geom.collidable.convex.hulls.Hull;
 import waffles.utils.geom.collidable.fixed.Point;
 import waffles.utils.geom.collidable.spaces.ASpace;
 import waffles.utils.geom.collidable.spaces.VSpace;
@@ -23,7 +23,7 @@ import waffles.utils.geom.utilities.Geometries;
  */
 public class INHASpace implements Response
 {
-	private IHull src;
+	private Hull src;
 	private ASpace tgt;
 	private Response[] rsp;
 	private Response rspv;
@@ -36,9 +36,9 @@ public class INHASpace implements Response
 	 * 
 	 * 
 	 * @see ASpace
-	 * @see IHull
+	 * @see Hull
 	 */
-	public INHASpace(IHull s, ASpace t)
+	public INHASpace(Hull s, ASpace t)
 	{
 		src = s;
 		tgt = t;
@@ -52,9 +52,9 @@ public class INHASpace implements Response
 	 * 
 	 * 
 	 * @see VSpace
-	 * @see IHull
+	 * @see Hull
 	 */
-	public INHASpace(IHull s, VSpace t)
+	public INHASpace(Hull s, VSpace t)
 	{
 		this(s, ASpace.Default(t));
 	}

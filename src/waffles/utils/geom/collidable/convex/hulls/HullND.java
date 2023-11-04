@@ -12,9 +12,9 @@ import waffles.utils.algebra.elements.linear.vector.Vector;
  * @version 1.0
  * 
  * 
- * @see IHull
+ * @see Hull
  */
-public class HullND implements IHull
+public class HullND implements Hull
 {
 	private Matrix gen;
 	
@@ -48,9 +48,9 @@ public class HullND implements IHull
 	@Override
 	public boolean equals(Object o)
 	{
-		if(o instanceof IHull)
+		if(o instanceof Hull)
 		{
-			IHull h = (IHull) o;
+			Hull h = (Hull) o;
 			Matrix g = h.Generator();
 			return gen.equals(g, 3);
 		}

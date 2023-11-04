@@ -1,7 +1,7 @@
 package waffles.utils.geom.spaces;
 
 import waffles.utils.algebra.elements.linear.vector.Vector;
-import waffles.utils.geom.collidable.axial.cuboid.ICuboid;
+import waffles.utils.geom.collidable.axial.cuboid.HyperCuboid;
 import waffles.utils.geom.collidable.fixed.Point;
 
 /**
@@ -39,9 +39,9 @@ public interface Space<O>
 	 * 
 	 * 
 	 * @see Iterable
-	 * @see ICuboid
+	 * @see HyperCuboid
 	 */
-	public abstract Iterable<O> query(ICuboid c);
+	public abstract Iterable<O> query(HyperCuboid c);
 	
 	/**
 	 * Queries the {@code Space} at a given point.

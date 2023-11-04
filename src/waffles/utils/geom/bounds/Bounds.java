@@ -1,8 +1,8 @@
 package waffles.utils.geom.bounds;
 
 import waffles.utils.algebra.elements.linear.vector.Vector;
-import waffles.utils.geom.collidable.axial.cuboid.ICuboid;
-import waffles.utils.geom.collidable.axial.spheroid.ISphere;
+import waffles.utils.geom.collidable.axial.cuboid.HyperCuboid;
+import waffles.utils.geom.collidable.axial.spheroid.HyperSphere;
 import waffles.utils.geom.utilities.Geometries;
 
 /**
@@ -107,9 +107,9 @@ public interface Bounds
 	 * @return  a bounding sphere
 	 * 
 	 * 
-	 * @see ISphere
+	 * @see HyperSphere
 	 */
-	public default ISphere Ball()
+	public default HyperSphere Ball()
 	{
 		return Geometries.Sphere(Center(), Radius());
 	}
@@ -120,9 +120,9 @@ public interface Bounds
 	 * @return  a bounding box
 	 * 
 	 * 
-	 * @see ICuboid
+	 * @see HyperCuboid
 	 */
-	public default ICuboid Box()
+	public default HyperCuboid Box()
 	{
 		return Geometries.Cuboid(Center(), Size());
 	}

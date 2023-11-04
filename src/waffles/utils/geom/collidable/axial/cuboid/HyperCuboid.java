@@ -7,8 +7,8 @@ import waffles.utils.geom.Collision;
 import waffles.utils.geom.bounds.Bounds;
 import waffles.utils.geom.bounds.axial.BNDAxial;
 import waffles.utils.geom.bounds.axial.cuboid.BNDCuboid;
-import waffles.utils.geom.collidable.axial.IAxialSet;
-import waffles.utils.geom.collidable.convex.hulls.IHull;
+import waffles.utils.geom.collidable.axial.AxialShape;
+import waffles.utils.geom.collidable.convex.hulls.Hull;
 import waffles.utils.geom.collision.convex.hulls.CLSCuboid;
 import waffles.utils.geom.spatial.maps.GlobalMap;
 import waffles.utils.geom.utilities.VChain;
@@ -16,17 +16,17 @@ import waffles.utils.geom.utilities.VChain.Mode;
 import waffles.utils.tools.primitives.Integers;
 
 /**
- * An {ICuboid} defines axis-aligned cuboid geometry with a center and size.
+ * A {HyperCuboid} defines axis-aligned cuboid geometry with a center and size.
  * 
  * @author Waffles
  * @since Mar 24, 2017
  * @version 1.0
  * 
  * 
- * @see IAxialSet
- * @see IHull
+ * @see AxialShape
+ * @see Hull
  */
-public interface ICuboid extends IAxialSet, IHull
+public interface HyperCuboid extends AxialShape, Hull
 {		
 	@Override
 	public default Bounds Bounds()

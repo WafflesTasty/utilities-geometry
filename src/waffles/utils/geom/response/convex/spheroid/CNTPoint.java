@@ -3,7 +3,7 @@ package waffles.utils.geom.response.convex.spheroid;
 import waffles.utils.algebra.elements.linear.vector.Vector;
 import waffles.utils.geom.Collidable;
 import waffles.utils.geom.Collision.Response;
-import waffles.utils.geom.collidable.axial.spheroid.ISpheroid;
+import waffles.utils.geom.collidable.axial.spheroid.HyperSpheroid;
 import waffles.utils.geom.collidable.fixed.Point;
 import waffles.utils.geom.collision.convex.CLSConvex;
 import waffles.utils.geom.utilities.Geometries;
@@ -23,7 +23,7 @@ public class CNTPoint implements Response
 {
 	private Point tgt;
 	private Response rsp;
-	private ISpheroid src;
+	private HyperSpheroid src;
 	private Boolean hasImpact;
 	
 	/**
@@ -33,10 +33,10 @@ public class CNTPoint implements Response
 	 * @param p  a target point
 	 * 
 	 * 
-	 * @see ISpheroid
+	 * @see HyperSpheroid
 	 * @see Point
 	 */
-	public CNTPoint(ISpheroid s, Point p)
+	public CNTPoint(HyperSpheroid s, Point p)
 	{
 		src = s;
 		tgt = p;

@@ -1,8 +1,8 @@
 package waffles.utils.geom.collision.convex;
 
 import waffles.utils.geom.Collidable;
-import waffles.utils.geom.collidable.axial.spheroid.ISpheroid;
-import waffles.utils.geom.collidable.convex.hulls.IHull;
+import waffles.utils.geom.collidable.axial.spheroid.HyperSpheroid;
+import waffles.utils.geom.collidable.convex.hulls.Hull;
 import waffles.utils.geom.collidable.fixed.Point;
 import waffles.utils.geom.collidable.spaces.ASpace;
 import waffles.utils.geom.collidable.spaces.VSpace;
@@ -11,7 +11,7 @@ import waffles.utils.geom.response.convex.spheroid.ISCASpace;
 import waffles.utils.geom.response.convex.spheroid.ISCHull;
 
 /**
- * The {@code CLSSpheroid} class defines collision responses for {@code ISpheroid} objects.
+ * The {@code CLSSpheroid} class defines collision responses for {@code HyperSpheroid} objects.
  *
  * @author Waffles
  * @since Jul 23, 2019
@@ -28,9 +28,9 @@ public class CLSSpheroid extends CLSConvex
 	 * @param s  a source ellipsoid
 	 * 
 	 * 
-	 * @see ISpheroid
+	 * @see HyperSpheroid
 	 */
-	public CLSSpheroid(ISpheroid s)
+	public CLSSpheroid(HyperSpheroid s)
 	{
 		super(s);
 	}
@@ -39,12 +39,12 @@ public class CLSSpheroid extends CLSConvex
 	@Override
 	public Response intersect(Collidable c)
 	{
-		ISpheroid s = Source();
+		HyperSpheroid s = Source();
 		
 		// Eliminate convex hulls.
-		if(c instanceof IHull)
+		if(c instanceof Hull)
 		{
-			IHull t = (IHull) c;
+			Hull t = (Hull) c;
 			return new ISCHull(s, t);
 		}
 		
@@ -68,7 +68,7 @@ public class CLSSpheroid extends CLSConvex
 	@Override
 	public Response contain(Collidable c)
 	{
-		ISpheroid s = Source();
+		HyperSpheroid s = Source();
 		
 		// Eliminate points.
 		if(c instanceof Point)
@@ -81,8 +81,8 @@ public class CLSSpheroid extends CLSConvex
 	}
 		
 	@Override
-	public ISpheroid Source()
+	public HyperSpheroid Source()
 	{
-		return (ISpheroid) super.Source();
+		return (HyperSpheroid) super.Source();
 	}
 }

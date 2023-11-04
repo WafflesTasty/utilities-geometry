@@ -5,23 +5,23 @@ import waffles.utils.algebra.elements.linear.vector.Vectors;
 import waffles.utils.geom.Collision;
 import waffles.utils.geom.bounds.Bounds;
 import waffles.utils.geom.bounds.axial.spheroid.BNDSpheroid;
-import waffles.utils.geom.collidable.axial.IAxialSet;
+import waffles.utils.geom.collidable.axial.AxialShape;
 import waffles.utils.geom.collidable.convex.ConvexSet;
 import waffles.utils.geom.collision.convex.CLSSpheroid;
 import waffles.utils.geom.spatial.maps.GlobalMap;
 
 /**
- * An {ISpheroid} defines axis-aligned spheroid geometry with a center and size.
+ * An {HyperSpheroid} defines axis-aligned spheroid geometry with a center and size.
  * 
  * @author Waffles
  * @since Mar 24, 2017
  * @version 1.0
  * 
  * 
- * @see IAxialSet
+ * @see AxialShape
  * @see ConvexSet
  */
-public interface ISpheroid extends IAxialSet, ConvexSet
+public interface HyperSpheroid extends AxialShape, ConvexSet
 {		
 	@Override
 	public default Bounds Bounds(GlobalMap map)

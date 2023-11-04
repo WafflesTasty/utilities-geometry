@@ -4,11 +4,11 @@ import waffles.utils.algebra.elements.linear.matrix.Matrix;
 import waffles.utils.algebra.elements.linear.vector.Vector;
 import waffles.utils.algebra.elements.linear.vector.Vectors;
 import waffles.utils.geom.bounds.Bounds;
-import waffles.utils.geom.collidable.convex.hulls.IHull;
+import waffles.utils.geom.collidable.convex.hulls.Hull;
 import waffles.utils.tools.primitives.Floats;
 
 /**
- * A {@code BNDHull} creates a bounding volume around an {@code IHull} object.
+ * A {@code BNDHull} creates a bounding volume around an {@code Hull} object.
  *
  * @author Waffles
  * @since 15 Sep 2023
@@ -19,7 +19,7 @@ import waffles.utils.tools.primitives.Floats;
  */
 public class BNDHull implements Bounds
 {
-	private IHull src;
+	private Hull src;
 	
 	/**
 	 * Creates a new {@code BNDHull}.
@@ -27,9 +27,9 @@ public class BNDHull implements Bounds
 	 * @param s  a source hull
 	 * 
 	 * 
-	 * @see IHull
+	 * @see Hull
 	 */
-	public BNDHull(IHull s)
+	public BNDHull(Hull s)
 	{
 		src = s;
 	}

@@ -2,7 +2,7 @@ package waffles.utils.geom.bounds.axial.cuboid;
 
 import waffles.utils.algebra.elements.linear.vector.fixed.Vector2;
 import waffles.utils.geom.bounds.Bounds2D;
-import waffles.utils.geom.collidable.axial.cuboid.ICuboid;
+import waffles.utils.geom.collidable.axial.cuboid.HyperCuboid;
 import waffles.utils.geom.spatial.maps.GlobalMap;
 
 /**
@@ -26,9 +26,9 @@ public class BNDCuboid2D extends BNDCuboid implements Bounds2D
 	 * 
 	 * 
 	 * @see GlobalMap
-	 * @see ICuboid
+	 * @see HyperCuboid
 	 */
-	public BNDCuboid2D(ICuboid c, GlobalMap m)
+	public BNDCuboid2D(HyperCuboid c, GlobalMap m)
 	{
 		super(c, m);
 	}

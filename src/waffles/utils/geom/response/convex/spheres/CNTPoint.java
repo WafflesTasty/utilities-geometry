@@ -3,7 +3,7 @@ package waffles.utils.geom.response.convex.spheres;
 import waffles.utils.algebra.elements.linear.vector.Vector;
 import waffles.utils.geom.Collidable;
 import waffles.utils.geom.Collision.Response;
-import waffles.utils.geom.collidable.axial.spheroid.ISphere;
+import waffles.utils.geom.collidable.axial.spheroid.HyperSphere;
 import waffles.utils.geom.collidable.fixed.Point;
 import waffles.utils.geom.utilities.Geometries;
 import waffles.utils.tools.primitives.Floats;
@@ -20,7 +20,7 @@ import waffles.utils.tools.primitives.Floats;
  */
 public class CNTPoint implements Response
 {
-	private ISphere src;
+	private HyperSphere src;
 	private Vector dst, tgt;	
 	private Boolean hasImpact;
 	
@@ -31,10 +31,10 @@ public class CNTPoint implements Response
 	 * @param p  a target point
 	 * 
 	 * 
-	 * @see ISphere
+	 * @see HyperSphere
 	 * @see Point
 	 */
-	public CNTPoint(ISphere s, Point p)
+	public CNTPoint(HyperSphere s, Point p)
 	{
 		src = s;
 		tgt = p.Generator();

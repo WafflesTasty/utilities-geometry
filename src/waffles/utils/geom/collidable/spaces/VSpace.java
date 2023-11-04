@@ -8,6 +8,7 @@ import waffles.utils.algebra.elements.linear.matrix.Matrix;
 import waffles.utils.algebra.elements.linear.matrix.types.Tall;
 import waffles.utils.algebra.elements.linear.vector.Vector;
 import waffles.utils.algebra.elements.linear.vector.Vectors;
+import waffles.utils.algebra.utilities.Generated;
 import waffles.utils.geom.Collidable;
 import waffles.utils.geom.Collision;
 import waffles.utils.geom.response.spaces.CLSVSpace;
@@ -22,11 +23,12 @@ import waffles.utils.geom.response.spaces.CLSVSpace;
  * @version 1.0
  * 
  * 
+ * @see Generated
  * @see LinearSpace
  * @see Collidable
  * @see Affine
  */
-public class VSpace implements Affine, LinearSpace, Collidable
+public class VSpace implements Affine, Generated, LinearSpace, Collidable
 {	
 	/**
 	 * Creates a trivial {@code VSpace}.
@@ -127,44 +129,7 @@ public class VSpace implements Affine, LinearSpace, Collidable
 	{
 		return Generator().times(m);
 	}
-	
-	/**
-	 * Returns a generating vector from the {@code VSpace}.
-	 * 
-	 * @param i  a vector index
-	 * @return   a generating vector
-	 * 
-	 * 
-	 * @see Vector
-	 */
-	public Vector Generator(int i)
-	{
-		return Generator().Column(i);
-	}
-	
-	/**
-	 * Returns a generating matrix of the {@code VSpace}.
-	 * 
-	 * @return  a generating matrix
-	 * 
-	 * 
-	 * @see Matrix
-	 */
-	public Matrix Generator()
-	{
-		return gen;
-	}
-	
-	/**
-	 * Returns the generator count of the {@code VSpace}.
-	 * 
-	 * @return  a generator count
-	 */
-	public int Generators()
-	{
-		return gen.Columns();
-	}
-	
+
 	/**
 	 * Returns the rank of the {@code VSpace}.
 	 * This is its actual span dimension.
@@ -219,6 +184,12 @@ public class VSpace implements Affine, LinearSpace, Collidable
 	}
 	
 	@Override
+	public Matrix Generator()
+	{
+		return gen;
+	}
+	
+	@Override
 	public Matrix ColSpace()
 	{
 		if(gen.is(Tall.Type()))
@@ -233,7 +204,6 @@ public class VSpace implements Affine, LinearSpace, Collidable
 			return svd.RowSpace();
 		return svd.ColSpace();
 	}
-
 
 	@Override
 	public Matrix Span()

@@ -3,7 +3,7 @@ package waffles.utils.geom.response.convex.spheres;
 import waffles.utils.algebra.elements.linear.vector.Vector;
 import waffles.utils.geom.Collidable;
 import waffles.utils.geom.Collision.Response;
-import waffles.utils.geom.collidable.axial.spheroid.ISphere;
+import waffles.utils.geom.collidable.axial.spheroid.HyperSphere;
 import waffles.utils.geom.collidable.spaces.ASpace;
 import waffles.utils.geom.collidable.spaces.VSpace;
 import waffles.utils.geom.utilities.Geometries;
@@ -20,7 +20,7 @@ import waffles.utils.geom.utilities.Geometries;
  */
 public class ISCASpace implements Response
 {
-	private ISphere src;
+	private HyperSphere src;
 	private Response rsp;
 	
 	/**
@@ -30,10 +30,10 @@ public class ISCASpace implements Response
 	 * @param t  a target space
 	 * 
 	 * 
-	 * @see ISphere
+	 * @see HyperSphere
 	 * @see ASpace
 	 */
-	public ISCASpace(ISphere s, ASpace t)
+	public ISCASpace(HyperSphere s, ASpace t)
 	{
 		rsp = t.contain(s.Origin());
 		src = s;
@@ -46,10 +46,10 @@ public class ISCASpace implements Response
 	 * @param t  a target space
 	 * 
 	 * 
-	 * @see ISphere
+	 * @see HyperSphere
 	 * @see VSpace
 	 */
-	public ISCASpace(ISphere s, VSpace t)
+	public ISCASpace(HyperSphere s, VSpace t)
 	{
 		this(s, ASpace.Default(t));
 	}

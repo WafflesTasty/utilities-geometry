@@ -4,7 +4,7 @@ import java.util.Iterator;
 
 import waffles.utils.algebra.elements.linear.vector.Vector;
 import waffles.utils.algebra.elements.linear.vector.Vectors;
-import waffles.utils.geom.collidable.axial.cuboid.ICuboid;
+import waffles.utils.geom.collidable.axial.cuboid.HyperCuboid;
 import waffles.utils.geom.collidable.fixed.Point;
 import waffles.utils.geom.spaces.Space;
 import waffles.utils.geom.spaces.binary.kd.queries.QRYAll;
@@ -29,9 +29,9 @@ import waffles.utils.tools.primitives.Floats;
  * @see BiTree
  * @see Space
  */
-public class KDTree<O> extends BiTree implements ICuboid, Iterable<O>, Space<O>
+public class KDTree<O> extends BiTree implements HyperCuboid, Iterable<O>, Space<O>
 {
-	private ICuboid shape;
+	private HyperCuboid shape;
 
 	/**
 	 * Creates a new {@code KDTree}.
@@ -72,7 +72,7 @@ public class KDTree<O> extends BiTree implements ICuboid, Iterable<O>, Space<O>
 	
 	
 	@Override
-	public Iterable<O> query(ICuboid c)
+	public Iterable<O> query(HyperCuboid c)
 	{
 		return () -> new QRYCuboid<>(this, c);
 	}

@@ -4,8 +4,8 @@ import waffles.utils.algebra.elements.linear.vector.Vector;
 import waffles.utils.algebra.elements.linear.vector.Vectors;
 import waffles.utils.geom.bounds.Bounded;
 import waffles.utils.geom.bounds.Bounds;
-import waffles.utils.geom.collidable.axial.IAxialSet;
-import waffles.utils.geom.collidable.axial.cuboid.ICuboid;
+import waffles.utils.geom.collidable.axial.AxialShape;
+import waffles.utils.geom.collidable.axial.cuboid.HyperCuboid;
 import waffles.utils.geom.spatial.structs.Axis;
 import waffles.utils.sets.MutableSet;
 import waffles.utils.sets.mutable.AtomicSet;
@@ -26,10 +26,10 @@ import waffles.utils.tools.primitives.Integers;
  * 
  * @param <O>  an object type
  * @see MutableSet
- * @see IAxialSet
+ * @see AxialShape
  * @see Node
  */
-public class OrtNode<O extends Bounded> extends Node implements ICuboid, MutableSet<O>
+public class OrtNode<O extends Bounded> extends Node implements HyperCuboid, MutableSet<O>
 {		
 	private Axis axis;
 	private AtomicSet<O> set;

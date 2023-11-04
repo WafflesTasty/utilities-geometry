@@ -3,7 +3,7 @@ package waffles.utils.geom.response.align;
 import waffles.utils.algebra.elements.linear.vector.Vector;
 import waffles.utils.geom.Collidable;
 import waffles.utils.geom.Collision.Response;
-import waffles.utils.geom.collidable.axial.IAxialSet;
+import waffles.utils.geom.collidable.axial.AxialShape;
 import waffles.utils.geom.collidable.shaped.Alignable;
 import waffles.utils.geom.spatial.maps.axial.AxialMap;
 import waffles.utils.geom.utilities.Geometries;
@@ -36,7 +36,7 @@ public class ISCGeneral implements Response
 	public ISCGeneral(Alignable s, Collidable c)
 	{
 		AxialMap map = s.Transform();
-		IAxialSet set = s.Shape().map(map);
+		AxialShape set = s.Shape().map(map);
 		rsp = set.intersect(c);
 		src = s;
 	}

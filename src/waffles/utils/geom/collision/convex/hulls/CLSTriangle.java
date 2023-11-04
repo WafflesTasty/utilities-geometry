@@ -1,9 +1,9 @@
 package waffles.utils.geom.collision.convex.hulls;
 
-import waffles.utils.geom.collidable.convex.hulls.triangles.ITriangle;
+import waffles.utils.geom.collidable.convex.hulls.triangles.Triangle;
 
 /**
- * The {@code CLSTriangle} class defines collision responses for {@code ITriangle} objects.
+ * The {@code CLSTriangle} class defines collision responses for {@code Triangle} objects.
  *
  * @author Waffles
  * @since Jul 23, 2019
@@ -20,17 +20,17 @@ public class CLSTriangle extends CLSHull
 	 * @param s  a source triangle
 	 * 
 	 * 
-	 * @see ITriangle
+	 * @see Triangle
 	 */
-	public CLSTriangle(ITriangle s)
+	public CLSTriangle(Triangle s)
 	{
 		super(s);
 	}
 	
 		
 	@Override
-	public ITriangle Source()
+	public Triangle Source()
 	{
-		return (ITriangle) super.Source();
+		return (Triangle) super.Source();
 	}
 }

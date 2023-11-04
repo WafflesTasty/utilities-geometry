@@ -3,12 +3,12 @@ package waffles.utils.geom.utilities.vchains;
 import java.util.Iterator;
 
 import waffles.utils.algebra.elements.linear.vector.Vector;
-import waffles.utils.geom.collidable.convex.hulls.triangles.ITriangle;
+import waffles.utils.geom.collidable.convex.hulls.triangles.Triangle;
 import waffles.utils.geom.utilities.VChain;
 import waffles.utils.tools.primitives.Integers;
 
 /**
- * A {@code VCHTriangle} generates vertex chains for an {@code ITriangle}.
+ * A {@code VCHTriangle} generates vertex chains for an {@code Triangle}.
  *
  * @author Waffles
  * @since 18 Jun 2020
@@ -102,7 +102,7 @@ public class VCHTriangle implements VChain
 	
 	
 	private Mode mode;
-	private ITriangle src;
+	private Triangle src;
 	
 	/**
 	 * Creates a new {@code VCHTriangle}.
@@ -111,9 +111,9 @@ public class VCHTriangle implements VChain
 	 * @param m  a chain mode
 	 * 
 	 * 
-	 * @see ITriangle
+	 * @see Triangle
 	 */
-	public VCHTriangle(ITriangle s, Mode m)
+	public VCHTriangle(Triangle s, Mode m)
 	{
 		mode = m;
 		src = s;

@@ -3,7 +3,7 @@ package waffles.utils.geom.collision;
 import waffles.utils.geom.Collidable;
 import waffles.utils.geom.Collision;
 import waffles.utils.geom.collidable.Geometrical;
-import waffles.utils.geom.collidable.convex.hulls.IHull;
+import waffles.utils.geom.collidable.convex.hulls.Hull;
 import waffles.utils.geom.collidable.fixed.Point;
 import waffles.utils.geom.collidable.spaces.ASpace;
 import waffles.utils.geom.collidable.spaces.VSpace;
@@ -60,9 +60,9 @@ public class CLSGeometrical implements Collision
 		}
 		
 		// Eliminate convex hulls.
-		if(c instanceof IHull)
+		if(c instanceof Hull)
 		{
-			IHull t = (IHull) c;
+			Hull t = (Hull) c;
 			return new ISCHull(s, t);
 		}
 		

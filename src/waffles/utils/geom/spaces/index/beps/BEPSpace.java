@@ -1,7 +1,7 @@
 package waffles.utils.geom.spaces.index.beps;
 
 import waffles.utils.geom.bounds.Bounds;
-import waffles.utils.geom.collidable.axial.cuboid.ICuboid;
+import waffles.utils.geom.collidable.axial.cuboid.HyperCuboid;
 import waffles.utils.geom.spaces.index.IndexSpace;
 import waffles.utils.sets.trees.Rooted;
 
@@ -156,7 +156,7 @@ public class BEPSpace<E extends Enum<E>> implements Rooted, IndexSpace<BEPSNode<
 	}
 	
 	@Override
-	public Iterable<BEPSNode<E>> query(ICuboid c)
+	public Iterable<BEPSNode<E>> query(HyperCuboid c)
 	{
 		int[] min = indexOf(c.Bounds().Minimum());
 		int[] max = indexOf(c.Bounds().Maximum());

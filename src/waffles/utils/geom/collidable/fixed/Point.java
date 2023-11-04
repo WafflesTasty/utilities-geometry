@@ -5,7 +5,7 @@ import waffles.utils.algebra.elements.linear.Angular;
 import waffles.utils.algebra.elements.linear.matrix.Matrix;
 import waffles.utils.algebra.elements.linear.vector.Vector;
 import waffles.utils.algebra.elements.linear.vector.Vectors;
-import waffles.utils.geom.collidable.convex.hulls.IHull;
+import waffles.utils.geom.collidable.convex.hulls.Hull;
 import waffles.utils.geom.collision.convex.hulls.CLSPoint;
 import waffles.utils.tools.primitives.Floats;
 
@@ -21,9 +21,9 @@ import waffles.utils.tools.primitives.Floats;
  * 
  * 
  * @see Angular
- * @see IHull
+ * @see Hull
  */
-public class Point implements Angular, IHull
+public class Point implements Angular, Hull
 {		
 	private Vector v;
 	
