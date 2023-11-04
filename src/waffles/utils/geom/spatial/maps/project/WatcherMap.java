@@ -1,8 +1,11 @@
 package waffles.utils.geom.spatial.maps.project;
 
 import waffles.utils.algebra.elements.linear.vector.Vector;
+import waffles.utils.algebra.utilities.matrix.LazyMatrix;
 import waffles.utils.geom.spatial.data.Watcher;
 import waffles.utils.geom.spatial.data.unary.Projected;
+import waffles.utils.geom.spatial.maps.project.matrix.CamToWorld;
+import waffles.utils.geom.spatial.maps.project.matrix.WorldToCam;
 import waffles.utils.geom.spatial.maps.spatial.SpatialMap;
 
 /**
@@ -31,6 +34,18 @@ public interface WatcherMap extends SpatialMap, Watcher.Mutable
 	@Override
 	public abstract Watcher Source();
 	
+	
+	@Override
+	public default LazyMatrix UTW()
+	{
+		return new CamToWorld(Source());
+	}
+	
+	@Override
+	public default LazyMatrix WTU()
+	{
+		return new WorldToCam(Source());
+	}
 	
 	@Override
 	public default void setOculus(Vector o)

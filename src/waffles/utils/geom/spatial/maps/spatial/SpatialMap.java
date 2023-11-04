@@ -1,9 +1,12 @@
 package waffles.utils.geom.spatial.maps.spatial;
 
+import waffles.utils.algebra.utilities.matrix.LazyMatrix;
 import waffles.utils.geom.spatial.data.Spatial;
 import waffles.utils.geom.spatial.data.spin.Spin;
 import waffles.utils.geom.spatial.data.unary.Rotated;
 import waffles.utils.geom.spatial.maps.axial.AxialMap;
+import waffles.utils.geom.spatial.maps.spatial.matrix.UnitToWorld;
+import waffles.utils.geom.spatial.maps.spatial.matrix.WorldToUnit;
 
 /**
  * A {@code SpatialMap} defines a global map with spatial data.
@@ -31,6 +34,18 @@ public interface SpatialMap extends AxialMap, Spatial.Mutable
 	@Override
 	public abstract Spatial Source();
 
+	
+	@Override
+	public default LazyMatrix UTW()
+	{
+		return new UnitToWorld(Source());
+	}
+	
+	@Override
+	public default LazyMatrix WTU()
+	{
+		return new WorldToUnit(Source());
+	}
 		
 	@Override
 	public default void setSpin(Spin s)
