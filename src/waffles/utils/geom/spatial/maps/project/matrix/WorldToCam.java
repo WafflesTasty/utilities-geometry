@@ -63,7 +63,7 @@ public class WorldToCam extends LazyMatrix
 	Matrix project(Matrix m, int dim)
 	{
 		Projection p = new Projection(src);
-		Matrix mat = p.Matrix(dim).destroy();
+		Matrix mat = p.Inverse(dim).destroy();
 		return mat.times(m);
 	}
 	

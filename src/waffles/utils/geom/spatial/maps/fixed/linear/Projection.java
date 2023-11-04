@@ -8,7 +8,6 @@ import waffles.utils.algebra.elements.linear.vector.Vectors;
 import waffles.utils.geom.collidable.fixed.Point;
 import waffles.utils.geom.spatial.data.unary.Projected;
 import waffles.utils.tools.primitives.Floats;
-import waffles.utils.tools.primitives.Integers;
 
 /**
  * A {@code Projection} defines a linear transformation which
@@ -113,7 +112,7 @@ public class Projection implements LinearMap, Projected
 		{
 			if(i == index) continue;
 			
-			float val = -o.get(i);
+			float val = +o.get(i);
 			if(Floats.isFinite(val))
 			{
 				if(!Floats.isZero(val, 1))
@@ -136,9 +135,9 @@ public class Projection implements LinearMap, Projected
 		for(int d = 0; d < dim; d++)
 		{
 			float val = 0f;
-			if(d < Integers.min(dim-1, o.Size()))
+			if(d < o.Size())
 			{
-				val = -o.get(d);
+				val = +o.get(d);
 			}
 			
 			m.set(prod, d, d);
@@ -161,10 +160,10 @@ public class Projection implements LinearMap, Projected
 		Matrix m = Matrices.identity(dim);
 		
 		float prod = product(-1);
-		for(int d = 0; d < dim; d++)
+		for(int d = 0; d < dim-1; d++)
 		{
 			float val = 0f;
-			if(d < Integers.min(dim-1, o.Size()))
+			if(d < o.Size())
 			{
 				val = -o.get(d);
 			}
