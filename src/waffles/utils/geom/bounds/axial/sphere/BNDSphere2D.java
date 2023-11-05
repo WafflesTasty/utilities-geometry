@@ -1,7 +1,7 @@
 package waffles.utils.geom.bounds.axial.sphere;
 
 import waffles.utils.geom.bounds.axial.BNDAxial2D;
-import waffles.utils.geom.collidable.axial.spheroid.Circle;
+import waffles.utils.geom.collidable.axial.spheroid.HyperSphere;
 
 /**
  * A {@code BNDSphere2D} creates a bounding volume around a {@code Circle} object.
@@ -18,14 +18,14 @@ public class BNDSphere2D extends BNDAxial2D
 	/**
 	 * Creates a new {@code BNDSphere2D}.
 	 * 
-	 * @param c  a source circle
+	 * @param s  a source sphere
 	 * 
 	 * 
-	 * @see Circle
+	 * @see HyperSphere
 	 */
-	public BNDSphere2D(Circle c)
+	public BNDSphere2D(HyperSphere s)
 	{
-		super(c);
+		super(s);
 	}
 
 	@Override

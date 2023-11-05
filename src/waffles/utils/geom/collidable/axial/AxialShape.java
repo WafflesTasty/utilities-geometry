@@ -4,6 +4,8 @@ import waffles.utils.algebra.elements.linear.Affine;
 import waffles.utils.algebra.elements.linear.vector.Vector;
 import waffles.utils.geom.bounds.Bounds;
 import waffles.utils.geom.bounds.axial.BNDAxial;
+import waffles.utils.geom.bounds.axial.BNDAxial2D;
+import waffles.utils.geom.bounds.axial.BNDAxial3D;
 import waffles.utils.geom.collidable.Geometry;
 import waffles.utils.geom.collidable.fixed.Point;
 import waffles.utils.geom.spatial.data.Axial;
@@ -77,6 +79,10 @@ public interface AxialShape extends Axial, Geometry
 	@Override
 	public default Bounds Bounds()
 	{
+		if(Dimension() == 2)
+			return new BNDAxial2D(this);
+		if(Dimension() == 3)
+			return new BNDAxial3D(this);
 		return new BNDAxial(this);
 	}
 }

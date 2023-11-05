@@ -5,6 +5,8 @@ import waffles.utils.algebra.elements.linear.vector.Vectors;
 import waffles.utils.geom.Collision;
 import waffles.utils.geom.bounds.Bounds;
 import waffles.utils.geom.bounds.axial.spheroid.BNDSpheroid;
+import waffles.utils.geom.bounds.axial.spheroid.BNDSpheroid2D;
+import waffles.utils.geom.bounds.axial.spheroid.BNDSpheroid3D;
 import waffles.utils.geom.collidable.axial.AxialShape;
 import waffles.utils.geom.collidable.convex.ConvexSet;
 import waffles.utils.geom.collision.convex.CLSSpheroid;
@@ -26,6 +28,10 @@ public interface HyperSpheroid extends AxialShape, ConvexSet
 	@Override
 	public default Bounds Bounds(GlobalMap map)
 	{
+		if(Dimension() == 2)
+			return new BNDSpheroid2D(this, map);
+		if(Dimension() == 3)
+			return new BNDSpheroid3D(this, map);
 		return new BNDSpheroid(this, map);
 	}
 	

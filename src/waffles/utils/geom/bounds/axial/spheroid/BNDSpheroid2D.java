@@ -2,7 +2,7 @@ package waffles.utils.geom.bounds.axial.spheroid;
 
 import waffles.utils.algebra.elements.linear.vector.fixed.Vector2;
 import waffles.utils.geom.bounds.Bounds2D;
-import waffles.utils.geom.collidable.axial.spheroid.Ellipse;
+import waffles.utils.geom.collidable.axial.spheroid.HyperSpheroid;
 import waffles.utils.geom.spatial.maps.GlobalMap;
 
 /**
@@ -21,16 +21,16 @@ public class BNDSpheroid2D extends BNDSpheroid implements Bounds2D
 	/**
 	 * Creates a new {@code BNDSpheroid2D}.
 	 * 
-	 * @param e  an ellipse
+	 * @param s  a spheroid
 	 * @param m  a global map
 	 * 
 	 * 
+	 * @see HyperSpheroid
 	 * @see GlobalMap
-	 * @see Ellipse
 	 */
-	public BNDSpheroid2D(Ellipse e, GlobalMap m)
+	public BNDSpheroid2D(HyperSpheroid s, GlobalMap m)
 	{
-		super(e, m);
+		super(s, m);
 	}
 	
 	

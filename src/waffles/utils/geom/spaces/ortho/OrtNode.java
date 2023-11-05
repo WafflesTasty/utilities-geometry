@@ -190,7 +190,7 @@ public class OrtNode<O extends Bounded> extends Node implements HyperCuboid, Mut
 		return (OrtNode<O>) super.Child(i);
 	}
 	
-	
+
 	@Override
 	public boolean isEmpty()
 	{

@@ -2,13 +2,13 @@ package waffles.utils.geom.bounds.axial.spheroid;
 
 import waffles.utils.algebra.elements.linear.vector.fixed.Vector3;
 import waffles.utils.geom.bounds.Bounds3D;
-import waffles.utils.geom.collidable.axial.spheroid.Spheroid;
+import waffles.utils.geom.collidable.axial.spheroid.HyperSpheroid;
 import waffles.utils.geom.spatial.maps.GlobalMap;
 
 /**
  * A {@code BNDSpheroid3D} defines {@code Bounds} for a transformed {@code Spheroid}.
  *
- * @author Zeno
+ * @author Waffles
  * @since Sep 11, 2019
  * @version 1.0
  * 
@@ -21,16 +21,16 @@ public class BNDSpheroid3D extends BNDSpheroid implements Bounds3D
 	/**
 	 * Creates a new {@code BNDSpheroid3D}.
 	 * 
-	 * @param e  a spheroid
+	 * @param s  a spheroid
 	 * @param m  a global map
 	 * 
 	 * 
+	 * @see HyperSpheroid
 	 * @see GlobalMap
-	 * @see Spheroid
 	 */
-	public BNDSpheroid3D(Spheroid e, GlobalMap m)
+	public BNDSpheroid3D(HyperSpheroid s, GlobalMap m)
 	{
-		super(e, m);
+		super(s, m);
 	}
 	
 	

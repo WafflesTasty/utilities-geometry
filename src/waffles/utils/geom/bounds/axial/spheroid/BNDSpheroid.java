@@ -33,8 +33,8 @@ public class BNDSpheroid implements Bounds
 	 * @param m  a global map
 	 * 
 	 * 
-	 * @see GlobalMap
 	 * @see HyperSpheroid
+	 * @see GlobalMap
 	 */
 	public BNDSpheroid(HyperSpheroid e, GlobalMap m)
 	{

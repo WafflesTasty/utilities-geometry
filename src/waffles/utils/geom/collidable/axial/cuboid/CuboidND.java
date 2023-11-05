@@ -56,7 +56,7 @@ public class CuboidND extends AxialSet implements HyperCuboid
 		super(dim);
 	}
 	
-	
+
 	@Override
 	public CuboidND create(Vector o, Vector s)
 	{

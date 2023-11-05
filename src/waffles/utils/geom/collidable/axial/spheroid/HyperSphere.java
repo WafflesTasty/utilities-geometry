@@ -4,6 +4,8 @@ import waffles.utils.algebra.elements.linear.vector.Vector;
 import waffles.utils.geom.Collision;
 import waffles.utils.geom.bounds.Bounds;
 import waffles.utils.geom.bounds.axial.sphere.BNDSphere;
+import waffles.utils.geom.bounds.axial.sphere.BNDSphere2D;
+import waffles.utils.geom.bounds.axial.sphere.BNDSphere3D;
 import waffles.utils.geom.collision.convex.CLSSphere;
 
 /**
@@ -61,6 +63,10 @@ public interface HyperSphere extends HyperSpheroid
 	@Override
 	public default Bounds Bounds()
 	{
+		if(Dimension() == 2)
+			return new BNDSphere2D(this);
+		if(Dimension() == 3)
+			return new BNDSphere3D(this);
 		return new BNDSphere(this);
 	}
 }
