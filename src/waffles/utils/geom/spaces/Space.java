@@ -2,6 +2,7 @@ package waffles.utils.geom.spaces;
 
 import waffles.utils.algebra.elements.linear.vector.Vector;
 import waffles.utils.geom.collidable.axial.cuboid.HyperCuboid;
+import waffles.utils.geom.collidable.axial.spheroid.HyperSphere;
 import waffles.utils.geom.collidable.fixed.Point;
 
 /**
@@ -38,10 +39,25 @@ public interface Space<O>
 	 * @return   an object set
 	 * 
 	 * 
-	 * @see Iterable
 	 * @see HyperCuboid
+	 * @see Iterable
 	 */
 	public abstract Iterable<O> query(HyperCuboid c);
+	
+	/**
+	 * Queries the {@code Space} at a given sphere.
+	 * 
+	 * @param s  a sphere area
+	 * @return   an object set
+	 * 
+	 * 
+	 * @see HyperSphere
+	 * @see Iterable
+	 */
+	public default Iterable<O> query(HyperSphere s)
+	{
+		return query(s.Bounds().Box());
+	}
 	
 	/**
 	 * Queries the {@code Space} at a given point.
