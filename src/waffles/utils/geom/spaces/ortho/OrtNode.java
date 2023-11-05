@@ -6,6 +6,7 @@ import waffles.utils.geom.bounds.Bounded;
 import waffles.utils.geom.bounds.Bounds;
 import waffles.utils.geom.collidable.axial.AxialShape;
 import waffles.utils.geom.collidable.axial.cuboid.HyperCuboid;
+import waffles.utils.geom.spatial.data.Axial;
 import waffles.utils.geom.spatial.structs.Axis;
 import waffles.utils.sets.MutableSet;
 import waffles.utils.sets.mutable.AtomicSet;
@@ -31,7 +32,7 @@ import waffles.utils.tools.primitives.Integers;
  */
 public class OrtNode<O extends Bounded> extends Node implements HyperCuboid, MutableSet<O>
 {		
-	private Axis axis;
+	private Axial axis;
 	private AtomicSet<O> set;
 			
 	/**
@@ -42,9 +43,9 @@ public class OrtNode<O extends Bounded> extends Node implements HyperCuboid, Mut
 	 * 
 	 * 
 	 * @see OrtTree
-	 * @see Axis
+	 * @see Axial
 	 */
-	public OrtNode(OrtTree<O> tree, Axis a)
+	public OrtNode(OrtTree<O> tree, Axial a)
 	{
 		super(tree);
 		set = new JHashSet<>();
