@@ -1,11 +1,11 @@
-package waffles.utils.geom.collidable.shaped;
+package waffles.utils.geom.collidable.geometric;
 
 import waffles.utils.geom.collidable.Geometrical;
 import waffles.utils.geom.spatial.Adjustable;
 import waffles.utils.geom.spatial.maps.spatial.SpatialMap;
 
 /**
- * A {@code Shapeable} object defines a fully adjustable, n-dimensional geometric object.
+ * A {@code AffineOriented} object defines an arbitrarily oriented, n-dimensional geometric object.
  * It defines a shape, a spatial transformation, and various utility methods.
  *
  * @author Waffles
@@ -16,7 +16,7 @@ import waffles.utils.geom.spatial.maps.spatial.SpatialMap;
  * @see Geometrical
  * @see Adjustable
  */
-public interface Shapeable extends Adjustable, Geometrical
+public interface AffineOriented extends Adjustable, Geometrical
 {
 	@Override
 	public abstract SpatialMap Transform();

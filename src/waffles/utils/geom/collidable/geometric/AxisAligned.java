@@ -1,4 +1,4 @@
-package waffles.utils.geom.collidable.shaped;
+package waffles.utils.geom.collidable.geometric;
 
 import waffles.utils.geom.Collision;
 import waffles.utils.geom.collidable.Geometrical;
@@ -8,7 +8,7 @@ import waffles.utils.geom.spatial.Aligned;
 import waffles.utils.geom.spatial.maps.axial.AxialMap;
 
 /**
- * An {@code Alignable} object defines an axis-aligned, n-dimensional geometric object.
+ * An {@code AxisAligned} object defines an axis-aligned, n-dimensional geometric object.
  * It defines a shape, a global transformation, and various utility methods.
  *
  * @author Waffles
@@ -17,9 +17,9 @@ import waffles.utils.geom.spatial.maps.axial.AxialMap;
  * 
  * 
  * @see Geometrical
- * @see Alignable
+ * @see AxisAligned
  */
-public interface Alignable extends Aligned, Geometrical
+public interface AxisAligned extends Aligned, Geometrical
 {	
 	@Override
 	public default Collision Collisions()

@@ -1,11 +1,11 @@
-package waffles.utils.geom.collidable.shaped;
+package waffles.utils.geom.collidable.geometric;
 
 import waffles.utils.geom.collidable.Geometrical3D;
 import waffles.utils.geom.collidable.axial.AxialSet3D;
 import waffles.utils.geom.spatial.Aligned3D;
 
 /**
- * An {@code Alignable3D} object defines an axis-aligned, three-dimensional geometric object.
+ * An {@code AxisAligned3D} object defines an axis-aligned, three-dimensional geometric object.
  * It defines a shape, an affine transformation, and various utility methods.
  *
  * @author Waffles
@@ -13,11 +13,11 @@ import waffles.utils.geom.spatial.Aligned3D;
  * @version 1.1
  * 
  * 
+ * @see AxisAligned
  * @see Geometrical3D
  * @see Aligned3D
- * @see Alignable
  */
-public interface Alignable3D extends Alignable, Aligned3D, Geometrical3D
+public interface AxisAligned3D extends AxisAligned, Aligned3D, Geometrical3D
 {
 	@Override
 	public abstract AxialSet3D Shape();

@@ -4,7 +4,7 @@ import waffles.utils.algebra.elements.linear.vector.Vector;
 import waffles.utils.geom.Collidable;
 import waffles.utils.geom.Collision.Response;
 import waffles.utils.geom.collidable.axial.AxialShape;
-import waffles.utils.geom.collidable.shaped.Alignable;
+import waffles.utils.geom.collidable.geometric.AxisAligned;
 import waffles.utils.geom.spatial.maps.axial.AxialMap;
 import waffles.utils.geom.utilities.Geometries;
 import waffles.utils.geom.utilities.Transforms;
@@ -22,7 +22,7 @@ import waffles.utils.geom.utilities.Transforms;
 public class ISCAlign implements Response
 {
 	private Response rsp;
-	private Alignable src, tgt;
+	private AxisAligned src, tgt;
 	
 	/**
 	 * Creates a new {@code ISCGeneral}.
@@ -31,9 +31,9 @@ public class ISCAlign implements Response
 	 * @param t  a target alignable
 	 * 
 	 * 
-	 * @see Alignable
+	 * @see AxisAligned
 	 */
-	public ISCAlign(Alignable s, Alignable t)
+	public ISCAlign(AxisAligned s, AxisAligned t)
 	{
 		src = s;
 		tgt = t;

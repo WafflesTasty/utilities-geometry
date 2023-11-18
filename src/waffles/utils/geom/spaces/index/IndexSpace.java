@@ -2,12 +2,11 @@ package waffles.utils.geom.spaces.index;
 
 import waffles.utils.algebra.elements.linear.vector.Vector;
 import waffles.utils.algebra.elements.linear.vector.Vectors;
-import waffles.utils.geom.bounds.Bounded;
-import waffles.utils.geom.bounds.Bounds;
 import waffles.utils.geom.collidable.axial.cuboid.HyperCuboid;
 import waffles.utils.geom.collidable.fixed.Point;
 import waffles.utils.geom.spaces.Space;
 import waffles.utils.geom.utilities.Geometries;
+import waffles.utils.geom.utilities.Shapeable;
 import waffles.utils.sets.indexed.IndexedSet;
 import waffles.utils.tools.collections.Iterables;
 
@@ -21,33 +20,11 @@ import waffles.utils.tools.collections.Iterables;
  * 
  * @param <O>  an object type
  * @see IndexedSet
- * @see Bounded
+ * @see Shapeable
  * @see Space
  */
-public interface IndexSpace<O> extends IndexedSet<O>, Space<O>, Bounded
-{	
-	/**
-	 * Returns the shape of the {@code IndexSpace}.
-	 * 
-	 * @return  a cuboid shape
-	 * 
-	 * 
-	 * @see HyperCuboid
-	 */
-	public default HyperCuboid Shape()
-	{
-		int[] dims = Dimensions();
-
-		Vector s = Vectors.create(Order());
-		for(int i = 0; i < Order(); i++)
-		{
-			s.set(dims[i] * TileSize(), i);
-		}
-		
-		Vector c = s.times(0.5f);
-		return Geometries.Cuboid(c, s);
-	}
-	
+public interface IndexSpace<O> extends IndexedSet<O>, Space<O>, Shapeable
+{		
 	/**
 	 * Returns a coordinate in the {@code IndexSpace}.
 	 * 
@@ -94,8 +71,17 @@ public interface IndexSpace<O> extends IndexedSet<O>, Space<O>, Bounded
 	}
 		
 	@Override
-	public default Bounds Bounds()
+	public default HyperCuboid Shape()
 	{
-		return Shape().Bounds();
+		int[] dims = Dimensions();
+
+		Vector s = Vectors.create(Order());
+		for(int i = 0; i < Order(); i++)
+		{
+			s.set(dims[i] * TileSize(), i);
+		}
+		
+		Vector c = s.times(0.5f);
+		return Geometries.Cuboid(c, s);
 	}
 }

@@ -2,35 +2,25 @@ package waffles.utils.geom.collidable;
 
 import waffles.utils.geom.Collidable;
 import waffles.utils.geom.Collision;
-import waffles.utils.geom.bounds.Bounded;
 import waffles.utils.geom.bounds.Bounds;
 import waffles.utils.geom.collision.CLSGeometrical;
 import waffles.utils.geom.spatial.maps.GlobalMap;
+import waffles.utils.geom.utilities.Shapeable;
 
 /**
- * A {@code Geometrical} object defines an object with an n-dimensional geometric shape.
- * It defines its own global transformation, and admits collision detection.
+ * A {@code Geometrical} object defines a collidable with an arbitrary n-dimensional geometric shape.
+ * It defines its own global transformation, and admits rudimentary collision detection.
  *
  * @author Waffles
  * @since 26 Feb 2020
- * @version 1.1
+ * @version 1.2
  * 
  * 
  * @see Collidable
- * @see Bounded
+ * @see Shapeable
  */
-public interface Geometrical extends Bounded, Collidable
+public interface Geometrical extends Collidable, Shapeable
 {
-	/**
-	 * Returns the shape of the {@code Geometrical}.
-	 * 
-	 * @return  an object shape
-	 * 
-	 * 
-	 * @see Geometry
-	 */
-	public abstract Geometry Shape();
-	
 	/**
 	 * Returns the transform of the {@code Geometrical}.
 	 * 

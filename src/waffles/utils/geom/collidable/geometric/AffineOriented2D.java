@@ -1,10 +1,10 @@
-package waffles.utils.geom.collidable.shaped;
+package waffles.utils.geom.collidable.geometric;
 
 import waffles.utils.geom.collidable.Geometrical2D;
 import waffles.utils.geom.spatial.Adjustable2D;
 
 /**
- * A {@code Shapeable} object defines a fully adjustable, two-dimensional geometric object.
+ * An {@code AffineOriented2D} object defines an arbitrarily oriented, two-dimensional geometric object.
  * It defines a shape, an affine transformation, and various utility methods.
  *
  * @author Waffles
@@ -12,11 +12,11 @@ import waffles.utils.geom.spatial.Adjustable2D;
  * @version 1.1
  * 
  * 
+ * @see AffineOriented
  * @see Geometrical2D
  * @see Adjustable2D
- * @see Shapeable
  */
-public interface Shapeable2D extends Adjustable2D, Geometrical2D, Shapeable
+public interface AffineOriented2D extends AffineOriented, Adjustable2D, Geometrical2D
 {
 	// NOT APPLICABLE
 }

@@ -1,12 +1,12 @@
 package waffles.utils.geom.collision;
 
 import waffles.utils.geom.Collidable;
-import waffles.utils.geom.collidable.shaped.Alignable;
+import waffles.utils.geom.collidable.geometric.AxisAligned;
 import waffles.utils.geom.response.align.ISCAlign;
 import waffles.utils.geom.response.align.ISCGeneral;
 
 /**
- * The {@code CLSAlignable} class defines collision responses for {@code Alignable} objects.
+ * The {@code CLSAlignable} class defines collision responses for {@code AxisAligned} objects.
  *
  * @author Waffles
  * @since Jul 25, 2019
@@ -23,9 +23,9 @@ public class CLSAlignable extends CLSGeometrical
 	 * @param s  an alignable source
 	 * 
 	 * 
-	 * @see Alignable
+	 * @see AxisAligned
 	 */
-	public CLSAlignable(Alignable s)
+	public CLSAlignable(AxisAligned s)
 	{
 		super(s);
 	}
@@ -34,12 +34,12 @@ public class CLSAlignable extends CLSGeometrical
 	@Override
 	public Response intersect(Collidable c)
 	{
-		Alignable s = Source();
+		AxisAligned s = Source();
 		
 		// Eliminate alignable objects.
-		if(c instanceof Alignable)
+		if(c instanceof AxisAligned)
 		{
-			Alignable t = (Alignable) c;
+			AxisAligned t = (AxisAligned) c;
 			return new ISCAlign(s, t);
 		}
 		
@@ -48,8 +48,8 @@ public class CLSAlignable extends CLSGeometrical
 	}
 
 	@Override
-	public Alignable Source()
+	public AxisAligned Source()
 	{
-		return (Alignable) super.Source();
+		return (AxisAligned) super.Source();
 	}
 }
