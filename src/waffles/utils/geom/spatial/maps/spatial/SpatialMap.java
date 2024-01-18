@@ -24,7 +24,7 @@ import waffles.utils.geom.spatial.maps.spatial.matrix.WorldToUnit;
 public interface SpatialMap extends AxialMap, Spatial.Mutable
 {
 	/**
-	 * Returns the source of the {@code AffineMap}.
+	 * Returns the source of the {@code SpatialMap}.
 	 * 
 	 * @return  a spatial data source
 	 * 

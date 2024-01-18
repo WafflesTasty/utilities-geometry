@@ -38,6 +38,11 @@ public class UnitToWorld extends LazyMatrix
 	}
 	
 	
+	protected Spatial Source()
+	{
+		return src;
+	}
+	
 	@Override
 	public Matrix compute(Integer dim)
 	{
