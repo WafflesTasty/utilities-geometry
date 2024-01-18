@@ -201,4 +201,10 @@ public class VCHTriangle implements VChain
 			}
 		};
 	}
+	
+	@Override
+	public int VertexCount()
+	{
+		return 3;
+	}
 }

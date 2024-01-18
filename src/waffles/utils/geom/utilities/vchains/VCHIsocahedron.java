@@ -172,7 +172,7 @@ public class VCHIsocahedron implements VChain
 			@Override
 			public boolean hasNext()
 			{
-				return curr < 12;
+				return curr < VertexCount();
 			}
 
 			@Override
@@ -182,5 +182,11 @@ public class VCHIsocahedron implements VChain
 				return v.times(rad);
 			}
 		};
+	}
+	
+	@Override
+	public int VertexCount()
+	{
+		return 12;
 	}
 }

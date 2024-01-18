@@ -282,13 +282,11 @@ public class VCHEllipse implements VChain
 		return () -> new Iterator<>()
 		{
 			private int i = 0;
-			private boolean hasCenter = hasCenter();
-			
-			
+
 			@Override
 			public boolean hasNext()
 			{
-				return i < count + (hasCenter ? 1 : 0);
+				return i < VertexCount();
 			}
 
 			@Override
@@ -309,7 +307,14 @@ public class VCHEllipse implements VChain
 		};
 	}
 	
-	private boolean hasCenter()
+	
+	@Override
+	public int VertexCount()
+	{
+		return count + (hasCenter() ? 1 : 0);
+	}
+	
+	boolean hasCenter()
 	{
 		switch(mode)
 		{

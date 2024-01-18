@@ -156,4 +156,10 @@ public class VCHSegment implements VChain
 			}
 		};
 	}
+	
+	@Override
+	public int VertexCount()
+	{
+		return 2;
+	}
 }

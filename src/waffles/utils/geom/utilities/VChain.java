@@ -154,4 +154,37 @@ public interface VChain
 	 * @see Vector
 	 */
 	public abstract Iterable<Vector> Normals();
+
+	
+	/**
+	 * Returns the vertex count of the {@code VChain}.
+	 * 
+	 * @return  a vertex count
+	 */
+	public default int VertexCount()
+	{
+		int count = 0;
+		for(Vector v : Vertices())
+		{
+			count++;
+		}
+		
+		return count;
+	}
+	
+	/**
+	 * Returns the index count of the {@code VChain}.
+	 * 
+	 * @return  an index count
+	 */
+	public default int IndexCount()
+	{
+		int count = 0;
+		for(int i : Indices())
+		{
+			count++;
+		}
+		
+		return count;
+	}
 }

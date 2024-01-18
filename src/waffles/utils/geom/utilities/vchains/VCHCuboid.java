@@ -180,7 +180,7 @@ public class VCHCuboid implements VChain
 			@Override
 			public boolean hasNext()
 			{
-				return i < Integers.pow(2, src.Dimension());
+				return i < VertexCount();
 			}
 
 			@Override
@@ -198,5 +198,11 @@ public class VCHCuboid implements VChain
 				i++; return v;
 			}
 		};
+	}
+	
+	@Override
+	public int VertexCount()
+	{
+		return Integers.pow(2, src.Dimension());
 	}
 }

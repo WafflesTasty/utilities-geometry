@@ -154,7 +154,7 @@ public class VCHOctahedron implements VChain
 			@Override
 			public boolean hasNext()
 			{
-				return curr < 6;
+				return curr < VertexCount();
 			}
 
 			@Override
@@ -164,5 +164,11 @@ public class VCHOctahedron implements VChain
 				return v.times(rad);
 			}
 		};
+	}
+	
+	@Override
+	public int VertexCount()
+	{
+		return 6;
 	}
 }
