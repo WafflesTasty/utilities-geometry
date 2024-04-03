@@ -11,7 +11,7 @@ import waffles.utils.geom.Collision.Response;
  *
  * @author Waffles
  * @since 12 Sep 2023
- * @version 1.0
+ * @version 1.1
  * 
  * 
  * @see Response
@@ -49,13 +49,25 @@ public class RSPFlip implements Response
 	@Override
 	public Vector Penetration()
 	{
-		return rsp.Penetration().times(-1f);
+		Vector pen = rsp.Penetration();
+		if(pen != null)
+		{
+			return pen.times(-1f);
+		}
+		
+		return null;
 	}
 
 	@Override
 	public Vector Distance()
 	{
-		return rsp.Distance().times(-1f);
+		Vector dst = rsp.Distance();
+		if(dst != null)
+		{
+			return dst.times(-1f);
+		}
+		
+		return null;
 	}
 	
 	@Override
