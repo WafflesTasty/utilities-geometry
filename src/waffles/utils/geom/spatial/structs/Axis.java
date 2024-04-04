@@ -10,15 +10,15 @@ import waffles.utils.geom.spatial.maps.fixed.linear.Translation;
  *
  * @author Waffles
  * @since 11 Sep 2023
- * @version 1.0
+ * @version 1.1
  * 
  * 
+ * @see Position
  * @see Axial
  */
-public class Axis implements Axial.Mutable
+public class Axis extends Position implements Axial.Mutable
 {
 	private Vector size;
-	private Vector origin;
 
 	/**
 	 * Creates a new {@code Axis}.
@@ -31,7 +31,7 @@ public class Axis implements Axial.Mutable
 	 */
 	public Axis(Vector o, Vector s)
 	{
-		origin = o;
+		super(o);
 		size = s;
 	}
 	
@@ -57,24 +57,11 @@ public class Axis implements Axial.Mutable
 		// NOT APPLICABLE
 	}
 	
-	
-	@Override
-	public void setOrigin(Vector o)
-	{
-		origin = o;
-	}
 
 	@Override
 	public void setSize(Vector s)
 	{
 		size = s;
-	}
-
-	
-	@Override
-	public Vector Origin()
-	{
-		return origin;
 	}
 
 	@Override
