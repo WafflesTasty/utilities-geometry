@@ -3,7 +3,6 @@ package waffles.utils.geom.collidable.axial.cuboid;
 import waffles.utils.algebra.elements.linear.matrix.Matrices;
 import waffles.utils.algebra.elements.linear.matrix.Matrix;
 import waffles.utils.algebra.elements.linear.vector.Vector;
-import waffles.utils.geom.Collision;
 import waffles.utils.geom.bounds.Bounds;
 import waffles.utils.geom.bounds.axial.cuboid.BNDCuboid;
 import waffles.utils.geom.bounds.axial.cuboid.BNDCuboid2D;
@@ -46,7 +45,7 @@ public interface HyperCuboid extends AxialShape, Hull
 	}
 	
 	@Override
-	public default Collision Collisions()
+	public default CLSCuboid Collisions()
 	{
 		return new CLSCuboid(this);
 	}
