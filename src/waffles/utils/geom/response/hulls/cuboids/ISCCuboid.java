@@ -6,6 +6,7 @@ import waffles.utils.geom.Collidable;
 import waffles.utils.geom.Collision.Response;
 import waffles.utils.geom.collidable.axial.cuboid.HyperCuboid;
 import waffles.utils.geom.utilities.Geometries;
+import waffles.utils.tools.primitives.Array;
 import waffles.utils.tools.primitives.Floats;
 import waffles.utils.tools.primitives.Integers;
 
@@ -14,13 +15,14 @@ import waffles.utils.tools.primitives.Integers;
  *
  * @author Waffles
  * @since 12 May 2021
- * @version 1.0
+ * @version 1.1
  * 
  * 
  * @see Response
  */
 public class ISCCuboid implements Response
 {
+	private int[] defects;
 	private Vector min, max;
 	private HyperCuboid src, tgt;
 	private Vector dst, pnt, dlt;
@@ -37,8 +39,8 @@ public class ISCCuboid implements Response
 	 */
 	public ISCCuboid(HyperCuboid s, HyperCuboid t)
 	{
-		src = s;
-		tgt = t;
+		defects = new int[0];
+		src = s; tgt = t;
 	}
 	
 	
@@ -145,21 +147,11 @@ public class ISCCuboid implements Response
 		
 		int dim = Integers.min(d1, d2);
 		dst = Vectors.create(dim);
-		
-		for(int i = 0; i < dim; i++)
+		for(int i : defects)
 		{
-			float si = src.Size().get(i);
-			float ti = tgt.Size().get(i);
-			
-			float pi = src.Origin().get(i);
-			float qi = tgt.Origin().get(i);
-			
-			if(si + ti < 2 * Floats.abs(pi - qi))
-			{
-				dst.set(dlt.get(i), i);
-			}
+			dst.set(dlt.get(i), i);
 		}
-		
+
 		return dst;
 	}
 	
@@ -214,7 +206,8 @@ public class ISCCuboid implements Response
 			
 			if(si + ti < 2 * Floats.abs(pi - qi))
 			{
-				return false;
+				Array.add.to(defects, i);
+				continue;
 			}
 			
 			float iMin = Floats.max(pi - si / 2, qi - ti / 2);
@@ -224,6 +217,6 @@ public class ISCCuboid implements Response
 			max.set(iMax, i);
 		}
 		
-		return true;
+		return defects.length == 0;
 	}
 }

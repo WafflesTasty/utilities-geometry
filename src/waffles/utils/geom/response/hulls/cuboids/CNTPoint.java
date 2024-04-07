@@ -14,7 +14,7 @@ import waffles.utils.tools.primitives.Floats;
  *
  * @author Waffles
  * @since 12 May 2021
- * @version 1.0
+ * @version 1.1
  * 
  * 
  * @see Response
@@ -71,9 +71,12 @@ public class CNTPoint implements Response
 	{
 		if(pnt == null)
 		{
-			pnt = computePenetration();
+			if(hasImpact())
+			{
+				pnt = computePenetration();
+			}			
 		}
-		
+
 		return pnt;
 	}
 
@@ -82,7 +85,10 @@ public class CNTPoint implements Response
 	{
 		if(dst == null)
 		{
-			dst = computeDistance();
+			if(!hasImpact())
+			{
+				dst = computeDistance();
+			}
 		}
 		
 		return dst;

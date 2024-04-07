@@ -1,9 +1,10 @@
 package waffles.utils.geom.response.hulls.cuboids;
 
 import waffles.utils.algebra.elements.linear.vector.Vector;
-import waffles.utils.geom.Collision;
+import waffles.utils.algebra.elements.linear.vector.Vectors;
 import waffles.utils.geom.Collision.Response;
 import waffles.utils.geom.collidable.axial.cuboid.HyperCuboid;
+import waffles.utils.tools.primitives.Array;
 import waffles.utils.tools.primitives.Floats;
 import waffles.utils.tools.primitives.Integers;
 
@@ -19,7 +20,8 @@ import waffles.utils.tools.primitives.Integers;
  */
 public class CNTCuboid implements Response
 {
-	private Response rsp;
+	private int[] defects;
+	private Vector dlt, pnt, dst;
 	private HyperCuboid src, tgt;
 	private Boolean hasImpact;
 	
@@ -34,8 +36,8 @@ public class CNTCuboid implements Response
 	 */
 	public CNTCuboid(HyperCuboid s, HyperCuboid t)
 	{
-		src = s;
-		tgt = t;
+		defects = new int[0];
+		src = s; tgt = t;
 	}
 
 	@Override
@@ -52,23 +54,29 @@ public class CNTCuboid implements Response
 	@Override
 	public Vector Penetration()
 	{
-		if(rsp == null)
+		if(pnt == null)
 		{
-			rsp = computeVectors();
+			if(hasImpact())
+			{
+				
+			}
 		}
 		
-		return rsp.Penetration();
+		return pnt;
 	}
 	
 	@Override
 	public Vector Distance()
 	{
-		if(rsp == null)
+		if(dst == null)
 		{
-			rsp = computeVectors();
+			if(!hasImpact())
+			{
+				
+			}
 		}
 		
-		return rsp.Distance();
+		return dst;
 	}
 	
 	@Override
@@ -76,12 +84,91 @@ public class CNTCuboid implements Response
 	{
 		return 5 * src.Dimension();
 	}
+
 	
-	
-	Response computeVectors()
+	Vector computeDelta()
 	{
-		Collision cls = src.Collisions();
-		return cls.intersect(tgt);
+		int d1 = src.Dimension();
+		int d2 = tgt.Dimension();
+		
+		int dim = Integers.min(d1, d2);
+		dlt = Vectors.create(dim);
+		
+		for(int i = 0; i < dim; i++)
+		{
+			float ti = src.Size().get(i);
+			float si = tgt.Size().get(i);
+			
+			float qi = src.Origin().get(i);
+			float pi = tgt.Origin().get(i);
+
+			float val = qi - pi;
+			if(pi <= qi)
+			{
+				val -= (ti - si) / 2;
+			}
+			else
+			{
+				val += (ti - si) / 2;
+			}
+
+			dlt.set(val, i);
+		}
+		
+		return dlt;
+	}
+	
+	Vector computeDistance()
+	{
+		if(dlt == null)
+		{
+			dlt = computeDelta();
+		}
+		
+		
+		int d1 = src.Dimension();
+		int d2 = tgt.Dimension();
+		
+		int dim = Integers.min(d1, d2);
+		dst = Vectors.create(dim);
+		for(int i : defects)
+		{
+			dst.set(dlt.get(i), i);
+		}
+		
+		return dst;
+	}
+	
+	Vector computePenetration()
+	{
+		if(dlt == null)
+		{
+			dlt = computeDelta();
+		}
+		
+		
+		int kMin = -1;
+		float vMin = Floats.MAX_VALUE;
+
+		
+		int d1 = src.Dimension();
+		int d2 = tgt.Dimension();
+		
+		int dim = Integers.min(d1, d2);		
+		for(int i = 0; i < dim; i++)
+		{
+			float val = Floats.abs(dlt.get(i));
+			if(val < vMin)
+			{
+				vMin = val;
+				kMin = i;
+			}
+		}
+		
+		
+		pnt = Vectors.create(dim);
+		pnt.set(vMin, kMin);
+		return pnt;
 	}
 	
 	boolean computeImpact()
@@ -97,10 +184,10 @@ public class CNTCuboid implements Response
 			
 			if(si - ti < 2 * Floats.abs(pi - qi))
 			{
-				return false;
+				Array.add.to(defects, i);
 			}
 		}
 		
-		return true;
+		return defects.length == 0;
 	}
 }
