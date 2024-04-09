@@ -171,15 +171,11 @@ public class ISCCuboid implements Response
 			float pi = src.Origin().get(i);
 			float qi = tgt.Origin().get(i);
 
-			float val = pi - qi;
-			if(qi <= pi)
-			{
+			float val = qi - pi;
+			if(pi <= qi)
 				val -= (si + ti) / 2;
-			}
 			else
-			{
 				val += (si + ti) / 2;
-			}
 
 			dlt.set(val, i);
 		}
@@ -204,9 +200,9 @@ public class ISCCuboid implements Response
 			float pi = src.Origin().get(i);
 			float qi = tgt.Origin().get(i);
 			
-			if(si + ti < 2 * Floats.abs(pi - qi))
+			if(si + ti <= 2 * Floats.abs(pi - qi))
 			{
-				Array.add.to(defects, i);
+				defects = Array.add.to(defects, i);
 				continue;
 			}
 			

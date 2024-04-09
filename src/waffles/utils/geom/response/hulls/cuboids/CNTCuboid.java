@@ -184,7 +184,7 @@ public class CNTCuboid implements Response
 			
 			if(si - ti < 2 * Floats.abs(pi - qi))
 			{
-				Array.add.to(defects, i);
+				defects = Array.add.to(defects, i);
 			}
 		}
 		
