@@ -40,6 +40,7 @@ public class CNTCuboid implements Response
 		src = s; tgt = t;
 	}
 
+	
 	@Override
 	public boolean hasImpact()
 	{
@@ -58,7 +59,7 @@ public class CNTCuboid implements Response
 		{
 			if(hasImpact())
 			{
-				
+				pnt = computePenetration();
 			}
 		}
 		
@@ -72,7 +73,7 @@ public class CNTCuboid implements Response
 		{
 			if(!hasImpact())
 			{
-				
+				dst = computeDistance();
 			}
 		}
 		
