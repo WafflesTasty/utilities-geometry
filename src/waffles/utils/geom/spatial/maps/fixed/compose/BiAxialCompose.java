@@ -9,7 +9,7 @@ import waffles.utils.geom.spatial.structs.Axis;
  *
  * @author Waffles
  * @since 15 Sep 2023
- * @version 1.0
+ * @version 1.1
  * 
  * 
  * @see AxialMap
@@ -43,8 +43,8 @@ public class BiAxialCompose implements AxialMap
 		Vector o1 = m1.Origin();
 		
 		
-		Vector s = s2.ltimes(s1);
-		Vector o = o2.plus(o1.ltimes(s2));
+		Vector s = s2.ltimes(s1).times(0.5f);
+		Vector o = o2.plus(o1.ltimes(s2).times(0.5f));
 		return new Axis(o, s);
 	}
 }

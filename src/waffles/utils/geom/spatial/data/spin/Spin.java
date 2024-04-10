@@ -8,7 +8,7 @@ import waffles.utils.algebra.elements.linear.vector.Vector;
  * 
  * @author Waffles
  * @since Dec 26, 2019
- * @version 1.0
+ * @version 1.1
  */
 public interface Spin
 {
@@ -75,16 +75,20 @@ public interface Spin
 		
 		return null;
 	}
-		
+	
+	
+	/**
+	 * Inverts the direction of the {@code Spin}.
+	 * 
+	 * @return  an inverted spin
+	 */
+	public abstract Spin invert();
 	
 	/**
 	 * Composes the spin with another {@code Spin}.
 	 * 
 	 * @param spin  a spin to compose with
 	 * @return  a composite spin
-	 * 
-	 * 
-	 * @see Spin
 	 */
 	public abstract Spin compose(Spin spin);
 	

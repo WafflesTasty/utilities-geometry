@@ -12,7 +12,7 @@ import waffles.utils.algebra.elements.linear.vector.Vector;
  *
  * @author Waffles
  * @since Jan 22, 2020
- * @version 1.0
+ * @version 1.1
  * 
  *
  * @see Spin
@@ -92,7 +92,7 @@ public class SpinND implements Spin
 		if(s instanceof SpinND)
 		{
 			Matrix b = ((SpinND) s).Basis();
-			return new SpinND(basis.times(b));
+			return new SpinND(Basis().times(b));
 		}
 		
 		return null;
@@ -101,9 +101,17 @@ public class SpinND implements Spin
 	@Override
 	public Vector Basis(int i)
 	{
-		if(i < basis.Columns())
-			return basis.Column(i);
+		if(i < Basis().Columns())
+			return Basis().Column(i);
 		
 		return null;
+	}
+	
+	@Override
+	public SpinND invert()
+	{
+		int dim = Basis().Rows();
+		Matrix m = Matrix(this, dim);
+		return new SpinND(m.transpose());
 	}
 }

@@ -2,48 +2,51 @@ package waffles.utils.geom.spatial.maps.fixed.inverse;
 
 import waffles.utils.algebra.elements.linear.vector.Vector;
 import waffles.utils.algebra.elements.linear.vector.Vectors;
-import waffles.utils.geom.spatial.data.Axial;
-import waffles.utils.geom.spatial.maps.axial.AxialMap;
-import waffles.utils.geom.spatial.structs.Axis;
+import waffles.utils.geom.spatial.data.Spatial;
+import waffles.utils.geom.spatial.data.spin.Spin;
+import waffles.utils.geom.spatial.maps.spatial.SpatialMap;
+import waffles.utils.geom.spatial.structs.Locus;
 
 /**
- * An {@code AxialInverse} defines an inverse axial map.
+ * A {@code SpatialInverse} defines an inverse spatial map.
  *
  * @author Waffles
  * @since 15 Sep 2023
  * @version 1.1
  * 
  * 
- * @see AxialMap
+ * @see SpatialMap
  */
-public class AxialInverse implements AxialMap
+public class SpatialInverse implements SpatialMap
 {
-	private AxialMap map;
+	private SpatialMap map;
 	
 	/**
-	 * Creates a new {@code AxialInverse}.
+	 * Creates a new {@code SpatialInverse}.
 	 * 
-	 * @param m  a global map
+	 * @param m  a spatial map
 	 * 
 	 * 
-	 * @see AxialMap
+	 * @see SpatialMap
 	 */
-	public AxialInverse(AxialMap m)
+	public SpatialInverse(SpatialMap m)
 	{
 		map = m;
 	}
 	
 
 	@Override
-	public Axial Source()
+	public Spatial Source()
 	{		
 		Vector sMap = map.Size();
 		Vector oMap = map.Origin();
+		Spin rMap = map.Spin();
 		
 		
 		int dim = oMap.Size();
 		Vector sInv = Vectors.create(dim);
 		Vector oInv = Vectors.create(dim);
+		Spin rInv = rMap.invert();
 		
 		for(int i = 0; i < dim; i++)
 		{
@@ -54,6 +57,11 @@ public class AxialInverse implements AxialMap
 			sInv.set(+4f / si, i);
 		}
 
-		return new Axis(oInv, sInv);
+		
+		Locus l = new Locus();
+		l.setOrigin(oInv);
+		l.setSize(sInv);
+		l.setSpin(rInv);
+		return l;
 	}
 }

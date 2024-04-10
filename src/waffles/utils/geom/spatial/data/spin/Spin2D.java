@@ -10,9 +10,9 @@ import waffles.utils.tools.primitives.Floats;
  * The {@code Spin2D} class defines spin in the 2D plane.
  * It is completely determined by its angle scalar.
  *
- * @author Zeno
+ * @author Waffles
  * @since Jan 22, 2020
- * @version 1.0
+ * @version 1.1
  * 
  *
  * @see Spin
@@ -146,5 +146,11 @@ public class Spin2D implements Spin
 			return Forward();
 		
 		return null;
+	}
+
+	@Override
+	public Spin2D invert()
+	{
+		return new Spin2D(-angle);
 	}
 }

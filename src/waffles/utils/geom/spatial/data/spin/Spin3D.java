@@ -12,7 +12,7 @@ import waffles.utils.algebra.elements.linear.vector.fixed.Vector3;
  *
  * @author Waffles
  * @since Jan 22, 2020
- * @version 1.0
+ * @version 1.1
  * 
  *
  * @see Spin
@@ -234,5 +234,17 @@ public class Spin3D implements Spin
 			return Up();
 		
 		return null;
+	}
+
+	@Override
+	public Spin3D invert()
+	{
+		float x = -versor.X();
+		float y = -versor.Y();
+		float z = -versor.Z();
+		float w = +versor.W();
+		
+		Quaternion q = new Quaternion(x, y, z, w);
+		return new Spin3D(q);
 	}
 }

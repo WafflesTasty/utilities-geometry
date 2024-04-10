@@ -8,6 +8,8 @@ import waffles.utils.geom.spatial.maps.fixed.compose.AxialCompose;
 import waffles.utils.geom.spatial.maps.fixed.compose.GlobalCompose;
 import waffles.utils.geom.spatial.maps.fixed.inverse.AxialInverse;
 import waffles.utils.geom.spatial.maps.fixed.inverse.GlobalInverse;
+import waffles.utils.geom.spatial.maps.fixed.inverse.SpatialInverse;
+import waffles.utils.geom.spatial.maps.spatial.SpatialMap;
 import waffles.utils.geom.spatial.maps.spatial.StandardMap;
 
 /**
@@ -16,7 +18,7 @@ import waffles.utils.geom.spatial.maps.spatial.StandardMap;
  *
  * @author Waffles
  * @since 14 Sep 2023
- * @version 1.0
+ * @version 1.1
  */
 public final class Transforms
 {
@@ -78,6 +80,20 @@ public final class Transforms
 	public static GlobalMap inverse(GlobalMap map)
 	{
 		return new GlobalInverse(map);
+	}
+	
+	/**
+	 * Creates an inverse of a {@code SpatialMap}.
+	 * 
+	 * @param map  a spatial map
+	 * @return  an inverse spatial map
+	 * 
+	 * 
+	 * @see AxialMap
+	 */
+	public static SpatialMap inverse(SpatialMap map)
+	{
+		return new SpatialInverse(map);
 	}
 	
 	/**
