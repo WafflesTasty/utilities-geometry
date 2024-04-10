@@ -8,7 +8,6 @@ import waffles.utils.geom.spatial.maps.fixed.compose.AxialCompose;
 import waffles.utils.geom.spatial.maps.fixed.compose.GlobalCompose;
 import waffles.utils.geom.spatial.maps.fixed.inverse.AxialInverse;
 import waffles.utils.geom.spatial.maps.fixed.inverse.GlobalInverse;
-import waffles.utils.geom.spatial.maps.fixed.inverse.SpatialInverse;
 import waffles.utils.geom.spatial.maps.spatial.SpatialMap;
 import waffles.utils.geom.spatial.maps.spatial.StandardMap;
 
@@ -55,6 +54,20 @@ public final class Transforms
 	}
 	
 	/**
+	 * Creates a composition of {@code SpatialMap}.
+	 * 
+	 * @param maps  a global map set
+	 * @return  a composed global map
+	 * 
+	 * 
+	 * @see GlobalMap
+	 */
+	public static GlobalMap compose(SpatialMap... maps)
+	{
+		return new GlobalCompose(maps);
+	}
+	
+	/**
 	 * Creates a composition of {@code AxialMaps}.
 	 * 
 	 * @param maps  a global map set
@@ -91,9 +104,9 @@ public final class Transforms
 	 * 
 	 * @see AxialMap
 	 */
-	public static SpatialMap inverse(SpatialMap map)
+	public static GlobalMap inverse(SpatialMap map)
 	{
-		return new SpatialInverse(map);
+		return new GlobalInverse(map);
 	}
 	
 	/**

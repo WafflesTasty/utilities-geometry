@@ -25,7 +25,7 @@ public class ISCAlign implements Response
 	private AxisAligned src, tgt;
 	
 	/**
-	 * Creates a new {@code ISCGeneral}.
+	 * Creates a new {@code ISCAlign}.
 	 * 
 	 * @param s  a source alignable
 	 * @param t  a target alignable

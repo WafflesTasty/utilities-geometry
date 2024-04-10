@@ -239,12 +239,17 @@ public class Spin3D implements Spin
 	@Override
 	public Spin3D invert()
 	{
-		float x = -versor.X();
-		float y = -versor.Y();
-		float z = -versor.Z();
-		float w = +versor.W();
+		float a = -versor.Angle();
+		Vector3 v = versor.Axis();
+		return new Spin3D(v, a);
 		
-		Quaternion q = new Quaternion(x, y, z, w);
-		return new Spin3D(q);
+//		float x = -versor.X();
+//		float y = -versor.Y();
+//		float z = -versor.Z();
+//		float w = +versor.W();
+//		System.out.println(x + ":" + y + ":" + z + ":" + w);
+//		Quaternion q = new Quaternion(x, y, z, w);
+//		
+//		return new Spin3D(q);
 	}
 }
