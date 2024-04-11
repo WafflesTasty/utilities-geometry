@@ -8,6 +8,7 @@ import waffles.utils.geom.bounds.Bounds;
 import waffles.utils.geom.collidable.axial.cuboid.HyperCuboid;
 import waffles.utils.geom.collidable.fixed.Point;
 import waffles.utils.geom.spaces.Space;
+import waffles.utils.geom.spaces.ortho.queries.QRYAll;
 import waffles.utils.geom.spaces.ortho.queries.QRYCuboid;
 import waffles.utils.geom.spaces.ortho.queries.QRYPoint;
 import waffles.utils.sets.mutable.AtomicSet;
@@ -19,7 +20,7 @@ import waffles.utils.sets.trees.Tree;
  *
  * @author Waffles
  * @since 31 Jul 2020
- * @version 1.0
+ * @version 1.1
  * 
  * 
  * @param <O>  an object type
@@ -104,7 +105,7 @@ public class OrtTree<O extends Bounded> extends Tree implements Bounded, AtomicS
 	@Override
 	public Iterator<O> iterator()
 	{
-		return new QRYCuboid<>(Root());
+		return new QRYAll<>(this);
 	}
 	
 	@Override
