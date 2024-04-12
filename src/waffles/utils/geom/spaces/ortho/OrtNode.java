@@ -9,8 +9,7 @@ import waffles.utils.geom.collidable.axial.cuboid.HyperCuboid;
 import waffles.utils.geom.spatial.data.Axial;
 import waffles.utils.geom.spatial.structs.Axis;
 import waffles.utils.sets.MutableSet;
-import waffles.utils.sets.mutable.AtomicSet;
-import waffles.utils.sets.mutable.JHashSet;
+import waffles.utils.sets.indexed.delegate.List;
 import waffles.utils.sets.trees.Nodal;
 import waffles.utils.sets.trees.Node;
 import waffles.utils.tools.primitives.Integers;
@@ -33,7 +32,7 @@ import waffles.utils.tools.primitives.Integers;
 public class OrtNode<O extends Bounded> extends Node implements HyperCuboid, MutableSet<O>
 {		
 	private Axial axis;
-	private AtomicSet<O> set;
+	private List<O> objects, refs;
 			
 	/**
 	 * Creates a new {@code OrtNode}.
@@ -48,7 +47,8 @@ public class OrtNode<O extends Bounded> extends Node implements HyperCuboid, Mut
 	public OrtNode(OrtTree<O> tree, Axial a)
 	{
 		super(tree);
-		set = new JHashSet<>();
+		objects = new List<>();
+		refs = new List<>();
 		axis = a;
 	}
 	
@@ -72,14 +72,27 @@ public class OrtNode<O extends Bounded> extends Node implements HyperCuboid, Mut
 	/**
 	 * Returns the objects in the {@code OrtNode}.
 	 * 
-	 * @return  an object set
+	 * @return  an object list
 	 * 
 	 * 
-	 * @see AtomicSet
+	 * @see List
 	 */
-	public AtomicSet<O> Objects()
+	public List<O> Objects()
 	{
-		return set;
+		return objects;
+	}
+	
+	/**
+	 * Returns the references in the {@code OrtNode}.
+	 * 
+	 * @return  a reference list
+	 * 
+	 * 
+	 * @see List
+	 */
+	public List<O> References()
+	{
+		return refs;
 	}
 	
 	/**
@@ -90,7 +103,7 @@ public class OrtNode<O extends Bounded> extends Node implements HyperCuboid, Mut
 	 */
 	public boolean contains(O obj)
 	{
-		return set.contains(obj);
+		return objects.contains(obj);
 	}
 	
 	/**
@@ -156,6 +169,18 @@ public class OrtNode<O extends Bounded> extends Node implements HyperCuboid, Mut
 			}
 			
 			addChild(Set().createNode(v, s));
+			// Add references from this node
+			// to all the children. Requires knowing
+			// which children are covered by which objects.
+			// Then do the same to add() and remove().
+			
+			// Create a QRYCuboid.Nodes() iterator.
+			// Querying a cuboid now only queries leaves.
+			// Query pairs by doing a QRYAll on one end,
+			// and a (subset of) QRYCuboid on the other.
+			
+			// The reference set is necessary because
+			// you iterate way too many pairs otherwise.
 		}
 	}
 
@@ -212,25 +237,25 @@ public class OrtNode<O extends Bounded> extends Node implements HyperCuboid, Mut
 	@Override
 	public void remove(O obj)
 	{
-		set.remove(obj);
+		objects.remove(obj);
 	}
 
 	@Override
 	public void add(O obj)
 	{		
-		set.add(obj);
+		objects.add(obj);
 	}
 
 	@Override
 	public void clear()
 	{
 		super.clear();
-		set.clear();
+		objects.clear();
 	}
 	
 	@Override
 	public int Count()
 	{
-		return set.Count();
+		return objects.Count();
 	}
 }

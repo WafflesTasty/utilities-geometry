@@ -10,7 +10,9 @@ import waffles.utils.geom.collidable.fixed.Point;
 import waffles.utils.geom.spaces.Space;
 import waffles.utils.geom.spaces.ortho.queries.QRYAll;
 import waffles.utils.geom.spaces.ortho.queries.QRYCuboid;
+import waffles.utils.geom.spaces.ortho.queries.QRYPairs;
 import waffles.utils.geom.spaces.ortho.queries.QRYPoint;
+import waffles.utils.sets.keymaps.Pair;
 import waffles.utils.sets.mutable.AtomicSet;
 import waffles.utils.sets.trees.Tree;
 
@@ -58,6 +60,37 @@ public class OrtTree<O extends Bounded> extends Tree implements Bounded, AtomicS
 		setRoot(createNode(c ,s));
 	}
 
+	/**
+	 * Iterates pairs in the {@code OrtTree}.
+	 * Each pair is distinct, and contains two
+	 * objects which potentially intersect.
+	 * 
+	 * @return  a pair iterable
+	 * 
+	 * 
+	 * @see Iterable
+	 * @see Pair
+	 */
+	public Iterable<Pair<O, O>> Pairs()
+	{
+		return () -> new QRYPairs<>(this);
+	}
+	
+	/**
+	 * Creates a pair in the {@code OrtTree}.
+	 * 
+	 * @param k  a key object
+	 * @param v  a value object
+	 * @return   an object pair
+	 * 
+	 * 
+	 * @see Pair
+	 */
+	public Pair<O, O> createPair(O k, O v)
+	{
+		return new Pair.Base<>(k, v);
+	}
+	
 				
 	@Override
 	public Iterable<OrtNode<O>> BFSearch()

@@ -10,7 +10,6 @@ import waffles.utils.geom.spaces.ortho.OrtTree;
 import waffles.utils.sets.indexed.delegate.List;
 import waffles.utils.sets.queues.Queue;
 import waffles.utils.sets.queues.delegate.JFIFOQueue;
-import waffles.utils.tools.collections.iterators.EmptyIterator;
 import waffles.utils.tools.primitives.Integers;
 
 /**
@@ -27,113 +26,125 @@ import waffles.utils.tools.primitives.Integers;
  */
 public class QRYCuboid<O extends Bounded> implements Iterator<O>
 {
-	private O next;
-	private Iterator<O> obj;
-	private Queue<OrtNode<O>> nodes;
+	private int next;
+	private List<O> list;
 	private HyperCuboid tgt;
+	private Queue<OrtNode<O>> nodes;
 
 	/**
 	 * Creates a new {@code QRYCuboid}.
 	 * 
 	 * @param s  a source tree
-	 * @param t  a target cuboid
+	 * @param t  a target bounded
 	 * 
 	 * 
+	 * @see Bounded
 	 * @see OrtTree
-	 * @see HyperCuboid
 	 */
-	public QRYCuboid(OrtTree<O> s, HyperCuboid t)
+	public QRYCuboid(OrtTree<O> s, Bounded t)
 	{
-		this(s.Root(), t);
+		this(s.Root(), 0, t);
 	}
 	
 	/**
 	 * Creates a new {@code QRYCuboid}.
 	 * 
 	 * @param n  a root node
-	 * @param t  a target cuboid
+	 * @param i  an object index
+	 * @param b  a target bounded
 	 * 
 	 * 
+	 * @see Bounded
 	 * @see OrtNode
-	 * @see HyperCuboid
 	 */
-	public QRYCuboid(OrtNode<O> n, HyperCuboid t)
+	public QRYCuboid(OrtNode<O> n, int i, Bounded b)
 	{
-		obj = new EmptyIterator<>();
-		nodes = new JFIFOQueue<>();
-		nodes.push(n);
-		tgt = t;
+		list = n.Objects();
+		tgt = b.Bounds().Box();
 		
+		nodes = new JFIFOQueue<>();
+		if(!n.isLeaf())
+		{
+			queue(n);
+		}
+		
+		next = i - 1;
 		next = findNext();
 	}
 
 
-	private O findNext()
+	private int findNext()
 	{
-		if(obj.hasNext())
-			return obj.next();
+		next++;
+		if(next < list.Count())
+			return next;
 		if(nodes.isEmpty())
-			return null;
+			return -1;
+		next = -1;
+		
+		
+		OrtNode<O> n = nodes.pop();		
+		if(!n.isLeaf())
+		{
+			queue(n);
+		}
 
 		
-		OrtNode<O> n = nodes.pop();
-		obj = n.Objects().iterator();
-
+		list = n.Objects();
+		return findNext();
+	}
+	
+	private void queue(OrtNode<O> n)
+	{
 		Vector c = n.Bounds().Center();
 		Vector min = tgt.Bounds().Minimum();
 		Vector max = tgt.Bounds().Maximum();
 		int dim = n.Dimension();
 		
 		
-		if(!n.isLeaf())
+		List<Integer> list = new List<>(0);
+		for(int i = 0; i < dim; i++)
 		{
-			List<Integer> list = new List<>(0);
-			for(int i = 0; i < dim; i++)
+			int count = list.Count();
+			if(c.get(i) < min.get(i))
 			{
-				int count = list.Count();
-				if(c.get(i) < min.get(i))
+				for(int j = 0; j < count; j++)
 				{
-					for(int j = 0; j < count; j++)
-					{
-						int index = list.get(j);
-						index += Integers.pow(2, i);
-						list.put(index, j);
-					}
-					continue;
+					int index = list.get(j);
+					index += Integers.pow(2, i);
+					list.put(index, j);
 				}
-
-				if(c.get(i) < max.get(i))
-				{
-					for(int j = 0; j < count; j++)
-					{
-						int index = list.get(j);
-						index += Integers.pow(2, i);
-						list.add(index);
-					}
-				}			
+				continue;
 			}
-			
-			for(int i : list)
+
+			if(c.get(i) < max.get(i))
 			{
-				OrtNode<O> child = n.Child(i);
-				nodes.push(child);
-			}
+				for(int j = 0; j < count; j++)
+				{
+					int index = list.get(j);
+					index += Integers.pow(2, i);
+					list.add(index);
+				}
+			}			
 		}
-
-		return findNext();
+		
+		for(int i : list)
+		{
+			OrtNode<O> child = n.Child(i);
+			nodes.push(child);
+		}
 	}
-
 	
 	@Override
 	public boolean hasNext()
 	{
-		return next != null;
+		return next >= 0;
 	}
 	
 	@Override
 	public O next()
 	{
-		O curr = next;
+		O curr = list.get(next);
 		next = findNext();
 		return curr;
 	}
