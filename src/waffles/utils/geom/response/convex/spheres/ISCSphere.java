@@ -18,6 +18,7 @@ import waffles.utils.geom.utilities.Geometries;
  */
 public class ISCSphere implements Response
 {
+	private float norm;
 	private Vector dst;
 	private HyperSphere src, tgt;	
 	private Boolean hasImpact;
@@ -64,11 +65,6 @@ public class ISCSphere implements Response
 	@Override
 	public Vector Penetration()
 	{
-		if(dst == null)
-		{
-			dst = computeVector();
-		}
-		
 		if(hasImpact())
 		{
 			return dst;
@@ -80,11 +76,6 @@ public class ISCSphere implements Response
 	@Override
 	public Vector Distance()
 	{
-		if(dst == null)
-		{
-			dst = computeVector();
-		}
-		
 		if(!hasImpact())
 		{
 			return dst;
@@ -102,16 +93,11 @@ public class ISCSphere implements Response
 	
 	boolean computeImpact()
 	{
-		Vector c1 = src.Origin();
-		Vector c2 = tgt.Origin();
-		
 		float r1 = src.Radius();
 		float r2 = tgt.Radius();
+		dst = computeVector();
 		
-		
-		dst = c2.minus(c1);
-		float val = dst.normSqr();
-		return val <= (r1 + r2) * (r1 + r2);
+		return norm < r1 + r2;
 	}
 	
 	Vector computeVector()
@@ -122,10 +108,10 @@ public class ISCSphere implements Response
 		float r1 = src.Radius();
 		float r2 = tgt.Radius();
 		
-		
 		dst = c2.minus(c1);
-		float norm = dst.norm();
-		norm = (norm - r1 - r2) / norm;
-		return dst.times(norm);
+		norm = dst.norm();
+		
+		float val = norm - r1 - r2;
+		return dst.times(val / norm);
 	}
 }

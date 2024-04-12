@@ -7,7 +7,6 @@ import waffles.utils.geom.collidable.axial.AxialShape;
 import waffles.utils.geom.collidable.geometric.AxisAligned;
 import waffles.utils.geom.spatial.maps.axial.AxialMap;
 import waffles.utils.geom.utilities.Geometries;
-import waffles.utils.geom.utilities.Transforms;
 
 /**
  * An {@code ISCAlign} computes the intersection between alignable objects.
@@ -101,11 +100,11 @@ public class ISCAlign implements Response
 	private Response computeResponse()
 	{
 		AxialMap m1 = tgt.Transform();
-		AxialMap m2 = Transforms.inverse(src.Transform());
-		AxialMap cm = Transforms.compose(m2, m1);
+		AxialMap m2 = src.Transform();
 	
-		AxialShape s1 = tgt.Shape().map(cm);
-		AxialShape s2 = src.Shape();
+		AxialShape s1 = tgt.Shape().map(m1);
+		AxialShape s2 = src.Shape().map(m2);
+		
 		return s2.intersect(s1);
 	}
 }
