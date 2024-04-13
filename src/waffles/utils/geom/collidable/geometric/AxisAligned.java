@@ -9,7 +9,7 @@ import waffles.utils.geom.spatial.maps.axial.AxialMap;
 
 /**
  * An {@code AxisAligned} object defines an axis-aligned, n-dimensional geometric object.
- * It defines a shape, a global transformation, and various utility methods.
+ * It defines a shape, an axial transformation, and various utility methods.
  *
  * @author Waffles
  * @since Feb 27, 2018
