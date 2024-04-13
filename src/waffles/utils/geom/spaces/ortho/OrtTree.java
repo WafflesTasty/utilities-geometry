@@ -7,13 +7,12 @@ import waffles.utils.geom.bounds.Bounded;
 import waffles.utils.geom.bounds.Bounds;
 import waffles.utils.geom.collidable.axial.cuboid.HyperCuboid;
 import waffles.utils.geom.collidable.fixed.Point;
-import waffles.utils.geom.spaces.Space;
+import waffles.utils.geom.spaces.Manifold;
 import waffles.utils.geom.spaces.ortho.queries.QRYAll;
 import waffles.utils.geom.spaces.ortho.queries.QRYCuboid;
 import waffles.utils.geom.spaces.ortho.queries.QRYPairs;
 import waffles.utils.geom.spaces.ortho.queries.QRYPoint;
 import waffles.utils.sets.keymaps.Pair;
-import waffles.utils.sets.mutable.AtomicSet;
 import waffles.utils.sets.trees.Tree;
 
 /**
@@ -26,12 +25,11 @@ import waffles.utils.sets.trees.Tree;
  * 
  * 
  * @param <O>  an object type
- * @see AtomicSet
+ * @see Manifold
  * @see Bounded
- * @see Space
  * @see Tree
  */
-public class OrtTree<O extends Bounded> extends Tree implements Bounded, AtomicSet<O>, Space<O>
+public class OrtTree<O extends Bounded> extends Tree implements Manifold<O>
 {		
 	/**
 	 * Creates a new {@code OrtTree}.
@@ -59,22 +57,6 @@ public class OrtTree<O extends Bounded> extends Tree implements Bounded, AtomicS
 	{
 		setRoot(createNode(c ,s));
 	}
-
-	/**
-	 * Iterates pairs in the {@code OrtTree}.
-	 * Each pair is distinct, and contains two
-	 * objects which potentially intersect.
-	 * 
-	 * @return  a pair iterable
-	 * 
-	 * 
-	 * @see Iterable
-	 * @see Pair
-	 */
-	public Iterable<Pair<O, O>> Pairs()
-	{
-		return () -> new QRYPairs<>(this);
-	}
 	
 	/**
 	 * Creates a pair in the {@code OrtTree}.
@@ -90,7 +72,13 @@ public class OrtTree<O extends Bounded> extends Tree implements Bounded, AtomicS
 	{
 		return new Pair.Base<>(k, v);
 	}
+
 	
+	@Override
+	public Iterable<Pair<O, O>> Pairs()
+	{
+		return () -> new QRYPairs<>(this);
+	}
 				
 	@Override
 	public Iterable<OrtNode<O>> BFSearch()
