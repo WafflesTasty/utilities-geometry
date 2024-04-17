@@ -38,13 +38,13 @@ public class ISCConvex implements Response
 	 */
 	public ISCConvex(ConvexSet s, ConvexSet t)
 	{
-		dim = src.Dimension();
+		src = s;
+		tgt = t;
+		
+		dim = s.Dimension();
 		ConvexSet diff = difference();
 		Vector o = Vectors.create(dim);
 		rsp = diff.contain(o);
-		
-		src = s;
-		tgt = t;
 	}
 
 	
