@@ -5,6 +5,8 @@ import waffles.utils.algebra.elements.linear.vector.Vectors;
 import waffles.utils.geom.Collidable;
 import waffles.utils.geom.Collision.Response;
 import waffles.utils.geom.collidable.axial.cuboid.HyperCuboid;
+import waffles.utils.geom.collidable.convex.ConvexSet.Extremum;
+import waffles.utils.geom.collidable.fixed.Point;
 import waffles.utils.geom.utilities.Geometries;
 import waffles.utils.tools.primitives.Array;
 import waffles.utils.tools.primitives.Floats;
@@ -99,6 +101,23 @@ public class ISCCuboid implements Response
 		}
 		
 		return null;
+	}
+	
+	@Override
+	public Point Contact()
+	{
+		if(hasImpact())
+		{
+			Vector pnt = Penetration();
+			Extremum ext = tgt.Extremum();
+			Vector v = ext.along(pnt.times(+1f));
+			return new Point(v, 1f);
+		}
+
+		Vector dst = Distance();
+		Extremum ext = tgt.Extremum();
+		Vector v = ext.along(dst.times(-1f));
+		return new Point(v, 1f);
 	}
 
 	

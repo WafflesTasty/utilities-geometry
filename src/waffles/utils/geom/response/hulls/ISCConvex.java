@@ -6,6 +6,7 @@ import waffles.utils.geom.Collidable;
 import waffles.utils.geom.Collision.Response;
 import waffles.utils.geom.bounds.Bounds;
 import waffles.utils.geom.collidable.convex.ConvexSet;
+import waffles.utils.geom.collidable.fixed.Point;
 import waffles.utils.geom.spatial.maps.GlobalMap;
 import waffles.utils.geom.utilities.Geometries;
 import waffles.utils.tools.primitives.Floats;
@@ -22,6 +23,7 @@ import waffles.utils.tools.primitives.Floats;
  */
 public class ISCConvex implements Response
 {
+	private int dim;
 	private Response rsp;
 	private ConvexSet src, tgt;
 	
@@ -36,6 +38,11 @@ public class ISCConvex implements Response
 	 */
 	public ISCConvex(ConvexSet s, ConvexSet t)
 	{
+		dim = src.Dimension();
+		ConvexSet diff = difference();
+		Vector o = Vectors.create(dim);
+		rsp = diff.contain(o);
+		
 		src = s;
 		tgt = t;
 	}
@@ -49,18 +56,12 @@ public class ISCConvex implements Response
 			return null;
 		}
 		
-		int dim = src.Dimension();
 		return Geometries.Void(dim);
 	}
 	
 	@Override
 	public boolean hasImpact()
 	{		
-		if(rsp == null)
-		{
-			rsp = computeResponse();
-		}
-
 		return rsp.hasImpact();
 	}
 
@@ -83,6 +84,12 @@ public class ISCConvex implements Response
 			return rsp.Distance();
 		}
 
+		return null;
+	}
+	
+	@Override
+	public Point Contact()
+	{
 		return null;
 	}
 
@@ -175,8 +182,6 @@ public class ISCConvex implements Response
 					return v1.minus(v2);
 				};
 			}
-			
-
 		};
 	}
 }

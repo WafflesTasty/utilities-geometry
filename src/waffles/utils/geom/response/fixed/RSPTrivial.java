@@ -4,6 +4,7 @@ import waffles.utils.algebra.elements.linear.vector.Vector;
 import waffles.utils.algebra.elements.linear.vector.Vectors;
 import waffles.utils.geom.Collidable;
 import waffles.utils.geom.Collision.Response;
+import waffles.utils.geom.collidable.fixed.Point;
 
 /**
  * An {@code RSPTrivial} computes a trivial intersection with the universe.
@@ -52,6 +53,13 @@ public class RSPTrivial implements Response
 	public Vector Distance()
 	{
 		return null;
+	}
+	
+	@Override
+	public Point Contact()
+	{
+		Vector pnt = Penetration();
+		return new Point(pnt, 1f);
 	}
 	
 	@Override

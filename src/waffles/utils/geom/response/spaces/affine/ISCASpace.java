@@ -108,6 +108,12 @@ public class ISCASpace implements Response
 	}
 	
 	@Override
+	public Point Contact()
+	{
+		return null;
+	}
+	
+	@Override
 	public int Cost()
 	{
 		int rDim = src.Dimension();

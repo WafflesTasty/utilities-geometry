@@ -6,6 +6,7 @@ import waffles.utils.geom.Collision.Response;
 import waffles.utils.geom.collidable.Geometrical;
 import waffles.utils.geom.collidable.Geometry;
 import waffles.utils.geom.collidable.convex.hulls.Hull;
+import waffles.utils.geom.collidable.fixed.Point;
 import waffles.utils.geom.spatial.maps.GlobalMap;
 import waffles.utils.geom.utilities.Geometries;
 
@@ -14,7 +15,7 @@ import waffles.utils.geom.utilities.Geometries;
  *
  * @author Waffles
  * @since 12 May 2021
- * @version 1.0
+ * @version 1.1
  * 
  * 
  * @see Response
@@ -68,25 +69,41 @@ public class ISCHull implements Response
 	@Override
 	public Vector Penetration()
 	{
-		if(rsp == null)
+		if(hasImpact())
 		{
-			rsp = computeResponse();
+			Vector pnt = rsp.Penetration();
+			GlobalMap map = src.Transform();
+			return (Vector) map.map(pnt);
 		}
 		
-		GlobalMap map = src.Transform();
-		return (Vector) map.map(rsp.Penetration());
+		return null;
 	}
 
 	@Override
 	public Vector Distance()
 	{
-		if(rsp == null)
+		if(!hasImpact())
 		{
-			rsp = computeResponse();
+			Vector dst = rsp.Distance();
+			GlobalMap map = src.Transform();
+			return (Vector) map.map(dst);
 		}
-		
-		GlobalMap map = src.Transform();
-		return (Vector) map.map(rsp.Distance());
+
+		return null;
+	}
+	
+	@Override
+	public Point Contact()
+	{
+		Point cnt = rsp.Contact();
+		if(cnt != null)
+		{
+			GlobalMap map = src.Transform();
+			cnt = (Point) map.map(cnt);
+			return cnt;
+		}
+
+		return null;
 	}
 	
 	@Override

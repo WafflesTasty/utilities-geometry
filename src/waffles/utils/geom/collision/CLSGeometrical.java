@@ -8,9 +8,9 @@ import waffles.utils.geom.collidable.fixed.Point;
 import waffles.utils.geom.collidable.spaces.ASpace;
 import waffles.utils.geom.collidable.spaces.VSpace;
 import waffles.utils.geom.response.CNTPoint;
-import waffles.utils.geom.response.ISCASpace;
 import waffles.utils.geom.response.ISCGeometric;
 import waffles.utils.geom.response.ISCHull;
+import waffles.utils.geom.response.spaces.ISCASpace;
 
 /**
  * The {@code CLSGeometrical} class defines collision responses for {@code Geometrical} objects.

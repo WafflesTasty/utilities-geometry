@@ -1,4 +1,4 @@
-package waffles.utils.geom.response.spaces;
+package waffles.utils.geom.collision.spaces;
 
 import waffles.utils.geom.Collidable;
 import waffles.utils.geom.Collision;

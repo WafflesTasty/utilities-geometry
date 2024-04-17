@@ -15,7 +15,7 @@ import waffles.utils.geom.utilities.Geometries;
  *
  * @author Waffles
  * @since 12 May 2021
- * @version 1.0
+ * @version 1.1
  * 
  * 
  * @see Response
@@ -95,6 +95,17 @@ public class INHConvex implements Response
 		}
 		
 		return rspv.Distance();
+	}
+	
+	@Override
+	public Point Contact()
+	{
+		if(rspv == null)
+		{
+			rspv = computeVectors();
+		}
+		
+		return rspv.Contact();
 	}
 
 	@Override

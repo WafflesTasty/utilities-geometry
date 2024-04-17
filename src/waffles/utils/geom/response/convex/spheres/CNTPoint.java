@@ -97,6 +97,17 @@ public class CNTPoint implements Response
 	}
 	
 	@Override
+	public Point Contact()
+	{
+		if(hasImpact())
+		{
+			return new Point(tgt, 1f);
+		}
+		
+		return null;
+	}
+	
+	@Override
 	public int Cost()
 	{
 		return 3 * src.Dimension();

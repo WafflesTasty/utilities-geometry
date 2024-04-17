@@ -96,6 +96,12 @@ public class INHConvex implements Response
 		
 		return rspv.Distance();
 	}
+	
+	@Override
+	public Point Contact()
+	{
+		return null;
+	}
 
 	@Override
 	public int Cost()

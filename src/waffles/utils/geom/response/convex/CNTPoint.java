@@ -94,6 +94,12 @@ public class CNTPoint implements Response
 	}
 	
 	@Override
+	public Point Contact()
+	{
+		return null;
+	}
+	
+	@Override
 	public int Cost()
 	{
 		int dim = src.Dimension();

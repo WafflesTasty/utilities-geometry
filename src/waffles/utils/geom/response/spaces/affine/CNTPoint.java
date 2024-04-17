@@ -20,8 +20,8 @@ import waffles.utils.geom.utilities.Geometries;
  */
 public class CNTPoint implements Response
 {
+	private int dim;
 	private Point tgt;
-	private ASpace src;
 	private Response rsp;
 	
 	/**
@@ -36,7 +36,11 @@ public class CNTPoint implements Response
 	 */
 	public CNTPoint(ASpace s, Point p)
 	{
-		src = s;
+		VSpace dir = s.Direction();
+		Vector q = p.minus(s.Origin());
+		
+		rsp = dir.contain(q);
+		dim = s.Dimension();
 		tgt = p;
 	}
 
@@ -49,59 +53,30 @@ public class CNTPoint implements Response
 			return tgt;
 		}
 		
-		int dim = src.Dimension();
 		return Geometries.Void(dim);
 	}
 	
 	@Override
 	public boolean hasImpact()
 	{			
-		if(rsp == null)
-		{
-			rsp = computeResponse();
-		}
-		
 		return rsp.hasImpact();
 	}
 	
 	@Override
 	public Vector Penetration()
 	{
-		if(rsp == null)
-		{
-			rsp = computeResponse();
-		}
-		
 		return rsp.Penetration();
 	}
 
 	@Override
 	public Vector Distance()
 	{
-		if(rsp == null)
-		{
-			rsp = computeResponse();
-		}
-		
 		return rsp.Distance();
 	}
 	
 	@Override
 	public int Cost()
 	{
-		if(rsp == null)
-		{
-			rsp = computeResponse();
-		}
-		
 		return rsp.Cost();
-	}
-	
-	
-	Response computeResponse()
-	{
-		VSpace dir = src.Direction();
-		Vector p = tgt.minus(src.Origin());
-		return dir.contain(p);
 	}
 }

@@ -4,6 +4,8 @@ import waffles.utils.algebra.elements.linear.vector.Vector;
 import waffles.utils.algebra.elements.linear.vector.Vectors;
 import waffles.utils.geom.Collision.Response;
 import waffles.utils.geom.collidable.axial.cuboid.HyperCuboid;
+import waffles.utils.geom.collidable.convex.ConvexSet.Extremum;
+import waffles.utils.geom.collidable.fixed.Point;
 import waffles.utils.tools.primitives.Array;
 import waffles.utils.tools.primitives.Floats;
 import waffles.utils.tools.primitives.Integers;
@@ -78,6 +80,28 @@ public class CNTCuboid implements Response
 		}
 		
 		return dst;
+	}
+	
+	@Override
+	public Point Contact()
+	{
+		Vector pnt = Penetration();
+		if(pnt != null)
+		{
+			Extremum ext = src.Extremum();
+			Vector v = ext.along(pnt.times(+1f));
+			return new Point(v.plus(pnt), 1f);
+		}
+		
+		Vector dst = Distance();
+		if(dst != null)
+		{
+			Extremum ext = src.Extremum();
+			Vector v = ext.along(dst.times(-1f));
+			return new Point(v.plus(dst), 1f);
+		}
+		
+		return null;
 	}
 	
 	@Override

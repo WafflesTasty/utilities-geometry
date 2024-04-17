@@ -1,10 +1,11 @@
-package waffles.utils.geom.response;
+package waffles.utils.geom.response.spaces;
 
 import waffles.utils.algebra.elements.linear.vector.Vector;
 import waffles.utils.geom.Collidable;
 import waffles.utils.geom.Collision.Response;
 import waffles.utils.geom.collidable.Geometrical;
 import waffles.utils.geom.collidable.Geometry;
+import waffles.utils.geom.collidable.fixed.Point;
 import waffles.utils.geom.collidable.spaces.ASpace;
 import waffles.utils.geom.collidable.spaces.VSpace;
 import waffles.utils.geom.spatial.maps.GlobalMap;
@@ -15,16 +16,16 @@ import waffles.utils.geom.utilities.Geometries;
  *
  * @author Waffles
  * @since 12 May 2021
- * @version 1.0
+ * @version 1.1
  * 
  * 
  * @see Response
  */
 public class ISCASpace implements Response
 {
-	private ASpace tgt;
+	private int dim;
 	private Response rsp;
-	private Geometrical src;
+	private GlobalMap map;
 	
 	/**
 	 * Creates a new {@code ISCHull}.
@@ -38,8 +39,11 @@ public class ISCASpace implements Response
 	 */
 	public ISCASpace(Geometrical s, ASpace t)
 	{
-		src = s;
-		tgt = t;
+		map = s.Transform();
+		Geometry shape = s.Shape();
+		ASpace h = (ASpace) map.unmap(t);
+		rsp = shape.intersect(h);
+		dim = s.Dimension();
 	}
 	
 	/**
@@ -66,59 +70,55 @@ public class ISCASpace implements Response
 			return null;
 		}
 		
-		int dim = src.Dimension();
 		return Geometries.Void(dim);
 	}
 	
 	@Override
 	public boolean hasImpact()
 	{			
-		if(rsp == null)
-		{
-			rsp = computeResponse();
-		}
-		
 		return rsp.hasImpact();
 	}
 	
 	@Override
 	public Vector Penetration()
 	{
-		if(rsp == null)
+		if(hasImpact())
 		{
-			rsp = computeResponse();
+			Vector pnt = rsp.Penetration();
+			return (Vector) map.map(pnt);
 		}
-		
-		GlobalMap map = src.Transform();
-		return (Vector) map.map(rsp.Penetration());
+
+		return null;
 	}
 
 	@Override
 	public Vector Distance()
 	{
-		if(rsp == null)
+		if(!hasImpact())
 		{
-			rsp = computeResponse();
+			Vector dst = rsp.Distance();
+			return (Vector) map.map(dst);
 		}
-		
-		GlobalMap map = src.Transform();
-		return (Vector) map.map(rsp.Distance());
+
+		return null;
+	}
+	
+	@Override
+	public Point Contact()
+	{
+		Point cnt = rsp.Contact();
+		if(cnt != null)
+		{
+			cnt = (Point) map.map(cnt);
+			return cnt;
+		}
+
+		return null;
 	}
 	
 	@Override
 	public int Cost()
 	{
-		int dim = src.Dimension();
 		return rsp.Cost() + 2 * dim * (dim - 1);
-	}
-	
-	
-	Response computeResponse()
-	{
-		Geometry s = src.Shape();
-		GlobalMap map = src.Transform();
-		ASpace h = (ASpace) map.unmap(tgt);
-		
-		return s.intersect(h);
 	}
 }

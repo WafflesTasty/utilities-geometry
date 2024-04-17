@@ -1,6 +1,7 @@
 package waffles.utils.geom;
 
 import waffles.utils.algebra.elements.linear.vector.Vector;
+import waffles.utils.geom.collidable.fixed.Point;
 import waffles.utils.geom.utilities.Geometries;
 import waffles.utils.tools.primitives.Integers;
 
@@ -30,6 +31,19 @@ public interface Collision
 		 */
 		public abstract boolean hasImpact();
 		
+		
+		/**
+		 * Returns a point of collision contact.
+		 * 
+		 * @return  a contact point
+		 * 
+		 * 
+		 * @see Point
+		 */
+		public default Point Contact()
+		{
+			return null;
+		}
 		
 		/**
 		 * Returns the minimum collision distance.

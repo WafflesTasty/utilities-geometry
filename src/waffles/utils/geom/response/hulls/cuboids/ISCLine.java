@@ -4,6 +4,7 @@ import waffles.utils.algebra.elements.linear.vector.Vector;
 import waffles.utils.geom.Collidable;
 import waffles.utils.geom.Collision.Response;
 import waffles.utils.geom.collidable.axial.cuboid.HyperCuboid;
+import waffles.utils.geom.collidable.fixed.Point;
 import waffles.utils.geom.collidable.spaces.lines.Line;
 import waffles.utils.geom.utilities.Geometries;
 import waffles.utils.tools.primitives.Floats;
@@ -74,6 +75,12 @@ public class ISCLine implements Response
 	
 	@Override
 	public Vector Distance()
+	{
+		return null;
+	}
+	
+	@Override
+	public Point Contact()
 	{
 		return null;
 	}

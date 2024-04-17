@@ -91,6 +91,12 @@ public class CNTASpace implements Response
 	}
 	
 	@Override
+	public Point Contact()
+	{
+		return null;
+	}
+	
+	@Override
 	public int Cost()
 	{
 		return rsp1.Cost()

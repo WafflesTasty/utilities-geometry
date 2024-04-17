@@ -4,6 +4,7 @@ import waffles.utils.algebra.elements.linear.vector.Vector;
 import waffles.utils.geom.Collidable;
 import waffles.utils.geom.Collision.Response;
 import waffles.utils.geom.collidable.axial.AxialShape;
+import waffles.utils.geom.collidable.fixed.Point;
 import waffles.utils.geom.collidable.geometric.AxisAligned;
 import waffles.utils.geom.spatial.maps.axial.AxialMap;
 import waffles.utils.geom.utilities.Geometries;
@@ -13,29 +14,35 @@ import waffles.utils.geom.utilities.Geometries;
  *
  * @author Waffles
  * @since 12 May 2021
- * @version 1.0
+ * @version 1.1
  * 
  * 
  * @see Response
  */
 public class ISCAlign implements Response
 {
+	private int dim;
 	private Response rsp;
-	private AxisAligned src, tgt;
 	
 	/**
 	 * Creates a new {@code ISCAlign}.
 	 * 
-	 * @param s  a source alignable
-	 * @param t  a target alignable
+	 * @param src  a source alignable
+	 * @param tgt  a target alignable
 	 * 
 	 * 
 	 * @see AxisAligned
 	 */
-	public ISCAlign(AxisAligned s, AxisAligned t)
+	public ISCAlign(AxisAligned src, AxisAligned tgt)
 	{
-		src = s;
-		tgt = t;
+		AxialMap m1 = tgt.Transform();
+		AxialMap m2 = src.Transform();
+	
+		AxialShape s1 = tgt.Shape().map(m1);
+		AxialShape s2 = src.Shape().map(m2);
+		
+		rsp = s2.intersect(s1);
+		dim = src.Dimension();
 	}
 
 	
@@ -47,64 +54,36 @@ public class ISCAlign implements Response
 			return null;
 		}
 		
-		int dim = src.Dimension();
 		return Geometries.Void(dim);
 	}
 	
 	@Override
 	public boolean hasImpact()
 	{			
-		if(rsp == null)
-		{
-			rsp = computeResponse();
-		}
-		
 		return rsp.hasImpact();
 	}
 
 	@Override
 	public Vector Penetration()
 	{
-		if(rsp == null)
-		{
-			rsp = computeResponse();
-		}
-		
 		return rsp.Penetration();
 	}
 	
 	@Override
 	public Vector Distance()
 	{
-		if(rsp == null)
-		{
-			rsp = computeResponse();
-		}
-		
 		return rsp.Distance();
+	}
+	
+	@Override
+	public Point Contact()
+	{
+		return rsp.Contact();
 	}
 	
 	@Override
 	public int Cost()
 	{
-		if(rsp == null)
-		{
-			rsp = computeResponse();
-		}
-		
-		int dim = src.Dimension();
 		return rsp.Cost() + 2 * dim;
-	}
-	
-	
-	private Response computeResponse()
-	{
-		AxialMap m1 = tgt.Transform();
-		AxialMap m2 = src.Transform();
-	
-		AxialShape s1 = tgt.Shape().map(m1);
-		AxialShape s2 = src.Shape().map(m2);
-		
-		return s2.intersect(s1);
 	}
 }

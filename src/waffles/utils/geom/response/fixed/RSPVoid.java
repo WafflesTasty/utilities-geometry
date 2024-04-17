@@ -4,6 +4,7 @@ import waffles.utils.algebra.elements.linear.vector.Vector;
 import waffles.utils.algebra.elements.linear.vector.Vectors;
 import waffles.utils.geom.Collidable;
 import waffles.utils.geom.Collision.Response;
+import waffles.utils.geom.collidable.fixed.Point;
 import waffles.utils.geom.utilities.Geometries;
 
 /**
@@ -52,6 +53,13 @@ public class RSPVoid implements Response
 	public Vector Distance()
 	{
 		return Vectors.create(dim);
+	}
+	
+	@Override
+	public Point Contact()
+	{
+		Vector dst = Distance();
+		return new Point(dst, 1f);
 	}
 	
 	@Override

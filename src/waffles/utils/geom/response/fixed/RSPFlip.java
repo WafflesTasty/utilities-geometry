@@ -3,6 +3,7 @@ package waffles.utils.geom.response.fixed;
 import waffles.utils.algebra.elements.linear.vector.Vector;
 import waffles.utils.geom.Collidable;
 import waffles.utils.geom.Collision.Response;
+import waffles.utils.geom.collidable.fixed.Point;
 
 /**
  * An {@code RSPFlip} defines a collision response which flips the
@@ -68,6 +69,12 @@ public class RSPFlip implements Response
 		}
 		
 		return null;
+	}
+	
+	@Override
+	public Point Contact()
+	{
+		return rsp.Contact();
 	}
 	
 	@Override

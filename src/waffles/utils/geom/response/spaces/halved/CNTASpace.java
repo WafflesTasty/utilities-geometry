@@ -87,6 +87,12 @@ public class CNTASpace implements Response
 		
 		return rsp.Distance();
 	}
+
+	@Override
+	public Point Contact()
+	{
+		return null;
+	}
 	
 	@Override
 	public int Cost()

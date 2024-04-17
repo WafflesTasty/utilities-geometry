@@ -8,7 +8,7 @@ import waffles.utils.algebra.elements.linear.vector.Vectors;
 import waffles.utils.geom.Collidable;
 import waffles.utils.geom.Collision;
 import waffles.utils.geom.collidable.fixed.Point;
-import waffles.utils.geom.response.spaces.CLSHSpace;
+import waffles.utils.geom.collision.spaces.CLSHSpace;
 
 /**
  * A {@code HSpace} defines a real-valued euclidian halfspace.

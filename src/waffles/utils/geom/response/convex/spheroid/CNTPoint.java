@@ -14,7 +14,7 @@ import waffles.utils.tools.primitives.Floats;
  *
  * @author Waffles
  * @since 12 May 2021
- * @version 1.0
+ * @version 1.1
  * 
  * 
  * @see Response
@@ -38,6 +38,7 @@ public class CNTPoint implements Response
 	 */
 	public CNTPoint(HyperSpheroid s, Point p)
 	{
+		rsp = new CLSConvex(s).contain(p);
 		src = s;
 		tgt = p;
 	}
@@ -69,23 +70,19 @@ public class CNTPoint implements Response
 	@Override
 	public Vector Penetration()
 	{
-		if(rsp == null)
-		{
-			rsp = computeResponse();
-		}
-		
 		return rsp.Penetration();
 	}
 
 	@Override
 	public Vector Distance()
 	{
-		if(rsp == null)
-		{
-			rsp = computeResponse();
-		}
-		
 		return rsp.Distance();
+	}
+	
+	@Override
+	public Point Contact()
+	{
+		return rsp.Contact();
 	}
 	
 	@Override
@@ -94,12 +91,7 @@ public class CNTPoint implements Response
 		return 5 * src.Dimension();
 	}
 	
-	
-	Response computeResponse()
-	{
-		return new CLSConvex(src).contain(tgt);
-	}
-	
+
 	boolean computeImpact()
 	{
 		int dim = src.Dimension();

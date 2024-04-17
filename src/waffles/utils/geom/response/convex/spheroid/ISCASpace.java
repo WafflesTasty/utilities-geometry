@@ -5,6 +5,7 @@ import waffles.utils.geom.Collidable;
 import waffles.utils.geom.Collision.Response;
 import waffles.utils.geom.collidable.axial.spheroid.HyperSphere;
 import waffles.utils.geom.collidable.axial.spheroid.HyperSpheroid;
+import waffles.utils.geom.collidable.fixed.Point;
 import waffles.utils.geom.collidable.spaces.ASpace;
 import waffles.utils.geom.collidable.spaces.VSpace;
 import waffles.utils.geom.spatial.maps.spatial.StandardMap;
@@ -16,16 +17,15 @@ import waffles.utils.geom.utilities.Transforms;
  *
  * @author Waffles
  * @since 12 May 2021
- * @version 1.0
+ * @version 1.1
  * 
  * 
  * @see Response
  */
 public class ISCASpace implements Response
 {
-	private ASpace tgt;
+	private int dim;
 	private Response rsp;
-	private HyperSpheroid src;
 	private StandardMap map;
 	
 	/**
@@ -40,8 +40,11 @@ public class ISCASpace implements Response
 	 */
 	public ISCASpace(HyperSpheroid s, ASpace t)
 	{
-		src = s;
-		tgt = t;
+		dim = s.Dimension();
+		map = Transforms.fromUSphere(s);
+		HyperSphere u = Geometries.Sphere(dim);
+		ASpace h = (ASpace) map.unmap(t);
+		rsp =  u.intersect(h);
 	}
 	
 	/**
@@ -68,59 +71,54 @@ public class ISCASpace implements Response
 			return null;
 		}
 		
-		int dim = src.Dimension();
 		return Geometries.Void(dim);
 	}
 	
 	@Override
 	public boolean hasImpact()
 	{			
-		if(rsp == null)
-		{
-			rsp = computeResponse();
-		}
-		
 		return rsp.hasImpact();
 	}
 	
 	@Override
 	public Vector Penetration()
 	{
-		if(rsp == null)
+		Vector pnt = rsp.Penetration();
+		if(pnt != null)
 		{
-			rsp = computeResponse();
+			return (Vector) map.map(pnt);
 		}
 		
-		return (Vector) map.map(rsp.Penetration());
+		return null;
 	}
 
 	@Override
 	public Vector Distance()
 	{
-		if(rsp == null)
+		Vector dst = rsp.Distance();
+		if(dst != null)
 		{
-			rsp = computeResponse();
+			return (Vector) map.map(dst);
 		}
 		
-		return (Vector) map.map(rsp.Distance());
+		return null;
+	}
+	
+	@Override
+	public Point Contact()
+	{
+		Point cnt = rsp.Contact();
+		if(cnt != null)
+		{
+			return (Point) map.map(cnt);
+		}
+		
+		return null;
 	}
 	
 	@Override
 	public int Cost()
 	{
-		int dim = src.Dimension();
 		return rsp.Cost() + 2 * dim * (dim - 1);
-	}
-	
-	
-	Response computeResponse()
-	{
-		int dim = src.Dimension();
-		
-		map = Transforms.fromUSphere(src);
-		HyperSphere s = Geometries.Sphere(dim);
-		ASpace h = (ASpace) map.unmap(tgt);
-		
-		return s.intersect(h);
 	}
 }

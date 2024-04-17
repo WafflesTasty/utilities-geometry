@@ -14,16 +14,17 @@ import waffles.utils.geom.utilities.Geometries;
  *
  * @author Waffles
  * @since 12 May 2021
- * @version 1.0
+ * @version 1.1
  * 
  * 
  * @see Response
  */
 public class CNTPoint implements Response
 {
+	private int dim;
 	private Point tgt;
 	private Response rsp;
-	private Geometrical src;
+	private GlobalMap map;
 	
 	/**
 	 * Creates a new {@code CNTPoint}.
@@ -37,7 +38,13 @@ public class CNTPoint implements Response
 	 */
 	public CNTPoint(Geometrical s, Point p)
 	{
-		src = s;
+		map = s.Transform();
+		
+		Point q = (Point) map.unmap(p);
+		Geometry shape = s.Shape();
+		rsp = shape.contain(q);
+		
+		dim = s.Dimension();
 		tgt = p;
 	}
 	
@@ -50,66 +57,55 @@ public class CNTPoint implements Response
 			return tgt;
 		}
 		
-		int dim = src.Dimension();
 		return Geometries.Void(dim);
 	}
 	
 	@Override
 	public boolean hasImpact()
 	{			
-		if(rsp == null)
-		{
-			rsp = computeResponse();
-		}
-		
 		return rsp.hasImpact();
 	}
 	
 	@Override
 	public Vector Penetration()
 	{
-		if(rsp == null)
+		if(hasImpact())
 		{
-			rsp = computeResponse();
+			Vector pnt = rsp.Penetration();
+			return (Vector) map.map(pnt);			
 		}
 
-		Vector pnt = rsp.Penetration();
-		GlobalMap map = src.Transform();
-		return (Vector) map.map(pnt);
+		return null;
 	}
 
 	@Override
 	public Vector Distance()
 	{
-		if(rsp == null)
+		if(!hasImpact())
 		{
-			rsp = computeResponse();
+			Vector dst = rsp.Distance();
+			return (Vector) map.map(dst);
 		}
 		
-		Vector dst = rsp.Distance();
-		GlobalMap map = src.Transform();
-		return (Vector) map.map(dst);
+		return null;
+	}
+	
+	@Override
+	public Point Contact()
+	{
+		Point cnt = rsp.Contact();
+		if(cnt != null)
+		{
+			cnt = (Point) map.map(cnt);
+			return cnt;
+		}
+
+		return null;
 	}
 	
 	@Override
 	public int Cost()
 	{
-		if(rsp == null)
-		{
-			rsp = computeResponse();
-		}
-		
-		int dim = src.Dimension();
 		return rsp.Cost() + dim * dim;
-	}
-	
-	
-	Response computeResponse()
-	{
-		Geometry shape = src.Shape();
-		GlobalMap map = src.Transform();
-
-		Point p = (Point) map.unmap(tgt);
-		return shape.contain(p);
 	}
 }

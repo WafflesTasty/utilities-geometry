@@ -4,6 +4,8 @@ import waffles.utils.algebra.elements.linear.vector.Vector;
 import waffles.utils.geom.Collidable;
 import waffles.utils.geom.Collision.Response;
 import waffles.utils.geom.collidable.axial.spheroid.HyperSphere;
+import waffles.utils.geom.collidable.convex.ConvexSet.Extremum;
+import waffles.utils.geom.collidable.fixed.Point;
 import waffles.utils.geom.collidable.spaces.ASpace;
 import waffles.utils.geom.collidable.spaces.VSpace;
 import waffles.utils.geom.utilities.Geometries;
@@ -20,6 +22,7 @@ import waffles.utils.geom.utilities.Geometries;
  */
 public class ISCASpace implements Response
 {
+	private Vector dst, pnt;
 	private HyperSphere src;
 	private Response rsp;
 	
@@ -86,24 +89,12 @@ public class ISCASpace implements Response
 	{
 		if(hasImpact())
 		{
-			if(rsp.hasImpact())
+			if(pnt == null)
 			{
-				Vector pnt = rsp.Penetration();
-
-				float r = src.Radius();
-				float l = pnt.norm();
-				l = (r + l) / l;
-				
-				return pnt.times(l);
+				pnt = computePenetration();
 			}
-			
-			Vector dst = rsp.Distance();
-			
-			float r = src.Radius();
-			float l = dst.norm();
-			l = (r - l) / l;
-			
-			return dst.times(l);
+						
+			return pnt;
 		}
 
 		return null;
@@ -114,16 +105,32 @@ public class ISCASpace implements Response
 	{
 		if(!hasImpact())
 		{
-			Vector dst = rsp.Distance();
+			if(dst == null)
+			{
+				dst = computeDistance();
+			}
 			
-			float r = src.Radius();
-			float l = dst.norm();
-			l = (r - l) / l;
-			
-			return dst.times(l);
+			return dst;
 		}
 		
 		return null;
+	}
+	
+	@Override
+	public Point Contact()
+	{
+		if(hasImpact())
+		{
+			Vector pnt = Penetration();
+			Extremum ext = src.Extremum();
+			Vector v = ext.along(pnt.times(-1f));
+			return new Point(v.plus(pnt), 1f);
+		}
+		
+		Vector dst = Distance();
+		Extremum ext = src.Extremum();
+		Vector v = ext.along(dst.times(+1f));
+		return new Point(v.plus(dst), 1f);
 	}
 	
 	@Override
@@ -131,5 +138,39 @@ public class ISCASpace implements Response
 	{
 		int dim = src.Dimension();
 		return rsp.Cost() + 2 * dim;
+	}
+	
+	
+	Vector computePenetration()
+	{
+		if(rsp.hasImpact())
+		{
+			Vector pnt = rsp.Penetration();
+			
+			float r = src.Radius();
+			float l = pnt.norm();
+			l = (r + l) / l;
+			
+			return pnt.times(l);
+		}
+		
+		Vector dst = rsp.Distance();
+		
+		float r = src.Radius();
+		float l = pnt.norm();
+		l = (r - l) / l;
+		
+		return pnt.times(l);
+	}
+	
+	Vector computeDistance()
+	{
+		Vector dst = rsp.Distance();
+		
+		float r = src.Radius();
+		float l = dst.norm();
+		l = (r - l) / l;
+		
+		return dst.times(l);
 	}
 }

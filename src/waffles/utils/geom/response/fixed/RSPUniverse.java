@@ -1,8 +1,10 @@
 package waffles.utils.geom.response.fixed;
 
 import waffles.utils.algebra.elements.linear.vector.Vector;
+import waffles.utils.algebra.elements.linear.vector.Vectors;
 import waffles.utils.geom.Collidable;
 import waffles.utils.geom.Collision.Response;
+import waffles.utils.geom.collidable.fixed.Point;
 import waffles.utils.geom.collidable.fixed.Universe;
 import waffles.utils.geom.utilities.Geometries;
 
@@ -67,13 +69,33 @@ public class RSPUniverse implements Response
 	@Override
 	public Vector Penetration()
 	{
+		if(hasImpact())
+		{
+			int dim = src.Dimension();
+			return Vectors.create(dim);			
+		}
+
 		return null;
 	}
 	
 	@Override
 	public Vector Distance()
 	{
+		if(!hasImpact())
+		{
+			int dim = src.Dimension();
+			return Vectors.create(dim);			
+		}
+
 		return null;
+	}
+	
+	@Override
+	public Point Contact()
+	{
+		int dim = src.Dimension();
+		Vector v = Vectors.create(dim);
+		return new Point(v, 1f);
 	}
 	
 	@Override

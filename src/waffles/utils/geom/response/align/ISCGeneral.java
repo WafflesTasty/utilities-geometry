@@ -4,6 +4,7 @@ import waffles.utils.algebra.elements.linear.vector.Vector;
 import waffles.utils.geom.Collidable;
 import waffles.utils.geom.Collision.Response;
 import waffles.utils.geom.collidable.axial.AxialShape;
+import waffles.utils.geom.collidable.fixed.Point;
 import waffles.utils.geom.collidable.geometric.AxisAligned;
 import waffles.utils.geom.spatial.maps.axial.AxialMap;
 import waffles.utils.geom.utilities.Geometries;
@@ -13,15 +14,15 @@ import waffles.utils.geom.utilities.Geometries;
  *
  * @author Waffles
  * @since 12 May 2021
- * @version 1.0
+ * @version 1.1
  * 
  * 
  * @see Response
  */
 public class ISCGeneral implements Response
 {
+	private int dim;
 	private Response rsp;
-	private AxisAligned src;
 	
 	/**
 	 * Creates a new {@code ISCGeneral}.
@@ -38,7 +39,7 @@ public class ISCGeneral implements Response
 		AxialMap map = s.Transform();
 		AxialShape set = s.Shape().map(map);
 		rsp = set.intersect(c);
-		src = s;
+		dim = s.Dimension();
 	}
 
 	
@@ -50,7 +51,6 @@ public class ISCGeneral implements Response
 			return null;
 		}
 		
-		int dim = src.Dimension();
 		return Geometries.Void(dim);
 	}
 	
@@ -73,9 +73,14 @@ public class ISCGeneral implements Response
 	}
 	
 	@Override
+	public Point Contact()
+	{
+		return rsp.Contact();
+	}
+	
+	@Override
 	public int Cost()
 	{
-		int dim = src.Dimension();
 		return rsp.Cost() + 2 * dim;
 	}
 }

@@ -3,6 +3,7 @@ package waffles.utils.geom.response.spaces.halved;
 import waffles.utils.algebra.elements.linear.vector.Vector;
 import waffles.utils.geom.Collision.Response;
 import waffles.utils.geom.collidable.convex.ConvexSet;
+import waffles.utils.geom.collidable.fixed.Point;
 import waffles.utils.geom.collidable.spaces.HSpace;
 
 /**
@@ -68,6 +69,12 @@ public class ISCConvex implements Response
 			return rsp.Distance();
 		}
 
+		return null;
+	}
+	
+	@Override
+	public Point Contact()
+	{
 		return null;
 	}
 	

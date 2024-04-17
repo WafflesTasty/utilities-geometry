@@ -4,6 +4,7 @@ import waffles.utils.algebra.elements.linear.vector.Vector;
 import waffles.utils.geom.Collidable;
 import waffles.utils.geom.Collision.Response;
 import waffles.utils.geom.collidable.axial.spheroid.HyperSphere;
+import waffles.utils.geom.collidable.fixed.Point;
 import waffles.utils.geom.utilities.Geometries;
 
 /**
@@ -18,7 +19,7 @@ import waffles.utils.geom.utilities.Geometries;
  */
 public class CNTSphere implements Response
 {
-	private Vector dst;
+	private Vector dst, v;
 	private HyperSphere src, tgt;	
 	private Boolean hasImpact;
 	
@@ -94,6 +95,12 @@ public class CNTSphere implements Response
 	}
 	
 	@Override
+	public Point Contact()
+	{
+		return new Point(v, 1f);
+	}
+	
+	@Override
 	public int Cost()
 	{
 		return 3 * src.Dimension() + 2;
@@ -109,23 +116,19 @@ public class CNTSphere implements Response
 		float r2 = tgt.Radius();
 		
 		
-		dst = c2.minus(c1);
-		float val = dst.normSqr();
+		v = c2.minus(c1);
+		float val = v.normSqr();
 		return val <= (r2 - r1) * (r2 - r1);
 	}
 	
 	Vector computeVector()
 	{
-		Vector c1 = src.Origin();
-		Vector c2 = tgt.Origin();
-		
+		computeImpact();
+		float norm = v.norm();		
 		float r1 = src.Radius();
-		float r2 = tgt.Radius();
-		
-		
-		dst = c2.minus(c1);
-		float norm = dst.norm();
+		float r2 = tgt.Radius();	
+
 		norm = (norm - r1 - r2) / norm;
-		return dst.times(norm);
+		return v.times(norm);
 	}
 }

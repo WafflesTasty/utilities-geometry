@@ -5,6 +5,7 @@ import waffles.utils.algebra.elements.linear.vector.Vector;
 import waffles.utils.algebra.elements.linear.vector.Vectors;
 import waffles.utils.geom.Collidable;
 import waffles.utils.geom.Collision.Response;
+import waffles.utils.geom.collidable.fixed.Point;
 import waffles.utils.geom.collidable.spaces.HSpace;
 import waffles.utils.geom.collidable.spaces.VSpace;
 import waffles.utils.geom.utilities.Geometries;
@@ -88,6 +89,12 @@ public class CNTVSpace implements Response
 
 	@Override
 	public Vector Distance()
+	{
+		return null;
+	}
+	
+	@Override
+	public Point Contact()
 	{
 		return null;
 	}

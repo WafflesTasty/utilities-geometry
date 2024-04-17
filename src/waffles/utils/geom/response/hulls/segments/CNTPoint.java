@@ -23,7 +23,7 @@ public class CNTPoint implements Response
 	private Float min;
 	private Segment src;
 	private Boolean hasImpact;
-	private Vector tgt;
+	private Point tgt;
 	
 	/**
 	 * Creates a new {@code CNTPoint}.
@@ -38,7 +38,7 @@ public class CNTPoint implements Response
 	public CNTPoint(Segment s, Point p)
 	{
 		src = s;
-		tgt = p.Generator();
+		tgt = p;
 	}
 
 	
@@ -47,7 +47,7 @@ public class CNTPoint implements Response
 	{
 		if(hasImpact())
 		{
-			return new Point(tgt);
+			return tgt;
 		}
 		
 		int dim = src.Dimension();
@@ -86,6 +86,12 @@ public class CNTPoint implements Response
 		
 		return null;
 	}
+	
+	@Override
+	public Point Contact()
+	{
+		return tgt;
+	}
 
 	@Override
 	public int Cost()
@@ -99,8 +105,9 @@ public class CNTPoint implements Response
 		int dim = src.Dimension();
 		Vector p = src.P1().Generator();
 		Vector q = src.P2().Generator();
+		Vector x = tgt.Generator();
 		
-		Vector xp = tgt.minus(p);
+		Vector xp = x.minus(p);
 		Vector qp = q.minus(p);
 
 
