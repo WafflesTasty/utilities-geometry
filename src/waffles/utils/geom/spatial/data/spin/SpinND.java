@@ -5,6 +5,7 @@ import waffles.utils.algebra.elements.linear.matrix.Matrices;
 import waffles.utils.algebra.elements.linear.matrix.Matrix;
 import waffles.utils.algebra.elements.linear.matrix.types.orthogonal.Orthogonal;
 import waffles.utils.algebra.elements.linear.vector.Vector;
+import waffles.utils.tools.errors.NotImplementedError;
 
 /**
  * A {@code SpinND} defines an n-dimensional rotation spin.
@@ -84,7 +85,13 @@ public class SpinND implements Spin
 	{
 		return basis;
 	}
-		
+	
+	
+	@Override
+	public SpinND times(float val)
+	{
+		throw new NotImplementedError();
+	}
 	
 	@Override
 	public SpinND compose(Spin s)

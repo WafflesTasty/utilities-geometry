@@ -85,6 +85,14 @@ public interface Spin
 	public abstract Spin invert();
 	
 	/**
+	 * Scales the {@code Spin} with a scalar value.
+	 * 
+	 * @param val  a scalar value
+	 * @return  a scaled spin
+	 */
+	public abstract Spin times(float val);
+	
+	/**
 	 * Composes the spin with another {@code Spin}.
 	 * 
 	 * @param spin  a spin to compose with

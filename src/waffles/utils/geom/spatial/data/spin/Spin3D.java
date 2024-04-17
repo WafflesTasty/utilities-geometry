@@ -134,17 +134,6 @@ public class Spin3D implements Spin
 	
 	
 	/**
-	 * Scales the {@code Spin3D} with a value.
-	 * 
-	 * @param val  a scalar value
-	 * @return  a scaled spin
-	 */
-	public Spin3D times(float val)
-	{
-		return new Spin3D(versor.Axis(), versor.Angle() * val);
-	}
-	
-	/**
 	 * Returns a {@code Spin3D} versor quaternion.
 	 * 
 	 * @return  a spin versor
@@ -211,6 +200,12 @@ public class Spin3D implements Spin
 		);
 	}
 	
+	
+	@Override
+	public Spin3D times(float val)
+	{
+		return new Spin3D(versor.Axis(), versor.Angle() * val);
+	}
 			
 	@Override
 	public Spin3D compose(Spin s)
@@ -242,14 +237,5 @@ public class Spin3D implements Spin
 		float a = -versor.Angle();
 		Vector3 v = versor.Axis();
 		return new Spin3D(v, a);
-		
-//		float x = -versor.X();
-//		float y = -versor.Y();
-//		float z = -versor.Z();
-//		float w = +versor.W();
-//		System.out.println(x + ":" + y + ":" + z + ":" + w);
-//		Quaternion q = new Quaternion(x, y, z, w);
-//		
-//		return new Spin3D(q);
 	}
 }

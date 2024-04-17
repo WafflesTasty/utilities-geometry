@@ -69,18 +69,7 @@ public class Spin2D implements Spin
 		this(0f);
 	}
 	
-	
-	/**
-	 * Scales the {@code Spin2D} with a value.
-	 * 
-	 * @param val  a scalar value
-	 * @return  a scaled spin
-	 */
-	public Spin2D times(float val)
-	{
-		return new Spin2D(angle * val);
-	}
-	
+		
 	/**
 	 * Returns a forward {@code Spin} vector.
 	 * 
@@ -125,6 +114,12 @@ public class Spin2D implements Spin
 		return angle;
 	}
 	
+	
+	@Override
+	public Spin2D times(float val)
+	{
+		return new Spin2D(angle * val);
+	}
 	
 	@Override
 	public Spin2D compose(Spin s)
