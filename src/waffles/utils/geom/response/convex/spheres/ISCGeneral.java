@@ -140,10 +140,10 @@ public class ISCGeneral implements Response
 		Vector dst = rsp.Distance();
 		
 		float r = src.Radius();
-		float l = pnt.norm();
+		float l = dst.norm();
 		l = (r - l) / l;
 		
-		return pnt.times(l);
+		return dst.times(l);
 	}
 	
 	Vector computeDistance()
