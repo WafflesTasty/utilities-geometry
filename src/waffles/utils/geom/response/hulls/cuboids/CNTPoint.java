@@ -129,14 +129,14 @@ public class CNTPoint implements Response
 			float lVal = xi / m - pi + si / 2;
 			if(Floats.abs(lVal) < Floats.abs(lMin))
 			{
-				lVal = lMin;
+				lMin = lVal;
 				lDim = i;
 			}
 			
 			float uVal = xi / m - pi - si / 2;
 			if(Floats.abs(uVal) < Floats.abs(uMin))
 			{
-				uVal = uMin;
+				uMin = uVal;
 				uDim = i;
 			}
 		}
