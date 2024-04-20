@@ -32,7 +32,7 @@ import waffles.utils.tools.primitives.Integers;
 public class OrtNode<O extends Bounded> extends Node implements HyperCuboid, MutableSet<O>
 {		
 	private Axial axis;
-	private List<O> objects, refs;
+	private List<O> objects;
 			
 	/**
 	 * Creates a new {@code OrtNode}.
@@ -48,7 +48,6 @@ public class OrtNode<O extends Bounded> extends Node implements HyperCuboid, Mut
 	{
 		super(tree);
 		objects = new List<>();
-		refs = new List<>();
 		axis = a;
 	}
 	
@@ -81,20 +80,7 @@ public class OrtNode<O extends Bounded> extends Node implements HyperCuboid, Mut
 	{
 		return objects;
 	}
-	
-	/**
-	 * Returns the references in the {@code OrtNode}.
-	 * 
-	 * @return  a reference list
-	 * 
-	 * 
-	 * @see List
-	 */
-	public List<O> References()
-	{
-		return refs;
-	}
-	
+		
 	/**
 	 * Checks if an object is in the {@code OrtNode}.
 	 * 
