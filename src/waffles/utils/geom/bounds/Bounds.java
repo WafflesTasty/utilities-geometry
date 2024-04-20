@@ -18,6 +18,26 @@ import waffles.utils.geom.utilities.Geometries;
 public interface Bounds
 {
 	/**
+	 * The {@code Type} enum defines all types of bounding volumes.
+	 *
+	 * @author Waffles
+	 * @since 20 Apr 2024
+	 * @version 1.1
+	 */
+	public static enum Type
+	{
+		/**
+		 * A bounding ball.
+		 */
+		BALL,
+		/**
+		 * A bounding box.
+		 */
+		BOX;
+	}
+	
+	
+	/**
 	 * Returns the minimum of the {@code Bounds}.
 	 * 
 	 * @return  a minimum vector
