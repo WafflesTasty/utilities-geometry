@@ -57,7 +57,12 @@ public class CNTVSpace implements Response
 	{			
 		if(hasImpact == null)
 		{
-			hasImpact = computeImpact();
+			sum = computeSum();
+
+			int d1 = src.Dimension();
+			int d2 = sum.Dimension();
+			
+			hasImpact = d1 == d2;
 		}
 		
 		return hasImpact;
@@ -84,6 +89,11 @@ public class CNTVSpace implements Response
 	@Override
 	public int Cost()
 	{
+		if(sum == null)
+		{
+			sum = computeSum();
+		}
+		
 		int d1 = src.Dimension();
 		int d2 = sum.Dimension();
 		
@@ -94,13 +104,8 @@ public class CNTVSpace implements Response
 	}
 	
 	
-	boolean computeImpact()
+	VSpace computeSum()
 	{
-		sum = src.add(tgt);
-		
-		int d1 = src.Dimension();
-		int d2 = sum.Dimension();
-		
-		return d1 == d2;
+		return src.add(tgt);
 	}
 }
