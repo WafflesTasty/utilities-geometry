@@ -133,6 +133,16 @@ public class BEPSpace<E extends Enum<E>> implements Rooted, IndexSpace<BEPSNode<
 		tree.remove(crds);
 	}
 	
+	/**
+	 * Fills a value in the {@code BEPSpace}.
+	 * 
+	 * @param val  an enum value
+	 */
+	public void fill(E val)
+	{
+		tree.clear(val);
+	}
+	
 
 	@Override
 	public BEPSNode<E> Root()
