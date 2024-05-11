@@ -72,7 +72,7 @@ public class BEPSpace<E extends Enum<E>> implements Rooted, IndexSpace<BEPSNode<
 	 */
 	public Iterable<BEPSNode<E>> query(E val)
 	{
-		return tree.nodes(val);
+		return tree.Nodes(val);
 	}
 	
 	/**
@@ -140,7 +140,7 @@ public class BEPSpace<E extends Enum<E>> implements Rooted, IndexSpace<BEPSNode<
 	 */
 	public void fill(E val)
 	{
-		tree.clear(val);
+		tree.fill(val);
 	}
 	
 
