@@ -8,7 +8,7 @@ import waffles.utils.geom.spaces.index.tiles.maps.TileToWorld;
 import waffles.utils.geom.spaces.index.tiles.maps.WorldToTile;
 import waffles.utils.geom.spatial.maps.GlobalMap;
 import waffles.utils.geom.utilities.Geometries;
-import waffles.utils.tools.patterns.semantics.Ordered;
+import waffles.utils.tools.patterns.semantics.Coordinated;
 
 /**
  * A {@code Tiled} object can be contained in an n-dimensional {@code TiledSpace}.
@@ -18,10 +18,10 @@ import waffles.utils.tools.patterns.semantics.Ordered;
  * @version 1.1
  * 
  * 
+ * @see Coordinated
  * @see Geometrical
- * @see Ordered
  */
-public interface Tiled extends Geometrical, Ordered
+public interface Tiled extends Coordinated, Geometrical
 {
 	/**
 	 * A {@code IndexTransform} defines a global map for a {@code Tiled}.
@@ -67,14 +67,7 @@ public interface Tiled extends Geometrical, Ordered
 		}
 	}
 	
-	
-	/**
-	 * Returns the coordinates of the {@code Tiled}.
-	 * 
-	 * @return  a coordinate set
-	 */
-	public abstract int[] Coordinates();
-	
+
 	/**
 	 * Returns the parent space of the {@code Tiled}.
 	 * 
@@ -96,11 +89,5 @@ public interface Tiled extends Geometrical, Ordered
 	public default HyperCube Shape()
 	{
 		return Geometries.Cube(Order());
-	}
-	
-	@Override
-	public default int Order()
-	{
-		return Coordinates().length;
 	}
 }
