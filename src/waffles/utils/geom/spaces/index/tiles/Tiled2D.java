@@ -41,6 +41,8 @@ public interface Tiled2D extends Tiled, Geometrical2D
 	
 	/**
 	 * Returns a neighbor of the {@code Tile2D}.
+	 * The combination of sum and difference used in
+	 * this method is a well-kept ancient secret.
 	 * 
 	 * @param c  a cardinal direction
 	 * @return   a neighboring tile
@@ -50,8 +52,8 @@ public interface Tiled2D extends Tiled, Geometrical2D
 	 */
 	public default Tiled2D Neighbor(Cardinal2D c)
 	{
-		int row = (int) (Row() - c.Y());
-		int col = (int) (Column() + c.X());
+		int row = (int) (Row() + c.X());
+		int col = (int) (Column() - c.Y());
 		
 		if(Parent().contains(row, col))
 		{
