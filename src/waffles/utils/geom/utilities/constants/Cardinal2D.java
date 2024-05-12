@@ -52,7 +52,21 @@ public final class Cardinal2D extends Vector2
 	 * The southeast {@code Cardinal2D} points along the fourth bisector.
 	 */
 	public static Cardinal2D SOUTHEAST 	= new Cardinal2D( 1,-1);
-		
+	
+	
+	/**
+	 * Flips a {@code Cardinal2D} in the opposite direction.
+	 * 
+	 * @param c  a cardinal direction
+	 * @return   a cardinal opposite
+	 */
+	public static Cardinal2D flip(Cardinal2D c)
+	{
+		Vector2 v = c.times(-1f);
+		int x = (int) v.X();
+		int y = (int) v.Y();
+		return create(x, y);
+	}
 
 	/**
 	 * Creates a {@code Cardinal2D} in a given direction.
@@ -79,7 +93,7 @@ public final class Cardinal2D extends Vector2
 		
 		return null;
 	}
-	
+		
 	/**
 	 * Returns an array that contains every perpendicular {@code Cardinal2D}.
 	 * 
