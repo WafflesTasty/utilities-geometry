@@ -22,7 +22,7 @@ public interface Manifold<O> extends Bounded, AtomicSet<O>, Space<O>
 	/**
 	 * Iterates over all relevant pairs in the {@code Manifold}.
 	 * Preferably, this method iterates over all unique
-	 * pairs of potentially intersectin objects.
+	 * pairs of potentially intersecting objects.
 	 * 
 	 * @return  a pair iterable
 	 * 
