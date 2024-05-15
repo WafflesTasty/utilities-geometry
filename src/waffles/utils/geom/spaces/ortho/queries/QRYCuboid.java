@@ -96,13 +96,16 @@ public class QRYCuboid<O extends Bounded> implements Iterator<O>
 	
 	private void queue(OrtNode<O> n)
 	{
+		int dim = n.Dimension();
 		Vector c = n.Bounds().Center();
 		Vector min = tgt.Bounds().Minimum();
 		Vector max = tgt.Bounds().Maximum();
-		int dim = n.Dimension();
+
+		// Don't put a 0 in the constructor.
+		// Java thinks it's a dimension instead.
+		List<Integer> list = new List<>();
+		list.add(0);
 		
-		
-		List<Integer> list = new List<>(0);
 		for(int i = 0; i < dim; i++)
 		{
 			int count = list.Count();
@@ -138,7 +141,7 @@ public class QRYCuboid<O extends Bounded> implements Iterator<O>
 	@Override
 	public boolean hasNext()
 	{
-		return next >= 0;
+		return 0 <= next;
 	}
 	
 	@Override

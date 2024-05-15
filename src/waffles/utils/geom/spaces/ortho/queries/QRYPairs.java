@@ -95,7 +95,7 @@ public class QRYPairs<O extends Bounded> implements Iterator<Pair<O, O>>
 		public Pair<O, O> next()
 		{			
 			O obj = node.Objects().get(key);
-			Pair<O, O> p = Source().createPair(obj, next);
+			Pair<O, O> p = src.createPair(obj, next);
 			next = findNext();
 			return p;
 		}
@@ -123,19 +123,6 @@ public class QRYPairs<O extends Bounded> implements Iterator<Pair<O, O>>
 		pairs = new Pairs(nodes.next());
 		next = findNext();
 	}
-	
-	/**
-	 * Returns the source of the {@code QRYPairs}.
-	 * 
-	 * @return a source tree
-	 * 
-	 * 
-	 * @see OrtTree
-	 */
-	public OrtTree<O> Source()
-	{
-		return src;
-	}
 
 	
 	@Override
@@ -161,7 +148,8 @@ public class QRYPairs<O extends Bounded> implements Iterator<Pair<O, O>>
 		
 		if(nodes.hasNext())
 		{
-			pairs = new Pairs(nodes.next());
+			OrtNode<O> next = nodes.next();
+			pairs = new Pairs(next);
 			return findNext();
 		}
 		
