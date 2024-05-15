@@ -139,8 +139,8 @@ public class ISCCuboid implements Response
 		int dim = Integers.min(d1, d2);		
 		for(int i = 0; i < dim; i++)
 		{
-			float val = Floats.abs(dlt.get(i));
-			if(val < vMin)
+			float val = dlt.get(i);
+			if(Floats.abs(val) < vMin)
 			{
 				vMin = val;
 				kMin = i;
