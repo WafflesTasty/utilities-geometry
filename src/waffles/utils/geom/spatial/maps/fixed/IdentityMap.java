@@ -6,8 +6,8 @@ import waffles.utils.algebra.elements.linear.matrix.Matrix;
 import waffles.utils.algebra.elements.linear.matrix.types.orthogonal.Identity;
 import waffles.utils.algebra.utilities.matrix.LazyMatrix;
 import waffles.utils.geom.spatial.data.Axial;
+import waffles.utils.geom.spatial.data.structs.Axis;
 import waffles.utils.geom.spatial.maps.axial.AxialMap;
-import waffles.utils.geom.spatial.structs.Axis;
 
 /**
  * An {@code IdentityMap} defines a global one-to-one identity map.

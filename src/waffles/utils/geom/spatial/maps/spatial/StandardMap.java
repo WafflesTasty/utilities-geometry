@@ -2,9 +2,9 @@ package waffles.utils.geom.spatial.maps.spatial;
 
 import waffles.utils.algebra.utilities.matrix.LazyMatrix;
 import waffles.utils.geom.spatial.data.Spatial;
+import waffles.utils.geom.spatial.data.structs.Locus;
 import waffles.utils.geom.spatial.maps.spatial.matrix.UnitToWorld;
 import waffles.utils.geom.spatial.maps.spatial.matrix.WorldToUnit;
-import waffles.utils.geom.spatial.structs.Locus;
 
 /**
  * A {@code StandardMap} implements a {@code SpatialMap} in the usual way, as

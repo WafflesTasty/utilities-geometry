@@ -3,8 +3,8 @@ package waffles.utils.geom.spatial.maps.fixed.inverse;
 import waffles.utils.algebra.elements.linear.vector.Vector;
 import waffles.utils.algebra.elements.linear.vector.Vectors;
 import waffles.utils.geom.spatial.data.Axial;
+import waffles.utils.geom.spatial.data.structs.Axis;
 import waffles.utils.geom.spatial.maps.axial.AxialMap;
-import waffles.utils.geom.spatial.structs.Axis;
 
 /**
  * An {@code AxialInverse} defines an inverse axial map.

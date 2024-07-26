@@ -1,4 +1,4 @@
-package waffles.utils.geom.spatial.structs;
+package waffles.utils.geom.spatial.data.structs;
 
 import waffles.utils.geom.spatial.data.Spatial;
 import waffles.utils.geom.spatial.data.spin.Spin;

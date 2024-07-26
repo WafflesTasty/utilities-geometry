@@ -1,8 +1,8 @@
 package waffles.utils.geom.spatial.maps.fixed.compose;
 
 import waffles.utils.algebra.elements.linear.vector.Vector;
+import waffles.utils.geom.spatial.data.structs.Axis;
 import waffles.utils.geom.spatial.maps.axial.AxialMap;
-import waffles.utils.geom.spatial.structs.Axis;
 
 /**
  * A {@code BiAxialCompose} defines a composition of two {@code AxialMaps}.

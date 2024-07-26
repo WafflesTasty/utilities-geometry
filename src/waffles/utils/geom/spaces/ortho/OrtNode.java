@@ -7,7 +7,7 @@ import waffles.utils.geom.bounds.Bounds;
 import waffles.utils.geom.collidable.axial.AxialShape;
 import waffles.utils.geom.collidable.axial.cuboid.HyperCuboid;
 import waffles.utils.geom.spatial.data.Axial;
-import waffles.utils.geom.spatial.structs.Axis;
+import waffles.utils.geom.spatial.data.structs.Axis;
 import waffles.utils.sets.MutableSet;
 import waffles.utils.sets.indexed.delegate.List;
 import waffles.utils.sets.trees.Nodal;

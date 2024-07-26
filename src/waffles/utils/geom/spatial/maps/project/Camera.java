@@ -2,9 +2,9 @@ package waffles.utils.geom.spatial.maps.project;
 
 import waffles.utils.algebra.utilities.matrix.LazyMatrix;
 import waffles.utils.geom.spatial.data.Watcher;
+import waffles.utils.geom.spatial.data.structs.Eye;
 import waffles.utils.geom.spatial.maps.project.matrix.CamToWorld;
 import waffles.utils.geom.spatial.maps.project.matrix.WorldToCam;
-import waffles.utils.geom.spatial.structs.Eye;
 
 /**
  * The {@code Camera} class defines a generalized pinhole camera.

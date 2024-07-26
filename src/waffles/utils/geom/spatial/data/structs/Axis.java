@@ -1,4 +1,4 @@
-package waffles.utils.geom.spatial.structs;
+package waffles.utils.geom.spatial.data.structs;
 
 import waffles.utils.algebra.elements.linear.vector.Vector;
 import waffles.utils.geom.spatial.data.Axial;

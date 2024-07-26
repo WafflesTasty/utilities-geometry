@@ -2,9 +2,9 @@ package waffles.utils.geom.spatial.maps.axial;
 
 import waffles.utils.algebra.utilities.matrix.LazyMatrix;
 import waffles.utils.geom.spatial.data.Axial;
+import waffles.utils.geom.spatial.data.structs.Axis;
 import waffles.utils.geom.spatial.maps.axial.matrix.UnitToWorld;
 import waffles.utils.geom.spatial.maps.axial.matrix.WorldToUnit;
-import waffles.utils.geom.spatial.structs.Axis;
 
 /**
  * A {@code BasicMap} implements an {@code AxialMap} as a sequence of linear
