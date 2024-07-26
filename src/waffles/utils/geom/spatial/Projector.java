@@ -8,13 +8,14 @@ import waffles.utils.geom.spatial.types.Projectable;
  *
  * @author Waffles
  * @since Feb 10, 2019
- * @version 1.0
+ * @version 1.1
  * 
  * 
  * @see Projectable
  * @see Adjustable
+ * @see Watcher
  */
-public interface Projector extends Adjustable, Projectable
+public interface Projector extends Adjustable, Projectable, Watcher
 {
 	@Override
 	public abstract Watcher.Mutable Transform();

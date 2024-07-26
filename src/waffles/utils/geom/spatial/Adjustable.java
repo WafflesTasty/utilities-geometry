@@ -9,13 +9,14 @@ import waffles.utils.tools.primitives.Floats;
  *
  * @author Waffles
  * @since Feb 10, 2019
- * @version 1.0
+ * @version 1.1
  * 
  * 
  * @see Rotatable
  * @see Aligned
+ * @see Spatial
  */
-public interface Adjustable extends Aligned, Rotatable
+public interface Adjustable extends Aligned, Rotatable, Spatial
 {
 	@Override
 	public abstract Spatial.Mutable Transform();

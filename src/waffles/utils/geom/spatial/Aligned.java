@@ -9,13 +9,14 @@ import waffles.utils.geom.spatial.types.Scalable;
  *
  * @author Waffles
  * @since Feb 10, 2019
- * @version 1.0
+ * @version 1.1
  * 
  * 
- * @see Movable
  * @see Scalable
+ * @see Movable
+ * @see Axial
  */
-public interface Aligned extends Movable, Scalable
+public interface Aligned extends Movable, Scalable, Axial
 {
 	@Override
 	public abstract Axial.Mutable Transform();
