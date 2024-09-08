@@ -12,7 +12,7 @@ import waffles.utils.geom.spaces.binary.kd.queries.QRYCuboid;
 import waffles.utils.geom.spaces.binary.kd.queries.QRYPoint;
 import waffles.utils.geom.utilities.Geometries;
 import waffles.utils.sets.trees.binary.BiTree;
-import waffles.utils.tools.patterns.semantics.Ordered;
+import waffles.utils.sets.utilities.coordinates.Ordered;
 import waffles.utils.tools.primitives.Floats;
 
 /**

@@ -4,6 +4,7 @@ import waffles.utils.algebra.elements.linear.vector.Vector;
 import waffles.utils.geom.Collision.Response;
 import waffles.utils.geom.collidable.fixed.Point;
 import waffles.utils.geom.response.fixed.RSPFlip;
+import waffles.utils.geom.utilities.Dimensional;
 
 /**
  * A {@code Collidable} object defines a {@code #Collisions()} property
@@ -13,9 +14,12 @@ import waffles.utils.geom.response.fixed.RSPFlip;
  * 
  * @author Waffles
  * @since Feb 27, 2018
- * @version 1.0
+ * @version 1.1
+ * 
+ * 
+ * @see Dimensional
  */
-public interface Collidable
+public interface Collidable extends Dimensional
 {	
 	/**
 	 * Returns collisions of the {@code Collidable}.
@@ -121,12 +125,4 @@ public interface Collidable
 	{
 		return contain(v).hasImpact();
 	}
-	
-	/**
-	 * Returns the dimension of the {@code Collidable}.
-	 * This is equal to the dimension of the containing space.
-	 * 
-	 * @return  a space dimension
-	 */
-	public abstract int Dimension();
 }

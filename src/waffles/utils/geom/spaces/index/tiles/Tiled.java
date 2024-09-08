@@ -8,7 +8,7 @@ import waffles.utils.geom.spaces.index.tiles.maps.TileToWorld;
 import waffles.utils.geom.spaces.index.tiles.maps.WorldToTile;
 import waffles.utils.geom.spatial.maps.GlobalMap;
 import waffles.utils.geom.utilities.Geometries;
-import waffles.utils.tools.patterns.semantics.Coordinated;
+import waffles.utils.sets.utilities.coordinates.Coordinated;
 
 /**
  * A {@code Tiled} object can be contained in an n-dimensional {@code TiledSpace}.
