@@ -8,6 +8,8 @@ import waffles.utils.algebra.utilities.Generated;
 import waffles.utils.geom.Collision;
 import waffles.utils.geom.bounds.Bounds;
 import waffles.utils.geom.bounds.hulls.BNDHull;
+import waffles.utils.geom.bounds.hulls.BNDHull2D;
+import waffles.utils.geom.bounds.hulls.BNDHull3D;
 import waffles.utils.geom.collidable.convex.ConvexSet;
 import waffles.utils.geom.collision.convex.hulls.CLSHull;
 import waffles.utils.geom.spatial.maps.GlobalMap;
@@ -84,7 +86,15 @@ public interface Hull extends Affine, ConvexSet, Generated
 	@Override
 	public default Bounds Bounds()
 	{
-		return new BNDHull(this);
+		switch(Dimension())
+		{
+		case 2:
+			return new BNDHull2D(this);
+		case 3:
+			return new BNDHull3D(this);
+		default:
+			return new BNDHull(this);	
+		}
 	}
 
 	@Override
