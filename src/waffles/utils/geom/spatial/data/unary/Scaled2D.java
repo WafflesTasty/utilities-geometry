@@ -7,7 +7,7 @@ import waffles.utils.algebra.elements.linear.vector.fixed.Vector2;
  *
  * @author Waffles
  * @since 16 Oct 2023
- * @version 1.0
+ * @version 1.1
  * 
  * 
  * @see Scaled

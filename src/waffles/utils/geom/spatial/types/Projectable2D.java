@@ -8,7 +8,7 @@ import waffles.utils.geom.spatial.data.unary.Projected2D;
  * 
  * @author Waffles
  * @since Apr 22, 2016
- * @version 1.0
+ * @version 1.1
  * 
  * 
  * @see Projectable

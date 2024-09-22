@@ -9,7 +9,7 @@ import waffles.utils.tools.primitives.Floats;
  *
  * @author Waffles
  * @since Apr 21, 2016
- * @version 1.0
+ * @version 1.1
  * 
  * 
  * @see Positioned3D

@@ -10,7 +10,7 @@ import waffles.utils.geom.spatial.data.spin.Spin3D;
  *
  * @author Waffles
  * @since 16 Oct 2023
- * @version 1.0
+ * @version 1.1
  * 
  * 
  * @see Rotated
