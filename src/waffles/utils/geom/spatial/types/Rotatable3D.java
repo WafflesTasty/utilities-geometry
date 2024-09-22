@@ -3,6 +3,7 @@ package waffles.utils.geom.spatial.types;
 import waffles.utils.algebra.elements.complex.Quaternion;
 import waffles.utils.algebra.elements.linear.vector.fixed.Vector3;
 import waffles.utils.geom.spatial.data.spin.Spin3D;
+import waffles.utils.geom.spatial.data.unary.Rotated3D;
 import waffles.utils.tools.primitives.Floats;
 
 /**
@@ -14,16 +15,10 @@ import waffles.utils.tools.primitives.Floats;
  * 
  * 
  * @see Rotatable
+ * @see Rotated3D
  */
-public interface Rotatable3D extends Rotatable
-{	
-	@Override
-	public default Spin3D Spin()
-	{
-		return (Spin3D) Rotatable.super.Spin();
-	}
-	
-	
+public interface Rotatable3D extends Rotatable, Rotated3D
+{		
 	/**
 	 * Rotates the {@code Rotatable3D} around a given versor.
 	 * 
@@ -107,42 +102,9 @@ public interface Rotatable3D extends Rotatable
 	}
 
 	
-	/**
-	 * Returns a forward {@code Vector3}.
-	 * 
-	 * @return  a forward vector
-	 * 
-	 * 
-	 * @see Vector3
-	 */
-	public default Vector3 Forward()
+	@Override
+	public default Spin3D Spin()
 	{
-		return Spin().Forward();
-	}
-	
-	/**
-	 * Returns a right {@code Vector3}.
-	 * 
-	 * @return  a right vector
-	 * 
-	 * 
-	 * @see Vector3
-	 */
-	public default Vector3 Right()
-	{
-		return Spin().Right();
-	}
-	
-	/**
-	 * Returns a up {@code Vector3}.
-	 * 
-	 * @return  an up vector
-	 * 
-	 * 
-	 * @see Vector3
-	 */
-	public default Vector3 Up()
-	{
-		return Spin().Up();
+		return (Spin3D) Rotatable.super.Spin();
 	}
 }

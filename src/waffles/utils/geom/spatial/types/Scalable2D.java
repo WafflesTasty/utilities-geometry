@@ -1,6 +1,7 @@
 package waffles.utils.geom.spatial.types;
 
 import waffles.utils.algebra.elements.linear.vector.fixed.Vector2;
+import waffles.utils.geom.spatial.data.unary.Scaled2D;
 import waffles.utils.tools.primitives.Floats;
 
 /**
@@ -12,16 +13,10 @@ import waffles.utils.tools.primitives.Floats;
  * 
  * 
  * @see Scalable
+ * @see Scaled2D
  */
-public interface Scalable2D extends Scalable
+public interface Scalable2D extends Scalable, Scaled2D
 {	
-	@Override
-	public default Vector2 Size()
-	{
-		return (Vector2) Scalable.super.Size();
-	}
-	
-	
 	/**
 	 * Scales the {@code Scalable2D} with a given factor.
 	 * 
@@ -48,23 +43,9 @@ public interface Scalable2D extends Scalable
 	}
 
 		
-	/**
-	 * Returns the height of the {@code Scalable2D}.
-	 * 
-	 * @return  a height factor
-	 */
-	public default float Height()
+	@Override
+	public default Vector2 Size()
 	{
-		return Size().Y();
-	}
-	
-	/**
-	 * Returns the width of the {@code Scalable2D}.
-	 * 
-	 * @return  a width factor
-	 */
-	public default float Width()
-	{
-		return Size().X();
+		return (Vector2) Scalable.super.Size();
 	}
 }

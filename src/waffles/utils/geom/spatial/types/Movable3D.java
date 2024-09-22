@@ -1,6 +1,7 @@
 package waffles.utils.geom.spatial.types;
 
 import waffles.utils.algebra.elements.linear.vector.fixed.Vector3;
+import waffles.utils.geom.spatial.data.unary.Positioned3D;
 import waffles.utils.tools.primitives.Floats;
 
 /**
@@ -11,17 +12,11 @@ import waffles.utils.tools.primitives.Floats;
  * @version 1.0
  * 
  * 
+ * @see Positioned3D
  * @see Movable
  */
-public interface Movable3D extends Movable
-{	
-	@Override
-	public default Vector3 Origin()
-	{
-		return (Vector3) Movable.super.Origin();
-	}
-	
-	
+public interface Movable3D extends Movable, Positioned3D
+{		
 	/**
 	 * Moves the {@code Movable3D} for a specified distance.
 	 * 
@@ -52,33 +47,9 @@ public interface Movable3D extends Movable
 	}
 	
 	
-	/**
-	 * Returns the x-coordinate of the {@code Movable3D}.
-	 * 
-	 * @return  an x-coordinate
-	 */
-	public default float X()
+	@Override
+	public default Vector3 Origin()
 	{
-		return Origin().X();
-	}
-
-	/**
-	 * Returns the y-coordinate of the {@code Movable3D}.
-	 * 
-	 * @return  an y-coordinate
-	 */
-	public default float Y()
-	{
-		return Origin().Y();
-	}
-	
-	/**
-	 * Returns the z-coordinate of the {@code Movable3D}.
-	 * 
-	 * @return  an z-coordinate
-	 */
-	public default float Z()
-	{
-		return Origin().Z();
+		return (Vector3) Movable.super.Origin();
 	}
 }

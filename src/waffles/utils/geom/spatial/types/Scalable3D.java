@@ -1,6 +1,7 @@
 package waffles.utils.geom.spatial.types;
 
 import waffles.utils.algebra.elements.linear.vector.fixed.Vector3;
+import waffles.utils.geom.spatial.data.unary.Scaled3D;
 import waffles.utils.tools.primitives.Floats;
 
 /**
@@ -12,16 +13,10 @@ import waffles.utils.tools.primitives.Floats;
  * 
  * 
  * @see Scalable
+ * @see Scaled3D
  */
-public interface Scalable3D extends Scalable
+public interface Scalable3D extends Scalable, Scaled3D
 {	
-	@Override
-	public default Vector3 Size()
-	{
-		return (Vector3) Scalable.super.Size();
-	}
-	
-	
 	/**
 	 * Scales the {@code Scalable3D} with a specified factor.
 	 * 
@@ -50,33 +45,9 @@ public interface Scalable3D extends Scalable
 	}
 
 		
-	/**
-	 * Returns the height of the {@code Scalable3D}.
-	 * 
-	 * @return  a height factor
-	 */
-	public default float Height()
+	@Override
+	public default Vector3 Size()
 	{
-		return Size().Y();
-	}
-	
-	/**
-	 * Returns the width of the {@code Scalable3D}.
-	 * 
-	 * @return  a width factor
-	 */
-	public default float Width()
-	{
-		return Size().X();
-	}
-	
-	/**
-	 * Returns the depth of the {@code Scalable3D}.
-	 * 
-	 * @return  a depth factor
-	 */
-	public default float Depth()
-	{
-		return Size().Z();
+		return (Vector3) Scalable.super.Size();
 	}
 }

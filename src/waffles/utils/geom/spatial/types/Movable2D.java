@@ -1,6 +1,7 @@
 package waffles.utils.geom.spatial.types;
 
 import waffles.utils.algebra.elements.linear.vector.fixed.Vector2;
+import waffles.utils.geom.spatial.data.unary.Positioned2D;
 import waffles.utils.tools.primitives.Floats;
 
 /**
@@ -11,17 +12,11 @@ import waffles.utils.tools.primitives.Floats;
  * @version 1.0
  * 
  * 
+ * @see Positioned2D
  * @see Movable
  */
-public interface Movable2D extends Movable
-{		
-	@Override
-	public default Vector2 Origin()
-	{
-		return (Vector2) Movable.super.Origin();
-	}
-	
-	
+public interface Movable2D extends Movable, Positioned2D
+{			
 	/**
 	 * Moves the {@code Movable2D} for a specified distance.
 	 * 
@@ -49,23 +44,9 @@ public interface Movable2D extends Movable
 	}
 
 	
-	/**
-	 * Returns the x-coordinate of the {@code Movable2D}.
-	 * 
-	 * @return  an x-coordinate
-	 */
-	public default float X()
+	@Override
+	public default Vector2 Origin()
 	{
-		return Origin().X();
-	}
-
-	/**
-	 * Returns the y-coordinate of the {@code Movable2D}.
-	 * 
-	 * @return  an y-coordinate
-	 */
-	public default float Y()
-	{
-		return Origin().Y();
+		return (Vector2) Movable.super.Origin();
 	}
 }

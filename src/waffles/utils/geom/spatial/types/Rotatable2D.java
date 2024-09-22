@@ -1,7 +1,7 @@
 package waffles.utils.geom.spatial.types;
 
-import waffles.utils.algebra.elements.linear.vector.fixed.Vector2;
 import waffles.utils.geom.spatial.data.spin.Spin2D;
+import waffles.utils.geom.spatial.data.unary.Rotated2D;
 import waffles.utils.tools.primitives.Floats;
 
 /**
@@ -13,16 +13,10 @@ import waffles.utils.tools.primitives.Floats;
  * 
  * 
  * @see Rotatable
+ * @see Rotated2D
  */
-public interface Rotatable2D extends Rotatable
-{
-	@Override
-	public default Spin2D Spin()
-	{
-		return (Spin2D) Rotatable.super.Spin();
-	}
-	
-	
+public interface Rotatable2D extends Rotatable, Rotated2D
+{	
 	/**
 	 * Rotates the {@code Rotatable2D} for a specified angle.
 	 * 
@@ -47,29 +41,9 @@ public interface Rotatable2D extends Rotatable
 	}
 
 	
-	/**
-	 * Returns a forward {@code Vector2}.
-	 * 
-	 * @return  a forward vector
-	 * 
-	 * 
-	 * @see Vector2
-	 */
-	public default Vector2 Forward()
+	@Override
+	public default Spin2D Spin()
 	{
-		return Spin().Forward();
-	}
-	
-	/**
-	 * Returns a right {@code Vector2}.
-	 * 
-	 * @return  a right vector
-	 * 
-	 * 
-	 * @see Vector2
-	 */
-	public default Vector2 Right()
-	{
-		return Spin().Right();
+		return (Spin2D) Rotatable.super.Spin();
 	}
 }
