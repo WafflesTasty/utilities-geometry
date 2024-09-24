@@ -204,4 +204,10 @@ public class BEPSpace<E extends Enum<E>> implements Rooted, IndexSpace<BEPSNode<
 	{
 		return tSize;
 	}
+	
+	@Override
+	public int Count()
+	{
+		return IndexSpace.super.Count();
+	}
 }

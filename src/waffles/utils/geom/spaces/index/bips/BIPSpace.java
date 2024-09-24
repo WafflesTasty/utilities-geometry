@@ -133,4 +133,10 @@ public class BIPSpace<N extends BIPSNode> implements Rooted, IndexSpace<N>
 	{
 		return tSize;
 	}
+	
+	@Override
+	public int Count()
+	{
+		return IndexSpace.super.Count();
+	}
 }
