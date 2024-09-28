@@ -1,8 +1,10 @@
 package waffles.utils.geom.collidable.spaces.lines;
 
 import waffles.utils.algebra.elements.linear.vector.Vector;
+import waffles.utils.geom.Collision;
 import waffles.utils.geom.collidable.fixed.Point;
 import waffles.utils.geom.collidable.spaces.ASpace;
+import waffles.utils.geom.collision.spaces.lines.CLSLine;
 
 /**
  * A {@code Line} defines an affine line in n-dimensional space.
@@ -84,5 +86,12 @@ public class Line extends ASpace
 	public Point P2()
 	{
 		return Generator(1);
+	}
+
+
+	@Override
+	public Collision Collisions()
+	{
+		return new CLSLine(this);
 	}
 }

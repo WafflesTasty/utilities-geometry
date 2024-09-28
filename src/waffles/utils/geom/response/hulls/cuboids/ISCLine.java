@@ -5,6 +5,7 @@ import waffles.utils.geom.Collidable;
 import waffles.utils.geom.Collision.Response;
 import waffles.utils.geom.collidable.axial.cuboid.HyperCuboid;
 import waffles.utils.geom.collidable.fixed.Point;
+import waffles.utils.geom.collidable.spaces.lines.HLine;
 import waffles.utils.geom.collidable.spaces.lines.Line;
 import waffles.utils.geom.utilities.Geometries;
 import waffles.utils.tools.primitives.Floats;
@@ -14,7 +15,7 @@ import waffles.utils.tools.primitives.Floats;
  *
  * @author Waffles
  * @since 12 May 2021
- * @version 1.0
+ * @version 1.1
  * 
  * 
  * @see Response
@@ -24,7 +25,7 @@ public class ISCLine implements Response
 	private Line tgt;
 	private HyperCuboid src;
 	
-	private Collidable shape;
+	private Vector p, q;
 	private Float lMin, lMax;
 	private Boolean hasImpact;
 	
@@ -40,6 +41,57 @@ public class ISCLine implements Response
 	 */
 	public ISCLine(HyperCuboid s, Line t)
 	{
+		this(s, t, Floats.NEG_INFINITY, Floats.POS_INFINITY);
+	}
+
+	/**
+	 * Creates a new {@code ISCLine}.
+	 * 
+	 * @param s  a source cuboid
+	 * @param t  a target half-line
+	 * 
+	 * 
+	 * @see HyperCuboid
+	 * @see HLine
+	 */
+	public ISCLine(HyperCuboid s, HLine t)
+	{
+		this(s, t.Line(), Floats.POS_INFINITY);
+	}
+	
+	/**
+	 * Creates a new {@code ISCLine}.
+	 * 
+	 * @param s  a source cuboid
+	 * @param t  a target line
+	 * @param max  a maximum lambda
+	 * 
+	 * 
+	 * @see HyperCuboid
+	 * @see Line
+	 */
+	public ISCLine(HyperCuboid s, Line t, float max)
+	{
+		this(s, t, 0f, max);
+	}
+	
+	/**
+	 * Creates a new {@code ISCLine}.
+	 * 
+	 * @param s  a source cuboid
+	 * @param t  a target line
+	 * @param min  a minimum lambda
+	 * @param max  a maximum lambda
+	 * 
+	 * 
+	 * @see HyperCuboid
+	 * @see Line
+	 */
+	public ISCLine(HyperCuboid s, Line t, float min, float max)
+	{
+		lMin = min;
+		lMax = max;
+		
 		src = s;
 		tgt = t;
 	}
@@ -48,12 +100,22 @@ public class ISCLine implements Response
 	@Override
 	public Collidable Shape()
 	{
-		if(shape == null)
+		if(hasImpact())
 		{
-			shape = computeShape();
+			if(p == null && q == null)
+			{
+				p = tgt.P1().Generator();
+				q = tgt.P2().Generator();
+				
+				p = p.plus(q.minus(p).times(lMin));
+				q = p.plus(q.minus(p).times(lMax));
+			}
+			
+			return Geometries.Segment(p, q);
 		}
 		
-		return shape;
+		int dim = src.Dimension();
+		return Geometries.Void(dim);
 	}
 
 	@Override
@@ -82,7 +144,16 @@ public class ISCLine implements Response
 	@Override
 	public Point Contact()
 	{
-		return null;
+		if(p == null && q == null)
+		{
+			p = tgt.P1().Generator();
+			q = tgt.P2().Generator();
+			
+			p = p.plus(q.minus(p).times(lMin));
+			q = p.plus(q.minus(p).times(lMax));
+		}
+		
+		return new Point(p, 1f);
 	}
 	
 	@Override
@@ -120,8 +191,6 @@ public class ISCLine implements Response
 		Vector q = tgt.P2().Generator();
 		
 		
-		lMin = Floats.NEG_INFINITY;
-		lMax = Floats.POS_INFINITY;
 		for(int k = 0; k < dim; k++)
 		{
 			float sk = s.get(k) / 2;
