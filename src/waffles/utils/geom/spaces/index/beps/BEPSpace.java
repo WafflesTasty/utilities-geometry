@@ -22,6 +22,7 @@ import waffles.utils.sets.trees.Rooted;
 public class BEPSpace<E extends Enum<E>> implements Rooted, IndexSpace<BEPSNode<E>>
 {		
 	private float tSize;
+	private int[] index;	
 	private BEPSTree<E> tree;
 	
 	/**
@@ -31,9 +32,9 @@ public class BEPSpace<E extends Enum<E>> implements Rooted, IndexSpace<BEPSNode<
 	 */
 	public BEPSpace(int... dims)
 	{
+		index = dims;
 		tSize = 2f;
-		tree = createTree(dims);
-		tree.setRoot(createRoot(dims));
+		clear();
 	}
 	
 	/**
@@ -203,6 +204,13 @@ public class BEPSpace<E extends Enum<E>> implements Rooted, IndexSpace<BEPSNode<
 	public float TileSize()
 	{
 		return tSize;
+	}
+	
+	@Override
+	public void clear()
+	{
+		tree = createTree(index);
+		tree.setRoot(createRoot(index));
 	}
 	
 	@Override

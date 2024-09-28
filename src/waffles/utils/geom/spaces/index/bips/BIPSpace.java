@@ -21,6 +21,7 @@ import waffles.utils.sets.trees.Rooted;
 public class BIPSpace<N extends BIPSNode> implements Rooted, IndexSpace<N>
 {		
 	private float tSize;
+	private int[] index;
 	private BIPSTree<N> tree;
 	
 	/**
@@ -30,9 +31,9 @@ public class BIPSpace<N extends BIPSNode> implements Rooted, IndexSpace<N>
 	 */
 	public BIPSpace(int... dims)
 	{
+		index = dims;
 		tSize = 2f;
-		tree = createTree(dims);
-		tree.setRoot(createRoot(dims));
+		clear();
 	}
 	
 	/**
@@ -132,6 +133,13 @@ public class BIPSpace<N extends BIPSNode> implements Rooted, IndexSpace<N>
 	public float TileSize()
 	{
 		return tSize;
+	}
+	
+	@Override
+	public void clear()
+	{
+		tree = createTree(index);
+		tree.setRoot(createRoot(index));
 	}
 	
 	@Override

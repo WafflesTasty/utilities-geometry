@@ -155,18 +155,6 @@ public class OrtNode<O extends Bounded> extends Node implements HyperCuboid, Mut
 			}
 			
 			addChild(Set().createNode(v, s));
-			// Add references from this node
-			// to all the children. Requires knowing
-			// which children are covered by which objects.
-			// Then do the same to add() and remove().
-			
-			// Create a QRYCuboid.Nodes() iterator.
-			// Querying a cuboid now only queries leaves.
-			// Query pairs by doing a QRYAll on one end,
-			// and a (subset of) QRYCuboid on the other.
-			
-			// The reference set is necessary because
-			// you iterate way too many pairs otherwise.
 		}
 	}
 
@@ -201,7 +189,6 @@ public class OrtNode<O extends Bounded> extends Node implements HyperCuboid, Mut
 		return (OrtNode<O>) super.Child(i);
 	}
 	
-
 	@Override
 	public boolean isEmpty()
 	{

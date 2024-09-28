@@ -35,12 +35,6 @@ public class BSPTree<O extends Bounded> extends KDTree<O> implements AtomicSet<O
 		
 
 	@Override
-	public void clear()
-	{
-		setRoot(null);
-	}
-
-	@Override
 	public void remove(O obj)
 	{
 		BSPNode<O> node = search(obj);
