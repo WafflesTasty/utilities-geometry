@@ -42,7 +42,10 @@ public interface Scaled3D extends Scaled
 	
 	
 	@Override
-	public abstract Vector3 Size();
+	public default Vector3 Size()
+	{
+		return new Vector3(Width(), Height(), Depth());
+	}
 	
 	
 	/**

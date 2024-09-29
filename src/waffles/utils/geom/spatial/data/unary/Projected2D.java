@@ -12,7 +12,6 @@ import waffles.utils.algebra.elements.linear.vector.fixed.Vector2;
  * 
  * @see Projected
  */
-@FunctionalInterface
 public interface Projected2D extends Projected
 {
 	/**
@@ -42,7 +41,10 @@ public interface Projected2D extends Projected
 
 	
 	@Override
-	public abstract Vector2 Oculus();
+	public default Vector2 Oculus()
+	{
+		return new Vector2(OculusX(), OculusY());
+	}
 
 	/**
 	 * Returns the oculus x of the {@code Projected2D}.

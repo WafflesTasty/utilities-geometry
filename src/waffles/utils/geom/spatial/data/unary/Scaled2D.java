@@ -41,7 +41,10 @@ public interface Scaled2D extends Scaled
 	
 	
 	@Override
-	public abstract Vector2 Size();
+	public default Vector2 Size()
+	{
+		return new Vector2(Width(), Height());
+	}
 	
 	
 	/**

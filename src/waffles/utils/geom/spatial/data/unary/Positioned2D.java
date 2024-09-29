@@ -12,7 +12,6 @@ import waffles.utils.algebra.elements.linear.vector.fixed.Vector2;
  * 
  * @see Positioned
  */
-@FunctionalInterface
 public interface Positioned2D extends Positioned
 {
 	/**
@@ -42,7 +41,10 @@ public interface Positioned2D extends Positioned
 	
 
 	@Override
-	public abstract Vector2 Origin();
+	public default Vector2 Origin()
+	{
+		return new Vector2(X(), Y());
+	}
 
 	
 	/**
