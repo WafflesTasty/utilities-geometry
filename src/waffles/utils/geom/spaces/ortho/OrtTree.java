@@ -167,6 +167,14 @@ public class OrtTree<O extends Bounded> extends Tree implements Manifold<O>
 	@Override
 	public void remove(O obj)
 	{
+		HyperCuboid bnd = Bounds().Box();
+		HyperCuboid tgt = obj.Bounds().Box();
+		if(!bnd.contains(tgt))
+		{
+			Root().remove(obj);
+			return;
+		}
+		
 		OrtNode<O> curr = Root();
 		while(true)
 		{
@@ -205,7 +213,6 @@ public class OrtTree<O extends Bounded> extends Tree implements Manifold<O>
 			Root().add(obj);
 			return;
 		}
-		
 		
 		OrtNode<O> curr = Root();
 		while(true)
