@@ -53,7 +53,7 @@ public interface Tiled2D extends Tiled, Geometrical2D
 	public default Tiled2D Neighbor(Cardinal2D c)
 	{
 		int row = (int) (Row() + c.X());
-		int col = (int) (Column() - c.Y());
+		int col = (int) (Column() + c.Y());
 		
 		if(Parent().contains(row, col))
 		{

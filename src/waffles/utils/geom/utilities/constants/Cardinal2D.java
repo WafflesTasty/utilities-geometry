@@ -27,19 +27,19 @@ public final class Cardinal2D extends Vector2
 	/**
 	 * The east {@code Cardinal2D} points along the positive x-axis.
 	 */
-	public static Cardinal2D EAST 		= new Cardinal2D( 1, 0);
+	public static Cardinal2D EAST 		= new Cardinal2D(+1, 0);
 	/**
 	 * The northeast {@code Cardinal2D} points along the first bisector.
 	 */
-	public static Cardinal2D NORTHEAST 	= new Cardinal2D( 1, 1);
+	public static Cardinal2D NORTHEAST 	= new Cardinal2D(+1,-1);
 	/**
 	 * The north {@code Cardinal2D} points along the positive y-axis.
 	 */
-	public static Cardinal2D NORTH 		= new Cardinal2D( 0, 1);
+	public static Cardinal2D NORTH 		= new Cardinal2D( 0,-1);
 	/**
 	 * The northwest {@code Cardinal2D} points along the second bisector.
 	 */
-	public static Cardinal2D NORTHWEST 	= new Cardinal2D(-1, 1);
+	public static Cardinal2D NORTHWEST 	= new Cardinal2D(-1,-1);
 	/**
 	 * The west {@code Cardinal2D} points along the negative x-axis.
 	 */
@@ -47,15 +47,15 @@ public final class Cardinal2D extends Vector2
 	/**
 	 * The southwest {@code Cardinal2D} points along the third bisector.
 	 */
-	public static Cardinal2D SOUTHWEST 	= new Cardinal2D(-1,-1);
+	public static Cardinal2D SOUTHWEST 	= new Cardinal2D(-1,+1);
 	/**
 	 * The south {@code Cardinal2D} points along the negative y-axis.
 	 */
-	public static Cardinal2D SOUTH 		= new Cardinal2D( 0,-1);
+	public static Cardinal2D SOUTH 		= new Cardinal2D( 0,+1);
 	/**
 	 * The southeast {@code Cardinal2D} points along the fourth bisector.
 	 */
-	public static Cardinal2D SOUTHEAST 	= new Cardinal2D( 1,-1);
+	public static Cardinal2D SOUTHEAST 	= new Cardinal2D( 1,+1);
 	
 		
 	/**
