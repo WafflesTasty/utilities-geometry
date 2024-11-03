@@ -9,7 +9,7 @@ import waffles.utils.sets.trees.indexed.BEPTree;
  *
  * @author Waffles
  * @since 29 Dec 2022
- * @version 1.0
+ * @version 1.1
  *
  * 
  * @param <E>  an enum type
@@ -52,6 +52,14 @@ public class BEPSTree<E extends Enum<E>> extends BEPTree<E> implements Bounded
 	@Override
 	public BEPSNode<E> createNode(Object... vals)
 	{
+//		if(Space() == null)
+//		{
+//			int[] min = (int[]) vals[0];
+//			int[] max = (int[]) vals[1];
+//			
+//			return new BEPSNode<>(this, min, max);
+//		}
+		
 		return Space().createNode(vals);
 	}
 	
