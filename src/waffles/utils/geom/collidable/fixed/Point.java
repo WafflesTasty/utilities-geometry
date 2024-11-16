@@ -1,10 +1,10 @@
 package waffles.utils.geom.collidable.fixed;
 
-import waffles.utils.algebra.Additive;
 import waffles.utils.algebra.elements.linear.Angular;
 import waffles.utils.algebra.elements.linear.matrix.Matrix;
 import waffles.utils.algebra.elements.linear.vector.Vector;
 import waffles.utils.algebra.elements.linear.vector.Vectors;
+import waffles.utils.algebra.utilities.elements.Additive;
 import waffles.utils.geom.collidable.convex.hulls.Hull;
 import waffles.utils.geom.collision.convex.hulls.CLSPoint;
 import waffles.utils.tools.primitives.Floats;
@@ -24,7 +24,7 @@ import waffles.utils.tools.primitives.Floats;
  * @see Hull
  */
 public class Point implements Angular, Hull
-{		
+{			
 	private Vector v;
 	
 	/**

@@ -8,7 +8,7 @@ import waffles.utils.algebra.elements.linear.matrix.Matrix;
 import waffles.utils.algebra.elements.linear.matrix.types.Tall;
 import waffles.utils.algebra.elements.linear.vector.Vector;
 import waffles.utils.algebra.elements.linear.vector.Vectors;
-import waffles.utils.algebra.utilities.Generated;
+import waffles.utils.algebra.utilities.matrix.Generated;
 import waffles.utils.geom.Collidable;
 import waffles.utils.geom.Collision;
 import waffles.utils.geom.collision.spaces.CLSVSpace;
