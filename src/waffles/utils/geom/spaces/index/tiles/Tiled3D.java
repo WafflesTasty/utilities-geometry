@@ -4,6 +4,7 @@ import waffles.utils.geom.collidable.Geometrical3D;
 import waffles.utils.geom.collidable.axial.cuboid.Cube;
 import waffles.utils.geom.spaces.index.TiledSpace3D;
 import waffles.utils.geom.utilities.constants.Cardinal3D;
+import waffles.utils.sets.utilities.coordinates.Coordinated3D;
 
 /**
  * A {@code Tiled3D} defines a single element in an three-dimensional {@code TiledSpace}.
@@ -13,42 +14,12 @@ import waffles.utils.geom.utilities.constants.Cardinal3D;
  * @version 1.0
  * 
  * 
+ * @see Coordinated3D
  * @see Geometrical3D
  * @see Tiled
  */
-public interface Tiled3D extends Tiled, Geometrical3D
+public interface Tiled3D extends Tiled, Coordinated3D, Geometrical3D
 {
-	/**
-	 * Returns the row of the {@code Tiled3D}.
-	 * 
-	 * @return  a row index
-	 */
-	public default int Row()
-	{
-		return Coordinates()[0];
-	}
-	
-	/**
-	 * Returns the aisle of the {@code Tiled3D}.
-	 * 
-	 * @return  an aisle index
-	 */
-	public default int Aisle()
-	{
-		return Coordinates()[2];
-	}
-	
-	/**
-	 * Returns the column of the {@code Tiled3D}.
-	 * 
-	 * @return  a column index
-	 */
-	public default int Column()
-	{
-		return Coordinates()[1];
-	}
-	
-	
 	/**
 	 * Returns a neighbor of the {@code Tiled3D}.
 	 * 
