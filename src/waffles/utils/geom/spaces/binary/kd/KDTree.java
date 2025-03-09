@@ -89,12 +89,12 @@ public class KDTree<O> extends BiTree implements HyperCuboid, Iterable<O>, Space
 		return new QRYAll<>(this);
 	}
 
+	
 	@Override
 	public KDNode<O> Root()
 	{
 		return (KDNode<O>) super.Root();
 	}
-
 	
 	@Override
 	public Vector Origin()
