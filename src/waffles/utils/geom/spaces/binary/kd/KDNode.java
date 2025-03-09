@@ -1,5 +1,7 @@
 package waffles.utils.geom.spaces.binary.kd;
 
+import waffles.utils.algebra.elements.interval.Cut;
+import waffles.utils.algebra.elements.interval.Cuts;
 import waffles.utils.geom.collidable.Geometrical;
 import waffles.utils.geom.collidable.axial.cuboid.HyperCube;
 import waffles.utils.geom.spatial.maps.GlobalMap;
@@ -11,7 +13,7 @@ import waffles.utils.sets.trees.binary.BiNode;
  *
  * @author Waffles
  * @since 17 Jan 2022
- * @version 1.0
+ * @version 1.1
  * 
  * 
  * @param <O>  an object type
@@ -21,31 +23,31 @@ import waffles.utils.sets.trees.binary.BiNode;
 public abstract class KDNode<O> extends BiNode implements Geometrical
 {
 	/**
-	 * A {@code Cut} defines a plane that splits a {@code KDNode}.
+	 * A {@code Plane} splits a {@code KDNode} into subnodes.
 	 *
 	 * @author Waffles
 	 * @since 25 Nov 2021
 	 * @version 1.1
 	 */
-	public static class Cut
+	public static class Plane
 	{
 		private int dim;
-		private float val;
+		private Cut cut;
 		
 		/**
-		 * Creates a new {@code Cut}.
+		 * Creates a new {@code Plane}.
 		 * 
-		 * @param dim  a cut dimension
-		 * @param val  a cut value
+		 * @param d  a cut dimension
+		 * @param v  a cut value
 		 */
-		public Cut(int dim, float val)
+		public Plane(int d, float v)
 		{
-			this.dim = dim;
-			this.val = val;
+			cut = Cuts.Below(v);
+			dim = d;
 		}
 		
 		/**
-		 * Returns the dimension of the {@code Cut}.
+		 * Returns the dimension of the {@code Plane}.
 		 * 
 		 * @return  a cut dimension
 		 */
@@ -55,18 +57,18 @@ public abstract class KDNode<O> extends BiNode implements Geometrical
 		}
 		
 		/**
-		 * Returns the value of the {@code Cut}.
+		 * Returns the cut of the {@code Plane}.
 		 * 
-		 * @return  a cut value
+		 * @return  a cut
 		 */
-		public float Value()
+		public Cut Cut()
 		{
-			return val;
+			return cut;
 		}
 	}
 
 	
-	private Cut cut;
+	private Plane plane;
 	
 	/**
 	 * Creates a new {@code KDNode}.
@@ -82,7 +84,7 @@ public abstract class KDNode<O> extends BiNode implements Geometrical
 	}
 
 	/**
-	 * Returns the objects in the {@code KDNode}.
+	 * Returns objects in the {@code KDNode}.
 	 * 
 	 * @return  an object iterable
 	 * 
@@ -92,40 +94,40 @@ public abstract class KDNode<O> extends BiNode implements Geometrical
 	public abstract Iterable<O> Objects();
 	
 	/**
-	 * Changes the cut of the {@code KDNode}.
+	 * Changes the plane of the {@code KDNode}.
 	 * 
 	 * @param dim  a cut dimension
 	 * @param val  a cut value
 	 */
-	public void setCut(int dim, float val)
+	public void setPlane(int dim, float val)
 	{
-		setCut(new Cut(dim, val));
+		setPlane(new Plane(dim, val));
 	}
 	
 	/**
-	 * Changes the cut of the {@code KDNode}.
+	 * Changes the plane of the {@code KDNode}.
 	 * 
-	 * @param cut  a target cut
+	 * @param p  a splitting plane
 	 * 
 	 * 
-	 * @see Cut
+	 * @see Plane
 	 */
-	public void setCut(Cut cut)
+	public void setPlane(Plane p)
 	{
-		this.cut = cut;
+		plane = p;
 	}
 		
 	/**
-	 * Returns the cut of the {@code KDNode}.
+	 * Returns the plane of the {@code KDNode}.
 	 * 
-	 * @return  a plane cut
+	 * @return  a splitting plane
 	 * 
 	 * 
-	 * @see Cut
+	 * @see Plane
 	 */
-	public Cut Cut()
+	public Plane Plane()
 	{
-		return cut;
+		return plane;
 	}
 		
 	

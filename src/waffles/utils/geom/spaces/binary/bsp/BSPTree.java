@@ -1,11 +1,11 @@
 package waffles.utils.geom.spaces.binary.bsp;
 
+import waffles.utils.algebra.elements.interval.Cut;
 import waffles.utils.algebra.elements.linear.vector.Vector;
 import waffles.utils.geom.Collision.Response;
 import waffles.utils.geom.bounds.Bounded;
 import waffles.utils.geom.collidable.axial.cuboid.HyperCuboid;
 import waffles.utils.geom.spaces.binary.kd.KDTree;
-import waffles.utils.geom.spaces.binary.kd.KDNode.Cut;
 import waffles.utils.sets.mutable.AtomicSet;
 
 /**
@@ -13,7 +13,7 @@ import waffles.utils.sets.mutable.AtomicSet;
  *
  * @author Waffles
  * @since 06 Apr 2022
- * @version 1.0
+ * @version 1.1
  *
  *
  * @param <O>  an object type
@@ -124,7 +124,7 @@ public class BSPTree<O extends Bounded> extends KDTree<O> implements AtomicSet<O
 		
 		
 		node.remove(abj);
-		node.setCut(dim, val);
+		node.setPlane(dim, val);
 		node.setLChild(lchild);
 		node.setRChild(rchild);
 	}
@@ -138,17 +138,17 @@ public class BSPTree<O extends Bounded> extends KDTree<O> implements AtomicSet<O
 		BSPNode<O> node = Root();
 		while(!node.isLeaf())
 		{
-			Cut cut = node.Cut();
-			int dim = cut.Dimension();
-			float val = cut.Value();
+			Cut cut = node.Plane().Cut();
+			int dim = node.Plane().Dimension();
+
 			
-			if(max.get(dim) <= val)
+			if(cut.isAbove(max.get(dim)))
 			{
 				node = node.LChild();
 				continue;
 			}
 
-			if(val <= min.get(dim))
+			if(cut.isBelow(min.get(dim)))
 			{
 				node = node.RChild();
 				continue;

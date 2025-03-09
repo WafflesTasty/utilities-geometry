@@ -13,7 +13,7 @@ import waffles.utils.tools.primitives.Floats;
  *
  * @author Waffles
  * @since 20 Sep 2023
- * @version 1.0
+ * @version 1.1
  * 
  * 
  * @see LazyMatrix
@@ -46,17 +46,17 @@ public class NodeToWorld extends LazyMatrix
 		KDNode<?> node = src;
 		while(node.Parent() != null)
 		{
-			KDNode<?> p = node.Parent();
-			int dim = p.Cut().Dimension();
-			float val = p.Cut().Value();
+			KDNode<?> n = node.Parent();
+			int dim = n.Plane().Dimension();
+			float val = n.Plane().Cut().value();
+
 			
-			
-			if(node.equals(p.LChild()))
+			if(node.equals(n.LChild()))
 				max.set(Floats.min(val, max.get(dim)), dim);
 			else
 				min.set(Floats.max(val, min.get(dim)), dim);
 			
-			node = p;
+			node = n;
 		}
 	}
 	

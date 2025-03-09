@@ -2,11 +2,11 @@ package waffles.utils.geom.spaces.binary.kd.queries;
 
 import java.util.Iterator;
 
+import waffles.utils.algebra.elements.interval.Cut;
 import waffles.utils.algebra.elements.linear.vector.Vector;
 import waffles.utils.geom.collidable.axial.cuboid.HyperCuboid;
 import waffles.utils.geom.spaces.binary.kd.KDNode;
 import waffles.utils.geom.spaces.binary.kd.KDTree;
-import waffles.utils.geom.spaces.binary.kd.KDNode.Cut;
 import waffles.utils.sets.queues.Queue;
 import waffles.utils.sets.queues.delegate.JFIFOQueue;
 import waffles.utils.tools.collections.iterators.EmptyIterator;
@@ -16,7 +16,7 @@ import waffles.utils.tools.collections.iterators.EmptyIterator;
  *
  * @author Waffles
  * @since 04 Apr 2022
- * @version 1.0
+ * @version 1.1
  * 
  * 
  * @param <O>  an object type
@@ -70,17 +70,16 @@ public class QRYCuboid<O> implements Iterator<O>
 		curr = node.Objects().iterator();
 		if(!node.isLeaf())
 		{
-			Cut cut = node.Cut();
-			float val = cut.Value();
-			int dim = cut.Dimension();
+			Cut cut = node.Plane().Cut();
+			int dim = node.Plane().Dimension();
 
 			
 			Vector min = tgt.Bounds().Minimum();
 			Vector max = tgt.Bounds().Maximum();
 			
-			if(min.get(dim) < val)
+			if(cut.isAbove(min.get(dim)))
 				nodes.push(node.LChild());
-			if(max.get(dim) > val)
+			if(cut.isBelow(max.get(dim)))
 				nodes.push(node.RChild());
 			return findNext();
 		}

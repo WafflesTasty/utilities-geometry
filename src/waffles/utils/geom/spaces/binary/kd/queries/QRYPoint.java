@@ -2,11 +2,11 @@ package waffles.utils.geom.spaces.binary.kd.queries;
 
 import java.util.Iterator;
 
+import waffles.utils.algebra.elements.interval.Cut;
 import waffles.utils.algebra.elements.linear.vector.Vector;
 import waffles.utils.geom.collidable.fixed.Point;
 import waffles.utils.geom.spaces.binary.kd.KDNode;
 import waffles.utils.geom.spaces.binary.kd.KDTree;
-import waffles.utils.geom.spaces.binary.kd.KDNode.Cut;
 import waffles.utils.tools.collections.iterators.EmptyIterator;
 
 /**
@@ -14,7 +14,7 @@ import waffles.utils.tools.collections.iterators.EmptyIterator;
  *
  * @author Waffles
  * @since 04 Apr 2022
- * @version 1.0
+ * @version 1.1
  * 
  * 
  * @param <O>  an object type
@@ -64,11 +64,11 @@ public class QRYPoint<O> implements Iterator<O>
 			node = null;
 		else
 		{
-			Cut cut = node.Cut();
-			float val = cut.Value();
-			int dim = cut.Dimension();
+			Cut cut = node.Plane().Cut();
+			int dim = node.Plane().Dimension();
 
-			if(tgt.get(dim) < val)
+
+			if(cut.isAbove(tgt.get(dim)))
 				node = node.LChild();
 			else
 				node = node.RChild();
