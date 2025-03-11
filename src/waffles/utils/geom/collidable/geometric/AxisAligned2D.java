@@ -13,8 +13,8 @@ import waffles.utils.geom.spatial.Aligned2D;
  * @version 1.1
  * 
  * 
- * @see AxisAligned
  * @see Geometrical2D
+ * @see AxisAligned
  * @see Aligned2D
  */
 public interface AxisAligned2D extends AxisAligned, Aligned2D, Geometrical2D
