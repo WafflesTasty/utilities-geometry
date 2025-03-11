@@ -27,4 +27,10 @@ public interface Geometrical2D extends Geometrical, Bounded2D, Collideable2D
 	{
 		return Shape().Bounds(Transform());
 	}
+	
+	@Override
+	public default int Dimension()
+	{
+		return 2;
+	}
 }
