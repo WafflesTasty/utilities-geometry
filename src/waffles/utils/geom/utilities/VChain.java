@@ -14,6 +14,7 @@ import waffles.utils.geom.utilities.vchains.VCHEllipse;
 import waffles.utils.geom.utilities.vchains.VCHOctahedron;
 import waffles.utils.geom.utilities.vchains.VCHSegment;
 import waffles.utils.geom.utilities.vchains.VCHTriangle;
+import waffles.utils.tools.collections.Iterables;
 
 /**
  * A {@code VChain} iterates over the vertices and normals of geometric objects in predictable ways.
@@ -155,6 +156,20 @@ public interface VChain
 	 */
 	public abstract Iterable<Vector> Normals();
 
+	/**
+	 * Iterates both of the {@code VChain}.
+	 * 
+	 * @return  an interleaved iterable
+	 * 
+	 * 
+	 * @see Iterable
+	 * @see Vector
+	 */
+	public default Iterable<Vector> Both()
+	{
+		return Iterables.interleave(Vertices(), Normals());
+	}
+	
 	
 	/**
 	 * Returns the vertex count of the {@code VChain}.
