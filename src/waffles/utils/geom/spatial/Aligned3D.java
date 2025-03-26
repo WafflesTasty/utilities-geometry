@@ -1,5 +1,6 @@
 package waffles.utils.geom.spatial;
 
+import waffles.utils.geom.spatial.data.Axial3D;
 import waffles.utils.geom.spatial.types.Movable3D;
 import waffles.utils.geom.spatial.types.Scalable3D;
 
@@ -12,10 +13,11 @@ import waffles.utils.geom.spatial.types.Scalable3D;
  * 
  * 
  * @see Aligned
+ * @see Axial3D
  * @see Movable3D
  * @see Scalable3D
  */
-public interface Aligned3D extends Aligned, Scalable3D, Movable3D
+public interface Aligned3D extends Aligned, Axial3D, Scalable3D, Movable3D
 {
 	// NOT APPLICABLE
 }

@@ -1,5 +1,6 @@
 package waffles.utils.geom.spatial;
 
+import waffles.utils.geom.spatial.data.Spatial3D;
 import waffles.utils.geom.spatial.types.Rotatable3D;
 import waffles.utils.tools.primitives.Floats;
 
@@ -11,11 +12,12 @@ import waffles.utils.tools.primitives.Floats;
  * @version 1.0
  * 
  * 
+ * @see Aligned3D
  * @see Adjustable
  * @see Rotatable3D
- * @see Aligned3D
+ * @see Spatial3D
  */
-public interface Adjustable3D extends Adjustable, Aligned3D, Rotatable3D
+public interface Adjustable3D extends Adjustable, Aligned3D, Rotatable3D, Spatial3D
 {
 	/**
 	 * Strafes the {@code Vantage3D} for a given distance.
