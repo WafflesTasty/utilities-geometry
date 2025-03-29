@@ -88,6 +88,18 @@ public class SpinND implements Spin
 	
 	
 	@Override
+	public int Dimension()
+	{
+		return basis.Columns() - 1;
+	}
+	
+	@Override
+	public float MaxAngle()
+	{
+		throw new NotImplementedError();
+	}
+	
+	@Override
 	public SpinND times(float val)
 	{
 		throw new NotImplementedError();

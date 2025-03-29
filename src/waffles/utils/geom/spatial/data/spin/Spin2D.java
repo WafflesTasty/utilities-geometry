@@ -116,6 +116,18 @@ public class Spin2D implements Spin
 	
 	
 	@Override
+	public int Dimension()
+	{
+		return 2;
+	}
+	
+	@Override
+	public float MaxAngle()
+	{
+		return angle;
+	}
+	
+	@Override
 	public Spin2D times(float val)
 	{
 		return new Spin2D(angle * val);

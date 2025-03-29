@@ -2,6 +2,7 @@ package waffles.utils.geom.spatial.data.spin;
 
 import waffles.utils.algebra.elements.linear.matrix.Matrix;
 import waffles.utils.algebra.elements.linear.vector.Vector;
+import waffles.utils.geom.utilities.Dimensional;
 
 /**
  * A {@code Spin} defines a data source to construct rotations.
@@ -9,8 +10,11 @@ import waffles.utils.algebra.elements.linear.vector.Vector;
  * @author Waffles
  * @since Dec 26, 2019
  * @version 1.1
+ * 
+ * 
+ * @see Dimensional
  */
-public interface Spin
+public interface Spin extends Dimensional
 {
 	/**
 	 * A {@code Spin.Error} is thrown when two
@@ -76,6 +80,25 @@ public interface Spin
 		return null;
 	}
 	
+	/**
+	 * Creates a {@code Spin} from a dimension.
+	 * 
+	 * @param dim  a vector dimension
+	 * @return  a spin
+	 */
+	public static Spin create(int dim)
+	{
+		switch(dim)
+		{
+		case 2:
+			return new Spin2D();
+		case 3:
+			return new Spin3D();
+		default:
+			return new SpinND();
+		}
+	}
+	
 	
 	/**
 	 * Inverts the direction of the {@code Spin}.
@@ -110,4 +133,11 @@ public interface Spin
 	 * @see Vector
 	 */
 	public abstract Vector Basis(int i);
+
+	/**
+	 * Returns a max angle in the {@code Spin}.
+	 * 
+	 * @return  a max angle
+	 */
+	public abstract float MaxAngle();
 }
