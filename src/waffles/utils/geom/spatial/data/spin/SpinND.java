@@ -86,19 +86,7 @@ public class SpinND implements Spin
 		return basis;
 	}
 	
-	
-	@Override
-	public int Dimension()
-	{
-		return basis.Columns() - 1;
-	}
-	
-	@Override
-	public float MaxAngle()
-	{
-		throw new NotImplementedError();
-	}
-	
+		
 	@Override
 	public SpinND times(float val)
 	{
@@ -132,5 +120,17 @@ public class SpinND implements Spin
 		int dim = Basis().Rows();
 		Matrix m = Matrix(this, dim);
 		return new SpinND(m.transpose());
+	}
+	
+	@Override
+	public int Dimension()
+	{
+		return basis.Columns() - 1;
+	}
+	
+	@Override
+	public float normSqr()
+	{
+		throw new NotImplementedError();
 	}
 }

@@ -2,6 +2,7 @@ package waffles.utils.geom.spatial.data.spin;
 
 import waffles.utils.algebra.elements.linear.matrix.Matrix;
 import waffles.utils.algebra.elements.linear.vector.Vector;
+import waffles.utils.algebra.utilities.measures.Normed;
 import waffles.utils.geom.utilities.Dimensional;
 
 /**
@@ -14,7 +15,7 @@ import waffles.utils.geom.utilities.Dimensional;
  * 
  * @see Dimensional
  */
-public interface Spin extends Dimensional
+public interface Spin extends Dimensional, Normed
 {
 	/**
 	 * A {@code Spin.Error} is thrown when two
@@ -133,11 +134,4 @@ public interface Spin extends Dimensional
 	 * @see Vector
 	 */
 	public abstract Vector Basis(int i);
-
-	/**
-	 * Returns a max angle in the {@code Spin}.
-	 * 
-	 * @return  a max angle
-	 */
-	public abstract float MaxAngle();
 }

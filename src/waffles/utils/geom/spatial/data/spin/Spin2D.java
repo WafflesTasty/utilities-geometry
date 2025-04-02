@@ -114,19 +114,7 @@ public class Spin2D implements Spin
 		return angle;
 	}
 	
-	
-	@Override
-	public int Dimension()
-	{
-		return 2;
-	}
-	
-	@Override
-	public float MaxAngle()
-	{
-		return angle;
-	}
-	
+			
 	@Override
 	public Spin2D times(float val)
 	{
@@ -160,4 +148,22 @@ public class Spin2D implements Spin
 	{
 		return new Spin2D(-angle);
 	}
+
+	@Override
+	public int Dimension()
+	{
+		return 2;
+	}
+	
+	@Override
+	public float normSqr()
+	{
+		return angle * angle;
+	}
+	
+	@Override
+	public float norm()
+	{
+		return angle;
+	}	
 }

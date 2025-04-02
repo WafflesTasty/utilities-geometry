@@ -200,19 +200,7 @@ public class Spin3D implements Spin
 		);
 	}
 	
-	
-	@Override
-	public int Dimension()
-	{
-		return 3;
-	}
-	
-	@Override
-	public float MaxAngle()
-	{
-		return versor.Angle();
-	}
-	
+			
 	@Override
 	public Spin3D times(float val)
 	{
@@ -249,5 +237,23 @@ public class Spin3D implements Spin
 		float a = -versor.Angle();
 		Vector3 v = versor.Axis();
 		return new Spin3D(v, a);
+	}
+
+	@Override
+	public int Dimension()
+	{
+		return 3;
+	}
+
+	@Override
+	public float normSqr()
+	{
+		return norm() * norm();
+	}
+	
+	@Override
+	public float norm()
+	{
+		return versor.Angle();
 	}
 }
