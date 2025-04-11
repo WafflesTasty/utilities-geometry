@@ -14,8 +14,9 @@ import waffles.utils.geom.spatial.data.unary.Scaled3D;
  * 
  * @see Positioned3D
  * @see Scaled3D
+ * @see Axial
  */
-public interface Axial3D extends Positioned3D, Scaled3D
+public interface Axial3D extends Axial, Positioned3D, Scaled3D
 {
 	/**
 	 * A {@code Mutable Axial3D} can change its own values.
@@ -28,8 +29,9 @@ public interface Axial3D extends Positioned3D, Scaled3D
 	 * @see Axial3D
 	 * @see Positioned3D
 	 * @see Scaled3D
+	 * @see Axial
 	 */
-	public static interface Mutable extends Axial3D, Positioned3D.Mutable, Scaled3D.Mutable
+	public static interface Mutable extends Axial3D, Axial.Mutable, Positioned3D.Mutable, Scaled3D.Mutable
 	{
 		// NOT APPLICABLE
 	}

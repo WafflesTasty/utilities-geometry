@@ -12,10 +12,11 @@ import waffles.utils.geom.spatial.data.unary.Rotated2D;
  * @version 1.0
  * 
  * 
+ * @see Spatial
  * @see Rotated2D
  * @see Axial2D
  */
-public interface Spatial2D extends Axial2D, Rotated2D
+public interface Spatial2D extends Spatial, Axial2D, Rotated2D
 {
 	/**
 	 * A {@code Mutable Spatial2D} can change its own values.
@@ -25,11 +26,12 @@ public interface Spatial2D extends Axial2D, Rotated2D
 	 * @version 1.0
 	 * 
 	 * 
+	 * @see Spatial
 	 * @see Spatial2D
 	 * @see Rotated2D
 	 * @see Axial2D
 	 */
-	public static interface Mutable extends Spatial2D, Axial2D.Mutable, Rotated2D.Mutable
+	public static interface Mutable extends Spatial2D, Spatial.Mutable, Axial2D.Mutable, Rotated2D.Mutable
 	{
 		// NOT APPLICABLE
 	}
