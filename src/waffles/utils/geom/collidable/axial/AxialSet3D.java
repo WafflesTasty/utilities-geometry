@@ -75,7 +75,7 @@ public abstract class AxialSet3D extends AxialSet implements Geometry3D
 	 */
 	public float Width()
 	{
-		return Size().X();
+		return Scale().X();
 	}
 	
 	/**
@@ -85,7 +85,7 @@ public abstract class AxialSet3D extends AxialSet implements Geometry3D
 	 */
 	public float Height()
 	{
-		return Size().Y();
+		return Scale().Y();
 	}
 	
 	/**
@@ -95,7 +95,7 @@ public abstract class AxialSet3D extends AxialSet implements Geometry3D
 	 */
 	public float Depth()
 	{
-		return Size().Z();
+		return Scale().Z();
 	}
 	
 	/**
@@ -142,8 +142,8 @@ public abstract class AxialSet3D extends AxialSet implements Geometry3D
 	}
 	
 	@Override
-	public Vector3 Size()
+	public Vector3 Scale()
 	{
-		return (Vector3) super.Size();
+		return (Vector3) super.Scale();
 	}
 }

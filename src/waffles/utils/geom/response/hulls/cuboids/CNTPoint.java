@@ -111,7 +111,7 @@ public class CNTPoint implements Response
 	{
 		int dim = src.Dimension();
 		Vector cen = src.Origin();
-		Vector siz = src.Size();
+		Vector siz = src.Scale();
 		float m = tgt.Mass();
 		
 
@@ -154,7 +154,7 @@ public class CNTPoint implements Response
 	{
 		int dim = src.Dimension();
 		Vector cen = src.Origin();
-		Vector siz = src.Size();
+		Vector siz = src.Scale();
 		float m = tgt.Mass();
 		
 		
@@ -181,7 +181,7 @@ public class CNTPoint implements Response
 	{
 		int dim = src.Dimension();
 		Vector cen = src.Origin();
-		Vector siz = src.Size();
+		Vector siz = src.Scale();
 		float xm = tgt.Mass();
 		
 		

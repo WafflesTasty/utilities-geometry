@@ -83,7 +83,7 @@ public abstract class AxialSet implements AxialShape
 	}
 	
 	@Override
-	public Vector Size()
+	public Vector Scale()
 	{
 		return size;
 	}

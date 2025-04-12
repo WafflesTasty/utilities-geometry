@@ -37,7 +37,7 @@ public interface Scalable extends Scaled
 	 */
 	public default void scaleTo(Vector v)
 	{
-		Transform().setSize(v);
+		Transform().setScale(v);
 	}
 	
 	/**
@@ -67,13 +67,13 @@ public interface Scalable extends Scaled
 	 */
 	public default void scaleFor(Vector v)
 	{		
-		scaleTo(Size().ltimes(v));
+		scaleTo(Scale().ltimes(v));
 	}
 	
 	
 	@Override
-	public default Vector Size()
+	public default Vector Scale()
 	{
-		return Transform().Size();
+		return Transform().Scale();
 	}
 }

@@ -46,7 +46,7 @@ public class BNDSpheroid implements Bounds
 	@Override
 	public float Radius()
 	{
-		Vector d = src.Size().times(0.5f);
+		Vector d = src.Scale().times(0.5f);
 		Matrix e = Matrices.diagonal(d);
 		e.setOperator(Diagonal.Type());
 		
@@ -79,7 +79,7 @@ public class BNDSpheroid implements Bounds
 	@Override
 	public Vector Size()
 	{
-		Vector d = src.Size().times(0.5f);
+		Vector d = src.Scale().times(0.5f);
 		Matrix e = Matrices.diagonal(d);
 		e.setOperator(Diagonal.Type());
 		

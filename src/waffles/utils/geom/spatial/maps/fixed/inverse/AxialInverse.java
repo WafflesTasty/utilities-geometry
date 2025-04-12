@@ -37,7 +37,7 @@ public class AxialInverse implements AxialMap
 	@Override
 	public Axial Source()
 	{		
-		Vector sMap = map.Size();
+		Vector sMap = map.Scale();
 		Vector oMap = map.Origin();
 		
 		

@@ -103,9 +103,9 @@ public class KDTree<O> extends BiTree implements HyperCuboid, Iterable<O>, Space
 	}
 
 	@Override
-	public Vector Size()
+	public Vector Scale()
 	{
-		return shape.Size();
+		return shape.Scale();
 	}
 	
 	@Override

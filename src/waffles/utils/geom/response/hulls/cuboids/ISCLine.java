@@ -183,7 +183,7 @@ public class ISCLine implements Response
 	
 	boolean computeImpact()
 	{		
-		Vector s = src.Size();
+		Vector s = src.Scale();
 		Vector o = src.Origin();
 		int dim = src.Dimension();
 		

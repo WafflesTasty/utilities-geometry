@@ -72,7 +72,7 @@ public abstract class AxialSet2D extends AxialSet implements Geometry2D
 	 */
 	public float Width()
 	{
-		return Size().X();
+		return Scale().X();
 	}
 	
 	/**
@@ -82,7 +82,7 @@ public abstract class AxialSet2D extends AxialSet implements Geometry2D
 	 */
 	public float Height()
 	{
-		return Size().Y();
+		return Scale().Y();
 	}
 	
 	/**
@@ -119,8 +119,8 @@ public abstract class AxialSet2D extends AxialSet implements Geometry2D
 	}
 	
 	@Override
-	public Vector2 Size()
+	public Vector2 Scale()
 	{
-		return (Vector2) super.Size();
+		return (Vector2) super.Scale();
 	}
 }

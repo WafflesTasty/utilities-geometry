@@ -121,8 +121,8 @@ public class CNTCuboid implements Response
 		
 		for(int i = 0; i < dim; i++)
 		{
-			float ti = src.Size().get(i);
-			float si = tgt.Size().get(i);
+			float ti = src.Scale().get(i);
+			float si = tgt.Scale().get(i);
 			
 			float qi = src.Origin().get(i);
 			float pi = tgt.Origin().get(i);
@@ -201,8 +201,8 @@ public class CNTCuboid implements Response
 		int dim = Integers.min(src.Dimension(), tgt.Dimension());
 		for(int i = 0; i < dim; i++)
 		{
-			float si = src.Size().get(i);
-			float ti = tgt.Size().get(i);
+			float si = src.Scale().get(i);
+			float ti = tgt.Scale().get(i);
 			
 			float pi = src.Origin().get(i);
 			float qi = tgt.Origin().get(i);

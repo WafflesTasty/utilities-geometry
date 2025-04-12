@@ -47,12 +47,12 @@ public interface AxialMap extends GlobalMap, Axial.Mutable
 	}
 	
 	@Override
-	public default void setSize(Vector s)
+	public default void setScale(Vector s)
 	{
 		Scaled.Mutable src = Source().Mutator();
 		if(src != null)
 		{
-			src.setSize(s);
+			src.setScale(s);
 			setChanged();
 		}
 	}
@@ -77,8 +77,8 @@ public interface AxialMap extends GlobalMap, Axial.Mutable
 	}
 	
 	@Override
-	public default Vector Size()
+	public default Vector Scale()
 	{
-		return Source().Size();
+		return Source().Scale();
 	}
 }

@@ -47,6 +47,6 @@ public class BNDAxial implements Bounds
 	@Override
 	public Vector Size()
 	{
-		return src.Size();
+		return src.Scale();
 	}
 }

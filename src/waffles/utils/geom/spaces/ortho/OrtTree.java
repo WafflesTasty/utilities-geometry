@@ -41,7 +41,7 @@ public class OrtTree<O extends Bounded> extends Tree implements Manifold<O>
 	 */
 	public OrtTree(HyperCuboid b)
 	{
-		this(b.Origin(), b.Size());
+		this(b.Origin(), b.Scale());
 	}
 	
 	/**

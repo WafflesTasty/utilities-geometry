@@ -160,9 +160,9 @@ public class OrtNode<O extends Bounded> extends Node implements HyperCuboid, Mut
 
 	
 	@Override
-	public Vector Size()
+	public Vector Scale()
 	{
-		return axis.Size();
+		return axis.Scale();
 	}
 	
 	@Override

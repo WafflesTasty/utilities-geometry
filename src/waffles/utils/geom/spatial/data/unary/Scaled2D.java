@@ -35,13 +35,13 @@ public interface Scaled2D extends Scaled
 		 */
 		public default void setSize(float w, float h)
 		{
-			setSize(new Vector2(w, h));
+			setScale(new Vector2(w, h));
 		}
 	}
 	
 	
 	@Override
-	public default Vector2 Size()
+	public default Vector2 Scale()
 	{
 		return new Vector2(Width(), Height());
 	}
@@ -54,7 +54,7 @@ public interface Scaled2D extends Scaled
 	 */
 	public default float Height()
 	{
-		return Size().Y();
+		return Scale().Y();
 	}
 	
 	/**
@@ -64,6 +64,6 @@ public interface Scaled2D extends Scaled
 	 */
 	public default float Width()
 	{
-		return Size().X();
+		return Scale().X();
 	}
 }

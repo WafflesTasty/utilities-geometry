@@ -173,8 +173,8 @@ public class VCHCuboid implements VChain
 		return () -> new Iterator<>()
 		{
 			private int i = 0;
-			private Vector min = src.Size().times(-0.5f);
-			private Vector max = src.Size().times(+0.5f);
+			private Vector min = src.Scale().times(-0.5f);
+			private Vector max = src.Scale().times(+0.5f);
 			
 			
 			@Override

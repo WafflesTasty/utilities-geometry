@@ -59,13 +59,13 @@ public class Axis extends Position implements Axial.Mutable
 	
 
 	@Override
-	public void setSize(Vector s)
+	public void setScale(Vector s)
 	{
 		size = s;
 	}
 
 	@Override
-	public Vector Size()
+	public Vector Scale()
 	{
 		return size;
 	}

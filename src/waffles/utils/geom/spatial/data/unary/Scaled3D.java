@@ -36,13 +36,13 @@ public interface Scaled3D extends Scaled
 		 */
 		public default void setSize(float w, float h, float d)
 		{
-			setSize(new Vector3(w, h, d));
+			setScale(new Vector3(w, h, d));
 		}
 	}
 	
 	
 	@Override
-	public default Vector3 Size()
+	public default Vector3 Scale()
 	{
 		return new Vector3(Width(), Height(), Depth());
 	}
@@ -55,7 +55,7 @@ public interface Scaled3D extends Scaled
 	 */
 	public default float Height()
 	{
-		return Size().Y();
+		return Scale().Y();
 	}
 	
 	/**
@@ -65,7 +65,7 @@ public interface Scaled3D extends Scaled
 	 */
 	public default float Width()
 	{
-		return Size().X();
+		return Scale().X();
 	}
 	
 	/**
@@ -75,6 +75,6 @@ public interface Scaled3D extends Scaled
 	 */
 	public default float Depth()
 	{
-		return Size().Z();
+		return Scale().Z();
 	}
 }

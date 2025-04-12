@@ -57,7 +57,7 @@ public interface AxialShape extends Axial, Geometry
 			return null;
 		}
 
-		Point s1 = new Point(Size(), 0f);
+		Point s1 = new Point(Scale(), 0f);
 		Affine s2 = map.map(s1);
 		if(!(s2 instanceof Point))
 		{

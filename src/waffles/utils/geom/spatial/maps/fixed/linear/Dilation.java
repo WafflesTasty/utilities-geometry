@@ -107,10 +107,10 @@ public class Dilation implements LinearMap, Scaled
 	{
 		// Divided by two because it scales in both
 		// the positive and negative direction of axes.
-		Vector size = Size().times(0.5f);
+		Vector size = Scale().times(0.5f);
 		Matrix m = Matrices.identity(dim);		
 		m.setOperator(Diagonal.Type());
-		int sDim = Size().Size();
+		int sDim = Scale().Size();
 		
 		for(int d = 0; d < dim; d++)
 		{
@@ -132,10 +132,10 @@ public class Dilation implements LinearMap, Scaled
 	{
 		// Divided by two because it scales in both
 		// the positive and negative direction of axes.
-		Vector size = Size().times(0.5f);
+		Vector size = Scale().times(0.5f);
 		Matrix m = Matrices.identity(dim);
 		m.setOperator(Diagonal.Type());
-		int sDim = Size().Size();
+		int sDim = Scale().Size();
 		
 		for(int d = 0; d < dim; d++)
 		{
@@ -153,8 +153,8 @@ public class Dilation implements LinearMap, Scaled
 	}
 	
 	@Override
-	public Vector Size()
+	public Vector Scale()
 	{
-		return src.Size();
+		return src.Scale();
 	}
 }

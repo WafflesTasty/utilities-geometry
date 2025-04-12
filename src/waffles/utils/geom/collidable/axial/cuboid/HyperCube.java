@@ -19,6 +19,6 @@ public interface HyperCube extends HyperCuboid
 	 */
 	public default float Length()
 	{
-		return Size().get(0);
+		return Scale().get(0);
 	}
 }

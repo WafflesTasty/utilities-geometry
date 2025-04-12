@@ -35,7 +35,7 @@ public interface Scaled extends Immutable
 		 * 
 		 * @see Vector
 		 */
-		public abstract void setSize(Vector s);
+		public abstract void setScale(Vector s);
 	}
 	
 	
@@ -47,5 +47,5 @@ public interface Scaled extends Immutable
 	 * 
 	 * @see Vector
 	 */
-	public abstract Vector Size();
+	public abstract Vector Scale();
 }

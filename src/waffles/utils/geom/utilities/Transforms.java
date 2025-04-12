@@ -34,7 +34,7 @@ public final class Transforms
 	public static StandardMap fromUSphere(HyperSpheroid e)
 	{
 		StandardMap map = new StandardMap(e.Dimension());
-		map.setSize(e.Size().times(0.5f));
+		map.setScale(e.Scale().times(0.5f));
 		map.setOrigin(e.Origin());
 		return map;
 	}

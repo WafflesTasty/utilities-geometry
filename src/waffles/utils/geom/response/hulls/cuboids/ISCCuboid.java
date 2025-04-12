@@ -184,8 +184,8 @@ public class ISCCuboid implements Response
 		
 		for(int i = 0; i < dim; i++)
 		{
-			float si = src.Size().get(i);
-			float ti = tgt.Size().get(i);
+			float si = src.Scale().get(i);
+			float ti = tgt.Scale().get(i);
 			
 			float pi = src.Origin().get(i);
 			float qi = tgt.Origin().get(i);
@@ -213,8 +213,8 @@ public class ISCCuboid implements Response
 		
 		for(int i = 0; i < dim; i++)
 		{
-			float si = src.Size().get(i);
-			float ti = tgt.Size().get(i);
+			float si = src.Scale().get(i);
+			float ti = tgt.Scale().get(i);
 			
 			float pi = src.Origin().get(i);
 			float qi = tgt.Origin().get(i);

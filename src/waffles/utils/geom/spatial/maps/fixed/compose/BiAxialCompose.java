@@ -36,8 +36,8 @@ public class BiAxialCompose implements AxialMap
 	@Override
 	public Axis Source()
 	{
-		Vector s2 = m2.Size();
-		Vector s1 = m1.Size();
+		Vector s2 = m2.Scale();
+		Vector s1 = m1.Scale();
 		
 		Vector o2 = m2.Origin();
 		Vector o1 = m1.Origin();

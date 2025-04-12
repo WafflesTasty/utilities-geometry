@@ -37,7 +37,7 @@ public interface HyperSphere extends HyperSpheroid
 	 */
 	public default float Diameter()
 	{
-		return Size().get(0);
+		return Scale().get(0);
 	}
 		
 			

@@ -49,7 +49,7 @@ public interface HyperSpheroid extends AxialShape, ConvexSet
 			Vector n = Vectors.create(Dimension());
 			for(int i = 0; i < Dimension(); i++)
 			{
-				float si = Size().get(i) / 2;
+				float si = Scale().get(i) / 2;
 				n.set(v.get(i) * si, i);
 			}
 			
@@ -57,7 +57,7 @@ public interface HyperSpheroid extends AxialShape, ConvexSet
 			Vector e = Vectors.create(Dimension());
 			for(int i = 0; i < Dimension(); i++)
 			{
-				float si = Size().get(i) / 2;
+				float si = Scale().get(i) / 2;
 				e.set(v.get(i) * si * si / nrm, i);
 			}
 			

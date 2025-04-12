@@ -44,7 +44,7 @@ public class BNDCuboid implements Bounds
 	public float Radius()
 	{
 		int dim = Dimension();
-		Vector s = src.Size();
+		Vector s = src.Scale();
 		
 		Matrix a = map.Matrix(dim+1);
 		a = Matrices.resize(a, dim, dim);
@@ -64,7 +64,7 @@ public class BNDCuboid implements Bounds
 	public Vector Size()
 	{
 		int dim = Dimension();
-		Vector s = src.Size();
+		Vector s = src.Scale();
 		
 		Matrix a = map.Matrix(dim+1);
 		a = Matrices.resize(a, dim, dim);

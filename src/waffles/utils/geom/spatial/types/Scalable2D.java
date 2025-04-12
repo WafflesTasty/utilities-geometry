@@ -44,8 +44,8 @@ public interface Scalable2D extends Scalable, Scaled2D
 
 		
 	@Override
-	public default Vector2 Size()
+	public default Vector2 Scale()
 	{
-		return (Vector2) Scalable.super.Size();
+		return (Vector2) Scalable.super.Scale();
 	}
 }
