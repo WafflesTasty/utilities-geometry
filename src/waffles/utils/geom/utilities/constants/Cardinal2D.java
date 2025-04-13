@@ -55,7 +55,7 @@ public final class Cardinal2D extends Vector2
 	/**
 	 * The southeast {@code Cardinal2D} points along the fourth bisector.
 	 */
-	public static Cardinal2D SOUTHEAST 	= new Cardinal2D( 1,+1);
+	public static Cardinal2D SOUTHEAST 	= new Cardinal2D(+1,+1);
 	
 		
 	/**
