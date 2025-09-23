@@ -9,7 +9,6 @@ import waffles.utils.geom.spatial.maps.fixed.linear.matrix.ops.TranslatorLProduc
 import waffles.utils.geom.spatial.maps.fixed.linear.matrix.ops.TranslatorRProduct;
 import waffles.utils.geom.spatial.maps.fixed.linear.matrix.ops.TranslatorScalar;
 import waffles.utils.tools.patterns.operator.Operation;
-import waffles.utils.tools.primitives.Floats;
 
 /**
  * A {@code Translator} matrix performs a linear operation
