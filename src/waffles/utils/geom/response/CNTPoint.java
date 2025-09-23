@@ -1,6 +1,6 @@
 package waffles.utils.geom.response;
 
-import waffles.utils.algebra.elements.linear.vector.Vector;
+import waffles.utils.alg.lin.measure.vector.Vector;
 import waffles.utils.geom.Collidable;
 import waffles.utils.geom.Collision.Response;
 import waffles.utils.geom.collidable.Geometrical;
@@ -21,10 +21,10 @@ import waffles.utils.geom.utilities.Geometries;
  */
 public class CNTPoint implements Response
 {
-	private int dim;
 	private Point tgt;
 	private Response rsp;
 	private GlobalMap map;
+	private Geometrical src;
 	
 	/**
 	 * Creates a new {@code CNTPoint}.
@@ -43,11 +43,17 @@ public class CNTPoint implements Response
 		Point q = (Point) map.unmap(p);
 		Geometry shape = s.Shape();
 		rsp = shape.contain(q);
-		
-		dim = s.Dimension();
+
+		src = s;
 		tgt = p;
 	}
 	
+	
+	@Override
+	public int Dimension()
+	{
+		return src.Dimension();
+	}
 	
 	@Override
 	public Collidable Shape()
@@ -57,6 +63,7 @@ public class CNTPoint implements Response
 			return tgt;
 		}
 		
+		int dim = Dimension();
 		return Geometries.Void(dim);
 	}
 	
@@ -106,6 +113,7 @@ public class CNTPoint implements Response
 	@Override
 	public int Cost()
 	{
+		int dim = Dimension();
 		return rsp.Cost() + dim * dim;
 	}
 }

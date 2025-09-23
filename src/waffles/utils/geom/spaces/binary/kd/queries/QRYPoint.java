@@ -2,8 +2,8 @@ package waffles.utils.geom.spaces.binary.kd.queries;
 
 import java.util.Iterator;
 
-import waffles.utils.algebra.elements.interval.Cut;
-import waffles.utils.algebra.elements.linear.vector.Vector;
+import waffles.utils.alg.lin.measure.vector.Vector;
+import waffles.utils.alg.reals.cuts.Cut;
 import waffles.utils.geom.collidable.fixed.Point;
 import waffles.utils.geom.spaces.binary.kd.KDNode;
 import waffles.utils.geom.spaces.binary.kd.KDTree;
@@ -68,7 +68,7 @@ public class QRYPoint<O> implements Iterator<O>
 			int dim = node.Plane().Dimension();
 
 
-			if(cut.isAbove(tgt.get(dim)))
+			if(cut.isAfter(tgt.get(dim)))
 				node = node.LChild();
 			else
 				node = node.RChild();

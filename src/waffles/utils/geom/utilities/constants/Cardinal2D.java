@@ -1,6 +1,6 @@
 package waffles.utils.geom.utilities.constants;
 
-import waffles.utils.algebra.elements.linear.vector.fixed.Vector2;
+import waffles.utils.alg.lin.measure.vector.fixed.Vector2;
 import waffles.utils.geom.collidable.fixed.Point;
 import waffles.utils.geom.spatial.data.spin.Spin2D;
 import waffles.utils.geom.spatial.maps.fixed.linear.Rotation;

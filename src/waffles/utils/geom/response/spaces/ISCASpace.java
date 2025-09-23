@@ -1,6 +1,6 @@
 package waffles.utils.geom.response.spaces;
 
-import waffles.utils.algebra.elements.linear.vector.Vector;
+import waffles.utils.alg.lin.measure.vector.Vector;
 import waffles.utils.geom.Collidable;
 import waffles.utils.geom.Collision.Response;
 import waffles.utils.geom.collidable.Geometrical;
@@ -23,7 +23,6 @@ import waffles.utils.geom.utilities.Geometries;
  */
 public class ISCASpace implements Response
 {
-	private int dim;
 	private Response rsp;
 	private GlobalMap map;
 	
@@ -43,7 +42,6 @@ public class ISCASpace implements Response
 		Geometry shape = s.Shape();
 		ASpace h = (ASpace) map.unmap(t);
 		rsp = shape.intersect(h);
-		dim = s.Dimension();
 	}
 	
 	/**
@@ -63,6 +61,12 @@ public class ISCASpace implements Response
 	
 	
 	@Override
+	public int Dimension()
+	{
+		return rsp.Dimension();
+	}
+	
+	@Override
 	public Collidable Shape()
 	{
 		if(hasImpact())
@@ -70,6 +74,7 @@ public class ISCASpace implements Response
 			return null;
 		}
 		
+		int dim = Dimension();
 		return Geometries.Void(dim);
 	}
 	
@@ -119,6 +124,7 @@ public class ISCASpace implements Response
 	@Override
 	public int Cost()
 	{
+		int dim = Dimension();
 		return rsp.Cost() + 2 * dim * (dim - 1);
 	}
 }

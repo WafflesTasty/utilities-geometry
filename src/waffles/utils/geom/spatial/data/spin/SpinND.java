@@ -1,11 +1,11 @@
 package waffles.utils.geom.spatial.data.spin;
 
-import waffles.utils.algebra.algorithms.orthogonal.ORTNewton;
-import waffles.utils.algebra.elements.linear.matrix.Matrices;
-import waffles.utils.algebra.elements.linear.matrix.Matrix;
-import waffles.utils.algebra.elements.linear.matrix.types.orthogonal.Orthogonal;
-import waffles.utils.algebra.elements.linear.vector.Vector;
-import waffles.utils.tools.errors.NotImplementedError;
+import waffles.utils.alg.lin.measure.matrix.Matrices;
+import waffles.utils.alg.lin.measure.matrix.Matrix;
+import waffles.utils.alg.lin.measure.matrix.types.orthogonal.Orthogonal;
+import waffles.utils.alg.lin.measure.vector.Vector;
+import waffles.utils.alg.lin.solvers.matrix.ortho.ORNewton;
+import waffles.utils.tools.patterns.basic.errors.NotImplementedError;
 
 /**
  * A {@code SpinND} defines an n-dimensional rotation spin.
@@ -35,12 +35,12 @@ public class SpinND implements Spin
 		Matrix b = s.Basis();
 		if(!b.is(Orthogonal.Type()))
 		{
-			b = new ORTNewton(b).NearestOrthogonal();
+			b = new ORNewton(b).orthogonalize();
 			b.setOperator(Orthogonal.Type());
 		}
 		
 		
-		Matrix mat = Matrices.resize(b, dim, dim);
+		Matrix mat = b.resize(dim, dim);
 		for(int i = b.Rows(); i < dim; i++)
 		{
 			mat.set(1f, i, i);

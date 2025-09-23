@@ -1,6 +1,6 @@
 package waffles.utils.geom.spatial.maps.spatial;
 
-import waffles.utils.algebra.utilities.matrix.LazyMatrix;
+import waffles.utils.alg.utilities.matrix.LazyMatrix;
 import waffles.utils.geom.spatial.data.Spatial;
 import waffles.utils.geom.spatial.data.structs.Locus;
 import waffles.utils.geom.spatial.maps.spatial.matrix.UnitToWorld;

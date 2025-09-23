@@ -1,8 +1,8 @@
 package waffles.utils.geom.response.spaces.affine;
 
-import waffles.utils.algebra.algorithms.leastsquares.LSQHouseHolder;
-import waffles.utils.algebra.elements.linear.vector.Vector;
-import waffles.utils.algebra.elements.linear.vector.Vectors;
+import waffles.utils.alg.lin.measure.vector.Vector;
+import waffles.utils.alg.lin.measure.vector.Vectors;
+import waffles.utils.alg.lin.solvers.matrix.square.types.LSHouseholder;
 import waffles.utils.geom.Collidable;
 import waffles.utils.geom.Collision.Response;
 import waffles.utils.geom.collidable.fixed.Point;
@@ -29,7 +29,7 @@ public class ISCASpace implements Response
 	private ASpace src, tgt;
 	private Boolean hasImpact;
 
-	private LSQHouseHolder lsq;
+	private LSHouseholder lsq;
 	
 	/**
 	 * Creates a new {@code ISCASpace}.
@@ -60,6 +60,12 @@ public class ISCASpace implements Response
 		this(s, ASpace.Default(t));
 	}
 
+	
+	@Override
+	public int Dimension()
+	{
+		return src.Dimension();
+	}
 	
 	@Override
 	public Collidable Shape()
@@ -138,7 +144,7 @@ public class ISCASpace implements Response
 		VSpace u = v.add(w);
 		
 		
-		lsq = new LSQHouseHolder(u.Generator());
+		lsq = new LSHouseholder(u.Generator());
 
 		Vector x = lsq.approx(r);
 		Vector y = (Vector) u.evaluate(x);
@@ -146,15 +152,20 @@ public class ISCASpace implements Response
 		if(Floats.isZero(r.distSqr(y), d1 + d2))
 		{
 			VSpace d = (VSpace) v.intersect(w).Shape();
-			x = (Vector) v.evaluate(Vectors.resize(x, d1));
+			x = (Vector) v.evaluate(x.resize(d1));
 			shape = new ASpace(new Point(x, 1f), d);
 			
 			return true;
 		}
 		
 		
-		Vector x1 = Vectors.resize(x, d1);
-		Vector x2 = Vectors.resize(x, d1, d2);
+		Vector x1 = x.resize(d1);
+		Vector x2 = Vectors.create(d2);
+		for(int k = 0; k < d2; k++)
+		{
+			float val = x.get(d1 + k);
+			x2.set(val, k);
+		}
 
 		x1 = (Vector) v.evaluate(x1);
 		x2 = (Vector) w.evaluate(x2);

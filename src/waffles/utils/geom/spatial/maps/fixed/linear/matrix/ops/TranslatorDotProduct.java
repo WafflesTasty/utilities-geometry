@@ -1,6 +1,6 @@
 package waffles.utils.geom.spatial.maps.fixed.linear.matrix.ops;
 
-import waffles.utils.algebra.elements.linear.matrix.Matrix;
+import waffles.utils.alg.lin.measure.matrix.Matrix;
 import waffles.utils.tools.patterns.operator.Operation;
 import waffles.utils.tools.primitives.Integers;
 

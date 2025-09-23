@@ -3,7 +3,7 @@ package waffles.utils.geom.spaces.index.beps;
 import waffles.utils.geom.bounds.Bounds;
 import waffles.utils.geom.collidable.axial.cuboid.HyperCuboid;
 import waffles.utils.geom.spaces.index.IndexSpace;
-import waffles.utils.sets.trees.Rooted;
+import waffles.utils.sets.rooted.Rooted;
 
 /**
  * A {@code BEPSpace} defines a binary enum partition space backed by a {@code BEPSTree}.

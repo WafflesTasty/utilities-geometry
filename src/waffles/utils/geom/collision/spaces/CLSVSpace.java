@@ -48,7 +48,7 @@ public class CLSVSpace implements Collision
 			return new ISCVSpace(s, t);
 		}
 
-		return () -> false;
+		return Collision.super.intersect(c);
 	}
 
 	@Override
@@ -72,7 +72,7 @@ public class CLSVSpace implements Collision
 			return new CNTVSpace(s, t);
 		}
 		
-		return () -> false;
+		return Collision.super.contain(c);
 	}
 	
 	@Override

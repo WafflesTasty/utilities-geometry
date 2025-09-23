@@ -7,6 +7,7 @@ package waffles.utils.geom.utilities;
  * @since 08 Sep 2024
  * @version 1.1
  */
+@FunctionalInterface
 public interface Dimensional
 {
 	/**

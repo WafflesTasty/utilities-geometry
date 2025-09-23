@@ -1,6 +1,6 @@
 package waffles.utils.geom.spatial.data.unary;
 
-import waffles.utils.algebra.elements.linear.vector.fixed.Vector2;
+import waffles.utils.alg.lin.measure.vector.fixed.Vector2;
 
 /**
  * A {@code Positioned2D} object defines a two-dimensional origin vector.

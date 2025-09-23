@@ -1,8 +1,8 @@
 package waffles.utils.geom.spaces.index.tiles.maps;
 
-import waffles.utils.algebra.elements.linear.matrix.Matrices;
-import waffles.utils.algebra.elements.linear.matrix.Matrix;
-import waffles.utils.algebra.utilities.matrix.LazyMatrix;
+import waffles.utils.alg.lin.measure.matrix.Matrices;
+import waffles.utils.alg.lin.measure.matrix.Matrix;
+import waffles.utils.alg.utilities.matrix.LazyMatrix;
 import waffles.utils.geom.spaces.index.tiles.Tiled;
 
 /**

@@ -1,10 +1,9 @@
 package waffles.utils.geom.collidable.spaces;
 
-import waffles.utils.algebra.elements.linear.Affine;
-import waffles.utils.algebra.elements.linear.matrix.Matrices;
-import waffles.utils.algebra.elements.linear.matrix.Matrix;
-import waffles.utils.algebra.elements.linear.vector.Vector;
-import waffles.utils.algebra.elements.linear.vector.Vectors;
+import waffles.utils.alg.lin.measure.matrix.Matrices;
+import waffles.utils.alg.lin.measure.matrix.Matrix;
+import waffles.utils.alg.lin.measure.vector.Vector;
+import waffles.utils.alg.utilities.affine.Affine;
 import waffles.utils.geom.Collidable;
 import waffles.utils.geom.Collision;
 import waffles.utils.geom.collidable.fixed.Point;
@@ -81,8 +80,8 @@ public class HSpace implements Affine, Collidable
 			Vector o = m.Column(0);
 			Vector v = m.Column(1);
 			
-			o = Vectors.resize(o, dim);
-			v = Vectors.resize(v, dim);
+			o = o.resize(dim);
+			v = v.resize(dim);
 			
 			
 			float mass = m.get(dim, 0);

@@ -47,7 +47,7 @@ public class CLSConvex implements Collision
 			return new CNTPoint(s, t);
 		}
 		
-		return null;
+		return Collision.super.contain(c);
 	}
 
 	@Override
@@ -62,7 +62,7 @@ public class CLSConvex implements Collision
 			return new ISCConvex(s, t);
 		}
 		
-		return () -> false;
+		return Collision.super.intersect(c);
 	}
 
 	@Override

@@ -1,6 +1,6 @@
 package waffles.utils.geom.response.hulls.segments;
 
-import waffles.utils.algebra.elements.linear.vector.Vector;
+import waffles.utils.alg.lin.measure.vector.Vector;
 import waffles.utils.geom.Collidable;
 import waffles.utils.geom.Collision.Response;
 import waffles.utils.geom.collidable.convex.hulls.segments.Segment;
@@ -41,6 +41,12 @@ public class CNTPoint implements Response
 		tgt = p;
 	}
 
+	
+	@Override
+	public int Dimension()
+	{
+		return src.Dimension();
+	}
 	
 	@Override
 	public Collidable Shape()
@@ -138,8 +144,16 @@ public class CNTPoint implements Response
 	{
 		Point p = src.P1();
 		Point q = src.P2();
+
+	
+		Point v = q.minus(p).times(min);
+		v = tgt.minus(p.plus(v));
+		return v.Generator();
 		
-		Vector v = q.minus(p).times(min);
-		return tgt.minus(p.plus(v));
+//		Vector v = q.minus(p).Generator();
+//		p
+//		v = v.times(min);
+//		Vector v = q.minus(p).times(min);
+//		return tgt.minus(p.plus(v));
 	}
 }

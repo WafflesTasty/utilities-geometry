@@ -1,8 +1,8 @@
 package waffles.utils.geom.spatial.maps.fixed.linear.matrix;
 
-import waffles.utils.algebra.elements.linear.matrix.Matrix;
-import waffles.utils.algebra.elements.linear.matrix.types.banded.upper.UpperTriangular;
-import waffles.utils.algebra.elements.linear.tensor.Tensor;
+import waffles.utils.alg.lin.measure.matrix.Matrix;
+import waffles.utils.alg.lin.measure.matrix.types.banded.upper.UpperTriangular;
+import waffles.utils.alg.lin.measure.tensor.Tensor;
 import waffles.utils.geom.spatial.maps.fixed.linear.matrix.ops.TranslatorAddition;
 import waffles.utils.geom.spatial.maps.fixed.linear.matrix.ops.TranslatorDotProduct;
 import waffles.utils.geom.spatial.maps.fixed.linear.matrix.ops.TranslatorLProduct;
@@ -79,36 +79,36 @@ public interface Translator extends UpperTriangular
 		};
 	}
 	
-	@Override
-	public default boolean allows(Tensor m, int ulps)
-	{		
-		if(!UpperTriangular.Type().allows(m, ulps))
-		{
-			return false;
-		}
-		
-		Matrix mat = (Matrix) m;
-		int cols = mat.Columns();
-		int rows = mat.Rows();
-		
-		for(int r = 0; r < rows - 1; r++)
-		{			
-			for(int c = r + 1; c < cols - 1; c++)
-			{
-				if(!Floats.isZero(mat.get(r, c), ulps))
-				{
-					return false;
-				}
-			}
-			
-			if(!Floats.isEqual(mat.get(r, r), 1f, ulps))
-			{
-				return false;
-			}
-		}
-		
-		return true;
-	}
+//	@Override
+//	public default boolean allows(Tensor m, float e)
+//	{		
+//		if(!m.allows(UpperTriangular.Type(), e))
+//		{
+//			return false;
+//		}
+//		
+//		Matrix mat = (Matrix) m;
+//		int cols = mat.Columns();
+//		int rows = mat.Rows();
+//		
+//		for(int r = 0; r < rows - 1; r++)
+//		{			
+//			for(int c = r + 1; c < cols - 1; c++)
+//			{
+//				if(!Values.isZero(mat.get(r, c), ulps))
+//				{
+//					return false;
+//				}
+//			}
+//			
+//			if(!Values.isEqual(mat.get(r, r), 1f, ulps))
+//			{
+//				return false;
+//			}
+//		}
+//		
+//		return true;
+//	}
 	
 	@Override
 	public default boolean matches(Tensor t)

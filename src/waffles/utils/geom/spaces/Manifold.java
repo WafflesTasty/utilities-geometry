@@ -1,8 +1,8 @@
 package waffles.utils.geom.spaces;
 
 import waffles.utils.geom.bounds.Bounded;
-import waffles.utils.sets.keymaps.Pair;
-import waffles.utils.sets.mutable.AtomicSet;
+import waffles.utils.sets.countable.AtomicSet;
+import waffles.utils.sets.utilities.keymaps.Pair;
 
 /**
  * A {@code Manifold} defines a bounded space containing unique objects.

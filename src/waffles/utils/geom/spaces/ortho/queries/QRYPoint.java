@@ -2,7 +2,7 @@ package waffles.utils.geom.spaces.ortho.queries;
 
 import java.util.Iterator;
 
-import waffles.utils.algebra.elements.linear.vector.Vector;
+import waffles.utils.alg.lin.measure.vector.Vector;
 import waffles.utils.geom.bounds.Bounded;
 import waffles.utils.geom.bounds.Bounds;
 import waffles.utils.geom.collidable.fixed.Point;

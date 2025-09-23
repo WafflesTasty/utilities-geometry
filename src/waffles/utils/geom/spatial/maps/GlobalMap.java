@@ -1,8 +1,8 @@
 package waffles.utils.geom.spatial.maps;
 
-import waffles.utils.algebra.elements.linear.LinearMap;
-import waffles.utils.algebra.elements.linear.matrix.Matrix;
-import waffles.utils.algebra.utilities.matrix.LazyMatrix;
+import waffles.utils.alg.lin.measure.matrix.Matrix;
+import waffles.utils.alg.utilities.affine.LinearMap;
+import waffles.utils.alg.utilities.matrix.LazyMatrix;
 
 /**
  * A {@code GlobalMap} is a linear map which delegates matrix

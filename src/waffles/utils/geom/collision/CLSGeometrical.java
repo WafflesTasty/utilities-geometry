@@ -73,7 +73,7 @@ public class CLSGeometrical implements Collision
 			return new ISCGeometric(s, t);
 		}
 		
-		return () -> false;
+		return Collision.super.intersect(c);
 	}
 	
 	@Override
@@ -88,7 +88,7 @@ public class CLSGeometrical implements Collision
 			return new CNTPoint(s, p);
 		}
 		
-		return () -> false;
+		return Collision.super.contain(c);
 	}
 	
 	@Override

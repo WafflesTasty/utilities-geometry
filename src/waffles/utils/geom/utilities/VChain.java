@@ -1,6 +1,6 @@
 package waffles.utils.geom.utilities;
 
-import waffles.utils.algebra.elements.linear.vector.Vector;
+import waffles.utils.alg.lin.measure.vector.Vector;
 import waffles.utils.geom.collidable.Geometry;
 import waffles.utils.geom.collidable.axial.cuboid.HyperCuboid;
 import waffles.utils.geom.collidable.axial.spheroid.Circle;

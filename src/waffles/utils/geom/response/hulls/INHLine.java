@@ -1,7 +1,7 @@
 package waffles.utils.geom.response.hulls;
 
-import waffles.utils.algebra.elements.linear.vector.Vector;
-import waffles.utils.algebra.elements.linear.vector.Vectors;
+import waffles.utils.alg.lin.measure.vector.Vector;
+import waffles.utils.alg.lin.measure.vector.Vectors;
 import waffles.utils.geom.collidable.convex.hulls.Hull;
 import waffles.utils.geom.collidable.spaces.lines.Line;
 

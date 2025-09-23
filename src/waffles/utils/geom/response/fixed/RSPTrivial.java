@@ -1,7 +1,7 @@
 package waffles.utils.geom.response.fixed;
 
-import waffles.utils.algebra.elements.linear.vector.Vector;
-import waffles.utils.algebra.elements.linear.vector.Vectors;
+import waffles.utils.alg.lin.measure.vector.Vector;
+import waffles.utils.alg.lin.measure.vector.Vectors;
 import waffles.utils.geom.Collidable;
 import waffles.utils.geom.Collision.Response;
 import waffles.utils.geom.collidable.fixed.Point;
@@ -30,6 +30,12 @@ public class RSPTrivial implements Response
 		tgt = t;
 	}
 	
+	
+	@Override
+	public int Dimension()
+	{
+		return tgt.Dimension();
+	}
 	
 	@Override
 	public Collidable Shape()

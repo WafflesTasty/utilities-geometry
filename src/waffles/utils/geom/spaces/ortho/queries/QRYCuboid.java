@@ -2,14 +2,14 @@ package waffles.utils.geom.spaces.ortho.queries;
 
 import java.util.Iterator;
 
-import waffles.utils.algebra.elements.linear.vector.Vector;
+import waffles.utils.alg.lin.measure.vector.Vector;
 import waffles.utils.geom.bounds.Bounded;
 import waffles.utils.geom.collidable.axial.cuboid.HyperCuboid;
 import waffles.utils.geom.spaces.ortho.OrtNode;
 import waffles.utils.geom.spaces.ortho.OrtTree;
-import waffles.utils.sets.indexed.delegate.List;
+import waffles.utils.sets.countable.wrapper.JavaList;
 import waffles.utils.sets.queues.Queue;
-import waffles.utils.sets.queues.delegate.JFIFOQueue;
+import waffles.utils.sets.queues.wrapper.FIFOQueue;
 import waffles.utils.tools.primitives.Integers;
 
 /**
@@ -27,7 +27,7 @@ import waffles.utils.tools.primitives.Integers;
 public class QRYCuboid<O extends Bounded> implements Iterator<O>
 {
 	private int next;
-	private List<O> list;
+	private JavaList<O> list;
 	private HyperCuboid tgt;
 	private Queue<OrtNode<O>> nodes;
 
@@ -62,7 +62,7 @@ public class QRYCuboid<O extends Bounded> implements Iterator<O>
 		list = n.Objects();
 		tgt = b.Bounds().Box();
 		
-		nodes = new JFIFOQueue<>();
+		nodes = new FIFOQueue<>();
 		if(!n.isLeaf())
 		{
 			queue(n);
@@ -103,7 +103,7 @@ public class QRYCuboid<O extends Bounded> implements Iterator<O>
 
 		// Don't put a 0 in the constructor.
 		// Java thinks it's a dimension instead.
-		List<Integer> list = new List<>();
+		JavaList<Integer> list = new JavaList<>();
 		list.add(0);
 		
 		for(int i = 0; i < dim; i++)

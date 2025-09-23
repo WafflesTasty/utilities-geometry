@@ -53,7 +53,7 @@ public class CLSHSpace implements Collision
 			return new ISCConvex(s, t);
 		}
 
-		return () -> false;
+		return Collision.super.intersect(c);
 	}
 	
 	@Override
@@ -89,7 +89,7 @@ public class CLSHSpace implements Collision
 			return new CNTConvex(s, t);
 		}
 
-		return () -> false;
+		return Collision.super.contain(c);
 	}
 
 	@Override

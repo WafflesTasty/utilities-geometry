@@ -1,10 +1,10 @@
 package waffles.utils.geom.collidable.fixed;
 
-import waffles.utils.algebra.elements.linear.Angular;
-import waffles.utils.algebra.elements.linear.matrix.Matrix;
-import waffles.utils.algebra.elements.linear.vector.Vector;
-import waffles.utils.algebra.elements.linear.vector.Vectors;
-import waffles.utils.algebra.utilities.elements.Additive;
+import waffles.utils.alg.Abelian;
+import waffles.utils.alg.lin.Angular;
+import waffles.utils.alg.lin.measure.matrix.Matrix;
+import waffles.utils.alg.lin.measure.vector.Vector;
+import waffles.utils.alg.lin.measure.vector.Vectors;
 import waffles.utils.geom.collidable.convex.hulls.Hull;
 import waffles.utils.geom.collision.convex.hulls.CLSPoint;
 import waffles.utils.tools.primitives.Floats;
@@ -52,14 +52,11 @@ public class Point implements Angular, Hull
 	public Point(Vector p, float m)
 	{
 		v = Vectors.create(p.Size() + 1);
-		v.set(m, p.Size());
 		
+		v.set(m, p.Size());
 		for(int i = 0; i < p.Size(); i++)
 		{
-			if(!Floats.isZero(m, 1))
-				v.set(m * p.get(i), i);
-			else
-				v.set(p.get(i), i);
+			v.set(p.get(i), i);
 		}
 	}
 
@@ -101,47 +98,60 @@ public class Point implements Angular, Hull
 		
 		return 0f;
 	}
-	
-	/**
-	 * Subtracts a {@code Point} to create a vector.
-	 * 
-	 * @param p  an affine point
-	 * @return   a vector difference
-	 * 
-	 * 
-	 * @see Vector
-	 */
-	public Vector minus(Point p)
-	{
-		int dim = v.Size()-1;
-		Vector d = Vectors.create(dim);
-		
 
-		float m1 =   Mass();
-		float m2 = p.Mass();
-		
-		for(int i = 0; i < dim; i++)
-		{
-			float v1 =   get(i);
-			float v2 = p.get(i);
-			
-			float val = m2 * v1 - m1 * v2;
-			d.set(val / (m1 * m2), i);
-		}
-		
-		return d;
-	}
 	
+	@Override
+	public int[] Dimensions()
+	{
+		return new int[]{v.Size()};
+	}
 
 	@Override
-	public Point plus(Additive a)
+	public Point plus(Abelian a)
 	{
+		Vector w = null;
 		if(a instanceof Vector)
+			w = (Vector) a;
+		if(a instanceof Point)
 		{
-			Vector w = (Vector) a;
-			w = Vectors.resize(w, v.Size());
+			Point p = (Point) a;
+			
+			if(Floats.isZero(p.Mass(), 1))
+			{
+				w = p.Generator();
+			}
+		}
+		
+		if(w != null)
+		{
+			w = w.resize(v.Size());
 			w = v.plus(w.times(Mass()));
 			return new Point(w);
+		}
+		
+		return null;
+	}
+	
+	@Override
+	public Point minus(Abelian a)
+	{
+		if(a instanceof Point)
+		{			
+			Point p = (Point) a;
+			float m1 =   Mass();
+			float m2 = p.Mass();
+			
+			
+			int dim = v.Size() - 1;
+			Vector d = Vectors.create(dim);
+			for(int i = 0; i < dim; i++)
+			{
+				float v1 =   get(i) / m1;
+				float v2 = p.get(i) / m2;
+				d.set(v1 - v2, i);
+			}
+			
+			return new Point(d, 0f);
 		}
 		
 		return null;
@@ -151,11 +161,18 @@ public class Point implements Angular, Hull
 	public Point times(Float val)
 	{
 		float m = Mass();
-		int dim = v.Size();
-		Vector u = v.copy();
+		if(Floats.isZero(m, 1))
+		{
+			Vector g = Generator();
+			Vector w = g.times(val);
+			return new Point(w, 0f);
+		}
 		
-		u.set(m * val, dim-1);
-		return new Point(u);
+		int dim = v.Size();
+		Vector w = v.copy();
+		
+		w.set(m / val, dim-1);
+		return new Point(w);
 	}
 		
 	@Override
@@ -176,17 +193,22 @@ public class Point implements Angular, Hull
 				dot += p.get(i) * get(i);
 			}
 			
-			return (float) (dot / (m1 * m2));
+			if(!Floats.isZero(m1 * m2, 3))
+			{
+				dot = dot / (m1 * m2);
+			}
+			
+			return (float) dot;
 		}
 		
 		return Floats.NaN;
 	}
 
-	
+		
 	@Override
 	public <M extends Matrix> M Generator()
 	{
-		Vector w = Vectors.resize(v, v.Size() - 1);
+		Vector w = v.resize(v.Size() - 1);
 		if(!Floats.isZero(Mass(), 1))
 		{
 			w = w.times(1f / Mass());
@@ -194,7 +216,7 @@ public class Point implements Angular, Hull
 		
 		return (M) w;
 	}
-	
+		
 	@Override
 	public CLSPoint Collisions()
 	{

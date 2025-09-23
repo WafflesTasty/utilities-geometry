@@ -1,6 +1,6 @@
 package waffles.utils.geom.spatial.maps.fixed.inverse;
 
-import waffles.utils.algebra.utilities.matrix.LazyMatrix;
+import waffles.utils.alg.utilities.matrix.LazyMatrix;
 import waffles.utils.geom.spatial.maps.GlobalMap;
 
 /**

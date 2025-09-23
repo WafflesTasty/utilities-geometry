@@ -1,6 +1,6 @@
 package waffles.utils.geom.utilities.constants;
 
-import waffles.utils.algebra.elements.linear.vector.fixed.Vector3;
+import waffles.utils.alg.lin.measure.vector.fixed.Vector3;
 import waffles.utils.tools.primitives.Integers;
 
 /**

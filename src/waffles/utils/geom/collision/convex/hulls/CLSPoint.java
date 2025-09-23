@@ -45,7 +45,7 @@ public class CLSPoint extends CLSHull
 		
 		// Points can't contain
 		// anything besides points.
-		return () -> false;
+		return () -> Source().Dimension();
 	}
 	
 	@Override
@@ -58,7 +58,7 @@ public class CLSPoint extends CLSHull
 	public Response inhabit(Collidable c)
 	{
 		// Points don't worry about it.
-		return () -> false;
+		return () -> Source().Dimension();
 	}
 	
 	@Override

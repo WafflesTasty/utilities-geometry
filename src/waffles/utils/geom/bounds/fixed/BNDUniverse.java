@@ -1,7 +1,7 @@
 package waffles.utils.geom.bounds.fixed;
 
-import waffles.utils.algebra.elements.linear.vector.Vector;
-import waffles.utils.algebra.elements.linear.vector.Vectors;
+import waffles.utils.alg.lin.measure.vector.Vector;
+import waffles.utils.alg.lin.measure.vector.Vectors;
 import waffles.utils.geom.bounds.Bounds;
 import waffles.utils.geom.collidable.fixed.Universe;
 import waffles.utils.tools.primitives.Floats;

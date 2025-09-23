@@ -2,8 +2,8 @@ package waffles.utils.geom.spaces.binary.kd;
 
 import java.util.Iterator;
 
-import waffles.utils.algebra.elements.linear.vector.Vector;
-import waffles.utils.algebra.elements.linear.vector.Vectors;
+import waffles.utils.alg.lin.measure.vector.Vector;
+import waffles.utils.alg.lin.measure.vector.Vectors;
 import waffles.utils.geom.collidable.axial.cuboid.HyperCuboid;
 import waffles.utils.geom.collidable.fixed.Point;
 import waffles.utils.geom.spaces.Space;
@@ -11,8 +11,8 @@ import waffles.utils.geom.spaces.binary.kd.queries.QRYAll;
 import waffles.utils.geom.spaces.binary.kd.queries.QRYCuboid;
 import waffles.utils.geom.spaces.binary.kd.queries.QRYPoint;
 import waffles.utils.geom.utilities.Geometries;
-import waffles.utils.sets.trees.binary.BiTree;
-import waffles.utils.sets.utilities.coordinates.Ordered;
+import waffles.utils.sets.rooted.binary.BiTree;
+import waffles.utils.sets.utilities.Ordered;
 import waffles.utils.tools.primitives.Floats;
 
 /**

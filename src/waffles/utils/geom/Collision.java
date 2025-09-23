@@ -1,7 +1,9 @@
 package waffles.utils.geom;
 
-import waffles.utils.algebra.elements.linear.vector.Vector;
+import waffles.utils.alg.lin.measure.vector.Vector;
+import waffles.utils.alg.lin.measure.vector.Vectors;
 import waffles.utils.geom.collidable.fixed.Point;
+import waffles.utils.geom.utilities.Dimensional;
 import waffles.utils.geom.utilities.Geometries;
 import waffles.utils.tools.primitives.Integers;
 
@@ -22,16 +24,18 @@ public interface Collision
 	 * @version 1.0
 	 */
 	@FunctionalInterface
-	public static interface Response
+	public static interface Response extends Dimensional
 	{
 		/**
 		 * Checks if the {@code Response} has made an impact.
 		 * 
 		 * @return  {@code true} if impact has happened
 		 */
-		public abstract boolean hasImpact();
-		
-		
+		public default boolean hasImpact()
+		{
+			return false;
+		}
+
 		/**
 		 * Returns a point of collision contact.
 		 * 
@@ -58,6 +62,12 @@ public interface Collision
 		 */
 		public default Vector Distance()
 		{
+			if(!hasImpact())
+			{
+				int dim = Dimension();
+				return Vectors.create(dim);
+			}
+			
 			return null;
 		}
 		
@@ -74,6 +84,12 @@ public interface Collision
 		 */
 		public default Vector Penetration()
 		{
+			if(hasImpact())
+			{
+				int dim = Dimension();
+				return Vectors.create(dim);
+			}
+			
 			return null;
 		}
 				
@@ -87,7 +103,8 @@ public interface Collision
 		 */
 		public default Collidable Shape()
 		{
-			return Geometries.Void(0);
+			int dim = Dimension();
+			return Geometries.Void(dim);
 		}
 		
 		/**
@@ -114,7 +131,7 @@ public interface Collision
 	 */
 	public default Response contain(Collidable c)
 	{
-		return () -> false;
+		return () -> Source().Dimension();
 	}
 
 	/**
@@ -129,7 +146,7 @@ public interface Collision
 	 */
 	public default Response intersect(Collidable c)
 	{
-		return () -> false;
+		return () -> Source().Dimension();
 	}
 	
 	/**
@@ -144,7 +161,7 @@ public interface Collision
 	 */
 	public default Response inhabit(Collidable c)
 	{
-		return () -> false;
+		return () -> Source().Dimension();
 	}
 
 	/**

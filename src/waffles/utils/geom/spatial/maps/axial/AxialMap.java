@@ -1,7 +1,7 @@
 package waffles.utils.geom.spatial.maps.axial;
 
-import waffles.utils.algebra.elements.linear.vector.Vector;
-import waffles.utils.algebra.utilities.matrix.LazyMatrix;
+import waffles.utils.alg.lin.measure.vector.Vector;
+import waffles.utils.alg.utilities.matrix.LazyMatrix;
 import waffles.utils.geom.spatial.data.Axial;
 import waffles.utils.geom.spatial.data.unary.Positioned;
 import waffles.utils.geom.spatial.data.unary.Scaled;

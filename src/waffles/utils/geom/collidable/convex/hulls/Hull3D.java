@@ -1,7 +1,7 @@
 package waffles.utils.geom.collidable.convex.hulls;
 
-import waffles.utils.algebra.elements.linear.matrix.Matrix;
-import waffles.utils.algebra.elements.linear.vector.fixed.Vector3;
+import waffles.utils.alg.lin.measure.matrix.Matrix;
+import waffles.utils.alg.lin.measure.vector.fixed.Vector3;
 import waffles.utils.geom.bounds.Bounds3D;
 import waffles.utils.geom.bounds.hulls.BNDHull3D;
 import waffles.utils.geom.collidable.Geometry3D;

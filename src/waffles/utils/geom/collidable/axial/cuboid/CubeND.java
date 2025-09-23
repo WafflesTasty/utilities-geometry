@@ -1,7 +1,7 @@
 package waffles.utils.geom.collidable.axial.cuboid;
 
-import waffles.utils.algebra.elements.linear.vector.Vector;
-import waffles.utils.algebra.elements.linear.vector.Vectors;
+import waffles.utils.alg.lin.measure.vector.Vector;
+import waffles.utils.alg.lin.measure.vector.Vectors;
 
 /**
  * A {@code CuboidND} defines an n-dimensional cube shape.

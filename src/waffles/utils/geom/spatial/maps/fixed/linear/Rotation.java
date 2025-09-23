@@ -1,7 +1,7 @@
 package waffles.utils.geom.spatial.maps.fixed.linear;
 
-import waffles.utils.algebra.elements.linear.LinearMap;
-import waffles.utils.algebra.elements.linear.matrix.Matrix;
+import waffles.utils.alg.lin.measure.matrix.Matrix;
+import waffles.utils.alg.utilities.affine.LinearMap;
 import waffles.utils.geom.spatial.data.spin.Spin;
 import waffles.utils.geom.spatial.data.spin.Spin2D;
 import waffles.utils.geom.spatial.data.spin.Spin3D;

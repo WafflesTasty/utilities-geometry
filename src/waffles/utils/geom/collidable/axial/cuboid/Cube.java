@@ -1,6 +1,6 @@
 package waffles.utils.geom.collidable.axial.cuboid;
 
-import waffles.utils.algebra.elements.linear.vector.fixed.Vector3;
+import waffles.utils.alg.lin.measure.vector.fixed.Vector3;
 
 /**
  * A {@code Cube} defines a three-dimensional cube shape.

@@ -1,11 +1,11 @@
 package waffles.utils.geom.utilities.vchains;
 
-import waffles.utils.algebra.elements.linear.vector.Vector;
+import waffles.utils.alg.lin.measure.vector.Vector;
 import waffles.utils.geom.utilities.VChain;
-import waffles.utils.sets.indexed.delegate.List;
+import waffles.utils.sets.countable.wrapper.JavaList;
 
 /**
- * A {@code VCHStatic} generates vertex chains from a fixed {@code List}.
+ * A {@code VCHStatic} generates vertex chains from a fixed {@code JavaList}.
  *
  * @author Waffles
  * @since 18 Jun 2020
@@ -16,9 +16,9 @@ import waffles.utils.sets.indexed.delegate.List;
  */
 public class VCHStatic implements VChain
 {	
-	private List<Integer> index;
-	private List<Vector> vertex;
-	private List<Vector> normal;
+	private JavaList<Integer> index;
+	private JavaList<Vector> vertex;
+	private JavaList<Vector> normal;
 	
 	
 	/**
@@ -28,9 +28,9 @@ public class VCHStatic implements VChain
 	 * 
 	 * 
 	 * @see Integer
-	 * @see List
+	 * @see JavaList
 	 */
-	public void setIndex(List<Integer> list)
+	public void setIndex(JavaList<Integer> list)
 	{
 		index = list;
 	}
@@ -42,9 +42,9 @@ public class VCHStatic implements VChain
 	 * 
 	 * 
 	 * @see Vector
-	 * @see List
+	 * @see JavaList
 	 */
-	public void setVertex(List<Vector> list)
+	public void setVertex(JavaList<Vector> list)
 	{
 		vertex = list;
 	}
@@ -56,9 +56,9 @@ public class VCHStatic implements VChain
 	 * 
 	 * 
 	 * @see Vector
-	 * @see List
+	 * @see JavaList
 	 */
-	public void setNormal(List<Vector> list)
+	public void setNormal(JavaList<Vector> list)
 	{
 		normal = list;
 	}

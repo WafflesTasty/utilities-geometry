@@ -1,9 +1,10 @@
 package waffles.utils.geom.collidable.spaces.lines;
 
-import waffles.utils.algebra.elements.linear.vector.Vector;
+import waffles.utils.alg.lin.measure.vector.Vector;
 import waffles.utils.geom.Collision;
 import waffles.utils.geom.collidable.fixed.Point;
 import waffles.utils.geom.collidable.spaces.ASpace;
+import waffles.utils.geom.collidable.spaces.VSpace;
 import waffles.utils.geom.collision.spaces.lines.CLSLine;
 
 /**
@@ -29,7 +30,7 @@ public class Line extends ASpace
 	 */
 	public Line(Point p1, Point p2)
 	{
-		super(p1, p2.minus(p1));
+		this(p1, p2.minus(p1).Generator());
 	}
 	
 	/**
@@ -58,7 +59,7 @@ public class Line extends ASpace
 	 */
 	public Line(Point p, Vector v)
 	{
-		super(p, v);
+		super(p, new VSpace(v));
 	}
 
 

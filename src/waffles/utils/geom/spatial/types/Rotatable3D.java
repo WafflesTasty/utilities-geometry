@@ -1,7 +1,7 @@
 package waffles.utils.geom.spatial.types;
 
-import waffles.utils.algebra.elements.complex.Quaternion;
-import waffles.utils.algebra.elements.linear.vector.fixed.Vector3;
+import waffles.utils.alg.lin.measure.vector.complex.Quaternion;
+import waffles.utils.alg.lin.measure.vector.fixed.Vector3;
 import waffles.utils.geom.spatial.data.spin.Spin3D;
 import waffles.utils.geom.spatial.data.unary.Rotated3D;
 import waffles.utils.tools.primitives.Floats;

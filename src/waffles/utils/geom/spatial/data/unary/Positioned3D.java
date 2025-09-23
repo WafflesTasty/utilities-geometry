@@ -1,6 +1,6 @@
 package waffles.utils.geom.spatial.data.unary;
 
-import waffles.utils.algebra.elements.linear.vector.fixed.Vector3;
+import waffles.utils.alg.lin.measure.vector.fixed.Vector3;
 
 /**
  * A {@code Positioned3D} object defines a three-dimensional origin vector.

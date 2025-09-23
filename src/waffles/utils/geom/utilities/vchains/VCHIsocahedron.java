@@ -2,8 +2,8 @@ package waffles.utils.geom.utilities.vchains;
 
 import java.util.Iterator;
 
-import waffles.utils.algebra.elements.linear.vector.Vector;
-import waffles.utils.algebra.elements.linear.vector.fixed.Vector3;
+import waffles.utils.alg.lin.measure.vector.Vector;
+import waffles.utils.alg.lin.measure.vector.fixed.Vector3;
 import waffles.utils.geom.collidable.axial.spheroid.Sphere;
 import waffles.utils.geom.utilities.VChain;
 import waffles.utils.tools.collections.Iterables;

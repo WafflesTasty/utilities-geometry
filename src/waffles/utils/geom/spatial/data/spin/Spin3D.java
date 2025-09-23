@@ -1,10 +1,10 @@
 package waffles.utils.geom.spatial.data.spin;
 
-import waffles.utils.algebra.elements.complex.Quaternion;
-import waffles.utils.algebra.elements.linear.matrix.Matrices;
-import waffles.utils.algebra.elements.linear.matrix.Matrix;
-import waffles.utils.algebra.elements.linear.matrix.types.orthogonal.Orthogonal;
-import waffles.utils.algebra.elements.linear.vector.fixed.Vector3;
+import waffles.utils.alg.lin.measure.matrix.Matrices;
+import waffles.utils.alg.lin.measure.matrix.Matrix;
+import waffles.utils.alg.lin.measure.matrix.types.orthogonal.Orthogonal;
+import waffles.utils.alg.lin.measure.vector.complex.Quaternion;
+import waffles.utils.alg.lin.measure.vector.fixed.Vector3;
 
 /**
  * A {@code Spin3D} defines a three-dimensional rotation spin.

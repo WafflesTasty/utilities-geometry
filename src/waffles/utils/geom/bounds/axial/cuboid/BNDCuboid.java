@@ -1,8 +1,7 @@
 package waffles.utils.geom.bounds.axial.cuboid;
 
-import waffles.utils.algebra.elements.linear.matrix.Matrices;
-import waffles.utils.algebra.elements.linear.matrix.Matrix;
-import waffles.utils.algebra.elements.linear.vector.Vector;
+import waffles.utils.alg.lin.measure.matrix.Matrix;
+import waffles.utils.alg.lin.measure.vector.Vector;
 import waffles.utils.geom.bounds.Bounds;
 import waffles.utils.geom.collidable.axial.cuboid.HyperCuboid;
 import waffles.utils.geom.collidable.fixed.Point;
@@ -43,12 +42,12 @@ public class BNDCuboid implements Bounds
 	@Override
 	public float Radius()
 	{
-		int dim = Dimension();
+		int d = Dimension();
 		Vector s = src.Scale();
 		
-		Matrix a = map.Matrix(dim+1);
-		a = Matrices.resize(a, dim, dim);
-		return a.times(s).norm() / 2;
+		Matrix a = map.Matrix(d + 1);
+		a = a.resize(d, d).times(s);
+		return a.norm() / 2;
 	}
 	
 	@Override
@@ -63,11 +62,11 @@ public class BNDCuboid implements Bounds
 	@Override
 	public Vector Size()
 	{
-		int dim = Dimension();
+		int d = Dimension();
 		Vector s = src.Scale();
 		
-		Matrix a = map.Matrix(dim+1);
-		a = Matrices.resize(a, dim, dim);
-		return a.absolute().times(s);
+		Matrix a = map.Matrix(d + 1);
+		a = a.resize(d, d).absolute();
+		return a.times(s);
 	}
 }

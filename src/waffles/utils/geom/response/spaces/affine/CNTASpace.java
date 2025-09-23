@@ -1,6 +1,6 @@
 package waffles.utils.geom.response.spaces.affine;
 
-import waffles.utils.algebra.elements.linear.vector.Vector;
+import waffles.utils.alg.lin.measure.vector.Vector;
 import waffles.utils.geom.Collidable;
 import waffles.utils.geom.Collision.Response;
 import waffles.utils.geom.collidable.fixed.Point;
@@ -53,6 +53,12 @@ public class CNTASpace implements Response
 		this(s, ASpace.Default(t));
 	}
 
+	
+	@Override
+	public int Dimension()
+	{
+		return src.Dimension();
+	}
 	
 	@Override
 	public Collidable Shape()
@@ -108,14 +114,12 @@ public class CNTASpace implements Response
 	{
 		VSpace s1 = src.Direction();
 		VSpace s2 = tgt.Direction();
+		VSpace sx = s1.add(s2);
 		
 		Point p1 = src.Origin();
 		Point p2 = tgt.Origin();
-		
-		
-		Vector px = p2.minus(p1);
-		VSpace sx = s1.add(s2);
-		
+		Point px = p2.minus(p1);
+
 		rsp1 = sx.contain(px);
 		rsp2 = s1.contain(s2);
 	}

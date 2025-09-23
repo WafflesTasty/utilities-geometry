@@ -1,7 +1,7 @@
 package waffles.utils.geom.response.hulls;
 
-import waffles.utils.algebra.elements.linear.vector.Vector;
-import waffles.utils.algebra.elements.linear.vector.Vectors;
+import waffles.utils.alg.lin.measure.vector.Vector;
+import waffles.utils.alg.lin.measure.vector.Vectors;
 import waffles.utils.geom.Collidable;
 import waffles.utils.geom.Collision.Response;
 import waffles.utils.geom.bounds.Bounds;
@@ -47,6 +47,12 @@ public class ISCConvex implements Response
 		rsp = diff.contain(o);
 	}
 
+	
+	@Override
+	public int Dimension()
+	{
+		return src.Dimension();
+	}
 	
 	@Override
 	public Collidable Shape()

@@ -4,7 +4,7 @@ import waffles.utils.geom.collidable.Geometrical2D;
 import waffles.utils.geom.collidable.axial.cuboid.Square;
 import waffles.utils.geom.spaces.index.TiledSpace2D;
 import waffles.utils.geom.utilities.constants.Cardinal2D;
-import waffles.utils.sets.utilities.coordinates.Coordinated2D;
+import waffles.utils.sets.utilities.indexed.coords.Coordinated2D;
 
 /**
  * A {@code Tile2D} defines a single element in an two-dimensional {@code TiledSpace}.

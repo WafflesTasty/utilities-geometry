@@ -1,10 +1,9 @@
 package waffles.utils.geom.collidable.convex.hulls;
 
-import waffles.utils.algebra.elements.linear.Affine;
-import waffles.utils.algebra.elements.linear.matrix.Matrices;
-import waffles.utils.algebra.elements.linear.matrix.Matrix;
-import waffles.utils.algebra.elements.linear.vector.Vector;
-import waffles.utils.algebra.utilities.matrix.Generated;
+import waffles.utils.alg.lin.measure.matrix.Matrices;
+import waffles.utils.alg.lin.measure.matrix.Matrix;
+import waffles.utils.alg.lin.measure.vector.Vector;
+import waffles.utils.alg.utilities.affine.Affine;
 import waffles.utils.geom.Collision;
 import waffles.utils.geom.bounds.Bounds;
 import waffles.utils.geom.bounds.hulls.BNDHull;
@@ -13,6 +12,7 @@ import waffles.utils.geom.bounds.hulls.BNDHull3D;
 import waffles.utils.geom.collidable.convex.ConvexSet;
 import waffles.utils.geom.collision.convex.hulls.CLSHull;
 import waffles.utils.geom.spatial.maps.GlobalMap;
+import waffles.utils.geom.utilities.Generated;
 import waffles.utils.geom.utilities.Geometries;
 import waffles.utils.tools.primitives.Floats;
 import waffles.utils.tools.primitives.Integers;
@@ -153,7 +153,7 @@ public interface Hull extends Affine, ConvexSet, Generated
 		int cols = span.Columns();
 		int rows = span.Rows();
 		
-		span = Matrices.resize(span, rows+1, cols);
+		span = span.resize(rows+1, cols);
 		for(int c = 0; c < cols; c++)
 		{
 			span.set(1f, rows, c);

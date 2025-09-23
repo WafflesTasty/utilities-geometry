@@ -1,7 +1,7 @@
 package waffles.utils.geom.spaces.index.beps;
 
 import waffles.utils.geom.spaces.index.nodes.IndexNode;
-import waffles.utils.sets.trees.indexed.BEPNode;
+import waffles.utils.sets.rooted.binary.indexed.BEPNode;
 
 /**
  * A {@code BEPSNode} defines a single node in a {@code BEPSpace}.

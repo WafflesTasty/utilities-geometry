@@ -1,6 +1,6 @@
 package waffles.utils.geom;
 
-import waffles.utils.algebra.elements.linear.vector.fixed.Vector3;
+import waffles.utils.alg.lin.measure.vector.fixed.Vector3;
 
 /**
  * A {@code Collideable3D} object is a {@code Collidable} in three-dimensional space.

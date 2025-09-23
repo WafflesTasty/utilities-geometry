@@ -1,7 +1,7 @@
 package waffles.utils.geom.spaces.index.bips;
 
 import waffles.utils.geom.spaces.index.nodes.IndexNode;
-import waffles.utils.sets.trees.indexed.BIPNode;
+import waffles.utils.sets.rooted.binary.indexed.BIPNode;
 
 /**
  * A {@code BIPSNode} defines a single node in a {@code BIPSpace}.

@@ -1,6 +1,6 @@
 package waffles.utils.geom.bounds.axial.cuboid;
 
-import waffles.utils.algebra.elements.linear.vector.fixed.Vector2;
+import waffles.utils.alg.lin.measure.vector.fixed.Vector2;
 import waffles.utils.geom.bounds.Bounds2D;
 import waffles.utils.geom.collidable.axial.cuboid.HyperCuboid;
 import waffles.utils.geom.spatial.maps.GlobalMap;

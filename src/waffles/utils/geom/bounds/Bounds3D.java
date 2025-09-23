@@ -1,6 +1,6 @@
 package waffles.utils.geom.bounds;
 
-import waffles.utils.algebra.elements.linear.vector.fixed.Vector3;
+import waffles.utils.alg.lin.measure.vector.fixed.Vector3;
 import waffles.utils.geom.collidable.axial.cuboid.Cuboid;
 import waffles.utils.geom.collidable.axial.spheroid.Sphere;
 

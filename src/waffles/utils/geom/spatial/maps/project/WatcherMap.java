@@ -1,7 +1,7 @@
 package waffles.utils.geom.spatial.maps.project;
 
-import waffles.utils.algebra.elements.linear.vector.Vector;
-import waffles.utils.algebra.utilities.matrix.LazyMatrix;
+import waffles.utils.alg.lin.measure.vector.Vector;
+import waffles.utils.alg.utilities.matrix.LazyMatrix;
 import waffles.utils.geom.spatial.data.Watcher;
 import waffles.utils.geom.spatial.data.unary.Projected;
 import waffles.utils.geom.spatial.maps.project.matrix.CamToWorld;

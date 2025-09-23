@@ -3,7 +3,7 @@ package waffles.utils.geom.spaces.index.beps;
 import java.util.Iterator;
 
 import waffles.utils.sets.queues.Queue;
-import waffles.utils.sets.queues.delegate.JFIFOQueue;
+import waffles.utils.sets.queues.wrapper.FIFOQueue;
 
 /**
  * A {@code BEPSIterator} class defines an iterator across a subsection of a {@code BEPSpace}.
@@ -34,7 +34,7 @@ public class BEPSIterator<E extends Enum<E>> implements Iterator<BEPSNode<E>>
 	 */
 	public BEPSIterator(BEPSTree<E> t, int[] min, int[] max)
 	{
-		queue = new JFIFOQueue<>();
+		queue = new FIFOQueue<>();
 		queue.push(t.Root());
 		
 		this.min = min;

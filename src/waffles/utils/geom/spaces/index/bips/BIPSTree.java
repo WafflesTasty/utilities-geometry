@@ -2,8 +2,8 @@ package waffles.utils.geom.spaces.index.bips;
 
 import waffles.utils.geom.bounds.Bounded;
 import waffles.utils.geom.bounds.Bounds;
-import waffles.utils.sets.trees.indexed.BIPNode;
-import waffles.utils.sets.trees.indexed.BIPTree;
+import waffles.utils.sets.rooted.binary.indexed.BIPNode;
+import waffles.utils.sets.rooted.binary.indexed.BIPTree;
 
 /**
  * A {@code BIPSTree} defines the partition tree that backs a {@code BIPSpace}.

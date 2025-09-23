@@ -56,7 +56,7 @@ public class CLSASpace implements Collision
 			return new ISCASpace(s, t);
 		}
 		
-		return () -> false;
+		return Collision.super.intersect(c);
 	}
 	
 	@Override
@@ -85,7 +85,7 @@ public class CLSASpace implements Collision
 			return new CNTASpace(s, t);
 		}
 		
-		return () -> false;
+		return Collision.super.contain(c);
 	}
 
 	@Override

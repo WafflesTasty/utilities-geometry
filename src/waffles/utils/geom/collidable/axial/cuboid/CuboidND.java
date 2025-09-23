@@ -1,6 +1,6 @@
 package waffles.utils.geom.collidable.axial.cuboid;
 
-import waffles.utils.algebra.elements.linear.vector.Vector;
+import waffles.utils.alg.lin.measure.vector.Vector;
 import waffles.utils.geom.bounds.Bounds;
 import waffles.utils.geom.bounds.axial.cuboid.BNDCuboid;
 import waffles.utils.geom.collidable.axial.AxialSet;

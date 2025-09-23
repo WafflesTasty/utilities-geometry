@@ -1,6 +1,6 @@
 package waffles.utils.geom.response.spaces.affine;
 
-import waffles.utils.algebra.elements.linear.vector.Vector;
+import waffles.utils.alg.lin.measure.vector.Vector;
 import waffles.utils.geom.Collidable;
 import waffles.utils.geom.Collision.Response;
 import waffles.utils.geom.collidable.fixed.Point;
@@ -20,7 +20,6 @@ import waffles.utils.geom.utilities.Geometries;
  */
 public class CNTPoint implements Response
 {
-	private int dim;
 	private Point tgt;
 	private Response rsp;
 	
@@ -37,13 +36,18 @@ public class CNTPoint implements Response
 	public CNTPoint(ASpace s, Point p)
 	{
 		VSpace dir = s.Direction();
-		Vector q = p.minus(s.Origin());
+		Point q = p.minus(s.Origin());
 		
 		rsp = dir.contain(q);
-		dim = s.Dimension();
 		tgt = p;
 	}
 
+	
+	@Override
+	public int Dimension()
+	{
+		return rsp.Dimension();
+	}
 	
 	@Override
 	public Collidable Shape()
@@ -53,6 +57,7 @@ public class CNTPoint implements Response
 			return tgt;
 		}
 		
+		int dim = Dimension();
 		return Geometries.Void(dim);
 	}
 	

@@ -1,6 +1,6 @@
 package waffles.utils.geom.spaces.index.tiles;
 
-import waffles.utils.algebra.utilities.matrix.LazyMatrix;
+import waffles.utils.alg.utilities.matrix.LazyMatrix;
 import waffles.utils.geom.collidable.Geometrical;
 import waffles.utils.geom.collidable.axial.cuboid.HyperCube;
 import waffles.utils.geom.spaces.index.TiledSpace;
@@ -8,7 +8,7 @@ import waffles.utils.geom.spaces.index.tiles.maps.TileToWorld;
 import waffles.utils.geom.spaces.index.tiles.maps.WorldToTile;
 import waffles.utils.geom.spatial.maps.GlobalMap;
 import waffles.utils.geom.utilities.Geometries;
-import waffles.utils.sets.utilities.coordinates.Coordinated;
+import waffles.utils.sets.utilities.indexed.coords.Coordinated;
 
 /**
  * A {@code Tiled} object can be contained in an n-dimensional {@code TiledSpace}.

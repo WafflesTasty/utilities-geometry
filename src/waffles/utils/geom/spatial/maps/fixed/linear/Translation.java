@@ -1,10 +1,10 @@
 package waffles.utils.geom.spatial.maps.fixed.linear;
 
-import waffles.utils.algebra.elements.linear.LinearMap;
-import waffles.utils.algebra.elements.linear.matrix.Matrices;
-import waffles.utils.algebra.elements.linear.matrix.Matrix;
-import waffles.utils.algebra.elements.linear.vector.Vector;
-import waffles.utils.algebra.elements.linear.vector.Vectors;
+import waffles.utils.alg.lin.measure.matrix.Matrices;
+import waffles.utils.alg.lin.measure.matrix.Matrix;
+import waffles.utils.alg.lin.measure.vector.Vector;
+import waffles.utils.alg.lin.measure.vector.Vectors;
+import waffles.utils.alg.utilities.affine.LinearMap;
 import waffles.utils.geom.collidable.fixed.Point;
 import waffles.utils.geom.spatial.data.unary.Positioned;
 import waffles.utils.geom.spatial.maps.fixed.linear.matrix.Translator;

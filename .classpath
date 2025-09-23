@@ -6,8 +6,9 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry combineaccessrules="false" kind="src" path="/Utilities - Tools"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/Utilities - Algebra"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Utilities - Collections"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Utilities - Algebra"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Utilities - Tools"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Utilities - Language"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

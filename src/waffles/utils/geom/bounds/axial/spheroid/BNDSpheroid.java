@@ -1,10 +1,10 @@
 package waffles.utils.geom.bounds.axial.spheroid;
 
-import waffles.utils.algebra.elements.linear.matrix.Matrices;
-import waffles.utils.algebra.elements.linear.matrix.Matrix;
-import waffles.utils.algebra.elements.linear.matrix.types.banded.Diagonal;
-import waffles.utils.algebra.elements.linear.vector.Vector;
-import waffles.utils.algebra.elements.linear.vector.Vectors;
+import waffles.utils.alg.lin.measure.matrix.Matrices;
+import waffles.utils.alg.lin.measure.matrix.Matrix;
+import waffles.utils.alg.lin.measure.matrix.types.banded.Diagonal;
+import waffles.utils.alg.lin.measure.vector.Vector;
+import waffles.utils.alg.lin.measure.vector.Vectors;
 import waffles.utils.geom.bounds.Bounds;
 import waffles.utils.geom.collidable.axial.spheroid.HyperSpheroid;
 import waffles.utils.geom.collidable.fixed.Point;
@@ -53,7 +53,7 @@ public class BNDSpheroid implements Bounds
 		
 		int dim = Dimension();
 		Matrix a = map.Matrix(dim+1);
-		a = Matrices.resize(a, dim, dim);
+		a = a.resize(dim, dim);
 
 	
 		float rMax = 0f;
@@ -86,7 +86,8 @@ public class BNDSpheroid implements Bounds
 		
 		int dim = Dimension();
 		Matrix a = map.Matrix(dim+1);
-		a = Matrices.resize(a, dim, dim);
+		
+		a = a.resize(dim, dim);
 		a = a.times(a.transpose());
 		a = e.times(a).times(e);
 		

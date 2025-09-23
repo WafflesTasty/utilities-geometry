@@ -1,9 +1,9 @@
 package waffles.utils.geom.utilities.constants;
 
-import waffles.utils.algebra.algorithms.solvers.SLVCrout;
-import waffles.utils.algebra.elements.linear.matrix.fixed.Matrix3x3;
-import waffles.utils.algebra.elements.linear.matrix.types.Square;
-import waffles.utils.algebra.elements.linear.vector.fixed.Vector2;
+import waffles.utils.alg.lin.measure.matrix.fixed.Matrix3x3;
+import waffles.utils.alg.lin.measure.matrix.types.Square;
+import waffles.utils.alg.lin.measure.vector.fixed.Vector2;
+import waffles.utils.alg.lin.solvers.matrix.exact.types.LUCrout;
 
 /**
  * The {@code Dial} enum defines clockwise and counter-clockwise motion.
@@ -72,7 +72,7 @@ public enum Dial
 		mat.set(1f, 2, 1);
 		mat.set(1f, 2, 2);
 		
-		SLVCrout slv = new SLVCrout(mat);
+		LUCrout slv = new LUCrout(mat);
 		if(slv.determinant() > 0)
 			return CNT_CLOCKWISE;
 		if(slv.determinant() < 0)

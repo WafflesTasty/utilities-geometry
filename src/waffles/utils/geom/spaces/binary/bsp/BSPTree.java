@@ -1,12 +1,12 @@
 package waffles.utils.geom.spaces.binary.bsp;
 
-import waffles.utils.algebra.elements.interval.Cut;
-import waffles.utils.algebra.elements.linear.vector.Vector;
+import waffles.utils.alg.lin.measure.vector.Vector;
+import waffles.utils.alg.reals.cuts.Cut;
 import waffles.utils.geom.Collision.Response;
 import waffles.utils.geom.bounds.Bounded;
 import waffles.utils.geom.collidable.axial.cuboid.HyperCuboid;
 import waffles.utils.geom.spaces.binary.kd.KDTree;
-import waffles.utils.sets.mutable.AtomicSet;
+import waffles.utils.sets.countable.AtomicSet;
 
 /**
  * A {@code BSPTree} defines a dynamic binary space partition tree.
@@ -142,13 +142,13 @@ public class BSPTree<O extends Bounded> extends KDTree<O> implements AtomicSet<O
 			int dim = node.Plane().Dimension();
 
 			
-			if(cut.isAbove(max.get(dim)))
+			if(cut.isAfter(max.get(dim)))
 			{
 				node = node.LChild();
 				continue;
 			}
 
-			if(cut.isBelow(min.get(dim)))
+			if(cut.isBefore(min.get(dim)))
 			{
 				node = node.RChild();
 				continue;

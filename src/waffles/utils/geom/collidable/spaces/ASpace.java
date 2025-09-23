@@ -1,10 +1,8 @@
 package waffles.utils.geom.collidable.spaces;
 
-import waffles.utils.algebra.elements.linear.Affine;
-import waffles.utils.algebra.elements.linear.matrix.Matrices;
-import waffles.utils.algebra.elements.linear.matrix.Matrix;
-import waffles.utils.algebra.elements.linear.vector.Vector;
-import waffles.utils.algebra.elements.linear.vector.Vectors;
+import waffles.utils.alg.lin.measure.matrix.Matrix;
+import waffles.utils.alg.lin.measure.vector.Vector;
+import waffles.utils.alg.utilities.affine.Affine;
 import waffles.utils.geom.Collidable;
 import waffles.utils.geom.Collision;
 import waffles.utils.geom.collidable.fixed.Point;
@@ -47,23 +45,7 @@ public class ASpace implements Affine, Collidable
 	
 	private VSpace space;
 	private Point origin;
-	
-	/**
-	 * Creates a new {@code ASpace}.
-	 * 
-	 * @param o  an affine origin
-	 * @param s  a vector space
-	 * 
-	 * 
-	 * @see VSpace
-	 * @see Point
-	 */
-	public ASpace(Point o, VSpace s)
-	{
-		origin = o;
-		space = s;
-	}
-	
+		
 	/**
 	 * Creates a new {@code ASpace}.
 	 * 
@@ -82,30 +64,17 @@ public class ASpace implements Affine, Collidable
 	/**
 	 * Creates a new {@code ASpace}.
 	 * 
-	 * @param o  a vector origin
-	 * @param v  a vector direction
-	 * 
-	 * 
-	 * @see Vector
-	 */
-	public ASpace(Vector o, Vector v)
-	{
-		this(o, new VSpace(v));
-	}
-	
-	/**
-	 * Creates a new {@code ASpace}.
-	 * 
 	 * @param o  an affine origin
-	 * @param v  a vector direction
+	 * @param s  a vector space
 	 * 
 	 * 
-	 * @see Vector
+	 * @see VSpace
 	 * @see Point
 	 */
-	public ASpace(Point o, Vector v)
+	public ASpace(Point o, VSpace s)
 	{
-		this(o, new VSpace(v));
+		origin = o;
+		space = s;
 	}
 	
 	
@@ -170,12 +139,12 @@ public class ASpace implements Affine, Collidable
 			int cols = m.Columns();
 			
 			Vector o = m.Column(cols-1);
-			o = Vectors.resize(o, rows-1);
+			o = o.resize(rows-1);
 			float mass = m.get(rows-1, cols-1);
 			Point p = new Point(o, mass);
 			
 			
-			Matrix g = Matrices.resize(m, rows-1, cols-1);
+			Matrix g = m.resize(rows-1, cols-1);
 			return Geometries.Span(p, new VSpace(g));
 		};
 	}
@@ -200,7 +169,7 @@ public class ASpace implements Affine, Collidable
 		int rows = span.Rows();
 		
 		
-		span = Matrices.resize(span, rows, cols+1);
+		span = span.resize(rows, cols+1);
 		span.set(origin.Mass(), rows-1, cols);
 		for(int r = 0; r < rows-1; r++)
 		{

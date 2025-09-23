@@ -1,9 +1,9 @@
 package waffles.utils.geom.spaces.binary.kd.maps;
 
-import waffles.utils.algebra.elements.linear.matrix.Matrices;
-import waffles.utils.algebra.elements.linear.matrix.Matrix;
-import waffles.utils.algebra.elements.linear.vector.Vector;
-import waffles.utils.algebra.utilities.matrix.LazyMatrix;
+import waffles.utils.alg.lin.measure.matrix.Matrices;
+import waffles.utils.alg.lin.measure.matrix.Matrix;
+import waffles.utils.alg.lin.measure.vector.Vector;
+import waffles.utils.alg.utilities.matrix.LazyMatrix;
 import waffles.utils.geom.spaces.binary.kd.KDNode;
 import waffles.utils.tools.primitives.Floats;
 
@@ -48,7 +48,7 @@ public class NodeToWorld extends LazyMatrix
 		{
 			KDNode<?> n = node.Parent();
 			int dim = n.Plane().Dimension();
-			float val = n.Plane().Cut().value();
+			float val = n.Plane().Cut().Value();
 
 			
 			if(node.equals(n.LChild()))

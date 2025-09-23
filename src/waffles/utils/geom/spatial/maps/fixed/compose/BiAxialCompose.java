@@ -1,6 +1,6 @@
 package waffles.utils.geom.spatial.maps.fixed.compose;
 
-import waffles.utils.algebra.elements.linear.vector.Vector;
+import waffles.utils.alg.lin.measure.vector.Vector;
 import waffles.utils.geom.spatial.data.structs.Axis;
 import waffles.utils.geom.spatial.maps.axial.AxialMap;
 
@@ -43,8 +43,8 @@ public class BiAxialCompose implements AxialMap
 		Vector o1 = m1.Origin();
 		
 		
-		Vector s = s2.ltimes(s1).times(0.5f);
-		Vector o = o2.plus(o1.ltimes(s2).times(0.5f));
+		Vector s = s2.hadamard(s1).times(0.5f);
+		Vector o = o2.plus(o1.hadamard(s2).times(0.5f));
 		return new Axis(o, s);
 	}
 }

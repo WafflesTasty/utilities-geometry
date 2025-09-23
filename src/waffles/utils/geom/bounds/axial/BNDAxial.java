@@ -1,6 +1,6 @@
 package waffles.utils.geom.bounds.axial;
 
-import waffles.utils.algebra.elements.linear.vector.Vector;
+import waffles.utils.alg.lin.measure.vector.Vector;
 import waffles.utils.geom.bounds.Bounds;
 import waffles.utils.geom.spatial.data.Axial;
 

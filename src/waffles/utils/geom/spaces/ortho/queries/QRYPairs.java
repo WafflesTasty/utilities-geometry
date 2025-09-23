@@ -5,7 +5,7 @@ import java.util.Iterator;
 import waffles.utils.geom.bounds.Bounded;
 import waffles.utils.geom.spaces.ortho.OrtNode;
 import waffles.utils.geom.spaces.ortho.OrtTree;
-import waffles.utils.sets.keymaps.Pair;
+import waffles.utils.sets.utilities.keymaps.Pair;
 
 /**
  * A {@code QRYPairs} queries all pairs of nearby objects within an {@code OrtTree}.

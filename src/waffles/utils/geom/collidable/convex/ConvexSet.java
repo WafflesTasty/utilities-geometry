@@ -1,9 +1,11 @@
 package waffles.utils.geom.collidable.convex;
 
-import waffles.utils.algebra.elements.linear.vector.Vector;
+import waffles.utils.alg.lin.measure.vector.Vector;
 import waffles.utils.geom.Collision;
 import waffles.utils.geom.collidable.Geometry;
+import waffles.utils.geom.collidable.fixed.Point;
 import waffles.utils.geom.collision.convex.CLSConvex;
+import waffles.utils.geom.spatial.data.Axial;
 
 /**
  * The {@code ConvexSet} interface is the base for convex n-dimensional shapes.
@@ -16,8 +18,9 @@ import waffles.utils.geom.collision.convex.CLSConvex;
  * 
  * 
  * @see Geometry
+ * @see Axial
  */
-public interface ConvexSet extends Geometry
+public interface ConvexSet extends Axial, Geometry
 {
 	/**
 	 * An {@code Extremum} computes boundary points on a {@code ConvexSet}.
@@ -41,6 +44,11 @@ public interface ConvexSet extends Geometry
 		 * @see Vector
 		 */
 		public abstract Vector along(Vector v);
+		
+		public default Point along(Point p)
+		{
+			return new Point(along(p.Generator()), 1f);
+		}
 	}
 	
 	/**
@@ -58,5 +66,17 @@ public interface ConvexSet extends Geometry
 	public default Collision Collisions()
 	{
 		return new CLSConvex(this);
+	}
+	
+	@Override
+	public default Vector Origin()
+	{
+		return Bounds().Center();
+	}
+	
+	@Override
+	public default Vector Scale()
+	{
+		return Bounds().Size();
 	}
 }

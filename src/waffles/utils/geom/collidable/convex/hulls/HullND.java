@@ -1,8 +1,9 @@
 package waffles.utils.geom.collidable.convex.hulls;
 
-import waffles.utils.algebra.elements.linear.matrix.Matrices;
-import waffles.utils.algebra.elements.linear.matrix.Matrix;
-import waffles.utils.algebra.elements.linear.vector.Vector;
+import waffles.utils.alg.lin.measure.matrix.Matrices;
+import waffles.utils.alg.lin.measure.matrix.Matrix;
+import waffles.utils.alg.lin.measure.vector.Vector;
+import waffles.utils.tools.primitives.Floats;
 
 /**
  * A {@code HullND} defines the convex hull of a finite set of points in n-dimensional space.
@@ -52,7 +53,7 @@ public class HullND implements Hull
 		{
 			Hull h = (Hull) o;
 			Matrix g = h.Generator();
-			return gen.equals(g, 3);
+			return gen.equals(g, 3 * Floats.EPSILON);
 		}
 
 		return false;

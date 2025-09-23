@@ -1,10 +1,10 @@
 package waffles.utils.geom.spatial.maps.fixed;
 
-import waffles.utils.algebra.elements.linear.Affine;
-import waffles.utils.algebra.elements.linear.matrix.Matrices;
-import waffles.utils.algebra.elements.linear.matrix.Matrix;
-import waffles.utils.algebra.elements.linear.matrix.types.orthogonal.Identity;
-import waffles.utils.algebra.utilities.matrix.LazyMatrix;
+import waffles.utils.alg.lin.measure.matrix.Matrices;
+import waffles.utils.alg.lin.measure.matrix.Matrix;
+import waffles.utils.alg.lin.measure.matrix.types.orthogonal.Identity;
+import waffles.utils.alg.utilities.affine.Affine;
+import waffles.utils.alg.utilities.matrix.LazyMatrix;
 import waffles.utils.geom.spatial.data.Axial;
 import waffles.utils.geom.spatial.data.structs.Axis;
 import waffles.utils.geom.spatial.maps.axial.AxialMap;

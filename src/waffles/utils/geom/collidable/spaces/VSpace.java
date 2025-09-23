@@ -1,17 +1,17 @@
 package waffles.utils.geom.collidable.spaces;
 
-import waffles.utils.algebra.algorithms.LinearSpace;
-import waffles.utils.algebra.algorithms.rankreveal.RRSVD;
-import waffles.utils.algebra.elements.linear.Affine;
-import waffles.utils.algebra.elements.linear.matrix.Matrices;
-import waffles.utils.algebra.elements.linear.matrix.Matrix;
-import waffles.utils.algebra.elements.linear.matrix.types.Tall;
-import waffles.utils.algebra.elements.linear.vector.Vector;
-import waffles.utils.algebra.elements.linear.vector.Vectors;
-import waffles.utils.algebra.utilities.matrix.Generated;
+import waffles.utils.alg.lin.measure.matrix.Matrices;
+import waffles.utils.alg.lin.measure.matrix.Matrix;
+import waffles.utils.alg.lin.measure.matrix.types.shaped.Tall;
+import waffles.utils.alg.lin.measure.vector.Vector;
+import waffles.utils.alg.lin.measure.vector.Vectors;
+import waffles.utils.alg.lin.solvers.matrix.ranks.types.RRSVD;
+import waffles.utils.alg.utilities.affine.Affine;
 import waffles.utils.geom.Collidable;
 import waffles.utils.geom.Collision;
 import waffles.utils.geom.collision.spaces.CLSVSpace;
+import waffles.utils.geom.utilities.Generated;
+import waffles.utils.geom.utilities.LinearSpace;
 
 /**
  * A {@code VSpace} defines a real-valued euclidian vector space.
@@ -57,7 +57,7 @@ public class VSpace implements Affine, Generated, LinearSpace, Collidable
 	public VSpace(Matrix g)
 	{
 		gen = g;
-		if(Tall.Type().allows(gen, 0))
+		if(gen.allows(Tall.Type(), 0f))
 		{
 			gen.setOperator(Tall.Type());
 			svd = new RRSVD(gen);
@@ -109,9 +109,9 @@ public class VSpace implements Affine, Generated, LinearSpace, Collidable
 	 */
 	public Vector approx(Vector v)
 	{
-		if(gen.is(Tall.Type()))
+//		if(gen.is(Tall.Type()))
 			return svd.approx(v);
-		return svd.preApprox(v);
+//		return svd.preApprox(v);
 	}
 	
 	/**
@@ -128,6 +128,17 @@ public class VSpace implements Affine, Generated, LinearSpace, Collidable
 	public Matrix evaluate(Matrix m)
 	{
 		return Generator().times(m);
+	}
+	
+	/**
+	 * Returns the condition of the {@code VSpace}.
+	 * This is the condition number of its span.
+	 * 
+	 * @return  a condition number
+	 */
+	public float Condition()
+	{
+		return svd.condition();
 	}
 
 	/**
@@ -156,7 +167,7 @@ public class VSpace implements Affine, Generated, LinearSpace, Collidable
 			int rows = m.Rows();
 			int cols = m.Columns();
 			
-			Matrix g = Matrices.resize(m, rows-1, cols);
+			Matrix g = m.resize(rows-1, cols);
 			return new VSpace(g);
 		};
 	}
@@ -170,17 +181,49 @@ public class VSpace implements Affine, Generated, LinearSpace, Collidable
 	@Override
 	public Matrix ColComplement()
 	{
-		if(gen.is(Tall.Type()))
-			return svd.ColComplement();
-		return svd.RowComplement();
+		int r1 = gen.Rows();
+		int c1 = gen.Columns();
+		int rank = svd.rank();
+		
+		
+		Matrix u = svd.U();
+		// Create the column complement matrix...
+		Matrix b = Matrices.create(r1, c1 - rank);
+		for(int c = rank; c < c1; c++)
+		{
+			// ...which is the last r1-r columns of U.
+			for(int r = 0; r < r1; r++)
+			{
+				float v = u.get(r, c);
+				b.set(v, r, c - rank);
+			}
+		}
+		
+		return b;
 	}
 	
 	@Override
 	public Matrix RowComplement()
 	{
-		if(gen.is(Tall.Type()))
-			return svd.RowComplement();
-		return svd.ColComplement();
+		int r1 = gen.Rows();
+		int c1 = gen.Columns();
+		int rank = svd.rank();
+		
+		
+		Matrix v = svd.V();
+		// Create the row complement matrix...
+		Matrix b = Matrices.create(r1, c1 - rank);
+		for(int c = rank; c < c1; c++)
+		{
+			// ...which is the last r1-r columns of V.
+			for(int r = 0; r < r1; r++)
+			{
+				float u = v.get(r, c);
+				b.set(u, r, c - rank);
+			}
+		}
+		
+		return b;
 	}
 	
 	@Override
@@ -192,17 +235,49 @@ public class VSpace implements Affine, Generated, LinearSpace, Collidable
 	@Override
 	public Matrix ColSpace()
 	{
-		if(gen.is(Tall.Type()))
-			return svd.ColSpace();
-		return svd.RowSpace();
+		int r1 = gen.Rows();
+		int c1 = gen.Columns();
+		int rank = svd.rank();
+		
+		
+		Matrix u = svd.U();
+		// Create the column space matrix...
+		Matrix b = Matrices.create(r1, rank);
+		for(int c = 0; c < rank; c++)
+		{
+			// ...which is the first r columns of U.
+			for(int r = 0; r < r1; r++)
+			{
+				float v = u.get(r, c);
+				b.set(v, r, c);
+			}
+		}
+		
+		return b;
 	}
 	
 	@Override
 	public Matrix RowSpace()
 	{
-		if(gen.is(Tall.Type()))
-			return svd.RowSpace();
-		return svd.ColSpace();
+		int r1 = gen.Rows();
+		int c1 = gen.Columns();
+		int rank = svd.rank();
+		
+		
+		Matrix v = svd.V();
+		// Create the row space matrix...
+		Matrix b = Matrices.create(r1, rank);
+		for(int c = 0; c < rank; c++)
+		{
+			// ...which is the first r columns of V.
+			for(int r = 0; r < r1; r++)
+			{
+				float u = v.get(r, c);
+				b.set(u, r, c);
+			}
+		}
+		
+		return b;
 	}
 
 	@Override
@@ -210,7 +285,6 @@ public class VSpace implements Affine, Generated, LinearSpace, Collidable
 	{
 		int rows = Generator().Rows();
 		int cols = Generator().Columns();
-		
-		return Matrices.resize(gen, rows+1, cols);
+		return gen.resize(rows+1, cols);
 	}
 }

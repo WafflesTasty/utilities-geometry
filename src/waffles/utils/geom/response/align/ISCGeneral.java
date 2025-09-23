@@ -1,6 +1,6 @@
 package waffles.utils.geom.response.align;
 
-import waffles.utils.algebra.elements.linear.vector.Vector;
+import waffles.utils.alg.lin.measure.vector.Vector;
 import waffles.utils.geom.Collidable;
 import waffles.utils.geom.Collision.Response;
 import waffles.utils.geom.collidable.axial.AxialShape;
@@ -42,6 +42,12 @@ public class ISCGeneral implements Response
 		dim = s.Dimension();
 	}
 
+	
+	@Override
+	public int Dimension()
+	{
+		return rsp.Dimension();
+	}
 	
 	@Override
 	public Collidable Shape()

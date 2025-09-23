@@ -1,7 +1,7 @@
 package waffles.utils.geom.spatial.data.unary;
 
-import waffles.utils.algebra.elements.linear.vector.Vector;
-import waffles.utils.tools.patterns.semantics.Immutable;
+import waffles.utils.alg.lin.measure.vector.Vector;
+import waffles.utils.tools.patterns.properties.Immutable;
 
 /**
  * A {@code Projected} object defines a projection oculus.

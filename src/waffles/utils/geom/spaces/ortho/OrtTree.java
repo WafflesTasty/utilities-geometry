@@ -2,7 +2,7 @@ package waffles.utils.geom.spaces.ortho;
 
 import java.util.Iterator;
 
-import waffles.utils.algebra.elements.linear.vector.Vector;
+import waffles.utils.alg.lin.measure.vector.Vector;
 import waffles.utils.geom.bounds.Bounded;
 import waffles.utils.geom.bounds.Bounds;
 import waffles.utils.geom.collidable.axial.cuboid.HyperCuboid;
@@ -12,8 +12,8 @@ import waffles.utils.geom.spaces.ortho.queries.QRYAll;
 import waffles.utils.geom.spaces.ortho.queries.QRYCuboid;
 import waffles.utils.geom.spaces.ortho.queries.QRYPairs;
 import waffles.utils.geom.spaces.ortho.queries.QRYPoint;
-import waffles.utils.sets.keymaps.Pair;
-import waffles.utils.sets.trees.Tree;
+import waffles.utils.sets.rooted.Tree;
+import waffles.utils.sets.utilities.keymaps.Pair;
 
 /**
  * An {@code OrtTree} defines an orthogonal tree, which partitions n-dimensional

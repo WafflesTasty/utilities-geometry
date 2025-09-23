@@ -1,6 +1,6 @@
 package waffles.utils.geom.response.convex.spheres;
 
-import waffles.utils.algebra.elements.linear.vector.Vector;
+import waffles.utils.alg.lin.measure.vector.Vector;
 import waffles.utils.geom.Collidable;
 import waffles.utils.geom.Collision.Response;
 import waffles.utils.geom.collidable.axial.spheroid.HyperSphere;
@@ -57,6 +57,12 @@ public class ISCASpace implements Response
 		this(s, ASpace.Default(t));
 	}
 
+	
+	@Override
+	public int Dimension()
+	{
+		return src.Dimension();
+	}
 	
 	@Override
 	public Collidable Shape()

@@ -1,6 +1,6 @@
 package waffles.utils.geom.collidable.convex.hulls.triangles;
 
-import waffles.utils.algebra.elements.linear.vector.fixed.Vector2;
+import waffles.utils.alg.lin.measure.vector.fixed.Vector2;
 import waffles.utils.geom.collidable.convex.hulls.Hull2D;
 import waffles.utils.geom.collidable.fixed.Point;
 

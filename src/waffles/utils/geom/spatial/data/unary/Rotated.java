@@ -1,7 +1,7 @@
 package waffles.utils.geom.spatial.data.unary;
 
 import waffles.utils.geom.spatial.data.spin.Spin;
-import waffles.utils.tools.patterns.semantics.Immutable;
+import waffles.utils.tools.patterns.properties.Immutable;
 
 /**
  * A {@code Rotated} object defines a rotation spin.

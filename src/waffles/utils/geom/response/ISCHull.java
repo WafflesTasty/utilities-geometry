@@ -1,6 +1,6 @@
 package waffles.utils.geom.response;
 
-import waffles.utils.algebra.elements.linear.vector.Vector;
+import waffles.utils.alg.lin.measure.vector.Vector;
 import waffles.utils.geom.Collidable;
 import waffles.utils.geom.Collision.Response;
 import waffles.utils.geom.collidable.Geometrical;
@@ -44,6 +44,12 @@ public class ISCHull implements Response
 	
 	
 	@Override
+	public int Dimension()
+	{
+		return src.Dimension();
+	}
+	
+	@Override
 	public Collidable Shape()
 	{
 		if(hasImpact())
@@ -51,7 +57,7 @@ public class ISCHull implements Response
 			return null;
 		}
 		
-		int dim = src.Dimension();
+		int dim = Dimension();
 		return Geometries.Void(dim);
 	}
 	
@@ -114,8 +120,9 @@ public class ISCHull implements Response
 			rsp = computeResponse();
 		}
 		
-		int dim = src.Dimension();
-		return rsp.Cost() + 2 * dim * (dim - 1);
+		int dim = Dimension();
+		return 2 * dim * (dim - 1)
+			 + rsp.Cost();
 	}
 	
 	

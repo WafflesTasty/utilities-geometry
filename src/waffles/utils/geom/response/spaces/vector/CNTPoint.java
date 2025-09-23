@@ -1,10 +1,10 @@
 package waffles.utils.geom.response.spaces.vector;
 
-import waffles.utils.algebra.algorithms.leastsquares.LSQHouseHolder;
-import waffles.utils.algebra.elements.linear.matrix.Matrix;
-import waffles.utils.algebra.elements.linear.matrix.types.Tall;
-import waffles.utils.algebra.elements.linear.vector.Vector;
-import waffles.utils.algebra.elements.linear.vector.Vectors;
+import waffles.utils.alg.lin.measure.matrix.Matrix;
+import waffles.utils.alg.lin.measure.matrix.types.shaped.Tall;
+import waffles.utils.alg.lin.measure.vector.Vector;
+import waffles.utils.alg.lin.measure.vector.Vectors;
+import waffles.utils.alg.lin.solvers.matrix.square.types.LSHouseholder;
 import waffles.utils.geom.Collidable;
 import waffles.utils.geom.Collision.Response;
 import waffles.utils.geom.collidable.fixed.Point;
@@ -29,7 +29,7 @@ public class CNTPoint implements Response
 	
 	private Vector dst;
 	private Boolean hasImpact;
-	private LSQHouseHolder lsq;
+	private LSHouseholder lsq;
 	
 	/**
 	 * Creates a new {@code CNTPoint}.
@@ -47,6 +47,12 @@ public class CNTPoint implements Response
 		tgt = p;
 	}
 
+	
+	@Override
+	public int Dimension()
+	{
+		return src.Dimension();
+	}
 	
 	@Override
 	public Collidable Shape()
@@ -114,7 +120,7 @@ public class CNTPoint implements Response
 		Matrix m = src.Generator();
 		m.setOperator(Tall.Type());
 		
-		lsq = new LSQHouseHolder(m);
+		lsq = new LSHouseholder(m);
 		Vector v = lsq.approx(x);
 		
 		return x.minus(m.times(v));

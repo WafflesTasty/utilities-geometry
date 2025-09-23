@@ -1,11 +1,12 @@
 package waffles.utils.geom.response.hulls.points;
 
-import waffles.utils.algebra.elements.linear.vector.Vector;
-import waffles.utils.algebra.elements.linear.vector.Vectors;
+import waffles.utils.alg.lin.measure.vector.Vector;
+import waffles.utils.alg.lin.measure.vector.Vectors;
 import waffles.utils.geom.Collidable;
 import waffles.utils.geom.Collision.Response;
 import waffles.utils.geom.collidable.fixed.Point;
 import waffles.utils.geom.utilities.Geometries;
+import waffles.utils.tools.primitives.Floats;
 
 /**
  * A {@code CNTPoint} computes the collision response between two points.
@@ -39,6 +40,12 @@ public class CNTPoint implements Response
 
 	
 	@Override
+	public int Dimension()
+	{
+		return src.Dimension();
+	}
+	
+	@Override
 	public Collidable Shape()
 	{
 		if(hasImpact())
@@ -58,7 +65,7 @@ public class CNTPoint implements Response
 			Vector v1 = src.Generator();
 			Vector v2 = tgt.Generator();
 			
-			hasImpact = v1.equals(v2, 3);
+			hasImpact = v1.equals(v2, 3 * Floats.EPSILON);
 		}
 		
 		return hasImpact;

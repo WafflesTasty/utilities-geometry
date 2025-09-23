@@ -1,17 +1,17 @@
 package waffles.utils.geom.spaces.ortho;
 
-import waffles.utils.algebra.elements.linear.vector.Vector;
-import waffles.utils.algebra.elements.linear.vector.Vectors;
+import waffles.utils.alg.lin.measure.vector.Vector;
+import waffles.utils.alg.lin.measure.vector.Vectors;
 import waffles.utils.geom.bounds.Bounded;
 import waffles.utils.geom.bounds.Bounds;
 import waffles.utils.geom.collidable.axial.AxialShape;
 import waffles.utils.geom.collidable.axial.cuboid.HyperCuboid;
 import waffles.utils.geom.spatial.data.Axial;
 import waffles.utils.geom.spatial.data.structs.Axis;
-import waffles.utils.sets.MutableSet;
-import waffles.utils.sets.indexed.delegate.List;
-import waffles.utils.sets.trees.Nodal;
-import waffles.utils.sets.trees.Node;
+import waffles.utils.sets.countable.MutableSet;
+import waffles.utils.sets.countable.wrapper.JavaList;
+import waffles.utils.sets.utilities.rooted.Nodal;
+import waffles.utils.sets.utilities.rooted.Node;
 import waffles.utils.tools.primitives.Integers;
 
 /**
@@ -32,7 +32,7 @@ import waffles.utils.tools.primitives.Integers;
 public class OrtNode<O extends Bounded> extends Node implements HyperCuboid, MutableSet<O>
 {		
 	private Axial axis;
-	private List<O> objects;
+	private JavaList<O> objects;
 			
 	/**
 	 * Creates a new {@code OrtNode}.
@@ -47,7 +47,7 @@ public class OrtNode<O extends Bounded> extends Node implements HyperCuboid, Mut
 	public OrtNode(OrtTree<O> tree, Axial a)
 	{
 		super(tree);
-		objects = new List<>();
+		objects = new JavaList<>();
 		axis = a;
 	}
 	
@@ -74,9 +74,9 @@ public class OrtNode<O extends Bounded> extends Node implements HyperCuboid, Mut
 	 * @return  an object list
 	 * 
 	 * 
-	 * @see List
+	 * @see JavaList
 	 */
-	public List<O> Objects()
+	public JavaList<O> Objects()
 	{
 		return objects;
 	}

@@ -1,6 +1,6 @@
 package waffles.utils.geom.spaces.ortho;
 
-import waffles.utils.algebra.elements.linear.vector.fixed.Vector2;
+import waffles.utils.alg.lin.measure.vector.fixed.Vector2;
 import waffles.utils.geom.bounds.Bounded2D;
 import waffles.utils.geom.bounds.Bounds2D;
 import waffles.utils.geom.collidable.axial.cuboid.Rectangle;

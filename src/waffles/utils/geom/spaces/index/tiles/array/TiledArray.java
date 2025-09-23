@@ -2,11 +2,11 @@ package waffles.utils.geom.spaces.index.tiles.array;
 
 import waffles.utils.geom.spaces.index.TiledSpace;
 import waffles.utils.geom.spaces.index.tiles.Tiled;
-import waffles.utils.sets.indexed.mutable.ArrayIndex;
+import waffles.utils.sets.indexed.array.index.ObjectIndex;
 
 /**
  * A {@code TiledArray} provides a basic implementation of a {@code TiledSpace}
- * by storing its tiles in an {@code ArrayIndex}.
+ * by storing its tiles in an {@code ObjectIndex}.
  * 
  * @author Waffles
  * @since 28 Feb 2020
@@ -14,11 +14,11 @@ import waffles.utils.sets.indexed.mutable.ArrayIndex;
  *
  * 
  * @param <T>  a tile type
- * @see ArrayIndex
+ * @see ObjectIndex
  * @see TiledSpace
  * @see Tiled
  */
-public class TiledArray<T extends Tiled> extends ArrayIndex<T> implements TiledSpace<T>
+public class TiledArray<T extends Tiled> extends ObjectIndex<T> implements TiledSpace<T>
 {		
 	private float tSize;
 	

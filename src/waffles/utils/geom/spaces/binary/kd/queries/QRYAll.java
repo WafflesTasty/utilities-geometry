@@ -5,7 +5,7 @@ import java.util.Iterator;
 import waffles.utils.geom.spaces.binary.kd.KDNode;
 import waffles.utils.geom.spaces.binary.kd.KDTree;
 import waffles.utils.sets.queues.Queue;
-import waffles.utils.sets.queues.delegate.JFIFOQueue;
+import waffles.utils.sets.queues.wrapper.FIFOQueue;
 import waffles.utils.tools.collections.iterators.EmptyIterator;
 
 /**
@@ -36,7 +36,7 @@ public class QRYAll<O> implements Iterator<O>
 	public QRYAll(KDTree<O> s)
 	{
 		curr = new EmptyIterator<>();
-		nodes = new JFIFOQueue<>();
+		nodes = new FIFOQueue<>();
 		if(s.Root() != null)
 		{
 			nodes.push(s.Root());

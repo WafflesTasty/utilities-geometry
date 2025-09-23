@@ -1,6 +1,6 @@
 package waffles.utils.geom.spaces.index.nodes;
 
-import waffles.utils.algebra.utilities.matrix.LazyMatrix;
+import waffles.utils.alg.utilities.matrix.LazyMatrix;
 import waffles.utils.geom.spaces.index.nodes.maps.NodeToWorld;
 import waffles.utils.geom.spaces.index.nodes.maps.WorldToNode;
 import waffles.utils.geom.spatial.maps.GlobalMap;

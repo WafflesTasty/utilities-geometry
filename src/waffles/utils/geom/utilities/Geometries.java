@@ -1,10 +1,10 @@
 package waffles.utils.geom.utilities;
 
-import waffles.utils.algebra.elements.linear.Affine;
-import waffles.utils.algebra.elements.linear.matrix.Matrix;
-import waffles.utils.algebra.elements.linear.vector.Vector;
-import waffles.utils.algebra.elements.linear.vector.fixed.Vector2;
-import waffles.utils.algebra.elements.linear.vector.fixed.Vector3;
+import waffles.utils.alg.lin.measure.matrix.Matrix;
+import waffles.utils.alg.lin.measure.vector.Vector;
+import waffles.utils.alg.lin.measure.vector.fixed.Vector2;
+import waffles.utils.alg.lin.measure.vector.fixed.Vector3;
+import waffles.utils.alg.utilities.affine.Affine;
 import waffles.utils.geom.collidable.axial.cuboid.Cube;
 import waffles.utils.geom.collidable.axial.cuboid.CubeND;
 import waffles.utils.geom.collidable.axial.cuboid.Cuboid;

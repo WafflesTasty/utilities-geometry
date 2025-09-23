@@ -52,7 +52,7 @@ public class CLSHLine implements Collision
 			return new CNTPoint(l, p);
 		}
 
-		return () -> false;
+		return Collision.super.contain(c);
 	}
 		
 	@Override
@@ -67,7 +67,7 @@ public class CLSHLine implements Collision
 			return new RSPFlip(new ISCLine(t, l));
 		}
 		
-		return () -> false;
+		return Collision.super.intersect(c);
 	}
 	
 	@Override
@@ -89,7 +89,7 @@ public class CLSHLine implements Collision
 			return new IHBASpace(l, s);
 		}
 		
-		return () -> false;
+		return Collision.super.inhabit(c);
 	}
 	
 	@Override

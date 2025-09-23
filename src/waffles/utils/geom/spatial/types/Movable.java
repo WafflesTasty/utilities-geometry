@@ -1,6 +1,6 @@
 package waffles.utils.geom.spatial.types;
 
-import waffles.utils.algebra.elements.linear.vector.Vector;
+import waffles.utils.alg.lin.measure.vector.Vector;
 import waffles.utils.geom.collidable.fixed.Point;
 import waffles.utils.geom.spatial.data.unary.Positioned;
 import waffles.utils.tools.primitives.Floats;

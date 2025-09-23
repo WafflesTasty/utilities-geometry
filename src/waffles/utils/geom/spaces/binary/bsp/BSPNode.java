@@ -2,7 +2,7 @@ package waffles.utils.geom.spaces.binary.bsp;
 
 import waffles.utils.geom.bounds.Bounded;
 import waffles.utils.geom.spaces.binary.kd.KDNode;
-import waffles.utils.sets.indexed.delegate.List;
+import waffles.utils.sets.countable.wrapper.JavaList;
 
 /**
  * A {@code BSPNode} defines a single node in a {@code BSPTree}.
@@ -20,7 +20,7 @@ import waffles.utils.sets.indexed.delegate.List;
  */
 public class BSPNode<O extends Bounded> extends KDNode<O>
 {
-	private List<O> objects;
+	private JavaList<O> objects;
 	
 	/**
 	 * Creates a new {@code BSPNode}.
@@ -30,7 +30,7 @@ public class BSPNode<O extends Bounded> extends KDNode<O>
 	public BSPNode(BSPTree<O> tree)
 	{
 		super(tree);
-		objects = new List<>();
+		objects = new JavaList<>();
 	}
 	
 	/**

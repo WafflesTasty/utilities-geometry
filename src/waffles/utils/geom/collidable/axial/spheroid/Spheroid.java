@@ -1,7 +1,7 @@
 package waffles.utils.geom.collidable.axial.spheroid;
 
-import waffles.utils.algebra.elements.linear.vector.Vector;
-import waffles.utils.algebra.elements.linear.vector.fixed.Vector3;
+import waffles.utils.alg.lin.measure.vector.Vector;
+import waffles.utils.alg.lin.measure.vector.fixed.Vector3;
 import waffles.utils.geom.bounds.Bounds3D;
 import waffles.utils.geom.bounds.axial.spheroid.BNDSpheroid3D;
 import waffles.utils.geom.collidable.axial.AxialSet3D;

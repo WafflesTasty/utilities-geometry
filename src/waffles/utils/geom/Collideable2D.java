@@ -1,6 +1,6 @@
 package waffles.utils.geom;
 
-import waffles.utils.algebra.elements.linear.vector.fixed.Vector2;
+import waffles.utils.alg.lin.measure.vector.fixed.Vector2;
 
 /**
  * A {@code Collideable2D} object is a {@code Collidable} in two-dimensional space.

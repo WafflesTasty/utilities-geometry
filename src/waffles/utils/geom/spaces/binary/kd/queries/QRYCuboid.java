@@ -2,13 +2,13 @@ package waffles.utils.geom.spaces.binary.kd.queries;
 
 import java.util.Iterator;
 
-import waffles.utils.algebra.elements.interval.Cut;
-import waffles.utils.algebra.elements.linear.vector.Vector;
+import waffles.utils.alg.lin.measure.vector.Vector;
+import waffles.utils.alg.reals.cuts.Cut;
 import waffles.utils.geom.collidable.axial.cuboid.HyperCuboid;
 import waffles.utils.geom.spaces.binary.kd.KDNode;
 import waffles.utils.geom.spaces.binary.kd.KDTree;
 import waffles.utils.sets.queues.Queue;
-import waffles.utils.sets.queues.delegate.JFIFOQueue;
+import waffles.utils.sets.queues.wrapper.FIFOQueue;
 import waffles.utils.tools.collections.iterators.EmptyIterator;
 
 /**
@@ -43,7 +43,7 @@ public class QRYCuboid<O> implements Iterator<O>
 		tgt = t;
 
 		curr = new EmptyIterator<>();
-		nodes = new JFIFOQueue<>();
+		nodes = new FIFOQueue<>();
 		if(s.Root() != null)
 		{
 			nodes.push(s.Root());
@@ -77,9 +77,9 @@ public class QRYCuboid<O> implements Iterator<O>
 			Vector min = tgt.Bounds().Minimum();
 			Vector max = tgt.Bounds().Maximum();
 			
-			if(cut.isAbove(min.get(dim)))
+			if(cut.isAfter(min.get(dim)))
 				nodes.push(node.LChild());
-			if(cut.isBelow(max.get(dim)))
+			if(cut.isBefore(max.get(dim)))
 				nodes.push(node.RChild());
 			return findNext();
 		}

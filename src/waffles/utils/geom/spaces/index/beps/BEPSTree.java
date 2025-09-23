@@ -2,7 +2,7 @@ package waffles.utils.geom.spaces.index.beps;
 
 import waffles.utils.geom.bounds.Bounded;
 import waffles.utils.geom.bounds.Bounds;
-import waffles.utils.sets.trees.indexed.BEPTree;
+import waffles.utils.sets.rooted.binary.indexed.BEPTree;
 
 /**
  * A {@code BEPSTree} defines the partition tree that backs a {@code BEPSpace}.

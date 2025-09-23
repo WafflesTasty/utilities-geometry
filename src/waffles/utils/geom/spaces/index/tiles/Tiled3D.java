@@ -4,7 +4,7 @@ import waffles.utils.geom.collidable.Geometrical3D;
 import waffles.utils.geom.collidable.axial.cuboid.Cube;
 import waffles.utils.geom.spaces.index.TiledSpace3D;
 import waffles.utils.geom.utilities.constants.Cardinal3D;
-import waffles.utils.sets.utilities.coordinates.Coordinated3D;
+import waffles.utils.sets.utilities.indexed.coords.Coordinated3D;
 
 /**
  * A {@code Tiled3D} defines a single element in an three-dimensional {@code TiledSpace}.

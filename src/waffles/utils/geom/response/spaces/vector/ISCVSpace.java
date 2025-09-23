@@ -1,9 +1,8 @@
 package waffles.utils.geom.response.spaces.vector;
 
-import waffles.utils.algebra.elements.linear.matrix.Matrices;
-import waffles.utils.algebra.elements.linear.matrix.Matrix;
-import waffles.utils.algebra.elements.linear.vector.Vector;
-import waffles.utils.algebra.elements.linear.vector.Vectors;
+import waffles.utils.alg.lin.measure.matrix.Matrix;
+import waffles.utils.alg.lin.measure.vector.Vector;
+import waffles.utils.alg.lin.measure.vector.Vectors;
 import waffles.utils.geom.Collision.Response;
 import waffles.utils.geom.collidable.fixed.Point;
 import waffles.utils.geom.collidable.spaces.VSpace;
@@ -78,6 +77,12 @@ public class ISCVSpace implements Response
 	}
 	
 	@Override
+	public int Dimension()
+	{
+		return src.Dimension();
+	}
+	
+	@Override
 	public int Cost()
 	{
 		int rDim = src.Dimension();
@@ -96,7 +101,7 @@ public class ISCVSpace implements Response
 		int cols = c.Columns();
 
 
-		c = Matrices.resize(c, rows, cols);
+		c = c.resize(rows, cols);
 		return new VSpace(src.evaluate(c));
 	}
 }

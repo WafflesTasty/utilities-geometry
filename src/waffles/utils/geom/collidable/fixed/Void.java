@@ -1,8 +1,8 @@
 package waffles.utils.geom.collidable.fixed;
 
-import waffles.utils.algebra.elements.linear.Affine;
-import waffles.utils.algebra.elements.linear.matrix.Matrices;
-import waffles.utils.algebra.elements.linear.matrix.Matrix;
+import waffles.utils.alg.lin.measure.matrix.Matrices;
+import waffles.utils.alg.lin.measure.matrix.Matrix;
+import waffles.utils.alg.utilities.affine.Affine;
 import waffles.utils.geom.bounds.Bounds;
 import waffles.utils.geom.bounds.fixed.BNDVoid;
 import waffles.utils.geom.bounds.fixed.BNDVoid2D;

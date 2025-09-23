@@ -1,12 +1,11 @@
 package waffles.utils.geom.spaces.binary.kd;
 
-import waffles.utils.algebra.elements.interval.Cut;
-import waffles.utils.algebra.elements.interval.Cuts;
+import waffles.utils.alg.reals.cuts.Cut;
 import waffles.utils.geom.collidable.Geometrical;
 import waffles.utils.geom.collidable.axial.cuboid.HyperCube;
 import waffles.utils.geom.spatial.maps.GlobalMap;
 import waffles.utils.geom.utilities.Geometries;
-import waffles.utils.sets.trees.binary.BiNode;
+import waffles.utils.sets.rooted.binary.BiNode;
 
 /**
  * A {@code KDNode} defines a single node in a {@code KDTree}.
@@ -42,7 +41,7 @@ public abstract class KDNode<O> extends BiNode implements Geometrical
 		 */
 		public Plane(int d, float v)
 		{
-			cut = Cuts.Below(v);
+			cut = Cut.Before(v);
 			dim = d;
 		}
 		
