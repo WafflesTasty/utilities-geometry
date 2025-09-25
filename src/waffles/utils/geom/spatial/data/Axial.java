@@ -4,8 +4,7 @@ import waffles.utils.geom.spatial.data.unary.Positioned;
 import waffles.utils.geom.spatial.data.unary.Scaled;
 
 /**
- * An {@code Axial} object describes an axis-aligned position in
- * n-dimensional space. It defines an origin and a size vector.
+ * An {@code Axial} object combines an origin and scale vector.
  *
  * @author Waffles
  * @since 10 Sep 2023

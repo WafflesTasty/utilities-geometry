@@ -4,11 +4,12 @@ import waffles.utils.alg.lin.measure.matrix.Matrices;
 import waffles.utils.alg.lin.measure.matrix.Matrix;
 import waffles.utils.alg.lin.measure.matrix.types.orthogonal.Orthogonal;
 import waffles.utils.alg.lin.measure.vector.fixed.Vector2;
+import waffles.utils.geom.utilities.errors.DimensionError;
 import waffles.utils.tools.primitives.Floats;
 
 /**
- * The {@code Spin2D} class defines spin in the 2D plane.
- * It is completely determined by its angle scalar.
+ * A {@code Spin2D} object defines a two-dimensional rotation.
+ * In two dimensions, a spin is completely defined by an angle.
  *
  * @author Waffles
  * @since Jan 22, 2020
@@ -22,19 +23,19 @@ public class Spin2D implements Spin
 	/**
 	 * Creates a {@code Matrix} from a {@code Spin2D}.
 	 * 
-	 * @param s    a spin object
-	 * @param dim  a matrix dimension
-	 * @return  a rotation matrix
+	 * @param s  a spin object
+	 * @param d  a spin dimension
+	 * @return   a rotation matrix
 	 * 
 	 * 
 	 * @see Matrix
 	 */
-	public static Matrix Matrix(Spin2D s, int dim)
+	public static Matrix Matrix(Spin2D s, int d)
 	{
-		Matrix m = Matrices.identity(dim);
+		Matrix m = Matrices.identity(d);
 		m.setOperator(Orthogonal.Type());
 		
-		if(dim > 1)
+		if(d > 1)
 		{
 			float sin = Floats.sin(s.Angle());
 			float cos = Floats.cos(s.Angle());
@@ -49,16 +50,16 @@ public class Spin2D implements Spin
 	}
 	
 	
-	private float angle;
+	private float ang;
 	
 	/**
 	 * Creates a new {@code Spin2D}.
 	 * 
-	 * @param ang  a spin angle
+	 * @param a  a spin ang
 	 */
-	public Spin2D(float ang)
+	public Spin2D(float a)
 	{
-		angle = ang;
+		ang = a;
 	}
 	
 	/**
@@ -71,7 +72,7 @@ public class Spin2D implements Spin
 	
 		
 	/**
-	 * Returns a forward {@code Spin} vector.
+	 * Returns a forward {@code Vector2}.
 	 * 
 	 * @return  a forward vector
 	 * 
@@ -82,13 +83,13 @@ public class Spin2D implements Spin
 	{
 		return new Vector2
 		(
-			-Floats.sin(angle),
-			 Floats.cos(angle)
+			-Floats.sin(Angle()),
+			 Floats.cos(Angle())
 		);
 	}
 	
 	/**
-	 * Returns a right {@code Spin} vector.
+	 * Returns a right {@code Vector2}.
 	 * 
 	 * @return  a right vector
 	 * 
@@ -99,8 +100,8 @@ public class Spin2D implements Spin
 	{
 		return new Vector2
 		(
-			Floats.cos(angle),
-			Floats.sin(angle)
+			Floats.cos(Angle()),
+			Floats.sin(Angle())
 		);
 	}
 
@@ -111,14 +112,20 @@ public class Spin2D implements Spin
 	 */
 	public float Angle()
 	{
-		return angle;
+		return ang;
 	}
 	
+	
+	@Override
+	public Spin2D inverse()
+	{
+		return new Spin2D(-Angle());
+	}
 			
 	@Override
-	public Spin2D times(float val)
+	public Spin2D times(Float v)
 	{
-		return new Spin2D(angle * val);
+		return new Spin2D(Angle() * v);
 	}
 	
 	@Override
@@ -126,27 +133,22 @@ public class Spin2D implements Spin
 	{
 		if(s instanceof Spin2D)
 		{
-			return new Spin2D(angle + ((Spin2D) s).Angle());
+			float a = Angle() + ((Spin2D) s).Angle();
+			return new Spin2D(a);
 		}
 		
-		throw new Spin.Error(this, s);
+		throw new DimensionError(this, s);
 	}
 	
 	@Override
-	public Vector2 Basis(int i)
+	public Vector2 Basis(int k)
 	{
-		if(i == 0)
+		if(k == 0)
 			return Right();
-		if(i == 1)
+		if(k == 1)
 			return Forward();
 		
 		return null;
-	}
-
-	@Override
-	public Spin2D invert()
-	{
-		return new Spin2D(-angle);
 	}
 
 	@Override
@@ -158,12 +160,12 @@ public class Spin2D implements Spin
 	@Override
 	public float normSqr()
 	{
-		return angle * angle;
+		return Angle() * Angle();
 	}
 	
 	@Override
 	public float norm()
 	{
-		return Floats.abs(angle);
+		return Floats.abs(Angle());
 	}	
 }

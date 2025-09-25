@@ -1,7 +1,7 @@
 package waffles.utils.geom.utilities;
 
 /**
- * A {@code Dimensional} object defines a single integer dimension.
+ * A {@code Dimensional} object defines a spatial dimension.
  *
  * @author Waffles
  * @since 08 Sep 2024
@@ -11,10 +11,9 @@ package waffles.utils.geom.utilities;
 public interface Dimensional
 {
 	/**
-	 * Returns the dimension of the {@code Dimensional}.
-	 * This is usually equal to the dimension of the surrounding space.
+	 * Returns a spatial dimension.
 	 * 
-	 * @return  an object dimension
+	 * @return a spatial dimension
 	 */
 	public abstract int Dimension();
 }

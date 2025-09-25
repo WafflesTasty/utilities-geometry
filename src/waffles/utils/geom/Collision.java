@@ -2,9 +2,9 @@ package waffles.utils.geom;
 
 import waffles.utils.alg.lin.measure.vector.Vector;
 import waffles.utils.alg.lin.measure.vector.Vectors;
-import waffles.utils.geom.collidable.fixed.Point;
 import waffles.utils.geom.utilities.Dimensional;
-import waffles.utils.geom.utilities.Geometries;
+import waffles.utils.geomold.collidable.fixed.Point;
+import waffles.utils.geomold.utilities.Geometries;
 import waffles.utils.tools.primitives.Integers;
 
 /**

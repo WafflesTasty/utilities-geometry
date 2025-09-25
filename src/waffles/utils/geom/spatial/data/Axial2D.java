@@ -4,8 +4,7 @@ import waffles.utils.geom.spatial.data.unary.Positioned2D;
 import waffles.utils.geom.spatial.data.unary.Scaled2D;
 
 /**
- * An {@code Axial2D} object describes an axis-aligned position in
- * two-dimensional space. It defines an origin and a size vector.
+ * An {@code Axial2D} object combines a two-dimensional origin and scale vector.
  *
  * @author Waffles
  * @since 10 Sep 2023

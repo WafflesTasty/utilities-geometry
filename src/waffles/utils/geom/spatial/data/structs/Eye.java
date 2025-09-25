@@ -2,7 +2,7 @@ package waffles.utils.geom.spatial.data.structs;
 
 import waffles.utils.alg.lin.measure.vector.Vector;
 import waffles.utils.geom.spatial.data.Watcher;
-import waffles.utils.geom.spatial.maps.fixed.linear.Projection;
+import waffles.utils.geomold.spatial.maps.fixed.linear.Projection;
 
 /**
  * An {@code Eye} defines a basic {@code Watcher} implementation.

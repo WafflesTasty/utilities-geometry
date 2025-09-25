@@ -3,18 +3,17 @@ package waffles.utils.geom.spatial.data;
 import waffles.utils.geom.spatial.data.unary.Rotated2D;
 
 /**
- * A {@code Spatial2D} object describes an affine position in
- * two-dimensional space. It defines both an origin and size
- * vector, as well as a rotation spin.
+ * A {@code Spatial2D} object combines a two-dimensional origin, scale and rotation spin.
+ * It describes a full two-dimensional Euclidian transformation in space.
  *
  * @author Waffles
  * @since 10 Sep 2023
  * @version 1.0
  * 
  * 
- * @see Spatial
  * @see Rotated2D
  * @see Axial2D
+ * @see Spatial
  */
 public interface Spatial2D extends Spatial, Axial2D, Rotated2D
 {

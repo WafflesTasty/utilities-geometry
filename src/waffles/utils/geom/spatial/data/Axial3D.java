@@ -4,8 +4,7 @@ import waffles.utils.geom.spatial.data.unary.Positioned3D;
 import waffles.utils.geom.spatial.data.unary.Scaled3D;
 
 /**
- * An {@code Axial3D} object describes an axis-aligned position in
- * three-dimensional space. It defines an origin and a size vector.
+ * An {@code Axial2D} object combines a three-dimensional origin and scale vector.
  *
  * @author Waffles
  * @since 10 Sep 2023

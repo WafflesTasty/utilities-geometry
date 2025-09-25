@@ -3,9 +3,8 @@ package waffles.utils.geom.spatial.data;
 import waffles.utils.geom.spatial.data.unary.Rotated;
 
 /**
- * A {@code Spatial} object describes an affine position in
- * n-dimensional space. It defines both an origin and size
- * vector, as well as a rotation spin.
+ * A {@code Spatial} object combines an origin, scale and rotation spin.
+ * It describes a full Euclidian transformation in space.
  *
  * @author Waffles
  * @since 10 Sep 2023

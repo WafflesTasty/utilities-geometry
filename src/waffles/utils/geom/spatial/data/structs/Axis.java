@@ -2,8 +2,8 @@ package waffles.utils.geom.spatial.data.structs;
 
 import waffles.utils.alg.lin.measure.vector.Vector;
 import waffles.utils.geom.spatial.data.Axial;
-import waffles.utils.geom.spatial.maps.fixed.linear.Dilation;
-import waffles.utils.geom.spatial.maps.fixed.linear.Translation;
+import waffles.utils.geomold.spatial.maps.fixed.linear.Dilation;
+import waffles.utils.geomold.spatial.maps.fixed.linear.Translation;
 
 /**
  * An {@code Axis} defines an {@code Axial.Mutable} implementation.

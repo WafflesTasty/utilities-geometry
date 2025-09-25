@@ -2,9 +2,9 @@ package waffles.utils.geom;
 
 import waffles.utils.alg.lin.measure.vector.Vector;
 import waffles.utils.geom.Collision.Response;
-import waffles.utils.geom.collidable.fixed.Point;
-import waffles.utils.geom.response.fixed.RSPFlip;
 import waffles.utils.geom.utilities.Dimensional;
+import waffles.utils.geomold.collidable.fixed.Point;
+import waffles.utils.geomold.response.fixed.RSPFlip;
 
 /**
  * A {@code Collidable} object defines a {@code #Collisions()} property

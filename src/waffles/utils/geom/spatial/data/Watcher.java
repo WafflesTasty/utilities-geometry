@@ -3,8 +3,8 @@ package waffles.utils.geom.spatial.data;
 import waffles.utils.geom.spatial.data.unary.Projected;
 
 /**
- * A {@code Watcher} object describes an affine viewpoint in space.
- * It defines an origin and size vector, rotation spin, and projection oculus.
+ * A {@code Watcher} object combines an origin, size, spin and oculus.
+ * It describes a fully transformable viewpoint in space.
  *
  * @author Waffles
  * @since 11 Sep 2023

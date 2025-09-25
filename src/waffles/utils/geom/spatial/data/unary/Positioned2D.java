@@ -28,7 +28,7 @@ public interface Positioned2D extends Positioned
 	public static interface Mutable extends Positioned.Mutable, Positioned2D
 	{
 		/**
-		 * Changes the origin of the {@code Positioned}.
+		 * Changes the origin of the {@code Positioned2D}.
 		 * 
 		 * @param x  an x-coordinate
 		 * @param y  an y-coordinate

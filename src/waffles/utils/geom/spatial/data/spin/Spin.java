@@ -3,93 +3,57 @@ package waffles.utils.geom.spatial.data.spin;
 import waffles.utils.alg.lin.measure.Normed;
 import waffles.utils.alg.lin.measure.matrix.Matrix;
 import waffles.utils.alg.lin.measure.vector.Vector;
+import waffles.utils.alg.utilities.groups.Multiplication;
 import waffles.utils.geom.utilities.Dimensional;
+import waffles.utils.geom.utilities.ops.Composition;
+import waffles.utils.geom.utilities.ops.Inversion;
 
 /**
- * A {@code Spin} defines a data source to construct rotations.
+ * A {@code Spin} defines a data element that resembles a rotation.
  * 
  * @author Waffles
  * @since Dec 26, 2019
  * @version 1.1
  * 
  * 
+ * @see Composition
+ * @see Multiplication
  * @see Dimensional
+ * @see Normed
  */
-public interface Spin extends Dimensional, Normed
+public interface Spin extends Dimensional, Normed, Multiplication<Float>, Composition<Spin>, Inversion<Spin>
 {
-	/**
-	 * A {@code Spin.Error} is thrown when two
-	 * {@code Spin} objects are not compatible.
-	 *
-	 * @author Waffles
-	 * @since Jan 22, 2020
-	 * @version 1.0
-	 * 
-	 *
-	 * @see RuntimeException
-	 */
-	public static class Error extends RuntimeException
-	{
-		private static final long serialVersionUID = 6899503424285607547L;
-
-		private static String Description(Spin s1, Spin s2)
-		{
-			String dsc = "";
-			
-			dsc += "Trying to compose incompatible spins: ";
-			dsc += s1.getClass().getSimpleName() + " and ";
-			dsc += s2.getClass().getSimpleName() + ".";
-			
-			return dsc;
-		}
-		
-		
-		/**
-		 * Creates a new {@code Spin.Error}.
-		 * 
-		 * @param s1  a spin object
-		 * @param s2  a spin object
-		 * 
-		 * 
-		 * @see Spin
-		 */
-		public Error(Spin s1, Spin s2)
-		{
-			super(Description(s1, s2));
-		}
-	}
-	
 	/**
 	 * Creates a {@code Matrix} from a {@code Spin}.
 	 * 
 	 * @param s  a spin object
-	 * @param dim  a matrix dimension
-	 * @return  a rotation matrix
+	 * @param d  a spin dimension
+	 * @return   a rotation matrix
 	 * 
 	 * 
 	 * @see Matrix
 	 */
-	public static Matrix Matrix(Spin s, int dim)
+	public static Matrix Matrix(Spin s, int d)
 	{
 		if(s instanceof Spin2D)
-			return Spin2D.Matrix((Spin2D) s, dim);
+			return Spin2D.Matrix((Spin2D) s, d);
 		if(s instanceof Spin3D)
-			return Spin3D.Matrix((Spin3D) s, dim);
+			return Spin3D.Matrix((Spin3D) s, d);
 		if(s instanceof SpinND)
-			return SpinND.Matrix((SpinND) s, dim);
+			return SpinND.Matrix((SpinND) s, d);
 		
 		return null;
 	}
 	
 	/**
-	 * Creates a {@code Spin} from a dimension.
+	 * Creates a new {@code Spin}.
 	 * 
-	 * @param dim  a vector dimension
-	 * @return  a spin
+	 * @param d  a spin dimension
+	 * @return   a spin
 	 */
-	public static Spin create(int dim)
+	public static Spin create(int d)
 	{
-		switch(dim)
+		switch(d)
 		{
 		case 2:
 			return new Spin2D();
@@ -99,39 +63,34 @@ public interface Spin extends Dimensional, Normed
 			return new SpinND();
 		}
 	}
-	
-	
-	/**
-	 * Inverts the direction of the {@code Spin}.
-	 * 
-	 * @return  an inverted spin
-	 */
-	public abstract Spin invert();
-	
-	/**
-	 * Scales the {@code Spin} with a scalar value.
-	 * 
-	 * @param val  a scalar value
-	 * @return  a scaled spin
-	 */
-	public abstract Spin times(float val);
-	
-	/**
-	 * Composes the spin with another {@code Spin}.
-	 * 
-	 * @param spin  a spin to compose with
-	 * @return  a composite spin
-	 */
-	public abstract Spin compose(Spin spin);
+
 	
 	/**
 	 * Returns a basis vector in the {@code Spin}.
 	 * 
-	 * @param i  a vector index
+	 * @param k  a vector index
 	 * @return   a basis vector
 	 * 
 	 * 
 	 * @see Vector
 	 */
-	public abstract Vector Basis(int i);
+	public abstract Vector Basis(int k);
+			
+	/**
+	 * Composes the spin with another {@code Spin}.
+	 * 
+	 * @param s  a second spin
+	 * @return   a composite spin
+	 */
+	@Override
+	public abstract Spin compose(Spin s);
+	
+	/**
+	 * Multiplies a scalar with the {@code Spin}.
+	 * 
+	 * @param v  a scalar value
+	 * @return   a scaled spin
+	 */
+	@Override
+	public abstract Spin times(Float v);
 }
