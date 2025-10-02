@@ -1,12 +1,12 @@
-package waffles.utils.geom.spatial.maps.fixed.linear;
+package waffles.utils.geom.spatial.maps.linear;
 
 import waffles.utils.alg.lin.measure.matrix.Matrices;
 import waffles.utils.alg.lin.measure.matrix.Matrix;
 import waffles.utils.alg.lin.measure.vector.Vector;
 import waffles.utils.alg.lin.measure.vector.Vectors;
 import waffles.utils.alg.utilities.affine.LinearMap;
-import waffles.utils.geom.collidable.fixed.Point;
 import waffles.utils.geom.spatial.data.unary.Projected;
+import waffles.utils.geomold.collidable.fixed.Point;
 import waffles.utils.tools.primitives.Floats;
 
 /**
@@ -27,7 +27,7 @@ import waffles.utils.tools.primitives.Floats;
 public class Projection implements LinearMap, Projected
 {
 	/**
-	 * Returns a default oculus {@code Vector}.
+	 * Returns a default projection {@code Vector}.
 	 * 
 	 * @param iDim  an input dimension
 	 * @param oDim  an output dimension
@@ -46,7 +46,7 @@ public class Projection implements LinearMap, Projected
 		
 		return v;
 	}
-
+	
 	
 	private Projected src;
 		

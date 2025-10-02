@@ -1,4 +1,4 @@
-package waffles.utils.geom.utilities.ops;
+package waffles.utils.geom.utilities.groups;
 
 /**
  * A {@code Composition} can create compositions of objects.

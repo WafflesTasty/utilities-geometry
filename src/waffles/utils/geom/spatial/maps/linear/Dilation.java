@@ -1,4 +1,4 @@
-package waffles.utils.geom.spatial.maps.fixed.linear;
+package waffles.utils.geom.spatial.maps.linear;
 
 import waffles.utils.alg.lin.measure.matrix.Matrices;
 import waffles.utils.alg.lin.measure.matrix.Matrix;
@@ -6,8 +6,8 @@ import waffles.utils.alg.lin.measure.matrix.types.banded.Diagonal;
 import waffles.utils.alg.lin.measure.vector.Vector;
 import waffles.utils.alg.lin.measure.vector.Vectors;
 import waffles.utils.alg.utilities.affine.LinearMap;
-import waffles.utils.geom.collidable.fixed.Point;
 import waffles.utils.geom.spatial.data.unary.Scaled;
+import waffles.utils.geomold.collidable.fixed.Point;
 import waffles.utils.tools.primitives.Floats;
 
 /**
@@ -35,13 +35,7 @@ public class Dilation implements LinearMap, Scaled
 	 */
 	public static Vector Default(int dim)
 	{
-		Vector v = Vectors.create(dim);
-		for(int i = 0; i < dim; i++)
-		{
-			v.set(1f, i);
-		}
-		
-		return v;
+		return Vectors.create(2f, dim);
 	}
 	
 	
@@ -50,40 +44,11 @@ public class Dilation implements LinearMap, Scaled
 	/**
 	 * Creates a new {@code Dilation}.
 	 * 
-	 * @param dim  a default dimension
+	 * @param d  a space dimension
 	 */
-	public Dilation(int dim)
+	public Dilation(int d)
 	{
-		this(Default(dim));
-	}
-	
-	/**
-	 * Creates a new {@code Dilation}.
-	 * 
-	 * @param s  a default size
-	 * 
-	 * 
-	 * @see Vector
-	 */
-	public Dilation(Vector s)
-	{
-		this(() -> s.times(2f));
-	}
-	
-	/**
-	 * Creates a new {@code Dilation}.
-	 * The size of the source is divided
-	 * by two, since the map scales in
-	 * both directions of the axes.
-	 * 
-	 * @param s  a scaled source
-	 * 
-	 * 
-	 * @see Scaled
-	 */
-	public Dilation(Scaled s)
-	{
-		src = s;
+		this(Default(d));
 	}
 	
 	/**
@@ -100,7 +65,36 @@ public class Dilation implements LinearMap, Scaled
 	{
 		this((Vector) s.Generator());
 	}
-		
+	
+	/**
+	 * Creates a new {@code Dilation}.
+	 * The vector is multiplied by two,
+	 * since the map scales in both
+	 * directions of the axes.
+	 * 
+	 * @param s  a default size
+	 * 
+	 * 
+	 * @see Vector
+	 */
+	public Dilation(Vector s)
+	{
+		this(() -> s.times(2f));
+	}
+	
+	/**
+	 * Creates a new {@code Dilation}.
+	 * 
+	 * @param s  a scaled source
+	 * 
+	 * 
+	 * @see Scaled
+	 */
+	public Dilation(Scaled s)
+	{
+		src = s;
+	}
+			
 
 	@Override
 	public Matrix Inverse(int dim)

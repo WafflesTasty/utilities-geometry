@@ -1,4 +1,4 @@
-package waffles.utils.geom.spatial.maps.fixed.linear.matrix.ops;
+package waffles.utils.geom.utilities.matrix.ops;
 
 import waffles.utils.alg.lin.measure.matrix.Matrices;
 import waffles.utils.alg.lin.measure.matrix.Matrix;
@@ -7,8 +7,8 @@ import waffles.utils.tools.patterns.operator.Operation;
 import waffles.utils.tools.primitives.Integers;
 
 /**
- * A {@code TranslatorAddition} computes the sum of a matrix with a translator matrix.
- * The operation is optimized to skip zeroes inside the translator matrix.
+ * A {@code TranslatorAddition} defines a matrix addition operation.
+ * The operation is optimized to skip zero values in a {@code Translator}.
  *
  * @author Waffles
  * @since Jul 13, 2018
@@ -20,65 +20,65 @@ import waffles.utils.tools.primitives.Integers;
  */
 public class TranslatorAddition implements Operation<Tensor>
 {
-	private Matrix t, m;
+	private Matrix t1, m1;
 	
 	/**
 	 * Creates a new {@code TranslatorAddition}.
 	 * 
-	 * @param t  a translation matrix
-	 * @param m  a matrix
+	 * @param t1  a translation matrix
+	 * @param m1  a matrix
 	 * 
 	 * 
 	 * @see Matrix
 	 */
-	public TranslatorAddition(Matrix t, Matrix m)
+	public TranslatorAddition(Matrix t1, Matrix m1)
 	{
-		this.t = t;
-		this.m = m;
+		this.t1 = t1;
+		this.m1 = m1;
 	}
 	
 
 	@Override
 	public Matrix result()
 	{
-		int row1 = m.Rows();
-		int row2 = t.Rows();
+		int r1 = m1.Rows();
+		int r2 = t1.Rows();
 		
-		int col1 = m.Columns();
-		int col2 = t.Columns();
+		int c1 = m1.Columns();
+		int c2 = t1.Columns();
 	
-		if(row1 != row2 || col1 != col2)
+		if(r1 != r2 || c1 != c2)
 		{
 			return null;
 		}
 		
 		
-		Matrix result = Matrices.create(row1, col1);
-		for(int r = 0; r < row1; r++)
+		Matrix m2 = Matrices.create(r1, c1);
+		for(int r = 0; r < r1; r++)
 		{
-			for(int c = 0; c < col1; c++)
+			for(int c = 0; c < c1; c++)
 			{
-				float val = m.get(r, c);
-				if(c == col1 - 1)
-					val += t.get(r, c);
+				float v1 = m1.get(r, c);
+				if(c == c1 - 1)
+					v1 += t1.get(r, c);
 				else if(c == r)
-					val += t.get(r, c);
+					v1 += t1.get(r, c);
 				
-				result.set(val, r, c);
+				m2.set(v1, r, c);
 			}
 		}
 		
-		return result;
+		return m2;
 	}
 	
 	@Override
 	public int cost()
 	{
-		int r1 = m.Rows();
-		int r2 = t.Rows();
+		int r1 = m1.Rows();
+		int r2 = t1.Rows();
 		
-		int c1 = m.Columns();
-		int c2 = t.Columns();
+		int c1 = m1.Columns();
+		int c2 = t1.Columns();
 	
 		if(r1 != r2 || c1 != c2)
 		{

@@ -2,11 +2,10 @@ package waffles.utils.geom.spatial.data.structs;
 
 import waffles.utils.alg.lin.measure.vector.Vector;
 import waffles.utils.geom.spatial.data.Axial;
-import waffles.utils.geomold.spatial.maps.fixed.linear.Dilation;
-import waffles.utils.geomold.spatial.maps.fixed.linear.Translation;
+import waffles.utils.geom.spatial.maps.linear.Dilation;
 
 /**
- * An {@code Axis} defines an {@code Axial.Mutable} implementation.
+ * An {@code Axis} defines a basic {@code Axial} implementation.
  *
  * @author Waffles
  * @since 11 Sep 2023
@@ -42,11 +41,8 @@ public class Axis extends Position implements Axial.Mutable
 	 */
 	public Axis(int dim)
 	{
-		this
-		(
-			Translation.Default(dim),
-			Dilation.Default(dim).times(2f)
-		);
+		super(dim);
+		size = Dilation.Default(dim);
 	}
 	
 	/**

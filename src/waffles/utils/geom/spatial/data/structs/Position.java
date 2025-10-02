@@ -2,10 +2,10 @@ package waffles.utils.geom.spatial.data.structs;
 
 import waffles.utils.alg.lin.measure.vector.Vector;
 import waffles.utils.geom.spatial.data.unary.Positioned;
-import waffles.utils.geomold.spatial.maps.fixed.linear.Translation;
+import waffles.utils.geom.spatial.maps.linear.Translation;
 
 /**
- * A {@code Position} defines a {@code Positioned.Mutable} implementation.
+ * A {@code Position} defines a basic {@code Positioned} implementation.
  *
  * @author Waffles
  * @since 11 Sep 2023
@@ -38,10 +38,7 @@ public class Position implements Positioned.Mutable
 	 */
 	public Position(int dim)
 	{
-		this
-		(
-			Translation.Default(dim)
-		);
+		this(Translation.Default(dim));
 	}
 	
 	/**

@@ -2,7 +2,7 @@ package waffles.utils.geom.spatial.data.structs;
 
 import waffles.utils.alg.lin.measure.vector.Vector;
 import waffles.utils.geom.spatial.data.Watcher;
-import waffles.utils.geomold.spatial.maps.fixed.linear.Projection;
+import waffles.utils.geom.spatial.maps.linear.Projection;
 
 /**
  * An {@code Eye} defines a basic {@code Watcher} implementation.
@@ -17,7 +17,7 @@ import waffles.utils.geomold.spatial.maps.fixed.linear.Projection;
  */
 public class Eye extends Locus implements Watcher.Mutable
 {
-	private Vector oculus;
+	private Vector ocl;
 	
 	/**
 	 * Creates a new {@code Eye}.
@@ -27,28 +27,19 @@ public class Eye extends Locus implements Watcher.Mutable
 	 */
 	public Eye(int iDim, int oDim)
 	{
-		super(iDim);
-		oculus = Projection.Default(iDim, oDim);
+		super(iDim); ocl = Projection.Default(iDim, oDim);
 	}
-	
-	/**
-	 * Creates a new {@code Eye}.
-	 */
-	public Eye()
-	{
-		// NOT APPLICABLE
-	}
-	
+		
 	
 	@Override
 	public void setOculus(Vector o)
 	{
-		oculus = o;
+		ocl = o;
 	}
 
 	@Override
 	public Vector Oculus()
 	{
-		return oculus;
+		return ocl;
 	}
 }
