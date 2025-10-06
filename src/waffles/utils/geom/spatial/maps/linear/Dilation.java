@@ -7,7 +7,7 @@ import waffles.utils.alg.lin.measure.vector.Vector;
 import waffles.utils.alg.lin.measure.vector.Vectors;
 import waffles.utils.alg.utilities.affine.LinearMap;
 import waffles.utils.geom.spatial.data.unary.Scaled;
-import waffles.utils.geomold.collidable.fixed.Point;
+import waffles.utils.geomold.utilities.Generated;
 import waffles.utils.tools.primitives.Floats;
 
 /**
@@ -53,21 +53,6 @@ public class Dilation implements LinearMap, Scaled
 	
 	/**
 	 * Creates a new {@code Dilation}.
-	 * The point provided is preferably
-	 * of zero mass, i.e. a vector.
-	 * 
-	 * @param s  a size point
-	 * 
-	 * 
-	 * @see Point
-	 */
-	public Dilation(Point s)
-	{
-		this((Vector) s.Generator());
-	}
-	
-	/**
-	 * Creates a new {@code Dilation}.
 	 * The vector is multiplied by two,
 	 * since the map scales in both
 	 * directions of the axes.
@@ -82,6 +67,19 @@ public class Dilation implements LinearMap, Scaled
 		this(() -> s.times(2f));
 	}
 	
+	/**
+	 * Creates a new {@code Dilation}.
+	 * 
+	 * @param g  a generator
+	 * 
+	 * 
+	 * @see Generated
+	 */
+	public Dilation(Generated g)
+	{
+		this((Vector) g.Generator());
+	}
+		
 	/**
 	 * Creates a new {@code Dilation}.
 	 * 

@@ -7,7 +7,7 @@ import waffles.utils.alg.lin.measure.vector.Vectors;
 import waffles.utils.alg.utilities.affine.LinearMap;
 import waffles.utils.geom.spatial.data.unary.Positioned;
 import waffles.utils.geom.utilities.matrix.Translator;
-import waffles.utils.geomold.collidable.fixed.Point;
+import waffles.utils.geomold.utilities.Generated;
 import waffles.utils.tools.primitives.Integers;
 
 /**
@@ -67,6 +67,19 @@ public class Translation implements LinearMap, Positioned
 	/**
 	 * Creates a new {@code Translation}.
 	 * 
+	 * @param g  a generator
+	 * 
+	 * 
+	 * @see Generated
+	 */
+	public Translation(Generated g)
+	{
+		this(() -> g.Generator());
+	}
+	
+	/**
+	 * Creates a new {@code Translation}.
+	 * 
 	 * @param v  an origin vector
 	 * 
 	 * 
@@ -75,21 +88,6 @@ public class Translation implements LinearMap, Positioned
 	public Translation(Vector v)
 	{
 		this(() -> v);
-	}
-	
-	/**
-	 * Creates a new {@code Translation}.
-	 * The point provided is preferably of
-	 * non-zero mass, i.e. affine.
-	 * 
-	 * @param o  an origin point
-	 * 
-	 * 
-	 * @see Point
-	 */
-	public Translation(Point o)
-	{
-		this(() -> o.Generator());
 	}
 
 
