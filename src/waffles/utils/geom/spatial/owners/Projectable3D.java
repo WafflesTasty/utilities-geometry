@@ -1,4 +1,4 @@
-package waffles.utils.geom.spatial.types;
+package waffles.utils.geom.spatial.owners;
 
 import waffles.utils.alg.lin.measure.vector.fixed.Vector3;
 import waffles.utils.geom.spatial.data.unary.Projected3D;
@@ -17,7 +17,7 @@ import waffles.utils.geom.spatial.data.unary.Projected3D;
 public interface Projectable3D extends Projectable, Projected3D
 {		
 	/**
-	 * Moves the oculus of the {@code Projectable} for a given distance.
+	 * Moves the {@code Projectable3D} for a given distance.
 	 * 
 	 * @param x  an x-coordinate
 	 * @param y  an y-coordinate
@@ -29,7 +29,7 @@ public interface Projectable3D extends Projectable, Projected3D
 	}
 	
 	/**
-	 * Projects the {@code Projectable} to a new oculus.
+	 * Projects the {@code Projectable3D} to a new oculus.
 	 * 
 	 * @param x  an x-coordinate
 	 * @param y  an y-coordinate

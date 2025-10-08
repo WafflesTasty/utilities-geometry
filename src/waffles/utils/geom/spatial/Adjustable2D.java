@@ -1,11 +1,11 @@
 package waffles.utils.geom.spatial;
 
 import waffles.utils.geom.spatial.data.Spatial2D;
-import waffles.utils.geom.spatial.types.Rotatable2D;
+import waffles.utils.geom.spatial.owners.Rotatable2D;
 import waffles.utils.tools.primitives.Floats;
 
 /**
- * An {@code Adjustable2D} object can be fully transformed in a two-dimensional vector space.
+ * An {@code Adjustable2D} object can be affine transformed in a two-dimensional space.
  *
  * @author Waffles
  * @since Feb 10, 2019
@@ -22,7 +22,7 @@ public interface Adjustable2D extends Adjustable, Aligned2D, Rotatable2D, Spatia
 	/**
 	 * Strafes the {@code Vantage2D} for a given distance.
 	 * 
-	 * @param d  a distance to strafe
+	 * @param d  a distance value
 	 */
 	public default void strafeFor(float d)
 	{
@@ -35,7 +35,7 @@ public interface Adjustable2D extends Adjustable, Aligned2D, Rotatable2D, Spatia
 	/**
 	 * Advances the {@code Vantage2D} for a given distance.
 	 * 
-	 * @param d  a distance to advance
+	 * @param d  a distance value
 	 */
 	public default void advanceFor(float d)
 	{

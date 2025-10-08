@@ -1,11 +1,11 @@
-package waffles.utils.geom.spatial.types;
+package waffles.utils.geom.spatial.owners;
 
 import waffles.utils.alg.lin.measure.vector.fixed.Vector2;
 import waffles.utils.geom.spatial.data.unary.Scaled2D;
 import waffles.utils.tools.primitives.Floats;
 
 /**
- * An {@code Scalable2D} object can be scaled in a two-dimensional vector space.
+ * A {@code Scalable2D} object can be scaled in a two-dimensional vector space.
  *
  * @author Waffles
  * @since Apr 22, 2016
@@ -20,22 +20,22 @@ public interface Scalable2D extends Scalable, Scaled2D
 	/**
 	 * Scales the {@code Scalable2D} with a given factor.
 	 * 
-	 * @param w  a width  factor
-	 * @param h  a height factor
+	 * @param w  a width scale
+	 * @param h  a height scale
 	 */
 	public default void scaleFor(float w, float h)
 	{
-		if(!Floats.isEqual(w, 1f, 1) || !Floats.isEqual(h, 1f, 1))
+		if(ERROR < Floats.abs(w - 1f) || ERROR < Floats.abs(h - 1f))
 		{
 			scaleFor(new Vector2(w, h));
 		}
 	}
 
 	/**
-	 * Scales the {@code Scalable2D} to a new scale vector.
+	 * Scales the {@code Scalable2D} to a new scale.
 	 * 
-	 * @param w  a scale width
-	 * @param h  a scale height
+	 * @param w  a width scale
+	 * @param h  a height scale
 	 */
 	public default void scaleTo(float w, float h)
 	{

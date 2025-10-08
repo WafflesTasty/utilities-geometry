@@ -1,8 +1,8 @@
-package waffles.utils.geom.spatial.types;
+package waffles.utils.geom.spatial.owners;
 
 import waffles.utils.alg.lin.measure.vector.Vector;
 import waffles.utils.geom.spatial.data.unary.Projected;
-import waffles.utils.tools.primitives.Floats;
+import waffles.utils.geom.utilities.Transformable;
 
 /**
  * A {@code Projectable} object can be projected into an n-dimensional vector space.
@@ -12,55 +12,45 @@ import waffles.utils.tools.primitives.Floats;
  * @version 1.0
  * 
  * 
+ * @see Transformable
  * @see Projected
  */
-public interface Projectable extends Projected
-{
-	/**
-	 * Returns the transform of the {@code Projectable}.
-	 * 
-	 * @return  a projection mutable
-	 * 
-	 * 
-	 * @see Projected
-	 */
-	public abstract Projected.Mutable Transform();
-	
-		
+public interface Projectable extends Projected, Transformable
+{		
 	/**
 	 * Projects the {@code Projectable} to a new oculus.
 	 * 
-	 * @param v  a new oculus vector
+	 * @param o  an oculus vector
 	 * 
 	 * 
 	 * @see Vector
 	 */
-	public default void projectTo(Vector v)
+	public default void projectTo(Vector o)
 	{
-		Transform().setOculus(v);
+		Transform().setOculus(o);
 	}
 	
 	/**
-	 * Moves the oculus of the {@code Projectable} for a given distance.
+	 * Moves the {@code Projectable} for a given distance.
 	 * 
-	 * @param v  a direction to move in
-	 * @param d  a distance to move for
+	 * @param v  a direction vector
+	 * @param d  a distance value
 	 * 
 	 * 
 	 * @see Vector
 	 */
 	public default void projectFor(Vector v, float d)
 	{
-		if(!Floats.isZero(d, 1))
+		if(ERROR < d)
 		{
 			projectFor(v.normalize().times(d));
 		}
 	}
 	
 	/**
-	 * Moves the oculus of the {@code Projectable} for a given distance.
+	 * Moves the {@code Projectable} for a given distance.
 	 * 
-	 * @param v  a direction to move in
+	 * @param v  a distance vector
 	 * 
 	 * 
 	 * @see Vector
@@ -70,6 +60,9 @@ public interface Projectable extends Projected
 		projectTo(Oculus().plus(v));
 	}
 	
+	
+	@Override
+	public abstract Projected.Mutable Transform();
 	
 	@Override
 	public default Vector Oculus()

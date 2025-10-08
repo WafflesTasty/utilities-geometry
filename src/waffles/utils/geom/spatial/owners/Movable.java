@@ -1,8 +1,9 @@
-package waffles.utils.geom.spatial.types;
+package waffles.utils.geom.spatial.owners;
 
 import waffles.utils.alg.lin.measure.vector.Vector;
-import waffles.utils.geom.collidable.fixed.Point;
 import waffles.utils.geom.spatial.data.unary.Positioned;
+import waffles.utils.geom.utilities.Transformable;
+import waffles.utils.geomold.collidable.fixed.Point;
 import waffles.utils.tools.primitives.Floats;
 
 /**
@@ -13,21 +14,11 @@ import waffles.utils.tools.primitives.Floats;
  * @version 1.0
  * 
  * 
+ * @see Transformable
  * @see Positioned
  */
-public interface Movable extends Positioned
-{
-	/**
-	 * Returns the transform of the {@code Movable}.
-	 * 
-	 * @return  a position mutable
-	 * 
-	 * 
-	 * @see Positioned
-	 */
-	public abstract Positioned.Mutable Transform();
-
-	
+public interface Movable extends Positioned, Transformable
+{	
 	/**
 	 * Moves the {@code Movable} to a new origin.
 	 * 
@@ -53,12 +44,26 @@ public interface Movable extends Positioned
 	{
 		Transform().setOrigin(v);
 	}
-		
+	
+	
 	/**
-	 * Moves the {@code Movable} for a specified distance.
+	 * Moves the {@code Movable} for a given distance.
 	 * 
-	 * @param v  a direction to move in
-	 * @param d  a distance to move for
+	 * @param v  a distance vector
+	 * 
+	 * 
+	 * @see Vector
+	 */
+	public default void moveFor(Vector v)
+	{
+		moveTo(Origin().plus(v));
+	}
+	
+	/**
+	 * Moves the {@code Movable} for a given distance.
+	 * 
+	 * @param v  a direction vector
+	 * @param d  a distance value
 	 * 
 	 * 
 	 * @see Vector
@@ -71,19 +76,9 @@ public interface Movable extends Positioned
 		}
 	}
 	
-	/**
-	 * Moves the {@code Movable} for a specified distance.
-	 * 
-	 * @param v  a direction to move in
-	 * 
-	 * 
-	 * @see Vector
-	 */
-	public default void moveFor(Vector v)
-	{
-		moveTo(Origin().plus(v));
-	}
-
+	
+	@Override
+	public abstract Positioned.Mutable Transform();
 	
 	@Override
 	public default Vector Origin()

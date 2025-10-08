@@ -1,4 +1,4 @@
-package waffles.utils.geom.spatial.types;
+package waffles.utils.geom.spatial.owners;
 
 import waffles.utils.alg.lin.measure.vector.complex.Quaternion;
 import waffles.utils.alg.lin.measure.vector.fixed.Vector3;
@@ -20,7 +20,7 @@ import waffles.utils.tools.primitives.Floats;
 public interface Rotatable3D extends Rotatable, Rotated3D
 {		
 	/**
-	 * Rotates the {@code Rotatable3D} around a given versor.
+	 * Rotates the {@code Rotatable3D} around a versor.
 	 * 
 	 * @param q  a unit quaternion
 	 * 
@@ -29,14 +29,14 @@ public interface Rotatable3D extends Rotatable, Rotated3D
 	 */
 	public default void rotateFor(Quaternion q)
 	{
-		if(!Floats.isEqual(q.W(), 1f, 1))
+		if(ERROR < Floats.abs(q.W() - 1f))
 		{
 			rotateFor(new Spin3D(q));
 		}
 	}
 	
 	/**
-	 * Rotates the {@code Rotatable3D} around a given vector.
+	 * Rotates the {@code Rotatable3D} around a vector.
 	 * 
 	 * @param v  a rotation vector
 	 * @param a  a rotation angle
@@ -46,14 +46,14 @@ public interface Rotatable3D extends Rotatable, Rotated3D
 	 */
 	public default void rotateFor(Vector3 v, float a)
 	{
-		if(!Floats.isZero(a, 1))
+		if(ERROR < a)
 		{
 			rotateFor(new Spin3D(v, a));
 		}
 	}
 	
 	/**
-	 * Rotates the {@code Rotatable3D} around a given vector.
+	 * Rotates the {@code Rotatable3D} around a vector.
 	 * The vector norm serves as the rotation angle.
 	 * 
 	 * @param v  a rotation vector
@@ -63,10 +63,10 @@ public interface Rotatable3D extends Rotatable, Rotated3D
 	 */
 	public default void rotateFor(Vector3 v)
 	{
-		float norm = v.norm();	
-		if(!Floats.isZero(norm, 3))
+		float n = v.norm();	
+		if(ERROR < n)
 		{
-			rotateFor(v.times(1f / norm), norm);	
+			rotateFor(v.times(1f / n), n);	
 		}
 	}
 	

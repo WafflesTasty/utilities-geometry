@@ -1,37 +1,37 @@
 package waffles.utils.geom.spatial;
 
 import waffles.utils.geom.spatial.data.Spatial;
-import waffles.utils.geom.spatial.types.Rotatable;
-import waffles.utils.tools.primitives.Floats;
+import waffles.utils.geom.spatial.owners.Rotatable;
 
 /**
- * An {@code Adjustable} object can be fully transformed in an n-dimensional vector space.
+ * An {@code Adjustable} object can be affine transformed in an n-dimensional space.
  *
  * @author Waffles
  * @since Feb 10, 2019
  * @version 1.1
  * 
  * 
- * @see Rotatable
  * @see Aligned
+ * @see Rotatable
  * @see Spatial
  */
 public interface Adjustable extends Aligned, Rotatable, Spatial
 {
-	@Override
-	public abstract Spatial.Mutable Transform();
-	
 	/**
 	 * Moves the {@code Adjustable} for a given distance.
 	 * 
-	 * @param i  a basis vector index
-	 * @param d  a distance to move
+	 * @param i  a vector index
+	 * @param d  a distance value
 	 */
 	public default void moveFor(int i, float d)
 	{
-		if(!Floats.isZero(d, 1))
+		if(ERROR < d)
 		{
 			moveFor(Spin().Basis(i), d);
 		}
 	}
+	
+	
+	@Override
+	public abstract Spatial.Mutable Transform();
 }

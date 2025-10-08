@@ -1,4 +1,4 @@
-package waffles.utils.geom.spatial.types;
+package waffles.utils.geom.spatial.owners;
 
 import waffles.utils.alg.lin.measure.vector.fixed.Vector2;
 import waffles.utils.geom.spatial.data.unary.Projected2D;
@@ -17,7 +17,7 @@ import waffles.utils.geom.spatial.data.unary.Projected2D;
 public interface Projectable2D extends Projectable, Projected2D
 {		
 	/**
-	 * Moves the oculus for a given distance.
+	 * Moves the {@code Projectable2D} for a given distance.
 	 * 
 	 * @param x  an x-coordinate
 	 * @param y  an y-coordinate

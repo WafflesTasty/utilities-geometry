@@ -1,4 +1,4 @@
-package waffles.utils.geom.spatial.types;
+package waffles.utils.geom.spatial.owners;
 
 import waffles.utils.alg.lin.measure.vector.fixed.Vector3;
 import waffles.utils.geom.spatial.data.unary.Positioned3D;

@@ -1,7 +1,8 @@
-package waffles.utils.geom.spatial.types;
+package waffles.utils.geom.spatial.owners;
 
 import waffles.utils.alg.lin.measure.vector.Vector;
 import waffles.utils.geom.spatial.data.unary.Scaled;
+import waffles.utils.geom.utilities.Transformable;
 import waffles.utils.tools.primitives.Floats;
 
 /**
@@ -12,21 +13,11 @@ import waffles.utils.tools.primitives.Floats;
  * @version 1.0
  * 
  * 
+ * @see Transformable
  * @see Scaled
  */
-public interface Scalable extends Scaled
-{
-	/**
-	 * Returns the transform of the {@code Scalable}.
-	 * 
-	 * @return  a scaling mutable
-	 * 
-	 * 
-	 * @see Scaled
-	 */
-	public abstract Scaled.Mutable Transform();
-	
-	
+public interface Scalable extends Scaled, Transformable
+{		
 	/**
 	 * Scales the {@code Scaled} to a new size.
 	 * 
@@ -51,7 +42,7 @@ public interface Scalable extends Scaled
 	 */
 	public default void scaleFor(Vector v, float d)
 	{
-		if(!Floats.isEqual(d, 1f, 1))
+		if(ERROR < Floats.abs(d - 1f))
 		{
 			scaleFor(v.normalize().times(d));
 		}
@@ -70,6 +61,9 @@ public interface Scalable extends Scaled
 		scaleTo(Scale().hadamard(v));
 	}
 	
+	
+	@Override
+	public abstract Scaled.Mutable Transform();
 	
 	@Override
 	public default Vector Scale()

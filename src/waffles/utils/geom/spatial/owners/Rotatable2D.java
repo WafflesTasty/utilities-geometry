@@ -1,8 +1,7 @@
-package waffles.utils.geom.spatial.types;
+package waffles.utils.geom.spatial.owners;
 
 import waffles.utils.geom.spatial.data.spin.Spin2D;
 import waffles.utils.geom.spatial.data.unary.Rotated2D;
-import waffles.utils.tools.primitives.Floats;
 
 /**
  * An {@code Rotatable2D} object can be rotated in a two-dimensional vector space.
@@ -18,13 +17,13 @@ import waffles.utils.tools.primitives.Floats;
 public interface Rotatable2D extends Rotatable, Rotated2D
 {	
 	/**
-	 * Rotates the {@code Rotatable2D} for a specified angle.
+	 * Rotates the {@code Rotatable2D} for a given angle.
 	 * 
-	 * @param a  an angle to rotate for
+	 * @param a  a rotation angle
 	 */
 	public default void rotateFor(float a)
 	{
-		if(!Floats.isZero(a, 1))
+		if(ERROR < a)
 		{
 			rotateFor(new Spin2D(a));
 		}
@@ -33,7 +32,7 @@ public interface Rotatable2D extends Rotatable, Rotated2D
 	/**
 	 * Rotates the {@code Rotatable2D} to a new angle.
 	 * 
-	 * @param a  an angle to rotate to
+	 * @param a  a rotation angle
 	 */
 	public default void rotateTo(float a)
 	{

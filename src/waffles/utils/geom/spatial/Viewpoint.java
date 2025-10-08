@@ -1,10 +1,10 @@
 package waffles.utils.geom.spatial;
 
 import waffles.utils.geom.spatial.data.Watcher;
-import waffles.utils.geom.spatial.types.Projectable;
+import waffles.utils.geom.spatial.owners.Projectable;
 
 /**
- * A {@code Projector} object observes a projection of an n-dimensional vector space.
+ * A {@code Viewpoint} object defines a transformable viewpoint in an n-dimensional space.
  *
  * @author Waffles
  * @since Feb 10, 2019
@@ -15,7 +15,7 @@ import waffles.utils.geom.spatial.types.Projectable;
  * @see Adjustable
  * @see Watcher
  */
-public interface Projector extends Adjustable, Projectable, Watcher
+public interface Viewpoint extends Adjustable, Projectable, Watcher
 {
 	@Override
 	public abstract Watcher.Mutable Transform();
