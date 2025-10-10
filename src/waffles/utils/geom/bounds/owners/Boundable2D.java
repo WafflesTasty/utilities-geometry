@@ -1,13 +1,18 @@
-package waffles.utils.geom.bounds;
+package waffles.utils.geom.bounds.owners;
 
+import waffles.utils.geom.bounds.Bounds2D;
 import waffles.utils.geom.spatial.maps.GlobalMap;
 
 /**
- * A {@code Boundable} object defines a two-dimensional boundary after applying a {@code GlobalMap}.
+ * A {@code Boundable2D} object defines a two-dimensional transformable {@code Bounds}.
  * 
  * @author Waffles
  * @since Mar 24, 2017
  * @version 1.0
+ * 
+ * 
+ * @see Boundable
+ * @see Bounded2D
  */
 @FunctionalInterface
 public interface Boundable2D extends Boundable, Bounded2D

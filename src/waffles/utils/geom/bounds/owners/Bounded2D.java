@@ -1,7 +1,9 @@
-package waffles.utils.geom.bounds;
+package waffles.utils.geom.bounds.owners;
+
+import waffles.utils.geom.bounds.Bounds2D;
 
 /**
- * A {@code Bounded} object contains a well-defined two-dimensional boundary.
+ * A {@code Bounded} object defines a two-dimensional {@code Bounds}.
  *
  * @author Waffles
  * @since Aug 25, 2015

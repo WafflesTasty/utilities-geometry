@@ -1,7 +1,9 @@
-package waffles.utils.geom.bounds;
+package waffles.utils.geom.bounds.owners;
+
+import waffles.utils.geom.bounds.Bounds3D;
 
 /**
- * A {@code Bounded} object contains a well-defined three-dimensional boundary.
+ * A {@code Bounded} object defines a three-dimensional {@code Bounds}.
  *
  * @author Waffles
  * @since Aug 25, 2015

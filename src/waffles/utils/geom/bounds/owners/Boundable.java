@@ -1,10 +1,11 @@
-package waffles.utils.geom.bounds;
+package waffles.utils.geom.bounds.owners;
 
+import waffles.utils.geom.bounds.Bounds;
 import waffles.utils.geom.spatial.maps.GlobalMap;
-import waffles.utils.geom.utilities.Transforms;
+import waffles.utils.geomold.utilities.Transforms;
 
 /**
- * A {@code Boundable} object defines an n-dimensional boundary after applying a {@code GlobalMap}.
+ * A {@code Boundable} object defines an n-dimensional transformable {@code Bounds}.
  * 
  * @author Waffles
  * @since Mar 24, 2017
@@ -17,16 +18,17 @@ import waffles.utils.geom.utilities.Transforms;
 public interface Boundable extends Bounded
 {	
 	/**
-	 * Returns the bounds of the {@code Bounded} object.
+	 * Returns the bounds of the {@code Boundable}.
 	 * 
-	 * @param map  a transformation map
-	 * @return  an object boundary
+	 * @param map  a linear map
+	 * @return  a boundary
 	 * 
 	 * 
 	 * @see GlobalMap
 	 * @see Bounds
 	 */
 	public abstract Bounds Bounds(GlobalMap map);
+	
 	
 	@Override
 	public default Bounds Bounds()
