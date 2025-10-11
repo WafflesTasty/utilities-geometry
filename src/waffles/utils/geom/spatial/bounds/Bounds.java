@@ -34,13 +34,13 @@ public interface Bounds extends Axial, Dimensional
 	public static enum Type
 	{
 		/**
-		 * A bounding ball.
-		 */
-		BALL,
-		/**
 		 * A bounding box.
 		 */
-		BOX;
+		BOX,
+		/**
+		 * A bounding orb.
+		 */
+		ORB;
 	}
 
 	
