@@ -1,7 +1,7 @@
-package waffles.utils.geom.bounds.owners;
+package waffles.utils.geom.spatial.bounds.owners;
 
 import waffles.utils.alg.utilities.affine.LinearMap;
-import waffles.utils.geom.bounds.Bounds3D;
+import waffles.utils.geom.spatial.bounds.Bounds3D;
 
 /**
  * A {@code Boundable3D} object defines a three-dimensional transformable {@code Bounds}.

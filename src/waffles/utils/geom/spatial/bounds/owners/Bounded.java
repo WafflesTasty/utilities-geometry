@@ -1,6 +1,6 @@
-package waffles.utils.geom.bounds.owners;
+package waffles.utils.geom.spatial.bounds.owners;
 
-import waffles.utils.geom.bounds.Bounds;
+import waffles.utils.geom.spatial.bounds.Bounds;
 
 /**
  * A {@code Bounded} object defines an n-dimensional {@code Bounds}.

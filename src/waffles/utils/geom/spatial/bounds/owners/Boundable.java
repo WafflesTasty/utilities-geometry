@@ -1,7 +1,7 @@
-package waffles.utils.geom.bounds.owners;
+package waffles.utils.geom.spatial.bounds.owners;
 
 import waffles.utils.alg.utilities.affine.LinearMap;
-import waffles.utils.geom.bounds.Bounds;
+import waffles.utils.geom.spatial.bounds.Bounds;
 import waffles.utils.geomold.utilities.Transforms;
 
 /**

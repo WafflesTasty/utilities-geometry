@@ -1,4 +1,4 @@
-package waffles.utils.geom.bounds;
+package waffles.utils.geom.spatial.bounds;
 
 import waffles.utils.alg.lin.measure.vector.fixed.Vector2;
 import waffles.utils.geomold.collidable.axial.cuboid.Rectangle;

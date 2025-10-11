@@ -1,4 +1,4 @@
-package waffles.utils.geom.bounds;
+package waffles.utils.geom.spatial.bounds;
 
 import waffles.utils.alg.lin.measure.vector.Vector;
 import waffles.utils.geom.spatial.data.Axial;
