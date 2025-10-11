@@ -1,7 +1,7 @@
 package waffles.utils.geom.bounds.owners;
 
+import waffles.utils.alg.utilities.affine.LinearMap;
 import waffles.utils.geom.bounds.Bounds;
-import waffles.utils.geom.spatial.maps.GlobalMap;
 import waffles.utils.geomold.utilities.Transforms;
 
 /**
@@ -24,10 +24,10 @@ public interface Boundable extends Bounded
 	 * @return  a boundary
 	 * 
 	 * 
-	 * @see GlobalMap
+	 * @see LinearMap
 	 * @see Bounds
 	 */
-	public abstract Bounds Bounds(GlobalMap map);
+	public abstract Bounds Bounds(LinearMap map);
 	
 	
 	@Override

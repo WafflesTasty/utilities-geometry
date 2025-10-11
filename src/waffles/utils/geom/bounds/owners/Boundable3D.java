@@ -1,7 +1,7 @@
 package waffles.utils.geom.bounds.owners;
 
+import waffles.utils.alg.utilities.affine.LinearMap;
 import waffles.utils.geom.bounds.Bounds3D;
-import waffles.utils.geom.spatial.maps.GlobalMap;
 
 /**
  * A {@code Boundable3D} object defines a three-dimensional transformable {@code Bounds}.
@@ -18,7 +18,7 @@ import waffles.utils.geom.spatial.maps.GlobalMap;
 public interface Boundable3D extends Boundable, Bounded3D
 {	
 	@Override
-	public abstract Bounds3D Bounds(GlobalMap map);
+	public abstract Bounds3D Bounds(LinearMap map);
 	
 	@Override
 	public default Bounds3D Bounds()

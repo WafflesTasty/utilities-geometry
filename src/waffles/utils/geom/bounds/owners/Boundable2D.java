@@ -1,7 +1,7 @@
 package waffles.utils.geom.bounds.owners;
 
+import waffles.utils.alg.utilities.affine.LinearMap;
 import waffles.utils.geom.bounds.Bounds2D;
-import waffles.utils.geom.spatial.maps.GlobalMap;
 
 /**
  * A {@code Boundable2D} object defines a two-dimensional transformable {@code Bounds}.
@@ -18,7 +18,7 @@ import waffles.utils.geom.spatial.maps.GlobalMap;
 public interface Boundable2D extends Boundable, Bounded2D
 {	
 	@Override
-	public abstract Bounds2D Bounds(GlobalMap map);
+	public abstract Bounds2D Bounds(LinearMap map);
 	
 	@Override
 	public default Bounds2D Bounds()
