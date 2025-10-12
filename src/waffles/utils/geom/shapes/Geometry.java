@@ -1,10 +1,10 @@
-package waffles.utils.geom.collidable;
+package waffles.utils.geom.shapes;
 
 import waffles.utils.geom.Collidable;
-import waffles.utils.geom.bounds.Boundable;
+import waffles.utils.geom.spatial.bounds.owners.Boundable;
 
 /**
- * The {@code Geometry} interface is the base for bounded n-dimensional shapes.
+ * A {@code Geometry} is a well-defined, boundable collidable shape.
  * 
  * @author Waffles
  * @since Aug 22, 2015

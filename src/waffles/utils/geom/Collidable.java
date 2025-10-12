@@ -7,9 +7,9 @@ import waffles.utils.geomold.collidable.fixed.Point;
 import waffles.utils.geomold.response.fixed.RSPFlip;
 
 /**
- * A {@code Collidable} object defines a {@code #Collisions()} property
- * which allows containment and intersection tests to be executed.
- * Each test generates a {@code Response} object containing
+ * A {@code Collidable} object defines a {@code Collision} property
+ * which allows containment and intersection checks to be executed.
+ * Each checks generates a {@code Response} object containing
  * all the necessary collision information.
  * 
  * @author Waffles
@@ -22,21 +22,21 @@ import waffles.utils.geomold.response.fixed.RSPFlip;
 public interface Collidable extends Dimensional
 {	
 	/**
-	 * Returns collisions of the {@code Collidable}.
+	 * Returns the collision of the {@code Collidable}.
 	 * 
-	 * @return  a collision operator
+	 * @return  a collision
 	 * 
 	 * 
 	 * @see Collision
 	 */
-	public abstract Collision Collisions();
+	public abstract Collision Collision();
 	
 	
 	/**
-	 * Checks containment of a vector in the {@code Collidable}.
+	 * Checks containment of a point in the {@code Collidable}.
 	 * 
-	 * @param v  a point vector
-	 * @return   a collision response
+	 * @param v  a vector
+	 * @return   a response
 	 * 
 	 * 
 	 * @see Response
@@ -50,20 +50,19 @@ public interface Collidable extends Dimensional
 	/**
 	 * Checks containment of an object in the {@code Collidable}.
 	 * 
-	 * @param c  a collidable object
-	 * @return   a collision response
+	 * @param c  a collidable
+	 * @return   a response
 	 * 
 	 * 
-	 * @see Collidable
 	 * @see Response
 	 */
 	public default Response contain(Collidable c)
 	{
-		Response rsp1 =   Collisions().contain(c);
-		Response rsp2 = c.Collisions().inhabit(this);
+		Response rsp1 =   Collision().contain(c);
+		Response rsp2 = c.Collision().inhabit(this);
 		
 		rsp2 = new RSPFlip(rsp2);
-		if(rsp1.Cost() < rsp2.Cost())
+		if(rsp1.cost() < rsp2.cost())
 			return rsp1;
 		return rsp2;
 	}
@@ -71,20 +70,19 @@ public interface Collidable extends Dimensional
 	/**
 	 * Checks intersection of an object in the {@code Collidable}.
 	 * 
-	 * @param c  a collidable object
-	 * @return   a collision response
+	 * @param c  a collidable
+	 * @return   a response
 	 * 
 	 * 
-	 * @see Collidable
 	 * @see Response
 	 */
 	public default Response intersect(Collidable c)
 	{
-		Response rsp1 =   Collisions().intersect(c);
-		Response rsp2 = c.Collisions().intersect(this);
+		Response rsp1 =   Collision().intersect(c);
+		Response rsp2 = c.Collision().intersect(this);
 
 		rsp2 = new RSPFlip(rsp2);
-		if(rsp1.Cost() < rsp2.Cost())
+		if(rsp1.cost() < rsp2.cost())
 			return rsp1;
 		return rsp2;
 	}
@@ -93,8 +91,8 @@ public interface Collidable extends Dimensional
 	/**
 	 * Checks intersection of an object in the {@code Collidable}.
 	 * 
-	 * @param c  a collidable object
-	 * @return  {@code true} if intersection happens
+	 * @param c  a collidable
+	 * @return  {@code true} if intersection occurs
 	 */
 	public default boolean intersects(Collidable c)
 	{
@@ -104,8 +102,8 @@ public interface Collidable extends Dimensional
 	/**
 	 * Checks containment of an object in the {@code Collidable}.
 	 * 
-	 * @param c  a collidable object
-	 * @return  {@code true} if containment happens
+	 * @param c  a collidable
+	 * @return  {@code true} if containment occurs
 	 */
 	public default boolean contains(Collidable c)
 	{
@@ -115,8 +113,8 @@ public interface Collidable extends Dimensional
 	/**
 	 * Checks containment of a vector in the {@code Collidable}.
 	 * 
-	 * @param v  a point vector
-	 * @return  {@code true} if containment happens
+	 * @param v  a vector
+	 * @return  {@code true} if containment occurs
 	 * 
 	 * 
 	 * @see Vector
