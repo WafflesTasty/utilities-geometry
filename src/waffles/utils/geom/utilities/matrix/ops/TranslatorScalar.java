@@ -12,8 +12,8 @@ import waffles.utils.tools.patterns.operator.Operation;
  * @author Waffles
  * @since 11 Sep 2023
  * @version 1.0
- * 
- * 
+ *
+ *
  * @see Operation
  * @see Tensor
  */
@@ -21,14 +21,14 @@ public class TranslatorScalar implements Operation<Tensor>
 {
 	private float s1;
 	private Matrix m1;
-	
+
 	/**
 	 * Creates a new {@code TranslatorScalar}.
-	 * 
+	 *
 	 * @param m1  a base matrix
 	 * @param s1  a scalar multiple
-	 * 
-	 * 
+	 *
+	 *
 	 * @see Matrix
 	 */
 	public TranslatorScalar(Matrix m1, float s1)
@@ -36,14 +36,14 @@ public class TranslatorScalar implements Operation<Tensor>
 		this.m1 = m1;
 		this.s1 = s1;
 	}
-	
+
 
 	@Override
 	public Matrix result()
 	{
 		int r1 = m1.Rows();
 		int c1 = m1.Columns();
-	
+
 		Matrix m2 = Matrices.create(r1, c1);
 		for(int r = 0; r < r1; r++)
 		{
@@ -51,10 +51,10 @@ public class TranslatorScalar implements Operation<Tensor>
 			m2.set(s1 * v1, r, c1 - 1);
 			m2.set(s1, r, r);
 		}
-		
+
 		return m2;
 	}
-	
+
 	@Override
 	public int cost()
 	{

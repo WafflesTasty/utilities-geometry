@@ -8,8 +8,8 @@ import waffles.utils.alg.lin.measure.vector.fixed.Vector2;
  * @author Waffles
  * @since 16 Oct 2023
  * @version 1.1
- * 
- * 
+ *
+ *
  * @see Positioned
  */
 public interface Positioned2D extends Positioned
@@ -20,8 +20,8 @@ public interface Positioned2D extends Positioned
 	 * @author Waffles
 	 * @since 16 Oct 2023
 	 * @version 1.0
-	 * 
-	 * 
+	 *
+	 *
 	 * @see Positioned2D
 	 * @see Positioned
 	 */
@@ -29,7 +29,7 @@ public interface Positioned2D extends Positioned
 	{
 		/**
 		 * Changes the origin of the {@code Positioned2D}.
-		 * 
+		 *
 		 * @param x  an x-coordinate
 		 * @param y  an y-coordinate
 		 */
@@ -38,7 +38,7 @@ public interface Positioned2D extends Positioned
 			setOrigin(new Vector2(x, y));
 		}
 	}
-	
+
 
 	@Override
 	public default Vector2 Origin()
@@ -46,10 +46,10 @@ public interface Positioned2D extends Positioned
 		return new Vector2(X(), Y());
 	}
 
-	
+
 	/**
 	 * Returns the x-coordinate of the {@code Positioned2D}.
-	 * 
+	 *
 	 * @return  an x-coordinate
 	 */
 	public default float X()
@@ -59,7 +59,7 @@ public interface Positioned2D extends Positioned
 
 	/**
 	 * Returns the y-coordinate of the {@code Positioned2D}.
-	 * 
+	 *
 	 * @return  an y-coordinate
 	 */
 	public default float Y()

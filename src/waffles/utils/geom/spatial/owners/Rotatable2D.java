@@ -9,16 +9,16 @@ import waffles.utils.geom.spatial.data.unary.Rotated2D;
  * @author Waffles
  * @since Apr 22, 2016
  * @version 1.1
- * 
- * 
+ *
+ *
  * @see Rotatable
  * @see Rotated2D
  */
 public interface Rotatable2D extends Rotatable, Rotated2D
-{	
+{
 	/**
 	 * Rotates the {@code Rotatable2D} for a given angle.
-	 * 
+	 *
 	 * @param a  a rotation angle
 	 */
 	public default void rotateFor(float a)
@@ -28,10 +28,10 @@ public interface Rotatable2D extends Rotatable, Rotated2D
 			rotateFor(new Spin2D(a));
 		}
 	}
-	
+
 	/**
 	 * Rotates the {@code Rotatable2D} to a new angle.
-	 * 
+	 *
 	 * @param a  a rotation angle
 	 */
 	public default void rotateTo(float a)
@@ -39,7 +39,7 @@ public interface Rotatable2D extends Rotatable, Rotated2D
 		rotateTo(new Spin2D(a));
 	}
 
-	
+
 	@Override
 	public default Spin2D Spin()
 	{

@@ -10,16 +10,16 @@ import waffles.utils.tools.primitives.Floats;
  * @author Waffles
  * @since Apr 22, 2016
  * @version 1.1
- * 
- * 
+ *
+ *
  * @see Scalable
  * @see Scaled2D
  */
 public interface Scalable2D extends Scalable, Scaled2D
-{	
+{
 	/**
 	 * Scales the {@code Scalable2D} with a given factor.
-	 * 
+	 *
 	 * @param w  a width scale
 	 * @param h  a height scale
 	 */
@@ -33,7 +33,7 @@ public interface Scalable2D extends Scalable, Scaled2D
 
 	/**
 	 * Scales the {@code Scalable2D} to a new scale.
-	 * 
+	 *
 	 * @param w  a width scale
 	 * @param h  a height scale
 	 */
@@ -42,7 +42,7 @@ public interface Scalable2D extends Scalable, Scaled2D
 		scaleTo(new Vector2(w, h));
 	}
 
-		
+
 	@Override
 	public default Vector2 Scale()
 	{

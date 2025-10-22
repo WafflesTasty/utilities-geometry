@@ -9,8 +9,8 @@ import waffles.utils.geom.spatial.data.unary.Rotated;
  * @author Waffles
  * @since 10 Sep 2023
  * @version 1.0
- * 
- * 
+ *
+ *
  * @see Rotated
  * @see Axial
  */
@@ -22,8 +22,8 @@ public interface Spatial extends Axial, Rotated
 	 * @author Waffles
 	 * @since 16 Oct 2023
 	 * @version 1.0
-	 * 
-	 * 
+	 *
+	 *
 	 * @see Spatial
 	 * @see Rotated
 	 * @see Axial

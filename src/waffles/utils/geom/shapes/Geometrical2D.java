@@ -10,8 +10,8 @@ import waffles.utils.geom.spatial.bounds.owners.Bounded2D;
  * @author Waffles
  * @since 26 Feb 2020
  * @version 1.1
- * 
- * 
+ *
+ *
  * @see Geometrical
  * @see Collideable2D
  * @see Bounded2D
@@ -23,10 +23,10 @@ public interface Geometrical2D extends Geometrical, Bounded2D, Collideable2D
 	{
 		return Shape().Bounds(Transform());
 	}
-	
+
 	@Override
 	public abstract Geometry2D Shape();
-	
+
 	@Override
 	public default int Dimension()
 	{

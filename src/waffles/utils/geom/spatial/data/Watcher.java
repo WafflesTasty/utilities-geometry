@@ -10,7 +10,7 @@ import waffles.utils.geom.spatial.data.unary.Projected;
  * @since 11 Sep 2023
  * @version 1.0
  *
- * 
+ *
  * @see Projected
  * @see Spatial
  */
@@ -22,8 +22,8 @@ public interface Watcher extends Spatial, Projected
 	 * @author Waffles
 	 * @since 16 Oct 2023
 	 * @version 1.0
-	 * 
-	 * 
+	 *
+	 *
 	 * @see Projected
 	 * @see Spatial
 	 * @see Watcher

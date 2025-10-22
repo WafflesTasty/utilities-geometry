@@ -12,7 +12,7 @@ import waffles.utils.alg.utilities.matrix.LazyMatrix;
  * @since 01 Oct 2025
  * @version 1.1
  *
- * 
+ *
  * @see LazyMatrix
  */
 public class LazyIdentity extends LazyMatrix

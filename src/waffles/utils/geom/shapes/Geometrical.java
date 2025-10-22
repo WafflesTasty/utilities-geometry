@@ -17,8 +17,8 @@ import waffles.utils.geomold.collision.CLSGeometrical;
  * @author Waffles
  * @since 26 Feb 2020
  * @version 1.2
- * 
- * 
+ *
+ *
  * @see Collidable
  * @see Bounded
  */
@@ -26,25 +26,25 @@ public interface Geometrical extends Bounded, Collidable
 {
 	/**
 	 * Returns the shape of the {@code Geometrical}.
-	 * 
+	 *
 	 * @return  a geometric shape
-	 * 
-	 * 
+	 *
+	 *
 	 * @see Geometry
 	 */
 	public abstract Geometry Shape();
-	
+
 	/**
 	 * Returns the transform of the {@code Geometrical}.
-	 * 
+	 *
 	 * @return  a linear transform
-	 * 
-	 * 
+	 *
+	 *
 	 * @see LinearMap
 	 */
 	public abstract LinearMap Transform();
 
-	
+
 	@Override
 	public default Bounds Bounds()
 	{
@@ -56,7 +56,7 @@ public interface Geometrical extends Bounded, Collidable
 	{
 		return new CLSGeometrical(this);
 	}
-			
+
 	@Override
 	public default int Dimension()
 	{

@@ -1,12 +1,13 @@
 package waffles.utils.geom.spaces;
 
 import waffles.utils.alg.lin.measure.vector.Vector;
-import waffles.utils.geom.collidable.axial.cuboid.HyperCuboid;
-import waffles.utils.geom.collidable.axial.spheroid.HyperSphere;
-import waffles.utils.geom.collidable.fixed.Point;
+import waffles.utils.geom.utilities.Dimensional;
+import waffles.utils.geomold.collidable.axial.cuboid.HyperCuboid;
+import waffles.utils.geomold.collidable.axial.spheroid.HyperSphere;
+import waffles.utils.geomold.collidable.fixed.Point;
 
 /**
- * A {@code Space} is a set of n-dimensional objects capable of handling spatial queries.
+ * A {@code Space} defines a data structure that handles spatial queries.
  * 
  * @author Waffles
  * @since Mar 29, 2017
@@ -14,8 +15,9 @@ import waffles.utils.geom.collidable.fixed.Point;
  *
  * 
  * @param <O>  an object type
+ * @see Dimensional
  */
-public interface Space<O>
+public interface Space<O> extends Dimensional
 {
 	/**
 	 * Queries the {@code Space} at a given vector.
@@ -33,18 +35,6 @@ public interface Space<O>
 	}
 	
 	/**
-	 * Queries the {@code Space} at a given cuboid.
-	 * 
-	 * @param c  a cuboid area
-	 * @return   an object set
-	 * 
-	 * 
-	 * @see HyperCuboid
-	 * @see Iterable
-	 */
-	public abstract Iterable<O> query(HyperCuboid c);
-	
-	/**
 	 * Queries the {@code Space} at a given sphere.
 	 * 
 	 * @param s  a sphere area
@@ -58,7 +48,20 @@ public interface Space<O>
 	{
 		return query(s.Bounds().Box());
 	}
+
 	
+	/**
+	 * Queries the {@code Space} at a given cuboid.
+	 * 
+	 * @param c  a cuboid area
+	 * @return   an object set
+	 * 
+	 * 
+	 * @see HyperCuboid
+	 * @see Iterable
+	 */
+	public abstract Iterable<O> query(HyperCuboid c);
+		
 	/**
 	 * Queries the {@code Space} at a given point.
 	 * 

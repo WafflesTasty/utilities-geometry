@@ -9,8 +9,8 @@ import waffles.utils.tools.patterns.properties.Immutable;
  * @author Waffles
  * @since 16 Oct 2023
  * @version 1.0
- * 
- * 
+ *
+ *
  * @see Immutable
  */
 @FunctionalInterface
@@ -22,30 +22,30 @@ public interface Projected extends Immutable
 	 * @author Waffles
 	 * @since 16 Oct 2023
 	 * @version 1.0
-	 * 
-	 * 
+	 *
+	 *
 	 * @see Projected
 	 */
 	public static interface Mutable extends Immutable.Mutable, Projected
 	{
 		/**
 		 * Changes the oculus of the {@code Projected}.
-		 * 
+		 *
 		 * @param o  an oculus vector
-		 * 
-		 * 
+		 *
+		 *
 		 * @see Vector
 		 */
 		public abstract void setOculus(Vector o);
 	}
-	
-	
+
+
 	/**
 	 * Returns the oculus of the {@code Projected}.
-	 * 
+	 *
 	 * @return  an oculus vector
-	 * 
-	 * 
+	 *
+	 *
 	 * @see Vector
 	 */
 	public abstract Vector Oculus();

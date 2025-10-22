@@ -14,7 +14,7 @@ import waffles.utils.geom.utilities.errors.DimensionError;
  * @author Waffles
  * @since Jan 22, 2020
  * @version 1.1
- * 
+ *
  *
  * @see Spin
  */
@@ -22,19 +22,19 @@ public class Spin3D implements Spin
 {
 	/**
 	 * Creates a {@code Matrix} from a {@code Spin3D}.
-	 * 
+	 *
 	 * @param s  a spin object
 	 * @param d  a spin dimension
 	 * @return   a rotation matrix
-	 * 
-	 * 
+	 *
+	 *
 	 * @see Matrix
 	 */
 	public static Matrix Matrix(Spin3D s, int d)
 	{
 		Matrix m = Matrices.identity(d);
 		m.setOperator(Orthogonal.Type());
-		
+
 		if(d > 2)
 		{
 			Quaternion v = s.Versor();
@@ -47,40 +47,40 @@ public class Spin3D implements Spin
 				}
 			}
 		}
-		
+
 		return m;
 	}
-		
-	
+
+
 	private Quaternion v;
-	
+
 	/**
 	 * Creates a new {@code Spin3D}.
-	 * 
+	 *
 	 * @param v  a rotation vector
 	 * @param a  a rotation angle
-	 * 
-	 * 
+	 *
+	 *
 	 * @see Vector3
 	 */
 	public Spin3D(Vector3 v, float a)
 	{
 		this(new Quaternion(v, a));
 	}
-	
+
 	/**
 	 * Creates a new {@code Spin3D}.
-	 * 
+	 *
 	 * @param q  a quaternion
-	 * 
-	 * 
+	 *
+	 *
 	 * @see Quaternion
 	 */
 	public Spin3D(Quaternion q)
 	{
 		v = q.normalize();
 	}
-	
+
 	/**
 	 * Creates a new {@code Spin3D}.
 	 */
@@ -88,27 +88,27 @@ public class Spin3D implements Spin
 	{
 		this(new Quaternion());
 	}
-	
-	
+
+
 	/**
 	 * Returns a {@code Spin3D} versor.
-	 * 
+	 *
 	 * @return  a versor
-	 * 
-	 * 
+	 *
+	 *
 	 * @see Quaternion
 	 */
 	public Quaternion Versor()
 	{
 		return v;
 	}
-	
+
 	/**
 	 * Returns a forward {@code Vector3}.
-	 * 
+	 *
 	 * @return  a forward vector
-	 * 
-	 * 
+	 *
+	 *
 	 * @see Vector3
 	 */
 	public Vector3 Forward()
@@ -120,13 +120,13 @@ public class Spin3D implements Spin
 			get(2, 2)
 		);
 	}
-	
+
 	/**
 	 * Returns a right {@code Vector3}.
-	 * 
+	 *
 	 * @return  a right vector
-	 * 
-	 * 
+	 *
+	 *
 	 * @see Vector3
 	 */
 	public Vector3 Right()
@@ -138,13 +138,13 @@ public class Spin3D implements Spin
 			get(2, 0)
 		);
 	}
-	
+
 	/**
 	 * Returns an up {@code Vector3}.
-	 * 
+	 *
 	 * @return  an up vector
-	 * 
-	 * 
+	 *
+	 *
 	 * @see Vector3
 	 */
 	public Vector3 Up()
@@ -156,58 +156,76 @@ public class Spin3D implements Spin
 			get(2, 1)
 		);
 	}
-	
-	
+
+
 	float get(int r, int c)
 	{
 		float x = Versor().X();
 		float y = Versor().Y();
 		float z = Versor().Z();
 		float w = Versor().W();
-		
-		
+
+
 		// Right vector.
 		if(c == 0)
 		{
 			if(r == 0)
+			{
 				return 1 - 2 * (y * y + z * z);
+			}
 			if(r == 1)
+			{
 				return 0 + 2 * (x * y + z * w);
+			}
 			if(r == 2)
+			{
 				return 0 + 2 * (x * z - y * w);
+			}
 		}
-		
+
 		// Up vector.
 		if(c == 1)
 		{
 			if(r == 0)
+			{
 				return 0 + 2 * (x * y - z * w);
+			}
 			if(r == 1)
+			{
 				return 1 - 2 * (x * x + z * z);
+			}
 			if(r == 2)
+			{
 				return 0 + 2 * (x * w + y * z);
+			}
 		}
-		
+
 		// Forward vector.
 		if(c == 2)
 		{
 			if(r == 0)
+			{
 				return 0 + 2 * (x * z + y * w);
+			}
 			if(r == 1)
+			{
 				return 0 + 2 * (y * z - x * w);
+			}
 			if(r == 2)
+			{
 				return 1 - 2 * (x * x + y * y);
+			}
 		}
-		
+
 		return 0f;
 	}
-			
+
 	@Override
 	public Spin3D times(Float s)
 	{
 		return new Spin3D(v.Axis(), v.Angle() * s);
 	}
-			
+
 	@Override
 	public Spin3D compose(Spin s)
 	{
@@ -217,20 +235,26 @@ public class Spin3D implements Spin
 			q = q.times(((Spin3D) s).Versor());
 			return new Spin3D(q);
 		}
-		
+
 		throw new DimensionError(this, s);
 	}
-	
+
 	@Override
 	public Vector3 Basis(int i)
 	{
 		if(i == 0)
+		{
 			return Right();
+		}
 		if(i == 1)
+		{
 			return Forward();
+		}
 		if(i == 2)
+		{
 			return Up();
-		
+		}
+
 		return null;
 	}
 
@@ -242,7 +266,7 @@ public class Spin3D implements Spin
 		return new Spin3D(v, a);
 	}
 
-	
+
 	@Override
 	public int Dimension()
 	{
@@ -254,7 +278,7 @@ public class Spin3D implements Spin
 	{
 		return norm() * norm();
 	}
-	
+
 	@Override
 	public float norm()
 	{

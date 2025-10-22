@@ -13,22 +13,22 @@ import waffles.utils.tools.primitives.Integers;
  * @author Waffles
  * @since Jul 13, 2018
  * @version 1.0
- * 
- * 
+ *
+ *
  * @see Operation
  * @see Tensor
  */
 public class TranslatorAddition implements Operation<Tensor>
 {
 	private Matrix t1, m1;
-	
+
 	/**
 	 * Creates a new {@code TranslatorAddition}.
-	 * 
+	 *
 	 * @param t1  a translation matrix
 	 * @param m1  a matrix
-	 * 
-	 * 
+	 *
+	 *
 	 * @see Matrix
 	 */
 	public TranslatorAddition(Matrix t1, Matrix m1)
@@ -36,23 +36,23 @@ public class TranslatorAddition implements Operation<Tensor>
 		this.t1 = t1;
 		this.m1 = m1;
 	}
-	
+
 
 	@Override
 	public Matrix result()
 	{
 		int r1 = m1.Rows();
 		int r2 = t1.Rows();
-		
+
 		int c1 = m1.Columns();
 		int c2 = t1.Columns();
-	
+
 		if(r1 != r2 || c1 != c2)
 		{
 			return null;
 		}
-		
-		
+
+
 		Matrix m2 = Matrices.create(r1, c1);
 		for(int r = 0; r < r1; r++)
 		{
@@ -60,26 +60,29 @@ public class TranslatorAddition implements Operation<Tensor>
 			{
 				float v1 = m1.get(r, c);
 				if(c == c1 - 1)
+				{
 					v1 += t1.get(r, c);
-				else if(c == r)
+				} else if(c == r)
+				{
 					v1 += t1.get(r, c);
-				
+				}
+
 				m2.set(v1, r, c);
 			}
 		}
-		
+
 		return m2;
 	}
-	
+
 	@Override
 	public int cost()
 	{
 		int r1 = m1.Rows();
 		int r2 = t1.Rows();
-		
+
 		int c1 = m1.Columns();
 		int c2 = t1.Columns();
-	
+
 		if(r1 != r2 || c1 != c2)
 		{
 			return Integers.MAX_VALUE;

@@ -10,16 +10,16 @@ import waffles.utils.tools.primitives.Floats;
  * @author Waffles
  * @since Apr 22, 2016
  * @version 1.1
- * 
- * 
+ *
+ *
  * @see Scalable
  * @see Scaled3D
  */
 public interface Scalable3D extends Scalable, Scaled3D
-{	
+{
 	/**
 	 * Scales the {@code Scalable3D} with a given factor.
-	 * 
+	 *
 	 * @param w  a width scale
 	 * @param h  a height scale
 	 * @param d  a depth scale
@@ -34,7 +34,7 @@ public interface Scalable3D extends Scalable, Scaled3D
 
 	/**
 	 * Scales the {@code Scalable3D} to a new scale vector.
-	 * 
+	 *
 	 * @param w  a new  width
 	 * @param h  a new height
 	 * @param d  a new  depth
@@ -44,7 +44,7 @@ public interface Scalable3D extends Scalable, Scaled3D
 		scaleTo(new Vector3(w, h, d));
 	}
 
-		
+
 	@Override
 	public default Vector3 Scale()
 	{

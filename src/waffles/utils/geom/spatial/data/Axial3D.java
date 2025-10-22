@@ -9,8 +9,8 @@ import waffles.utils.geom.spatial.data.unary.Scaled3D;
  * @author Waffles
  * @since 10 Sep 2023
  * @version 1.0
- * 
- * 
+ *
+ *
  * @see Positioned3D
  * @see Scaled3D
  * @see Axial
@@ -23,8 +23,8 @@ public interface Axial3D extends Axial, Positioned3D, Scaled3D
 	 * @author Waffles
 	 * @since 16 Oct 2023
 	 * @version 1.0
-	 * 
-	 * 
+	 *
+	 *
 	 * @see Axial3D
 	 * @see Positioned3D
 	 * @see Scaled3D

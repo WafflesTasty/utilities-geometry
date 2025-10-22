@@ -11,34 +11,34 @@ import waffles.utils.geomold.response.fixed.RSPFlip;
  * which allows containment and intersection checks to be executed.
  * Each checks generates a {@code Response} object containing
  * all the necessary collision information.
- * 
+ *
  * @author Waffles
  * @since Feb 27, 2018
  * @version 1.1
- * 
- * 
+ *
+ *
  * @see Dimensional
  */
 public interface Collidable extends Dimensional
-{	
+{
 	/**
 	 * Returns the collision of the {@code Collidable}.
-	 * 
+	 *
 	 * @return  a collision
-	 * 
-	 * 
+	 *
+	 *
 	 * @see Collision
 	 */
 	public abstract Collision Collision();
-	
-	
+
+
 	/**
 	 * Checks containment of a point in the {@code Collidable}.
-	 * 
+	 *
 	 * @param v  a vector
 	 * @return   a response
-	 * 
-	 * 
+	 *
+	 *
 	 * @see Response
 	 * @see Vector
 	 */
@@ -46,34 +46,36 @@ public interface Collidable extends Dimensional
 	{
 		return contain(new Point(v, 1f));
 	}
-	
+
 	/**
 	 * Checks containment of an object in the {@code Collidable}.
-	 * 
+	 *
 	 * @param c  a collidable
 	 * @return   a response
-	 * 
-	 * 
+	 *
+	 *
 	 * @see Response
 	 */
 	public default Response contain(Collidable c)
 	{
 		Response rsp1 =   Collision().contain(c);
 		Response rsp2 = c.Collision().inhabit(this);
-		
+
 		rsp2 = new RSPFlip(rsp2);
 		if(rsp1.cost() < rsp2.cost())
+		{
 			return rsp1;
+		}
 		return rsp2;
 	}
-	
+
 	/**
 	 * Checks intersection of an object in the {@code Collidable}.
-	 * 
+	 *
 	 * @param c  a collidable
 	 * @return   a response
-	 * 
-	 * 
+	 *
+	 *
 	 * @see Response
 	 */
 	public default Response intersect(Collidable c)
@@ -83,14 +85,16 @@ public interface Collidable extends Dimensional
 
 		rsp2 = new RSPFlip(rsp2);
 		if(rsp1.cost() < rsp2.cost())
+		{
 			return rsp1;
+		}
 		return rsp2;
 	}
-	
-	
+
+
 	/**
 	 * Checks intersection of an object in the {@code Collidable}.
-	 * 
+	 *
 	 * @param c  a collidable
 	 * @return  {@code true} if intersection occurs
 	 */
@@ -98,10 +102,10 @@ public interface Collidable extends Dimensional
 	{
 		return intersect(c).hasImpact();
 	}
-	
+
 	/**
 	 * Checks containment of an object in the {@code Collidable}.
-	 * 
+	 *
 	 * @param c  a collidable
 	 * @return  {@code true} if containment occurs
 	 */
@@ -109,14 +113,14 @@ public interface Collidable extends Dimensional
 	{
 		return contain(c).hasImpact();
 	}
-	
+
 	/**
 	 * Checks containment of a vector in the {@code Collidable}.
-	 * 
+	 *
 	 * @param v  a vector
 	 * @return  {@code true} if containment occurs
-	 * 
-	 * 
+	 *
+	 *
 	 * @see Vector
 	 */
 	public default boolean contains(Vector v)

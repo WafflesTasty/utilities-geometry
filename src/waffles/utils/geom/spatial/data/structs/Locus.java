@@ -10,8 +10,8 @@ import waffles.utils.geom.spatial.maps.linear.Rotation;
  * @author Waffles
  * @since 11 Sep 2023
  * @version 1.0
- * 
- * 
+ *
+ *
  * @see Spatial
  * @see Axis
  */
@@ -21,7 +21,7 @@ public class Locus extends Axis implements Spatial.Mutable
 
 	/**
 	 * Creates a new {@code Locus}.
-	 * 
+	 *
 	 * @param dim  a locus dimension
 	 */
 	public Locus(int dim)
@@ -29,7 +29,7 @@ public class Locus extends Axis implements Spatial.Mutable
 		super(dim);
 		spin = Rotation.Default(dim);
 	}
-	
+
 	/**
 	 * Creates a new {@code Locus}.
 	 */
@@ -37,8 +37,8 @@ public class Locus extends Axis implements Spatial.Mutable
 	{
 		// NOT APPLICABLE
 	}
-	
-	
+
+
 	@Override
 	public void setSpin(Spin s)
 	{

@@ -10,8 +10,8 @@ import waffles.utils.geom.spatial.maps.linear.Dilation;
  * @author Waffles
  * @since 11 Sep 2023
  * @version 1.1
- * 
- * 
+ *
+ *
  * @see Position
  * @see Axial
  */
@@ -21,11 +21,11 @@ public class Axis extends Position implements Axial.Mutable
 
 	/**
 	 * Creates a new {@code Axis}.
-	 * 
+	 *
 	 * @param o  an origin vector
 	 * @param s  a size vector
-	 * 
-	 * 
+	 *
+	 *
 	 * @see Vector
 	 */
 	public Axis(Vector o, Vector s)
@@ -33,10 +33,10 @@ public class Axis extends Position implements Axial.Mutable
 		super(o);
 		size = s;
 	}
-	
+
 	/**
 	 * Creates a new {@code Axis}.
-	 * 
+	 *
 	 * @param dim  an axis dimension
 	 */
 	public Axis(int dim)
@@ -44,7 +44,7 @@ public class Axis extends Position implements Axial.Mutable
 		super(dim);
 		size = Dilation.Default(dim);
 	}
-	
+
 	/**
 	 * Creates a new {@code Axis}.
 	 */
@@ -52,7 +52,7 @@ public class Axis extends Position implements Axial.Mutable
 	{
 		// NOT APPLICABLE
 	}
-	
+
 
 	@Override
 	public void setScale(Vector s)

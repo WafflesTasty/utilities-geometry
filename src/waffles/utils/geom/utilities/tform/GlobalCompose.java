@@ -12,28 +12,28 @@ import waffles.utils.geom.spatial.maps.GlobalMap;
  * @author Waffles
  * @since 15 Sep 2023
  * @version 1.0
- * 
- * 
+ *
+ *
  * @see GlobalMap
  */
 public class GlobalCompose implements GlobalMap
 {
 	private GlobalMap[] maps;
-	
+
 	/**
 	 * Creates a new {@code GlobalCompose}.
-	 * 
+	 *
 	 * @param set  a map set
-	 * 
-	 * 
+	 *
+	 *
 	 * @see GlobalMap
 	 */
 	public GlobalCompose(GlobalMap... set)
 	{
 		maps = set;
 	}
-	
-	
+
+
 	@Override
 	public LazyMatrix UTW()
 	{
@@ -41,7 +41,7 @@ public class GlobalCompose implements GlobalMap
 		{
 			Matrix utw = Matrices.identity(dim);
 			utw.setOperator(Identity.Type());
-			
+
 			Matrix mat;
 			for(GlobalMap map : maps)
 			{
@@ -57,10 +57,10 @@ public class GlobalCompose implements GlobalMap
 	public LazyMatrix WTU()
 	{
 		return new LazyMatrix(dim ->
-		{			
+		{
 			Matrix wtu = Matrices.identity(dim);
 			wtu.setOperator(Identity.Type());
-			
+
 			Matrix mat;
 			for(GlobalMap map : maps)
 			{

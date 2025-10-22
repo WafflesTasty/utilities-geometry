@@ -20,16 +20,16 @@ import waffles.utils.geom.spatial.maps.linear.Translation;
  * {@code Projection} -> {@code Rotation} -> {@code Translation}. If no {@code Watcher}
  * is provided at construction, an internal {@code Eye} is constructed
  * which contains the spatial data.
- * 
+ *
  * @author Waffles
  * @since Feb 03, 2020
  * @version 1.0
- * 
- * 
+ *
+ *
  * @see WatcherMap
  */
 public class ViewMap implements WatcherMap.Mutable
-{	
+{
 	/**
 	 * A {@code CamToWorld} defines a {@code LazyMatrix}
 	 * for a {@code ViewMap} which transforms a {@code Watcher}
@@ -38,8 +38,8 @@ public class ViewMap implements WatcherMap.Mutable
 	 * @author Waffles
 	 * @since 10 Sep 2023
 	 * @version 1.0
-	 * 
-	 * 
+	 *
+	 *
 	 * @see LazyMatrix
 	 */
 	public class CamToWorld extends LazyMatrix
@@ -57,21 +57,21 @@ public class ViewMap implements WatcherMap.Mutable
 
 			return m;
 		}
-		
+
 		Matrix translate(Matrix m, int dim)
 		{
 			Translation t = new Translation(Source());
 			Matrix n = t.Matrix(dim).destroy();
 			return n.times(m);
 		}
-		
+
 		Matrix project(Matrix m, int dim)
 		{
 			Projection p = new Projection(Source());
 			Matrix mat = p.Matrix(dim).destroy();
 			return mat.times(m);
 		}
-		
+
 		Matrix rotate(Matrix m, int dim)
 		{
 			Rotation r = new Rotation(Source());
@@ -86,7 +86,7 @@ public class ViewMap implements WatcherMap.Mutable
 			return n.times(m);
 		}
 	}
-	
+
 	/**
 	 * A {@code WorldToCam} defines a {@code LazyMatrix}
 	 * for a {@code ViewMap} which transforms a {@code Watcher}
@@ -95,8 +95,8 @@ public class ViewMap implements WatcherMap.Mutable
 	 * @author Waffles
 	 * @since 10 Sep 2023
 	 * @version 1.0
-	 * 
-	 * 
+	 *
+	 *
 	 * @see LazyMatrix
 	 */
 	public class WorldToCam extends LazyMatrix
@@ -114,21 +114,21 @@ public class ViewMap implements WatcherMap.Mutable
 
 			return m;
 		}
-		
+
 		Matrix translate(Matrix m, int dim)
 		{
 			Translation t = new Translation(Source());
 			Matrix mat = t.Inverse(dim).destroy();
 			return mat.times(m);
 		}
-		
+
 		Matrix project(Matrix m, int dim)
 		{
 			Projection p = new Projection(src);
 			Matrix mat = p.Inverse(dim).destroy();
 			return mat.times(m);
 		}
-		
+
 		Matrix rotate(Matrix m, int dim)
 		{
 			Rotation r = new Rotation(Source());
@@ -143,52 +143,52 @@ public class ViewMap implements WatcherMap.Mutable
 			return mat.times(m);
 		}
 	}
-	
-	
+
+
 	private Watcher src;
 	private CamToWorld ctw;
 	private WorldToCam wtc;
-	
+
 	/**
 	 * Creates a new {@code ViewMap}.
-	 * 
+	 *
 	 * @param s  a watcher source
-	 * 
-	 * 
+	 *
+	 *
 	 * @see Watcher
 	 */
 	public ViewMap(Watcher s)
-	{		
+	{
 		ctw = new CamToWorld();
 		wtc = new WorldToCam();
-		
+
 		src = s;
 	}
-	
+
 	/**
 	 * Creates a new {@code ViewMap}.
-	 * 
+	 *
 	 * @param iDim  a source dimension
 	 * @param oDim  a target dimension
 	 */
 	public ViewMap(int iDim, int oDim)
-	{	
+	{
 		this(new Eye(iDim, oDim));
 	}
-	
+
 
 	@Override
 	public LazyMatrix UTW()
 	{
 		return wtc;
 	}
-	
+
 	@Override
 	public LazyMatrix WTU()
 	{
 		return ctw;
 	}
-	
+
 	@Override
 	public Watcher Source()
 	{

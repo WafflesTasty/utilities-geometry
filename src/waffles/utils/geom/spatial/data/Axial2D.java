@@ -9,8 +9,8 @@ import waffles.utils.geom.spatial.data.unary.Scaled2D;
  * @author Waffles
  * @since 10 Sep 2023
  * @version 1.0
- * 
- * 
+ *
+ *
  * @see Positioned2D
  * @see Scaled2D
  * @see Axial
@@ -23,8 +23,8 @@ public interface Axial2D extends Axial, Positioned2D, Scaled2D
 	 * @author Waffles
 	 * @since 16 Oct 2023
 	 * @version 1.0
-	 * 
-	 * 
+	 *
+	 *
 	 * @see Axial2D
 	 * @see Positioned2D
 	 * @see Scaled2D

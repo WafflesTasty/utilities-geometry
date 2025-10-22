@@ -15,7 +15,7 @@ public interface Composition<C>
 {
 	/**
 	 * Composes an object with the {@code Composition}.
-	 * 
+	 *
 	 * @param c  a composable object
 	 * @return   a composed object
 	 */

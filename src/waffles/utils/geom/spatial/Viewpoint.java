@@ -9,8 +9,8 @@ import waffles.utils.geom.spatial.owners.Projectable;
  * @author Waffles
  * @since Feb 10, 2019
  * @version 1.1
- * 
- * 
+ *
+ *
  * @see Projectable
  * @see Adjustable
  * @see Watcher

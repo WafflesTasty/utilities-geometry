@@ -10,8 +10,8 @@ import waffles.utils.geom.spatial.owners.Scalable;
  * @author Waffles
  * @since Feb 10, 2019
  * @version 1.1
- * 
- * 
+ *
+ *
  * @see Scalable
  * @see Movable
  * @see Axial

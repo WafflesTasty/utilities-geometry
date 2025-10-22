@@ -17,8 +17,8 @@ import waffles.utils.tools.primitives.Floats;
  * @author Waffles
  * @since Sep 26, 2018
  * @version 1.0
- * 
- * 
+ *
+ *
  * @see LinearMap
  * @see Scaled
  */
@@ -26,73 +26,73 @@ public class Dilation implements LinearMap, Scaled
 {
 	/**
 	 * Returns a default dilation {@code Vector}.
-	 * 
+	 *
 	 * @param dim  a space dimension
 	 * @return  a default vector
-	 * 
-	 * 
+	 *
+	 *
 	 * @see Vector
 	 */
 	public static Vector Default(int dim)
 	{
 		return Vectors.create(2f, dim);
 	}
-	
-	
+
+
 	private Scaled src;
-		
+
 	/**
 	 * Creates a new {@code Dilation}.
-	 * 
+	 *
 	 * @param d  a space dimension
 	 */
 	public Dilation(int d)
 	{
 		this(Default(d));
 	}
-	
+
 	/**
 	 * Creates a new {@code Dilation}.
 	 * The vector is multiplied by two,
 	 * since the map scales in both
 	 * directions of the axes.
-	 * 
+	 *
 	 * @param s  a default size
-	 * 
-	 * 
+	 *
+	 *
 	 * @see Vector
 	 */
 	public Dilation(Vector s)
 	{
 		this(() -> s.times(2f));
 	}
-	
+
 	/**
 	 * Creates a new {@code Dilation}.
-	 * 
+	 *
 	 * @param g  a generator
-	 * 
-	 * 
+	 *
+	 *
 	 * @see Generated
 	 */
 	public Dilation(Generated g)
 	{
 		this((Vector) g.Generator());
 	}
-		
+
 	/**
 	 * Creates a new {@code Dilation}.
-	 * 
+	 *
 	 * @param s  a scaled source
-	 * 
-	 * 
+	 *
+	 *
 	 * @see Scaled
 	 */
 	public Dilation(Scaled s)
 	{
 		src = s;
 	}
-			
+
 
 	@Override
 	public Matrix Inverse(int dim)
@@ -100,10 +100,10 @@ public class Dilation implements LinearMap, Scaled
 		// Divided by two because it scales in both
 		// the positive and negative direction of axes.
 		Vector size = Scale().times(0.5f);
-		Matrix m = Matrices.identity(dim);		
+		Matrix m = Matrices.identity(dim);
 		m.setOperator(Diagonal.Type());
 		int sDim = Scale().Size();
-		
+
 		for(int d = 0; d < dim; d++)
 		{
 			if(d < sDim)
@@ -112,13 +112,13 @@ public class Dilation implements LinearMap, Scaled
 				if(!Floats.isZero(s, 1))
 				{
 					m.set(1f / s, d, d);
-				}	
+				}
 			}
 		}
 
 		return m;
 	}
-	
+
 	@Override
 	public Matrix Matrix(int dim)
 	{
@@ -128,7 +128,7 @@ public class Dilation implements LinearMap, Scaled
 		Matrix m = Matrices.identity(dim);
 		m.setOperator(Diagonal.Type());
 		int sDim = Scale().Size();
-		
+
 		for(int d = 0; d < dim; d++)
 		{
 			if(d < sDim)
@@ -137,13 +137,13 @@ public class Dilation implements LinearMap, Scaled
 				if(!Floats.isZero(s, 1))
 				{
 					m.set(s, d, d);
-				}	
+				}
 			}
 		}
-		
+
 		return m;
 	}
-	
+
 	@Override
 	public Vector Scale()
 	{

@@ -12,7 +12,7 @@ import waffles.utils.tools.patterns.basic.errors.NotImplementedError;
  * @author Waffles
  * @since Jan 22, 2020
  * @version 1.1
- * 
+ *
  *
  * @see Spin
  */
@@ -20,12 +20,12 @@ public class SpinND implements Spin
 {
 	/**
 	 * Creates a {@code Matrix} from a {@code SpinND}.
-	 * 
+	 *
 	 * @param s    a spin object
 	 * @param d  a matrix dimension
 	 * @return  a rotation matrix
-	 * 
-	 * 
+	 *
+	 *
 	 * @see Matrix
 	 */
 	public static Matrix Matrix(SpinND s, int d)
@@ -38,23 +38,23 @@ public class SpinND implements Spin
 
 		return b;
 	}
-	
-	
+
+
 	private Matrix basis;
-	
+
 	/**
 	 * Creates a new {@code SpinND}.
-	 * 
+	 *
 	 * @param b  a spin basis
-	 * 
-	 * 
+	 *
+	 *
 	 * @see Matrix
 	 */
 	public SpinND(Matrix b)
 	{
 		basis = b;
 	}
-		
+
 	/**
 	 * Creates a new {@code SpinND}.
 	 */
@@ -62,27 +62,27 @@ public class SpinND implements Spin
 	{
 		this(Matrices.identity(1));
 	}
-		
+
 	/**
 	 * Returns a {@code Spin} basis.
-	 * 
+	 *
 	 * @return  a basis matrix
-	 * 
-	 * 
+	 *
+	 *
 	 * @see Matrix
 	 */
 	public Matrix Basis()
 	{
 		return basis;
 	}
-	
-		
+
+
 	@Override
 	public SpinND times(Float s)
 	{
 		throw new NotImplementedError();
 	}
-	
+
 	@Override
 	public SpinND compose(Spin s)
 	{
@@ -91,7 +91,7 @@ public class SpinND implements Spin
 			Matrix b = ((SpinND) s).Basis();
 			return new SpinND(Basis().times(b));
 		}
-		
+
 		return null;
 	}
 
@@ -102,10 +102,10 @@ public class SpinND implements Spin
 		{
 			return Basis().Column(k);
 		}
-		
+
 		return null;
 	}
-	
+
 	@Override
 	public SpinND inverse()
 	{
@@ -113,13 +113,13 @@ public class SpinND implements Spin
 		Matrix m = Matrix(this, dim);
 		return new SpinND(m.transpose());
 	}
-	
+
 	@Override
 	public int Dimension()
 	{
 		return basis.Columns() - 1;
 	}
-	
+
 	@Override
 	public float normSqr()
 	{

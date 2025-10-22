@@ -8,13 +8,13 @@ import waffles.utils.geom.spatial.bounds.Bounds3D;
  * @author Waffles
  * @since Aug 25, 2015
  * @version 1.0
- * 
- * 
+ *
+ *
  * @see Bounded
  */
 @FunctionalInterface
 public interface Bounded3D extends Bounded
-{		
+{
 	@Override
 	public abstract Bounds3D Bounds();
 }

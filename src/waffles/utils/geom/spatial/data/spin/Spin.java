@@ -10,12 +10,12 @@ import waffles.utils.geom.utilities.groups.Inversion;
 
 /**
  * A {@code Spin} defines a data element that resembles a rotation.
- * 
+ *
  * @author Waffles
  * @since Dec 26, 2019
  * @version 1.1
- * 
- * 
+ *
+ *
  * @see Composition
  * @see Multiplication
  * @see Dimensional
@@ -25,29 +25,35 @@ public interface Spin extends Dimensional, Normed, Multiplication<Float>, Compos
 {
 	/**
 	 * Creates a {@code Matrix} from a {@code Spin}.
-	 * 
+	 *
 	 * @param s  a spin object
 	 * @param d  a spin dimension
 	 * @return   a rotation matrix
-	 * 
-	 * 
+	 *
+	 *
 	 * @see Matrix
 	 */
 	public static Matrix Matrix(Spin s, int d)
 	{
 		if(s instanceof Spin2D)
+		{
 			return Spin2D.Matrix((Spin2D) s, d);
+		}
 		if(s instanceof Spin3D)
+		{
 			return Spin3D.Matrix((Spin3D) s, d);
+		}
 		if(s instanceof SpinND)
+		{
 			return SpinND.Matrix((SpinND) s, d);
-		
+		}
+
 		return null;
 	}
-	
+
 	/**
 	 * Creates a new {@code Spin}.
-	 * 
+	 *
 	 * @param d  a spin dimension
 	 * @return   a spin
 	 */
@@ -64,30 +70,30 @@ public interface Spin extends Dimensional, Normed, Multiplication<Float>, Compos
 		}
 	}
 
-	
+
 	/**
 	 * Returns a basis vector in the {@code Spin}.
-	 * 
+	 *
 	 * @param k  a vector index
 	 * @return   a basis vector
-	 * 
-	 * 
+	 *
+	 *
 	 * @see Vector
 	 */
 	public abstract Vector Basis(int k);
-			
+
 	/**
 	 * Composes the spin with another {@code Spin}.
-	 * 
+	 *
 	 * @param s  a second spin
 	 * @return   a composite spin
 	 */
 	@Override
 	public abstract Spin compose(Spin s);
-	
+
 	/**
 	 * Multiplies a scalar with the {@code Spin}.
-	 * 
+	 *
 	 * @param v  a scalar value
 	 * @return   a scaled spin
 	 */

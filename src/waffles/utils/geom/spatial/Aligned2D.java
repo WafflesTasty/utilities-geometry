@@ -10,8 +10,8 @@ import waffles.utils.geom.spatial.owners.Scalable2D;
  * @author Waffles
  * @since Feb 10, 2019
  * @version 1.0
- * 
- * 
+ *
+ *
  * @see Scalable2D
  * @see Movable2D
  * @see Axial2D

@@ -15,7 +15,7 @@ public interface Inversion<O>
 {
 	/**
 	 * Returns an inverse object.
-	 * 
+	 *
 	 * @return  an inverse
 	 */
 	public abstract O inverse();

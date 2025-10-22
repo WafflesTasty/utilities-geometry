@@ -10,12 +10,12 @@ import waffles.utils.geom.utilities.matrix.LazyIdentity;
  * A {@code WatcherMap} defines a global map with projective spatial data.
  * It delegates its data access to a {@code Watcher} object and notifies
  * the underlying {@code LazyMatrix} objects of any changes.
- * 
+ *
  * @author Waffles
  * @since Feb 03, 2020
  * @version 1.0
- * 
- * 
+ *
+ *
  * @see SpatialMap
  * @see Watcher
  */
@@ -29,13 +29,13 @@ public interface WatcherMap extends SpatialMap, Watcher
 	 * @since 29 Sep 2025
 	 * @version 1.1
 	 *
-	 * 
+	 *
 	 * @see SpatialMap
 	 * @see WatcherMap
 	 * @see Watcher
 	 */
 	public static interface Mutable extends WatcherMap, Watcher.Mutable, SpatialMap.Mutable
-	{		
+	{
 		@Override
 		public default void setOculus(Vector o)
 		{
@@ -47,32 +47,32 @@ public interface WatcherMap extends SpatialMap, Watcher
 			}
 		}
 	}
-	
-	
+
+
 	/**
 	 * Returns the source of the {@code WatcherMap}.
-	 * 
+	 *
 	 * @return  a data source
-	 * 
-	 * 
+	 *
+	 *
 	 * @see Watcher
 	 */
 	@Override
 	public abstract Watcher Source();
 
-	
+
 	@Override
 	public default LazyMatrix UTW()
 	{
 		return new LazyIdentity();
 	}
-	
+
 	@Override
 	public default LazyMatrix WTU()
 	{
 		return new LazyIdentity();
 	}
-	
+
 	@Override
 	public default Vector Oculus()
 	{

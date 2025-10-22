@@ -15,16 +15,16 @@ import waffles.utils.geom.spatial.maps.linear.Translation;
  * maps in the order {@code Dilation} -> {@code Translation}. If no {@code Axial}
  * is provided at construction, an internal {@code Axis} is constructed
  * which contains the spatial data.
- * 
+ *
  * @author Waffles
  * @since Feb 03, 2020
  * @version 1.0
- * 
- * 
+ *
+ *
  * @see AxialMap
  */
 public class AxisMap implements AxialMap.Mutable
-{	
+{
 	/**
 	 * A {@code UnitToWorld} defines a {@code LazyMatrix}
 	 * for an {@code AxisMap} which transforms an {@code Axial}
@@ -33,8 +33,8 @@ public class AxisMap implements AxialMap.Mutable
 	 * @author Waffles
 	 * @since 10 Sep 2023
 	 * @version 1.0
-	 * 
-	 * 
+	 *
+	 *
 	 * @see LazyMatrix
 	 */
 	public class UnitToWorld extends LazyMatrix
@@ -50,7 +50,7 @@ public class AxisMap implements AxialMap.Mutable
 
 			return m;
 		}
-		
+
 		Matrix translate(Matrix m, int dim)
 		{
 			Translation t = new Translation(Source());
@@ -65,7 +65,7 @@ public class AxisMap implements AxialMap.Mutable
 			return n.times(m);
 		}
 	}
-	
+
 	/**
 	 * A {@code WorldToUnit} defines a {@code LazyMatrix}
 	 * for an {@code AxisMap} which transforms an {@code Axial}
@@ -74,8 +74,8 @@ public class AxisMap implements AxialMap.Mutable
 	 * @author Waffles
 	 * @since 10 Sep 2023
 	 * @version 1.0
-	 * 
-	 * 
+	 *
+	 *
 	 * @see LazyMatrix
 	 */
 	public class WorldToUnit extends LazyMatrix
@@ -91,7 +91,7 @@ public class AxisMap implements AxialMap.Mutable
 
 			return m;
 		}
-		
+
 		Matrix translate(Matrix m, int dim)
 		{
 			Translation t = new Translation(Source());
@@ -106,51 +106,51 @@ public class AxisMap implements AxialMap.Mutable
 			return mat.times(m);
 		}
 	}
-	
-	
+
+
 	private Axial src;
 	private UnitToWorld utw;
 	private WorldToUnit wtu;
-	
+
 	/**
 	 * Creates a new {@code AxisMap}.
-	 * 
+	 *
 	 * @param s  an axial source
-	 * 
-	 * 
+	 *
+	 *
 	 * @see Axial
 	 */
 	public AxisMap(Axial s)
-	{		
+	{
 		utw = new UnitToWorld();
 		wtu = new WorldToUnit();
-		
+
 		src = s;
 	}
-	
+
 	/**
 	 * Creates a new {@code AxisMap}.
-	 * 
+	 *
 	 * @param dim  a spatial dimension
 	 */
 	public AxisMap(int dim)
-	{		
+	{
 		this(new Axis(dim));
 	}
-	
+
 
 	@Override
 	public LazyMatrix UTW()
 	{
 		return utw;
 	}
-	
+
 	@Override
 	public LazyMatrix WTU()
 	{
 		return wtu;
 	}
-	
+
 	@Override
 	public Axial Source()
 	{

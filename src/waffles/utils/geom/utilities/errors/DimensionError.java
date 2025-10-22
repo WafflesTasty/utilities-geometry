@@ -9,21 +9,21 @@ import waffles.utils.geom.utilities.Dimensional;
  * @since 24 Sep 2025
  * @version 1.1
  *
- * 
+ *
  * @see RuntimeException
  */
 public class DimensionError extends RuntimeException
 {
 	private static final long serialVersionUID = -1896172981566166550L;
-	
+
 
 	/**
 	 * Creates a new {@code DimensionError}.
-	 * 
+	 *
 	 * @param d1  a dimensional object
 	 * @param d2  a dimensional object
-	 * 
-	 * 
+	 *
+	 *
 	 * @see Dimensional
 	 */
 	public DimensionError(Dimensional d1, Dimensional d2)

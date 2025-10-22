@@ -10,18 +10,18 @@ import waffles.utils.geom.spatial.maps.linear.Projection;
  * @author Waffles
  * @since 11 Sep 2023
  * @version 1.0
- * 
- * 
+ *
+ *
  * @see Watcher
  * @see Locus
  */
 public class Eye extends Locus implements Watcher.Mutable
 {
 	private Vector ocl;
-	
+
 	/**
 	 * Creates a new {@code Eye}.
-	 * 
+	 *
 	 * @param iDim  a source dimension
 	 * @param oDim  a target dimension
 	 */
@@ -29,8 +29,8 @@ public class Eye extends Locus implements Watcher.Mutable
 	{
 		super(iDim); ocl = Projection.Default(iDim, oDim);
 	}
-		
-	
+
+
 	@Override
 	public void setOculus(Vector o)
 	{
