@@ -1,6 +1,6 @@
 package waffles.utils.geom.spatial;
 
-import waffles.utils.geom.spatial.data.Watcher;
+import waffles.utils.geom.spatial.maps.data.Watcher;
 import waffles.utils.geom.spatial.owners.Projectable;
 
 /**

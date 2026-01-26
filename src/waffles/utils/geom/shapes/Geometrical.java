@@ -1,11 +1,11 @@
 package waffles.utils.geom.shapes;
 
+import waffles.utils._todo.geometric.CLSGeometrical;
 import waffles.utils.alg.utilities.affine.LinearMap;
 import waffles.utils.geom.Collidable;
-import waffles.utils.geom.Collision;
+import waffles.utils.geom.collide.collision.Collision;
 import waffles.utils.geom.spatial.bounds.Bounds;
 import waffles.utils.geom.spatial.bounds.owners.Bounded;
-import waffles.utils.geomold.collision.CLSGeometrical;
 
 /**
  * A {@code Geometrical} object defines a {@code Collidable} with a transformation and a shape.

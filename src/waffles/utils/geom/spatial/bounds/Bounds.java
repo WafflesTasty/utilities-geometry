@@ -1,11 +1,11 @@
 package waffles.utils.geom.spatial.bounds;
 
 import waffles.utils.alg.lin.measure.vector.Vector;
-import waffles.utils.geom.spatial.data.Axial;
-import waffles.utils.geom.utilities.Dimensional;
-import waffles.utils.geomold.collidable.axial.cuboid.HyperCuboid;
-import waffles.utils.geomold.collidable.axial.spheroid.HyperSphere;
-import waffles.utils.geomold.utilities.Geometries;
+import waffles.utils.geom.shapes.convex.axial.cube.HyperCuboid;
+import waffles.utils.geom.shapes.convex.axial.sphere.HyperSphere;
+import waffles.utils.geom.shapes.points.Arrow;
+import waffles.utils.geom.shapes.points.Point;
+import waffles.utils.geom.spatial.maps.data.Axial;
 
 /**
  * The {@code Bounds} interface defines bounding volumes in n-dimensional space.
@@ -19,10 +19,9 @@ import waffles.utils.geomold.utilities.Geometries;
  * @version 1.0
  * 
  * 
- * @see Dimensional
  * @see Axial
  */
-public interface Bounds extends Axial, Dimensional
+public interface Bounds extends Axial
 {
 	/**
 	 * The {@code Type} enum defines bounding volume types.
@@ -66,29 +65,29 @@ public interface Bounds extends Axial, Dimensional
 		
 	
 	/**
-	 * Returns a bounding minimum {@code Vector}.
+	 * Returns a bounding minimum {@code Point}.
 	 * 
-	 * @return  a minimum vector
+	 * @return  a minimum point
 	 * 
 	 * 
-	 * @see Vector
+	 * @see Point
 	 */
-	public default Vector Minimum()
+	public default Point Minimum()
 	{
 		return Origin().plus(Scale().times(-0.5f));
 	}
 	
 	/**
-	 * Returns a bounding maximum {@code Vector}.
+	 * Returns a bounding maximum {@code Point}.
 	 * 
-	 * @return  a maximum vector
+	 * @return  a maximum point
 	 * 
 	 * 
-	 * @see Vector
+	 * @see Point
 	 */
-	public default Vector Maximum()
+	public default Point Maximum()
 	{
-		return Origin().plus(Scale().times(0.5f));
+		return Origin().plus(Scale().times(+0.5f));
 	}
 			
 				
@@ -102,7 +101,7 @@ public interface Bounds extends Axial, Dimensional
 	 */
 	public default HyperCuboid Box()
 	{
-		return Geometries.Cuboid(Origin(), Scale());
+		return HyperCuboid.create(Origin(), Scale());
 	}
 	
 	/**
@@ -115,25 +114,34 @@ public interface Bounds extends Axial, Dimensional
 	 */
 	public default HyperSphere Orb()
 	{
-		return Geometries.Sphere(Origin(), Radius());
+		return HyperSphere.create(Origin(), Radius());
 	}
 	
 	
 	@Override
 	public default int Dimension()
 	{
-		return Origin().Size();
+		return Origin().Dimension();
 	}
 	
 	@Override
-	public default Vector Origin()
+	public default Point Origin()
 	{
-		return Minimum().plus(Maximum()).times(0.5f);
+		Point min = Minimum();
+		Point max = Maximum();
+		
+		Point o = max.plus(min);
+		return o.times(0.5f);
 	}
 	
 	@Override
-	public default Vector Scale()
+	public default Arrow Scale()
 	{
-		return Maximum().minus(Minimum());
+		Point min = Minimum();
+		Point max = Maximum();
+		
+		Point s = max.minus(min);
+		Vector v = s.Vector();
+		return new Arrow(v);
 	}
 }

@@ -1,7 +1,7 @@
 package waffles.utils.geom.spatial.owners;
 
 import waffles.utils.alg.lin.measure.vector.Vector;
-import waffles.utils.geom.spatial.data.unary.Projected;
+import waffles.utils.geom.spatial.maps.data.unary.Projected;
 import waffles.utils.geom.utilities.Transformable;
 
 /**
@@ -31,33 +31,16 @@ public interface Projectable extends Projected, Transformable
 	}
 
 	/**
-	 * Moves the {@code Projectable} for a given distance.
+	 * Moves the {@code Projectable} for a given oculus.
 	 *
-	 * @param v  a direction vector
-	 * @param d  a distance value
-	 *
-	 *
-	 * @see Vector
-	 */
-	public default void projectFor(Vector v, float d)
-	{
-		if(ERROR < d)
-		{
-			projectFor(v.normalize().times(d));
-		}
-	}
-
-	/**
-	 * Moves the {@code Projectable} for a given distance.
-	 *
-	 * @param v  a distance vector
+	 * @param o  an oculus vector
 	 *
 	 *
 	 * @see Vector
 	 */
-	public default void projectFor(Vector v)
+	public default void projectFor(Vector o)
 	{
-		projectTo(Oculus().plus(v));
+		projectTo(Oculus().plus(o));
 	}
 
 

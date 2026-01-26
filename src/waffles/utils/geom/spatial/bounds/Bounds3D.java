@@ -1,8 +1,7 @@
 package waffles.utils.geom.spatial.bounds;
 
-import waffles.utils.alg.lin.measure.vector.fixed.Vector3;
-import waffles.utils.geomold.collidable.axial.cuboid.Cuboid;
-import waffles.utils.geomold.collidable.axial.spheroid.Sphere;
+import waffles.utils.geom.shapes.convex.axial.cube.HyperCuboid3D;
+import waffles.utils.geom.shapes.convex.axial.sphere.base.Sphere;
 
 /**
  * The {@code Bounds} interface defines {@code Bounds} in three-dimensional space.
@@ -23,7 +22,7 @@ public interface Bounds3D extends Bounds
 	 */
 	public default float X()
 	{
-		return Origin().X();
+		return Origin().aff(0);
 	}
 
 	/**
@@ -33,7 +32,7 @@ public interface Bounds3D extends Bounds
 	 */
 	public default float Y()
 	{
-		return Origin().Y();
+		return Origin().aff(1);
 	}
 
 	/**
@@ -43,7 +42,7 @@ public interface Bounds3D extends Bounds
 	 */
 	public default float Z()
 	{
-		return Origin().Z();
+		return Origin().aff(2);
 	}
 
 
@@ -54,7 +53,7 @@ public interface Bounds3D extends Bounds
 	 */
 	public default float Width()
 	{
-		return Scale().X();
+		return Scale().aff(0);
 	}
 
 	/**
@@ -64,7 +63,7 @@ public interface Bounds3D extends Bounds
 	 */
 	public default float Height()
 	{
-		return Scale().Y();
+		return Scale().aff(1);
 	}
 
 	/**
@@ -74,7 +73,7 @@ public interface Bounds3D extends Bounds
 	 */
 	public default float Depth()
 	{
-		return Scale().Z();
+		return Scale().aff(2);
 	}
 
 
@@ -85,7 +84,7 @@ public interface Bounds3D extends Bounds
 	 */
 	public default float XMin()
 	{
-		return Minimum().X();
+		return Minimum().aff(0);
 	}
 
 	/**
@@ -95,7 +94,7 @@ public interface Bounds3D extends Bounds
 	 */
 	public default float XMax()
 	{
-		return Maximum().X();
+		return Maximum().aff(0);
 	}
 
 	/**
@@ -105,7 +104,7 @@ public interface Bounds3D extends Bounds
 	 */
 	public default float YMin()
 	{
-		return Minimum().Y();
+		return Minimum().aff(1);
 	}
 
 	/**
@@ -115,7 +114,7 @@ public interface Bounds3D extends Bounds
 	 */
 	public default float YMax()
 	{
-		return Maximum().Y();
+		return Maximum().aff(1);
 	}
 
 	/**
@@ -125,7 +124,7 @@ public interface Bounds3D extends Bounds
 	 */
 	public default float ZMin()
 	{
-		return Minimum().Z();
+		return Minimum().aff(2);
 	}
 
 	/**
@@ -135,38 +134,14 @@ public interface Bounds3D extends Bounds
 	 */
 	public default float ZMax()
 	{
-		return Maximum().Z();
+		return Maximum().aff(2);
 	}
 
 
 	@Override
-	public default Vector3 Minimum()
+	public default HyperCuboid3D Box()
 	{
-		return (Vector3) Bounds.super.Minimum();
-	}
-
-	@Override
-	public default Vector3 Maximum()
-	{
-		return (Vector3) Bounds.super.Maximum();
-	}
-
-	@Override
-	public default Vector3 Origin()
-	{
-		return (Vector3) Bounds.super.Origin();
-	}
-
-	@Override
-	public default Vector3 Scale()
-	{
-		return (Vector3) Bounds.super.Scale();
-	}
-
-	@Override
-	public default Cuboid Box()
-	{
-		return (Cuboid) Bounds.super.Box();
+		return (HyperCuboid3D) Bounds.super.Box();
 	}
 
 	@Override

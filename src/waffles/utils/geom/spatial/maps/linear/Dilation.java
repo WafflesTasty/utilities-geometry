@@ -4,10 +4,10 @@ import waffles.utils.alg.lin.measure.matrix.Matrices;
 import waffles.utils.alg.lin.measure.matrix.Matrix;
 import waffles.utils.alg.lin.measure.matrix.types.banded.Diagonal;
 import waffles.utils.alg.lin.measure.vector.Vector;
-import waffles.utils.alg.lin.measure.vector.Vectors;
 import waffles.utils.alg.utilities.affine.LinearMap;
-import waffles.utils.geom.spatial.data.unary.Scaled;
-import waffles.utils.geomold.utilities.Generated;
+import waffles.utils.geom.shapes.points.Arrow;
+import waffles.utils.geom.shapes.points.Point;
+import waffles.utils.geom.spatial.maps.data.unary.Scaled;
 import waffles.utils.tools.primitives.Floats;
 
 /**
@@ -25,30 +25,36 @@ import waffles.utils.tools.primitives.Floats;
 public class Dilation implements LinearMap, Scaled
 {
 	/**
-	 * Returns a default dilation {@code Vector}.
+	 * Returns a default dilation {@code Arrow}.
 	 *
 	 * @param dim  a space dimension
-	 * @return  a default vector
+	 * @return  a default arrow
 	 *
 	 *
-	 * @see Vector
+	 * @see Arrow
 	 */
-	public static Vector Default(int dim)
+	public static Arrow Default(int dim)
 	{
-		return Vectors.create(2f, dim);
+		return Arrow.create(2f, dim);
 	}
 
 
 	private Scaled src;
-
+	
 	/**
 	 * Creates a new {@code Dilation}.
+	 * The point is multiplied by two,
+	 * since the map scales in both
+	 * directions of the axes.
 	 *
-	 * @param d  a space dimension
+	 * @param s  a default size
+	 *
+	 *
+	 * @see Arrow
 	 */
-	public Dilation(int d)
+	public Dilation(Arrow s)
 	{
-		this(Default(d));
+		src = () -> s.times(2f);
 	}
 
 	/**
@@ -64,20 +70,8 @@ public class Dilation implements LinearMap, Scaled
 	 */
 	public Dilation(Vector s)
 	{
-		this(() -> s.times(2f));
-	}
-
-	/**
-	 * Creates a new {@code Dilation}.
-	 *
-	 * @param g  a generator
-	 *
-	 *
-	 * @see Generated
-	 */
-	public Dilation(Generated g)
-	{
-		this((Vector) g.Generator());
+//		src = () -> new Point(s.times(4f), 0f);
+		this(new Arrow(s));
 	}
 
 	/**
@@ -92,6 +86,16 @@ public class Dilation implements LinearMap, Scaled
 	{
 		src = s;
 	}
+	
+	/**
+	 * Creates a new {@code Dilation}.
+	 *
+	 * @param dim  a space dimension
+	 */
+	public Dilation(int dim)
+	{
+		this(Default(dim));
+	}
 
 
 	@Override
@@ -99,16 +103,16 @@ public class Dilation implements LinearMap, Scaled
 	{
 		// Divided by two because it scales in both
 		// the positive and negative direction of axes.
-		Vector size = Scale().times(0.5f);
+		Point scale = Scale().times(0.5f);
 		Matrix m = Matrices.identity(dim);
 		m.setOperator(Diagonal.Type());
-		int sDim = Scale().Size();
+		int sDim = Scale().Dimension();
 
 		for(int d = 0; d < dim; d++)
 		{
 			if(d < sDim)
 			{
-				float s = size.get(d);
+				float s = scale.aff(d);
 				if(!Floats.isZero(s, 1))
 				{
 					m.set(1f / s, d, d);
@@ -124,16 +128,16 @@ public class Dilation implements LinearMap, Scaled
 	{
 		// Divided by two because it scales in both
 		// the positive and negative direction of axes.
-		Vector size = Scale().times(0.5f);
+		Point scale = Scale().times(0.5f);
 		Matrix m = Matrices.identity(dim);
 		m.setOperator(Diagonal.Type());
-		int sDim = Scale().Size();
+		int sDim = Scale().Dimension();
 
 		for(int d = 0; d < dim; d++)
 		{
 			if(d < sDim)
 			{
-				float s = size.get(d);
+				float s = scale.aff(d);
 				if(!Floats.isZero(s, 1))
 				{
 					m.set(s, d, d);
@@ -145,7 +149,7 @@ public class Dilation implements LinearMap, Scaled
 	}
 
 	@Override
-	public Vector Scale()
+	public Arrow Scale()
 	{
 		return src.Scale();
 	}

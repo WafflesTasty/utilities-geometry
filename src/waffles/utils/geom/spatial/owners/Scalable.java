@@ -1,9 +1,10 @@
 package waffles.utils.geom.spatial.owners;
 
 import waffles.utils.alg.lin.measure.vector.Vector;
-import waffles.utils.geom.spatial.data.unary.Scaled;
+import waffles.utils.geom.shapes.points.Arrow;
+import waffles.utils.geom.shapes.points.Point;
+import waffles.utils.geom.spatial.maps.data.unary.Scaled;
 import waffles.utils.geom.utilities.Transformable;
-import waffles.utils.tools.primitives.Floats;
 
 /**
  * A {@code Scalable} object can be scaled in an n-dimensional vector space.
@@ -21,52 +22,61 @@ public interface Scalable extends Scaled, Transformable
 	/**
 	 * Scales the {@code Scaled} to a new size.
 	 *
-	 * @param v  a scale vector
+	 * @param s  a scale point
 	 *
 	 *
-	 * @see Vector
+	 * @see Point
 	 */
-	public default void scaleTo(Vector v)
+	public default void scaleTo(Point s)
 	{
-		Transform().setScale(v);
+		Transform().setScale(s);
 	}
 
 	/**
-	 * Scales the {@code Scaled} for a given factor.
+	 * Scales the {@code Scaled} to a new size.
 	 *
-	 * @param v  a scale direction
-	 * @param d  a scale distance
+	 * @param s  a scale vector
 	 *
 	 *
 	 * @see Vector
 	 */
-	public default void scaleFor(Vector v, float d)
+	public default void scaleTo(Vector s)
 	{
-		if(ERROR < Floats.abs(d - 1f))
-		{
-			scaleFor(v.normalize().times(d));
-		}
+		scaleTo(new Arrow(s));
 	}
-
+	
 	/**
 	 * Scales the {@code Scaled} for a given factor.
 	 *
-	 * @param v  a scale factor
+	 * @param s  a scale factor
 	 *
 	 *
 	 * @see Vector
 	 */
-	public default void scaleFor(Vector v)
+	public default void scaleFor(Vector s)
 	{
-		scaleTo(Scale().hadamard(v));
+		scaleFor(new Arrow(s));
 	}
-
+	
+	/**
+	 * Scales the {@code Scaled} for a given factor.
+	 *
+	 * @param s  a scale point
+	 *
+	 *
+	 * @see Point
+	 */
+	public default void scaleFor(Point s)
+	{
+		scaleTo(Scale().hadamard(s));
+	}
+	
 
 	@Override
 	public abstract Scaled.Mutable Transform();
 
 	@Override
-	public default Vector Scale()
+	public default Arrow Scale()
 	{
 		return Transform().Scale();
 	}

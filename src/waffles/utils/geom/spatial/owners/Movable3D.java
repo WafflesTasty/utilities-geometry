@@ -1,8 +1,7 @@
 package waffles.utils.geom.spatial.owners;
 
-import waffles.utils.alg.lin.measure.vector.fixed.Vector3;
-import waffles.utils.geom.spatial.data.unary.Positioned3D;
-import waffles.utils.tools.primitives.Floats;
+import waffles.utils.geom.shapes.points.Point;
+import waffles.utils.geom.spatial.maps.data.unary.Positioned3D;
 
 /**
  * An {@code Movable3D} object can be moved around a three-dimensional vector space.
@@ -26,12 +25,7 @@ public interface Movable3D extends Movable, Positioned3D
 	 */
 	public default void moveFor(float x, float y, float z)
 	{
-		if(!Floats.isZero(x, 1)
-		|| !Floats.isZero(y, 1)
-		|| !Floats.isZero(z, 1))
-		{
-			moveFor(new Vector3(x, y, z));
-		}
+		moveFor(new Point(x, y, z, 1f));
 	}
 	
 	/**
@@ -43,13 +37,13 @@ public interface Movable3D extends Movable, Positioned3D
 	 */
 	public default void moveTo(float x, float y, float z)
 	{
-		moveTo(new Vector3(x, y, z));
+		moveTo(new Point(x, y, z, 1f));
 	}
 	
 	
 	@Override
-	public default Vector3 Origin()
+	public default Point Origin()
 	{
-		return (Vector3) Movable.super.Origin();
+		return Movable.super.Origin();
 	}
 }

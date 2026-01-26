@@ -2,11 +2,11 @@ package waffles.utils.geom.spatial.maps.linear;
 
 import waffles.utils.alg.lin.measure.matrix.Matrix;
 import waffles.utils.alg.utilities.affine.LinearMap;
-import waffles.utils.geom.spatial.data.spin.Spin;
-import waffles.utils.geom.spatial.data.spin.Spin2D;
-import waffles.utils.geom.spatial.data.spin.Spin3D;
-import waffles.utils.geom.spatial.data.spin.SpinND;
-import waffles.utils.geom.spatial.data.unary.Rotated;
+import waffles.utils.geom.spatial.maps.data.spin.Spin;
+import waffles.utils.geom.spatial.maps.data.spin.Spin2D;
+import waffles.utils.geom.spatial.maps.data.spin.Spin3D;
+import waffles.utils.geom.spatial.maps.data.spin.SpinND;
+import waffles.utils.geom.spatial.maps.data.unary.Rotated;
 
 /**
  * A {@code Rotation} defines a linear map which rotates vectors

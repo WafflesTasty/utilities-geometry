@@ -1,10 +1,10 @@
 package waffles.utils.geom.spaces;
 
 import waffles.utils.alg.lin.measure.vector.Vector;
+import waffles.utils.geom.shapes.convex.axial.cube.HyperCuboid;
+import waffles.utils.geom.shapes.convex.axial.sphere.HyperSphere;
+import waffles.utils.geom.shapes.points.Point;
 import waffles.utils.geom.utilities.Dimensional;
-import waffles.utils.geomold.collidable.axial.cuboid.HyperCuboid;
-import waffles.utils.geomold.collidable.axial.spheroid.HyperSphere;
-import waffles.utils.geomold.collidable.fixed.Point;
 
 /**
  * A {@code Space} defines a data structure that handles spatial queries.

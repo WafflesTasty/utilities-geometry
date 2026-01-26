@@ -1,7 +1,7 @@
 package waffles.utils.geom.spatial.owners;
 
-import waffles.utils.alg.lin.measure.vector.fixed.Vector2;
-import waffles.utils.geom.spatial.data.unary.Scaled2D;
+import waffles.utils.geom.shapes.points.Arrow;
+import waffles.utils.geom.spatial.maps.data.unary.Scaled2D;
 import waffles.utils.tools.primitives.Floats;
 
 /**
@@ -27,7 +27,7 @@ public interface Scalable2D extends Scalable, Scaled2D
 	{
 		if(ERROR < Floats.abs(w - 1f) || ERROR < Floats.abs(h - 1f))
 		{
-			scaleFor(new Vector2(w, h));
+			scaleFor(new Arrow(w, h));
 		}
 	}
 
@@ -39,13 +39,13 @@ public interface Scalable2D extends Scalable, Scaled2D
 	 */
 	public default void scaleTo(float w, float h)
 	{
-		scaleTo(new Vector2(w, h));
+		scaleTo(new Arrow(w, h));
 	}
 
 
 	@Override
-	public default Vector2 Scale()
+	public default Arrow Scale()
 	{
-		return (Vector2) Scalable.super.Scale();
+		return Scalable.super.Scale();
 	}
 }

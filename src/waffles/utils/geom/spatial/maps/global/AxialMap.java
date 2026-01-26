@@ -1,12 +1,13 @@
 package waffles.utils.geom.spatial.maps.global;
 
-import waffles.utils.alg.lin.measure.vector.Vector;
 import waffles.utils.alg.utilities.matrix.LazyMatrix;
-import waffles.utils.geom.spatial.data.Axial;
-import waffles.utils.geom.spatial.data.unary.Positioned;
-import waffles.utils.geom.spatial.data.unary.Scaled;
+import waffles.utils.geom.shapes.points.Arrow;
+import waffles.utils.geom.shapes.points.Point;
 import waffles.utils.geom.spatial.maps.GlobalMap;
-import waffles.utils.geom.utilities.matrix.LazyIdentity;
+import waffles.utils.geom.spatial.maps.data.Axial;
+import waffles.utils.geom.spatial.maps.data.unary.Positioned;
+import waffles.utils.geom.spatial.maps.data.unary.Scaled;
+import waffles.utils.geom.utilities.linear.LazyIdentity;
 
 /**
  * An {@code AxialMap} defines a global map with axis-aligned spatial data.
@@ -38,7 +39,7 @@ public interface AxialMap extends GlobalMap, Axial
 	public static interface Mutable extends AxialMap, Axial.Mutable
 	{
 		@Override
-		public default void setOrigin(Vector o)
+		public default void setOrigin(Point o)
 		{
 			Positioned.Mutable src = Source().Mutator();
 			if(src != null)
@@ -49,7 +50,7 @@ public interface AxialMap extends GlobalMap, Axial
 		}
 
 		@Override
-		public default void setScale(Vector s)
+		public default void setScale(Point s)
 		{
 			Scaled.Mutable src = Source().Mutator();
 			if(src != null)
@@ -85,13 +86,13 @@ public interface AxialMap extends GlobalMap, Axial
 	}
 
 	@Override
-	public default Vector Origin()
+	public default Point Origin()
 	{
 		return Source().Origin();
 	}
 
 	@Override
-	public default Vector Scale()
+	public default Arrow Scale()
 	{
 		return Source().Scale();
 	}

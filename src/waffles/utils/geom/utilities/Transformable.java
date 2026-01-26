@@ -16,7 +16,7 @@ public interface Transformable
 	/**
 	 * Defines a {@code Transformable} error value.
 	 */
-	public static final float ERROR = Floats.pow(2, -8);
+	public static final double ERROR = Floats.pow(2, -16);
 	
 	/**
 	 * Returns the transform of the {@code Transformable}.

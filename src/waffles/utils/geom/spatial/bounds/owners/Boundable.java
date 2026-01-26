@@ -2,7 +2,7 @@ package waffles.utils.geom.spatial.bounds.owners;
 
 import waffles.utils.alg.utilities.affine.LinearMap;
 import waffles.utils.geom.spatial.bounds.Bounds;
-import waffles.utils.geomold.utilities.Transforms;
+import waffles.utils.geom.spatial.maps.IdentityMap;
 
 /**
  * A {@code Boundable} object defines an n-dimensional transformable {@code Bounds}.
@@ -20,19 +20,19 @@ public interface Boundable extends Bounded
 	/**
 	 * Returns the bounds of the {@code Boundable}.
 	 *
-	 * @param map  a linear map
-	 * @return  a boundary
+	 * @param m  a linear map
+	 * @return   a boundary
 	 *
 	 *
 	 * @see LinearMap
 	 * @see Bounds
 	 */
-	public abstract Bounds Bounds(LinearMap map);
+	public abstract Bounds Bounds(LinearMap m);
 
 
 	@Override
 	public default Bounds Bounds()
 	{
-		return Bounds(Transforms.identity());
+		return Bounds(new IdentityMap());
 	}
 }

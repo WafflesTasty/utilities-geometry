@@ -1,10 +1,11 @@
 package waffles.utils.geom;
 
 import waffles.utils.alg.lin.measure.vector.Vector;
-import waffles.utils.geom.Collision.Response;
+import waffles.utils.geom.collide.collision.Collision;
+import waffles.utils.geom.collide.collision.Collision.Response;
+import waffles.utils.geom.collide.response.RSPFlipped;
+import waffles.utils.geom.shapes.points.Point;
 import waffles.utils.geom.utilities.Dimensional;
-import waffles.utils.geomold.collidable.fixed.Point;
-import waffles.utils.geomold.response.fixed.RSPFlip;
 
 /**
  * A {@code Collidable} object defines a {@code Collision} property
@@ -61,7 +62,7 @@ public interface Collidable extends Dimensional
 		Response rsp1 =   Collision().contain(c);
 		Response rsp2 = c.Collision().inhabit(this);
 
-		rsp2 = new RSPFlip(rsp2);
+		rsp2 = new RSPFlipped(rsp2);
 		if(rsp1.cost() < rsp2.cost())
 		{
 			return rsp1;
@@ -83,8 +84,8 @@ public interface Collidable extends Dimensional
 		Response rsp1 =   Collision().intersect(c);
 		Response rsp2 = c.Collision().intersect(this);
 
-		rsp2 = new RSPFlip(rsp2);
-		if(rsp1.cost() < rsp2.cost())
+		rsp2 = new RSPFlipped(rsp2);
+		if(rsp1.cost() <= rsp2.cost())
 		{
 			return rsp1;
 		}

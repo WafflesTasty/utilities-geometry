@@ -1,7 +1,7 @@
 package waffles.utils.geom.spatial.owners;
 
-import waffles.utils.geom.spatial.data.spin.Spin;
-import waffles.utils.geom.spatial.data.unary.Rotated;
+import waffles.utils.geom.spatial.maps.data.spin.Spin;
+import waffles.utils.geom.spatial.maps.data.unary.Rotated;
 import waffles.utils.geom.utilities.Transformable;
 
 /**

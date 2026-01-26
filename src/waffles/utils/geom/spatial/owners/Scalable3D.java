@@ -1,7 +1,7 @@
 package waffles.utils.geom.spatial.owners;
 
-import waffles.utils.alg.lin.measure.vector.fixed.Vector3;
-import waffles.utils.geom.spatial.data.unary.Scaled3D;
+import waffles.utils.geom.shapes.points.Arrow;
+import waffles.utils.geom.spatial.maps.data.unary.Scaled3D;
 import waffles.utils.tools.primitives.Floats;
 
 /**
@@ -28,7 +28,7 @@ public interface Scalable3D extends Scalable, Scaled3D
 	{
 		if(ERROR < Floats.abs(w - 1f) || ERROR < Floats.abs(h - 1f) || ERROR < Floats.abs(d - 1f))
 		{
-			scaleFor(new Vector3(w, h, d));
+			scaleFor(new Arrow(w, h, d));
 		}
 	}
 
@@ -41,13 +41,13 @@ public interface Scalable3D extends Scalable, Scaled3D
 	 */
 	public default void scaleTo(float w, float h, float d)
 	{
-		scaleTo(new Vector3(w, h, d));
+		scaleTo(new Arrow(w, h, d));
 	}
 
 
 	@Override
-	public default Vector3 Scale()
+	public default Arrow Scale()
 	{
-		return (Vector3) Scalable.super.Scale();
+		return Scalable.super.Scale();
 	}
 }

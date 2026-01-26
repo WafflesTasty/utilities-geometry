@@ -1,6 +1,6 @@
 package waffles.utils.geom.spaces;
 
-import waffles.utils.geomold.collidable.fixed.Point;
+import waffles.utils.geom.shapes.points.Point;
 
 /**
  * A {@code Space2D} defines a three-dimensional {@code Space}.

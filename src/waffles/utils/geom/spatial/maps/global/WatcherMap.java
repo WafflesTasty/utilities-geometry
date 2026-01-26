@@ -2,9 +2,9 @@ package waffles.utils.geom.spatial.maps.global;
 
 import waffles.utils.alg.lin.measure.vector.Vector;
 import waffles.utils.alg.utilities.matrix.LazyMatrix;
-import waffles.utils.geom.spatial.data.Watcher;
-import waffles.utils.geom.spatial.data.unary.Projected;
-import waffles.utils.geom.utilities.matrix.LazyIdentity;
+import waffles.utils.geom.spatial.maps.data.Watcher;
+import waffles.utils.geom.spatial.maps.data.unary.Projected;
+import waffles.utils.geom.utilities.linear.LazyIdentity;
 
 /**
  * A {@code WatcherMap} defines a global map with projective spatial data.

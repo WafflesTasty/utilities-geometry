@@ -1,6 +1,6 @@
 package waffles.utils.geom.spatial;
 
-import waffles.utils.geom.spatial.data.Axial3D;
+import waffles.utils.geom.spatial.maps.data.Axial3D;
 import waffles.utils.geom.spatial.owners.Movable3D;
 import waffles.utils.geom.spatial.owners.Scalable3D;
 

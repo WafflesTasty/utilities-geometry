@@ -1,7 +1,7 @@
 package waffles.utils.geom.spatial.owners;
 
 import waffles.utils.alg.lin.measure.vector.fixed.Vector3;
-import waffles.utils.geom.spatial.data.unary.Projected3D;
+import waffles.utils.geom.spatial.maps.data.unary.Projected3D;
 
 /**
  * A {@code Projectable3D} object can be projected into a three-dimensional vector space.

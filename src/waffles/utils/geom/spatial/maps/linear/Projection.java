@@ -5,8 +5,8 @@ import waffles.utils.alg.lin.measure.matrix.Matrix;
 import waffles.utils.alg.lin.measure.vector.Vector;
 import waffles.utils.alg.lin.measure.vector.Vectors;
 import waffles.utils.alg.utilities.affine.LinearMap;
-import waffles.utils.geom.spatial.data.unary.Projected;
-import waffles.utils.geomold.collidable.fixed.Point;
+import waffles.utils.geom.shapes.points.Point;
+import waffles.utils.geom.spatial.maps.data.unary.Projected;
 import waffles.utils.tools.primitives.Floats;
 
 /**
@@ -99,7 +99,7 @@ public class Projection implements LinearMap, Projected
 	 */
 	public Projection(Point o)
 	{
-		this((Vector) o.Generator());
+		this((Vector) o.Vector());
 	}
 
 	

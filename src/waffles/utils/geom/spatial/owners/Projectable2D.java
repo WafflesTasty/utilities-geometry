@@ -1,7 +1,7 @@
 package waffles.utils.geom.spatial.owners;
 
 import waffles.utils.alg.lin.measure.vector.fixed.Vector2;
-import waffles.utils.geom.spatial.data.unary.Projected2D;
+import waffles.utils.geom.spatial.maps.data.unary.Projected2D;
 
 /**
  * A {@code Projectable2D} object can be projected into a two-dimensional vector space.

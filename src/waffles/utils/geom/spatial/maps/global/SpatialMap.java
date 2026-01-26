@@ -1,10 +1,10 @@
 package waffles.utils.geom.spatial.maps.global;
 
 import waffles.utils.alg.utilities.matrix.LazyMatrix;
-import waffles.utils.geom.spatial.data.Spatial;
-import waffles.utils.geom.spatial.data.spin.Spin;
-import waffles.utils.geom.spatial.data.unary.Rotated;
-import waffles.utils.geom.utilities.matrix.LazyIdentity;
+import waffles.utils.geom.spatial.maps.data.Spatial;
+import waffles.utils.geom.spatial.maps.data.spin.Spin;
+import waffles.utils.geom.spatial.maps.data.unary.Rotated;
+import waffles.utils.geom.utilities.linear.LazyIdentity;
 
 /**
  * A {@code SpatialMap} defines a global map with affine-oriented spatial data.

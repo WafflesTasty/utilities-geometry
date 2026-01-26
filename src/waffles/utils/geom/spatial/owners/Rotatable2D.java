@@ -1,7 +1,7 @@
 package waffles.utils.geom.spatial.owners;
 
-import waffles.utils.geom.spatial.data.spin.Spin2D;
-import waffles.utils.geom.spatial.data.unary.Rotated2D;
+import waffles.utils.geom.spatial.maps.data.spin.Spin2D;
+import waffles.utils.geom.spatial.maps.data.unary.Rotated2D;
 
 /**
  * An {@code Rotatable2D} object can be rotated in a two-dimensional vector space.

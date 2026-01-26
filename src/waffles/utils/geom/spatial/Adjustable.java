@@ -1,6 +1,7 @@
 package waffles.utils.geom.spatial;
 
-import waffles.utils.geom.spatial.data.Spatial;
+import waffles.utils.alg.lin.measure.vector.Vector;
+import waffles.utils.geom.spatial.maps.data.Spatial;
 import waffles.utils.geom.spatial.owners.Rotatable;
 
 /**
@@ -27,7 +28,11 @@ public interface Adjustable extends Aligned, Rotatable, Spatial
 	{
 		if(ERROR < d)
 		{
-			moveFor(Spin().Basis(i), d);
+			Vector v = Spin().Basis(i);
+			
+			float n = v.norm();
+			v = v.times(d / n);
+			moveFor(v);
 		}
 	}
 	

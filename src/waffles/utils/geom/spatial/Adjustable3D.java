@@ -1,8 +1,7 @@
 package waffles.utils.geom.spatial;
 
-import waffles.utils.geom.spatial.data.Spatial3D;
+import waffles.utils.geom.spatial.maps.data.Spatial3D;
 import waffles.utils.geom.spatial.owners.Rotatable3D;
-import waffles.utils.tools.primitives.Floats;
 
 /**
  * An {@code Adjustable3D} object can be affine transformed in a three-dimensional space.
@@ -26,9 +25,9 @@ public interface Adjustable3D extends Adjustable, Aligned3D, Rotatable3D, Spatia
 	 */
 	public default void strafeFor(float d)
 	{
-		if(!Floats.isZero(d, 1))
+		if(ERROR < d)
 		{
-			moveFor(Right(), d);
+			moveFor(0, d);
 		}
 	}
 		
@@ -39,9 +38,9 @@ public interface Adjustable3D extends Adjustable, Aligned3D, Rotatable3D, Spatia
 	 */
 	public default void advanceFor(float d)
 	{
-		if(!Floats.isZero(d, 1))
+		if(ERROR < d)
 		{
-			moveFor(Forward(), d);
+			moveFor(1, d);
 		}
 	}
 
@@ -52,9 +51,9 @@ public interface Adjustable3D extends Adjustable, Aligned3D, Rotatable3D, Spatia
 	 */
 	public default void liftFor(float d)
 	{
-		if(!Floats.isZero(d, 1))
+		if(ERROR < d)
 		{
-			moveFor(Up(), d);
+			moveFor(2, d);
 		}
 	}
 }

@@ -2,8 +2,8 @@ package waffles.utils.geom.spatial.owners;
 
 import waffles.utils.alg.lin.measure.vector.complex.Quaternion;
 import waffles.utils.alg.lin.measure.vector.fixed.Vector3;
-import waffles.utils.geom.spatial.data.spin.Spin3D;
-import waffles.utils.geom.spatial.data.unary.Rotated3D;
+import waffles.utils.geom.spatial.maps.data.spin.Spin3D;
+import waffles.utils.geom.spatial.maps.data.unary.Rotated3D;
 import waffles.utils.tools.primitives.Floats;
 
 /**
@@ -64,10 +64,7 @@ public interface Rotatable3D extends Rotatable, Rotated3D
 	public default void rotateFor(Vector3 v)
 	{
 		float n = v.norm();
-		if(ERROR < n)
-		{
-			rotateFor(v.times(1f / n), n);
-		}
+		rotateFor(v.times(1f / n), n);
 	}
 
 

@@ -1,8 +1,7 @@
 package waffles.utils.geom.spatial.owners;
 
-import waffles.utils.alg.lin.measure.vector.fixed.Vector2;
-import waffles.utils.geom.spatial.data.unary.Positioned2D;
-import waffles.utils.tools.primitives.Floats;
+import waffles.utils.geom.shapes.points.Point;
+import waffles.utils.geom.spatial.maps.data.unary.Positioned2D;
 
 /**
  * An {@code Movable2D} object can be moved around a two-dimensional vector space.
@@ -25,11 +24,7 @@ public interface Movable2D extends Movable, Positioned2D
 	 */
 	public default void moveFor(float x, float y)
 	{
-		if(!Floats.isZero(x, 1)
-		|| !Floats.isZero(y, 1))
-		{
-			moveFor(new Vector2(x, y));
-		}
+		moveFor(new Point(x, y, 1f));
 	}
 
 	/**
@@ -40,13 +35,13 @@ public interface Movable2D extends Movable, Positioned2D
 	 */
 	public default void moveTo(float x, float y)
 	{
-		moveTo(new Vector2(x, y));
+		moveTo(new Point(x, y, 1f));
 	}
 
 
 	@Override
-	public default Vector2 Origin()
+	public default Point Origin()
 	{
-		return (Vector2) Movable.super.Origin();
+		return Movable.super.Origin();
 	}
 }

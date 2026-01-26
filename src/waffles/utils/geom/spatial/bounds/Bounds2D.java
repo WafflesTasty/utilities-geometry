@@ -1,8 +1,7 @@
 package waffles.utils.geom.spatial.bounds;
 
-import waffles.utils.alg.lin.measure.vector.fixed.Vector2;
-import waffles.utils.geomold.collidable.axial.cuboid.Rectangle;
-import waffles.utils.geomold.collidable.axial.spheroid.Circle;
+import waffles.utils.geom.shapes.convex.axial.cube.HyperCuboid2D;
+import waffles.utils.geom.shapes.convex.axial.sphere.base.Circle;
 
 /**
  * The {@code Bounds} interface defines {@code Bounds} in two-dimensional space.
@@ -23,7 +22,7 @@ public interface Bounds2D extends Bounds
 	 */
 	public default float X()
 	{
-		return Origin().X();
+		return Origin().aff(0);
 	}
 
 	/**
@@ -33,7 +32,7 @@ public interface Bounds2D extends Bounds
 	 */
 	public default float Y()
 	{
-		return Origin().Y();
+		return Origin().aff(1);
 	}
 
 	/**
@@ -43,7 +42,7 @@ public interface Bounds2D extends Bounds
 	 */
 	public default float Width()
 	{
-		return Scale().X();
+		return Scale().aff(0);
 	}
 
 	/**
@@ -53,7 +52,7 @@ public interface Bounds2D extends Bounds
 	 */
 	public default float Height()
 	{
-		return Scale().Y();
+		return Scale().aff(1);
 	}
 
 
@@ -64,7 +63,7 @@ public interface Bounds2D extends Bounds
 	 */
 	public default float XMin()
 	{
-		return Minimum().X();
+		return Minimum().aff(0);
 	}
 
 	/**
@@ -74,7 +73,7 @@ public interface Bounds2D extends Bounds
 	 */
 	public default float XMax()
 	{
-		return Maximum().X();
+		return Maximum().aff(0);
 	}
 
 	/**
@@ -84,7 +83,7 @@ public interface Bounds2D extends Bounds
 	 */
 	public default float YMin()
 	{
-		return Minimum().Y();
+		return Minimum().aff(1);
 	}
 
 	/**
@@ -94,38 +93,14 @@ public interface Bounds2D extends Bounds
 	 */
 	public default float YMax()
 	{
-		return Maximum().Y();
+		return Maximum().aff(1);
 	}
 
 
 	@Override
-	public default Vector2 Minimum()
+	public default HyperCuboid2D Box()
 	{
-		return (Vector2) Bounds.super.Minimum();
-	}
-
-	@Override
-	public default Vector2 Maximum()
-	{
-		return (Vector2) Bounds.super.Maximum();
-	}
-
-	@Override
-	public default Vector2 Origin()
-	{
-		return (Vector2) Bounds.super.Origin();
-	}
-
-	@Override
-	public default Vector2 Scale()
-	{
-		return (Vector2) Bounds.super.Scale();
-	}
-
-	@Override
-	public default Rectangle Box()
-	{
-		return (Rectangle) Bounds.super.Box();
+		return (HyperCuboid2D) Bounds.super.Box();
 	}
 
 	@Override

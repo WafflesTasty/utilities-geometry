@@ -3,11 +3,10 @@ package waffles.utils.geom.spatial.maps.linear;
 import waffles.utils.alg.lin.measure.matrix.Matrices;
 import waffles.utils.alg.lin.measure.matrix.Matrix;
 import waffles.utils.alg.lin.measure.vector.Vector;
-import waffles.utils.alg.lin.measure.vector.Vectors;
 import waffles.utils.alg.utilities.affine.LinearMap;
-import waffles.utils.geom.spatial.data.unary.Positioned;
-import waffles.utils.geom.utilities.matrix.Translator;
-import waffles.utils.geomold.utilities.Generated;
+import waffles.utils.geom.shapes.points.Point;
+import waffles.utils.geom.spatial.maps.data.unary.Positioned;
+import waffles.utils.geom.utilities.linear.Translator;
 import waffles.utils.tools.primitives.Integers;
 
 /**
@@ -33,9 +32,9 @@ public class Translation implements LinearMap, Positioned
 	 * 
 	 * @see Vector
 	 */
-	public static Vector Default(int dim)
+	public static Point Default(int dim)
 	{
-		return Vectors.create(dim);
+		return new Point(dim);
 	}
 
 
@@ -54,6 +53,19 @@ public class Translation implements LinearMap, Positioned
 	/**
 	 * Creates a new {@code Translation}.
 	 * 
+	 * @param o  an origin vector
+	 * 
+	 * 
+	 * @see Vector
+	 */
+	public Translation(Vector o)
+	{
+		this(new Point(o, 1f));
+	}
+	
+	/**
+	 * Creates a new {@code Translation}.
+	 * 
 	 * @param s  a positioned source
 	 * 
 	 * 
@@ -67,34 +79,21 @@ public class Translation implements LinearMap, Positioned
 	/**
 	 * Creates a new {@code Translation}.
 	 * 
-	 * @param g  a generator
+	 * @param o  an origin point
 	 * 
 	 * 
-	 * @see Generated
+	 * @see Point
 	 */
-	public Translation(Generated g)
+	public Translation(Point o)
 	{
-		this(() -> g.Generator());
+		this(() -> o);
 	}
 	
-	/**
-	 * Creates a new {@code Translation}.
-	 * 
-	 * @param v  an origin vector
-	 * 
-	 * 
-	 * @see Vector
-	 */
-	public Translation(Vector v)
-	{
-		this(() -> v);
-	}
-
 
 	@Override
 	public Matrix Inverse(int dim)
 	{
-		Vector o = Origin();
+		Vector o = Origin().Vector();
 		Matrix m = Matrices.identity(dim);
 		m.setOperator(Translator.Type());
 		
@@ -112,7 +111,7 @@ public class Translation implements LinearMap, Positioned
 	@Override
 	public Matrix Matrix(int dim)
 	{
-		Vector o = Origin();
+		Vector o = Origin().Vector();
 		Matrix m = Matrices.identity(dim);
 		m.setOperator(Translator.Type());
 		
@@ -128,7 +127,7 @@ public class Translation implements LinearMap, Positioned
 	}
 	
 	@Override
-	public Vector Origin()
+	public Point Origin()
 	{
 		return src.Origin();
 	}
