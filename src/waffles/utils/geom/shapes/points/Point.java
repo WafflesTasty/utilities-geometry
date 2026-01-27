@@ -288,18 +288,18 @@ public class Point implements Angular, Affine, Inaccurate<Point>, Collidable
 	/**
 	 * Returns an affine {@code Point} coordinate.
 	 * 
-	 * @param i  a coordinate index
+	 * @param k  a coordinate index
 	 * @return   a coordinate value
 	 */
-	public float aff(int i)
+	public float aff(int k)
 	{
 		float m = Floats.abs(Mass());
 		if(Collision().Error() < m)
 		{
-			return hom(i) / Mass();
+			return hom(k) / Mass();
 		}
 		
-		return hom(i);
+		return hom(k);
 	}
 		
 
