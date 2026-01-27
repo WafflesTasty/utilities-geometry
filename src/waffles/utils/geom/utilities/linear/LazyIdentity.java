@@ -18,8 +18,8 @@ import waffles.utils.alg.utilities.matrix.LazyMatrix;
 public class LazyIdentity extends LazyMatrix
 {
 	@Override
-	public Matrix compute(Integer dim)
+	public Matrix compute(Integer d)
 	{
-		return Matrices.identity(dim);
+		return Matrices.identity(d);
 	}
 }

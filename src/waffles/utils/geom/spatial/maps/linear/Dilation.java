@@ -54,7 +54,7 @@ public class Dilation implements LinearMap, Scaled
 	 */
 	public Dilation(Arrow s)
 	{
-		src = () -> s.times(2f);
+		src = () -> s;
 	}
 
 	/**
@@ -70,7 +70,6 @@ public class Dilation implements LinearMap, Scaled
 	 */
 	public Dilation(Vector s)
 	{
-//		src = () -> new Point(s.times(4f), 0f);
 		this(new Arrow(s));
 	}
 

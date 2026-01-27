@@ -1,10 +1,8 @@
 package waffles.utils.geom.spatial.maps;
 
-import waffles.utils.alg.lin.measure.matrix.Matrices;
-import waffles.utils.alg.lin.measure.matrix.Matrix;
-import waffles.utils.alg.lin.measure.matrix.types.orthogonal.Identity;
 import waffles.utils.alg.utilities.affine.Affine;
 import waffles.utils.alg.utilities.matrix.LazyMatrix;
+import waffles.utils.geom.utilities.linear.LazyIdentity;
 
 /**
  * An {@code IdentityMap} defines a one-to-one identity map.
@@ -18,31 +16,22 @@ import waffles.utils.alg.utilities.matrix.LazyMatrix;
  */
 public class IdentityMap implements GlobalMap
 {
-	private LazyMatrix utw;
-	private LazyMatrix wtu;
+	private LazyIdentity map;
 	
 	/**
 	 * Creates a new {@code IdentityMap}.
 	 */
 	public IdentityMap()
 	{
-		utw = identity();
-		wtu = identity();
+		map = new LazyIdentity();
 	}
 	
 		
 	@Override
-	public LazyMatrix UTW()
+	public Affine unmap(Affine a)
 	{
-		return utw;
+		return a;
 	}
-	
-	@Override
-	public LazyMatrix WTU()
-	{
-		return wtu;
-	}
-	
 	
 	@Override
 	public Affine map(Affine a)
@@ -50,19 +39,16 @@ public class IdentityMap implements GlobalMap
 		return a;
 	}
 	
+		
 	@Override
-	public Affine unmap(Affine a)
+	public LazyMatrix UTW()
 	{
-		return a;
+		return map;
 	}
 	
-	LazyMatrix identity()
+	@Override
+	public LazyMatrix WTU()
 	{
-		return new LazyMatrix(dim ->
-		{
-			Matrix m = Matrices.identity(dim);
-			m.setOperator(Identity.Type());
-			return m;
-		});
+		return map;
 	}
 }
