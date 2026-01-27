@@ -34,4 +34,11 @@ public interface Axial2D extends Axial, Positioned2D, Scaled2D
 	{
 		// NOT APPLICABLE
 	}
+
+	
+	@Override
+	public default int Dimension()
+	{
+		return 2;
+	}
 }

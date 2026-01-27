@@ -1,6 +1,7 @@
 package waffles.utils.geom.spatial.maps.data.unary;
 
 import waffles.utils.geom.spatial.maps.data.spin.Spin;
+import waffles.utils.geom.utilities.Dimensional;
 import waffles.utils.tools.patterns.properties.Immutable;
 
 /**
@@ -11,10 +12,11 @@ import waffles.utils.tools.patterns.properties.Immutable;
  * @version 1.0
  * 
  * 
+ * @see Dimensional
  * @see Immutable
  */
 @FunctionalInterface
-public interface Rotated extends Immutable
+public interface Rotated extends Immutable, Dimensional
 {
 	/**
 	 * A {@code Mutable Rotated} can change its own spin.
@@ -39,6 +41,12 @@ public interface Rotated extends Immutable
 		public abstract void setSpin(Spin s);
 	}
 	
+	
+	@Override
+	public default int Dimension()
+	{
+		return Spin().Dimension();
+	}
 	
 	/**
 	 * Returns the spin of the {@code Rotated}.

@@ -1,6 +1,7 @@
 package waffles.utils.geom.spatial.maps.data.unary;
 
 import waffles.utils.alg.lin.measure.vector.Vector;
+import waffles.utils.geom.utilities.Dimensional;
 import waffles.utils.tools.patterns.properties.Immutable;
 
 /**
@@ -10,11 +11,12 @@ import waffles.utils.tools.patterns.properties.Immutable;
  * @since 16 Oct 2023
  * @version 1.0
  *
- *
+ * 
+ * @see Dimensional
  * @see Immutable
  */
 @FunctionalInterface
-public interface Projected extends Immutable
+public interface Projected extends Immutable, Dimensional
 {
 	/**
 	 * A {@code Mutable Projected} can change its own oculus.
@@ -39,6 +41,12 @@ public interface Projected extends Immutable
 		public abstract void setOculus(Vector o);
 	}
 
+	
+	@Override
+	public default int Dimension()
+	{
+		return Oculus().Size();
+	}
 
 	/**
 	 * Returns the oculus of the {@code Projected}.

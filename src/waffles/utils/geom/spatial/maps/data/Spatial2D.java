@@ -34,4 +34,11 @@ public interface Spatial2D extends Spatial, Axial2D, Rotated2D
 	{
 		// NOT APPLICABLE
 	}
+	
+	
+	@Override
+	public default int Dimension()
+	{
+		return 2;
+	}
 }

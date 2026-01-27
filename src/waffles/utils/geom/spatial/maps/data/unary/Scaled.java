@@ -2,6 +2,7 @@ package waffles.utils.geom.spatial.maps.data.unary;
 
 import waffles.utils.geom.shapes.points.Arrow;
 import waffles.utils.geom.shapes.points.Point;
+import waffles.utils.geom.utilities.Dimensional;
 import waffles.utils.tools.patterns.properties.Immutable;
 
 /**
@@ -12,9 +13,11 @@ import waffles.utils.tools.patterns.properties.Immutable;
  * @version 1.0
  *
  *
+ * @see Dimensional
  * @see Immutable
  */
-public interface Scaled extends Immutable
+@FunctionalInterface
+public interface Scaled extends Immutable, Dimensional
 {
 	/**
 	 * A {@code Mutable Scaled} can change its own size.
@@ -39,6 +42,12 @@ public interface Scaled extends Immutable
 		public abstract void setScale(Point s);
 	}
 
+	
+	@Override
+	public default int Dimension()
+	{
+		return Scale().Dimension();
+	}
 
 	/**
 	 * Returns the size of the {@code Scaled}.

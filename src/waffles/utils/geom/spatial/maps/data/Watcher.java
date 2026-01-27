@@ -32,4 +32,11 @@ public interface Watcher extends Spatial, Projected
 	{
 		// NOT APPLICABLE
 	}
+
+	
+	@Override
+	public default int Dimension()
+	{
+		return Spatial.super.Dimension();
+	}
 }

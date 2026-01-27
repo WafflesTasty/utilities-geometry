@@ -32,4 +32,11 @@ public interface Axial extends Positioned, Scaled
 	{
 		// NOT APPLICABLE
 	}
+	
+	
+	@Override
+	public default int Dimension()
+	{
+		return Positioned.super.Dimension();
+	}
 }

@@ -65,14 +65,20 @@ public class Position implements Positioned.Mutable
 	
 	
 	@Override
+	public Point Origin()
+	{
+		return origin;
+	}
+	
+	@Override
 	public void setOrigin(Point o)
 	{
 		origin = o;
 	}
 	
 	@Override
-	public Point Origin()
+	public int Dimension()
 	{
-		return origin;
+		return origin.Dimension();
 	}
 }

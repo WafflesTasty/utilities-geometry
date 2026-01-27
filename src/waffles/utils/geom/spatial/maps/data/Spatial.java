@@ -32,4 +32,11 @@ public interface Spatial extends Axial, Rotated
 	{
 		// NOT APPLICABLE
 	}
+
+	
+	@Override
+	public default int Dimension()
+	{
+		return Axial.super.Dimension();
+	}
 }

@@ -34,4 +34,11 @@ public interface Axial3D extends Axial, Positioned3D, Scaled3D
 	{
 		// NOT APPLICABLE
 	}
+
+	
+	@Override
+	public default int Dimension()
+	{
+		return 3;
+	}
 }

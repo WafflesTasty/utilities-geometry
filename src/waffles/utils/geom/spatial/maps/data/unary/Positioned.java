@@ -41,6 +41,12 @@ public interface Positioned extends Immutable, Dimensional
 		public abstract void setOrigin(Point o);
 	}
 
+	
+	@Override
+	public default int Dimension()
+	{
+		return Origin().Dimension();
+	}
 
 	/**
 	 * Returns the origin of the {@code Positioned}.
@@ -51,10 +57,4 @@ public interface Positioned extends Immutable, Dimensional
 	 * @see Point
 	 */
 	public abstract Point Origin();
-	
-	@Override
-	public default int Dimension()
-	{
-		return Origin().Dimension();
-	}
 }

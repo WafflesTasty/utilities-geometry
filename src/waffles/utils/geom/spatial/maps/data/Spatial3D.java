@@ -34,4 +34,11 @@ public interface Spatial3D extends Spatial, Axial3D, Rotated3D
 	{
 		// NOT APPLICABLE
 	}
+
+	
+	@Override
+	public default int Dimension()
+	{
+		return 3;
+	}
 }

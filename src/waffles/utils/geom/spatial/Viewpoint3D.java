@@ -16,5 +16,9 @@ import waffles.utils.geom.spatial.owners.Projectable3D;
  */
 public interface Viewpoint3D extends Viewpoint, Projectable3D, Adjustable3D
 {
-	// NOT APPLICABLE
+	@Override
+	public default int Dimension()
+	{
+		return 3;
+	}
 }
