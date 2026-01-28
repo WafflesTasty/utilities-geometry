@@ -2,7 +2,6 @@ package waffles.utils.geom.shapes.fixed;
 
 import waffles.utils.alg.lin.measure.matrix.Matrices;
 import waffles.utils.alg.lin.measure.matrix.Matrix;
-import waffles.utils.alg.utilities.affine.Affine;
 import waffles.utils.alg.utilities.affine.LinearMap;
 import waffles.utils.geom.collide.collision.fixed.CLSVoid;
 import waffles.utils.geom.shapes.Geometry;
@@ -11,6 +10,7 @@ import waffles.utils.geom.shapes.bounds.fixed.BNDVoid2D;
 import waffles.utils.geom.shapes.bounds.fixed.BNDVoid3D;
 import waffles.utils.geom.shapes.points.Point;
 import waffles.utils.geom.spatial.bounds.Bounds;
+import waffles.utils.geom.utilities.Transformator;
 
 /**
  * A {@code Void} defines a {@code Geometry} that contains nothing at all.
@@ -20,33 +20,27 @@ import waffles.utils.geom.spatial.bounds.Bounds;
  * @version 1.0
  * 
  * 
+ * @see Transformator
  * @see Geometry
- * @see Affine
  */
-public class Void implements Affine, Geometry
+public class Void implements Geometry, Transformator
 {
 	/**
-	 * A {@code Void.Factory} handles affine maps of {@code Void} geometry.
+	 * A {@code Void.Factory} generates {@code Void} geometry.
 	 *
 	 * @author Waffles
 	 * @since 21 Jan 2026
 	 * @version 1.1
 	 *
 	 * 
-	 * @see Affine
+	 * @see Transformator
 	 */
-	public class Factory implements Affine.Factory
+	public class Factory implements Transformator.Factory
 	{
 		@Override
-		public Affine create(Matrix... set)
+		public Transformator create(Matrix m)
 		{
-			if(set.length > 0)
-			{
-				int n = set[0].Rows();
-				return new Void(n);
-			}
-			
-			return null;
+			return new Void(m.Rows());
 		}
 
 		@Override
@@ -63,11 +57,11 @@ public class Void implements Affine, Geometry
 	/**
 	 * Creates a new {@code Void}.
 	 * 
-	 * @param n  a space dimension
+	 * @param d  a space dimension
 	 */
-	public Void(int n)
+	public Void(int d)
 	{
-		dim = n;
+		dim = d;
 	}
 	
 	

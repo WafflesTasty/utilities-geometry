@@ -1,15 +1,15 @@
 package waffles.utils.geom.shapes.linear.halved.lines;
 
-import waffles.utils.alg.lin.measure.matrix.Matrices;
 import waffles.utils.alg.lin.measure.matrix.Matrix;
 import waffles.utils.alg.lin.measure.vector.Vector;
-import waffles.utils.alg.utilities.affine.Affine;
 import waffles.utils.geom.Collidable;
 import waffles.utils.geom.collide.collision.Collision;
 import waffles.utils.geom.collide.collision.linear.halved.CLSHLine;
+import waffles.utils.geom.shapes.fixed.Void;
 import waffles.utils.geom.shapes.linear.LSpace;
 import waffles.utils.geom.shapes.linear.affine.lines.Line;
 import waffles.utils.geom.shapes.points.Point;
+import waffles.utils.geom.utilities.Transformator;
 import waffles.utils.tools.primitives.Doubles;
 
 /**
@@ -91,18 +91,16 @@ public class HLine implements LSpace
 
 		
 		@Override
-		public Affine create(Matrix... set)
+		public Transformator create(Matrix m)
 		{
-			if(set.length == 0)
-				return null;
-			if(set.length == 1)
+			if(m.Columns() == 0)
 			{
-				Matrix s = set[0];
-				return new HLine(s);
+				int n = m.Rows();
+				return new Void(n);
 			}
 			
-			Matrix s = Matrices.concat(set);
-			return new HLine(s);
+			Factory fct = new Factory(m);
+			return new HLine(fct);
 		}
 		
 		@Override
@@ -117,15 +115,17 @@ public class HLine implements LSpace
 	
 	/**
 	 * Creates a new {@code HLine}.
-	 * 0
-	 * @param s  a matrix span
+	 * 
+	 * @param p  an origin point
+	 * @param v  a direction vector
 	 * 
 	 * 
-	 * @see Matrix
+	 * @see Vector
+	 * @see Point
 	 */
-	public HLine(Matrix s)
+	public HLine(Point p, Vector v)
 	{
-		this(new Factory(s));
+		this(new Factory(p, v));
 	}
 	
 	/**
@@ -142,21 +142,6 @@ public class HLine implements LSpace
 		this(p, q.minus(p).Vector());
 	}
 		
-	/**
-	 * Creates a new {@code HLine}.
-	 * 
-	 * @param p  an origin point
-	 * @param v  a direction vector
-	 * 
-	 * 
-	 * @see Vector
-	 * @see Point
-	 */
-	public HLine(Point p, Vector v)
-	{
-		this(new Factory(p, v));
-	}
-
 	/**
 	 * Creates a new {@code HLine}.
 	 * 

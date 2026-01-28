@@ -19,7 +19,7 @@ public interface Transformable
 	public static final double ERROR = Floats.pow(2, -16);
 	
 	/**
-	 * Returns the transform of the {@code Transformable}.
+	 * Returns a {@code Mutable} transformation.
 	 * 
 	 * @return  transform data
 	 * 

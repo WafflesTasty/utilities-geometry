@@ -7,9 +7,9 @@ import waffles.utils.alg.lin.measure.matrix.Matrix;
 import waffles.utils.alg.lin.measure.vector.Vector;
 import waffles.utils.alg.lin.measure.vector.Vectors;
 import waffles.utils.alg.utilities.Inaccurate;
-import waffles.utils.alg.utilities.affine.Affine;
-import waffles.utils.geom.Collidable;
 import waffles.utils.geom.collide.collision.linear.CLSPoint;
+import waffles.utils.geom.shapes.fixed.Void;
+import waffles.utils.geom.utilities.Transformator;
 import waffles.utils.tools.primitives.Doubles;
 import waffles.utils.tools.primitives.Floats;
 
@@ -25,12 +25,11 @@ import waffles.utils.tools.primitives.Floats;
  * @version 1.0
  * 
  * 
- * @see Collidable
+ * @see Transformator
  * @see Inaccurate
  * @see Angular
- * @see Affine
  */
-public class Point implements Angular, Affine, Inaccurate<Point>, Collidable
+public class Point implements Angular, Transformator, Inaccurate<Point>
 {	
 	/**
 	 * Defines the error margin of a {@code Point}.
@@ -45,9 +44,9 @@ public class Point implements Angular, Affine, Inaccurate<Point>, Collidable
 	 * @version 1.1
 	 *
 	 * 
-	 * @see Affine
+	 * @see Transformator
 	 */
-	public static class Factory implements Affine.Factory
+	public static class Factory implements Transformator.Factory
 	{
 		private Point src;
 		
@@ -66,16 +65,16 @@ public class Point implements Angular, Affine, Inaccurate<Point>, Collidable
 		
 		
 		@Override
-		public Affine create(Matrix... set)
+		public Transformator create(Matrix m)
 		{
-			if(set.length > 0)
+			if(m.Columns() == 0)
 			{
-				Matrix m = set[0];
-				Vector s = m.Column(0);
-				return Point.create(s);
+				int n = m.Rows();
+				return new Void(n);
 			}
 			
-			return null;
+			Vector s = m.Column(0);
+			return Point.create(s);
 		}
 		
 		@Override

@@ -56,9 +56,9 @@ public interface HyperCuboid extends Hull, AxialSet
 		}
 		
 		@Override
-		public default HyperCuboid create(Matrix... set)
+		public default HyperCuboid create(Matrix s)
 		{
-			return (HyperCuboid) AxialSet.Factory.super.create(set);
+			return (HyperCuboid) AxialSet.Factory.super.create(s);
 		}
 		
 		@Override

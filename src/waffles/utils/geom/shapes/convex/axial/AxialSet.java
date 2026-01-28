@@ -9,9 +9,11 @@ import waffles.utils.geom.shapes.bounds.convex.axial.BNDAxial;
 import waffles.utils.geom.shapes.bounds.convex.axial.BNDAxial2D;
 import waffles.utils.geom.shapes.bounds.convex.axial.BNDAxial3D;
 import waffles.utils.geom.shapes.convex.ConvexSet;
+import waffles.utils.geom.shapes.fixed.Void;
 import waffles.utils.geom.shapes.points.Arrow;
 import waffles.utils.geom.shapes.points.Point;
 import waffles.utils.geom.spatial.bounds.Bounds;
+import waffles.utils.geom.utilities.Transformator;
 
 /**
  * An {@code AxialSet} defines a {@code ConvexSet} by its origin and scale.
@@ -23,10 +25,10 @@ import waffles.utils.geom.spatial.bounds.Bounds;
  * @version 1.1
  * 
  * 
+ * @see Transformator
  * @see ConvexSet
- * @see Affine
  */
-public interface AxialSet extends Affine, ConvexSet
+public interface AxialSet extends ConvexSet, Transformator
 {
 	/**
 	 * A {@code Factory} generates {@code AxialSet} geometry.
@@ -36,9 +38,9 @@ public interface AxialSet extends Affine, ConvexSet
 	 * @version 1.1
 	 *
 	 * 
-	 * @see Affine
+	 * @see Transformator
 	 */
-	public static interface Factory extends Affine.Factory
+	public static interface Factory extends Transformator.Factory
 	{
 		/**
 		 * Returns the source of the {@code Factory}.
@@ -58,27 +60,25 @@ public interface AxialSet extends Affine, ConvexSet
 		 * @return  an constructed object
 		 * 
 		 * 
-		 * @see Affine
+		 * @see Transformator
 		 * @see Arrow
 		 * @see Point
 		 */
-		public abstract Affine create(Point o, Arrow s);
+		public abstract Transformator create(Point o, Arrow s);
 		
 		
 		@Override
-		public default Affine create(Matrix... set)
+		public default Transformator create(Matrix m)
 		{
-			if(set.length == 0)
-				return null;
-			
-			Matrix m;
-			if(set.length > 1)
-				m = Matrices.concat(set);
-			else
-				m = set[0];
-
-
 			int n = m.Rows();
+			
+			if(n == 0)
+				return new Void(n);
+			if(n == 1)
+			{
+				Vector s = m.Column(0);
+				return Point.create(s);
+			}
 
 			float m1 = m.get(n - 1, 0);
 			float m2 = m.get(n - 1, 1);

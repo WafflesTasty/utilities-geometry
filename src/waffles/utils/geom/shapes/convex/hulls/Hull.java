@@ -1,6 +1,5 @@
 package waffles.utils.geom.shapes.convex.hulls;
 
-import waffles.utils.alg.lin.measure.matrix.Matrices;
 import waffles.utils.alg.lin.measure.matrix.Matrix;
 import waffles.utils.alg.lin.measure.vector.Vector;
 import waffles.utils.alg.utilities.affine.Affine;
@@ -11,8 +10,11 @@ import waffles.utils.geom.shapes.bounds.convex.hulls.BNDHull;
 import waffles.utils.geom.shapes.convex.ConvexSet;
 import waffles.utils.geom.shapes.convex.hulls.line.Segment;
 import waffles.utils.geom.shapes.convex.hulls.triangle.Triangle;
+import waffles.utils.geom.shapes.fixed.Void;
 import waffles.utils.geom.shapes.points.Point;
 import waffles.utils.geom.spatial.bounds.Bounds;
+import waffles.utils.geom.spatial.bounds.owners.Bounded;
+import waffles.utils.geom.utilities.Transformator;
 import waffles.utils.tools.patterns.properties.counters.Countable;
 import waffles.utils.tools.primitives.Floats;
 import waffles.utils.tools.primitives.Integers;
@@ -25,10 +27,10 @@ import waffles.utils.tools.primitives.Integers;
  * @version 1.1
  *
  * 
+ * @see Transformator
  * @see ConvexSet
- * @see Affine
  */
-public interface Hull extends Affine, ConvexSet
+public interface Hull extends ConvexSet, Transformator
 {
 	/**
 	 * A {@code Hull.Factory} generates {@code Hull} geometry.
@@ -38,10 +40,10 @@ public interface Hull extends Affine, ConvexSet
 	 * @version 1.1
 	 *
 	 * 
+	 * @see Transformator
 	 * @see Countable
-	 * @see Affine
 	 */
-	public static interface Factory extends Affine.Factory, Countable
+	public static interface Factory extends Transformator.Factory, Countable
 	{
 		/**
 		 * Returns a {@code Point} on the {@code Hull}.
@@ -66,18 +68,9 @@ public interface Hull extends Affine, ConvexSet
 		
 		
 		@Override
-		public default Affine create(Matrix... set)
+		public default Transformator create(Matrix m)
 		{
-			if(set.length == 0)
-				return null;
-			if(set.length == 1)
-			{
-				Matrix s = set[0];
-				return Hull.create(s);
-			}
-			
-			Matrix s = Matrices.concat(set);
-			return Hull.create(s);
+			return Hull.create(m);
 		}
 		
 		@Override
@@ -88,16 +81,27 @@ public interface Hull extends Affine, ConvexSet
 	}
 	
 	/**
-	 * Creates a {@code Hull} from a {@code Matrix} span.
+	 * Creates a {@code Transformable} from a {@code Matrix} span.
 	 * 
 	 * @param s  a matrix span
-	 * @return   a convex hull
+	 * @return   a collidable
 	 * 
 	 * 
+	 * @see Transformator
 	 * @see Matrix
 	 */
-	public static Hull create(Matrix s)
+	public static Transformator create(Matrix s)
 	{
+		if(s.Columns() == 0)
+		{
+			return new Void(s.Rows());
+		}
+		
+		if(s.Columns() == 1)
+		{
+			return Point.create(s.Column(0));
+		}
+		
 		if(s.Columns() == 2)
 		{
 			Point p = Point.create(s.Column(0));
@@ -164,10 +168,9 @@ public interface Hull extends Affine, ConvexSet
 	public default Bounds Bounds(LinearMap m)
 	{
 		Affine a = m.map(this);
-		if(a instanceof Hull)
+		if(a instanceof Bounded)
 		{
-			Hull h = (Hull) a;
-			return h.Bounds();
+			return ((Bounded) a).Bounds();
 		}
 		
 		return null;

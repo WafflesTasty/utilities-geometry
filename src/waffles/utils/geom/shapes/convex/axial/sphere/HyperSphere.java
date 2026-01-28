@@ -42,17 +42,17 @@ public interface HyperSphere extends HyperSpheroid
 	/**
 	 * Creates a unit {@code HyperSphere} from a dimension.
 	 * 
-	 * @param dim  a sphere dimension
+	 * @param d  a sphere dimension
 	 * @return  a unit sphere
 	 */
-	public static HyperSphere unit(int dim)
+	public static HyperSphere unit(int d)
 	{
-		if(dim == 2)
-			return new Circle(dim);
-		if(dim == 3)
-			return new Sphere(dim);
+		if(d == 2)
+			return new Circle(d);
+		if(d == 3)
+			return new Sphere(d);
 		
-		return new SphereND(dim);
+		return new SphereND(d);
 	}
 	
 	

@@ -3,7 +3,8 @@ package waffles.utils.geom.shapes.points;
 import waffles.utils.alg.lin.measure.matrix.Matrix;
 import waffles.utils.alg.lin.measure.vector.Vector;
 import waffles.utils.alg.lin.measure.vector.Vectors;
-import waffles.utils.alg.utilities.affine.Affine;
+import waffles.utils.geom.shapes.fixed.Void;
+import waffles.utils.geom.utilities.Transformator;
 import waffles.utils.tools.primitives.Floats;
 
 /**
@@ -47,12 +48,14 @@ public class Arrow extends Point
 
 		
 		@Override
-		public Affine create(Matrix... set)
+		public Transformator create(Matrix s)
 		{
-			if(set.length == 0)
-				return null;
+			if(s.Columns() == 0)
+			{
+				int n = s.Rows();
+				return new Void(n);
+			}
 			
-			Matrix s = set[0];
 			Vector v = s.Column(0);
 			int n = v.Size() - 1;
 			Vector w = v.resize(n);

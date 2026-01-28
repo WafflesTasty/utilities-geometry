@@ -1,13 +1,13 @@
 package waffles.utils.geom.shapes.linear.halved;
 
-import waffles.utils.alg.lin.measure.matrix.Matrices;
 import waffles.utils.alg.lin.measure.matrix.Matrix;
 import waffles.utils.alg.lin.measure.vector.Vector;
-import waffles.utils.alg.utilities.affine.Affine;
 import waffles.utils.geom.collide.collision.Collision;
 import waffles.utils.geom.collide.collision.linear.halved.CLSHSpace;
+import waffles.utils.geom.shapes.fixed.Void;
 import waffles.utils.geom.shapes.linear.VSpace;
 import waffles.utils.geom.shapes.points.Point;
+import waffles.utils.geom.utilities.Transformator;
 import waffles.utils.tools.primitives.Doubles;
 
 /**
@@ -64,18 +64,16 @@ public class HSpace implements VSpace.Ortho
 
 		
 		@Override
-		public Affine create(Matrix... set)
+		public Transformator create(Matrix s)
 		{
-			if(set.length == 0)
-				return null;
-			if(set.length == 1)
+			if(s.Columns() == 0)
 			{
-				Matrix s = set[0];
-				return new HSpace(s);
+				int n = s.Rows();
+				return new Void(n);
 			}
 			
-			Matrix s = Matrices.concat(set);
-			return new HSpace(s);
+			Factory fct = new Factory(s);
+			return new HSpace(fct);
 		}
 		
 		@Override
@@ -87,34 +85,7 @@ public class HSpace implements VSpace.Ortho
 	
 	
 	private Factory fct;
-	
-	/**
-	 * Creates a new {@code HSpace}.
-	 * 
-	 * @param s  a matrix span
-	 * 
-	 * 
-	 * @see Matrix
-	 */
-	public HSpace(Matrix s)
-	{
-		this(new Factory(s));
-	}
-	
-	/**
-	 * Creates a new {@code HSpace}.
-	 * 
-	 * @param p  a source point
-	 * @param q  a target point
-	 * 
-	 * 
-	 * @see Point
-	 */
-	public HSpace(Point p, Point q)
-	{
-		this(p, q.minus(p).Vector());
-	}
-		
+				
 	/**
 	 * Creates a new {@code HSpace}.
 	 * 
@@ -130,6 +101,20 @@ public class HSpace implements VSpace.Ortho
 		this(new Factory(o, n));
 	}
 
+	/**
+	 * Creates a new {@code HSpace}.
+	 * 
+	 * @param p  a source point
+	 * @param q  a target point
+	 * 
+	 * 
+	 * @see Point
+	 */
+	public HSpace(Point p, Point q)
+	{
+		this(p, q.minus(p).Vector());
+	}
+	
 	/**
 	 * Creates a new {@code HSpace}.
 	 * 

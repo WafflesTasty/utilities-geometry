@@ -5,10 +5,9 @@ import waffles.utils.alg.lin.measure.matrix.Matrix;
 import waffles.utils.alg.lin.measure.vector.Vector;
 import waffles.utils.alg.lin.measure.vector.Vectors;
 import waffles.utils.alg.lin.solvers.matrix.MatrixSolver;
-import waffles.utils.alg.utilities.affine.Affine;
-import waffles.utils.geom.Collidable;
 import waffles.utils.geom.shapes.points.Point;
 import waffles.utils.geom.spatial.maps.data.unary.Positioned;
+import waffles.utils.geom.utilities.Transformator;
 
 /**
  * A {@code VSpace} provides the basic structure for various linear spaces.
@@ -18,11 +17,10 @@ import waffles.utils.geom.spatial.maps.data.unary.Positioned;
  * @version 1.1
  *
  * 
+ * @see Transformator
  * @see Positioned
- * @see Collidable
- * @see Affine
  */
-public interface VSpace extends Affine, Collidable, Positioned
+public interface VSpace extends Positioned, Transformator
 {
 	/**
 	 * A {@code VSpace.Factory} generates {@code VSpace} geometry.
@@ -32,10 +30,10 @@ public interface VSpace extends Affine, Collidable, Positioned
 	 * @version 1.1
 	 *
 	 * 
+	 * @see Transformator
 	 * @see MatrixSolver
-	 * @see Affine
 	 */
- 	public static class Factory implements Affine.Factory, MatrixSolver.Hints
+ 	public static abstract class Factory implements Transformator.Factory, MatrixSolver.Hints
 	{
 		private Point org;
 		private Matrix dir;
