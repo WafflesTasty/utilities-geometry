@@ -2,7 +2,9 @@ package waffles.utils.geom.shapes.convex.hulls.triangle;
 
 import waffles.utils.alg.lin.measure.matrix.Matrix;
 import waffles.utils.geom.shapes.convex.hulls.Hull;
+import waffles.utils.geom.shapes.fixed.Void;
 import waffles.utils.geom.shapes.points.Point;
+import waffles.utils.geom.utilities.Transformator;
 
 /**
  * A {@code Triangle} defines a three-point hull in n-dimensional space.
@@ -44,22 +46,29 @@ public interface Triangle extends Hull
 	 * Creates a {@code Triangle} from a matrix span.
 	 * 
 	 * @param s  a matrix span
-	 * @return   a line segment
+	 * @return   a transformator
 	 * 
 	 * 
+	 * @see Transformator
 	 * @see Matrix
 	 */
-	public static Triangle create(Matrix s)
+	public static Transformator create(Matrix s)
 	{
-		switch(s.Rows())
+		if(s.Columns() == 0)
 		{
-		case 3:
-			return new Triangle2D(s);
-		case 4:
-			return new Triangle3D(s);
-		default:
-			return new TriangleND(s);
+			return new Void(s.Rows());
 		}
+
+		if(s.Columns() == 3)
+		{
+			Point p = Point.create(s.Column(0));
+			Point q = Point.create(s.Column(1));
+			Point r = Point.create(s.Column(2));
+			
+			return Triangle.create(p, q, r);
+		}
+		
+		return null;
 	}
 	
 	

@@ -6,9 +6,11 @@ import waffles.utils.alg.lin.solvers.Solver;
 import waffles.utils.alg.lin.solvers.matrix.ranks.types.RRSVD;
 import waffles.utils.geom.collide.collision.convex.hulls.CLSSegment;
 import waffles.utils.geom.shapes.convex.hulls.Hull;
+import waffles.utils.geom.shapes.fixed.Void;
 import waffles.utils.geom.shapes.linear.LSpace;
 import waffles.utils.geom.shapes.linear.VSpace;
 import waffles.utils.geom.shapes.points.Point;
+import waffles.utils.geom.utilities.Transformator;
 
 /**
  * A {@code Segment} defines a bounded line segment in n-dimensional space.
@@ -80,7 +82,7 @@ public interface Segment extends Hull, LSpace
 		
 		
 		@Override
-		public Segment create(Matrix... set)
+		public Transformator create(Matrix... set)
 		{
 			if(set.length == 0)
 				return null;
@@ -105,23 +107,23 @@ public interface Segment extends Hull, LSpace
 	/**
 	 * Creates a {@code Segment} from two points.
 	 * 
-	 * @param x  a segment point
-	 * @param y  a segment point
+	 * @param p  a segment point
+	 * @param q  a segment point
 	 * @return   a line segment
 	 * 
 	 * 
 	 * @see Point
 	 */
-	public static Segment create(Point x, Point y)
+	public static Segment create(Point p, Point q)
 	{
-		switch(x.Dimension())
+		switch(p.Dimension())
 		{
 		case 2:
-			return new Segment2D(x, y);
+			return new Segment2D(p, q);
 		case 3:
-			return new Segment3D(x, y);
+			return new Segment3D(p, q);
 		default:
-			return new SegmentND(x, y);
+			return new SegmentND(p, q);
 		}
 	}
 	
@@ -132,19 +134,25 @@ public interface Segment extends Hull, LSpace
 	 * @return   a line segment
 	 * 
 	 * 
+	 * @see Transformator
 	 * @see Matrix
 	 */
-	public static Segment create(Matrix s)
+	public static Transformator create(Matrix s)
 	{
-		switch(s.Rows())
+		if(s.Columns() == 0)
 		{
-		case 3:
-			return new Segment2D(s);
-		case 4:
-			return new Segment3D(s);
-		default:
-			return new SegmentND(s);
+			return new Void(s.Rows());
 		}
+
+		if(s.Columns() == 2)
+		{
+			Point p = Point.create(s.Column(0));
+			Point q = Point.create(s.Column(1));
+			
+			return Segment.create(p, q);
+		}
+		
+		return null;
 	}
 	
 	
