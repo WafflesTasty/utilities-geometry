@@ -1,5 +1,7 @@
 package waffles.utils.geom.collide.response.convex.hulls;
 
+import java.util.Iterator;
+
 import waffles.utils.geom.Collidable;
 import waffles.utils.geom.collide.collision.Collision.Response;
 import waffles.utils.geom.shapes.Geometry;
@@ -21,8 +23,9 @@ import waffles.utils.geom.shapes.points.Point;
 public class IHBGeometry implements Response
 {
 	private Hull src;
-	private Response[] rsp;
 	private Geometry tgt;
+	private Iterator<Point> pts;
+	private Response rsp;
 	
 	/**
 	 * Creates a new {@code IHBGeometry}.
@@ -36,19 +39,16 @@ public class IHBGeometry implements Response
 	 */
 	public IHBGeometry(Hull s, Geometry t)
 	{
-		Factory fc = s.Factory();
-		rsp = new Response[fc.Count()];
-		for(int k = 0; k < fc.Count(); k++)
-		{
-			Point p = fc.Point(k);
-			rsp[k] = t.contain(p);
-		}
+		pts = s.Points().iterator();
 		
+		Point o = s.Origin();
+		rsp = t.contain(o);
+
 		src = s;
 		tgt = t;
 	}
 
-	
+
 	@Override
 	public Hull Source()
 	{
@@ -70,14 +70,16 @@ public class IHBGeometry implements Response
 	@Override
 	public boolean hasImpact()
 	{
-		for(Response r : rsp)
+		while(pts.hasNext())
 		{
-			if(!r.hasImpact())
+			Point p = pts.next();
+			rsp = tgt.contain(p);
+			if(!rsp.hasImpact())
 			{
 				return false;
 			}
 		}
-
+		
 		return true;
 	}
 
@@ -91,6 +93,11 @@ public class IHBGeometry implements Response
 	@Override
 	public int cost()
 	{
-		return rsp[0].cost() * rsp.length;
+		Factory fct = src.Factory();
+		
+		int p = fct.Count();
+		int c = rsp.cost();
+		
+		return c * p;
 	}
 }

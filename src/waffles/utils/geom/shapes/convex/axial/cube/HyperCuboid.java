@@ -83,6 +83,13 @@ public interface HyperCuboid extends Hull, AxialSet
 			
 			return new Point(v, 1f);
 		}
+		
+		@Override
+		public default int Count()
+		{
+			int n = Source().Dimension();
+			return Integers.pow(2, n);
+		}
 	}
 	
 	

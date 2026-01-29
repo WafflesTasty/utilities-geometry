@@ -44,6 +44,7 @@ public class BNDHull implements BNDGeometry
 		
 		return max.minus(min).times(0.5f);
 	}
+	
 		
 	@Override
 	public Point Minimum()
@@ -68,6 +69,7 @@ public class BNDHull implements BNDGeometry
 		
 		return new Point(m, 1f);
 	}
+	
 
 	@Override
 	public Point Maximum()
@@ -98,6 +100,7 @@ public class BNDHull implements BNDGeometry
 	{
 		return Scale().norm();
 	}
+	
 	
 	@Override
 	public Hull Geometry()

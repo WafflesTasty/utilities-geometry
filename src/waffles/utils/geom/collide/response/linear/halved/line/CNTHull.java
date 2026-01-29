@@ -1,5 +1,7 @@
 package waffles.utils.geom.collide.response.linear.halved.line;
 
+import java.util.Iterator;
+
 import waffles.utils.geom.Collidable;
 import waffles.utils.geom.collide.collision.Collision.Response;
 import waffles.utils.geom.shapes.convex.hulls.Hull;
@@ -20,9 +22,11 @@ import waffles.utils.geom.shapes.points.Point;
  */
 public class CNTHull implements Response
 {
-	private HLine src;
-	private Response[] rsp;
 	private Hull tgt;
+	private HLine src;
+	
+	private Response rsp;
+	private Iterator<Point> pts;
 	
 	/**
 	 * Creates a new {@code CNTHull}.
@@ -36,13 +40,10 @@ public class CNTHull implements Response
 	 */
 	public CNTHull(HLine s, Hull t)
 	{
-		Factory fc = t.Factory();
-		rsp = new Response[fc.Count()];
-		for(int k = 0; k < fc.Count(); k++)
-		{
-			Point p = fc.Point(k);
-			rsp[k] = s.contain(p);
-		}
+		pts = t.Points().iterator();
+		
+		Point o = t.Origin();
+		rsp = s.contain(o);
 		
 		src = s;
 		tgt = t;
@@ -70,14 +71,16 @@ public class CNTHull implements Response
 	@Override
 	public boolean hasImpact()
 	{
-		for(Response r : rsp)
+		while(pts.hasNext())
 		{
-			if(!r.hasImpact())
+			Point p = pts.next();
+			rsp = src.contain(p);
+			if(!rsp.hasImpact())
 			{
 				return false;
 			}
 		}
-
+		
 		return true;
 	}
 
@@ -91,6 +94,11 @@ public class CNTHull implements Response
 	@Override
 	public int cost()
 	{
-		return rsp[0].cost() * rsp.length;
+		Factory fct = tgt.Factory();
+		
+		int p = fct.Count();
+		int c = rsp.cost();
+		
+		return c * p;
 	}
 }

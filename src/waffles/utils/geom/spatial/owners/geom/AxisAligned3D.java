@@ -5,7 +5,7 @@ import waffles.utils.geom.shapes.convex.axial.AxialSet3D;
 import waffles.utils.geom.spatial.Aligned3D;
 
 /**
- * The {@code AxisAligned3D} interface defines a two-dimensional {@code Aligned Geometrical}.
+ * An {@code AxisAligned3D} defines a three-dimensional {@code Aligned Geometrical}.
  *
  * @author Waffles
  * @since Feb 27, 2018

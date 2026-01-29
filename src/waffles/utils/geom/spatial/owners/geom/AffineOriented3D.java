@@ -4,7 +4,7 @@ import waffles.utils.geom.shapes.Geometrical3D;
 import waffles.utils.geom.spatial.Adjustable3D;
 
 /**
- * The {@code AffineOriented3D} interface defines a three-dimensional {@code Adjustable Geometrical}.
+ * An {@code AffineOriented3D} defines a three-dimensional {@code Adjustable Geometrical}.
  *
  * @author Waffles
  * @since Feb 27, 2018

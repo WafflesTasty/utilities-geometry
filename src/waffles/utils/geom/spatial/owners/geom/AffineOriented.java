@@ -5,7 +5,7 @@ import waffles.utils.geom.spatial.Adjustable;
 import waffles.utils.geom.spatial.maps.global.SpatialMap;
 
 /**
- * The {@code AffineOriented} interface defines an n-dimensional {@code Adjustable Geometrical}.
+ * An {@code AffineOriented} defines an n-dimensional {@code Adjustable Geometrical}.
  *
  * @author Waffles
  * @since Feb 27, 2018

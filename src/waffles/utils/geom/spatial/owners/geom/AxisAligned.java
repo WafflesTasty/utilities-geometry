@@ -8,7 +8,7 @@ import waffles.utils.geom.spatial.Aligned;
 import waffles.utils.geom.spatial.maps.global.AxialMap;
 
 /**
- * The {@code AxisAligned} interface defines an n-dimensional {@code Aligned Geometrical}.
+ * An {@code AxisAligned} defines an n-dimensional {@code Aligned Geometrical}.
  *
  * @author Waffles
  * @since Feb 27, 2018

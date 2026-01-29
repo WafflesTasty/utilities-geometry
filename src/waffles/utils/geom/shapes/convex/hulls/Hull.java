@@ -15,6 +15,7 @@ import waffles.utils.geom.shapes.points.Point;
 import waffles.utils.geom.spatial.bounds.Bounds;
 import waffles.utils.geom.spatial.bounds.owners.Bounded;
 import waffles.utils.geom.utilities.Transformator;
+import waffles.utils.geom.utilities.iterators.HullIterator;
 import waffles.utils.tools.patterns.properties.counters.Countable;
 import waffles.utils.tools.primitives.Floats;
 import waffles.utils.tools.primitives.Integers;
@@ -65,7 +66,7 @@ public interface Hull extends ConvexSet, Transformator
 
 			return null;
 		}
-		
+				
 		
 		@Override
 		public default Transformator create(Matrix m)
@@ -125,6 +126,20 @@ public interface Hull extends ConvexSet, Transformator
 			return new Hull3D(s);
 		
 		return new HullND(s);
+	}
+	
+	/**
+	 * Iterates over the points in the {@code Hull}.
+	 * 
+	 * @return  a point iterable
+	 * 
+	 * 
+	 * @see Iterable
+	 * @see Point
+	 */
+	public default Iterable<Point> Points()
+	{
+		return () -> new HullIterator(this);
 	}
 	
 	

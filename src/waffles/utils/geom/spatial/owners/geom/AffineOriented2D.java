@@ -4,7 +4,7 @@ import waffles.utils.geom.shapes.Geometrical2D;
 import waffles.utils.geom.spatial.Adjustable2D;
 
 /**
- * The {@code AffineOriented2D} interface defines a two-dimensional {@code Adjustable Geometrical}.
+ * An {@code AffineOriented2D} defines a two-dimensional {@code Adjustable Geometrical}.
  *
  * @author Waffles
  * @since Feb 27, 2018
