@@ -1,6 +1,6 @@
-package waffles.utils.geom.spatial.owners.geom;
+package waffles.utils.geom.owners.spatial;
 
-import waffles.utils.geom.shapes.Geometrical2D;
+import waffles.utils.geom.owners.Geometrical2D;
 import waffles.utils.geom.spatial.Viewpoint2D;
 
 /**

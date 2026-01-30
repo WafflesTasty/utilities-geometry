@@ -19,6 +19,7 @@ import waffles.utils.geom.spatial.maps.GlobalMap;
 public class GlobalCompose implements GlobalMap
 {
 	private GlobalMap[] maps;
+	private LazyMatrix utw, wtu;
 
 	/**
 	 * Creates a new {@code GlobalCompose}.
@@ -37,38 +38,48 @@ public class GlobalCompose implements GlobalMap
 	@Override
 	public LazyMatrix UTW()
 	{
-		return new LazyMatrix(dim ->
+		if(utw == null)
 		{
-			Matrix utw = Matrices.identity(dim);
-			utw.setOperator(Identity.Type());
-
-			Matrix mat;
-			for(GlobalMap map : maps)
+			utw = new LazyMatrix(dim ->
 			{
-				mat = map.UTW().Value(dim);
-				utw = utw.times(mat);
-			}
+				Matrix utw = Matrices.identity(dim);
+				utw.setOperator(Identity.Type());
 
-			return utw;
-		});
+				Matrix mat;
+				for(GlobalMap map : maps)
+				{
+					mat = map.UTW().Value(dim);
+					utw = utw.times(mat);
+				}
+
+				return utw;
+			});			
+		}
+
+		return utw;
 	}
 
 	@Override
 	public LazyMatrix WTU()
 	{
-		return new LazyMatrix(dim ->
+		if(wtu == null)
 		{
-			Matrix wtu = Matrices.identity(dim);
-			wtu.setOperator(Identity.Type());
-
-			Matrix mat;
-			for(GlobalMap map : maps)
+			wtu = new LazyMatrix(dim ->
 			{
-				mat = map.WTU().Value(dim);
-				wtu = mat.times(wtu);
-			}
+				Matrix wtu = Matrices.identity(dim);
+				wtu.setOperator(Identity.Type());
 
-			return wtu;
-		});
+				Matrix mat;
+				for(GlobalMap map : maps)
+				{
+					mat = map.WTU().Value(dim);
+					wtu = mat.times(wtu);
+				}
+
+				return wtu;
+			});			
+		}
+		
+		return wtu;
 	}
 }

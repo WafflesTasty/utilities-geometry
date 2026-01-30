@@ -4,7 +4,7 @@ import waffles.utils.alg.lin.measure.matrix.Matrix;
 import waffles.utils.alg.utilities.affine.LinearMap;
 
 /**
- * A {@code LinearInverse} defines an inverse {@code LinearMap}.
+ * A {@code LinearInverse} defines a {@code LinearMap} inversion.
  *
  * @author Waffles
  * @since 15 Sep 2023

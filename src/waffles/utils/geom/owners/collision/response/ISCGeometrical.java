@@ -1,17 +1,19 @@
-package waffles.utils.geom.collide.response.convex.spheres.spheroid;
+package waffles.utils.geom.owners.collision.response;
 
 import waffles.utils.alg.lin.measure.vector.Vector;
 import waffles.utils.alg.lin.measure.vector.Vectors;
+import waffles.utils.alg.utilities.affine.LinearMap;
 import waffles.utils.geom.collide.collision.Collision.Response;
+import waffles.utils.geom.owners.Geometrical;
+import waffles.utils.geom.shapes.Geometry;
 import waffles.utils.geom.shapes.convex.ConjugateSet;
 import waffles.utils.geom.shapes.convex.ConvexSet;
-import waffles.utils.geom.shapes.convex.axial.sphere.HyperSphere;
-import waffles.utils.geom.shapes.convex.axial.sphere.HyperSpheroid;
 import waffles.utils.geom.shapes.points.Point;
-import waffles.utils.geom.spatial.maps.global.fixed.AxisMap;
+import waffles.utils.geom.utilities.tform.LinearCompose;
+import waffles.utils.geom.utilities.tform.LinearInverse;
 
 /**
- * An {@code ISCConvex} computes an intersection {@code Response} between a spheroid and a convex set.
+ * An {@code ISCGeometrical} computes an intersection {@code Response} between geometrical objects.
  *
  * @author Waffles
  * @since 12 May 2021
@@ -20,30 +22,35 @@ import waffles.utils.geom.spatial.maps.global.fixed.AxisMap;
  *
  * @see Response
  */
-public class ISCConvex implements Response
+public class ISCGeometrical implements Response
 {
 	private Response rsp;
-	private HyperSpheroid src;
-	private AxisMap map;
+	private Geometrical src;
+	private LinearMap map;
 
 	/**
-	 * Creates a new {@code ISCConvex}.
+	 * Creates a new {@code ISCGeometrical}.
 	 *
 	 * @param s  a source spheroid
 	 * @param t  a target set
 	 *
 	 *
-	 * @see HyperSpheroid
-	 * @see ConvexSet
+	 * @see Geometrical
 	 */
-	public ISCConvex(HyperSpheroid s, ConvexSet t)
+	public ISCGeometrical(Geometrical s, Geometrical t)
 	{
 		int n = s.Dimension();
 		
-		map = new AxisMap(s);
-		HyperSphere u = HyperSphere.unit(n);
-		ConvexSet r = new ConjugateSet(t, map);
-		rsp = u.intersect(r);
+		LinearMap m1 = s.Transform();
+		LinearMap m2 = t.Transform();
+		
+		Geometry g = s.Shape();
+		Geometry h = t.Shape();
+		
+		map = new LinearInverse(m2);
+		map = new LinearCompose(map, m1);
+		h = new ConjugateSet((ConvexSet) h, map);
+		rsp = s.Shape().intersect(h);
 		src = s;
 	}
 
@@ -55,7 +62,7 @@ public class ISCConvex implements Response
 	}
 	
 	@Override
-	public HyperSpheroid Source()
+	public Geometrical Source()
 	{
 		return src;
 	}

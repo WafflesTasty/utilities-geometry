@@ -1,6 +1,6 @@
-package waffles.utils.geom.spatial.owners.geom;
+package waffles.utils.geom.owners.spatial;
 
-import waffles.utils.geom.shapes.Geometrical;
+import waffles.utils.geom.owners.Geometrical;
 import waffles.utils.geom.spatial.Adjustable;
 import waffles.utils.geom.spatial.maps.global.SpatialMap;
 

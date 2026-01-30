@@ -1,6 +1,7 @@
-package waffles.utils.geom.shapes;
+package waffles.utils.geom.owners;
 
 import waffles.utils.geom.Collideable3D;
+import waffles.utils.geom.shapes.Geometry3D;
 import waffles.utils.geom.spatial.bounds.Bounds3D;
 import waffles.utils.geom.spatial.bounds.owners.Bounded3D;
 

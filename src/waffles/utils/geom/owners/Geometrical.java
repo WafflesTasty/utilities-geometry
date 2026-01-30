@@ -1,9 +1,10 @@
-package waffles.utils.geom.shapes;
+package waffles.utils.geom.owners;
 
-import waffles.utils._todo.geometric.CLSGeometrical;
 import waffles.utils.alg.utilities.affine.LinearMap;
 import waffles.utils.geom.Collidable;
 import waffles.utils.geom.collide.collision.Collision;
+import waffles.utils.geom.owners.collision.CLSGeometrical;
+import waffles.utils.geom.shapes.Geometry;
 import waffles.utils.geom.spatial.bounds.Bounds;
 import waffles.utils.geom.spatial.bounds.owners.Bounded;
 

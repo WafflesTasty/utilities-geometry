@@ -1,8 +1,8 @@
-package waffles.utils.geom.spatial.owners.geom;
+package waffles.utils.geom.owners.spatial;
 
 import waffles.utils._todo.geometric.CLSAlignable;
 import waffles.utils.geom.collide.collision.Collision;
-import waffles.utils.geom.shapes.Geometrical;
+import waffles.utils.geom.owners.Geometrical;
 import waffles.utils.geom.shapes.convex.axial.AxialSet;
 import waffles.utils.geom.spatial.Aligned;
 import waffles.utils.geom.spatial.maps.global.AxialMap;
