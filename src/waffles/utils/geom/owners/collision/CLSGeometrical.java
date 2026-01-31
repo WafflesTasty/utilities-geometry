@@ -3,14 +3,12 @@ package waffles.utils.geom.owners.collision;
 import waffles.utils.geom.Collidable;
 import waffles.utils.geom.collide.collision.Collision;
 import waffles.utils.geom.owners.Geometrical;
-import waffles.utils.geom.owners.collision.response.CNTHull;
 import waffles.utils.geom.owners.collision.response.CNTTransformator;
 import waffles.utils.geom.owners.collision.response.IHBTransformator;
 import waffles.utils.geom.owners.collision.response.ISCConvex;
 import waffles.utils.geom.owners.collision.response.ISCGeometrical;
 import waffles.utils.geom.owners.collision.response.ISCTransformator;
 import waffles.utils.geom.shapes.convex.ConvexSet;
-import waffles.utils.geom.shapes.convex.hulls.Hull;
 import waffles.utils.geom.shapes.linear.LSpace;
 import waffles.utils.geom.shapes.points.Point;
 
@@ -44,14 +42,7 @@ public class CLSGeometrical extends Collision
 	public Response inhabit(Collidable c)
 	{
 		Geometrical s = Source();
-		
-		// Eliminate points.
-		if(c instanceof Point)
-		{
-			Point t = (Point) c;
-			return new IHBTransformator(s, t);
-		}
-		
+
 		// Eliminate linear spaces.
 		if(c instanceof LSpace)
 		{
@@ -66,6 +57,13 @@ public class CLSGeometrical extends Collision
 	public Response intersect(Collidable c)
 	{
 		Geometrical s = Source();
+		
+		// Eliminate points.
+		if(c instanceof Point)
+		{
+			Point t = (Point) c;
+			return new CNTTransformator(s, t);
+		}
 		
 		// Eliminate linear spaces.
 		if(c instanceof LSpace)
@@ -101,20 +99,6 @@ public class CLSGeometrical extends Collision
 		{
 			Point t = (Point) c;
 			return new CNTTransformator(s, t);
-		}
-		
-		// Eliminate linear spaces.
-		if(c instanceof LSpace)
-		{
-			LSpace t = (LSpace) c;
-			return new CNTTransformator(s, t);
-		}
-		
-		// Eliminate hulls.
-		if(c instanceof Hull)
-		{
-			Hull t = (Hull) c;
-			return new CNTHull(s, t);
 		}
 
 		return () -> s;
