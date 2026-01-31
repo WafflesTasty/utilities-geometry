@@ -3,7 +3,6 @@ package waffles.utils.geom.owners.spatial;
 import waffles.utils.geom.collide.collision.Collision;
 import waffles.utils.geom.owners.Geometrical;
 import waffles.utils.geom.owners.collision.CLSAxisAligned;
-import waffles.utils.geom.shapes.convex.axial.AxialSet;
 import waffles.utils.geom.spatial.Aligned;
 import waffles.utils.geom.spatial.maps.global.AxialMap;
 
@@ -21,10 +20,7 @@ import waffles.utils.geom.spatial.maps.global.AxialMap;
 public interface AxisAligned extends Aligned, Geometrical
 {	
 	@Override
-	public default int Dimension()
-	{
-		return Geometrical.super.Dimension();
-	}
+	public abstract AxialMap.Mutable Transform();
 	
 	@Override
 	public default Collision Collision()
@@ -33,8 +29,8 @@ public interface AxisAligned extends Aligned, Geometrical
 	}
 	
 	@Override
-	public abstract AxialMap.Mutable Transform();
-	
-//	@Override
-//	public abstract AxialSet Shape();
+	public default int Dimension()
+	{
+		return Geometrical.super.Dimension();
+	}
 }
