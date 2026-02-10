@@ -12,10 +12,10 @@ import waffles.utils.tools.patterns.Constructible;
 
 /**
  * The {@code Bounds} interface defines bounding volumes in n-dimensional space.
- * It defines all the spatial data to generate a bounding box and bounding sphere.
+ * This should define all spatial data to generate a bounding box and bounding sphere.
  * In order for an implemenation to work, make sure to override either the 
- * minimum/maximum or center/size vectors, and either
- * radius or diameter.
+ * minimum/maximum or origin/size vectors, and either
+ * the radius or diameter value.
  * 
  * @author Waffles
  * @since Apr 06, 2019
