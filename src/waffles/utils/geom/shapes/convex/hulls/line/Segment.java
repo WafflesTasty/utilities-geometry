@@ -4,7 +4,7 @@ import waffles.utils.alg.lin.measure.matrix.Matrices;
 import waffles.utils.alg.lin.measure.matrix.Matrix;
 import waffles.utils.alg.lin.solvers.Solver;
 import waffles.utils.alg.lin.solvers.matrix.ranks.types.RRSVD;
-import waffles.utils.geom.collide.collision.convex.hulls.CLSSegment;
+import waffles.utils.geom.shapes.collision.convex.hulls.CLSSegment;
 import waffles.utils.geom.shapes.convex.hulls.Hull;
 import waffles.utils.geom.shapes.fixed.Void;
 import waffles.utils.geom.shapes.linear.LSpace;

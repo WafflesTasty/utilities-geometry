@@ -2,9 +2,9 @@ package waffles.utils.geom.shapes.convex.hulls;
 
 import waffles.utils.alg.lin.measure.matrix.Matrix;
 import waffles.utils.alg.lin.measure.vector.Vector;
-import waffles.utils.geom.collide.collision.Collision;
-import waffles.utils.geom.collide.collision.convex.hulls.CLSHull;
 import waffles.utils.geom.shapes.bounds.convex.hulls.BNDHull;
+import waffles.utils.geom.shapes.collision.Collision;
+import waffles.utils.geom.shapes.collision.convex.hulls.CLSHull;
 import waffles.utils.geom.shapes.convex.ConvexSet;
 import waffles.utils.geom.shapes.convex.hulls.line.Segment;
 import waffles.utils.geom.shapes.convex.hulls.triangle.Triangle;

@@ -1,13 +1,13 @@
 package waffles.utils.geom.owners.collision;
 
 import waffles.utils.geom.Collidable;
-import waffles.utils.geom.collide.collision.Collision;
 import waffles.utils.geom.owners.Geometrical;
 import waffles.utils.geom.owners.collision.response.CNTTransformator;
 import waffles.utils.geom.owners.collision.response.IHBTransformator;
 import waffles.utils.geom.owners.collision.response.ISCConvex;
 import waffles.utils.geom.owners.collision.response.ISCGeometrical;
 import waffles.utils.geom.owners.collision.response.ISCTransformator;
+import waffles.utils.geom.shapes.collision.Collision;
 import waffles.utils.geom.shapes.convex.ConvexSet;
 import waffles.utils.geom.shapes.linear.LSpace;
 import waffles.utils.geom.shapes.points.Point;

@@ -1,13 +1,13 @@
 package waffles.utils.geom.owners.collision;
 
 import waffles.utils.geom.Collidable;
-import waffles.utils.geom.collide.response.RSPFlipped;
 import waffles.utils.geom.owners.collision.response.CNTTransformator;
 import waffles.utils.geom.owners.collision.response.ISCTransformator;
 import waffles.utils.geom.owners.spatial.AxisAligned;
 import waffles.utils.geom.shapes.Geometry;
 import waffles.utils.geom.shapes.convex.axial.AxialSet;
 import waffles.utils.geom.shapes.points.Point;
+import waffles.utils.geom.shapes.response.RSPFlipped;
 import waffles.utils.geom.spatial.maps.global.AxialMap;
 
 /**

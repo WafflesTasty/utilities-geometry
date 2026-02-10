@@ -2,8 +2,8 @@ package waffles.utils.geom.shapes.linear.halved;
 
 import waffles.utils.alg.lin.measure.matrix.Matrix;
 import waffles.utils.alg.lin.measure.vector.Vector;
-import waffles.utils.geom.collide.collision.Collision;
-import waffles.utils.geom.collide.collision.linear.halved.CLSHSpace;
+import waffles.utils.geom.shapes.collision.Collision;
+import waffles.utils.geom.shapes.collision.linear.halved.CLSHSpace;
 import waffles.utils.geom.shapes.fixed.Void;
 import waffles.utils.geom.shapes.linear.VSpace;
 import waffles.utils.geom.shapes.points.Point;

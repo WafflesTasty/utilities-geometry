@@ -1,11 +1,11 @@
 package waffles.utils.geom.shapes.convex.axial.sphere;
 
 import waffles.utils.alg.lin.measure.vector.Vector;
-import waffles.utils.geom.collide.collision.Collision;
-import waffles.utils.geom.collide.collision.convex.spheres.CLSSpheroid;
 import waffles.utils.geom.shapes.bounds.convex.spheroid.BNDSpheroid;
 import waffles.utils.geom.shapes.bounds.convex.spheroid.BNDSpheroid2D;
 import waffles.utils.geom.shapes.bounds.convex.spheroid.BNDSpheroid3D;
+import waffles.utils.geom.shapes.collision.Collision;
+import waffles.utils.geom.shapes.collision.convex.spheres.CLSSpheroid;
 import waffles.utils.geom.shapes.convex.axial.AxialSet;
 import waffles.utils.geom.shapes.convex.axial.sphere.base.Ellipse;
 import waffles.utils.geom.shapes.convex.axial.sphere.base.Spheroid;

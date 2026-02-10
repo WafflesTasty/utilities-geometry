@@ -1,7 +1,7 @@
 package waffles.utils.geom.shapes.convex.axial.sphere;
 
-import waffles.utils.geom.collide.collision.Collision;
-import waffles.utils.geom.collide.collision.convex.spheres.CLSSphere;
+import waffles.utils.geom.shapes.collision.Collision;
+import waffles.utils.geom.shapes.collision.convex.spheres.CLSSphere;
 import waffles.utils.geom.shapes.convex.axial.sphere.base.Circle;
 import waffles.utils.geom.shapes.convex.axial.sphere.base.Sphere;
 import waffles.utils.geom.shapes.convex.axial.sphere.base.SphereND;

@@ -7,7 +7,7 @@ import waffles.utils.alg.lin.measure.matrix.Matrix;
 import waffles.utils.alg.lin.measure.vector.Vector;
 import waffles.utils.alg.lin.measure.vector.Vectors;
 import waffles.utils.alg.utilities.Inaccurate;
-import waffles.utils.geom.collide.collision.linear.CLSPoint;
+import waffles.utils.geom.shapes.collision.linear.CLSPoint;
 import waffles.utils.geom.shapes.fixed.Void;
 import waffles.utils.geom.utilities.Transformator;
 import waffles.utils.tools.primitives.Doubles;

@@ -1,10 +1,10 @@
 package waffles.utils.geom.shapes.convex;
 
 import waffles.utils.alg.lin.measure.vector.Vector;
-import waffles.utils.geom.collide.collision.Collision;
-import waffles.utils.geom.collide.collision.convex.CLSConvex;
 import waffles.utils.geom.shapes.Geometry;
 import waffles.utils.geom.shapes.bounds.convex.BNDConvex;
+import waffles.utils.geom.shapes.collision.Collision;
+import waffles.utils.geom.shapes.collision.convex.CLSConvex;
 import waffles.utils.geom.shapes.points.Arrow;
 import waffles.utils.geom.shapes.points.Point;
 import waffles.utils.geom.spatial.bounds.Bounds;

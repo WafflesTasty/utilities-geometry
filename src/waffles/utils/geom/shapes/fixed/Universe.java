@@ -2,12 +2,12 @@ package waffles.utils.geom.shapes.fixed;
 
 import waffles.utils.alg.lin.measure.matrix.Matrices;
 import waffles.utils.alg.lin.measure.matrix.Matrix;
-import waffles.utils.geom.collide.collision.Collision;
-import waffles.utils.geom.collide.collision.fixed.CLSUniverse;
 import waffles.utils.geom.shapes.Geometry;
 import waffles.utils.geom.shapes.bounds.fixed.BNDUniverse;
 import waffles.utils.geom.shapes.bounds.fixed.BNDUniverse2D;
 import waffles.utils.geom.shapes.bounds.fixed.BNDUniverse3D;
+import waffles.utils.geom.shapes.collision.Collision;
+import waffles.utils.geom.shapes.collision.fixed.CLSUniverse;
 import waffles.utils.geom.shapes.points.Point;
 import waffles.utils.geom.spatial.bounds.Bounds;
 import waffles.utils.geom.utilities.Transformator;
