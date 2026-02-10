@@ -3,11 +3,10 @@ package waffles.utils.geom.shapes.convex.axial.cube;
 import waffles.utils.alg.lin.measure.matrix.Matrix;
 import waffles.utils.alg.lin.measure.vector.Vector;
 import waffles.utils.alg.lin.measure.vector.Vectors;
-import waffles.utils.alg.utilities.affine.LinearMap;
 import waffles.utils.geom.collide.collision.convex.hulls.CLSCuboid;
-import waffles.utils.geom.shapes.bounds.convex.axial.cuboid.BNDCuboid;
-import waffles.utils.geom.shapes.bounds.convex.axial.cuboid.BNDCuboid2D;
-import waffles.utils.geom.shapes.bounds.convex.axial.cuboid.BNDCuboid3D;
+import waffles.utils.geom.shapes.bounds.convex.cuboid.BNDCuboid;
+import waffles.utils.geom.shapes.bounds.convex.cuboid.BNDCuboid2D;
+import waffles.utils.geom.shapes.bounds.convex.cuboid.BNDCuboid3D;
 import waffles.utils.geom.shapes.convex.axial.AxialSet;
 import waffles.utils.geom.shapes.convex.axial.cube.base.Cuboid;
 import waffles.utils.geom.shapes.convex.axial.cube.base.CuboidND;
@@ -166,13 +165,6 @@ public interface HyperCuboid extends Hull, AxialSet
 		return new CLSCuboid(this);
 	}
 	
-	
-	@Override
-	public default Bounds Bounds(LinearMap m)
-	{
-		return new BNDCuboid(this, m);
-	}
-	
 	@Override
 	public default Extremum Extremum()
 	{
@@ -207,10 +199,10 @@ public interface HyperCuboid extends Hull, AxialSet
 	public default Bounds Bounds()
 	{
 		if(Dimension() == 2)
-			return new BNDCuboid2D(this);
+			return (BNDCuboid2D) () -> this;
 		if(Dimension() == 3)
-			return new BNDCuboid3D(this);
+			return (BNDCuboid3D) () -> this;
 		
-		return new BNDCuboid(this);
+			return (BNDCuboid) () -> this;
 	}
 }

@@ -1,12 +1,11 @@
 package waffles.utils.geom.shapes.convex.axial.sphere;
 
 import waffles.utils.alg.lin.measure.vector.Vector;
-import waffles.utils.alg.utilities.affine.LinearMap;
 import waffles.utils.geom.collide.collision.Collision;
 import waffles.utils.geom.collide.collision.convex.spheres.CLSSpheroid;
-import waffles.utils.geom.shapes.bounds.convex.axial.spheroid.BNDSpheroid;
-import waffles.utils.geom.shapes.bounds.convex.axial.spheroid.BNDSpheroid2D;
-import waffles.utils.geom.shapes.bounds.convex.axial.spheroid.BNDSpheroid3D;
+import waffles.utils.geom.shapes.bounds.convex.spheroid.BNDSpheroid;
+import waffles.utils.geom.shapes.bounds.convex.spheroid.BNDSpheroid2D;
+import waffles.utils.geom.shapes.bounds.convex.spheroid.BNDSpheroid3D;
 import waffles.utils.geom.shapes.convex.axial.AxialSet;
 import waffles.utils.geom.shapes.convex.axial.sphere.base.Ellipse;
 import waffles.utils.geom.shapes.convex.axial.sphere.base.Spheroid;
@@ -125,19 +124,7 @@ public interface HyperSpheroid extends AxialSet
 	{
 		return new CLSSpheroid(this, ERROR);
 	}
-			
-	
-	@Override
-	public default Bounds Bounds(LinearMap m)
-	{
-		if(Dimension() == 2)
-			return new BNDSpheroid2D(this, m);
-		if(Dimension() == 3)
-			return new BNDSpheroid3D(this, m);
-		
-		return new BNDSpheroid(this, m);
-	}
-	
+
 	@Override
 	public default Extremum Extremum()
 	{
@@ -151,7 +138,8 @@ public interface HyperSpheroid extends AxialSet
 			s = s.hadamard(s);
 			h = p.hadamard(s);
 			
-			return o.plus(h.times(1f / n));
+			h = h.times(1f / n);
+			return o.plus(h);
 		};
 	}
 	
@@ -159,10 +147,10 @@ public interface HyperSpheroid extends AxialSet
 	public default Bounds Bounds()
 	{
 		if(Dimension() == 2)
-			return new BNDSpheroid2D(this);
+			return (BNDSpheroid2D) () -> this;
 		if(Dimension() == 3)
-			return new BNDSpheroid3D(this);
+			return (BNDSpheroid3D) () -> this;
 		
-		return new BNDSpheroid(this);
+		return (BNDSpheroid) () -> this;
 	}
 }

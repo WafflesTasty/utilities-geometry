@@ -2,8 +2,6 @@ package waffles.utils.geom.shapes.convex.hulls;
 
 import waffles.utils.alg.lin.measure.matrix.Matrix;
 import waffles.utils.alg.lin.measure.vector.Vector;
-import waffles.utils.alg.utilities.affine.Affine;
-import waffles.utils.alg.utilities.affine.LinearMap;
 import waffles.utils.geom.collide.collision.Collision;
 import waffles.utils.geom.collide.collision.convex.hulls.CLSHull;
 import waffles.utils.geom.shapes.bounds.convex.hulls.BNDHull;
@@ -13,7 +11,6 @@ import waffles.utils.geom.shapes.convex.hulls.triangle.Triangle;
 import waffles.utils.geom.shapes.fixed.Void;
 import waffles.utils.geom.shapes.points.Point;
 import waffles.utils.geom.spatial.bounds.Bounds;
-import waffles.utils.geom.spatial.bounds.owners.Bounded;
 import waffles.utils.geom.utilities.Transformator;
 import waffles.utils.geom.utilities.iterators.HullIterator;
 import waffles.utils.tools.patterns.properties.counters.Countable;
@@ -177,20 +174,7 @@ public interface Hull extends ConvexSet, Transformator
 			return fc.Point(idx);
 		};
 	}
-	
-	
-	@Override
-	public default Bounds Bounds(LinearMap m)
-	{
-		Affine a = m.map(this);
-		if(a instanceof Bounded)
-		{
-			return ((Bounded) a).Bounds();
-		}
-		
-		return null;
-	}
-		
+			
 	@Override
 	public default Bounds Bounds()
 	{

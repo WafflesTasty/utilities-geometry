@@ -13,6 +13,7 @@ import waffles.utils.geom.shapes.convex.axial.sphere.base.Circle;
  *
  * @see Bounds
  */
+@FunctionalInterface
 public interface Bounds2D extends Bounds
 {
 	/**

@@ -1,8 +1,6 @@
 package waffles.utils.geom.shapes.convex.axial;
 
-import waffles.utils.alg.utilities.affine.LinearMap;
 import waffles.utils.geom.shapes.Geometry2D;
-import waffles.utils.geom.shapes.bounds.convex.axial.BNDAxial2D;
 import waffles.utils.geom.shapes.points.Arrow;
 import waffles.utils.geom.spatial.bounds.Bounds2D;
 import waffles.utils.geom.spatial.maps.data.Axial2D;
@@ -20,23 +18,14 @@ import waffles.utils.geom.spatial.maps.data.Axial2D;
  * @see Axial2D
  */
 public interface AxialSet2D extends AxialSet, Axial2D, Geometry2D
-{	
+{		
+	@Override
+	public abstract Bounds2D Bounds();
+	
 	@Override
 	public default int Dimension()
 	{
 		return 2;
-	}
-	
-	@Override
-	public default Bounds2D Bounds()
-	{
-		return new BNDAxial2D(this);
-	}
-	
-	@Override
-	public default Bounds2D Bounds(LinearMap m)
-	{
-		return (Bounds2D) AxialSet.super.Bounds(m);
 	}
 	
 	@Override

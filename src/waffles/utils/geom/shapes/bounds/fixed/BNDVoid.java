@@ -31,7 +31,13 @@ public class BNDVoid implements Bounds
 	{
 		src = s;
 	}
-	
+
+
+	@Override
+	public Factory Factory()
+	{
+		return m -> this;
+	}
 	
 	@Override
 	public float Diameter()

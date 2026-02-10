@@ -1,12 +1,11 @@
 package waffles.utils.geom.owners;
 
 import waffles.utils.alg.utilities.affine.LinearMap;
-import waffles.utils.geom.Collidable;
 import waffles.utils.geom.collide.collision.Collision;
 import waffles.utils.geom.owners.collision.CLSGeometrical;
 import waffles.utils.geom.shapes.Geometry;
 import waffles.utils.geom.spatial.bounds.Bounds;
-import waffles.utils.geom.spatial.bounds.owners.Bounded;
+import waffles.utils.geom.spatial.bounds.Bounds.Factory;
 
 /**
  * A {@code Geometrical} object defines a {@code Collidable} with a transformation and a shape.
@@ -20,10 +19,9 @@ import waffles.utils.geom.spatial.bounds.owners.Bounded;
  * @version 1.2
  *
  *
- * @see Collidable
- * @see Bounded
+ * @see Geometry
  */
-public interface Geometrical extends Bounded, Collidable
+public interface Geometrical extends Geometry
 {
 	/**
 	 * Returns the shape of the {@code Geometrical}.
@@ -49,7 +47,10 @@ public interface Geometrical extends Bounded, Collidable
 	@Override
 	public default Bounds Bounds()
 	{
-		return Shape().Bounds(Transform());
+		LinearMap map = Transform();
+		Bounds bnd = Shape().Bounds();
+		Factory fct = bnd.Factory();
+		return fct.create(map);
 	}
 
 	@Override

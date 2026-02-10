@@ -124,8 +124,6 @@ public class ISCTransformator implements Response
 	@Override
 	public int cost()
 	{
-		int n = Dimension();
-		int c = rsp.cost();
-		return c + n * n;
+		return rsp.cost();
 	}
 }

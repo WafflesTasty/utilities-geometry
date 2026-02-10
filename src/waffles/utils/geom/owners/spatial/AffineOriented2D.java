@@ -1,6 +1,7 @@
 package waffles.utils.geom.owners.spatial;
 
 import waffles.utils.geom.owners.Geometrical2D;
+import waffles.utils.geom.shapes.points.Point;
 import waffles.utils.geom.spatial.Adjustable2D;
 
 /**
@@ -16,10 +17,16 @@ import waffles.utils.geom.spatial.Adjustable2D;
  * @see Adjustable2D
  */
 public interface AffineOriented2D extends AffineOriented, Adjustable2D, Geometrical2D
-{
+{	
 	@Override
 	public default int Dimension()
 	{
 		return 2;
+	}
+
+	@Override
+	public default Point Origin()
+	{
+		return AffineOriented.super.Origin();
 	}
 }

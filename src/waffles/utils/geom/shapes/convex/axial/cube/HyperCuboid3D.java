@@ -1,7 +1,6 @@
 package waffles.utils.geom.shapes.convex.axial.cube;
 
-import waffles.utils.alg.utilities.affine.LinearMap;
-import waffles.utils.geom.shapes.bounds.convex.axial.cuboid.BNDCuboid3D;
+import waffles.utils.geom.shapes.bounds.convex.cuboid.BNDCuboid3D;
 import waffles.utils.geom.shapes.convex.axial.AxialSet3D;
 import waffles.utils.geom.spatial.bounds.Bounds3D;
 
@@ -20,14 +19,8 @@ import waffles.utils.geom.spatial.bounds.Bounds3D;
 public interface HyperCuboid3D extends HyperCuboid, AxialSet3D
 {
 	@Override
-	public default Bounds3D Bounds(LinearMap m)
-	{
-		return new BNDCuboid3D(this, m);
-	}
-
-	@Override
 	public default Bounds3D Bounds()
 	{
-		return new BNDCuboid3D(this);
+		return (BNDCuboid3D) () -> this;
 	}
 }

@@ -1,6 +1,7 @@
 package waffles.utils.geom.owners.spatial;
 
 import waffles.utils.geom.owners.Geometrical2D;
+import waffles.utils.geom.shapes.points.Point;
 import waffles.utils.geom.spatial.Viewpoint2D;
 
 /**
@@ -21,5 +22,11 @@ public interface ViewProjected2D extends ViewProjected, Viewpoint2D, Geometrical
 	public default int Dimension()
 	{
 		return 2;
+	}
+
+	@Override
+	public default Point Origin()
+	{
+		return ViewProjected.super.Origin();
 	}
 }

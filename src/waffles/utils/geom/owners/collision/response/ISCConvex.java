@@ -37,8 +37,6 @@ public class ISCConvex implements Response
 	 */
 	public ISCConvex(Geometrical s, ConvexSet t)
 	{
-		int n = s.Dimension();
-		
 		map = s.Transform();
 		ConvexSet r = new ConjugateSet(t, map);
 		rsp = s.Shape().intersect(r);
@@ -101,8 +99,6 @@ public class ISCConvex implements Response
 	@Override
 	public int cost()
 	{
-		int n = Dimension();
-		return 4 * n * n * (n - 1)
-			 + rsp.cost();
+		return rsp.cost();
 	}
 }

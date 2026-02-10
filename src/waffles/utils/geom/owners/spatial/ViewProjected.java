@@ -1,6 +1,7 @@
 package waffles.utils.geom.owners.spatial;
 
 import waffles.utils.geom.owners.Geometrical;
+import waffles.utils.geom.shapes.points.Point;
 import waffles.utils.geom.spatial.Viewpoint;
 import waffles.utils.geom.spatial.maps.global.WatcherMap;
 
@@ -17,6 +18,12 @@ import waffles.utils.geom.spatial.maps.global.WatcherMap;
  */
 public interface ViewProjected extends Viewpoint, Geometrical
 {
+	@Override
+	public default Point Origin()
+	{
+		return Viewpoint.super.Origin();
+	}
+	
 	@Override
 	public abstract WatcherMap.Mutable Transform();
 

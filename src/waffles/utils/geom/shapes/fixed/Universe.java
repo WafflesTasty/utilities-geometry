@@ -2,7 +2,7 @@ package waffles.utils.geom.shapes.fixed;
 
 import waffles.utils.alg.lin.measure.matrix.Matrices;
 import waffles.utils.alg.lin.measure.matrix.Matrix;
-import waffles.utils.alg.utilities.affine.LinearMap;
+import waffles.utils.geom.collide.collision.Collision;
 import waffles.utils.geom.collide.collision.fixed.CLSUniverse;
 import waffles.utils.geom.shapes.Geometry;
 import waffles.utils.geom.shapes.bounds.fixed.BNDUniverse;
@@ -64,7 +64,26 @@ public class Universe implements Geometry, Transformator
 		dim = d;
 	}
 
+	
+	@Override
+	public Collision Collision()
+	{
+		return new CLSUniverse(this);
+	}
+	
+	@Override
+	public Factory Factory()
+	{
+		return new Factory();
+	}
 
+	@Override
+	public Point Origin()
+	{
+		return new Point(dim);
+	}
+	
+	
 	@Override
 	public Bounds Bounds()
 	{
@@ -75,35 +94,10 @@ public class Universe implements Geometry, Transformator
 
 		return new BNDUniverse(this);
 	}
-
-	@Override
-	public Bounds Bounds(LinearMap map)
-	{
-		return Bounds();
-	}
-
+	
 	@Override
 	public int Dimension()
 	{
 		return dim;
-	}
-	
-
-	@Override
-	public CLSUniverse Collision()
-	{
-		return new CLSUniverse(this);
-	}
-	
-	@Override
-	public Factory Factory()
-	{
-		return new Factory();
-	}
-	
-	@Override
-	public Point Origin()
-	{
-		return new Point(dim);
 	}
 }

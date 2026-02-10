@@ -1,9 +1,7 @@
 package waffles.utils.geom.owners;
 
-import waffles.utils.geom.Collideable3D;
 import waffles.utils.geom.shapes.Geometry3D;
 import waffles.utils.geom.spatial.bounds.Bounds3D;
-import waffles.utils.geom.spatial.bounds.owners.Bounded3D;
 
 /**
  * A {@code Geometrical3D} object defines a three-dimensional {@code Geometrical}.
@@ -14,15 +12,14 @@ import waffles.utils.geom.spatial.bounds.owners.Bounded3D;
  * 
  * 
  * @see Geometrical
- * @see Collideable3D
- * @see Bounded3D
+ * @see Geometry3D
  */
-public interface Geometrical3D extends Bounded3D, Collideable3D, Geometrical
+public interface Geometrical3D extends Geometrical, Geometry3D
 {
 	@Override
 	public default Bounds3D Bounds()
 	{
-		return Shape().Bounds(Transform());
+		return (Bounds3D) Geometrical.super.Bounds();
 	}
 	
 	@Override

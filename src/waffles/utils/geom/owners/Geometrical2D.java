@@ -1,9 +1,7 @@
 package waffles.utils.geom.owners;
 
-import waffles.utils.geom.Collideable2D;
 import waffles.utils.geom.shapes.Geometry2D;
 import waffles.utils.geom.spatial.bounds.Bounds2D;
-import waffles.utils.geom.spatial.bounds.owners.Bounded2D;
 
 /**
  * A {@code Geometrical2D} object defines a two-dimensional {@code Geometrical}.
@@ -14,15 +12,14 @@ import waffles.utils.geom.spatial.bounds.owners.Bounded2D;
  *
  *
  * @see Geometrical
- * @see Collideable2D
- * @see Bounded2D
+ * @see Geometry2D
  */
-public interface Geometrical2D extends Geometrical, Bounded2D, Collideable2D
+public interface Geometrical2D extends Geometrical, Geometry2D
 {
 	@Override
 	public default Bounds2D Bounds()
 	{
-		return Shape().Bounds(Transform());
+		return (Bounds2D) Geometrical.super.Bounds();
 	}
 
 	@Override

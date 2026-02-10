@@ -2,12 +2,11 @@ package waffles.utils.geom.shapes.bounds.convex;
 
 import waffles.utils.alg.lin.measure.vector.Vector;
 import waffles.utils.alg.lin.measure.vector.Vectors;
-import waffles.utils.alg.utilities.affine.LinearMap;
-import waffles.utils.geom.shapes.Geometry;
-import waffles.utils.geom.shapes.bounds.BNDGeometry;
+import waffles.utils.geom.shapes.convex.ConjugateSet;
 import waffles.utils.geom.shapes.convex.ConvexSet;
 import waffles.utils.geom.shapes.convex.ConvexSet.Extremum;
 import waffles.utils.geom.shapes.points.Point;
+import waffles.utils.geom.spatial.bounds.Bounds;
 
 /**
  * A {@code BNDConvex} defines dynamic {@code Bounds} for a {@code ConvexSet}.
@@ -17,78 +16,55 @@ import waffles.utils.geom.shapes.points.Point;
  * @version 1.1
  *
  * 
- * @see BNDGeometry
+ * @see Bounds
  */
-public class BNDConvex implements BNDGeometry
+public class BNDConvex implements Bounds
 {
 	private ConvexSet src;
-	private LinearMap map;
-		
+
 	/**
 	 * Creates a new {@code BNDConvex}.
 	 * 
 	 * @param s  a source set
-	 * @param m  a linear map
 	 * 
 	 * 
-	 * @see LinearMap
 	 * @see ConvexSet
-	 */
-	public BNDConvex(ConvexSet s, LinearMap m)
-	{
-		src = s;
-		map = m;
-	}
-	
-	/**
-	 * Creates a new {@code BNDConvex}.
-	 * 
-	 * @param s  a source set
-	 * 
-	 * 
-	 * @see Geometry
 	 */
 	public BNDConvex(ConvexSet s)
 	{
 		src = s;
 	}
 
-		
+	
 	@Override
-	public Point Origin()
+	public Factory Factory()
 	{
-		Point min = Minimum();
-		Point max = Maximum();
-		
-		return max.minus(min).times(0.5f);
+		return m -> new ConjugateSet(src, m).Bounds();
+	}
+
+	@Override
+	public float Diameter()
+	{
+		return Scale().norm();
 	}
 	
 	@Override
 	public Point Minimum()
 	{
 		int d = Dimension();
-		Vector m = Vectors.create(d);		
-		Extremum ext = Geometry().Extremum();
+		Vector e = Vectors.create(d);
+		Extremum ext = src.Extremum();
 
-		Vector e;
+		Vector m = Vectors.create(d);
 		for(int k = 0; k < d; k++)
 		{
-			e = Vectors.create(d + 1);
 			e.set(-1f, k);
-			
-			if(Map() != null)
+			if(0 < k)
 			{
-				e = (Vector) Map().unmap(e);
+				e.set(0f, k - 1);
 			}
 			
-			Point p = Point.create(e);
-			p = ext.along(p);
-			
-			if(Map() != null)
-			{
-				p = (Point) Map().map(p);
-			}
-			
+			Point p = ext.along(e);
 			m.set(p.aff(k), k);
 		}
 		
@@ -99,55 +75,22 @@ public class BNDConvex implements BNDGeometry
 	public Point Maximum()
 	{		
 		int d = Dimension();
-		Vector m = Vectors.create(d);		
-		Extremum ext = Geometry().Extremum();
+		Vector e = Vectors.create(d);
+		Extremum ext = src.Extremum();
 
-		Vector e;
+		Vector m = Vectors.create(d);
 		for(int k = 0; k < d; k++)
 		{
-			e = Vectors.create(d + 1);
 			e.set(+1f, k);
-			
-			if(Map() != null)
+			if(0 < k)
 			{
-				e = (Vector) Map().unmap(e);
+				e.set(0f, k - 1);
 			}
 			
-			Point p = Point.create(e);
-			p = ext.along(p);
-			
-			if(Map() != null)
-			{
-				p = (Point) Map().map(p);
-			}
-			
+			Point p = ext.along(e);
 			m.set(p.aff(k), k);
 		}
 		
 		return new Point(m, 1f);
-	}
-	
-	@Override
-	public int Dimension()
-	{
-		return src.Dimension();
-	}
-	
-	@Override
-	public float Diameter()
-	{
-		return Scale().norm();
-	}
-	
-	@Override
-	public ConvexSet Geometry()
-	{
-		return src;
-	}
-
-	@Override
-	public LinearMap Map()
-	{
-		return map;
 	}
 }

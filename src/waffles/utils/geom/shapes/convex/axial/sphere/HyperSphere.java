@@ -76,12 +76,6 @@ public interface HyperSphere extends HyperSpheroid
 		return Scale().aff(0);
 	}
 
-
-	@Override
-	public default Collision Collision()
-	{
-		return new CLSSphere(this);
-	}
 	
 	@Override
 	public default Extremum Extremum()
@@ -94,5 +88,11 @@ public interface HyperSphere extends HyperSpheroid
 			
 			return o.plus(p.times(r / n));
 		};
+	}
+
+	@Override
+	public default Collision Collision()
+	{
+		return new CLSSphere(this);
 	}
 }

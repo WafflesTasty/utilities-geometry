@@ -1,11 +1,14 @@
 package waffles.utils.geom.spatial.bounds;
 
 import waffles.utils.alg.lin.measure.vector.Vector;
+import waffles.utils.alg.utilities.affine.LinearMap;
 import waffles.utils.geom.shapes.convex.axial.cube.HyperCuboid;
 import waffles.utils.geom.shapes.convex.axial.sphere.HyperSphere;
 import waffles.utils.geom.shapes.points.Arrow;
 import waffles.utils.geom.shapes.points.Point;
 import waffles.utils.geom.spatial.maps.data.Axial;
+import waffles.utils.geom.utilities.tform.LinearCompose;
+import waffles.utils.tools.patterns.Constructible;
 
 /**
  * The {@code Bounds} interface defines bounding volumes in n-dimensional space.
@@ -19,9 +22,11 @@ import waffles.utils.geom.spatial.maps.data.Axial;
  * @version 1.0
  * 
  * 
+ * @see Constructible
  * @see Axial
  */
-public interface Bounds extends Axial
+@FunctionalInterface
+public interface Bounds extends Axial, Constructible
 {
 	/**
 	 * The {@code Type} enum defines bounding volume types.
@@ -42,6 +47,41 @@ public interface Bounds extends Axial
 		ORB;
 	}
 
+	/**
+	 * A {@code Bounds.Factory} creates transformed {@code Bounds}.
+	 *
+	 * @author Waffles
+	 * @since 08 Feb 2026
+	 * @version 1.1
+	 *
+	 * 
+	 * @see LinearMap
+	 */
+	@FunctionalInterface
+	public static interface Factory extends Workshop<LinearMap>
+	{
+		/**
+		 * Constructs a {@code Bounds} in the {@code Factory}.
+		 * 
+		 * @param map  a linear map
+		 * @return  a transformed bouds
+		 * 
+		 * 
+		 * @see LinearMap
+		 * @see Bounds
+		 */
+		public abstract Bounds create(LinearMap map);
+		
+		@Override
+		public default Bounds create(LinearMap... set)
+		{
+			return create(new LinearCompose(set));
+		}
+	}
+	
+	@Override
+	public abstract Factory Factory();
+	
 	
 	/**
 	 * Returns a bounding radius {@code Float}.
@@ -117,7 +157,7 @@ public interface Bounds extends Axial
 		return HyperSphere.create(Origin(), Radius());
 	}
 	
-	
+		
 	@Override
 	public default int Dimension()
 	{

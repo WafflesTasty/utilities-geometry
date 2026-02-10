@@ -3,16 +3,10 @@ package waffles.utils.geom.shapes.convex.axial;
 import waffles.utils.alg.lin.measure.matrix.Matrices;
 import waffles.utils.alg.lin.measure.matrix.Matrix;
 import waffles.utils.alg.lin.measure.vector.Vector;
-import waffles.utils.alg.utilities.affine.Affine;
-import waffles.utils.alg.utilities.affine.LinearMap;
-import waffles.utils.geom.shapes.bounds.convex.axial.BNDAxial;
-import waffles.utils.geom.shapes.bounds.convex.axial.BNDAxial2D;
-import waffles.utils.geom.shapes.bounds.convex.axial.BNDAxial3D;
 import waffles.utils.geom.shapes.convex.ConvexSet;
 import waffles.utils.geom.shapes.fixed.Void;
 import waffles.utils.geom.shapes.points.Arrow;
 import waffles.utils.geom.shapes.points.Point;
-import waffles.utils.geom.spatial.bounds.Bounds;
 import waffles.utils.geom.utilities.Transformator;
 
 /**
@@ -108,31 +102,7 @@ public interface AxialSet extends ConvexSet, Transformator
 		}
 	}
 	
-		
+	
 	@Override
 	public abstract Factory Factory();
-	
-	@Override
-	public default Bounds Bounds(LinearMap m)
-	{
-		Affine a = m.map(this);
-		if(a instanceof AxialSet)
-		{
-			AxialSet s = (AxialSet) a;
-			return s.Bounds();
-		}
-		
-		return null;
-	}
-	
-	@Override
-	public default Bounds Bounds()
-	{
-		if(Dimension() == 2)
-			return new BNDAxial2D(this);
-		if(Dimension() == 3)
-			return new BNDAxial3D(this);
-		
-		return new BNDAxial(this);
-	}
 }

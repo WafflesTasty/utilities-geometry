@@ -13,6 +13,7 @@ import waffles.utils.geom.shapes.convex.axial.sphere.base.Sphere;
  *
  * @see Bounds
  */
+@FunctionalInterface
 public interface Bounds3D extends Bounds
 {
 	/**
@@ -137,7 +138,7 @@ public interface Bounds3D extends Bounds
 		return Maximum().aff(2);
 	}
 
-
+	
 	@Override
 	public default HyperCuboid3D Box()
 	{

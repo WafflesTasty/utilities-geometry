@@ -1,7 +1,6 @@
 package waffles.utils.geom.shapes.convex.axial.sphere;
 
-import waffles.utils.alg.utilities.affine.LinearMap;
-import waffles.utils.geom.shapes.bounds.convex.axial.spheroid.BNDSpheroid2D;
+import waffles.utils.geom.shapes.bounds.convex.spheroid.BNDSpheroid2D;
 import waffles.utils.geom.spatial.bounds.Bounds2D;
 
 /**
@@ -19,14 +18,8 @@ import waffles.utils.geom.spatial.bounds.Bounds2D;
 public interface HyperSphere2D extends HyperSphere, HyperSpheroid2D
 {
 	@Override
-	public default Bounds2D Bounds(LinearMap m)
-	{
-		return new BNDSpheroid2D(this, m);
-	}
-
-	@Override
 	public default Bounds2D Bounds()
 	{
-		return new BNDSpheroid2D(this);
+		return (BNDSpheroid2D) () -> this;
 	}
 }

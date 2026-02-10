@@ -1,7 +1,6 @@
 package waffles.utils.geom.shapes.convex;
 
 import waffles.utils.alg.lin.measure.vector.Vector;
-import waffles.utils.alg.utilities.affine.LinearMap;
 import waffles.utils.geom.collide.collision.Collision;
 import waffles.utils.geom.collide.collision.convex.CLSConvex;
 import waffles.utils.geom.shapes.Geometry;
@@ -77,32 +76,25 @@ public interface ConvexSet extends Axial, Geometry
 	 */
 	public abstract Extremum Extremum();
 
-			
-	@Override
-	public default Bounds Bounds()
-	{
-		return new BNDConvex(this);
-	}
-		
-	@Override
-	public default Bounds Bounds(LinearMap m)
-	{
-		return new BNDConvex(this, m);
-	}
-	
-	@Override
-	public default int Dimension()
-	{
-		return Scale().Dimension();
-	}
-	
 	
 	@Override
 	public default Collision Collision()
 	{
 		return new CLSConvex(this);
 	}
-		
+
+	@Override
+	public default int Dimension()
+	{
+		return Scale().Dimension();
+	}
+	
+	@Override
+	public default Bounds Bounds()
+	{
+		return new BNDConvex(this);
+	}
+	
 	@Override
 	public default Arrow Scale()
 	{

@@ -2,7 +2,7 @@ package waffles.utils.geom.shapes.fixed;
 
 import waffles.utils.alg.lin.measure.matrix.Matrices;
 import waffles.utils.alg.lin.measure.matrix.Matrix;
-import waffles.utils.alg.utilities.affine.LinearMap;
+import waffles.utils.geom.collide.collision.Collision;
 import waffles.utils.geom.collide.collision.fixed.CLSVoid;
 import waffles.utils.geom.shapes.Geometry;
 import waffles.utils.geom.shapes.bounds.fixed.BNDVoid;
@@ -66,6 +66,25 @@ public class Void implements Geometry, Transformator
 	
 	
 	@Override
+	public Collision Collision()
+	{
+		return new CLSVoid(this);
+	}
+	
+	@Override
+	public Factory Factory()
+	{
+		return new Factory();
+	}
+	
+	@Override
+	public Point Origin()
+	{
+		return new Point(dim);
+	}
+	
+	
+	@Override
 	public Bounds Bounds()
 	{
 		if(Dimension() == 2)
@@ -75,35 +94,10 @@ public class Void implements Geometry, Transformator
 
 		return new BNDVoid(this);
 	}
-	
-	@Override
-	public Bounds Bounds(LinearMap m)
-	{
-		return Bounds();
-	}
-	
+
 	@Override
 	public int Dimension()
 	{
 		return dim;
-	}
-	
-	
-	@Override
-	public CLSVoid Collision()
-	{
-		return new CLSVoid(this);
-	}
-
-	@Override
-	public Factory Factory()
-	{
-		return new Factory();
-	}
-		
-	@Override
-	public Point Origin()
-	{
-		return new Point(dim);
 	}
 }

@@ -35,6 +35,12 @@ public class BNDUniverse implements Bounds
 
 
 	@Override
+	public Factory Factory()
+	{
+		return m -> this;
+	}
+	
+	@Override
 	public float Diameter()
 	{
 		return Floats.MAX_VALUE;

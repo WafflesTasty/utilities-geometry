@@ -124,8 +124,6 @@ public class CNTTransformator implements Response
 	@Override
 	public int cost()
 	{
-		int n = Dimension();
-		int c = rsp.cost();
-		return c + n * n;
+		return rsp.cost();
 	}
 }

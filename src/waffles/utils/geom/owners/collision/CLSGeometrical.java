@@ -58,6 +58,13 @@ public class CLSGeometrical extends Collision
 	{
 		Geometrical s = Source();
 		
+		// Eliminate geometricals.
+		if(c instanceof Geometrical)
+		{
+			Geometrical t = (Geometrical) c;
+			return new ISCGeometrical(s, t);
+		}
+		
 		// Eliminate points.
 		if(c instanceof Point)
 		{
@@ -79,13 +86,6 @@ public class CLSGeometrical extends Collision
 			return new ISCConvex(s, t);
 		}
 		
-		// Eliminate geometricals.
-		if(c instanceof Geometrical)
-		{
-			Geometrical t = (Geometrical) c;
-			return new ISCGeometrical(s, t);
-		}
-
 		return () -> s;
 	}
 	

@@ -1,7 +1,6 @@
 package waffles.utils.geom.shapes.convex.hulls.line;
 
 import waffles.utils.alg.lin.measure.matrix.Matrix;
-import waffles.utils.alg.utilities.affine.LinearMap;
 import waffles.utils.geom.shapes.Geometry2D;
 import waffles.utils.geom.shapes.bounds.convex.hulls.BNDHull2D;
 import waffles.utils.geom.shapes.points.Point;
@@ -100,23 +99,17 @@ public class Segment2D extends SegmentND implements Geometry2D
 	{
 		return P2().aff(1);
 	}
-	
+
+
+	@Override
+	public Bounds2D Bounds()
+	{
+		return new BNDHull2D(this);
+	}
 	
 	@Override
 	public int Dimension()
 	{
 		return 2;
-	}
-
-	@Override
-	public Bounds2D Bounds(LinearMap m)
-	{
-		return (Bounds2D) super.Bounds(m);
-	}
-	
-	@Override
-	public Bounds2D Bounds()
-	{
-		return new BNDHull2D(this);
 	}
 }

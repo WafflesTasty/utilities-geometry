@@ -1,7 +1,6 @@
 package waffles.utils.geom.shapes.convex.hulls;
 
 import waffles.utils.alg.lin.measure.matrix.Matrix;
-import waffles.utils.alg.utilities.affine.LinearMap;
 import waffles.utils.geom.shapes.Geometry3D;
 import waffles.utils.geom.shapes.bounds.convex.hulls.BNDHull3D;
 import waffles.utils.geom.shapes.points.Point;
@@ -46,22 +45,16 @@ public class Hull3D extends HullND implements Geometry3D
 		super(set);
 	}
 
+
+	@Override
+	public Bounds3D Bounds()
+	{
+		return new BNDHull3D(this);
+	}
 	
 	@Override
 	public int Dimension()
 	{
 		return 3;
-	}
-
-	@Override
-	public Bounds3D Bounds(LinearMap map)
-	{
-		return (Bounds3D) super.Bounds(map);
-	}
-	
-	@Override
-	public Bounds3D Bounds()
-	{
-		return new BNDHull3D(this);
 	}
 }

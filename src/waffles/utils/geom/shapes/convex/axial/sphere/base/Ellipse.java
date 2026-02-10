@@ -1,11 +1,8 @@
 package waffles.utils.geom.shapes.convex.axial.sphere.base;
 
-import waffles.utils.alg.utilities.affine.LinearMap;
-import waffles.utils.geom.shapes.bounds.convex.axial.spheroid.BNDSpheroid2D;
 import waffles.utils.geom.shapes.convex.axial.sphere.HyperSpheroid2D;
 import waffles.utils.geom.shapes.points.Arrow;
 import waffles.utils.geom.shapes.points.Point;
-import waffles.utils.geom.spatial.bounds.Bounds2D;
 
 /**
  * An {@code Ellipse} implements two-dimensional {@code HyperSpheroid} geometry.
@@ -78,18 +75,5 @@ public class Ellipse extends SpheroidND implements HyperSpheroid2D
 	public Ellipse()
 	{
 		super(2);
-	}
-
-
-	@Override
-	public Bounds2D Bounds(LinearMap m)
-	{
-		return new BNDSpheroid2D(this, m);
-	}
-
-	@Override
-	public Bounds2D Bounds()
-	{
-		return new BNDSpheroid2D(this);
 	}
 }
