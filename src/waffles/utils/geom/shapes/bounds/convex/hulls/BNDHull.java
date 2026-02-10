@@ -21,6 +21,8 @@ import waffles.utils.tools.primitives.Floats;
  */
 public class BNDHull implements Bounds
 {
+	private float rad;
+	private Point min, max;
 	private Hull src;
 
 	/**
@@ -33,6 +35,7 @@ public class BNDHull implements Bounds
 	 */
 	public BNDHull(Hull s)
 	{
+		rad = Floats.NaN;
 		src = s;
 	}
 
@@ -55,70 +58,83 @@ public class BNDHull implements Bounds
 	@Override
 	public Point Minimum()
 	{
-		Hull.Factory fc = src.Factory();
-		float max = Floats.MAX_VALUE;
-		int d = Dimension();	
-
-		Vector m = Vectors.create(max, d);
-		for(int i = 0; i < fc.Count(); i++)
+		if(min == null)
 		{
-			Point p = fc.Point(i);
-			for(int j = 0; j < d; j++)
+			Hull.Factory fc = src.Factory();
+			float max = Floats.MAX_VALUE;
+			int d = Dimension();	
+
+			Vector m = Vectors.create(max, d);
+			for(int i = 0; i < fc.Count(); i++)
 			{
-				float val = p.aff(j);
-				if(val < m.get(j))
+				Point p = fc.Point(i);
+				for(int j = 0; j < d; j++)
 				{
-					m.set(val, j);
+					float val = p.aff(j);
+					if(val < m.get(j))
+					{
+						m.set(val, j);
+					}
 				}
 			}
+			
+			min = new Point(m, 1f);			
 		}
-		
-		return new Point(m, 1f);
+
+		return min;
 	}
 	
 	@Override
 	public Point Maximum()
 	{
-		Hull.Factory fc = src.Factory();
-		float min = Floats.MIN_VALUE;
-		int d = Dimension();
-		
-		Vector m = Vectors.create(min, d);
-		for(int i = 0; i < fc.Count(); i++)
+		if(max == null)
 		{
-			Point p = fc.Point(i);
-			for(int j = 0; j < d; j++)
+			Hull.Factory fc = src.Factory();
+			float min = Floats.MIN_VALUE;
+			int d = Dimension();
+			
+			Vector m = Vectors.create(min, d);
+			for(int i = 0; i < fc.Count(); i++)
 			{
-				float val = p.aff(j);
-				if(val > m.get(j))
+				Point p = fc.Point(i);
+				for(int j = 0; j < d; j++)
 				{
-					m.set(val, j);
+					float val = p.aff(j);
+					if(val > m.get(j))
+					{
+						m.set(val, j);
+					}
 				}
 			}
+			
+			max = new Point(m, 1f);			
 		}
-		
-		return new Point(m, 1f);
+
+		return max;
 	}
 
 	@Override
 	public float Radius()
 	{
-		float r = 0f;
-		Point o = Origin();
-
-		Hull.Factory f = src.Factory();
-		for(int k = 0; k < f.Count(); k++)
+		if(Floats.isNaN(rad))
 		{
-			Point p = f.Point(k);
-			Point d = p.minus(o);
-			
-			float s = d.normSqr();
-			if(r < s)
+			rad = 0f;
+			Point o = Origin();
+
+			Hull.Factory f = src.Factory();
+			for(int k = 0; k < f.Count(); k++)
 			{
-				r = s;
+				Point p = f.Point(k);
+				Point d = p.minus(o);
+				
+				float s = d.normSqr();
+				if(rad < s)
+				{
+					rad = s;
+				}
 			}
 		}
-		
-		return r;
+
+		return rad;
 	}
 }

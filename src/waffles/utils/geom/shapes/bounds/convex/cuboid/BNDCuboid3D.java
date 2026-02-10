@@ -17,7 +17,7 @@ import waffles.utils.geom.spatial.bounds.Bounds3D;
 @FunctionalInterface
 public interface BNDCuboid3D extends BNDCuboid, Bounds3D
 {
-	/**s
+	/**
 	 * A {@code BNDCuboid3D.Transform} computes a transformed {@code BNDCuboid3D}.
 	 *
 	 * @author Waffles

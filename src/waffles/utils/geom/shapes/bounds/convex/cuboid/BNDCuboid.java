@@ -33,6 +33,8 @@ public interface BNDCuboid extends BNDGeometry
 	 */
 	public static class Transform extends BNDGeometry.Transform implements BNDCuboid
 	{
+		private Arrow scl;
+		
 		/**
 		 * Creates a new {@code Transform}.
 		 * 
@@ -58,16 +60,21 @@ public interface BNDCuboid extends BNDGeometry
 		@Override
 		public Arrow Scale()
 		{
-			int d = Dimension();
-			
-			Arrow s = Base().Scale();
-			Matrix a = Map().Matrix(d + 1);
+			if(scl == null)
+			{
+				int d = Dimension();
+				
+				Arrow s = Base().Scale();
+				Matrix a = Map().Matrix(d + 1);
 
-			a = a.resize(d, d).absolute();
-			a = a.times(s.Vector());
-			
-			Vector v = (Vector) a;
-			return new Arrow(v);
+				a = a.resize(d, d).absolute();
+				a = a.times(s.Vector());
+				
+				Vector v = (Vector) a;
+				scl = new Arrow(v);				
+			}
+
+			return scl;
 		}
 	}
 	

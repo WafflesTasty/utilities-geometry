@@ -36,6 +36,8 @@ public interface BNDSpheroid extends BNDGeometry
 	 */
 	public static class Transform extends BNDGeometry.Transform implements BNDSpheroid
 	{
+		private Arrow scl;
+		
 		/**
 		 * Creates a new {@code Transform}.
 		 * 
@@ -61,26 +63,31 @@ public interface BNDSpheroid extends BNDGeometry
 		@Override
 		public Arrow Scale()
 		{
-			int d = Dimension();
-			Arrow s = Base().Scale();
-			
-			AxisMap m = new AxisMap(Geometry());
-			
-			Matrix t = Map().Matrix(d + 1);
-			Matrix u = m.Matrix(d + 1);
-			Matrix a = t.times(u);
-			a = a.resize(d, d);
-			
-			
-			Vector v = Vectors.create(d);
-			for(int k = 0; k < d; k++)
+			if(scl == null)
 			{
-				Vector c = a.Row(k);
-				float n = c.norm();
-				v.set(2 * n, k);
+				int d = Dimension();
+				Arrow s = Base().Scale();
+				
+				AxisMap m = new AxisMap(Geometry());
+				
+				Matrix t = Map().Matrix(d + 1);
+				Matrix u = m.Matrix(d + 1);
+				Matrix a = t.times(u);
+				a = a.resize(d, d);
+				
+				
+				Vector v = Vectors.create(d);
+				for(int k = 0; k < d; k++)
+				{
+					Vector c = a.Row(k);
+					float n = c.norm();
+					v.set(2 * n, k);
+				}
+				
+				scl = new Arrow(v);
 			}
-			
-			return new Arrow(v);
+
+			return scl;
 		}
 	}
 	
