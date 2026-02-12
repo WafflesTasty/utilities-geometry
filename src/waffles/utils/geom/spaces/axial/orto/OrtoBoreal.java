@@ -11,7 +11,7 @@ import waffles.utils.sets.arboreal.Arboreal;
 
 /**
  * An {@code OrtoBoreal} defines an orthogonal {@code Arboreal} structure.
- * It provides a framework for any {@code OrtoNode} tree.
+ * It provides a framework for any {@code OrtoNodal} tree.
  *
  * @author Waffles
  * @since 11 Feb 2026
@@ -19,6 +19,7 @@ import waffles.utils.sets.arboreal.Arboreal;
  *
  *
  * @param <N>  a nodal type
+ * @see OrtoNodal
  * @see Arboreal
  * @see Bounded
  * @see Space
