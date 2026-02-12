@@ -37,6 +37,12 @@ public class BNDConvex implements Bounds
 
 	
 	@Override
+	public int Dimension()
+	{
+		return src.Dimension();
+	}
+	
+	@Override
 	public Factory Factory()
 	{
 		return m -> new ConjugateSet(src, m).Bounds();
