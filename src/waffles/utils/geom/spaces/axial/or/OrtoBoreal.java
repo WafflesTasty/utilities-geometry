@@ -1,10 +1,10 @@
-package waffles.utils.geom.spaces.axial.orto;
+package waffles.utils.geom.spaces.axial.or;
 
 import waffles.utils.geom.shapes.convex.axial.cube.HyperCuboid;
 import waffles.utils.geom.shapes.points.Point;
 import waffles.utils.geom.spaces.Space;
-import waffles.utils.geom.spaces.axial.orto.queries.QRYCuboid;
-import waffles.utils.geom.spaces.axial.orto.queries.QRYPoint;
+import waffles.utils.geom.spaces.axial.or.queries.QRYCuboid;
+import waffles.utils.geom.spaces.axial.or.queries.QRYPoint;
 import waffles.utils.geom.spatial.bounds.Bounds;
 import waffles.utils.geom.spatial.bounds.owners.Bounded;
 import waffles.utils.sets.arboreal.Arboreal;

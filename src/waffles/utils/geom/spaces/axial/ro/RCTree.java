@@ -2,7 +2,7 @@ package waffles.utils.geom.spaces.axial.ro;
 
 import waffles.utils.geom.shapes.points.Arrow;
 import waffles.utils.geom.shapes.points.Point;
-import waffles.utils.geom.spaces.axial.orto.OrtoTree;
+import waffles.utils.geom.spaces.axial.or.OrtoTree;
 import waffles.utils.geom.spatial.bounds.owners.Bounded;
 import waffles.utils.sets.utilities.keymaps.Pair;
 

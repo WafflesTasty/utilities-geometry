@@ -1,4 +1,4 @@
-package waffles.utils.geom.spaces.axial.orto;
+package waffles.utils.geom.spaces.axial.or;
 
 import waffles.utils.geom.shapes.points.Arrow;
 import waffles.utils.geom.shapes.points.Point;

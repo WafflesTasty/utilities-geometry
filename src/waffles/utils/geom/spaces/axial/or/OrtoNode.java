@@ -1,10 +1,10 @@
-package waffles.utils.geom.spaces.axial.orto;
+package waffles.utils.geom.spaces.axial.or;
 
 import waffles.utils.geom.shapes.points.Arrow;
 import waffles.utils.geom.shapes.points.Point;
-import waffles.utils.geom.spaces.axial.AxialNode;
 import waffles.utils.geom.spatial.maps.data.structs.Axis;
 import waffles.utils.sets.arboreal.Arboreal;
+import waffles.utils.sets.utilities.rooted.Node;
 
 /**
  * An {@code OrtoNode} defines a node in an {@code OrtoTree}.
@@ -14,11 +14,13 @@ import waffles.utils.sets.arboreal.Arboreal;
  * @version 1.1
  *
  * 
- * @see AxialNode
  * @see OrtoNodal
+ * @see Node
  */
-public class OrtoNode extends AxialNode implements OrtoNodal
+public class OrtoNode extends Node implements OrtoNodal
 {
+	private Axis axis;
+	
 	/**
 	 * Creates a new {@code OrtoNode}.
 	 * 
@@ -63,7 +65,8 @@ public class OrtoNode extends AxialNode implements OrtoNodal
 	 */
 	public OrtoNode(Arboreal r, Axis a)
 	{
-		super(r, a);
+		super(r);
+		axis = a;
 	}
 	
 	/**
@@ -76,25 +79,38 @@ public class OrtoNode extends AxialNode implements OrtoNodal
 	 */
 	public OrtoNode(Axis a)
 	{
-		super(a);
+		axis = a;
 	}
-	
-	
-	@Override
-	public OrtoNode Parent()
-	{
-		return (OrtoNode) super.Parent();
-	}
-	
-	@Override
-	public OrtoNode Child(int i)
-	{
-		return (OrtoNode) super.Child(i);
-	}
+
 	
 	@Override
 	public OrtoNode Arch()
 	{
 		return this;
+	}
+		
+	@Override
+	public OrtoNode Child(int i)
+	{
+		return (OrtoNode) super.Child(i);
+	}
+
+	@Override
+	public OrtoNode Parent()
+	{
+		return (OrtoNode) super.Parent();
+	}
+
+	
+	@Override
+	public Point Origin()
+	{
+		return axis.Origin();
+	}
+	
+	@Override
+	public Arrow Scale()
+	{
+		return axis.Scale();
 	}
 }

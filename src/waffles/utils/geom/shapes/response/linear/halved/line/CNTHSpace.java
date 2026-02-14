@@ -7,6 +7,7 @@ import waffles.utils.geom.shapes.collision.Collision.Response;
 import waffles.utils.geom.shapes.fixed.Void;
 import waffles.utils.geom.shapes.linear.halved.HSpace;
 import waffles.utils.geom.shapes.linear.halved.lines.HLine;
+import waffles.utils.geom.shapes.points.Arrow;
 import waffles.utils.geom.shapes.points.Point;
 import waffles.utils.tools.primitives.Doubles;
 
@@ -79,10 +80,13 @@ public class CNTHSpace implements Response
 	 */
 	public CNTHSpace(HLine s, HSpace t)
 	{
+		Vector x = s.Direction();
+		Arrow v = new Arrow(x);
 		Point o = s.Origin();
-		Vector v = s.Direction();
-		HSpace spc = new HSpace(o, v);
 		
+		
+		HSpace spc = new HSpace(o, v);
+
 		rsp = t.contain(spc);
 		src = s; tgt = t;
 	}

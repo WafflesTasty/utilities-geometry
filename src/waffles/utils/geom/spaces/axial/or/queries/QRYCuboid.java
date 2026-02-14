@@ -1,11 +1,11 @@
-package waffles.utils.geom.spaces.axial.orto.queries;
+package waffles.utils.geom.spaces.axial.or.queries;
 
 import java.util.Iterator;
 
 import waffles.utils.geom.shapes.convex.axial.cube.HyperCuboid;
-import waffles.utils.geom.spaces.axial.orto.OrtoBoreal;
-import waffles.utils.geom.spaces.axial.orto.OrtoNodal;
-import waffles.utils.geom.spaces.axial.orto.OrtoNode;
+import waffles.utils.geom.spaces.axial.or.OrtoBoreal;
+import waffles.utils.geom.spaces.axial.or.OrtoNodal;
+import waffles.utils.geom.spaces.axial.or.OrtoNode;
 
 /**
  * A {@code QRYCuboid} queries a cuboid in an {@code OrtoTree}.

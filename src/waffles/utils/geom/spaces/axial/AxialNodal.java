@@ -16,6 +16,5 @@ import waffles.utils.sets.utilities.rooted.Nodal;
  */
 public interface AxialNodal extends AxialSet, Nodal
 {
-	@Override
-	public abstract AxialNode Arch();
+	// NOT APPLICABLE
 }

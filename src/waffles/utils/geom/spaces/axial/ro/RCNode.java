@@ -4,7 +4,7 @@ import java.util.Iterator;
 
 import waffles.utils.geom.shapes.points.Arrow;
 import waffles.utils.geom.shapes.points.Point;
-import waffles.utils.geom.spaces.axial.orto.OrtoNode;
+import waffles.utils.geom.spaces.axial.or.OrtoNode;
 import waffles.utils.geom.spatial.bounds.owners.Bounded;
 import waffles.utils.geom.spatial.maps.data.structs.Axis;
 import waffles.utils.sets.countable.AtomicSet;

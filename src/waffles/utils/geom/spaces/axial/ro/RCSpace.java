@@ -49,22 +49,7 @@ public class RCSpace<O extends Bounded> implements Arboreal, Bounded, Manifold<O
 	{
 		this(b, MAX_DEPTH);
 	}
-	
-	/**
-	 * Creates a new {@code RCSpace}.
-	 * 
-	 * @param o  a tree origin
-	 * @param s  a tree scale
-	 * 
-	 * 
-	 * @see Arrow
-	 * @see Point
-	 */
-	public RCSpace(Point o, Arrow s)
-	{
-		this(o, s, MAX_DEPTH);
-	}
-	
+		
 	/**
 	 * Creates a new {@code RCSpace}.
 	 * 
@@ -96,6 +81,21 @@ public class RCSpace<O extends Bounded> implements Arboreal, Bounded, Manifold<O
 		tree = new RCTree<>(this);
 		tree.setRoot(fct.node(o, s));
 		depth = d;
+	}
+	
+	/**
+	 * Creates a new {@code RCSpace}.
+	 * 
+	 * @param o  a space origin
+	 * @param s  a space scale
+	 * 
+	 * 
+	 * @see Arrow
+	 * @see Point
+	 */
+	public RCSpace(Point o, Arrow s)
+	{
+		this(o, s, MAX_DEPTH);
 	}
 	
 	/**

@@ -6,6 +6,7 @@ import waffles.utils.geom.shapes.collision.Collision;
 import waffles.utils.geom.shapes.collision.linear.halved.CLSHSpace;
 import waffles.utils.geom.shapes.fixed.Void;
 import waffles.utils.geom.shapes.linear.VSpace;
+import waffles.utils.geom.shapes.points.Arrow;
 import waffles.utils.geom.shapes.points.Point;
 import waffles.utils.geom.utilities.Transformator;
 import waffles.utils.tools.primitives.Doubles;
@@ -50,16 +51,15 @@ public class HSpace implements VSpace.Ortho
 		/**
 		 * Creates new {@code Factory}.
 		 * 
-		 * @param o  an origin point
-		 * @param d  a direction vector
+		 * @param p  a source point
+		 * @param q  a target point
 		 * 
 		 * 
-		 * @see Vector
 		 * @see Point
 		 */
-		public Factory(Point o, Vector d)
+		public Factory(Point p, Point q)
 		{
-			super(o, d);
+			super(p, new Arrow(q.minus(p).Vector()));
 		}
 
 		
@@ -85,21 +85,6 @@ public class HSpace implements VSpace.Ortho
 	
 	
 	private Factory fct;
-				
-	/**
-	 * Creates a new {@code HSpace}.
-	 * 
-	 * @param o  an origin point
-	 * @param n  a normal vector
-	 * 
-	 * 
-	 * @see Vector
-	 * @see Point
-	 */
-	public HSpace(Point o, Vector n)
-	{
-		this(new Factory(o, n));
-	}
 
 	/**
 	 * Creates a new {@code HSpace}.
@@ -112,7 +97,7 @@ public class HSpace implements VSpace.Ortho
 	 */
 	public HSpace(Point p, Point q)
 	{
-		this(p, q.minus(p).Vector());
+		this(new Factory(p, q));
 	}
 	
 	/**

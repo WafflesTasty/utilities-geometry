@@ -1,4 +1,4 @@
-package waffles.utils.geom.spaces.axial.orto;
+package waffles.utils.geom.spaces.axial.or;
 
 import waffles.utils.alg.lin.measure.vector.Vector;
 import waffles.utils.alg.lin.measure.vector.Vectors;
