@@ -40,7 +40,14 @@ public interface IndexSpace<O, T> extends IndexedSet<T>, Space<O>
 	{
 		// NOT APPLICABLE
 	}
+
 	
+	/**
+	 * Defines tile size in the {@code IndexSpace}.
+	 *
+	 * @return  a tile size
+	 */
+	public abstract Arrow TileSize();
 		
 	/**
 	 * Returns a coordinate in the {@code IndexSpace}.
@@ -85,10 +92,10 @@ public interface IndexSpace<O, T> extends IndexedSet<T>, Space<O>
 		return crds;
 	}
 
-	/**
-	 * Defines tile size in the {@code IndexSpace}.
-	 *
-	 * @return  a tile size
-	 */
-	public abstract Arrow TileSize();
+	
+	@Override
+	public default int Dimension()
+	{
+		return Order();
+	}
 }

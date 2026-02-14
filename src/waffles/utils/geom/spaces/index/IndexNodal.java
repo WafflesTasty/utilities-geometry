@@ -55,7 +55,7 @@ public interface IndexNodal extends AxialNodal, Coordination, HyperCuboid
 			o.set(a.aff(k) * v / 2, k);
 		}
 		
-		return new Arrow(o, 1f);
+		return new Point(o, 1f);
 	}
 	
 	@Override
