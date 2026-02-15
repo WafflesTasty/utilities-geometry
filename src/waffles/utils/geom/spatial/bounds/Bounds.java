@@ -7,7 +7,7 @@ import waffles.utils.geom.shapes.convex.axial.sphere.HyperSphere;
 import waffles.utils.geom.shapes.points.Arrow;
 import waffles.utils.geom.shapes.points.Point;
 import waffles.utils.geom.spatial.maps.data.Axial;
-import waffles.utils.geom.utilities.tform.LinearCompose;
+import waffles.utils.geom.utilities.tform.linear.LinearCompose;
 import waffles.utils.tools.patterns.Constructible;
 
 /**

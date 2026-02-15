@@ -1,13 +1,13 @@
-package waffles.utils.geom.utilities.linear;
+package waffles.utils.geom.utilities.tform.linear.trx;
 
 import waffles.utils.alg.lin.measure.matrix.Matrix;
 import waffles.utils.alg.lin.measure.matrix.types.banded.upper.UpperTriangular;
 import waffles.utils.alg.lin.measure.tensor.Tensor;
-import waffles.utils.geom.utilities.linear.ops.TranslatorAddition;
-import waffles.utils.geom.utilities.linear.ops.TranslatorDotProduct;
-import waffles.utils.geom.utilities.linear.ops.TranslatorLProduct;
-import waffles.utils.geom.utilities.linear.ops.TranslatorRProduct;
-import waffles.utils.geom.utilities.linear.ops.TranslatorScalar;
+import waffles.utils.geom.utilities.tform.linear.trx.ops.TranslatorAddition;
+import waffles.utils.geom.utilities.tform.linear.trx.ops.TranslatorDotProduct;
+import waffles.utils.geom.utilities.tform.linear.trx.ops.TranslatorLProduct;
+import waffles.utils.geom.utilities.tform.linear.trx.ops.TranslatorRProduct;
+import waffles.utils.geom.utilities.tform.linear.trx.ops.TranslatorScalar;
 import waffles.utils.tools.patterns.operator.Operation;
 
 /**

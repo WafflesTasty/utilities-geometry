@@ -9,8 +9,8 @@ import waffles.utils.geom.shapes.collision.Collision.Response;
 import waffles.utils.geom.shapes.convex.ConjugateSet;
 import waffles.utils.geom.shapes.convex.ConvexSet;
 import waffles.utils.geom.shapes.points.Point;
-import waffles.utils.geom.utilities.tform.LinearCompose;
-import waffles.utils.geom.utilities.tform.LinearInverse;
+import waffles.utils.geom.utilities.tform.linear.LinearCompose;
+import waffles.utils.geom.utilities.tform.linear.LinearInverse;
 
 /**
  * An {@code ISCGeometrical} computes an intersection {@code Response} between geometrical objects.

@@ -1,4 +1,4 @@
-package waffles.utils.geom.utilities.groups;
+package waffles.utils.geom.utilities.tform;
 
 /**
  * A {@code Composition} can create compositions of objects.

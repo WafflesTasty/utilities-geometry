@@ -5,8 +5,8 @@ import waffles.utils.alg.lin.measure.matrix.Matrix;
 import waffles.utils.alg.lin.measure.vector.Vector;
 import waffles.utils.alg.utilities.groups.Multiplication;
 import waffles.utils.geom.utilities.Dimensional;
-import waffles.utils.geom.utilities.groups.Composition;
-import waffles.utils.geom.utilities.groups.Inversion;
+import waffles.utils.geom.utilities.tform.Composition;
+import waffles.utils.geom.utilities.tform.Inversion;
 
 /**
  * A {@code Spin} defines a data element that resembles a rotation.

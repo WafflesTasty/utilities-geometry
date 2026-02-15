@@ -1,4 +1,4 @@
-package waffles.utils.geom.utilities.linear;
+package waffles.utils.geom.utilities.tform;
 
 import waffles.utils.alg.lin.measure.matrix.Matrices;
 import waffles.utils.alg.lin.measure.matrix.Matrix;

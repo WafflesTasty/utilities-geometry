@@ -5,7 +5,7 @@ import waffles.utils.alg.utilities.affine.LinearMap;
 import waffles.utils.geom.shapes.Geometry;
 import waffles.utils.geom.shapes.points.Point;
 import waffles.utils.geom.spatial.bounds.Bounds;
-import waffles.utils.geom.utilities.tform.LinearCompose;
+import waffles.utils.geom.utilities.tform.linear.LinearCompose;
 
 /**
  * A {@code BNDGeometry} defines dynamic {@code Bounds} for a {@code Geometry}.

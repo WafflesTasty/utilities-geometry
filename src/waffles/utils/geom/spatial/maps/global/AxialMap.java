@@ -7,7 +7,7 @@ import waffles.utils.geom.spatial.maps.GlobalMap;
 import waffles.utils.geom.spatial.maps.data.Axial;
 import waffles.utils.geom.spatial.maps.data.unary.Positioned;
 import waffles.utils.geom.spatial.maps.data.unary.Scaled;
-import waffles.utils.geom.utilities.linear.LazyIdentity;
+import waffles.utils.geom.utilities.tform.LazyIdentity;
 
 /**
  * An {@code AxialMap} defines a global map with axis-aligned spatial data.

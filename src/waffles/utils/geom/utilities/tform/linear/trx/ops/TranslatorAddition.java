@@ -1,12 +1,13 @@
-package waffles.utils.geom.utilities.linear.ops;
+package waffles.utils.geom.utilities.tform.linear.trx.ops;
 
 import waffles.utils.alg.lin.measure.matrix.Matrices;
 import waffles.utils.alg.lin.measure.matrix.Matrix;
+import waffles.utils.alg.lin.measure.tensor.Tensor;
 import waffles.utils.tools.patterns.operator.Operation;
 import waffles.utils.tools.primitives.Integers;
 
 /**
- * A {@code TranslatorRProduct} defines a right matrix multiplication operation.
+ * A {@code TranslatorAddition} defines a matrix addition operation.
  * The operation is optimized to skip zero values in a {@code Translator}.
  *
  * @author Waffles
@@ -15,14 +16,14 @@ import waffles.utils.tools.primitives.Integers;
  *
  *
  * @see Operation
- * @see Matrix
+ * @see Tensor
  */
-public class TranslatorRProduct implements Operation<Matrix>
+public class TranslatorAddition implements Operation<Tensor>
 {
 	private Matrix t1, m1;
 
 	/**
-	 * Creates a new {@code TranslatorRProduct}.
+	 * Creates a new {@code TranslatorAddition}.
 	 *
 	 * @param t1  a translation matrix
 	 * @param m1  a matrix
@@ -30,7 +31,7 @@ public class TranslatorRProduct implements Operation<Matrix>
 	 *
 	 * @see Matrix
 	 */
-	public TranslatorRProduct(Matrix t1, Matrix m1)
+	public TranslatorAddition(Matrix t1, Matrix m1)
 	{
 		this.t1 = t1;
 		this.m1 = m1;
@@ -46,30 +47,28 @@ public class TranslatorRProduct implements Operation<Matrix>
 		int c1 = m1.Columns();
 		int c2 = t1.Columns();
 
-		if(c1 != r2)
+		if(r1 != r2 || c1 != c2)
 		{
 			return null;
 		}
 
 
-		Matrix m2 = Matrices.create(r1, c2);
+		Matrix m2 = Matrices.create(r1, c1);
 		for(int r = 0; r < r1; r++)
 		{
-			for(int c = 0; c < c2 - 1; c++)
-			{
-				float v1 = m1.get(r, c);
-				v1 = v1 * t1.get(c, c);
-				m2.set(v1, r, c);
-			}
-
-			float v2 = 0f;
 			for(int c = 0; c < c1; c++)
 			{
-				float v1 = t1.get(c, c2 - 1);
-				v2 += m1.get(r, c) * v1;
-			}
+				float v1 = m1.get(r, c);
+				if(c == c1 - 1)
+				{
+					v1 += t1.get(r, c);
+				} else if(c == r)
+				{
+					v1 += t1.get(r, c);
+				}
 
-			m2.set(v2, r, c2-1);
+				m2.set(v1, r, c);
+			}
 		}
 
 		return m2;
@@ -84,15 +83,15 @@ public class TranslatorRProduct implements Operation<Matrix>
 		int c1 = m1.Columns();
 		int c2 = t1.Columns();
 
-		if(c1 != r2)
+		if(r1 != r2 || c1 != c2)
 		{
 			return Integers.MAX_VALUE;
 		}
 
 
 		// Cost of translation.
-		return r1 * (c2 - 1)
-			// Cost of diagonal.
-			 + r1 * (2 * c1 - 1);
+		return r2 + 1
+		// Cost of diagonal.
+			 + r2;
 	}
 }

@@ -4,7 +4,7 @@ import waffles.utils.alg.lin.measure.vector.Vector;
 import waffles.utils.alg.utilities.matrix.LazyMatrix;
 import waffles.utils.geom.spatial.maps.data.Watcher;
 import waffles.utils.geom.spatial.maps.data.unary.Projected;
-import waffles.utils.geom.utilities.linear.LazyIdentity;
+import waffles.utils.geom.utilities.tform.LazyIdentity;
 
 /**
  * A {@code WatcherMap} defines a global map with projective spatial data.

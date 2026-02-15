@@ -6,7 +6,7 @@ import waffles.utils.alg.lin.measure.vector.Vector;
 import waffles.utils.alg.utilities.affine.LinearMap;
 import waffles.utils.geom.shapes.points.Point;
 import waffles.utils.geom.spatial.maps.data.unary.Positioned;
-import waffles.utils.geom.utilities.linear.Translator;
+import waffles.utils.geom.utilities.tform.linear.trx.Translator;
 import waffles.utils.tools.primitives.Integers;
 
 /**

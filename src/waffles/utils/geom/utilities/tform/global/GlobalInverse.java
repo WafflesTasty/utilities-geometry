@@ -1,4 +1,4 @@
-package waffles.utils.geom.utilities.tform;
+package waffles.utils.geom.utilities.tform.global;
 
 import waffles.utils.alg.utilities.matrix.LazyMatrix;
 import waffles.utils.geom.spatial.maps.GlobalMap;

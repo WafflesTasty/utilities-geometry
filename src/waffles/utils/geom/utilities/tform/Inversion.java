@@ -1,4 +1,4 @@
-package waffles.utils.geom.utilities.groups;
+package waffles.utils.geom.utilities.tform;
 
 /**
  * An {@code Inversion} defines an inverse operation.

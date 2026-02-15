@@ -1,4 +1,4 @@
-package waffles.utils.geom.utilities.iterators;
+package waffles.utils.geom.shapes.convex.hulls.iterators;
 
 import java.util.Iterator;
 
