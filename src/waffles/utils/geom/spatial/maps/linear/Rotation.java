@@ -84,14 +84,13 @@ public class Rotation implements LinearMap, Rotated
 	@Override
 	public Matrix Inverse(int dim)
 	{
-		Matrix m = Spin.Matrix(src.Spin(), dim);
-		return m.transpose();
+		return Spin.Matrix(Spin().inverse(), dim);
 	}
 	
 	@Override
 	public Matrix Matrix(int dim)
 	{
-		return Spin.Matrix(src.Spin(), dim);
+		return Spin.Matrix(Spin(), dim);
 	}
 	
 	@Override

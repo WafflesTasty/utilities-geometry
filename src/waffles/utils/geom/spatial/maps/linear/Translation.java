@@ -93,15 +93,17 @@ public class Translation implements LinearMap, Positioned
 	@Override
 	public Matrix Inverse(int dim)
 	{
-		Vector o = Origin().Vector();
+		Point o = Origin();
+		int k = o.Dimension();
+		
 		Matrix m = Matrices.identity(dim);
 		m.setOperator(Translator.Type());
 		
 		for(int d = 0; d < dim; d++)
 		{
-			if(d < Integers.min(dim-1, o.Size()))
+			if(d < Integers.min(dim-1, k))
 			{
-				m.set(-o.get(d), d, dim-1);
+				m.set(-o.aff(d), d, dim - 1);
 			}
 		}
 		
@@ -111,15 +113,17 @@ public class Translation implements LinearMap, Positioned
 	@Override
 	public Matrix Matrix(int dim)
 	{
-		Vector o = Origin().Vector();
+		Point o = Origin();
+		int k = o.Dimension();
+		
 		Matrix m = Matrices.identity(dim);
 		m.setOperator(Translator.Type());
 		
 		for(int d = 0; d < dim; d++)
 		{
-			if(d < Integers.min(dim-1, o.Size()))
+			if(d < Integers.min(dim-1, k))
 			{
-				m.set(o.get(d), d, dim-1);
+				m.set(+o.aff(d), d, dim - 1);
 			}
 		}
 		

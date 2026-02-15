@@ -128,7 +128,7 @@ public class Projection implements LinearMap, Projected
 	@Override
 	public Matrix Inverse(int dim)
 	{
-		Vector o = src.Oculus();	
+		Vector o = Oculus();	
 		Matrix m = Matrices.identity(dim);
 		
 		float prod = 1f / product(-1);
@@ -156,7 +156,7 @@ public class Projection implements LinearMap, Projected
 	@Override
 	public Matrix Matrix(int dim)
 	{
-		Vector o = src.Oculus();
+		Vector o = Oculus();
 		Matrix m = Matrices.identity(dim);
 		
 		float prod = product(-1);

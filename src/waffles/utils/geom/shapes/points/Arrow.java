@@ -34,16 +34,11 @@ public class Arrow extends Point
 	public class Factory extends Point.Factory
 	{
 		/**
-		 * Creates a new {@code Factor}.
-		 * 
-		 * @param a  a source arrow
-		 * 
-		 * 
-		 * @see Arrow
+		 * Creates a new {@code Factory}.
 		 */
-		public Factory(Arrow a)
+		public Factory()
 		{
-			super(a);
+			super(Arrow.this);
 		}
 
 		
@@ -168,9 +163,9 @@ public class Arrow extends Point
 	
 
 	@Override
-	public Factory Factory()
+	public Point.Factory Factory()
 	{
-		return new Factory(this);
+		return new Factory();
 	}
 	
 	@Override

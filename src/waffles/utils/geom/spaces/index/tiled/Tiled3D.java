@@ -1,9 +1,9 @@
 package waffles.utils.geom.spaces.index.tiled;
 
-import waffles.utils._todo.utilities.constants.Cardinal3D;
 import waffles.utils.geom.shapes.convex.axial.cube.HyperCuboid3D;
 import waffles.utils.geom.shapes.points.Arrow;
 import waffles.utils.geom.shapes.points.Point;
+import waffles.utils.geom.utilities.chiral.arrows.Cardinal3D;
 import waffles.utils.sets.utilities.indexed.coords.Coordinated3D;
 
 /**
