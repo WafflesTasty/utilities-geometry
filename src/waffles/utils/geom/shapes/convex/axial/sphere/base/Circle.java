@@ -1,9 +1,9 @@
 package waffles.utils.geom.shapes.convex.axial.sphere.base;
 
-import waffles.utils._todo.utilities.constants.Dial;
 import waffles.utils.geom.shapes.convex.axial.sphere.HyperSphere2D;
 import waffles.utils.geom.shapes.points.Arrow;
 import waffles.utils.geom.shapes.points.Point;
+import waffles.utils.geom.utilities.chiral.Dial;
 
 /**
  * A {@code Circle} implements two-dimensional {@code HyperSphere} geometry.

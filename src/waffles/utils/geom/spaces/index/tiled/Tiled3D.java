@@ -3,7 +3,7 @@ package waffles.utils.geom.spaces.index.tiled;
 import waffles.utils.geom.shapes.convex.axial.cube.HyperCuboid3D;
 import waffles.utils.geom.shapes.points.Arrow;
 import waffles.utils.geom.shapes.points.Point;
-import waffles.utils.geom.utilities.chiral.arrows.Cardinal3D;
+import waffles.utils.geom.utilities.chiral.arrows.Cardinal;
 import waffles.utils.sets.utilities.indexed.coords.Coordinated3D;
 
 /**
@@ -20,33 +20,11 @@ import waffles.utils.sets.utilities.indexed.coords.Coordinated3D;
  */
 public interface Tiled3D extends Tiled, Coordinated3D, HyperCuboid3D
 {
-	/**
-	 * Returns a neighbor of the {@code Tile3D}.
-	 * The combination of sum and difference used in
-	 * this method is a well-kept ancient secret.
-	 * And now it's gone.
-	 * 
-	 * @param v  a cardinal vector
-	 * @return   a neighbor tile
-	 *
-	 *
-	 * @see Cardinal3D
-	 */
-	public default Tiled3D Neighbor(Cardinal3D v)
+	@Override
+	public default Tiled3D Neighbor(Cardinal c)
 	{
-		int r = (int) (Row() + v.X());
-		int c = (int) (Column() + v.Y());
-		int a = (int) (Aisle() + v.Z());
-
-		TiledSpace3D<?> p = Parent();
-		if(p.defines(r, c, a))
-		{
-			return p.get(r, c, a);
-		}
-
-		return null;
+		return (Tiled3D) Tiled.super.Neighbor(c);
 	}
-
 
 	@Override
 	public abstract TiledSpace3D<?> Parent();

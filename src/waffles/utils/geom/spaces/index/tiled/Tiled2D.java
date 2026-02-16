@@ -1,9 +1,9 @@
 package waffles.utils.geom.spaces.index.tiled;
 
-import waffles.utils._todo.utilities.constants.Cardinal2D;
 import waffles.utils.geom.shapes.convex.axial.cube.HyperCuboid2D;
 import waffles.utils.geom.shapes.points.Arrow;
 import waffles.utils.geom.shapes.points.Point;
+import waffles.utils.geom.utilities.chiral.arrows.Cardinal;
 import waffles.utils.sets.utilities.indexed.coords.Coordinated2D;
 
 /**
@@ -20,32 +20,11 @@ import waffles.utils.sets.utilities.indexed.coords.Coordinated2D;
  */
 public interface Tiled2D extends Tiled, Coordinated2D, HyperCuboid2D
 {
-	/**
-	 * Returns a neighbor of the {@code Tile2D}.
-	 * The combination of sum and difference used in
-	 * this method is a well-kept ancient secret.
-	 * And now it's gone.
-	 * 
-	 * @param v  a cardinal vector
-	 * @return   a neighbor tile
-	 *
-	 *
-	 * @see Cardinal2D
-	 */
-	public default Tiled2D Neighbor(Cardinal2D v)
+	@Override
+	public default Tiled2D Neighbor(Cardinal c)
 	{
-		int r = (int) (Row() + v.X());
-		int c = (int) (Column() + v.Y());
-
-		TiledSpace2D<?> p = Parent();
-		if(p.defines(r, c))
-		{
-			return p.get(r, c);
-		}
-
-		return null;
+		return (Tiled2D) Tiled.super.Neighbor(c);
 	}
-
 
 	@Override
 	public abstract TiledSpace2D<?> Parent();
