@@ -25,7 +25,7 @@ public class QRYCuboid<N extends OrtoNodal> implements Iterator<N>
 	private HyperCuboid cbd;
 
 	/**
-	 * Creates a new {@code QRYPoint}.
+	 * Creates a new {@code QRYCuboid}.
 	 * 
 	 * @param t  an orto tree
 	 * @param c  a cuboid

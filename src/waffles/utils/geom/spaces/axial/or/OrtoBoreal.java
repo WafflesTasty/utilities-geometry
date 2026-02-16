@@ -1,13 +1,14 @@
 package waffles.utils.geom.spaces.axial.or;
 
+import java.util.Iterator;
+
 import waffles.utils.geom.shapes.convex.axial.cube.HyperCuboid;
 import waffles.utils.geom.shapes.points.Point;
-import waffles.utils.geom.spaces.Space;
 import waffles.utils.geom.spaces.axial.or.queries.QRYCuboid;
 import waffles.utils.geom.spaces.axial.or.queries.QRYPoint;
+import waffles.utils.geom.spaces.trees.SpatialBoreal;
 import waffles.utils.geom.spatial.bounds.Bounds;
 import waffles.utils.geom.spatial.bounds.owners.Bounded;
-import waffles.utils.sets.arboreal.Arboreal;
 
 /**
  * An {@code OrtoBoreal} defines an orthogonal {@code Arboreal} structure.
@@ -19,38 +20,62 @@ import waffles.utils.sets.arboreal.Arboreal;
  *
  *
  * @param <N>  a nodal type
+ * @see SpatialBoreal
  * @see OrtoNodal
- * @see Arboreal
  * @see Bounded
- * @see Space
  */
-public interface OrtoBoreal<N extends OrtoNodal> extends Arboreal, Bounded, Space<N>
+public interface OrtoBoreal<N extends OrtoNodal> extends Bounded, SpatialBoreal<N>
 {
+	/**
+	 * An {@code OrtoBoreal.Query} defines queries for an {@code OrtoBoreal} space.
+	 *
+	 * @author Waffles
+	 * @since 16 Feb 2026
+	 * @version 1.1
+	 *
+	 *
+	 * @param <N>  a node type
+	 * @see SpatialBoreal
+	 * @see OrtoNodal
+	 */
+	@FunctionalInterface
+	public static interface Query<N extends OrtoNodal> extends SpatialBoreal.Query<N>
+	{
+		@Override
+		public abstract OrtoBoreal<N> Tree();
+		
+		@Override
+		public default Iterator<N> in(HyperCuboid c)
+		{
+			return new QRYCuboid<>(Tree(), c);
+		}
+
+		@Override
+		public default Iterator<N> at(Point p)
+		{
+			return new QRYPoint<>(Tree(), p);
+		}
+	}
+	
+	
 	@Override
 	public abstract N Root();
-	
-		
-	@Override
-	public default int Dimension()
-	{
-		return Root().Dimension();
-	}
-	
-	@Override
-	public default Iterable<N> query(HyperCuboid c)
-	{
-		return () -> new QRYCuboid<>(this, c);
-	}
-
-	@Override
-	public default Iterable<N> query(Point p)
-	{
-		return () -> new QRYPoint<>(this, p);
-	}
-	
+			
 	@Override
 	public default Bounds Bounds()
 	{
 		return Root().Bounds();
+	}
+	
+	@Override
+	public default Query<N> Query()
+	{
+		return () -> this;
+	}
+
+	@Override
+	public default int Dimension()
+	{
+		return Root().Dimension();
 	}
 }

@@ -26,16 +26,16 @@ public interface PlanarBoreal<N extends PlanarNodal, O> extends BiArboreal.Mutab
 	@Override
 	public abstract N Root();
 	
-		
-	@Override
-	public default int Dimension()
-	{
-		return Root().Dimension();
-	}
-		
+				
 	@Override
 	public default Bounds Bounds()
 	{
 		return Root().Bounds();
+	}
+	
+	@Override
+	public default int Dimension()
+	{
+		return Root().Dimension();
 	}
 }

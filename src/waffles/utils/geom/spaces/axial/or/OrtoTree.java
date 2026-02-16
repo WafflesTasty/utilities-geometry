@@ -44,14 +44,14 @@ public class OrtoTree<N extends OrtoNode> extends Tree implements OrtoBoreal<N>
 		@Override
 		public abstract OrtoTree<?> Tree();
 	}
-	
+		
 
 	@Override
 	public Factory Factory()
 	{
 		return () -> this;
 	}
-	
+		
 	@Override
 	public N Root()
 	{

@@ -5,12 +5,10 @@ import java.util.Iterator;
 import waffles.utils.geom.shapes.convex.axial.cube.HyperCuboid;
 import waffles.utils.geom.shapes.points.Arrow;
 import waffles.utils.geom.shapes.points.Point;
-import waffles.utils.geom.spaces.Manifold;
-import waffles.utils.geom.spaces.axial.ro.queries.QRYNodes;
 import waffles.utils.geom.spaces.axial.ro.queries.QRYPairs;
+import waffles.utils.geom.spaces.trees.SpatialTree;
 import waffles.utils.geom.spatial.bounds.Bounds;
 import waffles.utils.geom.spatial.bounds.owners.Bounded;
-import waffles.utils.sets.arboreal.Arboreal;
 import waffles.utils.sets.countable.AtomicSet;
 import waffles.utils.sets.utilities.keymaps.Pair;
 import waffles.utils.sets.utilities.rooted.Nodal;
@@ -24,17 +22,40 @@ import waffles.utils.sets.utilities.rooted.Nodal;
  *
  *
  * @param <O>  an object type
- * @see Arboreal
+ * @see SpatialTree
  * @see AtomicSet
- * @see Manifold
  * @see Bounded
+ * @see RCNode
  */
-public class RCSpace<O extends Bounded> implements Arboreal, AtomicSet<O>, Bounded, Manifold<O>
+public class RCSpace<O extends Bounded> implements AtomicSet<O>, Bounded, SpatialTree<O, RCNode<O>>
 {
 	/**
 	 * Defines the default maximum depth.
 	 */
 	public static final int MAX_DEPTH = 6;
+	
+	/**
+	 * An {@code RCSpace.Query} defines queries for an {@code RCSpace}.
+	 *
+	 * @author Waffles
+	 * @since 16 Feb 2026
+	 * @version 1.1
+	 *
+	 *
+	 * @param <O>  an object type
+	 * @see SpatialTree
+	 * @see Bounded
+	 * @see RCNode
+	 */
+	@FunctionalInterface
+	public interface Query<O extends Bounded> extends SpatialTree.Query<O, RCNode<O>>
+	{
+		@Override
+		public default Iterator<O> in(RCNode<O> n)
+		{
+			return n.iterator();
+		}
+	}
 	
 	
 	private int depth;
@@ -101,19 +122,6 @@ public class RCSpace<O extends Bounded> implements Arboreal, AtomicSet<O>, Bound
 		this(o, s, MAX_DEPTH);
 	}
 	
-	/**
-	 * Returns the {@code RCTree}.
-	 * 
-	 * @return  a cuboid tree
-	 * 
-	 * 
-	 * @see RCTree
-	 */
-	public RCTree<O> Tree()
-	{
-		return tree;
-	}
-	
 	
 	@Override
 	public RCNode<O> Root()
@@ -132,33 +140,17 @@ public class RCSpace<O extends Bounded> implements Arboreal, AtomicSet<O>, Bound
 	{
 		return () -> new QRYPairs<>(Tree().Root());
 	}
-
+	
 	@Override
-	public Iterable<O> query(HyperCuboid c)
+	public Query<O> Query()
 	{
-		if(!Root().intersects(c))
-			return Root();
-		else
-		{
-			return () -> new QRYNodes<>(Tree().query(c));
-		}
+		return () -> this;
 	}
-
+	
 	@Override
-	public Iterable<O> query(Point p)
+	public RCTree<O> Tree()
 	{
-		if(!Root().contains(p))
-			return Root();
-		else
-		{
-			return () -> new QRYNodes<>(Tree().query(p));
-		}
-	}
-
-	@Override
-	public Iterator<O> iterator()
-	{
-		return new QRYNodes<>(Tree().DFSearch());
+		return tree;
 	}
 	
 	@Override
