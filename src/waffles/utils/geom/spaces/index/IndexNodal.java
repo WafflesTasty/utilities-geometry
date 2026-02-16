@@ -5,7 +5,7 @@ import waffles.utils.alg.lin.measure.vector.Vectors;
 import waffles.utils.geom.shapes.convex.axial.cube.HyperCuboid;
 import waffles.utils.geom.shapes.points.Arrow;
 import waffles.utils.geom.shapes.points.Point;
-import waffles.utils.geom.spaces.axial.AxialNodal;
+import waffles.utils.geom.spaces.trees.axial.AxialNodal;
 import waffles.utils.sets.utilities.indexed.coords.Coordination;
 
 /**
@@ -18,11 +18,10 @@ import waffles.utils.sets.utilities.indexed.coords.Coordination;
  * @version 1.0
  * 
  * 
- * @see AxialNodal
  * @see Coordination
  * @see HyperCuboid
+ * @see AxialNodal
  */
-@FunctionalInterface
 public interface IndexNodal extends AxialNodal, Coordination, HyperCuboid
 {
 	/**

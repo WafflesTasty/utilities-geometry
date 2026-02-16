@@ -4,12 +4,14 @@ import java.util.Iterator;
 
 import waffles.utils.geom.shapes.convex.axial.cube.HyperCuboid;
 import waffles.utils.geom.shapes.points.Point;
-import waffles.utils.geom.spaces.Manifold;
+import waffles.utils.geom.spaces.Space;
 import waffles.utils.geom.spaces.trees.queries.QRYNodes;
+import waffles.utils.geom.spatial.bounds.Bounds;
+import waffles.utils.geom.spatial.bounds.owners.Bounded;
 import waffles.utils.sets.arboreal.Arboreal;
 
 /**
- * A {@code SpatialTree} defines a {@code Manifold} around a {@code SpatialBoreal}.
+ * A {@code SpatialTree} defines a {@code Space} around a {@code SpatialBoreal}.
  *
  * @author Waffles
  * @since 16 Feb 2026
@@ -19,12 +21,13 @@ import waffles.utils.sets.arboreal.Arboreal;
  * @param <O>  an object type
  * @param <N>  a node type
  * @see Arboreal
- * @see Manifold
+ * @see Bounded
+ * @see Space
  */
-public interface SpatialTree<O, N extends SpatialNodal> extends Arboreal, Manifold<O>
+public interface SpatialTree<O, N extends SpatialNodal> extends Arboreal, Bounded, Space<O>
 {
 	/**
-	 * A {@code TreeSpace.Query} defines queries for a {@code TreeSpace}.
+	 * A {@code SpatialTree.Query} defines queries for a {@code SpatialTree}.
 	 *
 	 * @author Waffles
 	 * @since 16 Feb 2026
@@ -33,20 +36,21 @@ public interface SpatialTree<O, N extends SpatialNodal> extends Arboreal, Manifo
 	 *
 	 * @param <O>  an object type
 	 * @param <N>  a node type
-	 * @see Manifold
+	 * @see SpatialNodal
+	 * @see Space
 	 */
-	public interface Query<O, N extends SpatialNodal> extends Manifold.Query<O>
-	{		
+	public interface Query<O, N extends SpatialNodal> extends Space.Query<O>
+	{	
 		/**
-		 * Iterates objects in a {@code Nodal}.
+		 * Returns a node {@code Iterator}.
 		 * 
-		 * @param node  a node
+		 * @param n  a spatial node
 		 * @return  an object iterator
 		 * 
 		 * 
 		 * @see Iterator
 		 */
-		public abstract Iterator<O> in(N node);
+		public abstract Iterator<O> in(N n);
 		
 		/**
 		 * Returns the space of the {@code Query}.
@@ -57,8 +61,8 @@ public interface SpatialTree<O, N extends SpatialNodal> extends Arboreal, Manifo
 		 * @see SpatialTree
 		 */
 		public abstract SpatialTree<O, N> Space();
-		
-		
+				
+				
 		@Override
 		public default Iterator<O> in(HyperCuboid c)
 		{
@@ -90,8 +94,7 @@ public interface SpatialTree<O, N extends SpatialNodal> extends Arboreal, Manifo
 		@Override
 		public default Iterator<O> All()
 		{
-			SpatialBoreal.Query<N> q = Space().Tree().Query();
-			return new QRYNodes<>(this, () -> q.All());
+			return new QRYNodes<>(this, Space().Tree());
 		}
 	}
 	
@@ -108,4 +111,23 @@ public interface SpatialTree<O, N extends SpatialNodal> extends Arboreal, Manifo
 	
 	@Override
 	public abstract Query<O, N> Query();
+
+	
+	@Override
+	public default Bounds Bounds()
+	{
+		return Tree().Bounds();
+	}
+	
+	@Override
+	public default int Dimension()
+	{
+		return Root().Dimension();
+	}
+	
+	@Override
+	public default N Root()
+	{
+		return Tree().Root();
+	}
 }

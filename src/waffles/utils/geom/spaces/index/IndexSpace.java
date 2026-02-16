@@ -94,6 +94,12 @@ public interface IndexSpace<O, T> extends IndexedSet<T>, Space<O>
 
 	
 	@Override
+	public default Query<O> Query()
+	{
+		return null;
+	}
+	
+	@Override
 	public default int Dimension()
 	{
 		return Order();

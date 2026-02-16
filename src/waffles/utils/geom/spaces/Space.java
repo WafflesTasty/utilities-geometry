@@ -131,8 +131,5 @@ public interface Space<O> extends Dimensional, Queryable<O>
 
 
 	@Override
-	public default Query<O> Query()
-	{
-		return null;
-	}
+	public abstract Query<O> Query();
 }

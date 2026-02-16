@@ -3,6 +3,8 @@ package waffles.utils.geom.spaces.trees;
 import java.util.Iterator;
 
 import waffles.utils.geom.spaces.Space;
+import waffles.utils.geom.spatial.bounds.Bounds;
+import waffles.utils.geom.spatial.bounds.owners.Bounded;
 import waffles.utils.sets.arboreal.Arboreal;
 import waffles.utils.sets.utilities.rooted.iterators.BreadthFirst;
 
@@ -19,7 +21,7 @@ import waffles.utils.sets.utilities.rooted.iterators.BreadthFirst;
  * @see Arboreal
  * @see Space
  */
-public interface SpatialBoreal<N extends SpatialNodal> extends Arboreal, Space<N>
+public interface SpatialBoreal<N extends SpatialNodal> extends Arboreal, Bounded, Space<N>
 {
 	/**
 	 * A {@code SpatialBoreal.Query} defines queries for a {@code SpatialBoreal} tree.
@@ -55,9 +57,21 @@ public interface SpatialBoreal<N extends SpatialNodal> extends Arboreal, Space<N
 	
 	
 	@Override
+	public default Bounds Bounds()
+	{
+		return Root().Bounds();
+	}
+	
+	@Override
 	public default Query<N> Query()
 	{
 		return () -> this;
+	}
+		
+	@Override
+	public default int Dimension()
+	{
+		return Root().Dimension();
 	}
 	
 	@Override

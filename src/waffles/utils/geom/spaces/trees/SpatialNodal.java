@@ -1,20 +1,20 @@
 package waffles.utils.geom.spaces.trees;
 
-import waffles.utils.geom.Collidable;
+import waffles.utils.geom.shapes.Geometry;
 import waffles.utils.sets.utilities.rooted.Nodal;
 
 /**
- * A {@code SpatialNodal} defines a {@code Collidable Nodal}.
+ * A {@code SpatialNodal} defines a {@code Nodal Geometry}.
  *
  * @author Waffles
  * @since 16 Feb 2026
  * @version 1.1
  *
  * 
- * @see Collidable
+ * @see Geometry
  * @see Nodal
  */
-public interface SpatialNodal extends Collidable, Nodal
+public interface SpatialNodal extends Nodal, Geometry
 {
 	// NOT APPLICABLE
 }

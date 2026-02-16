@@ -1,13 +1,13 @@
-package waffles.utils.geom.spaces.trees.queries;
+package waffles.utils.geom.spaces.trees.planar.bipar.queries;
 
 import java.util.Iterator;
 
-import waffles.utils.geom.spaces.trees.SpatialNodal;
-import waffles.utils.geom.spaces.trees.SpatialTree.Query;
+import waffles.utils.geom.spaces.trees.planar.bipar.BPNode;
+import waffles.utils.geom.spatial.bounds.owners.Bounded;
 import waffles.utils.tools.collections.iterators.EmptyIterator;
 
 /**
- * A {@code QRYNodes} queries nodes in a {@code SpatialTree}.
+ * A {@code QRYNodes} queries nodes in a {@code BPSpace}.
  *
  * @author Waffles
  * @since 31 Jul 2020
@@ -15,32 +15,29 @@ import waffles.utils.tools.collections.iterators.EmptyIterator;
  *
  *
  * @param <O>  an object type
- * @param <N>  a node type
- * @see SpatialNodal
  * @see Iterator
+ * @see Bounded
  */
-public class QRYNodes<O, N extends SpatialNodal> implements Iterator<O>
+public class QRYNodes<O extends Bounded> implements Iterator<O>
 {
 	private O next;
-	
-	private Iterator<N> nodes;
 	private Iterator<O> objects;
-	private Query<O, N> qry;
+	private Iterator<BPNode<O>> nodes;
 
 	/**
 	 * Creates a new {@code QRYNodes}.
 	 *
-	 * @param q  a spatial query
-	 * @param n  a node iterable
+	 * @param n  a parent iterable
 	 *
-	 *
+	 * 
 	 * @see Iterable
+	 * @see BPNode
 	 */
-	public QRYNodes(Query<O, N> q, Iterable<N> n)
-	{	
-		qry = q;
-		nodes = n.iterator();
+	public QRYNodes(Iterable<BPNode<O>> n)
+	{
 		objects = new EmptyIterator<>();
+		
+		nodes = n.iterator();
 		next = findNext();
 	}
 
@@ -54,8 +51,8 @@ public class QRYNodes<O, N extends SpatialNodal> implements Iterator<O>
 		
 		if(nodes.hasNext())
 		{
-			N n = nodes.next();
-			objects = qry.in(n);
+			BPNode<O> n = nodes.next();
+			objects = n.iterator();
 			return findNext();
 		}
 
