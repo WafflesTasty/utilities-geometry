@@ -1,6 +1,5 @@
 package waffles.utils.geom.spaces;
 
-import waffles.utils.sets.countable.AtomicSet;
 import waffles.utils.sets.utilities.keymaps.Pair;
 
 /**
@@ -12,10 +11,9 @@ import waffles.utils.sets.utilities.keymaps.Pair;
  *
  *
  * @param <O>  an object type
- * @see AtomicSet
  * @see Space
  */
-public interface Manifold<O> extends AtomicSet<O>, Space<O>
+public interface Manifold<O> extends Space<O>
 {
 	/**
 	 * Iterates over all relevant pairs in the {@code Manifold}.

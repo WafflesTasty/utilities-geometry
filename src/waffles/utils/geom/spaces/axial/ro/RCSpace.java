@@ -11,7 +11,9 @@ import waffles.utils.geom.spaces.axial.ro.queries.QRYPairs;
 import waffles.utils.geom.spatial.bounds.Bounds;
 import waffles.utils.geom.spatial.bounds.owners.Bounded;
 import waffles.utils.sets.arboreal.Arboreal;
+import waffles.utils.sets.countable.AtomicSet;
 import waffles.utils.sets.utilities.keymaps.Pair;
+import waffles.utils.sets.utilities.rooted.Nodal;
 
 /**
  * An {@code RCSpace} defines a {@code Manifold} based on an {@code RCTree}.
@@ -23,10 +25,11 @@ import waffles.utils.sets.utilities.keymaps.Pair;
  *
  * @param <O>  an object type
  * @see Arboreal
+ * @see AtomicSet
  * @see Manifold
  * @see Bounded
  */
-public class RCSpace<O extends Bounded> implements Arboreal, Bounded, Manifold<O>
+public class RCSpace<O extends Bounded> implements Arboreal, AtomicSet<O>, Bounded, Manifold<O>
 {
 	/**
 	 * Defines the default maximum depth.
@@ -255,6 +258,12 @@ public class RCSpace<O extends Bounded> implements Arboreal, Bounded, Manifold<O
 	@Override
 	public int Count()
 	{
-		return Manifold.super.Count();
+		int c = 0;
+		for(Nodal n : BFSearch())
+		{
+			c += ((RCNode<O>) n).Count();
+		}
+		
+		return c;
 	}
 }
