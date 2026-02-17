@@ -7,6 +7,7 @@ import waffles.utils.geom.shapes.points.Arrow;
 import waffles.utils.geom.shapes.points.Point;
 import waffles.utils.geom.utilities.chiral.arrows.Cardinal;
 import waffles.utils.sets.utilities.indexed.coords.Coordinated;
+import waffles.utils.sets.utilities.rooted.Collectible;
 
 /**
  * A {@code Tiled} object can be contained in a {@code TiledSpace}.
@@ -17,9 +18,10 @@ import waffles.utils.sets.utilities.indexed.coords.Coordinated;
  * 
  * 
  * @see Coordinated
+ * @see Collectible
  * @see HyperCuboid
  */
-public interface Tiled extends Coordinated, HyperCuboid
+public interface Tiled extends Coordinated, Collectible, HyperCuboid
 {
 	/**
 	 * Returns the parent {@code TiledSpace}.
@@ -29,7 +31,10 @@ public interface Tiled extends Coordinated, HyperCuboid
 	 * 
 	 * @see TiledSpace
 	 */
-	public abstract TiledSpace<?> Parent();
+	public default TiledSpace<?> Parent()
+	{
+		return Arch().Set();
+	}
 
 	/**
 	 * Returns a neighbor of the {@code Tiled}.

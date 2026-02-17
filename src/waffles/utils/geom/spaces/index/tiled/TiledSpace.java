@@ -1,10 +1,13 @@
 package waffles.utils.geom.spaces.index.tiled;
 
+import java.util.Iterator;
+
 import waffles.utils.alg.lin.measure.vector.Vector;
 import waffles.utils.alg.lin.measure.vector.Vectors;
 import waffles.utils.geom.shapes.convex.axial.cube.HyperCuboid;
 import waffles.utils.geom.shapes.points.Arrow;
 import waffles.utils.geom.shapes.points.Point;
+import waffles.utils.geom.spaces.Space;
 import waffles.utils.geom.spaces.index.IndexSpace;
 import waffles.utils.geom.spatial.bounds.Bounds;
 import waffles.utils.sets.utilities.indexed.iterators.IndexValues;
@@ -12,7 +15,7 @@ import waffles.utils.tools.collections.iterators.EmptyIterator;
 import waffles.utils.tools.collections.iterators.SingleIterator;
 
 /**
- * A {@code TiledSpace} defines a spatial index with individual mutable tiles.
+ * A {@code TiledSpace} defines an {@code IndexSpace} with individual {@code Tiled} objects.
  *
  * @author Waffles
  * @since 28 Feb 2020
@@ -27,7 +30,89 @@ import waffles.utils.tools.collections.iterators.SingleIterator;
 public interface TiledSpace<T extends Tiled> extends IndexSpace.Mutable<T, T>, HyperCuboid
 {
 	/**
-	 * Iterates over all tiles in the {@code TiledSpace}.
+	 * A {@code TiledSpace.Query} defines queries for a {@code TiledSpace}.
+	 *
+	 * @author Waffles
+	 * @since 17 Feb 2026
+	 * @version 1.1
+	 *
+	 *
+	 * @param <T>  a tile type
+	 * @see Space
+	 * @see Tiled
+	 */
+	@FunctionalInterface
+	public static interface Query<T extends Tiled> extends Space.Query<T>
+	{
+		/**
+		 * Returns the space of the {@code Query}.
+		 * 
+		 * @return  a tiled space
+		 * 
+		 * 
+		 * @see TiledSpace
+		 */
+		public abstract TiledSpace<T> Space();
+		
+		/**
+		 * Iterates over a subset of a {@code TiledSpace}.
+		 *
+		 * @param min  a minimum index
+		 * @param max  a maximum index
+		 * @return  a tile iterator
+		 *
+		 *
+		 * @see Iterator
+		 */
+		public default Iterator<T> between(int[] min, int[] max)
+		{
+			return new IndexValues<>(Space(), min, max);
+		}
+		
+		
+		@Override
+		public default Iterator<T> in(HyperCuboid c)
+		{
+			Bounds bnd = c.Bounds();
+			Point x = bnd.Minimum();
+			Point y = bnd.Maximum();
+
+			int[] min = Space().indexOf(x);
+			int[] max = Space().indexOf(y);
+			
+			return between(min, max);
+		}
+		
+		@Override
+		public default Iterator<T> at(Point p)
+		{
+			TiledSpace<T> s = Space();
+			int[] crds = s.indexOf(p);
+			if(s.defines(crds))
+			{
+				T tile = s.get(crds);
+				if(tile != null)
+				{
+					return new SingleIterator<>(tile);
+				}
+			}
+
+			return new EmptyIterator<>();
+		}
+		
+		@Override
+		public default Iterator<T> All()
+		{
+			int[] min = Space().Minimum();
+			int[] max = Space().Maximum();
+			
+			return between(min, max);
+		}
+	}
+	
+	
+	/**
+	 * Iterates all tiles in the {@code TiledSpace}.
 	 *
 	 * @return  a tile iterable
 	 *
@@ -36,52 +121,15 @@ public interface TiledSpace<T extends Tiled> extends IndexSpace.Mutable<T, T>, H
 	 */
 	public default Iterable<T> Tiles()
 	{
-		return get(Minimum(), Maximum());
-	}
-
-	/**
-	 * Iterates over a section of the {@code TiledSpace}.
-	 *
-	 * @param min  a minimum index
-	 * @param max  a maximum index
-	 * @return  a tile iterable
-	 *
-	 *
-	 * @see Iterable
-	 */
-	public default Iterable<T> get(int[] min, int[] max)
-	{
-		return () -> new IndexValues<>(this, min, max);
+		return () -> Query().All();
 	}
 
 	
 	@Override
-	public default Iterable<T> query(HyperCuboid c)
+	public default Query<T> Query()
 	{
-		Bounds bnd = c.Bounds();
-		
-		int[] min = indexOf(bnd.Minimum());
-		int[] max = indexOf(bnd.Maximum());
-		
-		return get(min, max);
+		return () -> this;
 	}
-	
-	@Override
-	public default Iterable<T> query(Point p)
-	{
-		int[] crds = indexOf(p);
-		if(defines(crds))
-		{
-			T t = get(crds);
-			if(t != null)
-			{
-				return () -> new SingleIterator<>(t);
-			}
-		}
-
-		return () -> new EmptyIterator<>();
-	}
-
 	
 	@Override
 	public default int Dimension()
