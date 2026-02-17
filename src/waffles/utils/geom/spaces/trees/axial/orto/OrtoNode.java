@@ -17,7 +17,7 @@ import waffles.utils.sets.utilities.rooted.Node;
  * @see OrtoNodal
  * @see Node
  */
-public abstract class OrtoNode extends Node implements OrtoNodal
+public class OrtoNode extends Node implements OrtoNodal
 {
 	private Axis axis;
 	

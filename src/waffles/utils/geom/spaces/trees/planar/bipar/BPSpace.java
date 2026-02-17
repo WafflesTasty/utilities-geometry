@@ -7,7 +7,6 @@ import waffles.utils.geom.spaces.trees.array.ArrayTree;
 import waffles.utils.geom.spaces.trees.planar.Plane;
 import waffles.utils.geom.spatial.bounds.Bounds;
 import waffles.utils.geom.spatial.bounds.owners.Bounded;
-import waffles.utils.sets.arboreal.binary.BiTree;
 import waffles.utils.sets.countable.AtomicSet;
 import waffles.utils.sets.utilities.rooted.Nodal;
 import waffles.utils.tools.primitives.Floats;
@@ -25,9 +24,8 @@ import waffles.utils.tools.primitives.Floats;
  * @see AtomicSet
  * @see Bounded
  * @see BPNode
- * @see BiTree
  */
-public class BPSpace<O extends Bounded> extends BiTree implements AtomicSet<O>, ArrayTree<O, BPNode<O>>
+public class BPSpace<O extends Bounded> implements AtomicSet<O>, ArrayTree<O, BPNode<O>>
 {
 	/**
 	 * Defines the default maximum depth.
@@ -104,25 +102,6 @@ public class BPSpace<O extends Bounded> extends BiTree implements AtomicSet<O>, 
 	}
 	
 		
-	@Override
-	public Iterable<BPNode<O>> preorder()
-	{
-		return super.preorder();
-	}
-		
-	@Override
-	public Iterable<BPNode<O>> postorder()
-	{
-		return super.postorder();
-	}
-	
-	@Override
-	public Iterable<BPNode<O>> inorder()
-	{
-		return super.inorder();
-	}
-	
-	
 	@Override
 	public void add(O obj)
 	{
@@ -218,13 +197,7 @@ public class BPSpace<O extends Bounded> extends BiTree implements AtomicSet<O>, 
 	{
 		return tree;
 	}
-	
-	@Override
-	public BPTree.Factory Factory()
-	{
-		return () -> Tree();
-	}
-	
+		
 	@Override
 	public Query<O, BPNode<O>> Query()
 	{
@@ -232,9 +205,9 @@ public class BPSpace<O extends Bounded> extends BiTree implements AtomicSet<O>, 
 	}
 	
 	@Override
-	public BPNode<O> Root()
+	public BPTree.Factory Factory()
 	{
-		return (BPNode<O>) super.Root();
+		return () -> Tree();
 	}
 	
 	@Override

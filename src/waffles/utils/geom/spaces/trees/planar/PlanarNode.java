@@ -15,7 +15,7 @@ import waffles.utils.sets.arboreal.binary.BiTree;
  * @see PlanarNodal
  * @see BiNode
  */
-public abstract class PlanarNode extends BiNode implements PlanarNodal
+public class PlanarNode extends BiNode implements PlanarNodal
 {
 	private Plane plane;
 
