@@ -25,7 +25,7 @@ public class CLSAxisAligned extends CLSGeometrical
 	/**
 	 * Creates a new {@code CLSAxisAligned}.
 	 *
-	 * @param s  an axisaligned source
+	 * @param s  an axis-aligned source
 	 *
 	 *
 	 * @see AxisAligned

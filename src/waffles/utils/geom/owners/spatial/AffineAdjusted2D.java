@@ -2,21 +2,21 @@ package waffles.utils.geom.owners.spatial;
 
 import waffles.utils.geom.owners.Geometrical2D;
 import waffles.utils.geom.shapes.points.Point;
-import waffles.utils.geom.spatial.Oriented2D;
+import waffles.utils.geom.spatial.Adjustable2D;
 
 /**
- * An {@code AffineOriented2D} defines a two-dimensional {@code Oriented Geometrical}.
+ * An {@code AffineAdjusted2D} defines a two-dimensional {@code Adjustable Geometrical}.
  *
  * @author Waffles
  * @since Feb 27, 2018
  * @version 1.1
  *
  *
- * @see AffineOriented
+ * @see AffineAdjusted
  * @see Geometrical2D
- * @see Oriented2D
+ * @see Adjustable2D
  */
-public interface AffineOriented2D extends AffineOriented, Oriented2D, Geometrical2D
+public interface AffineAdjusted2D extends AffineAdjusted, Adjustable2D, Geometrical2D
 {	
 	@Override
 	public default int Dimension()
@@ -27,6 +27,6 @@ public interface AffineOriented2D extends AffineOriented, Oriented2D, Geometrica
 	@Override
 	public default Point Origin()
 	{
-		return AffineOriented.super.Origin();
+		return AffineAdjusted.super.Origin();
 	}
 }
