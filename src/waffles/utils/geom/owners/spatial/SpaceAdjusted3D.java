@@ -5,18 +5,18 @@ import waffles.utils.geom.shapes.points.Point;
 import waffles.utils.geom.spatial.Adjustable3D;
 
 /**
- * An {@code AffineAdjusted3D} defines a three-dimensional {@code Adjustable Geometrical}.
+ * An {@code SpaceAdjusted3D} defines a three-dimensional {@code Adjustable Geometrical}.
  *
  * @author Waffles
  * @since Feb 27, 2018
  * @version 1.1
  *
  *
- * @see AffineAdjusted
+ * @see SpaceAdjusted
  * @see Geometrical3D
  * @see Adjustable3D
  */
-public interface AffineAdjusted3D extends AffineAdjusted, Adjustable3D, Geometrical3D
+public interface SpaceAdjusted3D extends SpaceAdjusted, Adjustable3D, Geometrical3D
 {
 	@Override
 	public default int Dimension()
@@ -27,6 +27,6 @@ public interface AffineAdjusted3D extends AffineAdjusted, Adjustable3D, Geometri
 	@Override
 	public default Point Origin()
 	{
-		return AffineAdjusted.super.Origin();
+		return SpaceAdjusted.super.Origin();
 	}
 }

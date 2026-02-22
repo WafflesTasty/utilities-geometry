@@ -5,18 +5,18 @@ import waffles.utils.geom.shapes.points.Point;
 import waffles.utils.geom.spatial.Adjustable2D;
 
 /**
- * An {@code AffineAdjusted2D} defines a two-dimensional {@code Adjustable Geometrical}.
+ * An {@code SpaceAdjusted2D} defines a two-dimensional {@code Adjustable Geometrical}.
  *
  * @author Waffles
  * @since Feb 27, 2018
  * @version 1.1
  *
  *
- * @see AffineAdjusted
+ * @see SpaceAdjusted
  * @see Geometrical2D
  * @see Adjustable2D
  */
-public interface AffineAdjusted2D extends AffineAdjusted, Adjustable2D, Geometrical2D
+public interface SpaceAdjusted2D extends SpaceAdjusted, Adjustable2D, Geometrical2D
 {	
 	@Override
 	public default int Dimension()
@@ -27,6 +27,6 @@ public interface AffineAdjusted2D extends AffineAdjusted, Adjustable2D, Geometri
 	@Override
 	public default Point Origin()
 	{
-		return AffineAdjusted.super.Origin();
+		return SpaceAdjusted.super.Origin();
 	}
 }

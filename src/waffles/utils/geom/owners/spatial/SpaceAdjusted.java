@@ -6,7 +6,7 @@ import waffles.utils.geom.spatial.Adjustable;
 import waffles.utils.geom.spatial.maps.global.SpatialMap;
 
 /**
- * An {@code AffineAdjusted} defines an n-dimensional {@code Adjustable Geometrical}.
+ * An {@code SpaceAdjusted} defines an n-dimensional {@code Adjustable Geometrical}.
  *
  * @author Waffles
  * @since Feb 27, 2018
@@ -16,7 +16,7 @@ import waffles.utils.geom.spatial.maps.global.SpatialMap;
  * @see Geometrical
  * @see Adjustable
  */
-public interface AffineAdjusted extends Adjustable, Geometrical
+public interface SpaceAdjusted extends Adjustable, Geometrical
 {
 	@Override
 	public default Point Origin()
