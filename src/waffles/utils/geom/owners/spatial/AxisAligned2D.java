@@ -1,7 +1,7 @@
 package waffles.utils.geom.owners.spatial;
 
 import waffles.utils.geom.owners.Geometrical2D;
-import waffles.utils.geom.shapes.convex.axial.AxialSet2D;
+import waffles.utils.geom.shapes.Geometry2D;
 import waffles.utils.geom.shapes.points.Point;
 import waffles.utils.geom.spatial.Aligned2D;
 
@@ -26,7 +26,7 @@ public interface AxisAligned2D extends AxisAligned, Aligned2D, Geometrical2D
 	}
 	
 	@Override
-	public abstract AxialSet2D Shape();
+	public abstract Geometry2D Shape();
 	
 	@Override
 	public default int Dimension()
