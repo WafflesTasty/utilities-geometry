@@ -34,6 +34,7 @@ public interface Space<O> extends Dimensional, Queryable<O>
 	 * @param <O>  an object type
 	 * @see Queryable
 	 */
+	@FunctionalInterface
 	public static interface Query<O> extends Queryable.Query<O>
 	{
 		/**
