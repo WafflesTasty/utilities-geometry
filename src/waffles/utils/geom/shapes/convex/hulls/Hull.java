@@ -180,4 +180,10 @@ public interface Hull extends ConvexSet, Transformator
 	{
 		return new BNDHull(this);
 	}
+
+	@Override
+	public default int Dimension()
+	{
+		return Factory().Point(0).Dimension();
+	}
 }

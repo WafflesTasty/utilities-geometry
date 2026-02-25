@@ -74,15 +74,15 @@ public interface Tiled extends Coordinated, Collectible, HyperCuboid
 	@Override
 	public default Point Origin()
 	{
-		Arrow a = Scale();
+		Arrow s = Scale();
 		int ord = Order();
 		
 		int[] crd = Coords();
 		Vector o = Vectors.create(ord);
 		for(int k = 0; k < ord; k++)
 		{
-			float v = crd[k] + crd[k] + 1;
-			o.set(a.aff(k) * v / 2, k);
+			float v = 2 * crd[k] + + 1;
+			o.set(s.aff(k) * v / 2, k);
 		}
 		
 		return new Point(o, 1f);

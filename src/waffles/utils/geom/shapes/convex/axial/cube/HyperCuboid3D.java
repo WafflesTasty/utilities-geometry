@@ -23,4 +23,10 @@ public interface HyperCuboid3D extends HyperCuboid, AxialSet3D
 	{
 		return (BNDCuboid3D) () -> this;
 	}
+
+	@Override
+	public default int Dimension()
+	{
+		return 3;
+	}
 }

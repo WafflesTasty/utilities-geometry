@@ -47,12 +47,7 @@ public interface HyperSphere extends HyperSpheroid
 	 */
 	public static HyperSphere unit(int d)
 	{
-		if(d == 2)
-			return new Circle(d);
-		if(d == 3)
-			return new Sphere(d);
-		
-		return new SphereND(d);
+		return create(new Point(d), 1f);
 	}
 	
 	

@@ -29,6 +29,6 @@ public interface Geometry3D extends Geometry, Collideable3D, Bounded3D, Position
 	@Override
 	public default Point Origin()
 	{
-		return Positioned3D.super.Origin();
+		return Geometry.super.Origin();
 	}
 }

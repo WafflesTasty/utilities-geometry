@@ -62,7 +62,7 @@ public class BNDHull implements Bounds
 		{
 			Hull.Factory fc = src.Factory();
 			float max = Floats.MAX_VALUE;
-			int d = Dimension();	
+			int d = Dimension();
 
 			Vector m = Vectors.create(max, d);
 			for(int i = 0; i < fc.Count(); i++)
@@ -113,6 +113,12 @@ public class BNDHull implements Bounds
 		return max;
 	}
 
+	@Override
+	public int Dimension()
+	{
+		return src.Dimension();
+	}
+	
 	@Override
 	public float Radius()
 	{

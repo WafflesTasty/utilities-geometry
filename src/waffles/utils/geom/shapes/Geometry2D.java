@@ -29,6 +29,6 @@ public interface Geometry2D extends Geometry, Collideable2D, Bounded2D, Position
 	@Override
 	public default Point Origin()
 	{
-		return Positioned2D.super.Origin();
+		return Geometry.super.Origin();
 	}
 }

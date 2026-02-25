@@ -6,6 +6,7 @@ import waffles.utils.geom.shapes.collision.Collision.Response;
 import waffles.utils.geom.shapes.convex.axial.sphere.HyperSphere;
 import waffles.utils.geom.shapes.convex.axial.sphere.HyperSpheroid;
 import waffles.utils.geom.shapes.fixed.Void;
+import waffles.utils.geom.shapes.points.Arrow;
 import waffles.utils.geom.shapes.points.Point;
 import waffles.utils.geom.spatial.maps.global.fixed.AxisMap;
 
@@ -43,7 +44,7 @@ public class CNTPoint implements Response
 		map = new AxisMap(s);
 		HyperSphere u = HyperSphere.unit(dim);
 		rsp = u.contain((Point) map.unmap(t));
-		
+
 		src = s;
 		tgt = t;
 	}
@@ -76,17 +77,21 @@ public class CNTPoint implements Response
 	@Override
 	public Vector Penetration()
 	{
-		Vector pnt = rsp.Penetration();
-		pnt = (Vector) map.map(pnt);
-		return pnt;
+		Vector v = rsp.Penetration();
+
+		Point pnt = new Arrow(v);
+		pnt = (Point) map.map(pnt);
+		return pnt.Vector();
 	}
 
 	@Override
 	public Vector Distance()
 	{
-		Vector dst = rsp.Distance();
-		dst = (Vector) map.map(dst);
-		return dst;
+		Vector v = rsp.Distance();
+		System.out.print("OG distance: " + v.norm());
+		Point dst = new Arrow(v);
+		dst = (Point) map.map(dst);
+		return dst.Vector();
 	}
 
 	@Override

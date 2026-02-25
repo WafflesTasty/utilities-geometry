@@ -58,25 +58,12 @@ public class CNTPoint implements Response
 		@Override
 		public default double Error()
 		{
-			return Doubles.pow(2, -8);
+			return Doubles.pow(2, -16);
 		}
 	}
 	
 	
 	private Hints hints;
-
-	/**
-	 * Creates a new {@code CNTPoint}.
-	 * 
-	 * @param h  response hints
-	 * 
-	 * 
-	 * @see Hints
-	 */
-	public CNTPoint(Hints h)
-	{
-		hints = h;
-	}
 	
 	/**
 	 * Creates a new {@code CNTPoint}.
@@ -104,6 +91,19 @@ public class CNTPoint implements Response
 				return x;
 			}
 		});
+	}
+
+	/**
+	 * Creates a new {@code CNTPoint}.
+	 * 
+	 * @param h  response hints
+	 * 
+	 * 
+	 * @see Hints
+	 */
+	public CNTPoint(Hints h)
+	{
+		hints = h;
 	}
 	
 	/**
@@ -183,7 +183,7 @@ public class CNTPoint implements Response
 		{
 			return compute();
 		}
-		
+
 		int n = Dimension();
 		return Vectors.create(n);
 	}

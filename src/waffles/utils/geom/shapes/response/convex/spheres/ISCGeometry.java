@@ -35,6 +35,7 @@ public class ISCGeometry implements Response
 	public ISCGeometry(HyperSphere s, Geometry t)
 	{
 		rsp = t.contain(s.Origin());
+		System.out.println(t + " -> " + rsp);
 		src = s;
 	}
 	
@@ -46,7 +47,6 @@ public class ISCGeometry implements Response
 		{
 			float r = src.Radius();
 			Vector dst = rsp.Distance();
-
 			float n = dst.normSqr();
 			return n <= r * r;			
 		}
@@ -92,12 +92,12 @@ public class ISCGeometry implements Response
 	{
 		if(!hasImpact())
 		{
-			Vector pnt = rsp.Penetration();
+			Vector dst = rsp.Distance();
 			
 			float r = src.Radius();
-			float d = pnt.norm();
+			float d = dst.norm();
 			
-			return pnt.times((d - r) / d);
+			return dst.times((r - d) / d);
 		}
 
 		int n = Dimension();

@@ -82,13 +82,14 @@ public interface Collidable extends Dimensional
 	public default Response intersect(Collidable c)
 	{
 		Response rsp1 =   Collision().intersect(c);
-		Response rsp2 = c.Collision().intersect(this);
-
+		Response rsp2 = c.Collision().intersect(this);	
+		
 		rsp2 = new RSPFlipped(rsp2);
 		if(rsp1.cost() <= rsp2.cost())
 		{
 			return rsp1;
 		}
+		
 		return rsp2;
 	}
 

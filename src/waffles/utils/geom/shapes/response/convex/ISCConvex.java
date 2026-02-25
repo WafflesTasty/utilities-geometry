@@ -17,6 +17,7 @@ import waffles.utils.geom.shapes.convex.MinkowskiSet;
  * 
  * @see Response
  */
+@Deprecated
 public class ISCConvex implements Response
 {
 	private Response rsp;
@@ -34,9 +35,10 @@ public class ISCConvex implements Response
 	public ISCConvex(ConvexSet s, ConvexSet t)
 	{
 		src = s;
-		int dim = s.Dimension();
-		ConvexSet diff = new MinkowskiSet(s, t);
-		rsp = diff.contain(new Point(dim));
+//		int dim = s.Dimension();
+//		ConvexSet diff = new MinkowskiSet(s, t);
+//		rsp = diff.contain(new Point(dim));
+		rsp = () -> s;
 	}
 
 	

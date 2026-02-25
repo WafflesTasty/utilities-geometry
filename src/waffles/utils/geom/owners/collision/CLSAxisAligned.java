@@ -90,15 +90,7 @@ public class CLSAxisAligned extends CLSGeometrical
 	public Response contain(Collidable c)
 	{
 		AxisAligned s = Source();
-		
-		// Eliminate points.
-		if(c instanceof Point)
-		{
-			Point t = (Point) c;
-			
-			return new CNTTransformator(s, t);
-		}
-		
+				
 		Geometry g = s.Shape();
 		// For a source axial set...
 		if(g instanceof AxialSet)
@@ -111,6 +103,14 @@ public class CLSAxisAligned extends CLSGeometrical
 				a = (AxialSet) m.map(a);			
 				return a.contain(c);				
 			}
+		}
+		
+		// Eliminate points.
+		if(c instanceof Point)
+		{
+			Point t = (Point) c;
+			
+			return new CNTTransformator(s, t);
 		}
 		
 		// Eliminate axial sets.
