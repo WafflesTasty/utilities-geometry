@@ -35,7 +35,6 @@ public class ISCGeometry implements Response
 	public ISCGeometry(HyperSphere s, Geometry t)
 	{
 		rsp = t.contain(s.Origin());
-		System.out.println(t + " -> " + rsp);
 		src = s;
 	}
 	
