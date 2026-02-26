@@ -73,13 +73,7 @@ public class Axis extends Position implements Axial.Mutable
 	@Override
 	public void setScale(Point s)
 	{
-		if(s instanceof Arrow)
-			size = (Arrow) s;
-		else
-		{
-			Vector v = s.Vector();
-			size = new Arrow(v);
-		}
+		size = s.arrow();
 	}
 
 	@Override

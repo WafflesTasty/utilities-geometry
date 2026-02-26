@@ -183,4 +183,10 @@ public class Arrow extends Point
 		float m = Floats.abs(Mass());
 		return new Arrow(v, m);
 	}
+
+	@Override
+	public Arrow arrow()
+	{
+		return this;
+	}
 }

@@ -183,6 +183,19 @@ public class Point implements Angular, Transformator, Inaccurate<Point>
 		this(Vectors.create(n), 1f);
 	}
 
+	
+	/**
+	 * Returns a similar{@code Arrow}.
+	 * 
+	 * @return  an arrow
+	 * 
+	 * 
+	 * @see Arrow
+	 */
+	public Arrow arrow()
+	{
+		return new Arrow(Vector());
+	}
 		
 	/**
 	 * Returns a {@code Point} energy.
@@ -446,4 +459,5 @@ public class Point implements Angular, Transformator, Inaccurate<Point>
 	{
 		return Energy().Size();
 	}
+
 }

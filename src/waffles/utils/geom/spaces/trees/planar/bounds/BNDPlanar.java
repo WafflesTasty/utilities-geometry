@@ -102,7 +102,6 @@ public interface BNDPlanar extends BNDCuboid
 		Point n = Maximum();
 		
 		Point s = n.minus(m);
-		Vector v = s.Vector();
-		return new Arrow(v);
+		return s.arrow();
 	}
 }

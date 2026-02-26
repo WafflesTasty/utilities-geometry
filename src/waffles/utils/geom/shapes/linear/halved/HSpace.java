@@ -6,7 +6,6 @@ import waffles.utils.geom.shapes.collision.Collision;
 import waffles.utils.geom.shapes.collision.linear.halved.CLSHSpace;
 import waffles.utils.geom.shapes.fixed.Void;
 import waffles.utils.geom.shapes.linear.VSpace;
-import waffles.utils.geom.shapes.points.Arrow;
 import waffles.utils.geom.shapes.points.Point;
 import waffles.utils.geom.utilities.Transformator;
 import waffles.utils.tools.primitives.Doubles;
@@ -59,7 +58,7 @@ public class HSpace implements VSpace.Ortho
 		 */
 		public Factory(Point p, Point q)
 		{
-			super(p, new Arrow(q.minus(p).Vector()));
+			super(p, q.minus(p).arrow());
 		}
 
 		

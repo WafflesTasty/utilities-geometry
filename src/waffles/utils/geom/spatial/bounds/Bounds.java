@@ -1,6 +1,5 @@
 package waffles.utils.geom.spatial.bounds;
 
-import waffles.utils.alg.lin.measure.vector.Vector;
 import waffles.utils.alg.utilities.affine.LinearMap;
 import waffles.utils.geom.shapes.convex.axial.cube.HyperCuboid;
 import waffles.utils.geom.shapes.convex.axial.sphere.HyperSphere;
@@ -181,7 +180,6 @@ public interface Bounds extends Axial, Constructible
 		Point max = Maximum();
 		
 		Point s = max.minus(min);
-		Vector v = s.Vector();
-		return new Arrow(v);
+		return s.arrow();
 	}
 }
