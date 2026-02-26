@@ -102,7 +102,13 @@ public interface AxialSet extends ConvexSet, Transformator
 		}
 	}
 	
-	
+		
 	@Override
 	public abstract Factory Factory();
+
+	@Override
+	public default int Dimension()
+	{
+		return ConvexSet.super.Dimension();
+	}
 }

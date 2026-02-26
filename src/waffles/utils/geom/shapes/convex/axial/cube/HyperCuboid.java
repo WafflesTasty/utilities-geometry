@@ -66,7 +66,7 @@ public interface HyperCuboid extends Hull, AxialSet
 			Point s = Source().Scale();
 			Point o = Source().Origin();
 			
-			int d = Source().Dimension();			
+			int d = Source().Dimension();
 			Vector v = Vectors.create(d);
 			
 			for(int k = 0; k < d; k++)
@@ -204,5 +204,11 @@ public interface HyperCuboid extends Hull, AxialSet
 			return (BNDCuboid3D) () -> this;
 		
 			return (BNDCuboid) () -> this;
+	}
+
+	@Override
+	public default int Dimension()
+	{
+		return AxialSet.super.Dimension();
 	}
 }
