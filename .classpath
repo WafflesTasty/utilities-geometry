@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry combineaccessrules="false" kind="src" path="/Utilities - Collections"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/Utilities - Algebra"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/Utilities - Tools"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/Utilities - Language"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Utilities - Algebra"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
