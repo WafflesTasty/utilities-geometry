@@ -46,7 +46,7 @@ public interface Rotatable3D extends Rotatable, Rotated3D
 	 */
 	public default void rotateFor(Vector3 v, float a)
 	{
-		if(ERROR < a)
+		if(ERROR < Floats.abs(a))
 		{
 			rotateFor(new Spin3D(v, a));
 		}
