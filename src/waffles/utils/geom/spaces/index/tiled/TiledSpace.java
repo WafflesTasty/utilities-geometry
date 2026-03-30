@@ -88,12 +88,15 @@ public interface TiledSpace<T extends Tiled> extends IndexSpace.Mutable<T, T>, H
 		{
 			TiledSpace<T> s = Space();
 			int[] crds = s.indexOf(p);
-			if(s.defines(crds))
+			if(crds != null)
 			{
-				T tile = s.get(crds);
-				if(tile != null)
+				if(s.defines(crds))
 				{
-					return new SingleIterator<>(tile);
+					T tile = s.get(crds);
+					if(tile != null)
+					{
+						return new SingleIterator<>(tile);
+					}
 				}
 			}
 
