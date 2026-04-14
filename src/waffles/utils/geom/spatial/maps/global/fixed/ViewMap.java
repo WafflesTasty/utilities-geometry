@@ -180,13 +180,13 @@ public class ViewMap implements WatcherMap.Mutable
 	@Override
 	public LazyMatrix UTW()
 	{
-		return wtc;
+		return ctw;
 	}
 
 	@Override
 	public LazyMatrix WTU()
 	{
-		return ctw;
+		return wtc;
 	}
 
 	@Override
