@@ -27,8 +27,8 @@ import waffles.utils.geom.spatial.maps.linear.Translation;
 public class AffineMap implements SpatialMap.Mutable
 {	
 	/**
-	 * A {@code UnitToWorld} defines a {@code LazyMatrix}
-	 * for an {@code AffineMap} which transforms a {@code Spatial}
+	 * A {@code UnitToWorld} defines a {@code LazyMatrix} for an
+	 * {@code AffineMap} which transforms a {@code Spatial}
 	 * from unit space to world space.
 	 *
 	 * @author Waffles
@@ -76,8 +76,8 @@ public class AffineMap implements SpatialMap.Mutable
 	}
 	
 	/**
-	 * A {@code WorldToUnit} defines a {@code LazyMatrix}
-	 * for an {@code AffineMap} which transforms an {@code Spatial}
+	 * A {@code WorldToUnit} defines a {@code LazyMatrix} for an
+	 * {@code AffineMap} which transforms an {@code Spatial}
 	 * from world space to unit space.
 	 *
 	 * @author Waffles
