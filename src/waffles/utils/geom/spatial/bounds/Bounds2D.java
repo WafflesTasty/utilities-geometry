@@ -1,6 +1,6 @@
 package waffles.utils.geom.spatial.bounds;
 
-import waffles.utils.geom.shapes.convex.axial.cube.HyperCuboid2D;
+import waffles.utils.geom.shapes.convex.axial.cube.base.Rectangle;
 import waffles.utils.geom.shapes.convex.axial.sphere.base.Circle;
 
 /**
@@ -99,9 +99,9 @@ public interface Bounds2D extends Bounds
 
 
 	@Override
-	public default HyperCuboid2D Box()
+	public default Rectangle Box()
 	{
-		return (HyperCuboid2D) Bounds.super.Box();
+		return (Rectangle) Bounds.super.Box();
 	}
 
 	@Override

@@ -1,6 +1,6 @@
 package waffles.utils.geom.spatial.bounds;
 
-import waffles.utils.geom.shapes.convex.axial.cube.HyperCuboid3D;
+import waffles.utils.geom.shapes.convex.axial.cube.base.Cuboid;
 import waffles.utils.geom.shapes.convex.axial.sphere.base.Sphere;
 
 /**
@@ -140,9 +140,9 @@ public interface Bounds3D extends Bounds
 
 	
 	@Override
-	public default HyperCuboid3D Box()
+	public default Cuboid Box()
 	{
-		return (HyperCuboid3D) Bounds.super.Box();
+		return (Cuboid) Bounds.super.Box();
 	}
 
 	@Override
