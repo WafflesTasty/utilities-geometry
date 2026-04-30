@@ -171,8 +171,14 @@ public class Arrow extends Point
 	@Override
 	public Arrow times(Float s)
 	{
+		return over(1f / s);
+	}
+	
+	@Override
+	public Arrow over(Float s)
+	{
 		Vector e = Energy();
-		float m = Mass() / s;
+		float m = Mass() * s;
 		return new Arrow(e, m);
 	}
 	

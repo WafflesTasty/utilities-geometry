@@ -328,6 +328,19 @@ public class Point implements Angular, Transformator, Inaccurate<Point>
 	}
 	
 	/**
+	 * Computes a divsion scaled {@code Point}.
+	 * 
+	 * @param s  a scale factor
+	 * @return   a divided point
+	 */
+	public Point over(Float s)
+	{
+		Vector e = Energy();
+		float m = Mass() * s;
+		return new Point(e, m);		
+	}
+	
+	/**
 	 * Computes a Hadamard {@code Point}.
 	 * 
 	 * @param p  a point
@@ -369,9 +382,7 @@ public class Point implements Angular, Transformator, Inaccurate<Point>
 	@Override
 	public Point times(Float s)
 	{
-		Vector e = Energy();
-		float m = Mass() / s;
-		return new Point(e, m);
+		return over(1f / s);
 	}
 	
 	@Override
