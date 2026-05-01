@@ -178,6 +178,15 @@ public class Arrow extends Point
 	public Arrow over(Float s)
 	{
 		Vector e = Energy();
+		float r = Floats.abs(s);
+		float n = Floats.abs(Mass());
+		
+		if(n > Floats.MAX_VALUE / r)
+		{
+			e = e.times(1f / Mass() / s);
+			return new Arrow(e, 1f);
+		}
+		
 		float m = Mass() * s;
 		return new Arrow(e, m);
 	}

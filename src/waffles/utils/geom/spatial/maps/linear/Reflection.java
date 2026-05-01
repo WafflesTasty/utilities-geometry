@@ -51,12 +51,14 @@ public class Reflection implements LinearMap
 	@Override
 	public Matrix Inverse(int dim)
 	{
-		return Matrices.reflection(normal);
+		Vector n = normal.resize(dim);
+		return Matrices.reflection(n);
 	}
 
 	@Override
 	public Matrix Matrix(int dim)
 	{
-		return Matrices.reflection(normal);
+		Vector n = normal.resize(dim);
+		return Matrices.reflection(n);
 	}
 }

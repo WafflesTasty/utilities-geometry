@@ -328,7 +328,7 @@ public class Point implements Angular, Transformator, Inaccurate<Point>
 	}
 	
 	/**
-	 * Computes a divsion scaled {@code Point}.
+	 * Computes a division scaled {@code Point}.
 	 * 
 	 * @param s  a scale factor
 	 * @return   a divided point
@@ -336,6 +336,15 @@ public class Point implements Angular, Transformator, Inaccurate<Point>
 	public Point over(Float s)
 	{
 		Vector e = Energy();
+		float r = Floats.abs(s);
+		float n = Floats.abs(Mass());
+		
+		if(n > Floats.MAX_VALUE / r)
+		{
+			e = e.times(1f / Mass() / s);
+			return new Point(e, 1f);
+		}
+		
 		float m = Mass() * s;
 		return new Point(e, m);		
 	}
