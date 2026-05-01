@@ -3,6 +3,8 @@ package waffles.utils.geom.spaces;
 import java.util.Iterator;
 
 import waffles.utils.sets.utilities.keymaps.Pair;
+import waffles.utils.sets.utilities.keymaps.PairQuery;
+import waffles.utils.sets.utilities.keymaps.PairQueryable;
 
 /**
  * A {@code Manifold} defines a {@code Space} that can iterate object pairs.
@@ -13,9 +15,10 @@ import waffles.utils.sets.utilities.keymaps.Pair;
  *
  *
  * @param <O>  an object type
+ * @see PairQueryable
  * @see Space
  */
-public interface Manifold<O> extends Space<O>
+public interface Manifold<O> extends Space<O>, PairQueryable<O>
 {
 	/**
 	 * A {@code Manifold.Query} defines queries for a {@code Manifold}.
@@ -28,7 +31,7 @@ public interface Manifold<O> extends Space<O>
 	 * @param <O>  an object type
 	 * @see Space
 	 */
-	public static interface Query<O> extends Space.Query<O>
+	public static interface Query<O> extends Space.Query<O>, PairQuery<O>
 	{
 		/**
 		 * Iterates over all relevant pairs in the {@code Manifold}.
@@ -41,25 +44,16 @@ public interface Manifold<O> extends Space<O>
 		 * @see Iterator
 		 * @see Pair
 		 */
+		@Override
 		public abstract Iterator<Pair<O, O>> Pairs();
 	}
 
-	/**
-	 * Iterates over all relevant pairs in the {@code Manifold}.
-	 * Preferably, this method iterates over all unique
-	 * pairs of potentially intersecting objects.
-	 *
-	 * @return  a pair iterable
-	 *
-	 *
-	 * @see Iterable
-	 * @see Pair
-	 */
+
+	@Override
 	public default Iterable<Pair<O, O>> Pairs()
 	{
 		return () -> Query().Pairs();
 	}
-	
 	
 	@Override
 	public abstract Query<O> Query();
