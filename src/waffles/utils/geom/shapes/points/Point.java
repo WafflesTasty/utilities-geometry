@@ -336,16 +336,16 @@ public class Point implements Angular, Transformator, Inaccurate<Point>
 	public Point over(Float s)
 	{
 		Vector e = Energy();
-		float r = Floats.abs(s);
-		float n = Floats.abs(Mass());
+		float n = Floats.abs( Mass());
+		float r = Floats.sign(Mass());
 		
-		if(n > Floats.MAX_VALUE / r)
+		if(n > Floats.MAX_VALUE / Floats.abs(s))
 		{
-			e = e.times(1f / Mass() / s);
+			e = e.times(r / Mass() / s);
 			return new Point(e, 1f);
 		}
 
-		float m = Mass() * s;
+		float m = r * Mass() * s;
 		return new Point(e, m);
 	}
 	
@@ -357,16 +357,24 @@ public class Point implements Angular, Transformator, Inaccurate<Point>
 	 */
 	public Point hadamard(Point p)
 	{
-		float m =   Mass();
-		float n = p.Mass();
+		float r = Floats.sign(  Mass());
+		float s = Floats.sign(p.Mass());
 		
+		float m = Floats.abs(  Mass());
+		float n = Floats.abs(p.Mass());
+				
 		Vector v =   Energy();
 		Vector w = p.Energy();
 		
 		
-		float o = m * n;
-		Vector x = v.hadamard(w);
-		return new Point(x, o);
+		Vector x = v.hadamard(w);		
+		if(n > Floats.MAX_VALUE / m)
+		{
+			x = x.times(r * s / m / n);
+			return new Point(x, 1f);
+		}
+
+		return new Point(x, r * s * m * n);
 	}
 
 	@Override
@@ -396,11 +404,13 @@ public class Point implements Angular, Transformator, Inaccurate<Point>
 	
 	@Override
 	public Point plus(Abelian a)
-	{		
-		Vector f = null;
+	{	
+		float n = 1f, s = 1f;
+		float m = Floats.abs( Mass());
+		float r = Floats.sign(Mass());
+		
 		Vector e = Energy();
-		float m = Mass();
-		float n = 1f;
+		Vector f = null;
 
 		if(a instanceof Vector)
 		{
@@ -411,22 +421,39 @@ public class Point implements Angular, Transformator, Inaccurate<Point>
 		{
 			Point p = (Point) a;
 			
+			n = Floats.abs( p.Mass());
+			s = Floats.sign(p.Mass());
+
 			f = p.Energy();
-			n = p.Mass();
 		}
 
 		
 		int d = Dimension();
-		Vector s = Vectors.create(d);
+		float eMax = 0f, fMax = 0f;
 		for(int k = 0; k < d; k++)
 		{
-			float v1 = n * e.get(k);
-			float v2 = m * f.get(k);
-			
-			s.set(v1 + v2, k);
+			eMax = Floats.max(eMax, Floats.abs(e.get(k)));
+			fMax = Floats.max(fMax, Floats.abs(f.get(k)));
 		}
 
-		return new Point(s, m * n);
+		if(!Floats.isFinite(n * eMax + m * fMax))
+		{
+			e = e.times(1f / m);
+			f = f.times(1f / n);
+			m = n = 1f;
+		}
+
+		
+		Vector v = Vectors.create(d);
+		for(int k = 0; k < d; k++)
+		{
+			float v1 = s * n * e.get(k);
+			float v2 = r * m * f.get(k);
+
+			v.set(v1 + v2, k);
+		}
+
+		return new Point(v, r * s * m * n);
 	}
 	
 	@Override
@@ -438,10 +465,12 @@ public class Point implements Angular, Transformator, Inaccurate<Point>
 	@Override
 	public float dot(Angular a)
 	{
-		Vector f = null;
+		float n = 1f, s = 1f;
+		float m = Floats.abs( Mass());
+		float r = Floats.sign(Mass());
+		
 		Vector e = Energy();
-		float m = Mass();
-		float n = 1f;
+		Vector f = null;
 
 		if(a instanceof Vector)
 		{
@@ -452,8 +481,17 @@ public class Point implements Angular, Transformator, Inaccurate<Point>
 		{
 			Point p = (Point) a;
 			
+			n = Floats.abs( p.Mass());
+			s = Floats.sign(p.Mass());
+			
 			f = p.Energy();
-			n = p.Mass();
+		}
+		
+		if(n > Floats.MAX_VALUE / m)
+		{
+			e = e.times(1f / m);
+			f = f.times(1f / n);
+			m = n = 1f;
 		}
 		
 		
@@ -463,8 +501,8 @@ public class Point implements Angular, Transformator, Inaccurate<Point>
 		{
 			dot += e.get(k) * f.get(k);
 		}
-		
-		return (float) (dot / (m * n));
+
+		return (float) (dot * (r * s) / (m * n));
 	}
 
 	@Override
@@ -479,5 +517,4 @@ public class Point implements Angular, Transformator, Inaccurate<Point>
 	{
 		return Energy().Size();
 	}
-
 }
