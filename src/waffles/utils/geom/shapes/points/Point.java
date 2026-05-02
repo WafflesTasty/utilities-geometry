@@ -344,9 +344,9 @@ public class Point implements Angular, Transformator, Inaccurate<Point>
 			e = e.times(1f / Mass() / s);
 			return new Point(e, 1f);
 		}
-		
+
 		float m = Mass() * s;
-		return new Point(e, m);		
+		return new Point(e, m);
 	}
 	
 	/**
@@ -425,7 +425,7 @@ public class Point implements Angular, Transformator, Inaccurate<Point>
 			
 			s.set(v1 + v2, k);
 		}
-		
+
 		return new Point(s, m * n);
 	}
 	

@@ -48,7 +48,7 @@ public class CLSAxisAligned extends CLSGeometrical
 			AxialMap m = s.Transform();
 			AxialSet a = (AxialSet) g;
 			a = (AxialSet) m.map(a);
-			
+
 			// ...eliminate everything.
 			Response rsp = c.contain(a);
 			return new RSPFlipped(rsp);
