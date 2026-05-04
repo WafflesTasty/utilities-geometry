@@ -35,7 +35,8 @@ public interface Adjustable extends Aligned, Rotatable, Spatial
 			moveFor(v);
 		}
 	}
-		
+	
+	
 	@Override
 	public abstract Spatial.Mutable Transform();
 }

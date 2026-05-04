@@ -1,7 +1,5 @@
 package waffles.utils.geom.spatial.maps.data;
 
-import waffles.utils.geom.spatial.maps.data.unary.Rotated;
-
 /**
  * A {@code Spatial} object combines an origin, scale and rotation spin.
  * It describes a full Euclidian transformation in space.
@@ -11,10 +9,10 @@ import waffles.utils.geom.spatial.maps.data.unary.Rotated;
  * @version 1.0
  *
  *
- * @see Rotated
+ * @see Radial
  * @see Axial
  */
-public interface Spatial extends Axial, Rotated
+public interface Spatial extends Axial, Radial
 {
 	/**
 	 * A {@code Mutable Spatial} can change its own values.
@@ -25,10 +23,10 @@ public interface Spatial extends Axial, Rotated
 	 *
 	 *
 	 * @see Spatial
-	 * @see Rotated
+	 * @see Radial
 	 * @see Axial
 	 */
-	public static interface Mutable extends Spatial, Axial.Mutable, Rotated.Mutable
+	public static interface Mutable extends Spatial, Axial.Mutable, Radial.Mutable
 	{
 		// NOT APPLICABLE
 	}
