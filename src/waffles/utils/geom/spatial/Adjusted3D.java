@@ -4,19 +4,19 @@ import waffles.utils.geom.spatial.maps.data.Spatial3D;
 import waffles.utils.geom.spatial.owners.Rotatable3D;
 
 /**
- * An {@code Adjustable3D} object can be affine transformed in a three-dimensional space.
+ * An {@code Adjusted3D} object can be affine transformed in a three-dimensional space.
  *
  * @author Waffles
  * @since Feb 10, 2019
  * @version 1.0
  * 
  * 
+ * @see Adjusted
  * @see Aligned3D
- * @see Adjustable
  * @see Rotatable3D
  * @see Spatial3D
  */
-public interface Adjustable3D extends Adjustable, Aligned3D, Rotatable3D, Spatial3D
+public interface Adjusted3D extends Adjusted, Aligned3D, Rotatable3D, Spatial3D
 {
 	/**
 	 * Strafes the {@code Vantage3D} for a given distance.

@@ -258,7 +258,7 @@ public class Spin3D implements Spin
 	@Override
 	public Spin3D hadamard(Point p)
 	{
-		throw new NotImplementedError();
+		return this;
 	}
 	
 	@Override

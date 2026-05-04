@@ -5,7 +5,7 @@ import waffles.utils.geom.spatial.maps.data.Spatial;
 import waffles.utils.geom.spatial.owners.Rotatable;
 
 /**
- * An {@code Adjustable} object can be affine transformed in an n-dimensional space.
+ * An {@code Adjusted} object can be affine transformed in an n-dimensional space.
  *
  * @author Waffles
  * @since Feb 10, 2019
@@ -16,10 +16,10 @@ import waffles.utils.geom.spatial.owners.Rotatable;
  * @see Rotatable
  * @see Spatial
  */
-public interface Adjustable extends Aligned, Rotatable, Spatial
+public interface Adjusted extends Aligned, Rotatable, Spatial
 {
 	/**
-	 * Moves the {@code Adjustable} for a given distance.
+	 * Moves the {@code Adjusted} for a given distance.
 	 * 
 	 * @param i  a vector index
 	 * @param d  a distance value

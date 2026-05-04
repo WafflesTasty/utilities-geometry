@@ -12,10 +12,10 @@ import waffles.utils.geom.spatial.owners.Projectable;
  *
  *
  * @see Projectable
- * @see Adjustable
+ * @see Adjusted
  * @see Watcher
  */
-public interface Viewpoint extends Adjustable, Projectable, Watcher
+public interface Viewpoint extends Adjusted, Projectable, Watcher
 {
 	@Override
 	public abstract Watcher.Mutable Transform();

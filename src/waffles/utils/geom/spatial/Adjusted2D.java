@@ -4,19 +4,19 @@ import waffles.utils.geom.spatial.maps.data.Spatial2D;
 import waffles.utils.geom.spatial.owners.Rotatable2D;
 
 /**
- * An {@code Adjustable2D} object can be affine transformed in a two-dimensional space.
+ * An {@code Adjusted2D} object can be affine transformed in a two-dimensional space.
  *
  * @author Waffles
  * @since Feb 10, 2019
  * @version 1.0
  * 
  * 
+ * @see Adjusted
  * @see Aligned2D
- * @see Adjustable
  * @see Rotatable2D
  * @see Spatial2D
  */
-public interface Adjustable2D extends Adjustable, Aligned2D, Rotatable2D, Spatial2D
+public interface Adjusted2D extends Adjusted, Aligned2D, Rotatable2D, Spatial2D
 {
 	/**
 	 * Strafes the {@code Vantage2D} for a given distance.

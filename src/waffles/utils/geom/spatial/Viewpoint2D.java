@@ -11,10 +11,10 @@ import waffles.utils.geom.spatial.owners.Projectable2D;
  * 
  * 
  * @see Projectable2D
- * @see Adjustable2D
+ * @see Adjusted2D
  * @see Viewpoint
  */
-public interface Viewpoint2D extends Viewpoint, Adjustable2D, Projectable2D
+public interface Viewpoint2D extends Viewpoint, Adjusted2D, Projectable2D
 {
 	@Override
 	public default int Dimension()
