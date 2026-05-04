@@ -6,6 +6,7 @@ import waffles.utils.alg.lin.measure.matrix.types.orthogonal.Orthogonal;
 import waffles.utils.alg.lin.measure.vector.complex.Quaternion;
 import waffles.utils.alg.lin.measure.vector.fixed.Vector3;
 import waffles.utils.geom.utilities.errors.DimensionError;
+import waffles.utils.tools.primitives.Floats;
 
 /**
  * A {@code Spin3D} object defines a three-dimensional rotation.
@@ -281,6 +282,6 @@ public class Spin3D implements Spin
 	@Override
 	public float norm()
 	{
-		return Versor().Angle();
+		return Floats.abs(Versor().Angle());
 	}
 }

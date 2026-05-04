@@ -3,7 +3,7 @@ package waffles.utils.geom.spatial.maps.data.spin;
 import waffles.utils.alg.lin.measure.Normed;
 import waffles.utils.alg.lin.measure.matrix.Matrix;
 import waffles.utils.alg.lin.measure.vector.Vector;
-import waffles.utils.alg.utilities.groups.Multiplication;
+import waffles.utils.alg.utilities.groups.mult.FloatScalar;
 import waffles.utils.geom.utilities.Dimensional;
 import waffles.utils.geom.utilities.tform.Composition;
 import waffles.utils.geom.utilities.tform.Inversion;
@@ -17,11 +17,11 @@ import waffles.utils.geom.utilities.tform.Inversion;
  *
  *
  * @see Composition
- * @see Multiplication
+ * @see FloatScalar
  * @see Dimensional
  * @see Normed
  */
-public interface Spin extends Dimensional, Normed, Multiplication<Float>, Composition<Spin>, Inversion<Spin>
+public interface Spin extends Dimensional, FloatScalar, Normed, Composition<Spin>, Inversion<Spin>
 {
 	/**
 	 * Creates a {@code Matrix} from a {@code Spin}.

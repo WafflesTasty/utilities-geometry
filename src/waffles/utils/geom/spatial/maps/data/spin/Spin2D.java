@@ -164,7 +164,7 @@ public class Spin2D implements Spin
 	@Override
 	public float normSqr()
 	{
-		return Angle() * Angle();
+		return norm() * norm();
 	}
 
 	@Override
