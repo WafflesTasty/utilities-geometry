@@ -1,9 +1,11 @@
 package waffles.utils.geom.spatial.maps.data.spin;
 
+import waffles.utils.alg.lin.Hadamard;
 import waffles.utils.alg.lin.measure.Normed;
 import waffles.utils.alg.lin.measure.matrix.Matrix;
 import waffles.utils.alg.lin.measure.vector.Vector;
 import waffles.utils.alg.utilities.groups.mult.FloatScalar;
+import waffles.utils.geom.shapes.points.Point;
 import waffles.utils.geom.utilities.Dimensional;
 import waffles.utils.geom.utilities.tform.Composition;
 import waffles.utils.geom.utilities.tform.Inversion;
@@ -19,9 +21,10 @@ import waffles.utils.geom.utilities.tform.Inversion;
  * @see Composition
  * @see FloatScalar
  * @see Dimensional
+ * @see Hadamard
  * @see Normed
  */
-public interface Spin extends Dimensional, FloatScalar, Normed, Composition<Spin>, Inversion<Spin>
+public interface Spin extends Dimensional, FloatScalar, Normed, Composition<Spin>, Hadamard<Point>, Inversion<Spin>
 {
 	/**
 	 * Creates a {@code Matrix} from a {@code Spin}.
@@ -92,11 +95,35 @@ public interface Spin extends Dimensional, FloatScalar, Normed, Composition<Spin
 	public abstract Spin compose(Spin s);
 
 	/**
+	 * Hadamard-compose a point with the {@code Spin}.
+	 * 
+	 * @param p  a point
+	 * @return   a hadamard spin
+	 * 
+	 * 
+	 * @see Point
+	 */
+	@Override
+	public abstract Spin hadamard(Point p);
+	
+	/**
 	 * Multiplies a scalar with the {@code Spin}.
 	 *
-	 * @param v  a scalar value
+	 * @param s  a scalar value
 	 * @return   a scaled spin
 	 */
 	@Override
-	public abstract Spin times(Float v);
+	public abstract Spin times(Float s);
+	
+	/**
+	 * Divides a scalar from the {@code Spin}.
+	 *
+	 * @param s  a scalar value
+	 * @return   a scaled spin
+	 */
+	@Override
+	public default Spin over(Float s)
+	{
+		return times(1f / s);
+	}
 }

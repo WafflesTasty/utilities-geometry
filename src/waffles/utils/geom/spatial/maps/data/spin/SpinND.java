@@ -3,6 +3,7 @@ package waffles.utils.geom.spatial.maps.data.spin;
 import waffles.utils.alg.lin.measure.matrix.Matrices;
 import waffles.utils.alg.lin.measure.matrix.Matrix;
 import waffles.utils.alg.lin.measure.vector.Vector;
+import waffles.utils.geom.shapes.points.Point;
 import waffles.utils.tools.patterns.basic.errors.NotImplementedError;
 
 /**
@@ -76,7 +77,21 @@ public class SpinND implements Spin
 		return basis;
 	}
 
+	
+	@Override
+	public SpinND inverse()
+	{
+		int dim = Basis().Rows();
+		Matrix m = Matrix(this, dim);
+		return new SpinND(m.transpose());
+	}
 
+	@Override
+	public SpinND over(Float s)
+	{
+		return times(1f / s);
+	}
+	
 	@Override
 	public SpinND times(Float s)
 	{
@@ -96,6 +111,12 @@ public class SpinND implements Spin
 	}
 
 	@Override
+	public SpinND hadamard(Point p)
+	{
+		throw new NotImplementedError();
+	}
+	
+	@Override
 	public Vector Basis(int k)
 	{
 		if(k < Basis().Columns())
@@ -107,21 +128,13 @@ public class SpinND implements Spin
 	}
 
 	@Override
-	public SpinND inverse()
-	{
-		int dim = Basis().Rows();
-		Matrix m = Matrix(this, dim);
-		return new SpinND(m.transpose());
-	}
-
-	@Override
 	public int Dimension()
 	{
 		return basis.Columns() - 1;
 	}
 
 	@Override
-	public float normSqr()
+	public float norm()
 	{
 		throw new NotImplementedError();
 	}
