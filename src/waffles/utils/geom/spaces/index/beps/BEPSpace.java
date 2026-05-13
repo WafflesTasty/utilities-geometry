@@ -3,13 +3,15 @@ package waffles.utils.geom.spaces.index.beps;
 import waffles.utils.geom.shapes.convex.axial.cube.HyperCuboid;
 import waffles.utils.geom.shapes.points.Arrow;
 import waffles.utils.geom.shapes.points.Point;
+import waffles.utils.geom.spaces.arboreal.NodalSpace;
 import waffles.utils.geom.spaces.index.IndexBoreal;
 import waffles.utils.geom.spatial.bounds.Bounds;
+import waffles.utils.sets.arboreal.binary.BiArboreal;
 import waffles.utils.sets.arboreal.binary.indexed.BEPTree;
 import waffles.utils.tools.collections.Iterables;
 
 /**
- * A {@code BEPSpace} defines a {@code BEPTree} as a spatial index.
+ * A {@code BEPSpace} defines a {@code BEPTree} as an {@code IndexBoreal}.
  *
  * @author Waffles
  * @since 13 Feb 2026
@@ -24,7 +26,25 @@ import waffles.utils.tools.collections.Iterables;
 public class BEPSpace<E extends Enum<E>> extends BEPTree<E> implements IndexBoreal.Mutable<BEPSNode<E>, E>
 {
 	/**
-	 * A {@code BEPSpace.Hints} generates {@code BEPSNode} objects.
+	 * A {@code BEPSpace.Query} defines tree traversal queries for a {@code BEPSpace}.
+	 *
+	 * @author Waffles
+	 * @since May 13, 2026
+	 * @version 1.1
+	 *
+	 *
+	 * @param <E>  an enum type
+	 * @see BiArboreal
+	 * @see NodalSpace
+	 */
+	public static interface Query<E extends Enum<E>> extends BiArboreal.Query<BEPSNode<E>>, NodalSpace.Query<BEPSNode<E>>
+	{
+		@Override
+		public abstract BEPSpace<E> Tree();
+	}
+	
+	/**
+	 * A {@code BEPSpace.Factory} generates {@code BEPSNode} objects.
 	 *
 	 * @author Waffles
 	 * @since 25 Jan 2026
@@ -47,7 +67,7 @@ public class BEPSpace<E extends Enum<E>> extends BEPTree<E> implements IndexBore
 		@Override
 		public abstract BEPSpace<?> Tree();
 	}
-
+	
 
 	private Arrow size;
 	private int[] dims;
@@ -104,6 +124,18 @@ public class BEPSpace<E extends Enum<E>> extends BEPTree<E> implements IndexBore
 		return (BEPSNode<E>) super.nodeAt(crds);
 	}
 	
+	@Override
+	public BEPSNode<E> Root()
+	{
+		return (BEPSNode<E>) super.Root();
+	}
+	
+	
+	@Override
+	public Query<E> Query()
+	{
+		return () -> this;
+	}
 	
 	@Override
 	public Factory Factory()
@@ -123,8 +155,6 @@ public class BEPSpace<E extends Enum<E>> extends BEPTree<E> implements IndexBore
 		return size;
 	}
 
-
-	
 	@Override
 	public int Dimension()
 	{

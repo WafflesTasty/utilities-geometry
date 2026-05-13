@@ -5,7 +5,7 @@ import waffles.utils.alg.lin.measure.vector.Vectors;
 import waffles.utils.geom.shapes.convex.axial.cube.HyperCuboid;
 import waffles.utils.geom.shapes.points.Arrow;
 import waffles.utils.geom.shapes.points.Point;
-import waffles.utils.geom.spaces.trees.axial.AxialNodal;
+import waffles.utils.geom.spaces.arboreal.axial.AxialNodal;
 import waffles.utils.sets.utilities.indexed.coords.Coordination;
 
 /**

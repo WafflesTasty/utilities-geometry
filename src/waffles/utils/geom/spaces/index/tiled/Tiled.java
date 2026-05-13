@@ -6,8 +6,8 @@ import waffles.utils.geom.shapes.convex.axial.cube.HyperCuboid;
 import waffles.utils.geom.shapes.points.Arrow;
 import waffles.utils.geom.shapes.points.Point;
 import waffles.utils.geom.utilities.chiral.arrows.Cardinal;
+import waffles.utils.sets.utilities.arboreal.Collectible;
 import waffles.utils.sets.utilities.indexed.coords.Coordinated;
-import waffles.utils.sets.utilities.rooted.Collectible;
 
 /**
  * A {@code Tiled} object can be contained in a {@code TiledSpace}.

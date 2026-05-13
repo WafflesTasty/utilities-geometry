@@ -92,13 +92,7 @@ public interface IndexSpace<O, T> extends IndexedSet<T>, Space<O>
 		return crds;
 	}
 
-	
-	@Override
-	public default Query<O> Query()
-	{
-		return null;
-	}
-	
+		
 	@Override
 	public default int Dimension()
 	{

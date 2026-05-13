@@ -1,9 +1,10 @@
 package waffles.utils.geom.spaces.index;
 
+import waffles.utils.geom.spaces.arboreal.NodalSpace;
 import waffles.utils.sets.arboreal.Arboreal;
 
 /**
- * An {@code IndexBoreal} defines an {@code IndexSpace} as an {@code IndexNodal} tree.
+ * An {@code IndexBoreal} defines an indexed {@code NodalSpace}.
  *
  * @author Waffles
  * @since 14 Feb 2026
@@ -13,12 +14,12 @@ import waffles.utils.sets.arboreal.Arboreal;
  * @param <N>  a node type
  * @param <T>  a tile type
  * @see IndexSpace
- * @see Arboreal
+ * @see NodalSpace
  */
-public interface IndexBoreal<N extends IndexNodal, T> extends Arboreal, IndexSpace<N, T>
+public interface IndexBoreal<N extends IndexNodal, T> extends NodalSpace<N>, IndexSpace<N, T>
 {
 	/**
-	 * An {@code IndexBoreal.Mutable} defines a {@code Mutable IndexBoreal}.
+	 * An {@code IndexBoreal.Mutable} defines an {@code IndexBoreal} that can change its own root.
 	 *
 	 * @author Waffles
 	 * @since 14 Feb 2026
@@ -27,6 +28,9 @@ public interface IndexBoreal<N extends IndexNodal, T> extends Arboreal, IndexSpa
 	 *
 	 * @param <N>  a node type
 	 * @param <T>  a tile type
+	 * @see IndexBoreal
+	 * @see IndexSpace
+	 * @see Arboreal
 	 */
 	public static interface Mutable<N extends IndexNodal, T> extends Arboreal.Mutable, IndexSpace.Mutable<N, T>, IndexBoreal<N, T>
 	{
@@ -35,8 +39,14 @@ public interface IndexBoreal<N extends IndexNodal, T> extends Arboreal, IndexSpa
 	
 	
 	@Override
+	public default int Dimension()
+	{
+		return IndexSpace.super.Dimension();
+	}
+		
+	@Override
 	public default int Count()
 	{
-		return Arboreal.super.Count();
+		return NodalSpace.super.Count();
 	}
 }
