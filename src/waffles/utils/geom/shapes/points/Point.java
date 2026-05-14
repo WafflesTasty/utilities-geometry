@@ -341,11 +341,11 @@ public class Point implements Angular, Transformator, Inaccurate<Point>
 		
 		if(n > Floats.MAX_VALUE / Floats.abs(s))
 		{
-			e = e.times(r / Mass() / s);
+			e = e.times(r / n / s);
 			return new Point(e, 1f);
 		}
 
-		float m = r * Mass() * s;
+		float m = r * n * s;
 		return new Point(e, m);
 	}
 	

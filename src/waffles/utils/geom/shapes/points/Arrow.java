@@ -183,11 +183,11 @@ public class Arrow extends Point
 		
 		if(n > Floats.MAX_VALUE / Floats.abs(s))
 		{
-			e = e.times(r / Mass() / s);
+			e = e.times(r / n / s);
 			return new Arrow(e, 1f);
 		}
 		
-		float m = r * Mass() * s;
+		float m = r * n * s;
 		return new Arrow(e, m);
 	}
 	
