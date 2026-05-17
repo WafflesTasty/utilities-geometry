@@ -38,6 +38,12 @@ public class BEPSNode<E extends Enum<E>> extends BEPNode<E> implements IndexNoda
 	{
 		return this;
 	}
+	
+	@Override
+	public BEPSNode<E> Parent()
+	{
+		return (BEPSNode<E>) super.Parent();
+	}
 
 	@Override
 	public BEPSpace<E> Set()

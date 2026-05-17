@@ -16,5 +16,13 @@ import waffles.utils.sets.utilities.arboreal.Nodal;
  */
 public interface SpatialNodal extends Nodal, Geometry
 {
-	// NOT APPLICABLE
+	/**
+	 * Returns the parent of the {@code SpatialNodal}.
+	 * 
+	 * @return  a nodal parent
+	 */
+	public default SpatialNodal Parent()
+	{
+		return (SpatialNodal) Arch().Parent();
+	}
 }
