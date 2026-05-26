@@ -58,9 +58,9 @@ public class Collision implements Algorithmic, Sourced<Collidable>
 
 		/**
 		 * Returns the minimum collision distance {@code Vector}.
-		 * If the intersection has no impact, this vector defines the
-		 * smallest translation of the source to intersect it. If the
-		 * intersection has impact, this vector is null.
+		 * If the {@code Response} has no impact, this vector defines the
+		 * smallest translation of the source to achieve it. If the
+		 * {@code Response} has impact, this vector is null.
 		 *
 		 * @return  a distance vector
 		 *
@@ -74,9 +74,9 @@ public class Collision implements Algorithmic, Sourced<Collidable>
 
 		/**
 		 * Returns the minimum collision penetration {@code Vector}.
-		 * If the intersection has impact, this vector defines the
+		 * If the {@code Response} has impact, this vector defines the
 		 * smallest translation of the source to remove it. If the
-		 * intersection has no impact, this vector is null.
+		 * {@code Response} has no impact, this vector is null.
 		 *
 		 * @return  a penetration vector
 		 *
