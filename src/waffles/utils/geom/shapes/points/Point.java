@@ -465,13 +465,9 @@ public class Point implements Angular, Transformator, Inaccurate<Point>
 	@Override
 	public float dot(Angular a)
 	{
-		float n = 1f, s = 1f;
-		float m = Floats.abs( Mass());
-		float r = Floats.sign(Mass());
-		
-		Vector e = Energy();
 		Vector f = null;
-
+		Vector e = Vector();
+		
 		if(a instanceof Vector)
 		{
 			f = (Vector) a;
@@ -480,18 +476,7 @@ public class Point implements Angular, Transformator, Inaccurate<Point>
 		if(a instanceof Point)
 		{
 			Point p = (Point) a;
-			
-			n = Floats.abs( p.Mass());
-			s = Floats.sign(p.Mass());
-			
-			f = p.Energy();
-		}
-		
-		if(n > Floats.MAX_VALUE / m)
-		{
-			e = e.times(1f / m);
-			f = f.times(1f / n);
-			m = n = 1f;
+			f = p.Vector();
 		}
 		
 		
@@ -502,7 +487,7 @@ public class Point implements Angular, Transformator, Inaccurate<Point>
 			dot += e.get(k) * f.get(k);
 		}
 
-		return (float) (dot * (r * s) / (m * n));
+		return (float) dot;
 	}
 
 	@Override
