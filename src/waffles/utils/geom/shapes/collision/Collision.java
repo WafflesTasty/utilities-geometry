@@ -7,7 +7,7 @@ import waffles.utils.geom.Collidable;
 import waffles.utils.geom.shapes.fixed.Void;
 import waffles.utils.geom.shapes.points.Point;
 import waffles.utils.geom.utilities.Dimensional;
-import waffles.utils.tools.patterns.properties.counters.Accountable;
+import waffles.utils.tools.patterns.properties.counters.Taxed;
 import waffles.utils.tools.patterns.properties.values.Sourced;
 import waffles.utils.tools.primitives.Doubles;
 import waffles.utils.tools.primitives.Integers;
@@ -34,13 +34,13 @@ public class Collision implements Algorithmic, Sourced<Collidable>
 	 * @version 1.0
 	 *
 	 *
-	 * @see Accountable
+	 * @see Taxed
 	 * @see Dimensional
 	 * @see Collidable
 	 * @see Sourced
 	 */
 	@FunctionalInterface
-	public static interface Response extends Accountable, Dimensional, Sourced<Collidable>
+	public static interface Response extends Taxed, Dimensional, Sourced<Collidable>
 	{
 		/**
 		 * Returns a collision contact {@code Point}.

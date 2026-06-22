@@ -13,7 +13,7 @@ import waffles.utils.geom.shapes.fixed.Void;
 import waffles.utils.geom.shapes.points.Point;
 import waffles.utils.geom.spatial.bounds.Bounds;
 import waffles.utils.geom.utilities.Transformator;
-import waffles.utils.tools.patterns.properties.counters.Countable;
+import waffles.utils.tools.patterns.properties.Countable;
 import waffles.utils.tools.primitives.Floats;
 import waffles.utils.tools.primitives.Integers;
 
