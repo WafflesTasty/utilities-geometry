@@ -2,7 +2,7 @@ package waffles.utils.geom.spatial.maps;
 
 import waffles.utils.alg.utilities.affine.Affine;
 import waffles.utils.alg.utilities.matrix.LazyMatrix;
-import waffles.utils.geom.utilities.tform.LazyIdentity;
+import waffles.utils.geom.utilities.tform.lazy.LazyIdentity;
 
 /**
  * An {@code IdentityMap} defines a one-to-one identity map.

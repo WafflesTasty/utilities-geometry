@@ -6,8 +6,8 @@ import waffles.utils.geom.spatial.maps.GlobalMap;
 import waffles.utils.geom.spatial.maps.data.Radial;
 import waffles.utils.geom.spatial.maps.data.unary.Positioned;
 import waffles.utils.geom.spatial.maps.data.unary.Rotated;
+import waffles.utils.geom.utilities.tform.lazy.LazyIdentity;
 import waffles.utils.geom.spatial.maps.data.spin.Spin;
-import waffles.utils.geom.utilities.tform.LazyIdentity;
 
 /**
  * A {@code RadialMap} defines a global map with affine-oriented spatial data.

@@ -4,7 +4,7 @@ import waffles.utils.alg.utilities.matrix.LazyMatrix;
 import waffles.utils.geom.spatial.maps.data.Spatial;
 import waffles.utils.geom.spatial.maps.data.spin.Spin;
 import waffles.utils.geom.spatial.maps.data.unary.Rotated;
-import waffles.utils.geom.utilities.tform.LazyIdentity;
+import waffles.utils.geom.utilities.tform.lazy.LazyIdentity;
 
 /**
  * A {@code SpatialMap} defines a global map with affine-oriented spatial data.

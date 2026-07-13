@@ -3,7 +3,7 @@ package waffles.utils.geom.spatial.maps;
 import waffles.utils.alg.utilities.affine.Affine;
 import waffles.utils.alg.utilities.matrix.LazyMatrix;
 import waffles.utils.geom.shapes.points.Point;
-import waffles.utils.geom.utilities.tform.LazyConstant;
+import waffles.utils.geom.utilities.tform.lazy.LazyConstant;
 
 /**
  * An {@code ConstantMap} defines a constant valued map.
