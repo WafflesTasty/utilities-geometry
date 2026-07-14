@@ -1,11 +1,13 @@
 package waffles.utils.geom.shapes.points;
 
 import waffles.utils.alg.Abelian;
-import waffles.utils.alg.lin.Angular;
+import waffles.utils.alg.lin.DotProduct;
+import waffles.utils.alg.lin.InProduct;
 import waffles.utils.alg.lin.measure.matrix.Matrices;
 import waffles.utils.alg.lin.measure.matrix.Matrix;
 import waffles.utils.alg.lin.measure.vector.Vector;
 import waffles.utils.alg.lin.measure.vector.Vectors;
+import waffles.utils.alg.utilities.Hadamard;
 import waffles.utils.alg.utilities.Inaccurate;
 import waffles.utils.geom.shapes.collision.linear.CLSPoint;
 import waffles.utils.geom.shapes.fixed.Void;
@@ -27,9 +29,10 @@ import waffles.utils.tools.primitives.Floats;
  * 
  * @see Transformator
  * @see Inaccurate
- * @see Angular
+ * @see Hadamard
+ * @see InProduct
  */
-public class Point implements Angular, Transformator, Inaccurate<Point>
+public class Point implements InProduct, Hadamard<Point>, Transformator, Inaccurate<Point>
 {	
 	/**
 	 * Defines the error margin of a {@code Point}.
@@ -326,13 +329,28 @@ public class Point implements Angular, Transformator, Inaccurate<Point>
 		float m = Floats.abs(Mass());
 		return new Point(v, m);
 	}
+		
 	
-	/**
-	 * Computes a division scaled {@code Point}.
-	 * 
-	 * @param s  a scale factor
-	 * @return   a divided point
-	 */
+	@Override
+	public Boolean equals(Point p, double e)
+	{
+		return Vector().equals(p.Vector(), e);
+	}
+
+	@Override
+	public CLSPoint Collision()
+	{
+		return new CLSPoint(this);
+	}
+	
+	@Override
+	public Factory Factory()
+	{
+		return new Factory(this);
+	}
+	
+	
+	@Override
 	public Point over(Float s)
 	{
 		Vector e = Energy();
@@ -347,53 +365,6 @@ public class Point implements Angular, Transformator, Inaccurate<Point>
 
 		float m = r * n * s;
 		return new Point(e, m);
-	}
-	
-	/**
-	 * Computes a Hadamard {@code Point}.
-	 * 
-	 * @param p  a point
-	 * @return  a hadamard product
-	 */
-	public Point hadamard(Point p)
-	{
-		float r = Floats.sign(  Mass());
-		float s = Floats.sign(p.Mass());
-		
-		float m = Floats.abs(  Mass());
-		float n = Floats.abs(p.Mass());
-				
-		Vector v =   Energy();
-		Vector w = p.Energy();
-		
-		
-		Vector x = v.hadamard(w);		
-		if(n > Floats.MAX_VALUE / m)
-		{
-			x = x.times(r * s / m / n);
-			return new Point(x, 1f);
-		}
-
-		return new Point(x, r * s * m * n);
-	}
-
-	@Override
-	public Boolean equals(Point p, double e)
-	{
-		return Vector().equals(p.Vector(), e);
-	}
-	
-	
-	@Override
-	public Factory Factory()
-	{
-		return new Factory(this);
-	}
-	
-	@Override
-	public CLSPoint Collision()
-	{
-		return new CLSPoint(this);
 	}
 	
 	@Override
@@ -459,11 +430,34 @@ public class Point implements Angular, Transformator, Inaccurate<Point>
 	@Override
 	public Point minus(Abelian a)
 	{
-		return plus(((Angular) a).times(-1f));
+		return plus(((InProduct) a).times(-1f));
 	}
-		
+			
 	@Override
-	public float dot(Angular a)
+	public Point hadamard(Point p)
+	{
+		float r = Floats.sign(  Mass());
+		float s = Floats.sign(p.Mass());
+		
+		float m = Floats.abs(  Mass());
+		float n = Floats.abs(p.Mass());
+				
+		Vector v =   Energy();
+		Vector w = p.Energy();
+		
+		
+		Vector x = v.hadamard(w);		
+		if(n > Floats.MAX_VALUE / m)
+		{
+			x = x.times(r * s / m / n);
+			return new Point(x, 1f);
+		}
+
+		return new Point(x, r * s * m * n);
+	}
+	
+	@Override
+	public float dot(DotProduct a)
 	{
 		Vector f = null;
 		Vector e = Vector();
@@ -490,13 +484,6 @@ public class Point implements Angular, Transformator, Inaccurate<Point>
 		return (float) dot;
 	}
 
-	@Override
-	public int[] Dimensions()
-	{
-		int n = Dimension();
-		return new int[]{n + 1};
-	}
-	
 	@Override
 	public int Dimension()
 	{

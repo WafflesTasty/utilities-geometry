@@ -1,5 +1,6 @@
 package waffles.utils.geom.spatial.maps.data.spin;
 
+import waffles.utils.alg.lin.DotProduct;
 import waffles.utils.alg.lin.measure.matrix.Matrices;
 import waffles.utils.alg.lin.measure.matrix.Matrix;
 import waffles.utils.alg.lin.measure.matrix.types.orthogonal.Orthogonal;
@@ -122,7 +123,7 @@ public class Spin2D implements Spin
 	{
 		return new Spin2D(-Angle());
 	}
-
+	
 	@Override
 	public Spin2D over(Float s)
 	{
@@ -155,6 +156,22 @@ public class Spin2D implements Spin
 		
 		float a = Floats.min(x, y);
 		return new Spin2D(a);
+	}
+
+	@Override
+	public float dot(DotProduct a)
+	{
+		if(a instanceof Spin2D)
+		{
+			Spin2D s = (Spin2D) a;
+			
+			float a1 =   Angle();
+			float a2 = s.Angle();
+			
+			return a1 - a2;
+		}
+		
+		return Floats.NaN;
 	}
 	
 	@Override

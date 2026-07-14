@@ -1,5 +1,6 @@
 package waffles.utils.geom.spatial.maps.data.spin;
 
+import waffles.utils.alg.lin.DotProduct;
 import waffles.utils.alg.lin.measure.matrix.Matrices;
 import waffles.utils.alg.lin.measure.matrix.Matrix;
 import waffles.utils.alg.lin.measure.vector.Vector;
@@ -112,6 +113,12 @@ public class SpinND implements Spin
 
 	@Override
 	public SpinND hadamard(Point p)
+	{
+		throw new NotImplementedError();
+	}
+	
+	@Override
+	public float dot(DotProduct a)
 	{
 		throw new NotImplementedError();
 	}

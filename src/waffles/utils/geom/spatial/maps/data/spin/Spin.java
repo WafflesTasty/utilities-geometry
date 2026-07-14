@@ -1,10 +1,9 @@
 package waffles.utils.geom.spatial.maps.data.spin;
 
-import waffles.utils.alg.lin.Hadamard;
-import waffles.utils.alg.lin.measure.Normed;
+import waffles.utils.alg.lin.DotProduct;
 import waffles.utils.alg.lin.measure.matrix.Matrix;
 import waffles.utils.alg.lin.measure.vector.Vector;
-import waffles.utils.alg.utilities.groups.mult.FloatScalar;
+import waffles.utils.alg.utilities.Hadamard;
 import waffles.utils.geom.shapes.points.Point;
 import waffles.utils.geom.utilities.Dimensional;
 import waffles.utils.geom.utilities.tform.Composition;
@@ -19,12 +18,12 @@ import waffles.utils.geom.utilities.tform.Inversion;
  *
  *
  * @see Composition
- * @see FloatScalar
  * @see Dimensional
+ * @see DotProduct
+ * @see Inversion
  * @see Hadamard
- * @see Normed
  */
-public interface Spin extends Dimensional, FloatScalar, Normed, Composition<Spin>, Hadamard<Point>, Inversion<Spin>
+public interface Spin extends DotProduct, Dimensional, Composition<Spin>, Hadamard<Point>, Inversion<Spin>
 {
 	/**
 	 * Creates a {@code Matrix} from a {@code Spin}.

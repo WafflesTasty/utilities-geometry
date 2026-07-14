@@ -1,5 +1,6 @@
 package waffles.utils.geom.spatial.maps.data.spin;
 
+import waffles.utils.alg.lin.DotProduct;
 import waffles.utils.alg.lin.measure.matrix.Matrices;
 import waffles.utils.alg.lin.measure.matrix.Matrix;
 import waffles.utils.alg.lin.measure.matrix.types.orthogonal.Orthogonal;
@@ -233,7 +234,7 @@ public class Spin3D implements Spin
 	@Override
 	public Spin3D over(Float s)
 	{
-		return new Spin3D(v.Axis(), v.Angle() / s);
+		return (Spin3D) Spin.super.over(s);
 	}
 	
 	@Override
@@ -258,7 +259,23 @@ public class Spin3D implements Spin
 	@Override
 	public Spin3D hadamard(Point p)
 	{
-		return this;
+		throw new NotImplementedError();
+	}
+	
+	@Override
+	public float dot(DotProduct a)
+	{
+		if(a instanceof Spin3D)
+		{
+			Spin3D s = (Spin3D) a;
+			
+			float a1 =   Versor().Angle();
+			float a2 = s.Versor().Angle();
+			
+			return a1 - a2;
+		}
+		
+		return Floats.NaN;
 	}
 	
 	@Override
