@@ -80,6 +80,12 @@ public class SpinND implements Spin
 
 	
 	@Override
+	public Point Euler()
+	{
+		throw new NotImplementedError();
+	}
+	
+	@Override
 	public SpinND inverse()
 	{
 		int dim = Basis().Rows();
@@ -87,6 +93,12 @@ public class SpinND implements Spin
 		return new SpinND(m.transpose());
 	}
 
+	@Override
+	public SpinND from(Point p)
+	{
+		throw new NotImplementedError();
+	}
+	
 	@Override
 	public SpinND over(Float s)
 	{
@@ -109,12 +121,6 @@ public class SpinND implements Spin
 		}
 
 		return null;
-	}
-
-	@Override
-	public SpinND hadamard(Point p)
-	{
-		throw new NotImplementedError();
 	}
 	
 	@Override

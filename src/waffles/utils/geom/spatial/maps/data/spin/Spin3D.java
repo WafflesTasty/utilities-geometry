@@ -8,7 +8,6 @@ import waffles.utils.alg.lin.measure.vector.complex.Quaternion;
 import waffles.utils.alg.lin.measure.vector.fixed.Vector3;
 import waffles.utils.geom.shapes.points.Point;
 import waffles.utils.geom.utilities.errors.DimensionError;
-import waffles.utils.tools.patterns.basic.errors.NotImplementedError;
 import waffles.utils.tools.primitives.Floats;
 
 /**
@@ -224,6 +223,21 @@ public class Spin3D implements Spin
 
 	
 	@Override
+	public Point Euler()
+	{
+		float x = Versor().X();
+		float y = Versor().Y();
+		float z = Versor().Z();
+		float w = Versor().W();
+		
+		float a = Floats.atan2(0.5f - (y * y + z * z), x * y + z * w);
+		float b = Floats.asin(-2 * (x * z - y * w));
+		float c = Floats.atan2(0.5f - (x * x + y * y), y * z + x * w);
+		
+		return new Point(a, b, c, 1f);
+	}
+	
+	@Override
 	public Spin3D inverse()
 	{
 		float a = -Versor().Angle();
@@ -231,6 +245,16 @@ public class Spin3D implements Spin
 		return new Spin3D(v, a);
 	}
 
+	@Override
+	public Spin3D from(Point e)
+	{
+		Spin3D s1 = new Spin3D(	 Right(), e.X());
+		Spin3D s2 = new Spin3D(		Up(), e.Y());
+		Spin3D s3 = new Spin3D(Forward(), e.Z());
+		
+		return s3.compose(s2.compose(s1));
+	}
+	
 	@Override
 	public Spin3D over(Float s)
 	{
@@ -254,12 +278,6 @@ public class Spin3D implements Spin
 		}
 
 		throw new DimensionError(this, s);
-	}
-
-	@Override
-	public Spin3D hadamard(Point p)
-	{
-		throw new NotImplementedError();
 	}
 	
 	@Override

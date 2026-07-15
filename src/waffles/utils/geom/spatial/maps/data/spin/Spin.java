@@ -37,20 +37,15 @@ public interface Spin extends DotProduct, Dimensional, Composition<Spin>, Hadama
 	 */
 	public static Matrix Matrix(Spin s, int d)
 	{
-		if(s instanceof Spin2D)
+		switch(s.Dimension())
 		{
+		case 2:
 			return Spin2D.Matrix((Spin2D) s, d);
-		}
-		if(s instanceof Spin3D)
-		{
+		case 3:
 			return Spin3D.Matrix((Spin3D) s, d);
-		}
-		if(s instanceof SpinND)
-		{
+		default:
 			return SpinND.Matrix((SpinND) s, d);
 		}
-
-		return null;
 	}
 
 	/**
@@ -72,7 +67,28 @@ public interface Spin extends DotProduct, Dimensional, Composition<Spin>, Hadama
 		}
 	}
 
+	
+	/**
+	 * Returns a euler for the {@code Spin}.
+	 * 
+	 * @return  a euler vector
+	 * 
+	 * 
+	 * @see Point
+	 */
+	public abstract Point Euler();
 
+	/**
+	 * Returns a spin from an {@code Euler}.
+	 * 
+	 * @param e  an euler vector
+	 * @return   a spin
+	 * 
+	 * 
+	 * @see Point
+	 */
+	public abstract Spin from(Point e);
+	
 	/**
 	 * Returns a basis vector in the {@code Spin}.
 	 *
@@ -92,7 +108,7 @@ public interface Spin extends DotProduct, Dimensional, Composition<Spin>, Hadama
 	 */
 	@Override
 	public abstract Spin compose(Spin s);
-
+	
 	/**
 	 * Hadamard-compose a point with the {@code Spin}.
 	 * 
@@ -103,7 +119,10 @@ public interface Spin extends DotProduct, Dimensional, Composition<Spin>, Hadama
 	 * @see Point
 	 */
 	@Override
-	public abstract Spin hadamard(Point p);
+	public default Spin hadamard(Point p)
+	{
+		return from(Euler().hadamard(p));
+	}
 	
 	/**
 	 * Multiplies a scalar with the {@code Spin}.

@@ -5,6 +5,7 @@ import waffles.utils.alg.lin.measure.matrix.Matrices;
 import waffles.utils.alg.lin.measure.matrix.Matrix;
 import waffles.utils.alg.lin.measure.matrix.types.orthogonal.Orthogonal;
 import waffles.utils.alg.lin.measure.vector.fixed.Vector2;
+import waffles.utils.geom.shapes.points.Arrow;
 import waffles.utils.geom.shapes.points.Point;
 import waffles.utils.geom.utilities.errors.DimensionError;
 import waffles.utils.tools.primitives.Floats;
@@ -117,11 +118,23 @@ public class Spin2D implements Spin
 		return ang;
 	}
 
+	
+	@Override
+	public Point Euler()
+	{
+		return new Arrow(Angle());
+	}
 
 	@Override
 	public Spin2D inverse()
 	{
 		return new Spin2D(-Angle());
+	}
+
+	@Override
+	public Spin2D from(Point e)
+	{
+		return new Spin2D(e.X());
 	}
 	
 	@Override
@@ -146,16 +159,6 @@ public class Spin2D implements Spin
 		}
 
 		throw new DimensionError(this, s);
-	}
-
-	@Override
-	public Spin2D hadamard(Point p)
-	{
-		float x = Angle() * p.X();
-		float y = Angle() * p.Y();
-		
-		float a = Floats.min(x, y);
-		return new Spin2D(a);
 	}
 
 	@Override
