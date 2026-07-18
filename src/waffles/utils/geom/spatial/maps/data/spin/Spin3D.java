@@ -225,24 +225,19 @@ public class Spin3D implements Spin
 	@Override
 	public Point Euler()
 	{
-		float x = Versor().X();
-		float y = Versor().Y();
-		float z = Versor().Z();
-		float w = Versor().W();
-		
-		float a = Floats.atan2(0.5f - (y * y + z * z), x * y + z * w);
-		float b = Floats.asin(-2 * (x * z - y * w));
-		float c = Floats.atan2(0.5f - (x * x + y * y), y * z + x * w);
-		
+		float a = Floats.asin(-value(this, 1, 2));
+		float b = Floats.atan2(value(this, 2, 2), value(this, 0, 2));
+		float c = Floats.atan2(value(this, 1, 1), value(this, 1, 0));
+
 		return new Point(a, b, c, 1f);
 	}
 	
 	@Override
 	public Spin3D inverse()
 	{
-		float a = -Versor().Angle();
+		float a = Versor().Angle();
 		Vector3 v = Versor().Axis();
-		return new Spin3D(v, a);
+		return new Spin3D(v, -a);
 	}
 
 	@Override
@@ -251,14 +246,14 @@ public class Spin3D implements Spin
 		Spin3D s1 = new Spin3D(	 Right(), e.X());
 		Spin3D s2 = new Spin3D(		Up(), e.Y());
 		Spin3D s3 = new Spin3D(Forward(), e.Z());
-		
-		return s3.compose(s2.compose(s1));
+
+		return s1.compose(s1.compose(s3));
 	}
 	
 	@Override
 	public Spin3D over(Float s)
 	{
-		return (Spin3D) Spin.super.over(s);
+		return times(1f / s);
 	}
 	
 	@Override
