@@ -351,6 +351,12 @@ public class Point implements InProduct, Hadamard<Point>, Transformator, Inaccur
 	
 	
 	@Override
+	public Point normalize()
+	{
+		return (Point) InProduct.super.normalize();
+	}
+	
+	@Override
 	public Point over(Float s)
 	{
 		Vector e = Energy();
