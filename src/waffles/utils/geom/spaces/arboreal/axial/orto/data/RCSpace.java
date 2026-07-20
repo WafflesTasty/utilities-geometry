@@ -171,7 +171,20 @@ public class RCSpace<O extends Bounded> extends Tree implements AtomicSet<O>, Da
 		this(o, s, MAX_DEPTH);
 	}
 	
-
+	/**
+	 * Creates a new {@code RCSpace}.
+	 * 
+	 * @param s  a space scale
+	 * 
+	 * 
+	 * @see Arrow
+	 */
+	public RCSpace(Arrow s)
+	{
+		this(new Point(s.Dimension()), s);
+	}
+	
+	
 	@Override
 	public void add(O obj)
 	{
