@@ -247,7 +247,7 @@ public class Spin3D implements Spin
 		Spin3D s2 = new Spin3D(		Up(), e.Y());
 		Spin3D s3 = new Spin3D(Forward(), e.Z());
 
-		return s1.compose(s1.compose(s3));
+		return s2.compose(s1.compose(s3));
 	}
 	
 	@Override
