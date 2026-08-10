@@ -1,8 +1,5 @@
 package waffles.utils.geom.utilities.chiral;
 
-import waffles.utils.alg.lin.measure.matrix.fixed.Matrix3x3;
-import waffles.utils.alg.lin.measure.matrix.types.Square;
-import waffles.utils.alg.lin.solvers.matrix.exact.types.LUCrout;
 import waffles.utils.geom.shapes.points.Point;
 import waffles.utils.geom.spatial.maps.data.spin.Spin2D;
 import waffles.utils.geom.spatial.maps.data.unary.Rotated2D;
@@ -26,11 +23,11 @@ public enum Dial implements Rotated2D, Signed
 	/**
 	 * Counter clockwise.
 	 */
-	CCW(+1),
+	CCW(Sign.POSITIVE),
 	/**
 	 * Clockwise.
 	 */
-	 CW(-1);
+	 CW(Sign.NEGATIVE);
 
 
 	/**
@@ -50,7 +47,7 @@ public enum Dial implements Rotated2D, Signed
 	}
 		
 	/**
-	 * Computes the dial of a triangle of points.
+	 * Computes a {@code Dial} of a triangle of points.
 	 * Depending on the order of the points, they will
 	 * either turn clockwise or counterclockwise in
 	 * the 2D plane. If the points are colinear,
@@ -66,33 +63,42 @@ public enum Dial implements Rotated2D, Signed
 	 */
 	public static Dial of(Point a, Point b, Point c)
 	{
-		Matrix3x3 mat = new Matrix3x3();
-		mat.setOperator(Square.Type());
+		Point p = b.minus(a);
+		Point q = c.minus(a);
 		
-		mat.set(a.aff(0), 0, 0);
-		mat.set(b.aff(0), 0, 1);
-		mat.set(c.aff(0), 0, 2);
+		float r = p.X() * q.Y();
+		float s = p.Y() * q.X();
 		
-		mat.set(a.aff(1), 1, 0);
-		mat.set(b.aff(1), 1, 1);
-		mat.set(c.aff(1), 1, 2);
-		
-		mat.set(1f, 2, 0);
-		mat.set(1f, 2, 1);
-		mat.set(1f, 2, 2);
-		
-		LUCrout slv = new LUCrout(mat);
-		if(slv.determinant() > 0)
-			return CCW;
-		if(slv.determinant() < 0)
-			return CW;
-		return null;
+		return of(Sign.of(r - s));
 	}
 
+	/**
+	 * Creates a {@code Dial} based on a {@code Sign}.
+	 * 
+	 * @param s  a sign
+	 * @return   a dial
+	 * 
+	 * 
+	 * @see Sign
+	 */
+	public static Dial of(Sign s)
+	{
+		switch(s)
+		{
+		case POSITIVE:
+			return CCW;
+		case NEGATIVE:
+			return CW;
+		case ZERO:
+		default:
+			return null;
+		}
+	}
 	
-	private int sign;
 	
-	private Dial(int s)
+	private Sign sign;
+	
+	private Dial(Sign s)
 	{
 		sign = s;
 	}
@@ -100,12 +106,12 @@ public enum Dial implements Rotated2D, Signed
 	@Override
 	public Spin2D Spin()
 	{
-		return new Spin2D(sign * Floats.PI / 4);
+		return new Spin2D(sign.Value() * Floats.PI / 4);
 	}
 
 	@Override
 	public Sign Sign()
 	{
-		return Sign.of(sign);
+		return sign;
 	}
 }

@@ -267,9 +267,13 @@ public class Spin3D implements Spin
 	{
 		if(s instanceof Spin3D)
 		{
-			Quaternion q = Versor();
-			q = q.times(((Spin3D) s).Versor());
-			return new Spin3D(q);
+			Spin3D n = (Spin3D) s;
+			
+			Quaternion p = n.Versor();
+			Quaternion q =   Versor();
+			Quaternion r = q.times(p);
+
+			return new Spin3D(r);
 		}
 
 		throw new DimensionError(this, s);
