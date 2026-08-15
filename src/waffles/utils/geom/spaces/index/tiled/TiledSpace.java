@@ -10,6 +10,7 @@ import waffles.utils.geom.shapes.points.Point;
 import waffles.utils.geom.spaces.Space;
 import waffles.utils.geom.spaces.index.IndexSpace;
 import waffles.utils.geom.spatial.bounds.Bounds;
+import waffles.utils.geom.spatial.maps.data.Axial;
 import waffles.utils.sets.utilities.indexed.iterators.IndexValues;
 import waffles.utils.tools.collections.iterators.EmptyIterator;
 import waffles.utils.tools.collections.iterators.SingleIterator;
@@ -23,11 +24,11 @@ import waffles.utils.tools.collections.iterators.SingleIterator;
  *
  *
  * @param <T>  a  tile type
- * @see HyperCuboid
  * @see IndexSpace
  * @see Tiled
+ * @see Axial
  */
-public interface TiledSpace<T extends Tiled> extends IndexSpace.Mutable<T, T>, HyperCuboid
+public interface TiledSpace<T extends Tiled> extends Axial, IndexSpace.Mutable<T, T>
 {
 	/**
 	 * A {@code TiledSpace.Query} defines queries for a {@code TiledSpace}.

@@ -1,9 +1,9 @@
 package waffles.utils.geom.spaces.index.tiled;
 
-import waffles.utils.geom.shapes.convex.axial.cube.HyperCuboid3D;
 import waffles.utils.geom.shapes.points.Arrow;
 import waffles.utils.geom.shapes.points.Point;
 import waffles.utils.geom.spaces.Space3D;
+import waffles.utils.geom.spatial.maps.data.Axial3D;
 import waffles.utils.sets.utilities.indexed.coords.Coordinated3D;
 import waffles.utils.sets.utilities.indexed.coords.Coordination3D;
 
@@ -17,12 +17,12 @@ import waffles.utils.sets.utilities.indexed.coords.Coordination3D;
  *
  * @param <T>  a tile type
  * @see Coordinated3D
- * @see HyperCuboid3D
  * @see TiledSpace
  * @see Space3D
  * @see Tiled3D
+ * @see Axial3D
  */
-public interface TiledSpace3D<T extends Tiled3D> extends TiledSpace<T>, Space3D<T>, Coordination3D, HyperCuboid3D
+public interface TiledSpace3D<T extends Tiled3D> extends TiledSpace<T>, Space3D<T>, Coordination3D, Axial3D
 {
 	@Override
 	public default int Dimension()

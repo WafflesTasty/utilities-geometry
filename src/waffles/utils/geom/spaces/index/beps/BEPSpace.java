@@ -8,6 +8,7 @@ import waffles.utils.geom.spaces.index.IndexBoreal;
 import waffles.utils.geom.spatial.bounds.Bounds;
 import waffles.utils.sets.arboreal.binary.BiArboreal;
 import waffles.utils.sets.arboreal.binary.indexed.BEPTree;
+import waffles.utils.sets.utilities.indexed.coords.Coordinator;
 import waffles.utils.tools.collections.Iterables;
 
 /**
@@ -68,20 +69,44 @@ public class BEPSpace<E extends Enum<E>> extends BEPTree<E> implements IndexBore
 		public abstract BEPSpace<?> Tree();
 	}
 	
+	/**
+	 * A {@code BEPSpace.Hints} defines settings for a {@code BEPSpace}.
+	 *
+	 * @author Waffles
+	 * @since Aug 15, 2026
+	 * @version 1.1
+	 *
+	 * 
+	 * @see Coordinator
+	 */
+	public static interface Hints extends Coordinator
+	{
+		/**
+		 * Returns a {@code BEPSpace} tile size.
+		 * 
+		 * @return  a tile size
+		 */
+		public abstract float TileSize();
+	}
+	
 
 	private Arrow size;
-	private int[] dims;
-
+	
 	/**
 	 * Creates a new {@code BEPSpace}.
 	 * 
-	 * @param s  a tile size
-	 * @param d  a dimension
+	 * @param h  space hints
+	 * 
+	 * 
+	 * @see Hints
 	 */
-	public BEPSpace(float s, int... d)
+	public BEPSpace(Hints h)
 	{
-		size = Arrow.create(s, d.length);
-		dims = d;
+		super(h.Dimensions());
+		
+		int ord = h.Order();
+		float s = h.TileSize();
+		size = Arrow.create(s, ord);
 	}
 	
 			
@@ -141,12 +166,6 @@ public class BEPSpace<E extends Enum<E>> extends BEPTree<E> implements IndexBore
 	public Factory Factory()
 	{
 		return () -> this;
-	}
-	
-	@Override
-	public int[] Dimensions()
-	{
-		return dims;
 	}
 		
 	@Override
