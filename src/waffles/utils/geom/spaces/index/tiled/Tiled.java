@@ -5,6 +5,7 @@ import waffles.utils.alg.lin.measure.vector.Vectors;
 import waffles.utils.geom.shapes.convex.axial.cube.HyperCuboid;
 import waffles.utils.geom.shapes.points.Arrow;
 import waffles.utils.geom.shapes.points.Point;
+import waffles.utils.geom.spaces.index.IndexSpace;
 import waffles.utils.geom.utilities.chiral.arrows.Cardinal;
 import waffles.utils.sets.utilities.arboreal.Collectible;
 import waffles.utils.sets.utilities.indexed.coords.Coordinated;
@@ -24,14 +25,14 @@ import waffles.utils.sets.utilities.indexed.coords.Coordinated;
 public interface Tiled extends Coordinated, Collectible, HyperCuboid
 {
 	/**
-	 * Returns the parent {@code TiledSpace}.
+	 * Returns the parent {@code IndexSpace}.
 	 * 
 	 * @return  a parent space
 	 * 
 	 * 
-	 * @see TiledSpace
+	 * @see IndexSpace
 	 */
-	public default TiledSpace<?> Parent()
+	public default IndexSpace<?, ?> Parent()
 	{
 		return Arch().Set();
 	}
@@ -55,10 +56,10 @@ public interface Tiled extends Coordinated, Collectible, HyperCuboid
 			crds[k] = ck + tk;
 		}
 		
-		TiledSpace<?> p = Parent();
+		IndexSpace<?, ?> p = Parent();
 		if(p.defines(crds))
 		{
-			return p.get(crds);
+			return p.Tile(crds);
 		}
 
 		return null;

@@ -2,10 +2,8 @@ package waffles.utils.geom.spaces.index.tiled;
 
 import waffles.utils.geom.shapes.points.Arrow;
 import waffles.utils.geom.shapes.points.Point;
-import waffles.utils.geom.spaces.Space3D;
+import waffles.utils.geom.spaces.index.IndexSpace3D;
 import waffles.utils.geom.spatial.maps.data.Axial3D;
-import waffles.utils.sets.utilities.indexed.coords.Coordinated3D;
-import waffles.utils.sets.utilities.indexed.coords.Coordination3D;
 
 /**
  * A {@code TiledSpace3D} defines a three-dimensional {@code TiledSpace}.
@@ -16,14 +14,19 @@ import waffles.utils.sets.utilities.indexed.coords.Coordination3D;
  *
  *
  * @param <T>  a tile type
- * @see Coordinated3D
+ * @see IndexSpace3D
  * @see TiledSpace
- * @see Space3D
  * @see Tiled3D
  * @see Axial3D
  */
-public interface TiledSpace3D<T extends Tiled3D> extends TiledSpace<T>, Space3D<T>, Coordination3D, Axial3D
+public interface TiledSpace3D<T extends Tiled3D> extends TiledSpace<T>, IndexSpace3D.Mutable<T, T>, Axial3D
 {
+	@Override
+	public default Tiled3D Tile(int... crd)
+	{
+		return get(crd);
+	}
+	
 	@Override
 	public default int Dimension()
 	{

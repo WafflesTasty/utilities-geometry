@@ -4,6 +4,7 @@ import waffles.utils.alg.lin.measure.vector.Vector;
 import waffles.utils.geom.shapes.points.Arrow;
 import waffles.utils.geom.shapes.points.Point;
 import waffles.utils.geom.spaces.Space;
+import waffles.utils.geom.spaces.index.tiled.Tiled;
 import waffles.utils.sets.indexed.IndexedSet;
 import waffles.utils.sets.indexed.MutableIndex;
 
@@ -41,14 +42,21 @@ public interface IndexSpace<O, T> extends IndexedSet<T>, Space<O>
 		// NOT APPLICABLE
 	}
 
-	
+		
 	/**
 	 * Defines tile size in the {@code IndexSpace}.
 	 *
 	 * @return  a tile size
 	 */
 	public abstract Arrow TileSize();
-		
+	
+	/**
+	 * Returns a {@code Tiled} in the {@code IndexSpace}.
+	 * 
+	 * @param crd  a tile coordinate
+	 * @return  a tiled
+	 */
+	public abstract Tiled Tile(int... crd);
 	/**
 	 * Returns a coordinate in the {@code IndexSpace}.
 	 *

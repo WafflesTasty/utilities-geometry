@@ -3,6 +3,7 @@ package waffles.utils.geom.spaces.index.tiled;
 import waffles.utils.geom.shapes.convex.axial.cube.HyperCuboid3D;
 import waffles.utils.geom.shapes.points.Arrow;
 import waffles.utils.geom.shapes.points.Point;
+import waffles.utils.geom.spaces.index.IndexSpace3D;
 import waffles.utils.geom.utilities.chiral.arrows.Cardinal;
 import waffles.utils.sets.utilities.indexed.coords.Coordinated3D;
 
@@ -21,13 +22,13 @@ import waffles.utils.sets.utilities.indexed.coords.Coordinated3D;
 public interface Tiled3D extends Tiled, Coordinated3D, HyperCuboid3D
 {
 	@Override
+	public abstract IndexSpace3D<?, ?> Parent();
+	
+	@Override
 	public default Tiled3D Neighbor(Cardinal c)
 	{
 		return (Tiled3D) Tiled.super.Neighbor(c);
 	}
-
-	@Override
-	public abstract TiledSpace3D<?> Parent();
 
 	
 	@Override

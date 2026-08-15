@@ -130,6 +130,12 @@ public interface TiledSpace<T extends Tiled> extends Axial, IndexSpace.Mutable<T
 
 	
 	@Override
+	public default Tiled Tile(int... crd)
+	{
+		return get(crd);
+	}
+	
+	@Override
 	public default Query<T> Query()
 	{
 		return () -> this;

@@ -144,9 +144,15 @@ public class BEPSpace<E extends Enum<E>> extends BEPTree<E> implements IndexBore
 	}
 	
 	@Override
-	public BEPSNode<E> nodeAt(int... crds)
+	public BEPSNode<E> nodeAt(int... crd)
 	{
-		return (BEPSNode<E>) super.nodeAt(crds);
+		return (BEPSNode<E>) super.nodeAt(crd);
+	}
+	
+	@Override
+	public BEPSTile<E> Tile(int... crd)
+	{
+		return new BEPSTile.Base<>(this, crd);
 	}
 	
 	@Override
