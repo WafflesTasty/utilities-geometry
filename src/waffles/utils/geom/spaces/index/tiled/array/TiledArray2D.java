@@ -26,6 +26,16 @@ public class TiledArray2D<T extends Tiled2D> extends TiledArray<T> implements Ti
 	 */
 	public TiledArray2D(int r, int c)
 	{
-		super(r, c);
+		this(() -> new int[]{r, c});
+	}
+	
+	/**
+	 * Creates a new {@code TiledArray2D}.
+	 * 
+	 * @param h  space hints
+	 */
+	public TiledArray2D(Hints h)
+	{
+		super(h);
 	}
 }

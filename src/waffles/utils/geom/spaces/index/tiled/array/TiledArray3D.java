@@ -27,6 +27,16 @@ public class TiledArray3D<T extends Tiled3D> extends TiledArray<T> implements Ti
 	 */
 	public TiledArray3D(int r, int c, int a)
 	{
-		super(r, c, a);
+		this(() -> new int[]{r, c, a});
+	}
+	
+	/**
+	 * Creates a new {@code TiledArray3D}.
+	 * 
+	 * @param h  space hints
+	 */
+	public TiledArray3D(Hints h)
+	{
+		super(h);
 	}
 }
