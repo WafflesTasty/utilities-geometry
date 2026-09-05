@@ -68,7 +68,7 @@ public interface Scalable extends Scaled, Transformable
 	 */
 	public default void scaleFor(Point s)
 	{
-		scaleTo(Scale().hadamard(s));
+		scaleTo(Scale().plus(s));
 	}
 	
 

@@ -4,7 +4,6 @@ import waffles.utils.alg.lin.measure.vector.complex.Quaternion;
 import waffles.utils.alg.lin.measure.vector.fixed.Vector3;
 import waffles.utils.geom.spatial.maps.data.spin.Spin3D;
 import waffles.utils.geom.spatial.maps.data.unary.Rotated3D;
-import waffles.utils.tools.primitives.Floats;
 
 /**
  * An {@code Rotatable3D} object can be rotated in a three-dimensional vector space.
@@ -29,10 +28,7 @@ public interface Rotatable3D extends Rotatable, Rotated3D
 	 */
 	public default void rotateFor(Quaternion q)
 	{
-		if(ERROR < Floats.abs(q.W() - 1f))
-		{
-			rotateFor(new Spin3D(q));
-		}
+		rotateFor(new Spin3D(q));
 	}
 
 	/**
@@ -46,10 +42,7 @@ public interface Rotatable3D extends Rotatable, Rotated3D
 	 */
 	public default void rotateFor(Vector3 v, float a)
 	{
-		if(ERROR < Floats.abs(a))
-		{
-			rotateFor(new Spin3D(v, a));
-		}
+		rotateFor(new Spin3D(v, a));
 	}
 
 	/**
