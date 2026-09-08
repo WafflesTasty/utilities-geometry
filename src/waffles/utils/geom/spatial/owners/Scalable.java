@@ -29,7 +29,11 @@ public interface Scalable extends Scaled, Transformable
 	 */
 	public default void scaleTo(Point s)
 	{
-		Transform().setScale(s);
+		Scaled.Mutable m = Transform().Mutator();
+		if(m != null)
+		{
+			m.setScale(s);	
+		}
 	}
 
 	/**
@@ -73,7 +77,7 @@ public interface Scalable extends Scaled, Transformable
 	
 
 	@Override
-	public abstract Scaled.Mutable Transform();
+	public abstract Scaled Transform();
 
 	@Override
 	public default Arrow Scale()

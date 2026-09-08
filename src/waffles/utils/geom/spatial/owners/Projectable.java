@@ -27,7 +27,11 @@ public interface Projectable extends Projected, Transformable
 	 */
 	public default void projectTo(Vector o)
 	{
-		Transform().setOculus(o);
+		Projected.Mutable m = Transform().Mutator();
+		if(m != null)
+		{
+			m.setOculus(o);
+		}
 	}
 
 	/**
@@ -45,7 +49,7 @@ public interface Projectable extends Projected, Transformable
 
 
 	@Override
-	public abstract Projected.Mutable Transform();
+	public abstract Projected Transform();
 
 	@Override
 	public default Vector Oculus()

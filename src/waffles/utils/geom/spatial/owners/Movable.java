@@ -28,7 +28,11 @@ public interface Movable extends Positioned, Transformable
 	 */
 	public default void moveTo(Point o)
 	{
-		Transform().setOrigin(o);
+		Positioned.Mutable m = Transform().Mutator();
+		if(m != null)
+		{
+			m.setOrigin(o);
+		}
 	}
 	
 	/**
@@ -72,7 +76,7 @@ public interface Movable extends Positioned, Transformable
 
 
 	@Override
-	public abstract Positioned.Mutable Transform();
+	public abstract Positioned Transform();
 
 	@Override
 	public default Point Origin()

@@ -33,7 +33,7 @@ public interface AxisAligned extends Aligned, Geometrical
 	}
 	
 	@Override
-	public abstract AxialMap.Mutable Transform();
+	public abstract AxialMap Transform();
 		
 	@Override
 	public default int Dimension()

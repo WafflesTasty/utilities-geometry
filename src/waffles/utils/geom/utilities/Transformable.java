@@ -1,6 +1,6 @@
 package waffles.utils.geom.utilities;
 
-import waffles.utils.tools.patterns.properties.Immutable.Mutable;
+import waffles.utils.tools.patterns.properties.Immutable;
 import waffles.utils.tools.primitives.Floats;
 
 /**
@@ -19,12 +19,12 @@ public interface Transformable
 	public static final double ERROR = Floats.pow(2, -16);
 	
 	/**
-	 * Returns a {@code Mutable} transformation.
+	 * Returns an {@code Immutable} transformation.
 	 * 
-	 * @return  transform data
+	 * @return  a transformation
 	 * 
 	 * 
-	 * @see Mutable
+	 * @see Immutable
 	 */
-	public abstract Mutable Transform();
+	public abstract Immutable Transform();
 }

@@ -37,5 +37,5 @@ public interface Adjusted extends Aligned, Oriented, Spatial
 	
 	
 	@Override
-	public abstract Spatial.Mutable Transform();
+	public abstract Spatial Transform();
 }

@@ -33,7 +33,7 @@ public interface AffineOriented extends Oriented, Geometrical
 	}
 	
 	@Override
-	public abstract RadialMap.Mutable Transform();
+	public abstract RadialMap Transform();
 
 	@Override
 	public default int Dimension()

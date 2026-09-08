@@ -27,7 +27,11 @@ public interface Rotatable extends Rotated, Transformable
 	 */
 	public default void rotateTo(Spin s)
 	{
-		Transform().setSpin(s);
+		Rotated.Mutable m = Transform().Mutator();
+		if(m != null)
+		{
+			m.setSpin(s);
+		}
 	}
 
 	/**
@@ -45,7 +49,7 @@ public interface Rotatable extends Rotated, Transformable
 
 
 	@Override
-	public abstract Rotated.Mutable Transform();
+	public abstract Rotated Transform();
 
 	@Override
 	public default Spin Spin()

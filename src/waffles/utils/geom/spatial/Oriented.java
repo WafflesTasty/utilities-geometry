@@ -19,5 +19,5 @@ import waffles.utils.geom.spatial.owners.Rotatable;
 public interface Oriented extends Movable, Rotatable, Radial
 {
 	@Override
-	public abstract Radial.Mutable Transform();
+	public abstract Radial Transform();
 }

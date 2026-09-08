@@ -25,7 +25,7 @@ public interface ViewProjected extends Viewpoint, Geometrical
 	}
 	
 	@Override
-	public abstract WatcherMap.Mutable Transform();
+	public abstract WatcherMap Transform();
 
 	@Override
 	public default int Dimension()

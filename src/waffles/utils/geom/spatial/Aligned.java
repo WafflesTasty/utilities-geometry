@@ -19,5 +19,5 @@ import waffles.utils.geom.spatial.owners.Scalable;
 public interface Aligned extends Movable, Scalable, Axial
 {
 	@Override
-	public abstract Axial.Mutable Transform();
+	public abstract Axial Transform();
 }

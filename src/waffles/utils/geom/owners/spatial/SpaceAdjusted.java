@@ -25,7 +25,7 @@ public interface SpaceAdjusted extends Adjusted, Geometrical
 	}
 	
 	@Override
-	public abstract SpatialMap.Mutable Transform();
+	public abstract SpatialMap Transform();
 
 	@Override
 	public default int Dimension()
