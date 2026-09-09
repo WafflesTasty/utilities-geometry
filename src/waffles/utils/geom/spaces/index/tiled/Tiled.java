@@ -6,6 +6,7 @@ import waffles.utils.geom.shapes.convex.axial.cube.HyperCuboid;
 import waffles.utils.geom.shapes.points.Arrow;
 import waffles.utils.geom.shapes.points.Point;
 import waffles.utils.geom.spaces.index.IndexSpace;
+import waffles.utils.geom.spaces.index.tiled.set.Indexer;
 import waffles.utils.geom.utilities.chiral.arrows.Cardinal;
 import waffles.utils.sets.utilities.arboreal.Collectible;
 import waffles.utils.sets.utilities.indexed.coords.Coordinated;
@@ -65,12 +66,22 @@ public interface Tiled extends Coordinated, Collectible, HyperCuboid
 		return null;
 	}
 	
+	
+	@Override
+	public abstract Indexer Arch();
 
 	@Override
 	public default int Dimension()
 	{
 		return Parent().Dimension();
 	}
+
+	@Override
+	public default int[] Coords()
+	{
+		return Arch().Coords();
+	}
+
 	
 	@Override
 	public default Point Origin()

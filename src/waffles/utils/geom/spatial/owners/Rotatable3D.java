@@ -44,6 +44,20 @@ public interface Rotatable3D extends Rotatable, Rotated3D
 	{
 		rotateFor(new Spin3D(v, a));
 	}
+	
+	/**
+	 * Rotates the {@code Rotatable3D} around a vector.
+	 *
+	 * @param v  a rotation vector
+	 * @param a  a rotation angle
+	 *
+	 *
+	 * @see Vector3
+	 */
+	public default void rotateTo(Vector3 v, float a)
+	{
+		rotateTo(new Spin3D(v, a));
+	}
 
 	/**
 	 * Rotates the {@code Rotatable3D} around a vector.

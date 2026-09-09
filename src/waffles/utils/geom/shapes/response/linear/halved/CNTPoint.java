@@ -96,7 +96,7 @@ public class CNTPoint implements Response
 		{
 			@Override
 			public HSpace S()
-			{
+			{	
 				return s;
 			}
 			

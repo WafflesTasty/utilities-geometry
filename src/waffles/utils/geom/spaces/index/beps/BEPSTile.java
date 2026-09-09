@@ -1,7 +1,7 @@
 package waffles.utils.geom.spaces.index.beps;
 
 import waffles.utils.geom.spaces.index.tiled.Tiled;
-import waffles.utils.sets.utilities.arboreal.Collector;
+import waffles.utils.geom.spaces.index.tiled.set.Indexer;
 import waffles.utils.tools.patterns.properties.values.Valuable;
 
 /**
@@ -27,12 +27,11 @@ public interface BEPSTile<E extends Enum<E>> extends Tiled, Valuable<E>
 	 *
 	 * 
 	 * @param <E>  an enum type
-	 * @see Collector
 	 * @see BEPSTile
 	 */
-	public static class Base<E extends Enum<E>> extends Collector implements BEPSTile<E>
+	public static class Base<E extends Enum<E>> implements BEPSTile<E>
 	{
-		private int[] crds;
+		private Indexer set;
 
 		/**
 		 * Creates a new {@code BEPSTile}.
@@ -45,15 +44,15 @@ public interface BEPSTile<E extends Enum<E>> extends Tiled, Valuable<E>
 		 */
 		public Base(BEPSpace<?> s, int... c)
 		{
-			super(s);
-			crds = c;
+			set = new Indexer(this, c);
+			set.setContainer(s);
 		}
-
+		
 		
 		@Override
-		public int[] Coords()
+		public Indexer Arch()
 		{
-			return crds;
+			return set;
 		}
 	}
 	
