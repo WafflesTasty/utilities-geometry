@@ -90,11 +90,13 @@ public interface IndexSpace<O, T> extends IndexedSet<T>, Space<O>
 		int[] crds = new int[Order()];
 		for(int k = 0; k < Order(); k++)
 		{
-			crds[k] = (int) (p.aff(k) / s.aff(k));
-			if(crds[k] < min[k] || max[k] < crds[k])
+			float idx = p.aff(k) / s.aff(k);
+			if(idx < min[k] || max[k] < idx - 1)
 			{
 				return null;
 			}
+			
+			crds[k] = (int) idx;
 		}
 
 		return crds;
