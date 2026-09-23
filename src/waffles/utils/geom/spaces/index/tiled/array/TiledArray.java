@@ -22,7 +22,7 @@ import waffles.utils.sets.utilities.indexed.coords.Coordinator;
 public class TiledArray<T extends Tiled> extends ObjectIndex<T> implements TiledSpace<T>
 {
 	/**
-	 * The {@code Hints} interface defines settings for a {@code TiledArray}.
+	 * A {@code Hints} defines settings for a {@code TiledArray}.
 	 *
 	 * @author Waffles
 	 * @since 14 Feb 2026
