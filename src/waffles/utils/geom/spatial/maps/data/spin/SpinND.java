@@ -44,13 +44,14 @@ public class SpinND implements Spin
 	/**
 	 * Returns a {@code SpinND} from a euler vector.
 	 * 
+	 * @param s  a source spin
 	 * @param e  a euler vector
 	 * @return   a spin
 	 * 
 	 * 
 	 * @see Point
 	 */
-	public static SpinND from(Point e)
+	public static SpinND from(SpinND s, Point e)
 	{
 		throw new NotImplementedError();
 	}

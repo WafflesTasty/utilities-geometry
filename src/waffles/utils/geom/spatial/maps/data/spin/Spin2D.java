@@ -55,13 +55,14 @@ public class Spin2D implements Spin
 	/**
 	 * Returns a {@code Spin2D} from a euler vector.
 	 * 
+	 * @param s  a source spin
 	 * @param e  a euler vector
 	 * @return   a spin
 	 * 
 	 * 
 	 * @see Point
 	 */
-	public static Spin2D from(Point e)
+	public static Spin2D from(Spin2D s, Point e)
 	{
 		return new Spin2D(e.X());
 	}

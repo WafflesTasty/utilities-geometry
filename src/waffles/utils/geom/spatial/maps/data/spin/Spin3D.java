@@ -64,17 +64,18 @@ public class Spin3D implements Spin
 	/**
 	 * Returns a {@code Spin3D} from a euler vector.
 	 * 
+	 * @param s  a source spin
 	 * @param e  a euler vector
 	 * @return   a spin
 	 * 
 	 * 
 	 * @see Point
 	 */
-	public static Spin3D from(Point e)
+	public static Spin3D from(Spin3D s, Point e)
 	{
-		Spin3D s1 = new Spin3D(Vector3.X_AXIS, e.X());
-		Spin3D s2 = new Spin3D(Vector3.Y_AXIS, e.Y());
-		Spin3D s3 = new Spin3D(Vector3.Z_AXIS, e.Z());
+		Spin3D s1 = new Spin3D(s.Right(), e.X());
+		Spin3D s2 = new Spin3D(s.Up(), e.Y());
+		Spin3D s3 = new Spin3D(s.Forward(), e.Z());
 
 		return s2.compose(s1.compose(s3));
 	}
