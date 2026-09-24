@@ -49,6 +49,28 @@ public interface Spin extends DotProduct, Dimensional, Composition<Spin>, Hadama
 	}
 
 	/**
+	 * Returns a {@code Spin} from a euler vector.
+	 * 
+	 * @param e  a euler vector
+	 * @return   a spin
+	 * 
+	 * 
+	 * @see Point
+	 */
+	public static Spin from(Point e)
+	{
+		switch(e.Dimension())
+		{
+		case 1:
+			return Spin2D.from(e);
+		case 3:
+			return Spin3D.from(e);
+		default:
+			return SpinND.from(e);
+		}
+	}
+	
+	/**
 	 * Creates a new {@code Spin}.
 	 *
 	 * @param d  a spin dimension
@@ -77,17 +99,6 @@ public interface Spin extends DotProduct, Dimensional, Composition<Spin>, Hadama
 	 * @see Point
 	 */
 	public abstract Point Euler();
-
-	/**
-	 * Returns a spin from an {@code Euler}.
-	 * 
-	 * @param e  an euler vector
-	 * @return   a spin
-	 * 
-	 * 
-	 * @see Point
-	 */
-	public abstract Spin from(Point e);
 	
 	/**
 	 * Returns a basis vector in the {@code Spin}.
@@ -131,7 +142,10 @@ public interface Spin extends DotProduct, Dimensional, Composition<Spin>, Hadama
 	 * @return   a scaled spin
 	 */
 	@Override
-	public abstract Spin times(Float s);
+	public default Spin times(Float s)
+	{
+		return from(Euler().times(s));
+	}
 	
 	/**
 	 * Divides a scalar from the {@code Spin}.

@@ -52,6 +52,20 @@ public class Spin2D implements Spin
 		return m;
 	}
 
+	/**
+	 * Returns a {@code Spin2D} from a euler vector.
+	 * 
+	 * @param e  a euler vector
+	 * @return   a spin
+	 * 
+	 * 
+	 * @see Point
+	 */
+	public static Spin2D from(Point e)
+	{
+		return new Spin2D(e.X());
+	}
+	
 
 	private float ang;
 
@@ -130,12 +144,6 @@ public class Spin2D implements Spin
 	{
 		return new Spin2D(-Angle());
 	}
-
-	@Override
-	public Spin2D from(Point e)
-	{
-		return new Spin2D(e.X());
-	}
 	
 	@Override
 	public Spin2D over(Float s)
@@ -159,6 +167,12 @@ public class Spin2D implements Spin
 		}
 
 		throw new DimensionError(this, s);
+	}
+	
+	@Override
+	public Spin2D hadamard(Point p)
+	{
+		return (Spin2D) Spin.super.hadamard(p);
 	}
 
 	@Override

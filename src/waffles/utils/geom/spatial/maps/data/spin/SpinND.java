@@ -40,6 +40,20 @@ public class SpinND implements Spin
 
 		return b;
 	}
+	
+	/**
+	 * Returns a {@code SpinND} from a euler vector.
+	 * 
+	 * @param e  a euler vector
+	 * @return   a spin
+	 * 
+	 * 
+	 * @see Point
+	 */
+	public static SpinND from(Point e)
+	{
+		throw new NotImplementedError();
+	}
 
 
 	private Matrix basis;
@@ -94,12 +108,6 @@ public class SpinND implements Spin
 	}
 
 	@Override
-	public SpinND from(Point p)
-	{
-		throw new NotImplementedError();
-	}
-	
-	@Override
 	public SpinND over(Float s)
 	{
 		return times(1f / s);
@@ -121,6 +129,12 @@ public class SpinND implements Spin
 		}
 
 		return null;
+	}
+	
+	@Override
+	public SpinND hadamard(Point p)
+	{
+		return (SpinND) Spin.super.hadamard(p);
 	}
 	
 	@Override
