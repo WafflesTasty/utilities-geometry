@@ -160,10 +160,14 @@ public class Spin2D implements Spin
 	@Override
 	public Spin2D compose(Spin s)
 	{
-		if(s instanceof Spin2D)
+		if(s.Dimension() == 2)
 		{
-			float a = Angle() + ((Spin2D) s).Angle();
-			return new Spin2D(a);
+			Spin2D r = (Spin2D) s;
+			
+			float a1 = r.Angle();
+			float a2 =   Angle();
+
+			return new Spin2D(a1 + a2);
 		}
 
 		throw new DimensionError(this, s);

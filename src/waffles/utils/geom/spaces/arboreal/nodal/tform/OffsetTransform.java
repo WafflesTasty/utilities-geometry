@@ -1,5 +1,6 @@
 package waffles.utils.geom.spaces.arboreal.nodal.tform;
 
+import waffles.utils.sets.utilities.arboreal.Nodal;
 import waffles.utils.geom.spaces.arboreal.nodal.TransformNodal;
 
 /**
@@ -43,11 +44,12 @@ public abstract class OffsetTransform extends OffsetMap
 	@Override
 	public void setChanged()
 	{
-		for(TransformNodal n : Nodal().Children())
+		for(Nodal n : Nodal().Arch().Children())
 		{
-			n.Transform().setChanged();
+			TransformNodal c = (TransformNodal) n;
+			c.Transform().setChanged();
 		}
-		
+
 		Offset().setChanged();
 		super.setChanged();
 	}

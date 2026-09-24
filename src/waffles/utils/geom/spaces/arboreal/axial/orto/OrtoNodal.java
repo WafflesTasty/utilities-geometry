@@ -27,7 +27,7 @@ public interface OrtoNodal extends HyperCuboid, AxialNodal
 {		
 	@Override
 	public abstract OrtoNode Arch();
-		
+
 	
 	/**
 	 * Queries an index in the {@code OrtoNodal}.
