@@ -6,7 +6,6 @@ import waffles.utils.geom.spaces.arboreal.axial.AxialNodal;
 import waffles.utils.geom.spaces.arboreal.planar.bnd.BNDPlanar;
 import waffles.utils.geom.spaces.arboreal.planar.bnd.BNDPlanar2D;
 import waffles.utils.geom.spaces.arboreal.planar.bnd.BNDPlanar3D;
-import waffles.utils.geom.spatial.bounds.Bounds;
 import waffles.utils.sets.arboreal.binary.BiNodal;
 
 /**
@@ -38,7 +37,7 @@ public interface PlanarNodal extends AxialNodal, BiNodal, HyperCuboid
 	public abstract PlanarNode Arch();
 	
 	@Override
-	public default Bounds Bounds()
+	public default BNDPlanar Bounds()
 	{
 		if(Dimension() == 2)
 			return (BNDPlanar2D) () -> this;

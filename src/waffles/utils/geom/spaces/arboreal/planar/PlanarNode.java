@@ -2,7 +2,6 @@ package waffles.utils.geom.spaces.arboreal.planar;
 
 import waffles.utils.geom.shapes.linear.halved.Plane;
 import waffles.utils.geom.spaces.arboreal.planar.bnd.BNDPlanar;
-import waffles.utils.geom.spatial.bounds.Bounds;
 import waffles.utils.sets.arboreal.binary.BiNode;
 
 /**
@@ -40,7 +39,7 @@ public class PlanarNode extends BiNode implements PlanarNodal
 
 	
 	@Override
-	public Bounds Bounds()
+	public BNDPlanar Bounds()
 	{
 		return bnd;
 	}

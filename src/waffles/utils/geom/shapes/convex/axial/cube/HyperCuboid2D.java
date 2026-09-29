@@ -2,7 +2,6 @@ package waffles.utils.geom.shapes.convex.axial.cube;
 
 import waffles.utils.geom.shapes.bounds.convex.cuboid.BNDCuboid2D;
 import waffles.utils.geom.shapes.convex.axial.AxialSet2D;
-import waffles.utils.geom.spatial.bounds.Bounds2D;
 
 /**
  * A {@code HyperCuboid2D} defines a three-dimensional {@code HyperCuboid}.
@@ -19,7 +18,7 @@ import waffles.utils.geom.spatial.bounds.Bounds2D;
 public interface HyperCuboid2D extends HyperCuboid, AxialSet2D
 {
 	@Override
-	public default Bounds2D Bounds()
+	public default BNDCuboid2D Bounds()
 	{
 		return (BNDCuboid2D) () -> this;
 	}

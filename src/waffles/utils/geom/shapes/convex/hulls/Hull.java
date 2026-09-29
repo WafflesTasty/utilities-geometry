@@ -78,6 +78,7 @@ public interface Hull extends ConvexSet, Transformator
 		}
 	}
 	
+	
 	/**
 	 * Creates a {@code Transformable} from a {@code Matrix} span.
 	 * 
@@ -123,6 +124,29 @@ public interface Hull extends ConvexSet, Transformator
 			return new Hull3D(s);
 		
 		return new HullND(s);
+	}
+	
+	/**
+	 * Creates a {@code Hull} from a {@code Point} set.
+	 * 
+	 * @param pts  a point set
+	 * @return  a hull
+	 * 
+	 * 
+	 * @see Point
+	 * @see Hull
+	 */
+	public static Hull create(Point... pts)
+	{
+		switch(pts[0].Dimension())
+		{
+		case 2:
+			return new Hull2D(pts);
+		case 3:
+			return new Hull3D(pts);
+		default:
+			return new HullND(pts);			
+		}
 	}
 	
 	/**

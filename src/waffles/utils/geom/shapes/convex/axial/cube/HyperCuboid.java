@@ -14,7 +14,6 @@ import waffles.utils.geom.shapes.convex.axial.cube.base.Rectangle;
 import waffles.utils.geom.shapes.convex.hulls.Hull;
 import waffles.utils.geom.shapes.points.Arrow;
 import waffles.utils.geom.shapes.points.Point;
-import waffles.utils.geom.spatial.bounds.Bounds;
 import waffles.utils.tools.primitives.Doubles;
 import waffles.utils.tools.primitives.Floats;
 import waffles.utils.tools.primitives.Integers;
@@ -196,7 +195,7 @@ public interface HyperCuboid extends Hull, AxialSet
 	}
 	
 	@Override
-	public default Bounds Bounds()
+	public default BNDCuboid Bounds()
 	{
 		if(Dimension() == 2)
 			return (BNDCuboid2D) () -> this;
